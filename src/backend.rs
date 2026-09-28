@@ -200,7 +200,7 @@ impl CodegenBackend for TpdeCodegenBackend {
     }
 
     fn print_version(&self) {
-        todo!()
+        println!("rustc_codegen_tpde version 0.0.1");
     }
 
     fn replaced_intrinsics(&self) -> Vec<Symbol> {
