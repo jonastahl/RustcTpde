@@ -170,6 +170,9 @@ mod ffi {
         Load,
         GEP,
         MemCpy,
+        MemMove,
+        MemSet,
+        MemCmp,
 
         Select,
 

@@ -762,7 +762,17 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         size: Self::Value,
         flags: MemFlags,
     ) {
-        todo!()
+        self.module.borrow_mut().add_instruction(
+            self.basic_block,
+            InstructionKind::MemMove,
+            vec![
+                dst,
+                Slot::new_raw(dst_align.bytes_usize() as u32),
+                src,
+                Slot::new_raw(src_align.bytes_usize() as u32),
+                size,
+            ],
+        );
     }
 
     fn memset(
@@ -773,7 +783,16 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         align: rustc_abi::Align,
         flags: MemFlags,
     ) {
-        todo!()
+        self.module.borrow_mut().add_instruction(
+            self.basic_block,
+            InstructionKind::MemSet,
+            vec![
+                ptr,
+                fill_byte,
+                size,
+                Slot::new_raw(align.bytes_usize() as u32),
+            ],
+        );
     }
 
     fn vscale(&mut self, ty: Self::Type) -> Self::Value {

@@ -4,11 +4,11 @@ use rustc_codegen_ssa::RetagInfo;
 use rustc_codegen_ssa::mir::IntrinsicResult;
 use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
 use rustc_codegen_ssa::mir::place::PlaceValue;
-use rustc_codegen_ssa::traits::IntrinsicCallBuilderMethods;
+use rustc_codegen_ssa::traits::{BuilderMethods, IntrinsicCallBuilderMethods};
 use rustc_middle::ty::Instance;
 use rustc_middle::ty::layout::TyAndLayout;
 use rustc_span::{Span, sym};
-use crate::shared::ir::{InstructionKind, Type};
+use crate::shared::ir::{FullType, InstructionKind, Type};
 
 impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
     fn codegen_intrinsic_call(
@@ -73,6 +73,15 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut()
                     .add_const(Type::Bool, false as u128);
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
+            sym::compare_bytes => {
+                let cmp = self.cx.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::MemCmp,
+                    vec![args[0].immediate(), args[1].immediate(), args[2].immediate()],
+                    Type::i32
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(cmp))
             }
             _ => {
                 panic!("Unimplemented intrinsic: {}", name.as_str());
