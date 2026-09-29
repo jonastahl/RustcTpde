@@ -323,6 +323,8 @@ namespace tpde_rust {
 
     bool compile_overflow(Instruction &, Instruction &);
 
+    bool compile_saturating_intrin(RustAdaptor::IRInstRef, const ValInfo &, u64);
+
     bool compile_ret(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_br(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -516,6 +518,10 @@ namespace tpde_rust {
       set_fn(InstructionKind::sTof, &Derived::compile_int_to_float, /*sign=*/true);
 
       set_fn(InstructionKind::ctpop, &Derived::compile_ctpop);
+      set_fn(InstructionKind::sat_sadd, &Derived::compile_saturating_intrin, OverflowOp::sadd);
+      set_fn(InstructionKind::sat_uadd, &Derived::compile_saturating_intrin, OverflowOp::uadd);
+      set_fn(InstructionKind::sat_ssub, &Derived::compile_saturating_intrin, OverflowOp::ssub);
+      set_fn(InstructionKind::sat_usub, &Derived::compile_saturating_intrin, OverflowOp::usub);
 
       return res;
     }();
@@ -1090,6 +1096,53 @@ namespace tpde_rust {
     EncodeFnTy encode_fn = encode_fns[op][width_idx];
     (derived()->*encode_fn)(lhs.part(0), rhs.part(0), res.part(0), of_res.part(0));
     return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_saturating_intrin(RustAdaptor::IRInstRef inst_ref, const ValInfo &,
+    u64 op) {
+    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+
+    Type ty = this->adaptor->type_of_ref(inst.result);
+
+    const auto width = size_of_type(ty);
+    u32 width_idx = 0;
+    switch (width) {
+      case 8: width_idx = 0; break;
+      case 16: width_idx = 1; break;
+      case 32: width_idx = 2; break;
+      case 64: width_idx = 3; break;
+      default: return false;
+    }
+
+    using EncodeFnTy =
+        bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &&);
+    std::array<std::array<EncodeFnTy, 4>, 4> encode_fns{
+      {
+        {&Derived::encode_sat_add_u8,
+         &Derived::encode_sat_add_u16,
+         &Derived::encode_sat_add_u32,
+         &Derived::encode_sat_add_u64},
+        {&Derived::encode_sat_add_i8,
+         &Derived::encode_sat_add_i16,
+         &Derived::encode_sat_add_i32,
+         &Derived::encode_sat_add_i64},
+        {&Derived::encode_sat_sub_u8,
+         &Derived::encode_sat_sub_u16,
+         &Derived::encode_sat_sub_u32,
+         &Derived::encode_sat_sub_u64},
+        {&Derived::encode_sat_sub_i8,
+         &Derived::encode_sat_sub_i16,
+         &Derived::encode_sat_sub_i32,
+         &Derived::encode_sat_sub_i64},
+    }};
+
+    EncodeFnTy encode_fn = encode_fns[static_cast<u32>(op)][width_idx];
+
+    ValueRef lhs = this->val_ref(inst.ops[0]);
+    ValueRef rhs = this->val_ref(inst.ops[0]);
+    ValueRef res = this->result_ref(inst.result);
+    return (derived()->*encode_fn)(lhs.part(0), rhs.part(0), res.part(0));
   }
 
   template<typename Adaptor, typename Derived, typename Config>

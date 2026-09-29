@@ -1,3 +1,4 @@
+use rustc_codegen_ssa::diagnostics::InvalidMonomorphization;
 use crate::builder::Builder;
 use rustc_codegen_ssa::RetagInfo;
 use rustc_codegen_ssa::mir::IntrinsicResult;
@@ -36,6 +37,36 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     vec![input_val]
                 );
 
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
+            sym::saturating_add
+            | sym::saturating_sub => {
+                let ty = args[0].layout.ty;
+                if !ty.is_integral() {
+                    let err = self.tcx.dcx().emit_err(InvalidMonomorphization::BasicIntegerType {
+                        span,
+                        name,
+                        ty,
+                    });
+                    return IntrinsicResult::Err(err);
+                }
+                let (size, signed) = ty.int_size_and_signed(self.tcx);
+
+                let is_add = name == sym::saturating_add;
+                let lhs = args[0].immediate();
+                let rhs = args[1].immediate();
+                let instruction = match (is_add, signed) {
+                    (true, true) => InstructionKind::sat_sadd,
+                    (true, false) => InstructionKind::sat_uadd,
+                    (false, true) => InstructionKind::sat_ssub,
+                    (false, false) => InstructionKind::sat_usub
+                };
+
+                let result = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    instruction,
+                    vec![lhs, rhs]
+                );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
             _ => {

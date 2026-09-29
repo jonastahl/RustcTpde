@@ -205,6 +205,10 @@ mod ffi {
         Resume,
 
         ctpop,
+        sat_sadd,
+        sat_uadd,
+        sat_ssub,
+        sat_usub,
 
         Last,
     }
