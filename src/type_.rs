@@ -1,5 +1,5 @@
 use crate::context::{CodegenCx, GenericCx, SCx};
-use crate::shared::ir::{ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type};
+use crate::shared::ir::{ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type, vector_info, vector_type};
 use core::borrow::Borrow;
 use rustc_abi::{AddressSpace, BackendRepr, Primitive, Reg, RegKind, Scalar};
 use rustc_codegen_ssa::common::TypeKind;
@@ -27,7 +27,13 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
                 FullType::Pair(a, b, b_offset.bytes_usize() as u32)
             }
             BackendRepr::Memory { sized } => FullType::Memory { sized },
-            _ => todo!(),
+            BackendRepr::SimdVector { element, count } => {
+                let FullType::Single(elem) = self.tpde_scalar_type(element) else {
+                    unreachable!()
+                };
+                self.type_vector(FullType::Single(elem), count.as_u64())
+            }
+            BackendRepr::SimdScalableVector { .. } => todo!(),
         }
     }
 
@@ -46,6 +52,16 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
 impl<'tpde, CX: Borrow<SCx<'tpde>>> GenericCx<'tpde, CX> {
     pub fn type_void(&self) -> FullType {
         FullType::Single(Type::Void)
+    }
+
+    pub fn type_vector(&self, elem: FullType, count: u64) -> FullType {
+        let FullType::Single(elem) = elem else {
+            bug!("vector element must be a scalar type: {:?}", elem)
+        };
+        match vector_type(elem, count) {
+            Some(ty) => FullType::Single(ty),
+            None => todo!("unsupported vector type <{} x {:?}>", count, elem),
+        }
     }
 
     pub fn function_signature(&self, args: &[FullType], ret: Option<FullType>) -> FunctionSignature {
@@ -139,6 +155,7 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BaseTypeCodegenMethods for GenericCx<'tpde, 
                 }
                 Type::f32 | Type::f64 => TypeKind::Float,
                 Type::ptr => TypeKind::Pointer,
+                ty if vector_info(ty).is_some() => TypeKind::Vector,
                 _ => todo!(),
             },
             FullType::Pair(ty1, ty2, _) => TypeKind::Struct,
@@ -155,11 +172,17 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BaseTypeCodegenMethods for GenericCx<'tpde, 
     }
 
     fn element_type(&self, ty: Self::Type) -> Self::Type {
-        todo!()
+        match ty {
+            FullType::Single(ty) if let Some((elem, _)) = vector_info(ty) => FullType::Single(elem),
+            _ => bug!("element_type called on non-vector type {:?}", ty),
+        }
     }
 
     fn vector_length(&self, ty: Self::Type) -> usize {
-        todo!()
+        match ty {
+            FullType::Single(ty) if let Some((_, count)) = vector_info(ty) => count as usize,
+            _ => bug!("vector_length called on non-vector type {:?}", ty),
+        }
     }
 
     fn float_width(&self, ty: Self::Type) -> usize {
@@ -335,10 +358,11 @@ impl CodegenCx<'_, '_> {
                 8 => Type::f64,
                 _ => panic!("Unsupported float register size"),
             },
-            RegKind::Vector { hint_vector_elem: _ } => {
-                // E.g., for 128-bit SIMD registers if you support them
-                todo!("Vector registers not yet supported")
-            }
+            RegKind::Vector { hint_vector_elem: _ } => match reg.size.bytes() {
+                8 => Type::v8i8,
+                16 => Type::v16i8,
+                _ => panic!("Unsupported vector register size"),
+            },
         }
     }
 }

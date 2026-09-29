@@ -41,6 +41,16 @@ bool compile_to_file(ModuleTpde& module, const rust::Str path) {
         case Type::ptr: return 64;
         case Type::f32: return 32;
         case Type::f64: return 64;
+        case Type::v8i8:
+        case Type::v4i16:
+        case Type::v2i32:
+        case Type::v2f32: return 64;
+        case Type::v16i8:
+        case Type::v8i16:
+        case Type::v4i32:
+        case Type::v2i64:
+        case Type::v4f32:
+        case Type::v2f64: return 128;
         default:
             throw std::runtime_error("size_of_type: unsupported type");
     }
@@ -57,6 +67,16 @@ bool compile_to_file(ModuleTpde& module, const rust::Str path) {
             return tpde::RegBank{0};
         case Type::f32:
         case Type::f64:
+        case Type::v8i8:
+        case Type::v16i8:
+        case Type::v4i16:
+        case Type::v8i16:
+        case Type::v2i32:
+        case Type::v4i32:
+        case Type::v2i64:
+        case Type::v2f32:
+        case Type::v4f32:
+        case Type::v2f64:
             return tpde::RegBank{1};
         default:
             throw std::runtime_error("reg_bank_of_type: unsupported type");

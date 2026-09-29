@@ -49,10 +49,49 @@ pub fn size_of_type(ty: Type) -> u32 {
         Type::i16 => 2,
         Type::i32 => 4,
         Type::i64 => 8,
-        Type {
-            repr: 6_u8..=u8::MAX,
-        } => todo!(),
+        Type::i128 => 16,
+        Type::f32 => 4,
+        Type::f64 => 8,
+        Type::ptr => 8,
+        ty => match vector_info(ty) {
+            Some((elem, count)) => size_of_type(elem) * count,
+            None => todo!(),
+        },
     }
+}
+
+/// Decompose a vector type into its element type and element count.
+pub fn vector_info(ty: Type) -> Option<(Type, u32)> {
+    Some(match ty {
+        Type::v8i8 => (Type::i8, 8),
+        Type::v16i8 => (Type::i8, 16),
+        Type::v4i16 => (Type::i16, 4),
+        Type::v8i16 => (Type::i16, 8),
+        Type::v2i32 => (Type::i32, 2),
+        Type::v4i32 => (Type::i32, 4),
+        Type::v2i64 => (Type::i64, 2),
+        Type::v2f32 => (Type::f32, 2),
+        Type::v4f32 => (Type::f32, 4),
+        Type::v2f64 => (Type::f64, 2),
+        _ => return None,
+    })
+}
+
+/// Vector type with the given element type and element count, if it is supported.
+pub fn vector_type(elem: Type, count: u64) -> Option<Type> {
+    Some(match (elem, count) {
+        (Type::i8, 8) => Type::v8i8,
+        (Type::i8, 16) => Type::v16i8,
+        (Type::i16, 4) => Type::v4i16,
+        (Type::i16, 8) => Type::v8i16,
+        (Type::i32, 2) => Type::v2i32,
+        (Type::i32, 4) => Type::v4i32,
+        (Type::i64, 2) => Type::v2i64,
+        (Type::f32, 2) => Type::v2f32,
+        (Type::f32, 4) => Type::v4f32,
+        (Type::f64, 2) => Type::v2f64,
+        _ => return None,
+    })
 }
 
 pub use super::ffi::{ArgInfo, ArgKind, Type, InstructionKind, ArgExtension};

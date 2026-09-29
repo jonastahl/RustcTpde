@@ -106,6 +106,17 @@ mod ffi {
         f64,
         ptr,
 
+        v8i8,
+        v16i8,
+        v4i16,
+        v8i16,
+        v2i32,
+        v4i32,
+        v2i64,
+        v2f32,
+        v4f32,
+        v2f64,
+
         Last,
     }
 
@@ -302,6 +313,7 @@ impl Debug for ffi::Value {
             Type::ptr => format!("[ptr: {}]", self.data2),
             Type::f32 => format!("{}", f32::from_bits(self.data2 as u32)),
             Type::f64 => format!("{}", f64::from_bits(self.data2)),
+            ty if ir::vector_info(ty).is_some() => format!("<{:#018x} {:#018x}>", self.data1, self.data2),
             _ => todo!(),
         };
         write!(
