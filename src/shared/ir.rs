@@ -597,8 +597,8 @@ impl Module {
             todo!()
         };
 
+        assert!(cases.len() <= 200000, "Too many cases: {}", cases.len());
         for (val, bb) in cases {
-            assert!(*val <= 200000);
             ops.push(Slot::Raw(*val as u32));
             ops.push(Slot::new_raw(bb.index as u32));
         }

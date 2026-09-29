@@ -8,7 +8,7 @@ use rustc_codegen_ssa::traits::IntrinsicCallBuilderMethods;
 use rustc_middle::ty::Instance;
 use rustc_middle::ty::layout::TyAndLayout;
 use rustc_span::{Span, sym};
-use crate::shared::ir::InstructionKind;
+use crate::shared::ir::{InstructionKind, Type};
 
 impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
     fn codegen_intrinsic_call(
@@ -67,6 +67,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     instruction,
                     vec![lhs, rhs]
                 );
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
+            sym::is_val_statically_known => {
+                let result = self.cx.module.borrow_mut()
+                    .add_const(Type::Bool, false as u128);
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
             _ => {

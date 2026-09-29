@@ -384,7 +384,7 @@ impl<'tcx> LayoutTypeCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
     }
 
     fn fn_ptr_backend_type(&self, fn_abi: &FnAbi<'tcx, Ty<'tcx>>) -> Self::Type {
-        todo!()
+        FullType::Single(Type::ptr)
     }
 
     fn reg_backend_type(&self, ty: &Reg) -> Self::Type {

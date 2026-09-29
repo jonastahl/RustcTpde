@@ -536,7 +536,6 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn nonnull_metadata(&mut self, load: Self::Value) {
-        todo!()
     }
 
     fn store(
@@ -916,7 +915,6 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn set_invariant_load(&mut self, load: Self::Value) {
-        todo!()
     }
 
     fn lifetime_start(&mut self, ptr: Self::Value, size: rustc_abi::Size) {

@@ -168,12 +168,12 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 assert!(!self.tcx.is_thread_local_static(def_id));
                 Slot::new_global(self.get_global(def_id))
             }
-            GlobalAlloc::Memory(alloc) if alloc.inner().len() == 0 => {
-                todo!()
-                // let val = alloc.inner().align.bytes().wrapping_add(offset.bytes());
-                // let data = self.tcx.truncate_to_target_usize(val) as u128;
-                // self.tpde_module.borrow_mut().add_const(Type::ptr, data)
-            }
+            // GlobalAlloc::Memory(alloc) if alloc.inner().len() == 0 => {
+            //     todo!()
+            //     // let val = alloc.inner().align.bytes().wrapping_add(offset.bytes());
+            //     // let data = self.tcx.truncate_to_target_usize(val) as u128;
+            //     // self.tpde_module.borrow_mut().add_const(Type::ptr, data)
+            // }
             GlobalAlloc::Memory(alloc) => {
                 let id = prov.alloc_id().0;
                 let offset = offset.bytes();
