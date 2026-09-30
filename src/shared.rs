@@ -219,6 +219,10 @@ mod ffi {
         Resume,
 
         ctpop,
+        ctlz,
+        ctlz_nonzero,
+        cttz,
+        cttz_nonzero,
         sat_sadd,
         sat_uadd,
         sat_ssub,

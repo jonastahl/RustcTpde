@@ -105,3 +105,38 @@ bool is_float(Type type) {
             return false;
     }
 }
+
+bool is_vector(Type type) {
+    switch (type) {
+        case Type::v8i8:
+        case Type::v16i8:
+        case Type::v4i16:
+        case Type::v8i16:
+        case Type::v2i32:
+        case Type::v4i32:
+        case Type::v2i64:
+        case Type::v2f32:
+        case Type::v4f32:
+        case Type::v2f64:
+            return true;
+        default:
+            return false;
+    }
+}
+
+std::pair<tpde::u32, Type> vector_info(Type type) {
+    switch (type) {
+        case Type::v8i8: return {8, Type::i8};
+        case Type::v16i8: return {16, Type::i8};
+        case Type::v4i16: return {4, Type::i16};
+        case Type::v8i16: return {8, Type::i16};
+        case Type::v2i32: return {2, Type::i32};
+        case Type::v4i32: return {4, Type::i32};
+        case Type::v2i64: return {2, Type::i64};
+        case Type::v2f32: return {2, Type::f32};
+        case Type::v4f32: return {4, Type::f32};
+        case Type::v2f64: return {2, Type::f64};
+        default:
+            throw std::runtime_error("vector_info: not a vector type");
+    }
+}

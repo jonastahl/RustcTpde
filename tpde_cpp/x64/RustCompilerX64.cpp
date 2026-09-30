@@ -92,6 +92,9 @@ namespace tpde_rust::x64 {
     const Instruction cmpi = this->adaptor->get_instruction(inst);
 
     Type type = this->adaptor->type_of_ref(cmpi.ops[0]);
+    if (is_vector(type)) {
+      return compile_icmp_vector(this->adaptor->get_instruction(inst));
+    }
     u32 int_width = size_of_type(type);
 
     Jump jump;

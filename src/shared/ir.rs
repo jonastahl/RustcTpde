@@ -817,6 +817,6 @@ impl ffi::Value {
     }
 
     pub fn data(&self) -> u128 {
-        (self.data1 as u128) << 64 + (self.data2 as u128)
+        ((self.data1 as u128) << 64) + (self.data2 as u128)
     }
 }

@@ -200,7 +200,23 @@ namespace tpde_rust {
           case f32:
               return ValuePart(imm.data2, 4, tpde::RegBank{1});
           case f64:
+          case v8i8:
+          case v4i16:
+          case v2i32:
+          case v2f32:
             return ValuePart(imm.data2, 8, tpde::RegBank{1});
+          case v16i8:
+          case v8i16:
+          case v4i32:
+          case v2i64:
+          case v4f32:
+          case v2f64: {
+            // Little-endian: low half first
+            u64 *data = new (const_allocator) u64[2];
+            data[0] = imm.data2;
+            data[1] = imm.data1;
+            return ValuePart(data, 16, tpde::RegBank{1});
+          }
 
           default:
             throw std::runtime_error("not implemented");
@@ -311,7 +327,7 @@ namespace tpde_rust {
     bool compile_inst(RustAdaptor::IRInstRef, InstRange);
 
     bool compile_unknown(RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
-      auto instr = this->adaptor->get_instruction(inst);
+      Instruction& instr = this->adaptor->get_instruction(inst);
       assert(false);
     }
 
@@ -370,6 +386,19 @@ namespace tpde_rust {
     bool compile_fcmp(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_ctpop(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_ct_lz_tz(RustAdaptor::IRInstRef, const ValInfo &, u64);
+
+    u64 const_vector_elem(IRValueRef vec, unsigned idx);
+    void extract_element(ValueRef &vec_vr, unsigned idx, Type ty, ValuePart &out);
+    void insert_element(ValueRef &vec_vr, unsigned idx, Type ty, GenericValuePart &&el);
+    bool compile_extract_element(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_insert_element(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_shuffle_vector(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_icmp_vector(Instruction &);
+    bool compile_fmuladd(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_vector_reduce(RustAdaptor::IRInstRef, const ValInfo &, u64);
+
+    bool compile_abort(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     SymRef get_libfunc_sym(LibFunc func);
 
@@ -388,6 +417,7 @@ namespace tpde_rust {
   DEFINE_U64_ENUM(FloatBinaryOp, add, sub, mul, div, rem)
   DEFINE_U64_ENUM(FloatCmpOp, OEQ, OGT, OGE, OLT, OLE, ONE, ORD, UNO, UEQ, UGT, UGE, ULT, ULE, UNE)
   DEFINE_U64_ENUM(OverflowOp, uadd, sadd, usub, ssub, umul, smul)
+  DEFINE_U64_ENUM(ReduceOp, add, mul, land, lor, lxor, fadd, fmul)
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_to_elf(
@@ -525,10 +555,16 @@ namespace tpde_rust {
       set_fn(InstructionKind::sTof, &Derived::compile_int_to_float, /*sign=*/true);
 
       set_fn(InstructionKind::ctpop, &Derived::compile_ctpop);
+      set_fn(InstructionKind::ctlz, &Derived::compile_ct_lz_tz, /*flags=leading*/0b00);
+      set_fn(InstructionKind::ctlz_nonzero, &Derived::compile_ct_lz_tz, /*flags=leading,nonzero*/0b01);
+      set_fn(InstructionKind::cttz, &Derived::compile_ct_lz_tz, /*flags=trailing*/0b10);
+      set_fn(InstructionKind::cttz_nonzero, &Derived::compile_ct_lz_tz, /*flags=trailing,nonzero*/0b11);
       set_fn(InstructionKind::sat_sadd, &Derived::compile_saturating_intrin, OverflowOp::sadd);
       set_fn(InstructionKind::sat_uadd, &Derived::compile_saturating_intrin, OverflowOp::uadd);
       set_fn(InstructionKind::sat_ssub, &Derived::compile_saturating_intrin, OverflowOp::ssub);
       set_fn(InstructionKind::sat_usub, &Derived::compile_saturating_intrin, OverflowOp::usub);
+
+      set_fn(InstructionKind::Abort, &Derived::compile_abort);
 
       return res;
     }();
@@ -639,13 +675,22 @@ namespace tpde_rust {
         res[unsigned(i16)] = 1;
         res[unsigned(i32)] = 1;
         res[unsigned(i64)] = 2;
+        res[unsigned(v8i8)] = 3;
+        res[unsigned(v4i16)] = 4;
+        res[unsigned(v2i32)] = 5;
+        res[unsigned(v16i8)] = 6;
+        res[unsigned(v8i16)] = 7;
+        res[unsigned(v4i32)] = 8;
+        res[unsigned(v2i64)] = 9;
         return res;
       }();
       unsigned ty_idx = bvt_lut[unsigned(bvt)];
       return {fns[op.index()][ty_idx], ty_idx < 3};
     };
 
-    unsigned int_width = size_of_type(Base::adaptor->type_of_ref(instr->result));
+    const Type res_ty = Base::adaptor->type_of_ref(instr->result);
+
+    unsigned int_width = size_of_type(is_vector(res_ty) ? vector_info(res_ty).second : res_ty);
     const auto &operands = instr->ops;
     ValueRef lhs = this->val_ref(operands[0]);
     ValueRef rhs = this->val_ref(operands[1]);
@@ -687,39 +732,35 @@ namespace tpde_rust {
         continue;
       }
 
-      // TODO rn we dont support vectors
-      return false;
-
       // This is a legal vector type for which we don't have an encode function.
       // Extract elements individually and use scalar functions.
-      // if (!inst->result->isVectorTy() || int_width == 1) {
-      //   return false;
-      // }
-      // TODO there are no vector types rn that we could not support
+      if (!is_vector(ty)) {
+        return false;
+      }
 
-      // auto [elem_cnt, elem_ty] = basic_ty_vector_info(ty);
-      // auto [encode_fn, is_scalar] = get_encode_fn(elem_ty);
-      // assert(is_scalar && "vector element must be a scalar type");
-      // if (!encode_fn) {
-      //   return false;
-      // }
-      //
-      // tpde::RegBank bank = this->adaptor->basic_ty_part_bank(elem_ty);
-      // for (u32 j = 0; j != elem_cnt; ++j) {
-      //   u32 elem_idx = i * elem_cnt + j;
-      //   ValuePartRef e_res{this, bank};
-      //   ValuePartRef e_lhs{this, bank};
-      //   ValuePartRef e_rhs{this, bank};
-      //   // TODO: we might pass the last element as owned. But this code is
-      //   // fallback only, so don't bother optimizing.
-      //   ValueRef lhs_unowned = lhs.disowned();
-      //   ValueRef rhs_unowned = rhs.disowned();
-      //   derived()->extract_element(lhs_unowned, elem_idx, elem_ty, e_lhs);
-      //   derived()->extract_element(rhs_unowned, elem_idx, elem_ty, e_rhs);
-      //   handle_part(encode_fn, true, std::move(e_lhs), std::move(e_rhs), e_res);
-      //   // insert_element always treats res as unowned.
-      //   derived()->insert_element(res, elem_idx, elem_ty, std::move(e_res));
-      // }
+      auto [elem_cnt, elem_ty] = vector_info(ty);
+      auto [elem_encode_fn, is_scalar] = get_encode_fn(elem_ty);
+      assert(is_scalar && "vector element must be a scalar type");
+      if (!elem_encode_fn) {
+        return false;
+      }
+
+      tpde::RegBank bank = reg_bank_of_type(elem_ty);
+      for (u32 j = 0; j != elem_cnt; ++j) {
+        u32 elem_idx = i * elem_cnt + j;
+        ValuePartRef e_res{this, bank};
+        ValuePartRef e_lhs{this, bank};
+        ValuePartRef e_rhs{this, bank};
+        // TODO: we might pass the last element as owned. But this code is
+        // fallback only, so don't bother optimizing.
+        ValueRef lhs_unowned = lhs.disowned();
+        ValueRef rhs_unowned = rhs.disowned();
+        derived()->extract_element(lhs_unowned, elem_idx, elem_ty, e_lhs);
+        derived()->extract_element(rhs_unowned, elem_idx, elem_ty, e_rhs);
+        handle_part(elem_encode_fn, true, std::move(e_lhs), std::move(e_rhs), e_res);
+        // insert_element always treats res as unowned.
+        derived()->insert_element(res, elem_idx, elem_ty, std::move(e_res));
+      }
     }
     return true;
   }
@@ -954,6 +995,49 @@ namespace tpde_rust {
           case div: encode_fn = &Derived::encode_divf64;
             break;
           default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
+        }
+        break;
+      case v2f32:
+        switch (op) {
+          using enum FloatBinaryOp::Value;
+          case add: encode_fn = &Derived::encode_addv2f32;
+          break;
+          case sub: encode_fn = &Derived::encode_subv2f32;
+          break;
+          case mul: encode_fn = &Derived::encode_mulv2f32;
+          break;
+          case div: encode_fn = &Derived::encode_divv2f32;
+          break;
+          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
+        }
+        break;
+      case v4f32:
+        switch (op) {
+          using enum FloatBinaryOp::Value;
+          case add: encode_fn = &Derived::encode_addv4f32;
+          break;
+          case sub: encode_fn = &Derived::encode_subv4f32;
+          break;
+          case mul: encode_fn = &Derived::encode_mulv4f32;
+          break;
+          case div: encode_fn = &Derived::encode_divv4f32;
+          break;
+          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
+        }
+        break;
+      case v2f64:
+        switch (op) {
+          using enum FloatBinaryOp::Value;
+          case add: encode_fn = &Derived::encode_addv2f64;
+          break;
+          case sub: encode_fn = &Derived::encode_subv2f64;
+          break;
+          case mul: encode_fn = &Derived::encode_mulv2f64;
+          break;
+          case div: encode_fn = &Derived::encode_divv2f64;
+          break;
+          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
+          break;
         }
         break;
       default: return false;
@@ -1429,12 +1513,25 @@ namespace tpde_rust {
                                   this->result_ref(loadi.result).part(0));
         return true;
       }
+      case v8i8:
+      case v4i16:
+      case v2i32:
+      case v2f32:
       case f64: {
         derived()->encode_loadf64(std::move(ptr_op),
                                   this->result_ref(loadi.result).part(0));
         return true;
       }
-
+      case v16i8:
+      case v8i16:
+      case v4i32:
+      case v2i64:
+      case v4f32:
+      case v2f64: {
+        derived()->encode_loadv128(std::move(ptr_op),
+                                   this->result_ref(loadi.result).part(0));
+        break;
+      }
 
       default: throw std::runtime_error("Unsupported type for loadi");
     }
@@ -2111,6 +2208,466 @@ namespace tpde_rust {
     } else {
       derived()->encode_ctpopi64(std::move(op), res_ref);
     }
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_ct_lz_tz(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
+    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    auto val = inst.ops[0];
+
+    u32 width_idx = 0;
+    switch (size_of_type(this->adaptor->type_of_ref(val))) {
+      case 8: width_idx = 0; break;
+      case 16: width_idx = 1; break;
+      case 32: width_idx = 2; break;
+      case 64: width_idx = 3; break;
+      default: return false;
+    }
+
+    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
+    static constexpr EncodeFnTy encode_fns[4][2][2] = {
+#define F(n, op, suffix) &Derived::encode_##op##i##n##suffix
+      {{F(8, ctlz, ), F(8, ctlz, _zp)}, {F(8, cttz, ), F(32, cttz, _zp)}},
+      {{F(16, ctlz, ), F(16, ctlz, _zp)}, {F(16, cttz, ), F(32, cttz, _zp)}},
+      {{F(32, ctlz, ), F(32, ctlz, _zp)}, {F(32, cttz, ), F(32, cttz, _zp)}},
+      {{F(64, ctlz, ), F(64, ctlz, _zp)}, {F(64, cttz, ), F(64, cttz, _zp)}},
+#undef F
+  };
+    bool zero_is_poison = (op & 1) == 1;
+    bool is_cttz = (op & 2) == 2;
+    EncodeFnTy fn = encode_fns[width_idx][is_cttz][zero_is_poison];
+    return (derived()->*fn)(this->val_ref(val).part(0),
+                            this->result_ref(inst.result).part(0));
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  u64 RustCompilerBase<Adaptor, Derived, Config>::const_vector_elem(IRValueRef vec, unsigned idx) {
+    assert(operands::is_const(vec));
+    const Value &imm = this->adaptor->mod->consts[operands::content(vec)];
+    const auto [nelem, elem_ty] = vector_info(imm.ty);
+    assert(idx < nelem);
+    const unsigned bits = size_of_type(elem_ty);
+    const unsigned bit_off = idx * bits;
+    // data2 holds the low 64 bits, data1 the high 64 bits
+    u64 word = bit_off < 64 ? imm.data2 : imm.data1;
+    word >>= bit_off % 64;
+    return bits == 64 ? word : word & ((u64{1} << bits) - 1);
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  void RustCompilerBase<Adaptor, Derived, Config>::extract_element(
+    ValueRef &vec_vr, unsigned idx, Type ty, ValuePart &out) {
+    if (!vec_vr.has_assignment()) {
+      // Constant.
+      const u64 elem = const_vector_elem(vec_vr.state.s.data, idx);
+      const u32 size = size_of_type(ty) / 8;
+      out.set_value(this, ValuePart{elem, size, reg_bank_of_type(ty)});
+      return;
+    }
+
+    tpde::ValueAssignment *va = vec_vr.assignment();
+    u32 elem_sz = size_of_type(ty) / 8;
+
+    if (elem_sz == va->max_part_size) {
+      // Scalarized vector: simply take part idx.
+      out.set_value(this, vec_vr.part(idx));
+      return;
+    }
+
+    // Offset inside whole vector
+    u32 vector_off = idx * elem_sz;
+    // A vector can consist of multiple, equally sized parts.
+    u32 part = vector_off / va->max_part_size;
+    u32 off_in_part = vector_off % va->max_part_size;
+    assert(part < va->part_count);
+
+    this->spill({va, part});
+    GenericValuePart addr = derived()->val_spill_slot({va, part});
+    auto &expr = std::get<typename GenericValuePart::Expr>(addr.state);
+    expr.disp += off_in_part;
+
+    switch (ty) {
+      using enum Type;
+      case i8: derived()->encode_loadi8_zext(std::move(addr), out); break;
+      case i16: derived()->encode_loadi16_zext(std::move(addr), out); break;
+      case i32: derived()->encode_loadi32_zext(std::move(addr), out); break;
+      case i64:
+      case ptr: derived()->encode_loadi64(std::move(addr), out); break;
+      case f32: derived()->encode_loadf32(std::move(addr), out); break;
+      case f64: derived()->encode_loadf64(std::move(addr), out); break;
+      default: TPDE_UNREACHABLE("unexpected vector element type");
+    }
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  void RustCompilerBase<Adaptor, Derived, Config>::insert_element(
+    ValueRef &vec_vr, unsigned idx, Type ty, GenericValuePart &&el) {
+    tpde::ValueAssignment *va = vec_vr.assignment();
+    u32 elem_sz = size_of_type(ty) / 8;
+
+    // Offset inside whole vector
+    u32 vector_off = idx * elem_sz;
+    // A vector can consist of multiple, equally sized parts.
+    u32 part = vector_off / va->max_part_size;
+    u32 off_in_part = vector_off % va->max_part_size;
+    assert(part < va->part_count);
+
+    tpde::AssignmentPartRef ap{va, part};
+    if (ap.register_valid()) {
+      this->evict(ap);
+    } else if (!ap.stack_valid()) {
+      // Value part is uninitialized
+      this->allocate_spill_slot(ap);
+      ap.set_stack_valid();
+    }
+
+    GenericValuePart addr = derived()->val_spill_slot(ap);
+    auto &expr = std::get<typename GenericValuePart::Expr>(addr.state);
+    expr.disp += off_in_part;
+
+    switch (ty) {
+      using enum Type;
+      case i8: derived()->encode_storei8(std::move(addr), std::move(el)); break;
+      case i16: derived()->encode_storei16(std::move(addr), std::move(el)); break;
+      case i32: derived()->encode_storei32(std::move(addr), std::move(el)); break;
+      case i64:
+      case ptr: derived()->encode_storei64(std::move(addr), std::move(el)); break;
+      case f32: derived()->encode_storef32(std::move(addr), std::move(el)); break;
+      case f64: derived()->encode_storef64(std::move(addr), std::move(el)); break;
+      default: TPDE_UNREACHABLE("unexpected vector element type");
+    }
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_extract_element(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    // operands: vec, index
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IRValueRef src = inst.ops[0];
+    const IRValueRef index = inst.ops[1];
+
+    ValueRef vec_vr = this->val_ref(src);
+    auto [res_vr, result] = this->result_ref_single(inst.result);
+
+    const unsigned nelem = vector_info(this->adaptor->type_of_ref(src)).first;
+    const Type bvt = val_info.type;
+
+    if (operands::is_const(index)) {
+      unsigned cidx = this->adaptor->mod->consts[operands::content(index)].data2;
+      cidx = cidx < nelem ? cidx : 0;
+      derived()->extract_element(vec_vr, cidx, bvt, result);
+      return true;
+    }
+
+    if (!vec_vr.has_assignment()) {
+      // TODO: support dynamic extractelement from constant vectors.
+      return false;
+    }
+
+    // First, copy value into the spill slot.
+    for (unsigned i = 0; i < vec_vr.assignment()->part_count; ++i) {
+      this->spill(tpde::AssignmentPartRef{vec_vr.assignment(), i});
+    }
+
+    // Second, create address. Mask index, out-of-bounds access are just poison.
+    ValuePartRef idx_scratch{this, Config::GP_BANK};
+    GenericValuePart addr = derived()->val_spill_slot({vec_vr.assignment(), 0});
+    auto &expr = std::get<typename GenericValuePart::Expr>(addr.state);
+    derived()->encode_landi64(this->val_ref(index).part(0),
+                              ValuePartRef{this, u64{nelem - 1}, 8, Config::GP_BANK},
+                              idx_scratch);
+    assert(expr.scale == 0);
+    expr.scale = size_of_type(bvt) / 8;
+    expr.index = std::move(idx_scratch).into_scratch();
+
+    // Third, do the load.
+    switch (bvt) {
+      using enum Type;
+      case i8: derived()->encode_loadi8_zext(std::move(addr), result); break;
+      case i16: derived()->encode_loadi16_zext(std::move(addr), result); break;
+      case i32: derived()->encode_loadi32_zext(std::move(addr), result); break;
+      case i64:
+      case ptr: derived()->encode_loadi64(std::move(addr), result); break;
+      case f32: derived()->encode_loadf32(std::move(addr), result); break;
+      case f64: derived()->encode_loadf64(std::move(addr), result); break;
+      default: TPDE_UNREACHABLE("unexpected vector element type");
+    }
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_insert_element(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    // operands: vec, elem, index
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IRValueRef index = inst.ops[2];
+
+    const auto [nelem, bvt] = vector_info(val_info.type);
+
+    auto [val_ref, val] = this->val_ref_single(inst.ops[1]);
+    ValueRef res_vr{derived()};
+
+    // We do the dynamic insert in the spill slot of result.
+    // First, copy value into the result. We must also do this for constant
+    // indices, because the value reference must always be initialized.
+    {
+      ValueRef src_vr = this->val_ref(inst.ops[0]);
+      if (src_vr.is_owned()) {
+        res_vr = this->result_ref_alias(inst.result, std::move(src_vr));
+      } else {
+        res_vr = this->result_ref(inst.result);
+        for (u32 i = 0; i < res_vr.assignment()->part_count; ++i) {
+          res_vr.part(i).set_value(src_vr.part(i));
+        }
+      }
+    }
+
+    if (operands::is_const(index)) {
+      unsigned cidx = this->adaptor->mod->consts[operands::content(index)].data2;
+      cidx = cidx < nelem ? cidx : 0;
+      derived()->insert_element(res_vr, cidx, bvt, std::move(val));
+      // No need for ref counting: all operands and results were ValuePartRefs.
+      return true;
+    }
+
+    // Evict, because we will overwrite the value in the stack slot.
+    for (unsigned i = 0; i < res_vr.assignment()->part_count; ++i) {
+      tpde::AssignmentPartRef ap{res_vr.assignment(), i};
+      if (ap.register_valid()) {
+        this->evict(ap);
+      }
+    }
+
+    // Second, create address. Mask index, out-of-bounds access are just poison.
+    ValuePartRef idx_scratch{this, Config::GP_BANK};
+    GenericValuePart addr = derived()->val_spill_slot({res_vr.assignment(), 0});
+    auto &expr = std::get<typename GenericValuePart::Expr>(addr.state);
+    derived()->encode_landi64(this->val_ref(index).part(0),
+                              ValuePartRef{this, u64{nelem - 1}, 8, Config::GP_BANK},
+                              idx_scratch);
+    assert(expr.scale == 0);
+    expr.scale = val.part_size();
+    expr.index = std::move(idx_scratch).into_scratch();
+
+    // Third, do the store.
+    switch (bvt) {
+      using enum Type;
+      case i8: derived()->encode_storei8(std::move(addr), std::move(val)); break;
+      case i16: derived()->encode_storei16(std::move(addr), std::move(val)); break;
+      case i32: derived()->encode_storei32(std::move(addr), std::move(val)); break;
+      case i64:
+      case ptr: derived()->encode_storei64(std::move(addr), std::move(val)); break;
+      case f32: derived()->encode_storef32(std::move(addr), std::move(val)); break;
+      case f64: derived()->encode_storef64(std::move(addr), std::move(val)); break;
+      default: TPDE_UNREACHABLE("unexpected vector element type");
+    }
+
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_shuffle_vector(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    // operands: lhs, rhs, mask indices as raw values
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IRValueRef lhs = inst.ops[0];
+    const IRValueRef rhs = inst.ops[1];
+
+    const auto [dst_nelem, bvt] = vector_info(val_info.type);
+    const unsigned src_nelem = vector_info(this->adaptor->type_of_ref(lhs)).first;
+    assert(inst.ops.size() == 2 + dst_nelem);
+
+    auto bank = reg_bank_of_type(bvt);
+    auto size = size_of_type(bvt) / 8;
+
+    ValueRef lhs_vr = this->val_ref(lhs);
+    ValueRef rhs_vr = this->val_ref(rhs);
+    ValueRef res_vr = this->result_ref(inst.result);
+
+    ValuePartRef tmp{this, bank};
+    for (unsigned i = 0; i < dst_nelem; i++) {
+      const unsigned mask = operands::content(inst.ops[2 + i]);
+      const bool src_is_lhs = mask < src_nelem;
+      const IRValueRef src = src_is_lhs ? lhs : rhs;
+      if (operands::is_const(src)) {
+        const u64 const_elem = const_vector_elem(src, mask % src_nelem);
+        ValuePartRef const_ref{this, const_elem, size, bank};
+        derived()->insert_element(res_vr, i, bvt, std::move(const_ref));
+      } else {
+        ValueRef src_vr = (src_is_lhs ? lhs_vr : rhs_vr).disowned();
+        derived()->extract_element(src_vr, mask % src_nelem, bvt, tmp);
+        derived()->insert_element(res_vr, i, bvt, std::move(tmp));
+      }
+    }
+
+    // Make sure that all parts are initialized.
+    for (u32 i = 0, n = res_vr.assignment()->part_count; i != n; ++i) {
+      tpde::AssignmentPartRef ap{res_vr.assignment(), i};
+      if (!ap.register_valid() && !ap.stack_valid()) {
+        // Value part is uninitialized
+        this->allocate_spill_slot(ap);
+        ap.set_stack_valid();
+      }
+    }
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_icmp_vector(Instruction &inst) {
+    // Unlike LLVM, the result is not an i1 vector but a mask vector with the
+    // same type as the operands (all bits of a lane set if true), as required
+    // by the Rust simd comparison intrinsics.
+    using EncodeFnTy =
+        bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &&);
+    // fns[pred][type]
+    static constexpr auto fns = []() constexpr {
+      std::array<EncodeFnTy[7], 10> res{};
+
+#define FN_ENTRY(pred, predname, sign)                                          \
+    res[pred][0] = &Derived::encode_icmpmask_##predname##v8##sign##8;             \
+    res[pred][1] = &Derived::encode_icmpmask_##predname##v4##sign##16;            \
+    res[pred][2] = &Derived::encode_icmpmask_##predname##v2##sign##32;            \
+    res[pred][3] = &Derived::encode_icmpmask_##predname##v16##sign##8;            \
+    res[pred][4] = &Derived::encode_icmpmask_##predname##v8##sign##16;            \
+    res[pred][5] = &Derived::encode_icmpmask_##predname##v4##sign##32;            \
+    res[pred][6] = &Derived::encode_icmpmask_##predname##v2##sign##64;
+
+      FN_ENTRY(0, eq, u)
+      FN_ENTRY(1, ne, u)
+      FN_ENTRY(2, ugt, u)
+      FN_ENTRY(3, uge, u)
+      FN_ENTRY(4, ult, u)
+      FN_ENTRY(5, ule, u)
+      FN_ENTRY(6, sgt, i)
+      FN_ENTRY(7, sge, i)
+      FN_ENTRY(8, slt, i)
+      FN_ENTRY(9, sle, i)
+#undef FN_ENTRY
+
+      return res;
+    }();
+
+    unsigned pred_idx;
+    switch (inst.kind) {
+      case InstructionKind::CMPeq: pred_idx = 0; break;
+      case InstructionKind::CMPne: pred_idx = 1; break;
+      case InstructionKind::CMPugt: pred_idx = 2; break;
+      case InstructionKind::CMPuge: pred_idx = 3; break;
+      case InstructionKind::CMPult: pred_idx = 4; break;
+      case InstructionKind::CMPule: pred_idx = 5; break;
+      case InstructionKind::CMPsgt: pred_idx = 6; break;
+      case InstructionKind::CMPsge: pred_idx = 7; break;
+      case InstructionKind::CMPslt: pred_idx = 8; break;
+      case InstructionKind::CMPsle: pred_idx = 9; break;
+      default: TPDE_UNREACHABLE("invalid icmp predicate");
+    }
+
+    unsigned ty_idx;
+    switch (this->adaptor->type_of_ref(inst.ops[0])) {
+      using enum Type;
+      case v8i8: ty_idx = 0; break;
+      case v4i16: ty_idx = 1; break;
+      case v2i32: ty_idx = 2; break;
+      case v16i8: ty_idx = 3; break;
+      case v8i16: ty_idx = 4; break;
+      case v4i32: ty_idx = 5; break;
+      case v2i64: ty_idx = 6; break;
+      default: return false;
+    }
+
+    EncodeFnTy encode_fn = fns[pred_idx][ty_idx];
+    auto lhs_vr = this->val_ref(inst.ops[0]);
+    auto rhs_vr = this->val_ref(inst.ops[1]);
+    auto res = this->result_ref(inst.result);
+    return (derived()->*encode_fn)(lhs_vr.part(0), rhs_vr.part(0), res.part(0));
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_fmuladd(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    ValueRef op1 = this->val_ref(inst.ops[0]);
+    ValueRef op2 = this->val_ref(inst.ops[1]);
+    ValueRef op3 = this->val_ref(inst.ops[2]);
+    ValueRef res = this->result_ref(inst.result);
+
+    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&,
+                                         GenericValuePart &&,
+                                         GenericValuePart &&,
+                                         ValuePart &&);
+    EncodeFnTy fn = nullptr;
+    switch (val_info.type) {
+      using enum Type;
+      case f32: fn = &Derived::encode_fmuladdf32; break;
+      case f64: fn = &Derived::encode_fmuladdf64; break;
+      case v2f32: fn = &Derived::encode_fmuladdv2f32; break;
+      case v4f32: fn = &Derived::encode_fmuladdv4f32; break;
+      case v2f64: fn = &Derived::encode_fmuladdv2f64; break;
+      default: return false;
+    }
+    return (derived()->*fn)(op1.part(0), op2.part(0), op3.part(0), res.part(0));
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_reduce(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &info, u64 op) {
+    // operands: vec, or acc, vec for the ordered float reductions
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const Type elem_ty = info.type;
+    const bool is_64 = elem_ty == Type::i64 || elem_ty == Type::f64;
+
+    using EncodeFnTy =
+        bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &);
+    EncodeFnTy fn;
+    bool has_start_elem = false;
+    switch (op) {
+      case ReduceOp::add: fn = is_64 ? &Derived::encode_addi64 : &Derived::encode_addi32; break;
+      case ReduceOp::mul: fn = is_64 ? &Derived::encode_muli64 : &Derived::encode_muli32; break;
+      case ReduceOp::land: fn = is_64 ? &Derived::encode_landi64 : &Derived::encode_landi32; break;
+      case ReduceOp::lor: fn = is_64 ? &Derived::encode_lori64 : &Derived::encode_lori32; break;
+      case ReduceOp::lxor: fn = is_64 ? &Derived::encode_lxori64 : &Derived::encode_lxori32; break;
+      case ReduceOp::fadd:
+        fn = is_64 ? &Derived::encode_addf64 : &Derived::encode_addf32;
+        has_start_elem = true;
+        break;
+      case ReduceOp::fmul:
+        fn = is_64 ? &Derived::encode_mulf64 : &Derived::encode_mulf32;
+        has_start_elem = true;
+        break;
+      default:
+        // Still missing: smin/smax/umin/umix/fmin/fmax/fminimum/fmaximum
+        return false;
+    }
+
+    const IRValueRef src_op = inst.ops[has_start_elem ? 1 : 0];
+    ValueRef src_ref = this->val_ref(src_op);
+    ValueRef src_ref_disowned = src_ref.disowned();
+
+    ValuePartRef elem{this, reg_bank_of_type(elem_ty)};
+    ValuePartRef acc{this, reg_bank_of_type(elem_ty)};
+
+    if (has_start_elem) {
+      acc.set_value(this->val_ref(inst.ops[0]).part(0));
+    } else {
+      derived()->extract_element(src_ref_disowned, 0, elem_ty, acc);
+    }
+
+    const unsigned nelem = vector_info(this->adaptor->type_of_ref(src_op)).first;
+    for (unsigned i = has_start_elem ? 0 : 1; i != nelem; i++) {
+      derived()->extract_element(src_ref_disowned, i, elem_ty, elem);
+      (derived()->*fn)(std::move(acc), std::move(elem), acc);
+    }
+
+    this->result_ref(inst.result).part(0).set_value(std::move(acc));
+
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_abort(RustAdaptor::IRInstRef, const ValInfo &, u64) {
+    derived()->encode_trap();
+    this->release_regs_after_return();
     return true;
   }
 
