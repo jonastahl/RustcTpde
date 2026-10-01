@@ -532,7 +532,6 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn range_metadata(&mut self, load: Self::Value, range: rustc_abi::WrappingRange) {
-        todo!()
     }
 
     fn nonnull_metadata(&mut self, load: Self::Value) {
@@ -609,6 +608,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn zext(&mut self, val: Self::Value, dest_ty: Self::Type) -> Self::Value {
+        if self.int_width(self.val_ty(val)) == self.int_width(dest_ty) {
+            return self.bitcast(val, dest_ty);
+        }
         self.unop(InstructionKind::zExt, val, dest_ty)
     }
 
@@ -665,8 +667,10 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let src_width = self.int_width(src_ty);
         let dest_width = self.int_width(dest_ty);
 
-        if src_width == dest_width {
+        if src_ty == dest_ty {
             val
+        } else if src_width == dest_width {
+            self.bitcast(val, dest_ty)
         } else if src_width > dest_width {
             self.trunc(val, dest_ty)
         } else if is_signed {

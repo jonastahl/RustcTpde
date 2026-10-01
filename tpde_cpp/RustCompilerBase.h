@@ -1530,7 +1530,7 @@ namespace tpde_rust {
       case v2f64: {
         derived()->encode_loadv128(std::move(ptr_op),
                                    this->result_ref(loadi.result).part(0));
-        break;
+        return true;
       }
 
       default: throw std::runtime_error("Unsupported type for loadi");
