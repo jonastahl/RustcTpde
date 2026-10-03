@@ -3,7 +3,7 @@ mod intrinsic;
 
 use core::borrow::Borrow;
 use crate::context::{CodegenCx, GenericCx, SCx};
-use crate::shared::ir::{BasicBlock, FullType, Function, InstructionKind, Module, Slot, Type, size_of_type};
+use crate::shared::ir::{convert_atomic_order, size_of_type, BasicBlock, FullType, Function, InstructionKind, Module, Slot, Type, convert_atomic_op};
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::common::{
@@ -484,7 +484,18 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         volatile: bool,
         size: rustc_abi::Size,
     ) -> Self::Value {
-        todo!()
+        let FullType::Single(ty) = ty else { todo!() };
+
+        self.module.borrow_mut().add_instruction_ret(
+            self.basic_block,
+            InstructionKind::Atomic_load,
+            vec![
+                ptr,
+                Slot::new_raw(convert_atomic_order(order).repr),
+                Slot::new_raw(volatile as u32),
+            ],
+            ty,
+        )
     }
 
     fn load_operand(
@@ -575,7 +586,19 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         volatile: bool,
         size: rustc_abi::Size,
     ) {
-        todo!()
+        let module = &mut self.module.borrow_mut();
+        let FullType::Single(ty) = module.type_of_slot(val) else { todo!() };
+
+        module.add_instruction(
+            self.basic_block,
+            InstructionKind::Atomic_store,
+            vec![
+                val,
+                ptr,
+                Slot::new_raw(convert_atomic_order(order).repr),
+                Slot::new_raw(volatile as u32),
+            ],
+        );
     }
 
     fn gep(&mut self, ty: Self::Type, ptr: Self::Value, indices: &[Self::Value]) -> Self::Value {
@@ -922,7 +945,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let mut module = self.module.borrow_mut();
         let ret_val = module.add_instruction_ret_x(
             self.basic_block,
-            InstructionKind::atomic_cmpxchg,
+            InstructionKind::Atomic_cmpxchg,
             vec![dst, cmp, src, Slot::new_raw(order as u32), Slot::new_raw(failure_order as u32)],
             2
         );
@@ -949,30 +972,11 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             dst
         };
 
-        use crate::shared::ir;
-        let op = match op {
-            AtomicRmwBinOp::AtomicXchg => ir::AtomicRmwBinOp::AtomicXchg,
-            AtomicRmwBinOp::AtomicAdd => ir::AtomicRmwBinOp::AtomicAdd,
-            AtomicRmwBinOp::AtomicSub => ir::AtomicRmwBinOp::AtomicSub,
-            AtomicRmwBinOp::AtomicAnd => ir::AtomicRmwBinOp::AtomicAnd,
-            AtomicRmwBinOp::AtomicNand => ir::AtomicRmwBinOp::AtomicNand,
-            AtomicRmwBinOp::AtomicOr => ir::AtomicRmwBinOp::AtomicOr,
-            AtomicRmwBinOp::AtomicXor => ir::AtomicRmwBinOp::AtomicXor,
-            AtomicRmwBinOp::AtomicMax => ir::AtomicRmwBinOp::AtomicMax,
-            AtomicRmwBinOp::AtomicMin => ir::AtomicRmwBinOp::AtomicMin,
-            AtomicRmwBinOp::AtomicUMax => ir::AtomicRmwBinOp::AtomicUMax,
-            AtomicRmwBinOp::AtomicUMin => ir::AtomicRmwBinOp::AtomicUMin,
-        };
-        let order = match order {
-            AtomicOrdering::Relaxed => ir::AtomicOrdering::Relaxed,
-            AtomicOrdering::Release => ir::AtomicOrdering::Release,
-            AtomicOrdering::Acquire => ir::AtomicOrdering::Acquire,
-            AtomicOrdering::AcqRel => ir::AtomicOrdering::AcqRel,
-            AtomicOrdering::SeqCst => ir::AtomicOrdering::SeqCst,
-        };
+        let op = convert_atomic_op(op);
+        let order = convert_atomic_order(order);
         let ret_val = self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
-            InstructionKind::atomic_rmw,
+            InstructionKind::Atomic_rmw,
             vec![Slot::new_raw(op.repr), dst, src, Slot::new_raw(order.repr)],
             2
         );
@@ -981,7 +985,17 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn atomic_fence(&mut self, order: AtomicOrdering, scope: SynchronizationScope) {
-        todo!()
+        self.module.borrow_mut().add_instruction(
+            self.basic_block,
+            InstructionKind::Atomic_fence,
+            vec![
+                Slot::new_raw(convert_atomic_order(order).repr),
+                Slot::new_raw(match scope {
+                    SynchronizationScope::SingleThread => 0,
+                    SynchronizationScope::CrossThread => 1,
+                } as u32)
+            ],
+        )
     }
 
     fn set_invariant_load(&mut self, load: Self::Value) {

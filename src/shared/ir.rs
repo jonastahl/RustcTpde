@@ -820,3 +820,29 @@ impl ffi::Value {
         ((self.data1 as u128) << 64) + (self.data2 as u128)
     }
 }
+
+pub fn convert_atomic_op(op: rustc_codegen_ssa::common::AtomicRmwBinOp) -> AtomicRmwBinOp {
+    match op {
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicXchg => AtomicRmwBinOp::AtomicXchg,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicAdd => AtomicRmwBinOp::AtomicAdd,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicSub => AtomicRmwBinOp::AtomicSub,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicAnd => AtomicRmwBinOp::AtomicAnd,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicNand => AtomicRmwBinOp::AtomicNand,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicOr => AtomicRmwBinOp::AtomicOr,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicXor => AtomicRmwBinOp::AtomicXor,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicMax => AtomicRmwBinOp::AtomicMax,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicMin => AtomicRmwBinOp::AtomicMin,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicUMax => AtomicRmwBinOp::AtomicUMax,
+        rustc_codegen_ssa::common::AtomicRmwBinOp::AtomicUMin => AtomicRmwBinOp::AtomicUMin,
+    }
+}
+
+pub fn convert_atomic_order(order: rustc_middle::ty::AtomicOrdering) -> AtomicOrdering {
+    match order {
+        rustc_middle::ty::AtomicOrdering::Relaxed => AtomicOrdering::Relaxed,
+        rustc_middle::ty::AtomicOrdering::Release => AtomicOrdering::Release,
+        rustc_middle::ty::AtomicOrdering::Acquire => AtomicOrdering::Acquire,
+        rustc_middle::ty::AtomicOrdering::AcqRel => AtomicOrdering::AcqRel,
+        rustc_middle::ty::AtomicOrdering::SeqCst => AtomicOrdering::SeqCst,
+    }
+}

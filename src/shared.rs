@@ -254,8 +254,12 @@ mod ffi {
         sat_ssub,
         sat_usub,
 
-        atomic_cmpxchg,
-        atomic_rmw,
+        Atomic_cmpxchg,
+        Atomic_rmw,
+        Atomic_load,
+        Atomic_store,
+        Atomic_fence,
+        Pause,
 
         simd_splat,
 

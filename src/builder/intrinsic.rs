@@ -177,7 +177,18 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
         args: &[OperandRef<'tcx, Self::Value>],
         is_cleanup: bool,
     ) -> Self::Value {
-        todo!()
+        let name = self.tcx.item_name(instance.def_id());
+
+        match name.as_str() {
+            "pause" => {
+                self.module.borrow_mut()
+                    .add_instruction_ret(self.basic_block,
+                                     InstructionKind::Pause,
+                                     vec![],
+                                    Type::Void)
+            }
+            _ => todo!()
+        }
     }
 
     fn abort(&mut self) {
