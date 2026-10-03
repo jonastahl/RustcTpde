@@ -54,6 +54,32 @@ mod ffi {
         sExt,
     }
 
+    #[repr(u32)]
+    #[derive(Debug, Copy, Clone)]
+    pub enum AtomicRmwBinOp {
+        AtomicXchg = 0,
+        AtomicAdd = 1,
+        AtomicSub = 2,
+        AtomicAnd = 3,
+        AtomicNand = 4,
+        AtomicOr = 5,
+        AtomicXor = 6,
+        AtomicMax = 7,
+        AtomicMin = 8,
+        AtomicUMax = 9,
+        AtomicUMin = 10,
+    }
+
+    #[repr(u32)]
+    #[derive(Debug, Copy, Clone)]
+    pub enum AtomicOrdering {
+        Relaxed = 0,
+        Release = 1,
+        Acquire = 2,
+        AcqRel = 3,
+        SeqCst = 4,
+    }
+
     #[derive(Debug, Copy, Clone)]
     pub struct ArgInfo {
         kind: ArgKind,
@@ -227,6 +253,11 @@ mod ffi {
         sat_uadd,
         sat_ssub,
         sat_usub,
+
+        atomic_cmpxchg,
+        atomic_rmw,
+
+        simd_splat,
 
         Last,
     }

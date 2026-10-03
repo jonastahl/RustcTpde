@@ -903,11 +903,11 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         unwind: Option<Self::BasicBlock>,
         handlers: &[Self::BasicBlock],
     ) -> Self::Value {
-        unimplemented!("Only for windows")
+        unimplemented!("Windows not supported")
     }
 
     fn get_funclet_cleanuppad(&self, funclet: &Self::Funclet) -> Self::Value {
-        unimplemented!("Only for windows")
+        unimplemented!("Windows not supported")
     }
 
     fn atomic_cmpxchg(
@@ -919,7 +919,20 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         failure_order: AtomicOrdering,
         weak: bool,
     ) -> (Self::Value, Self::Value) {
-        todo!()
+        let mut module = self.module.borrow_mut();
+        let ret_val = module.add_instruction_ret_x(
+            self.basic_block,
+            InstructionKind::atomic_cmpxchg,
+            vec![dst, cmp, src, Slot::new_raw(order as u32), Slot::new_raw(failure_order as u32)],
+            2
+        );
+        let res = module.add_instruction_ret(
+            self.basic_block,
+            InstructionKind::AddRet,
+            vec![],
+            Type::Bool
+        );
+        (ret_val, res)
     }
 
     fn atomic_rmw(
@@ -930,7 +943,41 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         order: AtomicOrdering,
         ret_ptr: bool,
     ) -> Self::Value {
-        todo!()
+        let ptr = if !ret_ptr {
+            self.zext(dst, FullType::Single(Type::ptr))
+        } else {
+            dst
+        };
+
+        use crate::shared::ir;
+        let op = match op {
+            AtomicRmwBinOp::AtomicXchg => ir::AtomicRmwBinOp::AtomicXchg,
+            AtomicRmwBinOp::AtomicAdd => ir::AtomicRmwBinOp::AtomicAdd,
+            AtomicRmwBinOp::AtomicSub => ir::AtomicRmwBinOp::AtomicSub,
+            AtomicRmwBinOp::AtomicAnd => ir::AtomicRmwBinOp::AtomicAnd,
+            AtomicRmwBinOp::AtomicNand => ir::AtomicRmwBinOp::AtomicNand,
+            AtomicRmwBinOp::AtomicOr => ir::AtomicRmwBinOp::AtomicOr,
+            AtomicRmwBinOp::AtomicXor => ir::AtomicRmwBinOp::AtomicXor,
+            AtomicRmwBinOp::AtomicMax => ir::AtomicRmwBinOp::AtomicMax,
+            AtomicRmwBinOp::AtomicMin => ir::AtomicRmwBinOp::AtomicMin,
+            AtomicRmwBinOp::AtomicUMax => ir::AtomicRmwBinOp::AtomicUMax,
+            AtomicRmwBinOp::AtomicUMin => ir::AtomicRmwBinOp::AtomicUMin,
+        };
+        let order = match order {
+            AtomicOrdering::Relaxed => ir::AtomicOrdering::Relaxed,
+            AtomicOrdering::Release => ir::AtomicOrdering::Release,
+            AtomicOrdering::Acquire => ir::AtomicOrdering::Acquire,
+            AtomicOrdering::AcqRel => ir::AtomicOrdering::AcqRel,
+            AtomicOrdering::SeqCst => ir::AtomicOrdering::SeqCst,
+        };
+        let ret_val = self.module.borrow_mut().add_instruction_ret_x(
+            self.basic_block,
+            InstructionKind::atomic_rmw,
+            vec![Slot::new_raw(op.repr), dst, src, Slot::new_raw(order.repr)],
+            2
+        );
+
+        ret_val
     }
 
     fn atomic_fence(&mut self, order: AtomicOrdering, scope: SynchronizationScope) {

@@ -22,6 +22,21 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
     ) -> IntrinsicResult<'tcx, Self::Value> {
         let name = self.tcx.item_name(instance.def_id());
 
+        macro_rules! simd_binop {
+            ($self:ident, $args:ident: $($($p:ident),+ => $call:ident),*) => {{
+                let (_, elem_ty) = $args[0].layout.ty.simd_size_and_type($self.tcx);
+                let arg1 = $args[0].immediate();
+                let arg2 = $args[1].immediate();
+                let result = match elem_ty.kind() {
+                    $(
+                        $($crate::rustc_middle::ty::$p(_))|+ => $self.$call(arg1, arg2),
+                    )*
+                    _ => panic!("unsupported SIMD element type"),
+                };
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }};
+        }
+
         match name {
             sym::black_box => {
                 let input_operand = args[0];
@@ -128,6 +143,24 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     instr,
+                    vec![args[0].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(res))
+            }
+            sym::simd_add => simd_binop!(self, args: Uint, Int => add, Float => fadd),
+            sym::simd_sub => simd_binop!(self, args: Uint, Int => sub, Float => fsub),
+            sym::simd_mul => simd_binop!(self, args: Uint, Int => mul, Float => fmul),
+            sym::simd_div => simd_binop!(self, args: Uint => udiv, Int => sdiv, Float => fdiv),
+            sym::simd_rem => simd_binop!(self, args: Uint => urem, Int => srem, Float => frem),
+            sym::simd_shl => simd_binop!(self, args: Uint, Int => shl),
+            sym::simd_shr => simd_binop!(self, args: Uint => lshr, Int => ashr),
+            sym::simd_and => simd_binop!(self, args: Uint, Int => and),
+            sym::simd_or => simd_binop!(self, args: Uint, Int => or),
+            sym::simd_xor => simd_binop!(self, args: Uint, Int => xor),
+            sym::simd_splat => {
+                let res = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::simd_splat,
                     vec![args[0].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
