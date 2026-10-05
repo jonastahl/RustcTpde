@@ -55,6 +55,8 @@ namespace tpde_rust {
         return cur_func->slots[operands::content(value)].ty;
       if (operands::is_const(value))
         return mod->consts[operands::content(value)].ty;
+      if (operands::is_const_vector(value))
+        return mod->const_vectors[operands::content(value)].ty;
       if (operands::is_alloc(value) || operands::is_global(value) || operands::is_global_ptr(value)
           || operands::is_func(value))
         return Type::ptr;

@@ -312,16 +312,10 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
 
-            // (a, b, constant indices): the indices are passed as raw operands,
+            // (a, b, constant index vector): the backend reads the indices from the constant,
             // index i >= len(a) selects lane i - len(a) of b.
             sym::simd_shuffle => {
-                let mut ops = vec![args[0].immediate(), args[1].immediate()];
-                {
-                    let module = self.cx.module.borrow();
-                    let indices = module.const_vector_elems(args[2].immediate())
-                        .expect("shuffle indices must be a constant vector");
-                    ops.extend(indices.iter().map(|&i| Slot::new_raw(module.const_data(i).unwrap() as u32)));
-                }
+                let ops = vec![args[0].immediate(), args[1].immediate(), args[2].immediate()];
                 let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,

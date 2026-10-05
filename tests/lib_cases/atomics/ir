@@ -16264,4 +16264,5 @@ ModuleTpde {
     global_ptrs: [
         [153] + 0,
     ],
+    const_vectors: [],
 }

@@ -513,4 +513,5 @@ ModuleTpde {
         },
     ],
     global_ptrs: [],
+    const_vectors: [],
 }

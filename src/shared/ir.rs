@@ -19,8 +19,7 @@ pub struct BasicBlock {
 pub enum Slot {
     Value(Function, u32),
     Pair(u32),
-    // Constant vector with elements that are tracked only during generation,
-    // e.g. shuffle indices that are wider than a single `Value` can hold.
+    // Constant vector, its bytes live in `ModuleTpde::const_vectors`
     ConstVector(u32),
     Const(u32),
     Raw(u32),
@@ -181,7 +180,6 @@ pub struct Module {
     tpde: ModuleTpde,
 
     pairs: Vec<PairRef>,
-    const_vectors: Vec<Vec<Slot>>,
 }
 
 #[derive(PartialEq)]
@@ -205,10 +203,10 @@ impl Module {
                 consts: vec![],
 
                 globals: vec![],
-                global_ptrs: vec![]
+                global_ptrs: vec![],
+                const_vectors: vec![],
             },
             pairs: vec![],
-            const_vectors: vec![],
         }
     }
 
@@ -412,16 +410,7 @@ impl Module {
                 };
                 FullType::Pair(slot_a, slot_b, pair.offset_b)
             }
-            Slot::ConstVector(ind) => {
-                let elems = &self.const_vectors[ind as usize];
-                let FullType::Single(elem) = self.type_of_slot(elems[0]) else {
-                    unreachable!()
-                };
-                match vector_type(elem, elems.len() as u64) {
-                    Some(ty) => FullType::Single(ty),
-                    None => todo!("unsupported constant vector <{} x {:?}>", elems.len(), elem),
-                }
-            }
+            Slot::ConstVector(ind) => FullType::Single(self.tpde.const_vectors[ind as usize].ty),
             Slot::Raw(_) => unreachable!(),
             Slot::Alloc(_) | Slot::Func(_) | Slot::Global(_) | Slot::GlobalPtr(..)
                 => FullType::Single(Type::ptr),
@@ -587,10 +576,7 @@ impl Module {
                 Some(FullType::Memory { .. }) => ReturnType::Single(self.add_slot(bb.function, Type::ptr)),
             };
 
-        // Constant vectors are only tracked symbolically, the backend needs real constants
-        let ffi_ops: Vec<u32> = ops.iter()
-            .map(|s| self.materialize_const_vector(*s).unwrap_or(*s).to_ffi())
-            .collect();
+        let ffi_ops: Vec<u32> = ops.iter().map(|s| s.to_ffi()).collect();
 
         let basic_block = self.get_basic_block_mut(bb);
 
@@ -691,37 +677,23 @@ impl Module {
 
     pub fn add_const_vector(&mut self, elems: &[Slot]) -> Slot {
         assert!(!elems.is_empty());
-        self.const_vectors.push(elems.to_vec());
-        Slot::ConstVector((self.const_vectors.len() - 1) as u32)
-    }
-
-    pub fn const_vector_elems(&self, slot: Slot) -> Option<&[Slot]> {
-        match slot {
-            Slot::ConstVector(i) => Some(&self.const_vectors[i as usize]),
-            _ => None,
-        }
-    }
-
-    pub fn materialize_const_vector(&mut self, slot: Slot) -> Option<Slot> {
-        let elems = self.const_vector_elems(slot)?.to_vec();
-        let FullType::Single(ty) = self.type_of_slot(slot) else {
-            return None;
+        let FullType::Single(elem_ty) = self.type_of_slot(elems[0]) else {
+            unreachable!()
         };
-        let (elem_ty, _) = vector_info(ty)?;
-        let elem_bits = size_of_type(elem_ty) * 8;
-        if elem_bits * elems.len() as u32 > 128 {
-            return None;
+        let Some(ty) = vector_type(elem_ty, elems.len() as u64) else {
+            todo!("unsupported constant vector <{} x {:?}>", elems.len(), elem_ty)
+        };
+
+        let elem_bytes = size_of_type(elem_ty) as usize;
+        let mut data = Vec::with_capacity(elem_bytes * elems.len());
+        for elem in elems {
+            let value = self.const_data(*elem)
+                .expect("non-constant element in constant vector");
+            data.extend_from_slice(&value.to_le_bytes()[..elem_bytes]);
         }
 
-        let mut data = 0u128;
-        for (i, elem) in elems.iter().enumerate() {
-            let mut value = self.const_data(*elem)?;
-            if elem_bits < 128 {
-                value &= (1u128 << elem_bits) - 1;
-            }
-            data |= value << (i as u32 * elem_bits);
-        }
-        Some(self.add_const(ty, data))
+        self.tpde.const_vectors.push(ffi::ConstVector { ty, data });
+        Slot::ConstVector((self.tpde.const_vectors.len() - 1) as u32)
     }
 
     pub fn add_pair(&mut self, slot_a: Slot, slot_b: Slot, offset_b: u32) -> Slot {
@@ -823,6 +795,7 @@ pub const MARKER_ALLOC: Marker = 3_u32 << (u32::BITS - 3);
 pub const MARKER_FUNC: Marker = 4_u32 << (u32::BITS - 3);
 pub const MARKER_GLOBAL: Marker = 5_u32 << (u32::BITS - 3);
 pub const MARKER_GLOBAL_PTR: Marker = 6_u32 << (u32::BITS - 3);
+pub const MARKER_CONST_VECTOR: Marker = 7_u32 << (u32::BITS - 3);
 impl Slot {
     fn new_val(func: Function, index: u32) -> Self {
         Self::Value(func, index)
@@ -861,7 +834,8 @@ impl Slot {
             Self::Func(f) => (f.0 as u32) | MARKER_FUNC,
             Self::Global(g) => g.0 as u32 | MARKER_GLOBAL,
             Self::GlobalPtr(p) => *p | MARKER_GLOBAL_PTR,
-            Self::Pair(..) | Self::ConstVector(..) =>
+            Self::ConstVector(v) => *v | MARKER_CONST_VECTOR,
+            Self::Pair(..) =>
                 unreachable!("Only used for tracking during generation"),
         }
     }
@@ -895,6 +869,9 @@ impl Slot {
         }
         if let Some(p) = Self::is(ffi, MARKER_GLOBAL_PTR) {
             return Self::GlobalPtr(p)
+        }
+        if let Some(v) = Self::is(ffi, MARKER_CONST_VECTOR) {
+            return Self::ConstVector(v);
         }
         unreachable!()
         // if let Some(u) = Self::is(ffi, MARKER_CPAIR) {

@@ -27,6 +27,7 @@ namespace operands {
   inline constexpr uint32_t MARKER_FUNC = size_t{4} << (std::numeric_limits<std::uint32_t>::digits - 3);
   inline constexpr uint32_t MARKER_GLOBAL = size_t{5} << (std::numeric_limits<std::uint32_t>::digits - 3);
   inline constexpr uint32_t MARKER_GLOBAL_PTR = size_t{6} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_CONST_VECTOR = size_t{7} << (std::numeric_limits<std::uint32_t>::digits - 3);
 
   inline bool is(uint32_t op, uint32_t marker) {
     return (op & MARKER_BLOCK) == marker;
@@ -58,6 +59,10 @@ namespace operands {
 
   inline bool is_global_ptr(uint32_t op) {
     return is(op, MARKER_GLOBAL_PTR);
+  }
+
+  inline bool is_const_vector(uint32_t op) {
+    return is(op, MARKER_CONST_VECTOR);
   }
 
   inline uint32_t content(size_t op) {

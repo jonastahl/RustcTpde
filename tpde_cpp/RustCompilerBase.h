@@ -165,14 +165,32 @@ namespace tpde_rust {
     }
 
     std::optional<ValRefSpecial> val_ref_special(IRValueRef value) {
-      if (operands::is_const(value) || operands::is_global(value)
+      if (operands::is_const(value) || operands::is_const_vector(value)
+          || operands::is_global(value)
           || operands::is_global_ptr(value) || operands::is_func(value)) {
         return ValRefSpecial::make_const(value);
       }
       return std::nullopt;
     }
 
+    ValuePart const_vector_part(const ConstVector &vec, u32 part) {
+      const Type part_ty = vector_parts(vec.ty).second;
+      const u32 part_bytes = size_of_type(part_ty) / 8;
+      const u8 *src = vec.data.data() + size_t{part} * part_bytes;
+      if (part_bytes == 16) {
+        u64 *data = new (const_allocator) u64[2];
+        std::memcpy(data, src, 16);
+        return ValuePart(data, 16, tpde::RegBank{1});
+      }
+      u64 word = 0;
+      std::memcpy(&word, src, part_bytes);
+      return ValuePart(word, part_bytes, reg_bank_of_type(part_ty));
+    }
+
     ValuePart val_part_ref_special(ValRefSpecial &vrs, u32 part) {
+      if (operands::is_const_vector(vrs.data)) {
+        return const_vector_part(this->adaptor->mod->const_vectors[operands::content(vrs.data)], part);
+      }
       if (operands::is_const(vrs.data)) {
         Value &imm = this->adaptor->mod->consts[operands::content(vrs.data)];
 
@@ -422,6 +440,7 @@ namespace tpde_rust {
     bool compile_tls_addr(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_funnel_shift(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
+    static bool is_const_vec(IRValueRef vec);
     u64 const_vector_elem(IRValueRef vec, unsigned idx);
     void extract_element(ValueRef &vec_vr, unsigned idx, Type ty, ValuePart &out);
     void insert_element(ValueRef &vec_vr, unsigned idx, Type ty, GenericValuePart &&el);
@@ -2620,9 +2639,20 @@ namespace tpde_rust {
                             this->result_ref(inst.result).part(0));
   }
 
+  /// Lane `idx` of a constant vector (inline `Const` or `ConstVector`), read from the IR.
   template<typename Adaptor, typename Derived, typename Config>
   u64 RustCompilerBase<Adaptor, Derived, Config>::const_vector_elem(IRValueRef vec, unsigned idx) {
+    if (operands::is_const_vector(vec)) {
+      const ConstVector &cv = this->adaptor->mod->const_vectors[operands::content(vec)];
+      const auto [nelem, elem_ty] = vector_info(cv.ty);
+      assert(idx < nelem);
+      const u32 elem_bytes = size_of_type(elem_ty) / 8;
+      u64 lane = 0;
+      std::memcpy(&lane, cv.data.data() + size_t{idx} * elem_bytes, elem_bytes);
+      return lane;
+    }
     assert(operands::is_const(vec));
+
     const Value &imm = this->adaptor->mod->consts[operands::content(vec)];
     const auto [nelem, elem_ty] = vector_info(imm.ty);
     assert(idx < nelem);
@@ -2852,14 +2882,15 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_shuffle_vector(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    // operands: lhs, rhs, mask indices as raw values
+    // operands: lhs, rhs, constant mask vector
     Instruction &inst = this->adaptor->get_instruction(inst_ref);
     const IRValueRef lhs = inst.ops[0];
     const IRValueRef rhs = inst.ops[1];
 
     const auto [dst_nelem, bvt] = vector_info(val_info.type);
     const unsigned src_nelem = vector_info(this->adaptor->type_of_ref(lhs)).first;
-    assert(inst.ops.size() == 2 + dst_nelem);
+    assert(inst.ops.size() == 3);
+    const IRValueRef mask_vec = inst.ops[2];
 
     auto bank = reg_bank_of_type(bvt);
     auto size = size_of_type(bvt) / 8;
@@ -2870,10 +2901,10 @@ namespace tpde_rust {
 
     ValuePartRef tmp{this, bank};
     for (unsigned i = 0; i < dst_nelem; i++) {
-      const unsigned mask = operands::content(inst.ops[2 + i]);
+      const unsigned mask = const_vector_elem(mask_vec, i);
       const bool src_is_lhs = mask < src_nelem;
       const IRValueRef src = src_is_lhs ? lhs : rhs;
-      if (operands::is_const(src)) {
+      if (operands::is_const(src) || operands::is_const_vector(src)) {
         const u64 const_elem = const_vector_elem(src, mask % src_nelem);
         ValuePartRef const_ref{this, const_elem, size, bank};
         derived()->insert_element(res_vr, i, bvt, std::move(const_ref));

@@ -15,7 +15,8 @@ mod ffi {
         consts: Vec<Value>,
 
         globals: Vec<Global>,
-        global_ptrs: Vec<GlobalPtr>
+        global_ptrs: Vec<GlobalPtr>,
+        const_vectors: Vec<ConstVector>,
     }
 
     enum Linkage {
@@ -352,6 +353,12 @@ mod ffi {
     pub struct Alloca {
         size: usize,
         align: usize,
+    }
+
+    #[derive(Debug)]
+    pub struct ConstVector {
+        ty: Type,
+        data: Vec<u8>,
     }
 
     pub struct Value {

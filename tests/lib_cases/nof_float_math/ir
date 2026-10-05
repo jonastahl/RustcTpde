@@ -3227,4 +3227,5 @@ ModuleTpde {
     ],
     globals: [],
     global_ptrs: [],
+    const_vectors: [],
 }
