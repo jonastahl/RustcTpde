@@ -286,6 +286,7 @@ mod ffi {
         Resume,
 
         ctpop,
+        bswap,
         ctlz,
         ctlz_nonzero,
         cttz,

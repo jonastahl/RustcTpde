@@ -435,6 +435,7 @@ namespace tpde_rust {
     bool compile_fcmp(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_ctpop(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_bswap(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_ct_lz_tz(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_rotate(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_tls_addr(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -659,6 +660,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::sTof, &Derived::compile_int_to_float, /*sign=*/true);
 
       set_fn(InstructionKind::ctpop, &Derived::compile_ctpop);
+      set_fn(InstructionKind::bswap, &Derived::compile_bswap);
       set_fn(InstructionKind::ctlz, &Derived::compile_ct_lz_tz, /*flags=leading*/0b00);
       set_fn(InstructionKind::ctlz_nonzero, &Derived::compile_ct_lz_tz, /*flags=leading,nonzero*/0b01);
       set_fn(InstructionKind::cttz, &Derived::compile_ct_lz_tz, /*flags=trailing*/0b10);
@@ -2541,6 +2543,23 @@ namespace tpde_rust {
       derived()->encode_ctpopi64(std::move(op), res_ref);
     }
     return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_bswap(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+
+    ValueRef val_ref = this->val_ref(inst.ops[0]);
+    auto res_vr = this->result_ref(inst.result);
+    switch (size_of_type(this->adaptor->type_of_ref(inst.ops[0]))) {
+      case 16: return derived()->encode_bswapi16(val_ref.part(0), res_vr.part(0));
+      case 32: return derived()->encode_bswapi32(val_ref.part(0), res_vr.part(0));
+      case 64: return derived()->encode_bswapi64(val_ref.part(0), res_vr.part(0));
+      case 128:
+        return derived()->encode_bswapi128(val_ref.part(0), val_ref.part(1),
+                                           res_vr.part(0), res_vr.part(1));
+      default: return false;
+    }
   }
 
   template<typename Adaptor, typename Derived, typename Config>

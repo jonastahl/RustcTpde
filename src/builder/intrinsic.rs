@@ -95,6 +95,17 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
 
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
+            sym::bswap => {
+                if args[0].layout.size.bytes() == 1 {
+                    return IntrinsicResult::Operand(args[0].val);
+                }
+                let result = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::bswap,
+                    vec![args[0].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
             sym::saturating_add
             | sym::saturating_sub => {
                 let ty = args[0].layout.ty;
