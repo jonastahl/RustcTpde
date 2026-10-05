@@ -19,6 +19,9 @@ pub struct BasicBlock {
 pub enum Slot {
     Value(Function, u32),
     Pair(u32),
+    // Constant vector with elements that are tracked only during generation,
+    // e.g. shuffle indices that are wider than a single `Value` can hold.
+    ConstVector(u32),
     Const(u32),
     Raw(u32),
     Alloc(u32),
@@ -63,16 +66,55 @@ pub fn size_of_type(ty: Type) -> u32 {
 /// Decompose a vector type into its element type and element count.
 pub fn vector_info(ty: Type) -> Option<(Type, u32)> {
     Some(match ty {
+        // Vectors narrower than 64 bit
+        Type::v2i8 => (Type::i8, 2),
+        Type::v4i8 => (Type::i8, 4),
+        Type::v2i16 => (Type::i16, 2),
+
+        // 64 bit vectors
         Type::v8i8 => (Type::i8, 8),
-        Type::v16i8 => (Type::i8, 16),
         Type::v4i16 => (Type::i16, 4),
-        Type::v8i16 => (Type::i16, 8),
         Type::v2i32 => (Type::i32, 2),
+        Type::v2f32 => (Type::f32, 2),
+
+        // 128 bit vectors
+        Type::v16i8 => (Type::i8, 16),
+        Type::v8i16 => (Type::i16, 8),
         Type::v4i32 => (Type::i32, 4),
         Type::v2i64 => (Type::i64, 2),
-        Type::v2f32 => (Type::f32, 2),
         Type::v4f32 => (Type::f32, 4),
         Type::v2f64 => (Type::f64, 2),
+
+        // 256 bit vectors
+        Type::v32i8 => (Type::i8, 32),
+        Type::v16i16 => (Type::i16, 16),
+        Type::v8i32 => (Type::i32, 8),
+        Type::v4i64 => (Type::i64, 4),
+        Type::v8f32 => (Type::f32, 8),
+        Type::v4f64 => (Type::f64, 4),
+
+        // 512 bit vectors
+        Type::v64i8 => (Type::i8, 64),
+        Type::v32i16 => (Type::i16, 32),
+        Type::v16i32 => (Type::i32, 16),
+        Type::v8i64 => (Type::i64, 8),
+        Type::v16f32 => (Type::f32, 16),
+        Type::v8f64 => (Type::f64, 8),
+
+        // 1024 bit vectors
+        Type::v128i8 => (Type::i8, 128),
+        Type::v64i16 => (Type::i16, 64),
+        Type::v32i32 => (Type::i32, 32),
+        Type::v16i64 => (Type::i64, 16),
+        Type::v32f32 => (Type::f32, 32),
+        Type::v16f64 => (Type::f64, 16),
+
+        // 2048 bit vectors
+        Type::v64i32 => (Type::i32, 64),
+        Type::v32i64 => (Type::i64, 32),
+
+        // 4096 bit vectors
+        Type::v64i64 => (Type::i64, 64),
         _ => return None,
     })
 }
@@ -80,16 +122,55 @@ pub fn vector_info(ty: Type) -> Option<(Type, u32)> {
 /// Vector type with the given element type and element count, if it is supported.
 pub fn vector_type(elem: Type, count: u64) -> Option<Type> {
     Some(match (elem, count) {
+        // Vectors narrower than 64 bit
+        (Type::i8, 2) => Type::v2i8,
+        (Type::i8, 4) => Type::v4i8,
+        (Type::i16, 2) => Type::v2i16,
+
+        // 64 bit vectors
         (Type::i8, 8) => Type::v8i8,
-        (Type::i8, 16) => Type::v16i8,
         (Type::i16, 4) => Type::v4i16,
-        (Type::i16, 8) => Type::v8i16,
         (Type::i32, 2) => Type::v2i32,
+        (Type::f32, 2) => Type::v2f32,
+
+        // 128 bit vectors
+        (Type::i8, 16) => Type::v16i8,
+        (Type::i16, 8) => Type::v8i16,
         (Type::i32, 4) => Type::v4i32,
         (Type::i64, 2) => Type::v2i64,
-        (Type::f32, 2) => Type::v2f32,
         (Type::f32, 4) => Type::v4f32,
         (Type::f64, 2) => Type::v2f64,
+
+        // 256 bit vectors
+        (Type::i8, 32) => Type::v32i8,
+        (Type::i16, 16) => Type::v16i16,
+        (Type::i32, 8) => Type::v8i32,
+        (Type::i64, 4) => Type::v4i64,
+        (Type::f32, 8) => Type::v8f32,
+        (Type::f64, 4) => Type::v4f64,
+
+        // 512 bit vectors
+        (Type::i8, 64) => Type::v64i8,
+        (Type::i16, 32) => Type::v32i16,
+        (Type::i32, 16) => Type::v16i32,
+        (Type::i64, 8) => Type::v8i64,
+        (Type::f32, 16) => Type::v16f32,
+        (Type::f64, 8) => Type::v8f64,
+
+        // 1024 bit vectors
+        (Type::i8, 128) => Type::v128i8,
+        (Type::i16, 64) => Type::v64i16,
+        (Type::i32, 32) => Type::v32i32,
+        (Type::i64, 16) => Type::v16i64,
+        (Type::f32, 32) => Type::v32f32,
+        (Type::f64, 16) => Type::v16f64,
+
+        // 2048 bit vectors
+        (Type::i32, 64) => Type::v64i32,
+        (Type::i64, 32) => Type::v32i64,
+
+        // 4096 bit vectors
+        (Type::i64, 64) => Type::v64i64,
         _ => return None,
     })
 }
@@ -100,6 +181,7 @@ pub struct Module {
     tpde: ModuleTpde,
 
     pairs: Vec<PairRef>,
+    const_vectors: Vec<Vec<Slot>>,
 }
 
 #[derive(PartialEq)]
@@ -126,6 +208,7 @@ impl Module {
                 global_ptrs: vec![]
             },
             pairs: vec![],
+            const_vectors: vec![],
         }
     }
 
@@ -324,6 +407,16 @@ impl Module {
                     unreachable!()
                 };
                 FullType::Pair(slot_a, slot_b, pair.offset_b)
+            }
+            Slot::ConstVector(ind) => {
+                let elems = &self.const_vectors[ind as usize];
+                let FullType::Single(elem) = self.type_of_slot(elems[0]) else {
+                    unreachable!()
+                };
+                match vector_type(elem, elems.len() as u64) {
+                    Some(ty) => FullType::Single(ty),
+                    None => todo!("unsupported constant vector <{} x {:?}>", elems.len(), elem),
+                }
             }
             Slot::Raw(_) => unreachable!(),
             Slot::Alloc(_) | Slot::Func(_) | Slot::Global(_) | Slot::GlobalPtr(..)
@@ -578,6 +671,19 @@ impl Module {
         }
     }
 
+    pub fn add_const_vector(&mut self, elems: &[Slot]) -> Slot {
+        assert!(!elems.is_empty());
+        self.const_vectors.push(elems.to_vec());
+        Slot::ConstVector((self.const_vectors.len() - 1) as u32)
+    }
+
+    pub fn const_vector_elems(&self, slot: Slot) -> Option<&[Slot]> {
+        match slot {
+            Slot::ConstVector(i) => Some(&self.const_vectors[i as usize]),
+            _ => None,
+        }
+    }
+
     pub fn add_pair(&mut self, slot_a: Slot, slot_b: Slot, offset_b: u32) -> Slot {
         let slot_pairs = &mut self.pairs;
         slot_pairs.push(PairRef {
@@ -715,7 +821,7 @@ impl Slot {
             Self::Func(f) => (f.0 as u32) | MARKER_FUNC,
             Self::Global(g) => g.0 as u32 | MARKER_GLOBAL,
             Self::GlobalPtr(p) => *p | MARKER_GLOBAL_PTR,
-            Self::Pair(..) =>
+            Self::Pair(..) | Self::ConstVector(..) =>
                 unreachable!("Only used for tracking during generation"),
         }
     }
@@ -773,6 +879,7 @@ impl Debug for Slot {
             Self::Value(func, v) => write!(f, "[val: {}]", v),
             Self::Alloc(v) => write!(f, "[alloc: {}]", v),
             Self::Raw(v) => write!(f, "[raw: {}]", v),
+            Self::ConstVector(v) => write!(f, "[const vector: {}]", v),
             Self::Func(v) => write!(f, "[func: {}]", v.0),
             Self::Global(g) => write!(f, "[global: {}]", g.0),
             Self::Const(v) => write!(f, "[const: {}]", v),

@@ -3,7 +3,7 @@ mod intrinsic;
 
 use core::borrow::Borrow;
 use crate::context::{CodegenCx, GenericCx, SCx};
-use crate::shared::ir::{convert_atomic_order, size_of_type, BasicBlock, FullType, Function, InstructionKind, Module, Slot, Type, convert_atomic_op};
+use crate::shared::ir::{convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, Module, Slot, Type, convert_atomic_op};
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::common::{
@@ -846,11 +846,27 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn extract_element(&mut self, vec: Self::Value, idx: Self::Value) -> Self::Value {
-        todo!()
+        let FullType::Single(vec_ty) = self.val_ty(vec) else { unreachable!() };
+        let (elem, _) = vector_info(vec_ty).expect("extract_element on non-vector");
+        self.module.borrow_mut().add_instruction_ret(
+            self.basic_block,
+            InstructionKind::simd_extract,
+            vec![vec, idx],
+            elem,
+        )
     }
 
     fn vector_splat(&mut self, num_elts: usize, elt: Self::Value) -> Self::Value {
-        todo!()
+        let FullType::Single(elem) = self.val_ty(elt) else { unreachable!() };
+        let FullType::Single(ty) = self.type_vector(FullType::Single(elem), num_elts as u64) else {
+            unreachable!()
+        };
+        self.module.borrow_mut().add_instruction_ret(
+            self.basic_block,
+            InstructionKind::simd_splat,
+            vec![elt],
+            ty,
+        )
     }
 
     fn extract_value(&mut self, agg_val: Self::Value, idx: u64) -> Self::Value {

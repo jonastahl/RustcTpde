@@ -2,7 +2,7 @@ use crate::consts::IsInitOrFini;
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, FullType, Slot, Type};
 use rustc_abi::Size;
-use rustc_codegen_ssa::traits::{ConstCodegenMethods, MiscCodegenMethods};
+use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ConstCodegenMethods, MiscCodegenMethods};
 use rustc_data_structures::stable_hash::{StableHash, StableHasher};
 use rustc_hashes::Hash128;
 use rustc_hir::attrs::Linkage;
@@ -31,27 +31,32 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_bool(&self, val: bool) -> Self::Value {
-        todo!()
+        self.module.borrow_mut().add_const(Type::Bool, val as u128)
     }
 
     fn const_i8(&self, i: i8) -> Self::Value {
-        todo!()
+        self.const_int(FullType::Single(Type::i8), i as i64)
     }
 
     fn const_i16(&self, i: i16) -> Self::Value {
-        todo!()
+        self.const_int(FullType::Single(Type::i16), i as i64)
     }
 
     fn const_i32(&self, i: i32) -> Self::Value {
-        todo!()
+        self.const_int(FullType::Single(Type::i32), i as i64)
     }
 
     fn const_i64(&self, i: i64) -> Self::Value {
-        todo!()
+        self.const_int(FullType::Single(Type::i64), i)
     }
 
     fn const_int(&self, t: Self::Type, i: i64) -> Self::Value {
-        todo!()
+        let bits = self.int_width(t);
+        let data = (i as i128 as u128) & (u128::MAX >> (128 - bits));
+        let FullType::Single(ty) = t else {
+            unreachable!()
+        };
+        self.module.borrow_mut().add_const(ty, data)
     }
 
     fn const_u8(&self, i: u8) -> Self::Value {
@@ -59,15 +64,15 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_u32(&self, i: u32) -> Self::Value {
-        todo!()
+        self.const_uint(FullType::Single(Type::i32), i as u64)
     }
 
     fn const_u64(&self, i: u64) -> Self::Value {
-        todo!()
+        self.const_uint(FullType::Single(Type::i64), i)
     }
 
     fn const_u128(&self, i: u128) -> Self::Value {
-        todo!()
+        self.module.borrow_mut().add_const(Type::i128, i)
     }
 
     fn const_usize(&self, i: u64) -> Self::Value {
@@ -101,7 +106,7 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_vector(&self, elts: &[Self::Value]) -> Self::Value {
-        todo!()
+        self.module.borrow_mut().add_const_vector(elts)
     }
 
     fn const_to_opt_uint(&self, v: Self::Value) -> Option<u64> {

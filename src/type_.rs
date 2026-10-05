@@ -58,6 +58,8 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> GenericCx<'tpde, CX> {
         let FullType::Single(elem) = elem else {
             bug!("vector element must be a scalar type: {:?}", elem)
         };
+        // Vectors of pointers are handled as vectors of addresses.
+        let elem = if elem == Type::ptr { Type::i64 } else { elem };
         match vector_type(elem, count) {
             Some(ty) => FullType::Single(ty),
             None => todo!("unsupported vector type <{} x {:?}>", count, elem),

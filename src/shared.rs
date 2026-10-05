@@ -133,16 +133,55 @@ mod ffi {
         f64,
         ptr,
 
+        // Vectors narrower than 64 bit
+        v2i8,
+        v4i8,
+        v2i16,
+
+        // 64 bit vectors
         v8i8,
-        v16i8,
         v4i16,
-        v8i16,
         v2i32,
+        v2f32,
+
+        // 128 bit vectors
+        v16i8,
+        v8i16,
         v4i32,
         v2i64,
-        v2f32,
         v4f32,
         v2f64,
+
+        // 256 bit vectors
+        v32i8,
+        v16i16,
+        v8i32,
+        v4i64,
+        v8f32,
+        v4f64,
+
+        // 512 bit vectors
+        v64i8,
+        v32i16,
+        v16i32,
+        v8i64,
+        v16f32,
+        v8f64,
+
+        // 1024 bit vectors
+        v128i8,
+        v64i16,
+        v32i32,
+        v16i64,
+        v32f32,
+        v16f64,
+
+        // 2048 bit vectors
+        v64i32,
+        v32i64,
+
+        // 4096 bit vectors
+        v64i64,
 
         Last,
     }
@@ -263,6 +302,36 @@ mod ffi {
         Pause,
 
         simd_splat,
+        simd_extract,
+        simd_insert,
+        simd_shuffle,
+        simd_select_bitmask,
+        simd_bitmask,
+
+        simd_reduce_add_ordered,
+        simd_reduce_mul_ordered,
+        simd_reduce_add_unordered,
+        simd_reduce_mul_unordered,
+        simd_reduce_smin,
+        simd_reduce_umin,
+        simd_reduce_fmin,
+        simd_reduce_smax,
+        simd_reduce_umax,
+        simd_reduce_fmax,
+        simd_reduce_and,
+        simd_reduce_or,
+        simd_reduce_xor,
+        simd_reduce_any,
+        simd_reduce_all,
+
+        simd_gather,
+        simd_scatter,
+        simd_masked_load,
+        simd_masked_store,
+
+        fAbs,
+        fMin,
+        fMax,
 
         Last,
     }
