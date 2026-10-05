@@ -305,6 +305,8 @@ mod ffi {
         Atomic_fence,
         Pause,
 
+        TlsAddr,
+
         simd_splat,
         simd_extract,
         simd_insert,

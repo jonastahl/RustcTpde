@@ -556,6 +556,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         align: rustc_abi::Align,
     ) -> Self::Value {
         let module = &mut self.module.borrow_mut();
+        let val = module.materialize_const_vector(val).unwrap_or(val);
         match module.type_of_slot(val) {
             FullType::Single(ty) => {
                 self.store_single(module, val, ptr, align);

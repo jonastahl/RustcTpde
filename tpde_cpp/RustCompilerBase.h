@@ -419,6 +419,7 @@ namespace tpde_rust {
     bool compile_ctpop(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_ct_lz_tz(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_rotate(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_tls_addr(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_funnel_shift(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     u64 const_vector_elem(IRValueRef vec, unsigned idx);
@@ -643,6 +644,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::ctlz_nonzero, &Derived::compile_ct_lz_tz, /*flags=leading,nonzero*/0b01);
       set_fn(InstructionKind::cttz, &Derived::compile_ct_lz_tz, /*flags=trailing*/0b10);
       set_fn(InstructionKind::cttz_nonzero, &Derived::compile_ct_lz_tz, /*flags=trailing,nonzero*/0b11);
+      set_fn(InstructionKind::TlsAddr, &Derived::compile_tls_addr);
       set_fn(InstructionKind::rotl, &Derived::compile_rotate, /*right=*/0);
       set_fn(InstructionKind::rotr, &Derived::compile_rotate, /*right=*/1);
       set_fn(InstructionKind::funnel_shl, &Derived::compile_funnel_shift, /*right=*/0);
@@ -2550,6 +2552,19 @@ namespace tpde_rust {
     EncodeFnTy fn = encode_fns[width_idx][is_cttz][zero_is_poison];
     return (derived()->*fn)(this->val_ref(val).part(0),
                             this->result_ref(inst.result).part(0));
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_tls_addr(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    assert(operands::is_global(inst.ops[0]));
+
+    auto [res_vr, res_ref] = this->result_ref_single(inst.result);
+    // TODO: optimize for other TLS access models
+    ScratchReg res = derived()->tls_get_addr(global_symbols[operands::content(inst.ops[0])],
+                                             tpde::TLSModel::GlobalDynamic);
+    res_ref.set_value(std::move(res));
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>

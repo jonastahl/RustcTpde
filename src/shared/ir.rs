@@ -587,11 +587,16 @@ impl Module {
                 Some(FullType::Memory { .. }) => ReturnType::Single(self.add_slot(bb.function, Type::ptr)),
             };
 
+        // Constant vectors are only tracked symbolically, the backend needs real constants
+        let ffi_ops: Vec<u32> = ops.iter()
+            .map(|s| self.materialize_const_vector(*s).unwrap_or(*s).to_ffi())
+            .collect();
+
         let basic_block = self.get_basic_block_mut(bb);
 
         basic_block.instructions.push(ffi::Instruction {
             kind: instr,
-            ops: ops.iter().map(|s| s.to_ffi()).collect(),
+            ops: ffi_ops,
             has_result: ret.num_ret() >= 1,
             result: ret.result_a(),
         });
@@ -695,6 +700,28 @@ impl Module {
             Slot::ConstVector(i) => Some(&self.const_vectors[i as usize]),
             _ => None,
         }
+    }
+
+    pub fn materialize_const_vector(&mut self, slot: Slot) -> Option<Slot> {
+        let elems = self.const_vector_elems(slot)?.to_vec();
+        let FullType::Single(ty) = self.type_of_slot(slot) else {
+            return None;
+        };
+        let (elem_ty, _) = vector_info(ty)?;
+        let elem_bits = size_of_type(elem_ty) * 8;
+        if elem_bits * elems.len() as u32 > 128 {
+            return None;
+        }
+
+        let mut data = 0u128;
+        for (i, elem) in elems.iter().enumerate() {
+            let mut value = self.const_data(*elem)?;
+            if elem_bits < 128 {
+                value &= (1u128 << elem_bits) - 1;
+            }
+            data |= value << (i as u32 * elem_bits);
+        }
+        Some(self.add_const(ty, data))
     }
 
     pub fn add_pair(&mut self, slot_a: Slot, slot_b: Slot, offset_b: u32) -> Slot {

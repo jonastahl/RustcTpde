@@ -1,6 +1,6 @@
 use crate::builder::Builder;
 use crate::context::CodegenCx;
-use crate::shared::ir::{Binding, Global, Module, Slot};
+use crate::shared::ir::{Binding, Global, InstructionKind, Module, Slot, Type};
 use rustc_codegen_ssa::traits::{MiscCodegenMethods, StaticBuilderMethods, StaticCodegenMethods};
 use rustc_middle::mir::interpret::{read_target_uint, Allocation, ConstAllocation, InitChunk, Pointer};
 use rustc_span::def_id::DefId;
@@ -12,10 +12,16 @@ use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrFlags;
 
 impl<'tcx> StaticBuilderMethods for Builder<'_, '_, 'tcx> {
     fn get_static(&mut self, def_id: DefId) -> Self::Value {
+        let global = Slot::new_global(self.cx.get_global(def_id));
         if self.tcx.is_thread_local_static(def_id) {
-            todo!("thread-local statics are not supported yet")
+            return self.cx.module.borrow_mut().add_instruction_ret(
+                self.basic_block,
+                InstructionKind::TlsAddr,
+                vec![global],
+                Type::ptr,
+            );
         }
-        Slot::new_global(self.cx.get_global(def_id))
+        global
     }
 }
 
