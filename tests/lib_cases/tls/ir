@@ -1,0 +1,2658 @@
+ModuleTpde {
+    functions: [
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE4withNCNvCseeGrevWVrEI_6source8byte_get0hEB1E_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                Bool,
+                i8,
+                i64,
+                Bool,
+                i64,
+                i8,
+                i64,
+                Bool,
+                i64,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 2, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 2], [val: 0]) -> [val: 1],
+                    <AddRet> () -> [val: 2],
+                    <Store> ([val: 1], [alloc: 0], [raw: 1]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: 0]) -> [val: 3],
+                    <Store> ([val: 2], [val: 3], [raw: 1]),
+                    <Load> ([alloc: 0], [raw: 1]) -> [val: 4],
+                    <GEP> ([alloc: 0], [raw: 1], [const: 1]) -> [val: 5],
+                    <Load> ([val: 5], [raw: 1]) -> [val: 6],
+                    <zExt> ([val: 4]) -> [val: 7],
+                    <Trunc> ([val: 7]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 1], [raw: 2]),
+                ],
+                "bb3": [
+                    <Call> ([func: 33], [global: 6]),
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 2]) -> [val: 9],
+                    <Load> ([val: 9], [raw: 1]) -> [val: 10],
+                    <Ret> ([val: 10]),
+                ],
+                "bb2": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE4withNCNvCseeGrevWVrEI_6source8byte_set0uEB1E_",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                Bool,
+                Bool,
+                i64,
+                Bool,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 3], [val: 0], [val: 1]) -> [val: 2],
+                    <Store> ([val: 2], [alloc: 0], [raw: 1]),
+                    <Load> ([alloc: 0], [raw: 1]) -> [val: 3],
+                    <zExt> ([val: 3]) -> [val: 4],
+                    <Trunc> ([val: 4]) -> [val: 5],
+                    <CondBr> ([val: 5], [raw: 1], [raw: 2]),
+                ],
+                "bb3": [
+                    <Call> ([func: 33], [global: 8]),
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <Ret> (),
+                ],
+                "bb2": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE8try_withNCNvCseeGrevWVrEI_6source8byte_get0hEB1I_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                ptr,
+                i8,
+                i64,
+                Bool,
+                Bool,
+                i64,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 34,
+            allocas: [
+                size: 2, align: 1,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([const: 3], [alloc: 4], [raw: 1]),
+                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
+                    <Call> ([val: 1], [raw: 0], [const: 4]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Cast> ([val: 2]) -> [val: 3],
+                    <CMPeq> ([val: 3], [const: 5]) -> [val: 4],
+                    <CondBr> ([val: 4], [raw: 3], [raw: 2]),
+                ],
+                "bb8": [
+                    <Store> ([val: 2], [alloc: 3], [raw: 8]),
+                    <Load> ([alloc: 3], [raw: 8]) -> [val: 5],
+                    <Store> ([val: 5], [alloc: 2], [raw: 8]),
+                    <Load> ([alloc: 2], [raw: 8]) -> [val: 6],
+                    <Store> ([val: 6], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 7],
+                    <Store> ([const: 6], [alloc: 4], [raw: 1]),
+                    <Call> ([func: 16], [val: 7]) -> [val: 8],
+                    <Br> ([raw: 4]),
+                ],
+                "bb7": [
+                    <Store> ([const: 9], [alloc: 3], [raw: 8]),
+                    <Store> ([const: 10], [alloc: 2], [raw: 8]),
+                    <CMPeq> ([const: 11], [const: 12]) -> [val: 10],
+                    <Store> ([const: 13], [alloc: 0], [raw: 1]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb2": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 7]) -> [val: 9],
+                    <Store> ([val: 8], [val: 9], [raw: 1]),
+                    <Store> ([const: 8], [alloc: 0], [raw: 1]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb3": [
+                    <Load> ([alloc: 0], [raw: 1]) -> [val: 11],
+                    <GEP> ([alloc: 0], [raw: 1], [const: 14]) -> [val: 12],
+                    <Load> ([val: 12], [raw: 1]) -> [val: 13],
+                    <Ret> ([val: 11], [val: 13]),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+                "bb5": [
+                    <Unreachable> (),
+                ],
+                "bb6": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [
+                CalleeInfo {
+                    info: [
+                        ArgInfo {
+                            kind: Direct,
+                            extension: None,
+                            size: 0,
+                            align: 0,
+                        },
+                    ],
+                },
+            ],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE8try_withNCNvCseeGrevWVrEI_6source8byte_set0uEB1I_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                ptr,
+                Bool,
+                Bool,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 35,
+            allocas: [
+                size: 1, align: 1,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([const: 17], [alloc: 4], [raw: 1]),
+                    <Load> ([val: 0], [raw: 8]) -> [val: 2],
+                    <Call> ([val: 2], [raw: 0], [const: 18]) -> [val: 3],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Cast> ([val: 3]) -> [val: 4],
+                    <CMPeq> ([val: 4], [const: 19]) -> [val: 5],
+                    <CondBr> ([val: 5], [raw: 3], [raw: 2]),
+                ],
+                "bb8": [
+                    <Store> ([val: 3], [alloc: 3], [raw: 8]),
+                    <Load> ([alloc: 3], [raw: 8]) -> [val: 6],
+                    <Store> ([val: 6], [alloc: 2], [raw: 8]),
+                    <Load> ([alloc: 2], [raw: 8]) -> [val: 7],
+                    <Store> ([val: 7], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 8],
+                    <Store> ([const: 20], [alloc: 4], [raw: 1]),
+                    <Call> ([func: 17], [val: 1], [val: 8]),
+                    <Br> ([raw: 4]),
+                ],
+                "bb7": [
+                    <Store> ([const: 22], [alloc: 3], [raw: 8]),
+                    <Store> ([const: 23], [alloc: 2], [raw: 8]),
+                    <CMPeq> ([const: 24], [const: 25]) -> [val: 9],
+                    <Store> ([const: 26], [alloc: 0], [raw: 1]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb2": [
+                    <Store> ([const: 21], [alloc: 0], [raw: 1]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb3": [
+                    <Load> ([alloc: 0], [raw: 1]) -> [val: 10],
+                    <Ret> ([val: 10]),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+                "bb5": [
+                    <Unreachable> (),
+                ],
+                "bb6": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [
+                CalleeInfo {
+                    info: [
+                        ArgInfo {
+                            kind: Direct,
+                            extension: None,
+                            size: 0,
+                            align: 0,
+                        },
+                    ],
+                },
+            ],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellmEE4withNCNvCseeGrevWVrEI_6source11zeroed_bump0mEB1E_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i32,
+                i32,
+                i64,
+                i32,
+                i64,
+                i32,
+                i64,
+                Bool,
+                i64,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 8, align: 4,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 5], [val: 0]) -> [val: 1],
+                    <AddRet> () -> [val: 2],
+                    <Store> ([val: 1], [alloc: 0], [raw: 4]),
+                    <GEP> ([alloc: 0], [raw: 4], [const: 27]) -> [val: 3],
+                    <Store> ([val: 2], [val: 3], [raw: 4]),
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 4],
+                    <GEP> ([alloc: 0], [raw: 4], [const: 28]) -> [val: 5],
+                    <Load> ([val: 5], [raw: 4]) -> [val: 6],
+                    <zExt> ([val: 4]) -> [val: 7],
+                    <Trunc> ([val: 7]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 1], [raw: 2]),
+                ],
+                "bb3": [
+                    <Call> ([func: 33], [global: 10]),
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 29]) -> [val: 9],
+                    <Load> ([val: 9], [raw: 4]) -> [val: 10],
+                    <Ret> ([val: 10]),
+                ],
+                "bb2": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellmEE8try_withNCNvCseeGrevWVrEI_6source11zeroed_bump0mEB1I_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                ptr,
+                i32,
+                i64,
+                Bool,
+                i32,
+                i64,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 36,
+            allocas: [
+                size: 8, align: 4,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([const: 30], [alloc: 4], [raw: 1]),
+                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
+                    <Call> ([val: 1], [raw: 0], [const: 31]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Cast> ([val: 2]) -> [val: 3],
+                    <CMPeq> ([val: 3], [const: 32]) -> [val: 4],
+                    <CondBr> ([val: 4], [raw: 3], [raw: 2]),
+                ],
+                "bb8": [
+                    <Store> ([val: 2], [alloc: 3], [raw: 8]),
+                    <Load> ([alloc: 3], [raw: 8]) -> [val: 5],
+                    <Store> ([val: 5], [alloc: 2], [raw: 8]),
+                    <Load> ([alloc: 2], [raw: 8]) -> [val: 6],
+                    <Store> ([val: 6], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 7],
+                    <Store> ([const: 33], [alloc: 4], [raw: 1]),
+                    <Call> ([func: 15], [val: 7]) -> [val: 8],
+                    <Br> ([raw: 4]),
+                ],
+                "bb7": [
+                    <Store> ([const: 36], [alloc: 3], [raw: 8]),
+                    <Store> ([const: 37], [alloc: 2], [raw: 8]),
+                    <CMPeq> ([const: 38], [const: 39]) -> [val: 10],
+                    <Store> ([const: 40], [alloc: 0], [raw: 4]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb2": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 34]) -> [val: 9],
+                    <Store> ([val: 8], [val: 9], [raw: 4]),
+                    <Store> ([const: 35], [alloc: 0], [raw: 4]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb3": [
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 11],
+                    <GEP> ([alloc: 0], [raw: 4], [const: 41]) -> [val: 12],
+                    <Load> ([val: 12], [raw: 4]) -> [val: 13],
+                    <Ret> ([val: 11], [val: 13]),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+                "bb5": [
+                    <Unreachable> (),
+                ],
+                "bb6": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [
+                CalleeInfo {
+                    info: [
+                        ArgInfo {
+                            kind: Direct,
+                            extension: None,
+                            size: 0,
+                            align: 0,
+                        },
+                    ],
+                },
+            ],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE4withNCNvCseeGrevWVrEI_6source11counter_add0yEB1E_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 16, align: 8,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 8], [val: 0], [val: 1]) -> [val: 2],
+                    <AddRet> () -> [val: 3],
+                    <Store> ([val: 2], [alloc: 0], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 8], [const: 44]) -> [val: 4],
+                    <Store> ([val: 3], [val: 4], [raw: 8]),
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
+                    <GEP> ([alloc: 0], [raw: 8], [const: 45]) -> [val: 6],
+                    <Load> ([val: 6], [raw: 8]) -> [val: 7],
+                    <Trunc> ([val: 5]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 1], [raw: 2]),
+                ],
+                "bb3": [
+                    <Call> ([func: 33], [global: 12]),
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 46]) -> [val: 9],
+                    <Load> ([val: 9], [raw: 8]) -> [val: 10],
+                    <Ret> ([val: 10]),
+                ],
+                "bb2": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE4withNCNvCseeGrevWVrEI_6source11counter_get0yEB1E_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 16, align: 8,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 9], [val: 0]) -> [val: 1],
+                    <AddRet> () -> [val: 2],
+                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 8], [const: 47]) -> [val: 3],
+                    <Store> ([val: 2], [val: 3], [raw: 8]),
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
+                    <GEP> ([alloc: 0], [raw: 8], [const: 48]) -> [val: 5],
+                    <Load> ([val: 5], [raw: 8]) -> [val: 6],
+                    <Trunc> ([val: 4]) -> [val: 7],
+                    <CondBr> ([val: 7], [raw: 1], [raw: 2]),
+                ],
+                "bb3": [
+                    <Call> ([func: 33], [global: 14]),
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 49]) -> [val: 8],
+                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
+                    <Ret> ([val: 9]),
+                ],
+                "bb2": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE8try_withNCNvCseeGrevWVrEI_6source11counter_add0yEB1I_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 37,
+            allocas: [
+                size: 16, align: 8,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([const: 50], [alloc: 4], [raw: 1]),
+                    <Load> ([val: 0], [raw: 8]) -> [val: 2],
+                    <Call> ([val: 2], [raw: 0], [const: 51]) -> [val: 3],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Cast> ([val: 3]) -> [val: 4],
+                    <CMPeq> ([val: 4], [const: 52]) -> [val: 5],
+                    <CondBr> ([val: 5], [raw: 3], [raw: 2]),
+                ],
+                "bb8": [
+                    <Store> ([val: 3], [alloc: 3], [raw: 8]),
+                    <Load> ([alloc: 3], [raw: 8]) -> [val: 6],
+                    <Store> ([val: 6], [alloc: 2], [raw: 8]),
+                    <Load> ([alloc: 2], [raw: 8]) -> [val: 7],
+                    <Store> ([val: 7], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 8],
+                    <Store> ([const: 53], [alloc: 4], [raw: 1]),
+                    <Call> ([func: 13], [val: 1], [val: 8]) -> [val: 9],
+                    <Br> ([raw: 4]),
+                ],
+                "bb7": [
+                    <Store> ([const: 56], [alloc: 3], [raw: 8]),
+                    <Store> ([const: 57], [alloc: 2], [raw: 8]),
+                    <CMPeq> ([const: 58], [const: 59]) -> [val: 11],
+                    <Store> ([const: 60], [alloc: 0], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb2": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 54]) -> [val: 10],
+                    <Store> ([val: 9], [val: 10], [raw: 8]),
+                    <Store> ([const: 55], [alloc: 0], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb3": [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 12],
+                    <GEP> ([alloc: 0], [raw: 8], [const: 61]) -> [val: 13],
+                    <Load> ([val: 13], [raw: 8]) -> [val: 14],
+                    <Ret> ([val: 12], [val: 14]),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+                "bb5": [
+                    <Unreachable> (),
+                ],
+                "bb6": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [
+                CalleeInfo {
+                    info: [
+                        ArgInfo {
+                            kind: Direct,
+                            extension: None,
+                            size: 0,
+                            align: 0,
+                        },
+                    ],
+                },
+            ],
+        },
+        Function {
+            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE8try_withNCNvCseeGrevWVrEI_6source11counter_get0yEB1I_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 38,
+            allocas: [
+                size: 16, align: 8,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 8, align: 8,
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([const: 64], [alloc: 4], [raw: 1]),
+                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
+                    <Call> ([val: 1], [raw: 0], [const: 65]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Cast> ([val: 2]) -> [val: 3],
+                    <CMPeq> ([val: 3], [const: 66]) -> [val: 4],
+                    <CondBr> ([val: 4], [raw: 3], [raw: 2]),
+                ],
+                "bb8": [
+                    <Store> ([val: 2], [alloc: 3], [raw: 8]),
+                    <Load> ([alloc: 3], [raw: 8]) -> [val: 5],
+                    <Store> ([val: 5], [alloc: 2], [raw: 8]),
+                    <Load> ([alloc: 2], [raw: 8]) -> [val: 6],
+                    <Store> ([val: 6], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 7],
+                    <Store> ([const: 67], [alloc: 4], [raw: 1]),
+                    <Call> ([func: 14], [val: 7]) -> [val: 8],
+                    <Br> ([raw: 4]),
+                ],
+                "bb7": [
+                    <Store> ([const: 70], [alloc: 3], [raw: 8]),
+                    <Store> ([const: 71], [alloc: 2], [raw: 8]),
+                    <CMPeq> ([const: 72], [const: 73]) -> [val: 10],
+                    <Store> ([const: 74], [alloc: 0], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb2": [
+                    <GEP> ([alloc: 0], [raw: 1], [const: 68]) -> [val: 9],
+                    <Store> ([val: 8], [val: 9], [raw: 8]),
+                    <Store> ([const: 69], [alloc: 0], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                "bb3": [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 11],
+                    <GEP> ([alloc: 0], [raw: 8], [const: 75]) -> [val: 12],
+                    <Load> ([val: 12], [raw: 8]) -> [val: 13],
+                    <Ret> ([val: 11], [val: 13]),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+                "bb5": [
+                    <Unreachable> (),
+                ],
+                "bb6": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [
+                CalleeInfo {
+                    info: [
+                        ArgInfo {
+                            kind: Direct,
+                            extension: None,
+                            size: 0,
+                            align: 0,
+                        },
+                    ],
+                },
+            ],
+        },
+        Function {
+            name: "_RNCNKNvCseeGrevWVrEI_6source4BYTE0s_0B5_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <TlsAddr> ([global: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNCNKNvCseeGrevWVrEI_6source6ZEROED0s_0B5_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <TlsAddr> ([global: 3]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNCNKNvCseeGrevWVrEI_6source7COUNTER0s_0B5_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <TlsAddr> ([global: 5]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNCNvCseeGrevWVrEI_6source11counter_add0B3_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                i64,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 24], [val: 1]) -> [val: 2],
+                    <Load> ([val: 0], [raw: 8]) -> [val: 3],
+                    <Call> ([func: 18], [val: 2], [val: 3]) -> [val: 4],
+                    <Call> ([func: 21], [val: 1], [val: 4]),
+                    <Call> ([func: 24], [val: 1]) -> [val: 5],
+                    <Ret> ([val: 5]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNCNvCseeGrevWVrEI_6source11counter_get0B3_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 24], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNCNvCseeGrevWVrEI_6source11zeroed_bump0B3_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i32,
+                i32,
+                Bool,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 23], [val: 0]) -> [val: 1],
+                    <Add> ([val: 1], [const: 78]) -> [val: 2],
+                    <CMPult> ([val: 2], [val: 1]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
+                ],
+                "bb2": [
+                    <Call> ([func: 20], [val: 0], [val: 2]),
+                    <Call> ([func: 23], [val: 0]) -> [val: 4],
+                    <Ret> ([val: 4]),
+                ],
+                "panic": [
+                    <Call> ([func: 39], [global: 16]),
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNCNvCseeGrevWVrEI_6source8byte_get0B3_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 22], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNCNvCseeGrevWVrEI_6source8byte_set0B3_",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Load> ([val: 0], [raw: 1]) -> [val: 2],
+                    <Call> ([func: 19], [val: 1], [val: 2]),
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs7_NtCs94NUNretDkj_4core3numy12wrapping_add",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Add> ([val: 0], [val: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs7_NtCs94NUNretDkj_4core4cellINtB5_4CellhE3setCseeGrevWVrEI_6source",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i8,
+                ptr,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 2],
+                    <Load> ([val: 2], [raw: 1]) -> [val: 3],
+                    <Store> ([val: 1], [val: 2], [raw: 1]),
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs7_NtCs94NUNretDkj_4core4cellINtB5_4CellmE3setCseeGrevWVrEI_6source",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i32,
+                ptr,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 2],
+                    <Load> ([val: 2], [raw: 4]) -> [val: 3],
+                    <Store> ([val: 1], [val: 2], [raw: 4]),
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs7_NtCs94NUNretDkj_4core4cellINtB5_4CellyE3setCseeGrevWVrEI_6source",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i64,
+                ptr,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 2],
+                    <Load> ([val: 2], [raw: 8]) -> [val: 3],
+                    <Store> ([val: 1], [val: 2], [raw: 8]),
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs8_NtCs94NUNretDkj_4core4cellINtB5_4CellhE3getCseeGrevWVrEI_6source",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 1],
+                    <Load> ([val: 1], [raw: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs8_NtCs94NUNretDkj_4core4cellINtB5_4CellmE3getCseeGrevWVrEI_6source",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 1],
+                    <Load> ([val: 1], [raw: 4]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs8_NtCs94NUNretDkj_4core4cellINtB5_4CellyE3getCseeGrevWVrEI_6source",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 1],
+                    <Load> ([val: 1], [raw: 8]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvYNCNKNvCseeGrevWVrEI_6source4BYTE0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBJ_6option6OptionQIB1o_INtNtBJ_4cell4CellhEEEEE9call_onceB8_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 40,
+            allocas: [
+                size: 0, align: 1,
+                size: 8, align: 8,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([val: 0], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 1],
+                    <Call> ([func: 10], [alloc: 0], [val: 1]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Ret> ([val: 2]),
+                ],
+                "bb3": [
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvYNCNKNvCseeGrevWVrEI_6source6ZEROED0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellmEEEEE9call_onceB8_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 41,
+            allocas: [
+                size: 0, align: 1,
+                size: 8, align: 8,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([val: 0], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 1],
+                    <Call> ([func: 11], [alloc: 0], [val: 1]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Ret> ([val: 2]),
+                ],
+                "bb3": [
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvYNCNKNvCseeGrevWVrEI_6source7COUNTER0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBM_6option6OptionQIB1r_INtNtBM_4cell4CellyEEEEE9call_onceB8_",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: true,
+            personality: 42,
+            allocas: [
+                size: 0, align: 1,
+                size: 8, align: 8,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([val: 0], [alloc: 1], [raw: 8]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 1],
+                    <Call> ([func: 12], [alloc: 0], [val: 1]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                "bb1": [
+                    <Ret> ([val: 2]),
+                ],
+                "bb3": [
+                    <Unreachable> (),
+                ],
+                "bb4": [
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "byte_get",
+            has_ret: true,
+            args: [],
+            slots: [
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 0], [global: 18]) -> [val: 0],
+                    <Ret> ([val: 0]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "byte_set",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([val: 0], [alloc: 0], [raw: 1]),
+                    <Call> ([func: 1], [global: 19], [alloc: 0]),
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "counter_add",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 8, align: 8,
+            ],
+            basic_blocks: [
+                "start": [
+                    <Store> ([val: 0], [alloc: 0], [raw: 8]),
+                    <Call> ([func: 6], [global: 20], [alloc: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "counter_get",
+            has_ret: true,
+            args: [],
+            slots: [
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 7], [global: 21]) -> [val: 0],
+                    <Ret> ([val: 0]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "zeroed_bump",
+            has_ret: true,
+            args: [],
+            slots: [
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 4], [global: 22]) -> [val: 0],
+                    <Ret> ([val: 0]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvNtNtCs72J22aohzRW_3std6thread5local18panic_access_error",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvNtNtCs94NUNretDkj_4core9panicking11panic_const24panic_const_add_overflow",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+    ],
+    consts: [
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [Bool] (0 1) -> true,
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 0) -> 0,
+        [Bool] (0 0) -> false,
+        [i64] (0 1) -> 1,
+        [Bool] (0 0) -> false,
+        [ptr] (0 0) -> [ptr: 0],
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [Bool] (0 1) -> true,
+        [i64] (0 1) -> 1,
+        [Bool] (0 0) -> false,
+        [i8] (0 0) -> 0,
+        [Bool] (0 1) -> true,
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 0) -> 0,
+        [Bool] (0 0) -> false,
+        [Bool] (0 0) -> false,
+        [ptr] (0 0) -> [ptr: 0],
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [Bool] (0 1) -> true,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 4) -> 4,
+        [Bool] (0 1) -> true,
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 0) -> 0,
+        [Bool] (0 0) -> false,
+        [i64] (0 4) -> 4,
+        [i32] (0 0) -> 0,
+        [ptr] (0 0) -> [ptr: 0],
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i32] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i32] (0 0) -> 0,
+        [i32] (0 0) -> 0,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 8) -> 8,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 8) -> 8,
+        [Bool] (0 1) -> true,
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 0) -> 0,
+        [Bool] (0 0) -> false,
+        [i64] (0 8) -> 8,
+        [i64] (0 0) -> 0,
+        [ptr] (0 0) -> [ptr: 0],
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 0) -> 0,
+        [i64] (0 0) -> 0,
+        [Bool] (0 1) -> true,
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 0) -> 0,
+        [Bool] (0 0) -> false,
+        [i64] (0 8) -> 8,
+        [i64] (0 0) -> 0,
+        [ptr] (0 0) -> [ptr: 0],
+        [ptr] (0 0) -> [ptr: 0],
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 1) -> 1,
+        [i64] (0 0) -> 0,
+        [i64] (0 0) -> 0,
+        [i32] (0 1) -> 1,
+    ],
+    globals: [
+        _RNvNCNKNvCseeGrevWVrEI_6source4BYTE0023___RUST_STD_INTERNAL_VAL {
+            size: 2,
+            align: 1,
+            read_only: false,
+            thread_loc: true,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (2 bytes)
+              0000  01 01                                            |..|,
+            relocations: [],
+        },
+        _RNvNCNKNvCseeGrevWVrEI_6source4BYTE0s_023___RUST_STD_INTERNAL_VAL {
+            size: 1,
+            align: 1,
+            read_only: false,
+            thread_loc: true,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (1 bytes)
+              0000  01                                               |.|,
+            relocations: [],
+        },
+        _RNvNCNKNvCseeGrevWVrEI_6source6ZEROED0023___RUST_STD_INTERNAL_VAL {
+            size: 8,
+            align: 4,
+            read_only: false,
+            thread_loc: true,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (8 bytes)
+              0000  00 00 00 00 01 00 00 00                          |........|,
+            relocations: [],
+        },
+        _RNvNCNKNvCseeGrevWVrEI_6source6ZEROED0s_023___RUST_STD_INTERNAL_VAL {
+            size: 4,
+            align: 4,
+            read_only: false,
+            thread_loc: true,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (4 bytes)
+              0000  00 00 00 00                                      |....|,
+            relocations: [],
+        },
+        _RNvNCNKNvCseeGrevWVrEI_6source7COUNTER0023___RUST_STD_INTERNAL_VAL {
+            size: 16,
+            align: 8,
+            read_only: false,
+            thread_loc: true,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (16 bytes)
+              0000  0a 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00  |................|,
+            relocations: [],
+        },
+        _RNvNCNKNvCseeGrevWVrEI_6source7COUNTER0s_023___RUST_STD_INTERNAL_VAL {
+            size: 8,
+            align: 8,
+            read_only: false,
+            thread_loc: true,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (8 bytes)
+              0000  0a 00 00 00 00 00 00 00                          |........|,
+            relocations: [],
+        },
+        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  ae 01 00 00 19 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 7],
+            ],
+        },
+        alloc_ad2bb2fe213473aa58aca991adeecd52 {
+            size: 128,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
+              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            relocations: [],
+        },
+        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  ae 01 00 00 19 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 9],
+            ],
+        },
+        alloc_ad2bb2fe213473aa58aca991adeecd52 {
+            size: 128,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
+              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            relocations: [],
+        },
+        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  ae 01 00 00 19 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 11],
+            ],
+        },
+        alloc_ad2bb2fe213473aa58aca991adeecd52 {
+            size: 128,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
+              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            relocations: [],
+        },
+        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  ae 01 00 00 19 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 13],
+            ],
+        },
+        alloc_ad2bb2fe213473aa58aca991adeecd52 {
+            size: 128,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
+              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            relocations: [],
+        },
+        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  ae 01 00 00 19 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 15],
+            ],
+        },
+        alloc_ad2bb2fe213473aa58aca991adeecd52 {
+            size: 128,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
+              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            relocations: [],
+        },
+        alloc_b18a02d41e4217719bd880d458c3987e {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 1d 00 00 00 00 00 00 00  |................|
+              0010  26 00 00 00 0f 00 00 00                          |&.......|,
+            relocations: [
+                offset 0x0 insert [global: 17],
+            ],
+        },
+        alloc_20f0c9f16fda3bbe12b8821790595c75 {
+            size: 30,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (30 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  74 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00        |tls/source.rs.|,
+            relocations: [],
+        },
+        alloc_f4bc941e8aefc7d24dd02a23fc5e8b10 {
+            size: 8,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (8 bytes)
+              0000  00 00 00 00 00 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [func: 25],
+            ],
+        },
+        alloc_f4bc941e8aefc7d24dd02a23fc5e8b10 {
+            size: 8,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (8 bytes)
+              0000  00 00 00 00 00 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [func: 25],
+            ],
+        },
+        alloc_c5bd28a6402f5d8d5a48b554d4b75f83 {
+            size: 8,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (8 bytes)
+              0000  00 00 00 00 00 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [func: 27],
+            ],
+        },
+        alloc_c5bd28a6402f5d8d5a48b554d4b75f83 {
+            size: 8,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (8 bytes)
+              0000  00 00 00 00 00 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [func: 27],
+            ],
+        },
+        alloc_756829d27dd039ebf77132093d0691a3 {
+            size: 8,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            init: true,
+            data: (8 bytes)
+              0000  00 00 00 00 00 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [func: 26],
+            ],
+        },
+    ],
+    global_ptrs: [],
+}

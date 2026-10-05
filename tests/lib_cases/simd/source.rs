@@ -911,3 +911,21 @@ fn by_value_calls_x16(a: i32x16, b: i32x16) -> i32x16 {
     let s = add_i32x16_by_value(a, b);
     add_i32x16_by_value(s, s)
 }
+
+// ---- Constant vectors stored to memory ----
+
+#[no_mangle]
+fn store_zero_i64x2(out: &mut [i64; 2]) {
+    *out = i64x2::splat(0).to_array();
+    unsafe { std::ptr::write(out as *mut [i64; 2] as *mut i64x2, i64x2::splat(0)) };
+}
+
+#[no_mangle]
+fn store_const_i32x4(out: &mut [i32; 4]) {
+    unsafe { std::ptr::write(out as *mut [i32; 4] as *mut i32x4, i32x4::from_array([1, -2, 3, i32::MIN])) };
+}
+
+#[no_mangle]
+fn store_const_u8x16(out: &mut [u8; 16]) {
+    unsafe { std::ptr::write(out as *mut [u8; 16] as *mut u8x16, u8x16::from_array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 255])) };
+}

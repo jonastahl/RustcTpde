@@ -329,6 +329,9 @@ extern "Rust" {
 
   fn add_u8x64_by_value(a: u8x64, b: u8x64) -> u8x64;
   fn by_value_calls_x16(a: i32x16, b: i32x16) -> i32x16;
+  fn store_zero_i64x2(out: &mut [i64; 2]);
+  fn store_const_i32x4(out: &mut [i32; 4]);
+  fn store_const_u8x16(out: &mut [u8; 16]);
 }
 
 /// Collects mismatches instead of asserting so one broken operation does not
@@ -715,6 +718,16 @@ fn main() {
     zip(wa64, wb64, u8::wrapping_add));
   check(f, "by_value_calls_x16", unsafe { by_value_calls_x16(i32x16::from_array(wi16), i32x16::from_array(a16)) }.to_array(),
     zip(wi16, a16, |x, y| x.wrapping_add(y).wrapping_mul(2)));
+
+  let mut zero = [-1i64; 2];
+  unsafe { store_zero_i64x2(&mut zero) };
+  check(f, "store_zero_i64x2", zero, [0, 0]);
+  let mut c32 = [0i32; 4];
+  unsafe { store_const_i32x4(&mut c32) };
+  check(f, "store_const_i32x4", c32, [1, -2, 3, i32::MIN]);
+  let mut c8 = [0u8; 16];
+  unsafe { store_const_u8x16(&mut c8) };
+  check(f, "store_const_u8x16", c8, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 255]);
 
   if !f.is_empty() {
     for line in f.iter() {
