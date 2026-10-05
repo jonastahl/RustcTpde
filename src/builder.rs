@@ -540,7 +540,38 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         count: u64,
         dest: PlaceRef<'tcx, Self::Value>,
     ) {
-        todo!()
+        let elem_size = elem.layout.size.bytes();
+        if count == 0 || elem_size == 0 {
+            return;
+        }
+        let align = dest.val.align.restrict_for_offset(elem.layout.size);
+
+        // The IR has no phi nodes, so the loop counter lives in a stack slot.
+        let counter = self.alloca(rustc_abi::Size::from_bytes(8), rustc_abi::Align::EIGHT);
+        let zero = self.const_usize(0);
+        self.store(zero, counter, rustc_abi::Align::EIGHT);
+
+        let header_bb = self.append_sibling_block("repeat_header");
+        let body_bb = self.append_sibling_block("repeat_body");
+        let next_bb = self.append_sibling_block("repeat_next");
+        self.br(header_bb);
+
+        self.switch_to_block(header_bb);
+        let i = self.load(self.type_isize(), counter, rustc_abi::Align::EIGHT);
+        let count_val = self.const_usize(count);
+        let done = self.icmp(IntPredicate::IntULT, i, count_val);
+        self.cond_br(done, body_bb, next_bb);
+
+        self.switch_to_block(body_bb);
+        let byte_off = self.mul(i, self.const_usize(elem_size));
+        let i8_ty = self.type_i8();
+        let addr = self.inbounds_gep(i8_ty, dest.val.llval, &[byte_off]);
+        elem.val.store(self, PlaceRef::new_sized_aligned(addr, elem.layout, align));
+        let next = self.add(i, self.const_usize(1));
+        self.store(next, counter, rustc_abi::Align::EIGHT);
+        self.br(header_bb);
+
+        self.switch_to_block(next_bb);
     }
 
     fn range_metadata(&mut self, load: Self::Value, range: rustc_abi::WrappingRange) {
