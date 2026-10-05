@@ -63,6 +63,8 @@ namespace tpde_rust::x64 {
     bool compile_condbr(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_overflow_jump(Instruction&, InstructionKind, bool);
 
+    bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
+
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
     void create_helper_call(std::span<IRValueRef> args,
@@ -290,6 +292,11 @@ namespace tpde_rust::x64 {
       default: TPDE_UNREACHABLE("Invalid op for overflow");
     }
     generate_cond_branch(jump, operands::content(jmpi.ops[1]), operands::content(jmpi.ops[2]));
+    return true;
+  }
+
+  bool RustCompilerX64::compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64) {
+    ASM(PAUSE);
     return true;
   }
 

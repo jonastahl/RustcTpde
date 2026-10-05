@@ -355,10 +355,12 @@ namespace tpde_rust {
     bool compile_store(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_store_generic(Instruction &, GenericValuePart &&);
+    bool compile_store_atomic(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_load(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_load_generic(Instruction &, GenericValuePart &&);
+    bool compile_load_atomic(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_memcpy(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_memmove(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -399,6 +401,10 @@ namespace tpde_rust {
     bool compile_vector_reduce(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_abort(RustAdaptor::IRInstRef, const ValInfo &, u64);
+
+    bool compile_cmpxchg(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_atomicrmw(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_fence(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     SymRef get_libfunc_sym(LibFunc func);
 
@@ -454,8 +460,8 @@ namespace tpde_rust {
   }
 
   template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_inst(RustAdaptor::IRInstRef instr, InstRange) {
-    TPDE_LOG_TRACE("Compiling inst {}", this->adaptor->inst_fmt_ref(instr));
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_inst(RustAdaptor::IRInstRef inst_ref, InstRange) {
+    TPDE_LOG_TRACE("Compiling inst {}", this->adaptor->inst_fmt_ref(inst_ref));
     static constexpr auto fns = []() constexpr {
       using CompileFn =
           bool (Derived::*)(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -564,16 +570,26 @@ namespace tpde_rust {
       set_fn(InstructionKind::sat_ssub, &Derived::compile_saturating_intrin, OverflowOp::ssub);
       set_fn(InstructionKind::sat_usub, &Derived::compile_saturating_intrin, OverflowOp::usub);
 
+      set_fn(InstructionKind::Atomic_load, &Derived::compile_load_atomic);
+      set_fn(InstructionKind::Atomic_store, &Derived::compile_store_atomic);
+      set_fn(InstructionKind::Atomic_cmpxchg, &Derived::compile_cmpxchg);
+      set_fn(InstructionKind::Atomic_rmw, &Derived::compile_atomicrmw);
+      set_fn(InstructionKind::Atomic_fence, &Derived::compile_fence);
+
       set_fn(InstructionKind::Abort, &Derived::compile_abort);
+      set_fn(InstructionKind::Pause, &Derived::compile_pause);
 
       return res;
     }();
 
-    Instruction *i = &this->adaptor->get_instruction(instr);
-    const ValInfo val_info = this->adaptor->val_info(i);
-    assert(static_cast<size_t>(i->kind) < fns.size());
-    const auto [compile_fn, arg] = fns[static_cast<std::size_t>(i->kind)];
-    return (derived()->*compile_fn)(instr, val_info, arg);
+    Instruction *instr = &this->adaptor->get_instruction(inst_ref);
+    const ValInfo val_info = this->adaptor->val_info(instr);
+    assert(static_cast<size_t>(instr->kind) < fns.size());
+    const auto [compile_fn, arg] = fns[static_cast<std::size_t>(instr->kind)];
+    if (! (derived()->*compile_fn)(inst_ref, val_info, arg) ) {
+      return false;
+    }
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -1452,6 +1468,61 @@ namespace tpde_rust {
   }
 
   template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_store_atomic(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+
+    auto [_, ptr_ref] = this->val_ref_single(instr.ops[0]);
+    GenericValuePart addr;
+    if (ptr_ref.has_assignment() && ptr_ref.assignment().is_stack_variable()) {
+      addr = derived()->create_addr_for_alloca(ptr_ref.assignment());
+    } else {
+      addr = std::move(ptr_ref);
+    }
+
+    const Type ty = this->adaptor->type_of_ref(instr.result);
+    u32 width = size_of_type(ty);
+    assert(width == 8 || width == 16 || width == 32 || width == 64);
+
+    const auto order = static_cast<AtomicOrdering>(operands::content(instr.ops[1]));
+    using EncodeFnTy =
+        bool (Derived::*)(GenericValuePart &&, GenericValuePart &&);
+    EncodeFnTy encode_fn = nullptr;
+    if (order == AtomicOrdering::Monotonic) {
+      switch (width) {
+      case 8: encode_fn = &Derived::encode_atomic_store_u8_mono; break;
+      case 16: encode_fn = &Derived::encode_atomic_store_u16_mono; break;
+      case 32: encode_fn = &Derived::encode_atomic_store_u32_mono; break;
+      case 64: encode_fn = &Derived::encode_atomic_store_u64_mono; break;
+      default: TPDE_UNREACHABLE("invalid size");
+      }
+    } else if (order == AtomicOrdering::Release) {
+      switch (width) {
+      case 8: encode_fn = &Derived::encode_atomic_store_u8_rel; break;
+      case 16: encode_fn = &Derived::encode_atomic_store_u16_rel; break;
+      case 32: encode_fn = &Derived::encode_atomic_store_u32_rel; break;
+      case 64: encode_fn = &Derived::encode_atomic_store_u64_rel; break;
+      default: TPDE_UNREACHABLE("invalid size");
+      }
+    } else {
+      assert(order == AtomicOrdering::SequentiallyConsistent);
+      switch (width) {
+      case 8: encode_fn = &Derived::encode_atomic_store_u8_seqcst; break;
+      case 16: encode_fn = &Derived::encode_atomic_store_u16_seqcst; break;
+      case 32: encode_fn = &Derived::encode_atomic_store_u32_seqcst; break;
+      case 64: encode_fn = &Derived::encode_atomic_store_u64_seqcst; break;
+      default: TPDE_UNREACHABLE("invalid size");
+      }
+    }
+
+    auto op_ref = this->val_ref(instr.ops[1]);
+    if (!(derived()->*encode_fn)(std::move(addr), op_ref.part(0))) {
+      TPDE_LOG_ERR("fooooo");
+      return false;
+    }
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_load(
     RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
     Instruction &loadi = this->adaptor->get_instruction(inst);
@@ -1535,6 +1606,63 @@ namespace tpde_rust {
 
       default: throw std::runtime_error("Unsupported type for loadi");
     }
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_load_atomic(RustAdaptor::IRInstRef instr_ref, const ValInfo &, u64) {
+    Instruction& instr = this->adaptor->get_instruction(instr_ref);
+
+    auto [_, ptr_ref] = this->val_ref_single(instr.ops[0]);
+    GenericValuePart addr;
+    if (ptr_ref.has_assignment() && ptr_ref.assignment().is_stack_variable()) {
+      addr = derived()->create_addr_for_alloca(ptr_ref.assignment());
+    } else {
+      addr = std::move(ptr_ref);
+    }
+
+    const Type ty = this->adaptor->type_of_ref(instr.result);
+    u32 width = size_of_type(ty);
+    assert(width == 8 || width == 16 || width == 32 || width == 64);
+    u32 needed_align = 1;
+    switch (width) {
+    case 16: needed_align = 2; break;
+    case 32: needed_align = 4; break;
+    case 64: needed_align = 8; break;
+    }
+
+    const auto order = static_cast<AtomicOrdering>(operands::content(instr.ops[1]));
+    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
+    EncodeFnTy encode_fn = nullptr;
+    if (order == AtomicOrdering::Monotonic) {
+      switch (width) {
+      case 8: encode_fn = &Derived::encode_atomic_load_u8_mono; break;
+      case 16: encode_fn = &Derived::encode_atomic_load_u16_mono; break;
+      case 32: encode_fn = &Derived::encode_atomic_load_u32_mono; break;
+      case 64: encode_fn = &Derived::encode_atomic_load_u64_mono; break;
+      default: TPDE_UNREACHABLE("invalid size");
+      }
+    } else if (order == AtomicOrdering::Acquire) {
+      switch (width) {
+      case 8: encode_fn = &Derived::encode_atomic_load_u8_acq; break;
+      case 16: encode_fn = &Derived::encode_atomic_load_u16_acq; break;
+      case 32: encode_fn = &Derived::encode_atomic_load_u32_acq; break;
+      case 64: encode_fn = &Derived::encode_atomic_load_u64_acq; break;
+      default: TPDE_UNREACHABLE("invalid size");
+      }
+    } else {
+      assert(order == AtomicOrdering::SequentiallyConsistent);
+      switch (width) {
+      case 8: encode_fn = &Derived::encode_atomic_load_u8_seqcst; break;
+      case 16: encode_fn = &Derived::encode_atomic_load_u16_seqcst; break;
+      case 32: encode_fn = &Derived::encode_atomic_load_u32_seqcst; break;
+      case 64: encode_fn = &Derived::encode_atomic_load_u64_seqcst; break;
+      default: TPDE_UNREACHABLE("invalid size");
+      }
+    }
+
+    ValueRef res = this->result_ref(instr.result);
+    (derived()->*encode_fn)(std::move(addr), res.part(0));
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -2668,6 +2796,237 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_abort(RustAdaptor::IRInstRef, const ValInfo &, u64) {
     derived()->encode_trap();
     this->release_regs_after_return();
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_cmpxchg(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+
+    auto new_val = instr.ops[2];
+    Type val_ty = this->adaptor->type_of_ref(new_val);
+    unsigned width = size_of_type(val_ty);
+    if (width > 64) {
+      return false;
+    }
+
+    unsigned width_idx;
+    switch (width) {
+    case 8: width_idx = 0; break;
+    case 16: width_idx = 1; break;
+    case 32: width_idx = 2; break;
+    case 64: width_idx = 3; break;
+    default: return false;
+    }
+
+    // ptr, cmp, new_val, old_val, success
+    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&,
+                                         GenericValuePart &&,
+                                         GenericValuePart &&,
+                                         ValuePart &&,
+                                         ValuePart &&);
+    static constexpr auto fns = []() constexpr {
+      using enum AtomicOrdering;
+      std::array<EncodeFnTy[size_t(LAST) + 1], 4> res{};
+      res[0][u32(Monotonic)] = &Derived::encode_cmpxchg_u8_monotonic;
+      res[1][u32(Monotonic)] = &Derived::encode_cmpxchg_u16_monotonic;
+      res[2][u32(Monotonic)] = &Derived::encode_cmpxchg_u32_monotonic;
+      res[3][u32(Monotonic)] = &Derived::encode_cmpxchg_u64_monotonic;
+      res[0][u32(Acquire)] = &Derived::encode_cmpxchg_u8_acquire;
+      res[1][u32(Acquire)] = &Derived::encode_cmpxchg_u16_acquire;
+      res[2][u32(Acquire)] = &Derived::encode_cmpxchg_u32_acquire;
+      res[3][u32(Acquire)] = &Derived::encode_cmpxchg_u64_acquire;
+      res[0][u32(Release)] = &Derived::encode_cmpxchg_u8_release;
+      res[1][u32(Release)] = &Derived::encode_cmpxchg_u16_release;
+      res[2][u32(Release)] = &Derived::encode_cmpxchg_u32_release;
+      res[3][u32(Release)] = &Derived::encode_cmpxchg_u64_release;
+      res[0][u32(AcquireRelease)] = &Derived::encode_cmpxchg_u8_acqrel;
+      res[1][u32(AcquireRelease)] = &Derived::encode_cmpxchg_u16_acqrel;
+      res[2][u32(AcquireRelease)] = &Derived::encode_cmpxchg_u32_acqrel;
+      res[3][u32(AcquireRelease)] = &Derived::encode_cmpxchg_u64_acqrel;
+      res[0][u32(SequentiallyConsistent)] = &Derived::encode_cmpxchg_u8_seqcst;
+      res[1][u32(SequentiallyConsistent)] = &Derived::encode_cmpxchg_u16_seqcst;
+      res[2][u32(SequentiallyConsistent)] = &Derived::encode_cmpxchg_u32_seqcst;
+      res[3][u32(SequentiallyConsistent)] = &Derived::encode_cmpxchg_u64_seqcst;
+      return res;
+    }();
+
+    auto ptr_ref = this->val_ref(instr.ops[0]);
+    auto cmp_ref = this->val_ref(instr.ops[1]);
+    auto new_ref = this->val_ref(new_val);
+    auto res_val = this->result_ref(instr.result);
+    auto res = this->result_ref(this->adaptor->get_instruction(inst_ref.next()).result);
+
+    auto order = static_cast<AtomicOrdering>(operands::content(instr.ops[3]));
+    EncodeFnTy encode_fn = fns[width_idx][size_t(order)];
+    assert(encode_fn && "invalid cmpxchg ordering");
+    if (!(derived()->*encode_fn)(ptr_ref.part(0),
+                                 cmp_ref.part(0),
+                                 new_ref.part(0),
+                                 res_val.part(0),
+                                 res.part(0))) {
+      return false;
+    }
+
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_atomicrmw(RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+
+    Type ty = this->adaptor->type_of_ref(instr.ops[2]);
+    unsigned size = size_of_type(ty);
+    // This is checked by the IR verifier.
+    assert(size >= 8 && (size & (size - 1)) == 0 && "invalid atomicrmw size");
+
+    auto bvt = val_info.type;
+
+    // TODO: implement non-seq_cst orderings more efficiently
+    // TODO: use more efficient implementation when the result is not used. On
+    // x86-64, the current implementation gives many cmpxchg loops.
+    bool (Derived::*fn)(GenericValuePart &&, GenericValuePart &&, ValuePart &&) =
+        nullptr;
+    switch (static_cast<AtomicRmwBinOp>(operands::content(instr.ops[0]))) {
+    case AtomicRmwBinOp::Xchg:
+      // TODO: support f32/f64
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_xchg_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_xchg_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_xchg_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_xchg_u64_seqcst; break;
+      case ptr: fn = &Derived::encode_atomic_xchg_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::Add:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_add_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_add_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_add_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_add_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::Sub:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_sub_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_sub_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_sub_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_sub_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::And:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_and_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_and_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_and_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_and_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::Nand:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_nand_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_nand_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_nand_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_nand_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::Or:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_or_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_or_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_or_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_or_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::Xor:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_xor_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_xor_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_xor_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_xor_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::Min:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_min_i8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_min_i16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_min_i32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_min_i64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::Max:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_max_i8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_max_i16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_max_i32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_max_i64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::UMin:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_min_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_min_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_min_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_min_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    case AtomicRmwBinOp::UMax:
+      switch (bvt) {
+        using enum Type;
+      case i8: fn = &Derived::encode_atomic_max_u8_seqcst; break;
+      case i16: fn = &Derived::encode_atomic_max_u16_seqcst; break;
+      case i32: fn = &Derived::encode_atomic_max_u32_seqcst; break;
+      case i64: fn = &Derived::encode_atomic_max_u64_seqcst; break;
+      default: return false;
+      }
+      break;
+    default: return false;
+    }
+
+    auto ptr_ref = this->val_ref(instr.ops[1]);
+    auto val_ref = this->val_ref(instr.ops[2]);
+    auto res_ref = this->result_ref(instr.result);
+    return (derived()->*fn)(ptr_ref.part(0), val_ref.part(0), res_ref.part(0));
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_fence(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+
+    if (operands::content(instr.ops[1] == 0 /*= is single threaded*/)) {
+      // memory barrier only
+      return true;
+    }
+
+    switch (static_cast<AtomicOrdering>(operands::content(instr.ops[0]))) {
+      using enum AtomicOrdering;
+      case Acquire: derived()->encode_fence_acq(); break;
+      case Release: derived()->encode_fence_rel(); break;
+      case AcquireRelease: derived()->encode_fence_acqrel(); break;
+      case SequentiallyConsistent: derived()->encode_fence_seqcst(); break;
+      default: return false;
+    }
+
     return true;
   }
 

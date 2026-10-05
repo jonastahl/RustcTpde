@@ -17,6 +17,7 @@ use rustc_middle::ty::layout::TyAndLayout;
 use rustc_middle::ty::{AtomicOrdering, Instance, Ty};
 use rustc_span::Span;
 use std::ops::Deref;
+use crate::shared::ir;
 
 pub struct Builder<'a, 'tpde, 'tcx> {
     pub cx: &'a CodegenCx<'tpde, 'tcx>,
@@ -942,11 +943,21 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         failure_order: AtomicOrdering,
         weak: bool,
     ) -> (Self::Value, Self::Value) {
+        use rustc_middle::ty::AtomicOrdering::*;
+        let merged_order: ir::AtomicOrdering = match (order, failure_order) {
+            (SeqCst, _) | (_, SeqCst) => ir::AtomicOrdering::SequentiallyConsistent,
+            (AcqRel, _) | (Release, Acquire) => ir::AtomicOrdering::AcquireRelease,
+            (Acquire, _) | (_, Acquire) => ir::AtomicOrdering::Acquire,
+            (Release, Relaxed) => ir::AtomicOrdering::Release,
+            (Relaxed, Relaxed) => ir::AtomicOrdering::Monotonic,
+            _ => unreachable!(),
+        };
+
         let mut module = self.module.borrow_mut();
         let ret_val = module.add_instruction_ret_x(
             self.basic_block,
             InstructionKind::Atomic_cmpxchg,
-            vec![dst, cmp, src, Slot::new_raw(order as u32), Slot::new_raw(failure_order as u32)],
+            vec![dst, cmp, src, Slot::new_raw(merged_order.repr)],
             2
         );
         let res = module.add_instruction_ret(
@@ -966,12 +977,6 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         order: AtomicOrdering,
         ret_ptr: bool,
     ) -> Self::Value {
-        let ptr = if !ret_ptr {
-            self.zext(dst, FullType::Single(Type::ptr))
-        } else {
-            dst
-        };
-
         let op = convert_atomic_op(op);
         let order = convert_atomic_order(order);
         let ret_val = self.module.borrow_mut().add_instruction_ret_x(

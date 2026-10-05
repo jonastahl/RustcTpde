@@ -57,27 +57,28 @@ mod ffi {
     #[repr(u32)]
     #[derive(Debug, Copy, Clone)]
     pub enum AtomicRmwBinOp {
-        AtomicXchg = 0,
-        AtomicAdd = 1,
-        AtomicSub = 2,
-        AtomicAnd = 3,
-        AtomicNand = 4,
-        AtomicOr = 5,
-        AtomicXor = 6,
-        AtomicMax = 7,
-        AtomicMin = 8,
-        AtomicUMax = 9,
-        AtomicUMin = 10,
+        Xchg = 0,
+        Add = 1,
+        Sub = 2,
+        And = 3,
+        Nand = 4,
+        Or = 5,
+        Xor = 6,
+        Max = 7,
+        Min = 8,
+        UMax = 9,
+        UMin = 10,
     }
 
     #[repr(u32)]
     #[derive(Debug, Copy, Clone)]
     pub enum AtomicOrdering {
-        Relaxed = 0,
+        Monotonic = 0,
         Release = 1,
         Acquire = 2,
-        AcqRel = 3,
-        SeqCst = 4,
+        AcquireRelease = 3,
+        SequentiallyConsistent = 4,
+        LAST = 5,
     }
 
     #[derive(Debug, Copy, Clone)]
