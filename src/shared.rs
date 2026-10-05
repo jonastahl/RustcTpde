@@ -1,5 +1,5 @@
 use crate::shared::ffi::{ArgExtension, ArgKind, GlobalPtr, Relocation, Type};
-use crate::shared::ir::{ArgInfo, Slot};
+use crate::shared::ir::{vector_info, ArgInfo, Slot, size_of_type};
 use core::fmt::{Debug, Formatter};
 #[allow(unused_imports)]
 pub use ffi::compile_to_file;
@@ -355,7 +355,6 @@ mod ffi {
         align: usize,
     }
 
-    #[derive(Debug)]
     pub struct ConstVector {
         ty: Type,
         data: Vec<u8>,
@@ -496,6 +495,31 @@ impl Debug for ffi::Global {
             .field("data", &HexDump(&self.data))
             .field("relocations", &self.relocations)
             .finish()
+    }
+}
+
+impl Debug for ffi::ConstVector {
+    fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
+        let Some((elem_ty, _)) = vector_info(self.ty) else {
+            return write!(f, "ConstVector {{ ty: {:?}, data: {:?} }}", self.ty, self.data);
+        };
+        let elem_bytes = size_of_type(elem_ty) as usize;
+
+        write!(f, "ConstVector {{ ty: {:?}, lanes: [", self.ty)?;
+        for (i, lane) in self.data.chunks(elem_bytes).enumerate() {
+            if i > 0 {
+                write!(f, ", ")?;
+            }
+            let mut bytes = [0u8; 8];
+            bytes[..lane.len()].copy_from_slice(lane);
+            let bits = u64::from_le_bytes(bytes);
+            match elem_ty {
+                Type::f32 => write!(f, "{}", f32::from_bits(bits as u32))?,
+                Type::f64 => write!(f, "{}", f64::from_bits(bits))?,
+                _ => write!(f, "{}", bits)?,
+            }
+        }
+        write!(f, "] }}")
     }
 }
 
