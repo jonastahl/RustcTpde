@@ -63,8 +63,7 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .map_err(|_| Failed::from("Could not find source"))?;
 
     // 3. Compile the files
-    Command::new("rustc")
-        .arg("+nightly-2026-08-19")
+    rustc()
         .arg("--crate-type")
         .arg("lib")
         .arg("-Z")
@@ -78,8 +77,7 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .arg("llvm-ir")
         .output() // Executes the command and captures stdout/stderr
         .map_err(|e| format!("Failed to execute rustc command: {}", e))?;
-    Command::new("rustc")
-        .arg("+nightly-2026-08-19")
+    rustc()
         .arg("--crate-type")
         .arg("lib")
         .arg("-Z")
@@ -130,8 +128,7 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
 
     // 5. Compile the test files
     if test_path.try_exists().unwrap_or(false) {
-        Command::new("rustc")
-            .arg("+nightly-2026-08-19")
+        rustc()
             .arg(&test_path)
             .arg("-C")
             .arg(format!("link-arg={}", actual_obj_path.to_str().unwrap()))
@@ -172,8 +169,7 @@ fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     }
 
     // 2. Compile the binary using the custom codegen backend
-    Command::new("rustc")
-        .arg("+nightly-2026-08-19")
+    rustc()
         .arg("--crate-type")
         .arg("bin")
         .arg("-Z")
@@ -231,4 +227,19 @@ fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .map_err(|_| eprintln!("Deleting executable failed")).unwrap_or_default();
 
     Ok(())
+}
+
+fn rustc() -> Command {
+    let sysroot = Command::new("rustc")
+        .arg("+nightly-2026-08-19")
+        .arg("--print")
+        .arg("sysroot")
+        .output()
+        .expect("Failed to query sysroot");
+    let sysroot = String::from_utf8(sysroot.stdout).expect("Invalid sysroot");
+
+    let mut cmd = Command::new("rustc");
+    cmd.arg("+nightly-2026-08-19")
+        .arg(format!("--remap-path-prefix={}=/sysroot", sysroot.trim()));
+    cmd
 }

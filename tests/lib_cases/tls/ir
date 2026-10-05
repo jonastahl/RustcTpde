@@ -2334,7 +2334,7 @@ ModuleTpde {
               0000  0a 00 00 00 00 00 00 00                          |........|,
             relocations: [],
         },
-        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+        alloc_4c92789852ebfbf95a089ddceedecbd4 {
             size: 24,
             align: 8,
             read_only: true,
@@ -2346,14 +2346,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  ae 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
         },
-        alloc_ad2bb2fe213473aa58aca991adeecd52 {
-            size: 128,
+        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2363,18 +2363,14 @@ ModuleTpde {
                 weak_link: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
-              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
-              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
+              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+        alloc_4c92789852ebfbf95a089ddceedecbd4 {
             size: 24,
             align: 8,
             read_only: true,
@@ -2386,14 +2382,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  ae 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 9],
             ],
         },
-        alloc_ad2bb2fe213473aa58aca991adeecd52 {
-            size: 128,
+        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2403,18 +2399,14 @@ ModuleTpde {
                 weak_link: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
-              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
-              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
+              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+        alloc_4c92789852ebfbf95a089ddceedecbd4 {
             size: 24,
             align: 8,
             read_only: true,
@@ -2426,14 +2418,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  ae 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 11],
             ],
         },
-        alloc_ad2bb2fe213473aa58aca991adeecd52 {
-            size: 128,
+        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2443,18 +2435,14 @@ ModuleTpde {
                 weak_link: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
-              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
-              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
+              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+        alloc_4c92789852ebfbf95a089ddceedecbd4 {
             size: 24,
             align: 8,
             read_only: true,
@@ -2466,14 +2454,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  ae 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 13],
             ],
         },
-        alloc_ad2bb2fe213473aa58aca991adeecd52 {
-            size: 128,
+        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2483,18 +2471,14 @@ ModuleTpde {
                 weak_link: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
-              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
-              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
+              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_b5b6d3a4b7e5cd4a01a0ae4248744a11 {
+        alloc_4c92789852ebfbf95a089ddceedecbd4 {
             size: 24,
             align: 8,
             read_only: true,
@@ -2506,14 +2490,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  ae 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 15],
             ],
         },
-        alloc_ad2bb2fe213473aa58aca991adeecd52 {
-            size: 128,
+        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2523,15 +2507,11 @@ ModuleTpde {
                 weak_link: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 30 38 2d 31  |ightly-2026-08-1|
-              0030  39 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |9-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
-              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
+              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
         alloc_b18a02d41e4217719bd880d458c3987e {
