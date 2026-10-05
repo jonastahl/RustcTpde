@@ -641,6 +641,15 @@ impl Module {
         ops.push(func_ref);
         ops.push(Slot::new_raw(then.index as u32));
         ops.push(Slot::new_raw(catch.index as u32));
+        match func_ref {
+            Slot::Func(_) => {},
+            Slot::Value(..) => {
+                let callee_infos = &mut self.tpde.functions[bb.function.0].callee_infos;
+                callee_infos.push(CalleeInfo { info: func_sign.arg_infos.clone() });
+                ops.push(Slot::new_raw(callee_infos.len() as u32 - 1))
+            }
+            _ => todo!()
+        }
         ops.extend_from_slice(args);
         self.add_instruction_raw_internal(
             bb,

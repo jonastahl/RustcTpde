@@ -1871,7 +1871,7 @@ namespace tpde_rust {
 
     {
       auto& infos = is_dynamic_function ?
-        this->adaptor->cur_func->callee_infos[operands::content(calli.ops[1])].info
+        this->adaptor->cur_func->callee_infos[operands::content(calli.ops[arg_start - 1])].info
         : this->adaptor->mod->functions[operands::content(func)].args;
       assert(infos.size() == calli.ops.size() - arg_start);
       for (size_t i = 0; i < infos.size(); ++i) {
