@@ -160,6 +160,22 @@ extern "Rust" {
   fn sext_i64_i128(a: i64) -> i128;
   fn trunc_u128_u64(a: u128) -> u64;
   fn trunc_u128_u8(a: u128) -> u8;
+  fn rotl_u8(a: u8, n: u32) -> u8;
+  fn rotr_u8(a: u8, n: u32) -> u8;
+  fn funnel_shl_u8(a: u8, b: u8, n: u32) -> u8;
+  fn funnel_shr_u8(a: u8, b: u8, n: u32) -> u8;
+  fn rotl_u16(a: u16, n: u32) -> u16;
+  fn rotr_u16(a: u16, n: u32) -> u16;
+  fn funnel_shl_u16(a: u16, b: u16, n: u32) -> u16;
+  fn funnel_shr_u16(a: u16, b: u16, n: u32) -> u16;
+  fn rotl_u32(a: u32, n: u32) -> u32;
+  fn rotr_u32(a: u32, n: u32) -> u32;
+  fn funnel_shl_u32(a: u32, b: u32, n: u32) -> u32;
+  fn funnel_shr_u32(a: u32, b: u32, n: u32) -> u32;
+  fn rotl_u64(a: u64, n: u32) -> u64;
+  fn rotr_u64(a: u64, n: u32) -> u64;
+  fn funnel_shl_u64(a: u64, b: u64, n: u32) -> u64;
+  fn funnel_shr_u64(a: u64, b: u64, n: u32) -> u64;
 }
 
 /// Checks `add_$ty` and `sub_$ty` over every ordered pair drawn from `$vals`.
@@ -717,5 +733,63 @@ fn main() {
   for a in [0u128, 1, 0xFFFF_FFFF_FFFF_FFFF, 1 << 64, 0x1234_5678_9ABC_DEF0_0FED_CBA9_8765_4321, u128::MAX] {
     assert_eq!(unsafe { trunc_u128_u64(a) }, a as u64, "trunc_u128_u64({})", a);
     assert_eq!(unsafe { trunc_u128_u8(a) }, a as u8, "trunc_u128_u8({})", a);
+  }
+
+  // Rotates and funnel shifts, including shift amounts of 0 and beyond the bit width.
+  for a in [0u8, 1, 0x80, 0xA5, 0xFF] {
+    for n in [0u32, 1, 3, 4, 7, 8, 9, 2 * 8 + 5] {
+      assert_eq!(unsafe { rotl_u8(a, n) }, a.rotate_left(n), "rotl_u8({}, {})", a, n);
+      assert_eq!(unsafe { rotr_u8(a, n) }, a.rotate_right(n), "rotr_u8({}, {})", a, n);
+    }
+    for b in [0u8, 1, 0x80, 0xA5, 0xFF] {
+      for n in [0u32, 1, 3, 4, 7] {
+        let wide_l = (((a as u128) << 8 | b as u128) << n >> 8) as u8;
+        let wide_r = (((a as u128) << 8 | b as u128) >> n) as u8;
+        assert_eq!(unsafe { funnel_shl_u8(a, b, n) }, wide_l, "funnel_shl_u8({}, {}, {})", a, b, n);
+        assert_eq!(unsafe { funnel_shr_u8(a, b, n) }, wide_r, "funnel_shr_u8({}, {}, {})", a, b, n);
+      }
+    }
+  }
+  for a in [0u16, 1, 0x8000, 0xA5C3, 0xFFFF] {
+    for n in [0u32, 1, 3, 8, 15, 16, 17, 2 * 16 + 5] {
+      assert_eq!(unsafe { rotl_u16(a, n) }, a.rotate_left(n), "rotl_u16({}, {})", a, n);
+      assert_eq!(unsafe { rotr_u16(a, n) }, a.rotate_right(n), "rotr_u16({}, {})", a, n);
+    }
+    for b in [0u16, 1, 0x8000, 0xA5C3, 0xFFFF] {
+      for n in [0u32, 1, 3, 8, 15] {
+        let wide_l = (((a as u128) << 16 | b as u128) << n >> 16) as u16;
+        let wide_r = (((a as u128) << 16 | b as u128) >> n) as u16;
+        assert_eq!(unsafe { funnel_shl_u16(a, b, n) }, wide_l, "funnel_shl_u16({}, {}, {})", a, b, n);
+        assert_eq!(unsafe { funnel_shr_u16(a, b, n) }, wide_r, "funnel_shr_u16({}, {}, {})", a, b, n);
+      }
+    }
+  }
+  for a in [0u32, 1, 0x8000_0000, 0xA5C3_1E78, u32::MAX] {
+    for n in [0u32, 1, 3, 16, 31, 32, 33, 2 * 32 + 5] {
+      assert_eq!(unsafe { rotl_u32(a, n) }, a.rotate_left(n), "rotl_u32({}, {})", a, n);
+      assert_eq!(unsafe { rotr_u32(a, n) }, a.rotate_right(n), "rotr_u32({}, {})", a, n);
+    }
+    for b in [0u32, 1, 0x8000_0000, 0xA5C3_1E78, u32::MAX] {
+      for n in [0u32, 1, 3, 16, 31] {
+        let wide_l = (((a as u128) << 32 | b as u128) << n >> 32) as u32;
+        let wide_r = (((a as u128) << 32 | b as u128) >> n) as u32;
+        assert_eq!(unsafe { funnel_shl_u32(a, b, n) }, wide_l, "funnel_shl_u32({}, {}, {})", a, b, n);
+        assert_eq!(unsafe { funnel_shr_u32(a, b, n) }, wide_r, "funnel_shr_u32({}, {}, {})", a, b, n);
+      }
+    }
+  }
+  for a in [0u64, 1, 0x8000_0000_0000_0000, 0xA5C3_1E78_9B4D_0F26, u64::MAX] {
+    for n in [0u32, 1, 3, 32, 63, 64, 65, 2 * 64 + 5] {
+      assert_eq!(unsafe { rotl_u64(a, n) }, a.rotate_left(n), "rotl_u64({}, {})", a, n);
+      assert_eq!(unsafe { rotr_u64(a, n) }, a.rotate_right(n), "rotr_u64({}, {})", a, n);
+    }
+    for b in [0u64, 1, 0x8000_0000_0000_0000, 0xA5C3_1E78_9B4D_0F26, u64::MAX] {
+      for n in [0u32, 1, 3, 32, 63] {
+        let wide_l = (((a as u128) << 64 | b as u128) << n >> 64) as u64;
+        let wide_r = (((a as u128) << 64 | b as u128) >> n) as u64;
+        assert_eq!(unsafe { funnel_shl_u64(a, b, n) }, wide_l, "funnel_shl_u64({}, {}, {})", a, b, n);
+        assert_eq!(unsafe { funnel_shr_u64(a, b, n) }, wide_r, "funnel_shr_u64({}, {}, {})", a, b, n);
+      }
+    }
   }
 }

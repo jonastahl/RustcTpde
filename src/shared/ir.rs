@@ -337,6 +337,10 @@ impl Module {
         pointer_size: usize
     ) {
         let global = &mut self.tpde.globals[global.0];
+        if !global.init {
+            global.init = true;
+            global.data.resize(global.size as usize, 0);
+        }
         Module::global_add_unit_intern(global, pointer_size);
 
         global.relocations.push(ffi::Relocation {

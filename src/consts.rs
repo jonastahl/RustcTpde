@@ -12,7 +12,10 @@ use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrFlags;
 
 impl<'tcx> StaticBuilderMethods for Builder<'_, '_, 'tcx> {
     fn get_static(&mut self, def_id: DefId) -> Self::Value {
-        todo!()
+        if self.tcx.is_thread_local_static(def_id) {
+            todo!("thread-local statics are not supported yet")
+        }
+        Slot::new_global(self.cx.get_global(def_id))
     }
 }
 
@@ -98,7 +101,11 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 let ptr = self.ptr_to_backend(ptr);
                 module = self.module.borrow_mut();
 
-                module.global_add_reloc_chunk(g, offset as u32, ptr, pointer_size);
+                if let Some(value) = module.const_data(ptr) {
+                    module.global_add_init_chunk(g, &value.to_le_bytes()[..pointer_size]);
+                } else {
+                    module.global_add_reloc_chunk(g, offset as u32, ptr, pointer_size);
+                }
             }
 
             next_offset = offset + pointer_size;

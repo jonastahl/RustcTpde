@@ -418,6 +418,8 @@ namespace tpde_rust {
 
     bool compile_ctpop(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_ct_lz_tz(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_rotate(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_funnel_shift(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     u64 const_vector_elem(IRValueRef vec, unsigned idx);
     void extract_element(ValueRef &vec_vr, unsigned idx, Type ty, ValuePart &out);
@@ -641,6 +643,10 @@ namespace tpde_rust {
       set_fn(InstructionKind::ctlz_nonzero, &Derived::compile_ct_lz_tz, /*flags=leading,nonzero*/0b01);
       set_fn(InstructionKind::cttz, &Derived::compile_ct_lz_tz, /*flags=trailing*/0b10);
       set_fn(InstructionKind::cttz_nonzero, &Derived::compile_ct_lz_tz, /*flags=trailing,nonzero*/0b11);
+      set_fn(InstructionKind::rotl, &Derived::compile_rotate, /*right=*/0);
+      set_fn(InstructionKind::rotr, &Derived::compile_rotate, /*right=*/1);
+      set_fn(InstructionKind::funnel_shl, &Derived::compile_funnel_shift, /*right=*/0);
+      set_fn(InstructionKind::funnel_shr, &Derived::compile_funnel_shift, /*right=*/1);
       set_fn(InstructionKind::sat_sadd, &Derived::compile_saturating_intrin, OverflowOp::sadd);
       set_fn(InstructionKind::sat_uadd, &Derived::compile_saturating_intrin, OverflowOp::uadd);
       set_fn(InstructionKind::sat_ssub, &Derived::compile_saturating_intrin, OverflowOp::ssub);
@@ -2547,6 +2553,59 @@ namespace tpde_rust {
   }
 
   template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_rotate(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
+    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    auto val = inst.ops[0];
+
+    u32 width_idx = 0;
+    switch (size_of_type(this->adaptor->type_of_ref(val))) {
+      case 8: width_idx = 0; break;
+      case 16: width_idx = 1; break;
+      case 32: width_idx = 2; break;
+      case 64: width_idx = 3; break;
+      default: return false;
+    }
+
+    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &&);
+    static constexpr EncodeFnTy encode_fns[4][2] = {
+#define F(n) {&Derived::encode_roli##n, &Derived::encode_rori##n}
+      F(8), F(16), F(32), F(64),
+#undef F
+    };
+    EncodeFnTy fn = encode_fns[width_idx][op & 1];
+    return (derived()->*fn)(this->val_ref(val).part(0),
+                            this->val_ref(inst.ops[1]).part(0),
+                            this->result_ref(inst.result).part(0));
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_funnel_shift(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
+    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    auto val = inst.ops[0];
+
+    u32 width_idx = 0;
+    switch (size_of_type(this->adaptor->type_of_ref(val))) {
+      case 8: width_idx = 0; break;
+      case 16: width_idx = 1; break;
+      case 32: width_idx = 2; break;
+      case 64: width_idx = 3; break;
+      default: return false;
+    }
+
+    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, GenericValuePart &&, ValuePart &&);
+    static constexpr EncodeFnTy encode_fns[4][2] = {
+#define F(n) {&Derived::encode_fshli##n, &Derived::encode_fshri##n}
+      F(8), F(16), F(32), F(64),
+#undef F
+    };
+    EncodeFnTy fn = encode_fns[width_idx][op & 1];
+    return (derived()->*fn)(this->val_ref(val).part(0),
+                            this->val_ref(inst.ops[1]).part(0),
+                            this->val_ref(inst.ops[2]).part(0),
+                            this->result_ref(inst.result).part(0));
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
   u64 RustCompilerBase<Adaptor, Derived, Config>::const_vector_elem(IRValueRef vec, unsigned idx) {
     assert(operands::is_const(vec));
     const Value &imm = this->adaptor->mod->consts[operands::content(vec)];
@@ -3968,6 +4027,10 @@ namespace tpde_rust {
           } else if (operands::is_func(reloc.slot)) {
             SymRef target = this->func_syms[operands::content(reloc.slot)];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
+          } else if (operands::is_global_ptr(reloc.slot)) {
+            const auto &gp = this->adaptor->mod->global_ptrs[operands::content(reloc.slot)];
+            SymRef &target = global_symbols[gp.global];
+            this->assembler.reloc_abs(sec, target, off + reloc.offset, gp.offset);
           } else {
             assert(false);
           }

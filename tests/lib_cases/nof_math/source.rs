@@ -1,3 +1,6 @@
+#![feature(core_intrinsics, funnel_shifts)]
+#![allow(internal_features)]
+
 // Addition and subtraction for every integer width the backend supports,
 // signed and unsigned. Compiled with `overflow-checks=no`, so each of these
 // is a wrapping operation.
@@ -794,3 +797,85 @@ pub fn trunc_u128_u8(a: u128) -> u8 {
     a as u8
 }
 
+// Rotates and funnel shifts (the shift amount is taken modulo the bit width for
+// rotates and must be < bit width for the unchecked funnel shifts).
+
+#[no_mangle]
+pub fn rotl_u8(a: u8, n: u32) -> u8 {
+    core::intrinsics::rotate_left(a, n)
+}
+
+#[no_mangle]
+pub fn rotr_u8(a: u8, n: u32) -> u8 {
+    core::intrinsics::rotate_right(a, n)
+}
+
+#[no_mangle]
+pub fn funnel_shl_u8(a: u8, b: u8, n: u32) -> u8 {
+    unsafe { core::intrinsics::unchecked_funnel_shl(a, b, n) }
+}
+
+#[no_mangle]
+pub fn funnel_shr_u8(a: u8, b: u8, n: u32) -> u8 {
+    unsafe { core::intrinsics::unchecked_funnel_shr(a, b, n) }
+}
+
+#[no_mangle]
+pub fn rotl_u16(a: u16, n: u32) -> u16 {
+    core::intrinsics::rotate_left(a, n)
+}
+
+#[no_mangle]
+pub fn rotr_u16(a: u16, n: u32) -> u16 {
+    core::intrinsics::rotate_right(a, n)
+}
+
+#[no_mangle]
+pub fn funnel_shl_u16(a: u16, b: u16, n: u32) -> u16 {
+    unsafe { core::intrinsics::unchecked_funnel_shl(a, b, n) }
+}
+
+#[no_mangle]
+pub fn funnel_shr_u16(a: u16, b: u16, n: u32) -> u16 {
+    unsafe { core::intrinsics::unchecked_funnel_shr(a, b, n) }
+}
+
+#[no_mangle]
+pub fn rotl_u32(a: u32, n: u32) -> u32 {
+    core::intrinsics::rotate_left(a, n)
+}
+
+#[no_mangle]
+pub fn rotr_u32(a: u32, n: u32) -> u32 {
+    core::intrinsics::rotate_right(a, n)
+}
+
+#[no_mangle]
+pub fn funnel_shl_u32(a: u32, b: u32, n: u32) -> u32 {
+    unsafe { core::intrinsics::unchecked_funnel_shl(a, b, n) }
+}
+
+#[no_mangle]
+pub fn funnel_shr_u32(a: u32, b: u32, n: u32) -> u32 {
+    unsafe { core::intrinsics::unchecked_funnel_shr(a, b, n) }
+}
+
+#[no_mangle]
+pub fn rotl_u64(a: u64, n: u32) -> u64 {
+    core::intrinsics::rotate_left(a, n)
+}
+
+#[no_mangle]
+pub fn rotr_u64(a: u64, n: u32) -> u64 {
+    core::intrinsics::rotate_right(a, n)
+}
+
+#[no_mangle]
+pub fn funnel_shl_u64(a: u64, b: u64, n: u32) -> u64 {
+    unsafe { core::intrinsics::unchecked_funnel_shl(a, b, n) }
+}
+
+#[no_mangle]
+pub fn funnel_shr_u64(a: u64, b: u64, n: u32) -> u64 {
+    unsafe { core::intrinsics::unchecked_funnel_shr(a, b, n) }
+}

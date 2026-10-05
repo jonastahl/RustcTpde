@@ -173,13 +173,14 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 assert!(!self.tcx.is_thread_local_static(def_id));
                 Slot::new_global(self.get_global(def_id))
             }
-            // GlobalAlloc::Memory(alloc) if alloc.inner().len() == 0 => {
-            //     todo!()
-            //     // let val = alloc.inner().align.bytes().wrapping_add(offset.bytes());
-            //     // let data = self.tcx.truncate_to_target_usize(val) as u128;
-            //     // self.tpde_module.borrow_mut().add_const(Type::ptr, data)
-            // }
-            GlobalAlloc::Memory(alloc) => {
+            GlobalAlloc::Memory(_) | GlobalAlloc::VTable(..) => {
+                let alloc = match global_alloc {
+                    GlobalAlloc::Memory(alloc) => alloc,
+                    GlobalAlloc::VTable(ty, dyn_ty) => self.tcx
+                        .global_alloc(self.tcx.vtable_allocation((ty, dyn_ty.principal().map(|principal| self.tcx.instantiate_bound_regions_with_erased(principal)))))
+                        .unwrap_memory(),
+                    _ => unreachable!(),
+                };
                 let id = prov.alloc_id().0;
                 let offset = offset.bytes();
                 let alloc = alloc.inner();
@@ -212,15 +213,10 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             GlobalAlloc::Function { instance } => {
                 self.get_fn_addr(instance, None)
             }
-            // GlobalAlloc::VTable(ty, dyn_ty) => {
-            //     todo!()
-            // }
-            // // Drop the provenance, the offset contains the bytes of the hash
-            // GlobalAlloc::TypeId { .. } => self
-            //     .tpde_module
-            //     .borrow_mut()
-            //     .add_const(Type::ptr, offset.bytes() as u128),
-            _ => todo!(),
+            GlobalAlloc::TypeId { .. } => self
+                .module
+                .borrow_mut()
+                .add_const(Type::ptr, offset.bytes() as u128),
         }
     }
 }

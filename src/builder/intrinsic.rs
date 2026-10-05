@@ -187,6 +187,38 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
+            sym::rotate_left => {
+                let res = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::rotl,
+                    vec![args[0].immediate(), args[1].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(res))
+            }
+            sym::rotate_right => {
+                let res = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::rotr,
+                    vec![args[0].immediate(), args[1].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(res))
+            }
+            sym::unchecked_funnel_shl => {
+                let res = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::funnel_shl,
+                    vec![args[0].immediate(), args[1].immediate(), args[2].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(res))
+            }
+            sym::unchecked_funnel_shr => {
+                let res = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::funnel_shr,
+                    vec![args[0].immediate(), args[1].immediate(), args[2].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(res))
+            }
             sym::simd_add => simd_binop!(self, args: Uint, Int => add, Float => fadd),
             sym::simd_sub => simd_binop!(self, args: Uint, Int => sub, Float => fsub),
             sym::simd_mul => simd_binop!(self, args: Uint, Int => mul, Float => fmul),
