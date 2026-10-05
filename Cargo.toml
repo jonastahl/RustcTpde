@@ -16,6 +16,7 @@ crate-type = ["dylib"]
 [dev-dependencies]
 libtest-mimic = "0.7"
 pretty_assertions = "1.4"
+similar = "3.1.1"
 
 [[test]]
 name = "runner"

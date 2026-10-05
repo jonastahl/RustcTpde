@@ -125,9 +125,13 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
 
     // 4. Compare the outputs
     if actual_ir.trim() != expected_ir.trim() {
-        assert_eq!(expected_ir.trim(), actual_ir.trim(), "IR mismatch in {:?}", path);
+        return Err(Failed::from(format!(
+            "IR mismatch in {:?}\n{}", path, reduced_diff(expected_ir.trim(), actual_ir.trim())
+        )));
     } else if actual_result != expected_result {
-        assert_eq!(expected_result, actual_result, "Result mismatch in {:?}", path);
+        return Err(Failed::from(format!(
+            "Result mismatch in {:?}\n{}", path, reduced_diff(&expected_result, &actual_result)
+        )));
     }
 
     // 5. Compile the test files
@@ -252,4 +256,13 @@ fn rustc() -> Command {
 /// (e.g. `insl (%dx),%es:(%rdi)`), older ones don't.
 fn normalize_asm(asm: &str) -> String {
     asm.replace("%es:(%rdi)", "(%rdi)").replace("%ds:(%rsi)", "(%rsi)")
+}
+
+/// Unified diff that only shows the changed hunks with a few lines of context.
+fn reduced_diff(expected: &str, actual: &str) -> String {
+    similar::TextDiff::from_lines(expected, actual)
+        .unified_diff()
+        .context_radius(3)
+        .header("expected", "actual")
+        .to_string()
 }
