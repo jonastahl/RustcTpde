@@ -1291,6 +1291,7 @@ namespace tpde_rust {
       // The instruction following the last fused GEP, if it might be fusable.
       {
         const u64 scale = operands::content(gep->ops[1]);
+        assert(scale == 0 || scale == 1 || scale == 2 || scale == 4 || scale == 8);
 
         const IRValueRef idx = gep->ops[2];
         if (operands::is_const(idx)) {
@@ -1471,7 +1472,7 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_store_atomic(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     Instruction& instr = this->adaptor->get_instruction(inst_ref);
 
-    auto [_, ptr_ref] = this->val_ref_single(instr.ops[0]);
+    auto [_, ptr_ref] = this->val_ref_single(instr.ops[1]);
     GenericValuePart addr;
     if (ptr_ref.has_assignment() && ptr_ref.assignment().is_stack_variable()) {
       addr = derived()->create_addr_for_alloca(ptr_ref.assignment());
@@ -1479,11 +1480,11 @@ namespace tpde_rust {
       addr = std::move(ptr_ref);
     }
 
-    const Type ty = this->adaptor->type_of_ref(instr.result);
+    const Type ty = this->adaptor->type_of_ref(instr.ops[0]);
     u32 width = size_of_type(ty);
     assert(width == 8 || width == 16 || width == 32 || width == 64);
 
-    const auto order = static_cast<AtomicOrdering>(operands::content(instr.ops[1]));
+    const auto order = static_cast<AtomicOrdering>(operands::content(instr.ops[2]));
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&);
     EncodeFnTy encode_fn = nullptr;
@@ -1514,7 +1515,7 @@ namespace tpde_rust {
       }
     }
 
-    auto op_ref = this->val_ref(instr.ops[1]);
+    auto op_ref = this->val_ref(instr.ops[0]);
     if (!(derived()->*encode_fn)(std::move(addr), op_ref.part(0))) {
       TPDE_LOG_ERR("fooooo");
       return false;
@@ -3013,7 +3014,7 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fence(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     Instruction& instr = this->adaptor->get_instruction(inst_ref);
 
-    if (operands::content(instr.ops[1] == 0 /*= is single threaded*/)) {
+    if (operands::content(instr.ops[1]) == 0 /*= is single threaded*/) {
       // memory barrier only
       return true;
     }

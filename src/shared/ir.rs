@@ -31,7 +31,7 @@ pub enum Slot {
 pub enum FullType {
     Single(Type),
     Pair(Type, Type, u32),
-    Memory{sized: bool}
+    Memory{sized: bool, size: u32}
 }
 
 pub struct FunctionSignatureRef(usize);

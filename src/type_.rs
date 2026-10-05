@@ -26,7 +26,7 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
 
                 FullType::Pair(a, b, b_offset.bytes_usize() as u32)
             }
-            BackendRepr::Memory { sized } => FullType::Memory { sized },
+            BackendRepr::Memory { sized } => FullType::Memory { sized, size: ty.size.bytes() as u32 },
             BackendRepr::SimdVector { element, count } => {
                 let FullType::Single(elem) = self.tpde_scalar_type(element) else {
                     unreachable!()

@@ -464,7 +464,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                 );
                 module.add_pair(slot_a, slot_b, offset)
             }
-            FullType::Memory { sized } => unimplemented!(),
+            FullType::Memory { .. } => unimplemented!(),
         }
     }
 
@@ -525,7 +525,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 
                 OperandValue::Pair(slot_a, slot_b)
             }
-            FullType::Memory { sized } => OperandValue::Ref(place.val),
+            FullType::Memory { .. } => OperandValue::Ref(place.val),
         };
         OperandRef {
             val,
@@ -605,8 +605,8 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     fn gep(&mut self, ty: Self::Type, ptr: Self::Value, indices: &[Self::Value]) -> Self::Value {
         let offset = match ty {
             FullType::Single(ty) => size_of_type(ty),
-            FullType::Pair(_, _, offset) => offset as u32,
-            FullType::Memory { sized } => 1,
+            FullType::Pair(_, _, offset) => offset,
+            FullType::Memory { size, .. } => size,
         };
         assert_eq!(indices.len(), 1);
 
