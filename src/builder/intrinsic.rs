@@ -6,7 +6,7 @@ use rustc_codegen_ssa::mir::IntrinsicResult;
 use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
 use rustc_codegen_ssa::mir::place::PlaceValue;
 use rustc_codegen_ssa::traits::{
-    BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods,
+    BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods,
     LayoutTypeCodegenMethods,
 };
 use rustc_middle::{bug, span_bug};
@@ -128,6 +128,24 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::is_val_statically_known => {
                 let result = self.cx.module.borrow_mut()
                     .add_const(Type::Bool, false as u128);
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
+            sym::raw_eq => {
+                let pointee = args[0].layout.ty.builtin_deref(true).unwrap();
+                let size = self.layout_of(pointee).size.bytes();
+                let result = if size == 0 {
+                    self.cx.module.borrow_mut().add_const(Type::Bool, true as u128)
+                } else {
+                    let len = self.const_usize(size);
+                    let cmp = self.cx.module.borrow_mut().add_instruction_ret(
+                        self.basic_block,
+                        InstructionKind::MemCmp,
+                        vec![args[0].immediate(), args[1].immediate(), len],
+                        Type::i32
+                    );
+                    let zero = self.const_i32(0);
+                    self.icmp(rustc_codegen_ssa::common::IntPredicate::IntEQ, cmp, zero)
+                };
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
             sym::compare_bytes => {
@@ -407,7 +425,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 }
             }
             _ => {
-                panic!("Unimplemented intrinsic: {}", name.as_str());
+                todo!("Unimplemented intrinsic: {}", name.as_str());
             }
         }
     }
@@ -428,7 +446,34 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                                      vec![],
                                     Type::Void)
             }
-            _ => todo!()
+            "pshufb" | "pshufb128" => {
+                let (a, idx) = (args[0].immediate(), args[1].immediate());
+                let FullType::Single(vec_ty) = self.val_ty(a) else { bug!() };
+                let (_, nelem) = crate::shared::ir::vector_info(vec_ty)
+                    .map(|(e, n)| (e, n))
+                    .expect("pshufb on non-vector");
+                let zero = self.const_u8(0);
+                let i64_ty = self.type_i64();
+                let mut res = a;
+                for i in 0..nelem as u64 {
+                    let i_const = self.const_usize(i);
+                    let sel = self.extract_element(idx, i_const);
+                    let sel_idx = self.zext(sel, i64_ty);
+                    let elem = self.extract_element(a, sel_idx);
+                    let neg = self.icmp(rustc_codegen_ssa::common::IntPredicate::IntSLT, sel, zero);
+                    let elem = self.select(neg, zero, elem);
+                    res = self.module.borrow_mut().add_instruction_ret(
+                        self.basic_block,
+                        InstructionKind::simd_insert,
+                        vec![res, i_const, elem],
+                        vec_ty,
+                    );
+                }
+                res
+            }
+            _ => {
+                todo!("Unimplemented llvm intrinsic: {}", name.as_str());
+            }
         }
     }
 
