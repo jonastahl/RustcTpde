@@ -116,8 +116,12 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     let actual_result = fs::read_to_string(&actual_asm_path)
         .map_err(|_| eprintln!("Could not find generated asm")).unwrap_or_default();
 
+    let expected_result = normalize_asm(&expected_result);
+    let actual_result = normalize_asm(&actual_result);
+
     fs::rename(&actual_ir_path, &expected_ir_path)?;
-    fs::rename(&actual_asm_path, &expected_asm_path)?;
+    fs::remove_file(&actual_asm_path)?;
+    fs::write(&expected_asm_path, &actual_result)?;
 
     // 4. Compare the outputs
     if actual_ir.trim() != expected_ir.trim() {
@@ -242,4 +246,10 @@ fn rustc() -> Command {
     cmd.arg("+nightly-2026-08-19")
         .arg(format!("--remap-path-prefix={}=/sysroot", sysroot.trim()));
     cmd
+}
+
+/// Newer binutils print implicit segment registers of string instructions
+/// (e.g. `insl (%dx),%es:(%rdi)`), older ones don't.
+fn normalize_asm(asm: &str) -> String {
+    asm.replace("%es:(%rdi)", "(%rdi)").replace("%ds:(%rsi)", "(%rsi)")
 }
