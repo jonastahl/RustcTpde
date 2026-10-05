@@ -2,7 +2,7 @@ ModuleTpde {
     functions: [
         Function {
             name: "find_user",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -82,7 +82,7 @@ ModuleTpde {
         },
         Function {
             name: "find_user_by_age",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -155,7 +155,7 @@ ModuleTpde {
         },
         Function {
             name: "increase_age",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,

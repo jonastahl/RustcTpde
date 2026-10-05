@@ -219,6 +219,34 @@ namespace tpde_rust {
           }
 
           default:
+            if (is_vector(imm.ty)) {
+              const Type part_ty = vector_parts(imm.ty).second;
+              const u32 part_bytes = size_of_type(part_ty) / 8;
+              const u32 bit_off = part * part_bytes * 8;
+              auto bits_at = [&imm](u32 off) -> u64 {
+                if (off >= 128) {
+                  // Value only holds 128 bits; zero (null/undef) is fine,
+                  // anything else would be silently truncated.
+                  if (imm.data1 != 0 || imm.data2 != 0) {
+                    throw std::runtime_error(
+                        "vector constant wider than 128 bits not supported");
+                  }
+                  return 0;
+                }
+                return off < 64 ? imm.data2 : imm.data1;
+              };
+              if (part_bytes == 16) {
+                u64 *data = new (const_allocator) u64[2];
+                data[0] = bits_at(bit_off);
+                data[1] = bits_at(bit_off + 64);
+                return ValuePart(data, 16, tpde::RegBank{1});
+              }
+              u64 word = bits_at(bit_off) >> (bit_off % 64);
+              if (part_bytes < 8) {
+                word &= (u64{1} << (part_bytes * 8)) - 1;
+              }
+              return ValuePart(word, part_bytes, reg_bank_of_type(part_ty));
+            }
             throw std::runtime_error("not implemented");
         }
       } {
@@ -329,6 +357,7 @@ namespace tpde_rust {
     bool compile_unknown(RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
       Instruction& instr = this->adaptor->get_instruction(inst);
       assert(false);
+      return false;
     }
 
     bool compile_int_binary_op(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -399,6 +428,51 @@ namespace tpde_rust {
     bool compile_icmp_vector(Instruction &);
     bool compile_fmuladd(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_vector_reduce(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_vector_splat(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_vector_conv(const Instruction &);
+    bool compile_select_bitmask(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_vector_bitmask(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_masked_mem(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_fabs(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_fminmax(RustAdaptor::IRInstRef, const ValInfo &, u64);
+
+    void encode_load_elem(GenericValuePart &&addr, Type ty, ValuePart &out);
+    void encode_store_elem(GenericValuePart &&addr, Type ty, GenericValuePart &&val);
+    GenericValuePart elem_stack_addr(ValueRef &vec_vr, unsigned idx, u32 elem_sz);
+
+    using SelectFnTy = bool (Derived::*)(GenericValuePart &&, GenericValuePart &&,
+                                         GenericValuePart &&, ValuePart &);
+    static SelectFnTy select_fn(Type ty) {
+      switch (ty) {
+        case Type::i64:
+        case Type::ptr: return &Derived::encode_select_i64;
+        case Type::f32: return &Derived::encode_select_f32;
+        case Type::f64: return &Derived::encode_select_f64;
+        default: return &Derived::encode_select_i32;
+      }
+    }
+
+    // Element-wise fallback for vector operations without encode function (like
+    // TPDE-LLVM): fn(idx, out, elems...) computes element idx of result from
+    // element idx of each vector operand.
+    template<typename Fn, typename... Ops>
+    void map_elements(IRValueRef result, Fn &&fn, Ops... ops) {
+      constexpr size_t N = sizeof...(Ops);
+      const auto [nelem, res_elem] = vector_info(this->adaptor->type_of_ref(result));
+      const std::array<Type, N> elem_tys{vector_info(this->adaptor->type_of_ref(ops)).second...};
+      std::array<ValueRef, N> vrs{this->val_ref(ops)...};
+      ValueRef res = this->result_ref(result);
+      for (u32 i = 0; i != nelem; ++i) {
+        std::array<ValuePartRef, N> elems{ValuePartRef{this, reg_bank_of_type(vector_info(this->adaptor->type_of_ref(ops)).second)}...};
+        for (size_t j = 0; j != N; ++j) {
+          ValueRef unowned = vrs[j].disowned();
+          derived()->extract_element(unowned, i, elem_tys[j], elems[j]);
+        }
+        ValuePartRef out{this, reg_bank_of_type(res_elem)};
+        std::apply([&](auto &...e) { fn(i, out, std::move(e)...); }, elems);
+        derived()->insert_element(res, i, res_elem, std::move(out));
+      }
+    }
 
     bool compile_abort(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
@@ -423,7 +497,9 @@ namespace tpde_rust {
   DEFINE_U64_ENUM(FloatBinaryOp, add, sub, mul, div, rem)
   DEFINE_U64_ENUM(FloatCmpOp, OEQ, OGT, OGE, OLT, OLE, ONE, ORD, UNO, UEQ, UGT, UGE, ULT, ULE, UNE)
   DEFINE_U64_ENUM(OverflowOp, uadd, sadd, usub, ssub, umul, smul)
-  DEFINE_U64_ENUM(ReduceOp, add, mul, land, lor, lxor, fadd, fmul)
+  DEFINE_U64_ENUM(ReduceOp, add, mul, land, lor, lxor, smin, umin, fmin, smax, umax, fmax, any, all)
+  constexpr u64 REDUCE_ORDERED = 1 << 8;
+  DEFINE_U64_ENUM(MaskedMemOp, gather, scatter, load, store)
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_to_elf(
@@ -579,6 +655,39 @@ namespace tpde_rust {
       set_fn(InstructionKind::Abort, &Derived::compile_abort);
       set_fn(InstructionKind::Pause, &Derived::compile_pause);
 
+      // SIMD
+      set_fn(InstructionKind::simd_splat, &Derived::compile_vector_splat);
+      set_fn(InstructionKind::simd_extract, &Derived::compile_extract_element);
+      set_fn(InstructionKind::simd_insert, &Derived::compile_insert_element);
+      set_fn(InstructionKind::simd_shuffle, &Derived::compile_shuffle_vector);
+      set_fn(InstructionKind::simd_select_bitmask, &Derived::compile_select_bitmask);
+      set_fn(InstructionKind::simd_bitmask, &Derived::compile_vector_bitmask);
+
+      set_fn(InstructionKind::simd_reduce_add_ordered, &Derived::compile_vector_reduce, ReduceOp::add | REDUCE_ORDERED);
+      set_fn(InstructionKind::simd_reduce_mul_ordered, &Derived::compile_vector_reduce, ReduceOp::mul | REDUCE_ORDERED);
+      set_fn(InstructionKind::simd_reduce_add_unordered, &Derived::compile_vector_reduce, ReduceOp::add);
+      set_fn(InstructionKind::simd_reduce_mul_unordered, &Derived::compile_vector_reduce, ReduceOp::mul);
+      set_fn(InstructionKind::simd_reduce_smin, &Derived::compile_vector_reduce, ReduceOp::smin);
+      set_fn(InstructionKind::simd_reduce_umin, &Derived::compile_vector_reduce, ReduceOp::umin);
+      set_fn(InstructionKind::simd_reduce_fmin, &Derived::compile_vector_reduce, ReduceOp::fmin);
+      set_fn(InstructionKind::simd_reduce_smax, &Derived::compile_vector_reduce, ReduceOp::smax);
+      set_fn(InstructionKind::simd_reduce_umax, &Derived::compile_vector_reduce, ReduceOp::umax);
+      set_fn(InstructionKind::simd_reduce_fmax, &Derived::compile_vector_reduce, ReduceOp::fmax);
+      set_fn(InstructionKind::simd_reduce_and, &Derived::compile_vector_reduce, ReduceOp::land);
+      set_fn(InstructionKind::simd_reduce_or, &Derived::compile_vector_reduce, ReduceOp::lor);
+      set_fn(InstructionKind::simd_reduce_xor, &Derived::compile_vector_reduce, ReduceOp::lxor);
+      set_fn(InstructionKind::simd_reduce_any, &Derived::compile_vector_reduce, ReduceOp::any);
+      set_fn(InstructionKind::simd_reduce_all, &Derived::compile_vector_reduce, ReduceOp::all);
+
+      set_fn(InstructionKind::simd_gather, &Derived::compile_masked_mem, MaskedMemOp::gather);
+      set_fn(InstructionKind::simd_scatter, &Derived::compile_masked_mem, MaskedMemOp::scatter);
+      set_fn(InstructionKind::simd_masked_load, &Derived::compile_masked_mem, MaskedMemOp::load);
+      set_fn(InstructionKind::simd_masked_store, &Derived::compile_masked_mem, MaskedMemOp::store);
+
+      set_fn(InstructionKind::fAbs, &Derived::compile_fabs);
+      set_fn(InstructionKind::fMin, &Derived::compile_fminmax, /*max=*/false);
+      set_fn(InstructionKind::fMax, &Derived::compile_fminmax, /*max=*/true);
+
       return res;
     }();
 
@@ -704,9 +813,7 @@ namespace tpde_rust {
       return {fns[op.index()][ty_idx], ty_idx < 3};
     };
 
-    const Type res_ty = Base::adaptor->type_of_ref(instr->result);
-
-    unsigned int_width = size_of_type(is_vector(res_ty) ? vector_info(res_ty).second : res_ty);
+    unsigned int_width = size_of_type(Base::adaptor->elem_type_of_ref(instr->result));
     const auto &operands = instr->ops;
     ValueRef lhs = this->val_ref(operands[0]);
     ValueRef rhs = this->val_ref(operands[1]);
@@ -981,85 +1088,38 @@ namespace tpde_rust {
 
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &&);
-    EncodeFnTy encode_fn = nullptr;
+    auto get_encode_fn = [op](Type ty) -> EncodeFnTy {
+#define FN_ENTRY(ty)                                                           \
+      switch (op) {                                                            \
+        using enum FloatBinaryOp::Value;                                       \
+        case add: return &Derived::encode_add##ty;                             \
+        case sub: return &Derived::encode_sub##ty;                             \
+        case mul: return &Derived::encode_mul##ty;                             \
+        case div: return &Derived::encode_div##ty;                             \
+        default: TPDE_UNREACHABLE("invalid FloatBinaryOp");                     \
+      }
+      switch (ty) {
+        using enum Type;
+        case f32: FN_ENTRY(f32)
+        case f64: FN_ENTRY(f64)
+        case v2f32: FN_ENTRY(v2f32)
+        case v4f32: FN_ENTRY(v4f32)
+        case v2f64: FN_ENTRY(v2f64)
+        default: return nullptr;
+      }
+#undef FN_ENTRY
+    };
 
-    switch (val_info.type) {
-      using enum Type;
-      case f32:
-        switch (op) {
-          using enum FloatBinaryOp::Value;
-          case add: encode_fn = &Derived::encode_addf32;
-            break;
-          case sub: encode_fn = &Derived::encode_subf32;
-            break;
-          case mul: encode_fn = &Derived::encode_mulf32;
-            break;
-          case div: encode_fn = &Derived::encode_divf32;
-            break;
-          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
-        }
-        break;
-      case f64:
-        switch (op) {
-          using enum FloatBinaryOp::Value;
-          case add: encode_fn = &Derived::encode_addf64;
-            break;
-          case sub: encode_fn = &Derived::encode_subf64;
-            break;
-          case mul: encode_fn = &Derived::encode_mulf64;
-            break;
-          case div: encode_fn = &Derived::encode_divf64;
-            break;
-          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
-        }
-        break;
-      case v2f32:
-        switch (op) {
-          using enum FloatBinaryOp::Value;
-          case add: encode_fn = &Derived::encode_addv2f32;
-          break;
-          case sub: encode_fn = &Derived::encode_subv2f32;
-          break;
-          case mul: encode_fn = &Derived::encode_mulv2f32;
-          break;
-          case div: encode_fn = &Derived::encode_divv2f32;
-          break;
-          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
-        }
-        break;
-      case v4f32:
-        switch (op) {
-          using enum FloatBinaryOp::Value;
-          case add: encode_fn = &Derived::encode_addv4f32;
-          break;
-          case sub: encode_fn = &Derived::encode_subv4f32;
-          break;
-          case mul: encode_fn = &Derived::encode_mulv4f32;
-          break;
-          case div: encode_fn = &Derived::encode_divv4f32;
-          break;
-          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
-        }
-        break;
-      case v2f64:
-        switch (op) {
-          using enum FloatBinaryOp::Value;
-          case add: encode_fn = &Derived::encode_addv2f64;
-          break;
-          case sub: encode_fn = &Derived::encode_subv2f64;
-          break;
-          case mul: encode_fn = &Derived::encode_mulv2f64;
-          break;
-          case div: encode_fn = &Derived::encode_divv2f64;
-          break;
-          default: TPDE_UNREACHABLE("invalid FloatBinaryOp");
-          break;
-        }
-        break;
-      default: return false;
+    // Vectors wider than 128 bit consist of multiple parts.
+    auto parts = this->adaptor->val_parts(val_info);
+    for (u32 i = 0, n = parts.count(); i != n; ++i) {
+      EncodeFnTy encode_fn = get_encode_fn(parts.type(i));
+      if (!encode_fn) {
+        return false;
+      }
+      (derived()->*encode_fn)(lhs.part(i), rhs.part(i), res.part(i));
     }
-
-    return (derived()->*encode_fn)(lhs.part(0), rhs.part(0), res.part(0));
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -1210,21 +1270,12 @@ namespace tpde_rust {
     u64 op) {
     Instruction& inst = this->adaptor->get_instruction(inst_ref);
 
-    Type ty = this->adaptor->type_of_ref(inst.result);
-
-    const auto width = size_of_type(ty);
-    u32 width_idx = 0;
-    switch (width) {
-      case 8: width_idx = 0; break;
-      case 16: width_idx = 1; break;
-      case 32: width_idx = 2; break;
-      case 64: width_idx = 3; break;
-      default: return false;
-    }
+    const Type ty = this->adaptor->type_of_ref(inst.result);
 
     using EncodeFnTy =
-        bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &&);
-    std::array<std::array<EncodeFnTy, 4>, 4> encode_fns{
+        bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &);
+    // fns[op][width]
+    static constexpr std::array<std::array<EncodeFnTy, 4>, 4> encode_fns{
       {
         {&Derived::encode_sat_add_u8,
          &Derived::encode_sat_add_u16,
@@ -1244,12 +1295,29 @@ namespace tpde_rust {
          &Derived::encode_sat_sub_i64},
     }};
 
-    EncodeFnTy encode_fn = encode_fns[static_cast<u32>(op)][width_idx];
+    const Type elem_ty = is_vector(ty) ? vector_info(ty).second : ty;
+    u32 width_idx = 0;
+    switch (size_of_type(elem_ty)) {
+      case 8: width_idx = 0; break;
+      case 16: width_idx = 1; break;
+      case 32: width_idx = 2; break;
+      case 64: width_idx = 3; break;
+      default: return false;
+    }
+
+    EncodeFnTy fn = encode_fns[static_cast<u32>(op)][width_idx];
+    if (is_vector(ty)) {
+      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
+        (derived()->*fn)(std::move(l), std::move(r), out);
+      }, inst.ops[0], inst.ops[1]);
+      return true;
+    }
 
     ValueRef lhs = this->val_ref(inst.ops[0]);
     ValueRef rhs = this->val_ref(inst.ops[1]);
     ValueRef res = this->result_ref(inst.result);
-    return (derived()->*encode_fn)(lhs.part(0), rhs.part(0), res.part(0));
+    ValuePartRef res_part = res.part(0);
+    return (derived()->*fn)(lhs.part(0), rhs.part(0), res_part);
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -1291,7 +1359,6 @@ namespace tpde_rust {
       // The instruction following the last fused GEP, if it might be fusable.
       {
         const u64 scale = operands::content(gep->ops[1]);
-        assert(scale == 0 || scale == 1 || scale == 2 || scale == 4 || scale == 8);
 
         const IRValueRef idx = gep->ops[2];
         if (operands::is_const(idx)) {
@@ -1459,13 +1526,46 @@ namespace tpde_rust {
         derived()->encode_storef32(std::move(ptr_op), op_ref.part(0));
         return true;
       }
-      case f64: {
+      case f64:
+      case v8i8:
+      case v4i16:
+      case v2i32:
+      case v2f32: {
         derived()->encode_storef64(std::move(ptr_op), op_ref.part(0));
         return true;
       }
+      case v16i8:
+      case v8i16:
+      case v4i32:
+      case v2i64:
+      case v4f32:
+      case v2f64: {
+        derived()->encode_storev128(std::move(ptr_op), op_ref.part(0));
+        return true;
+      }
 
-      default: return false;
+      default:
+        if (!is_vector(ty)) {
+          return false;
+        }
+        break;
     }
+
+    // Vector split into multiple parts, store them one after another.
+    auto parts = this->adaptor->val_parts(ty);
+    AsmReg ptr_reg = this->gval_as_reg(ptr_op);
+    i32 off = 0;
+    for (u32 i = 0, n = parts.count(); i != n; ++i) {
+      const Type part_ty = parts.type(i);
+      auto part_addr = typename GenericValuePart::Expr{ptr_reg, off};
+      if (size_of_type(part_ty) == 128) {
+        derived()->encode_storev128(std::move(part_addr), op_ref.part(i));
+      } else {
+        derived()->encode_store_elem(std::move(part_addr), part_ty, op_ref.part(i));
+      }
+      off += size_of_type(part_ty) / 8;
+    }
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -1605,8 +1705,30 @@ namespace tpde_rust {
         return true;
       }
 
-      default: throw std::runtime_error("Unsupported type for loadi");
+      default:
+        if (!is_vector(ty)) {
+          throw std::runtime_error("Unsupported type for loadi");
+        }
+        break;
     }
+
+    // Vector split into multiple parts, load them one after another.
+    auto parts = this->adaptor->val_parts(ty);
+    AsmReg ptr_reg = this->gval_as_reg(ptr_op);
+    ValueRef res = this->result_ref(loadi.result);
+    i32 off = 0;
+    for (u32 i = 0, n = parts.count(); i != n; ++i) {
+      const Type part_ty = parts.type(i);
+      auto part_addr = typename GenericValuePart::Expr{ptr_reg, off};
+      if (size_of_type(part_ty) == 128) {
+        derived()->encode_loadv128(std::move(part_addr), res.part(i));
+      } else {
+        ValuePartRef part = res.part(i);
+        derived()->encode_load_elem(std::move(part_addr), part_ty, part);
+      }
+      off += size_of_type(part_ty) / 8;
+    }
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -1811,15 +1933,7 @@ namespace tpde_rust {
       const auto res_to_ret = [this, &cb, &cca](uint32_t res) {
         assert(operands::is_val(res));
 
-        size_t count;
-        switch (this->adaptor->type_of_ref(res)) {
-          case Type::i128:
-            count = 2;
-            break;
-          default:
-            count = 1;
-            break;
-        }
+        size_t count = this->adaptor->val_parts(res).count();
         ValueRef ref = this->result_ref(res);
         for (size_t i = 0; i < count; ++i) {
           ValuePart part = ref.part(i);
@@ -1974,10 +2088,23 @@ namespace tpde_rust {
     const Type res_ty = this->adaptor->type_of_ref(res_ref);
     assert(size_of_type(src_ty) == size_of_type(res_ty));
 
+    // Bitcasts are only supported between values with the same part layout.
+    auto src_parts = this->adaptor->val_parts(src_ty);
+    auto res_parts = this->adaptor->val_parts(res_ty);
+    auto part_count = res_parts.count();
+    if (src_parts.count() != part_count) {
+      return false;
+    }
+    for (u32 i = 0; i != part_count; ++i) {
+      if (src_parts.size_bytes(i) != res_parts.size_bytes(i) ||
+          src_parts.reg_bank(i) != res_parts.reg_bank(i)) {
+        return false;
+      }
+    }
+
     ValueRef src = this->val_ref(src_ref);
     ValueRef res = this->result_ref(res_ref);
 
-    auto part_count = this->adaptor->val_parts(val_info).count();
     for (u32 i = 0; i != part_count; ++i) {
       res.part(i).set_value(src.part(i));
     }
@@ -1989,6 +2116,9 @@ namespace tpde_rust {
                                                                    u64 sign) {
     Instruction &exti = this->adaptor->get_instruction(instr);
     const Type dst_ty = this->adaptor->type_of_ref(exti.result);
+    if (is_vector(dst_ty)) {
+      return compile_vector_conv(exti);
+    }
 
     if (!is_integer(dst_ty))
       return false;
@@ -2039,6 +2169,9 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_int_trunc(RustAdaptor::IRInstRef inst, const ValInfo &val_info, u64) {
     const Instruction& trunci = this->adaptor->get_instruction(inst);
+    if (is_vector(val_info.type)) {
+      return compile_vector_conv(trunci);
+    }
     auto val = trunci.ops[0];
 
     ValueRef src_vr = this->val_ref(val);
@@ -2066,8 +2199,11 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::
-  compile_float_ext_trunc(RustAdaptor::IRInstRef instref, const ValInfo &, u64) {
+  compile_float_ext_trunc(RustAdaptor::IRInstRef instref, const ValInfo &val_info, u64) {
     const Instruction& inst = this->adaptor->get_instruction(instref);
+    if (is_vector(val_info.type)) {
+      return compile_vector_conv(inst);
+    }
 
     auto src_val = inst.ops[0];
     const Type src_ty = this->adaptor->type_of_ref(src_val);
@@ -2089,8 +2225,11 @@ namespace tpde_rust {
   }
 
   template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_float_to_int(RustAdaptor::IRInstRef instref, const ValInfo &, u64 flags) {
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_float_to_int(RustAdaptor::IRInstRef instref, const ValInfo &val_info, u64 flags) {
     const Instruction& inst = this->adaptor->get_instruction(instref);
+    if (is_vector(val_info.type)) {
+      return compile_vector_conv(inst);
+    }
 
     bool sign = flags & 0b01;
     bool saturate = flags & 0b10;
@@ -2149,6 +2288,9 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_int_to_float(RustAdaptor::IRInstRef instref, const ValInfo &val_info, u64 sign) {
     const Instruction& inst = this->adaptor->get_instruction(instref);
+    if (is_vector(val_info.type)) {
+      return compile_vector_conv(inst);
+    }
     const auto src_val = inst.ops[0];
     const Type dst_ty = this->adaptor->type_of_ref(inst.result);
 
@@ -2195,11 +2337,18 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_neg(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
     Instruction &negi = this->adaptor->get_instruction(instr);
+    const Type type = this->adaptor->type_of_ref(negi.ops[0]);
+    if (is_vector(type)) {
+      const bool is_64 = size_of_type(vector_info(type).second) == 64;
+      map_elements(negi.result, [&](u32, ValuePartRef &out, ValuePartRef &&e) {
+        is_64 ? derived()->encode_negi64(std::move(e), out) : derived()->encode_negi32(std::move(e), out);
+      }, negi.ops[0]);
+      return true;
+    }
 
     ValueRef src = this->val_ref(negi.ops[0]);
     ValueRef res = this->result_ref(negi.result);
 
-    const Type type = this->adaptor->type_of_ref(negi.ops[0]);
     switch (type) {
       using enum Type;
       case Bool:
@@ -2221,11 +2370,17 @@ namespace tpde_rust {
     Instruction& fnegi = this->adaptor->get_instruction(inst);
     ValueRef src = this->val_ref(fnegi.ops[0]);
     ValueRef res = this->result_ref(fnegi.result);
-    switch (val_info.type) {
-      using enum Type;
-      case f32: derived()->encode_fnegf32(src.part(0), res.part(0)); break;
-      case f64: derived()->encode_fnegf64(src.part(0), res.part(0)); break;
-      default: return false;
+    auto parts = this->adaptor->val_parts(val_info);
+    for (u32 i = 0, n = parts.count(); i != n; ++i) {
+      switch (parts.type(i)) {
+        using enum Type;
+        case f32: derived()->encode_fnegf32(src.part(i), res.part(i)); break;
+        case f64: derived()->encode_fnegf64(src.part(i), res.part(i)); break;
+        case v2f32: derived()->encode_fnegv2f32(src.part(i), res.part(i)); break;
+        case v4f32: derived()->encode_fnegv4f32(src.part(i), res.part(i)); break;
+        case v2f64: derived()->encode_fnegv2f64(src.part(i), res.part(i)); break;
+        default: return false;
+      }
     }
     return true;
   }
@@ -2233,11 +2388,22 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_not(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
     Instruction &noti = this->adaptor->get_instruction(instr);
+    const Type type = this->adaptor->type_of_ref(noti.ops[0]);
+    if (is_vector(type)) {
+      const bool is_64 = size_of_type(vector_info(type).second) == 64;
+      auto fn = [&](u32, ValuePartRef &out, ValuePartRef &&e) {
+        if (is_64)
+          derived()->encode_not64(std::move(e), out);
+        else
+          derived()->encode_not32(std::move(e), out);
+      };
+      map_elements(noti.result, fn, noti.ops[0]);
+      return true;
+    }
 
     ValueRef src = this->val_ref(noti.ops[0]);
     ValueRef res = this->result_ref(noti.result);
 
-    const Type type = this->adaptor->type_of_ref(noti.ops[0]);
     switch (type) {
       using enum Type;
       case Bool: derived()->encode_notbool(src.part(0), res.part(0));
@@ -2258,11 +2424,8 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fcmp(RustAdaptor::IRInstRef instr, const ValInfo &, u64 op) {
     Instruction& fcmpi = this->adaptor->get_instruction(instr);
-    Type type = this->adaptor->type_of_ref(fcmpi.ops[0]);
-
-    ValueRef lhs = this->val_ref(fcmpi.ops[0]);
-    ValueRef rhs = this->val_ref(fcmpi.ops[1]);
-    ValueRef res = this->result_ref(fcmpi.result);
+    const Type vec_ty = this->adaptor->type_of_ref(fcmpi.ops[0]);
+    const Type type = this->adaptor->elem_type_of_ref(fcmpi.ops[0]);
 
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &&);
@@ -2312,6 +2475,19 @@ namespace tpde_rust {
       default: TPDE_UNREACHABLE("invalid fcmp type");
     }
 
+    if (is_vector(vec_ty)) {
+      auto map_fn = [&](u32, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
+        ValuePartRef cmp{this, Config::GP_BANK};
+        (derived()->*fn)(std::move(l), std::move(r), std::move(cmp));
+        derived()->encode_negi64(std::move(cmp), out);
+      };
+      map_elements(fcmpi.result, map_fn, fcmpi.ops[0], fcmpi.ops[1]);
+      return true;
+    }
+
+    ValueRef lhs = this->val_ref(fcmpi.ops[0]);
+    ValueRef rhs = this->val_ref(fcmpi.ops[1]);
+    ValueRef res = this->result_ref(fcmpi.result);
     return (derived()->*fn)(lhs.part(0), rhs.part(0), res.part(0));
   }
 
@@ -2378,6 +2554,10 @@ namespace tpde_rust {
     assert(idx < nelem);
     const unsigned bits = size_of_type(elem_ty);
     const unsigned bit_off = idx * bits;
+    if (bit_off >= 128) {
+      // Wider constants are only zero / undef.
+      return 0;
+    }
     // data2 holds the low 64 bits, data1 the high 64 bits
     u64 word = bit_off < 64 ? imm.data2 : imm.data1;
     word >>= bit_off % 64;
@@ -2528,13 +2708,13 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_insert_element(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    // operands: vec, elem, index
+    // operands: vec, index, elem
     Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const IRValueRef index = inst.ops[2];
+    const IRValueRef index = inst.ops[1];
 
     const auto [nelem, bvt] = vector_info(val_info.type);
 
-    auto [val_ref, val] = this->val_ref_single(inst.ops[1]);
+    auto [val_ref, val] = this->val_ref_single(inst.ops[2]);
     ValueRef res_vr{derived()};
 
     // We do the dynamic insert in the spill slot of result.
@@ -2692,24 +2872,64 @@ namespace tpde_rust {
       default: TPDE_UNREACHABLE("invalid icmp predicate");
     }
 
-    unsigned ty_idx;
-    switch (this->adaptor->type_of_ref(inst.ops[0])) {
-      using enum Type;
-      case v8i8: ty_idx = 0; break;
-      case v4i16: ty_idx = 1; break;
-      case v2i32: ty_idx = 2; break;
-      case v16i8: ty_idx = 3; break;
-      case v8i16: ty_idx = 4; break;
-      case v4i32: ty_idx = 5; break;
-      case v2i64: ty_idx = 6; break;
-      default: return false;
-    }
+    // Scalarized vectors: one mask per part. fns[pred][is_64]
+    static constexpr auto scalar_fns = []() constexpr {
+      std::array<EncodeFnTy[2], 10> res{};
+#define FN_ENTRY(pred, predname)                                               \
+    res[pred][0] = &Derived::encode_icmpmask_##predname##i32;                    \
+    res[pred][1] = &Derived::encode_icmpmask_##predname##i64;
+      FN_ENTRY(0, eq)
+      FN_ENTRY(1, ne)
+      FN_ENTRY(2, ugt)
+      FN_ENTRY(3, uge)
+      FN_ENTRY(4, ult)
+      FN_ENTRY(5, ule)
+      FN_ENTRY(6, sgt)
+      FN_ENTRY(7, sge)
+      FN_ENTRY(8, slt)
+      FN_ENTRY(9, sle)
+#undef FN_ENTRY
+      return res;
+    }();
+    const bool is_signed = pred_idx >= 6;
 
-    EncodeFnTy encode_fn = fns[pred_idx][ty_idx];
     auto lhs_vr = this->val_ref(inst.ops[0]);
     auto rhs_vr = this->val_ref(inst.ops[1]);
     auto res = this->result_ref(inst.result);
-    return (derived()->*encode_fn)(lhs_vr.part(0), rhs_vr.part(0), res.part(0));
+
+    // Vectors wider than 128 bit are compared part by part.
+    auto parts = this->adaptor->val_parts(this->adaptor->type_of_ref(inst.ops[0]));
+    for (u32 i = 0, n = parts.count(); i != n; ++i) {
+      const Type part_ty = parts.type(i);
+      unsigned ty_idx;
+      switch (part_ty) {
+        using enum Type;
+        case v8i8: ty_idx = 0; break;
+        case v4i16: ty_idx = 1; break;
+        case v2i32: ty_idx = 2; break;
+        case v16i8: ty_idx = 3; break;
+        case v8i16: ty_idx = 4; break;
+        case v4i32: ty_idx = 5; break;
+        case v2i64: ty_idx = 6; break;
+        case i8:
+        case i16:
+        case i32:
+        case i64: {
+          const unsigned bits = size_of_type(part_ty);
+          ValuePartRef lhs = lhs_vr.part(i);
+          ValuePartRef rhs = rhs_vr.part(i);
+          if (bits < 32) {
+            lhs = std::move(lhs).into_extended(is_signed, bits, 32);
+            rhs = std::move(rhs).into_extended(is_signed, bits, 32);
+          }
+          (derived()->*scalar_fns[pred_idx][bits == 64])(std::move(lhs), std::move(rhs), res.part(i));
+          continue;
+        }
+        default: return false;
+      }
+      (derived()->*fns[pred_idx][ty_idx])(lhs_vr.part(i), rhs_vr.part(i), res.part(i));
+    }
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -2740,57 +2960,513 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_reduce(
-    RustAdaptor::IRInstRef inst_ref, const ValInfo &info, u64 op) {
-    // operands: vec, or acc, vec for the ordered float reductions
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op_val) {
+    // operands: vec, or vec, start value for the ordered reductions
     Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const Type elem_ty = info.type;
-    const bool is_64 = elem_ty == Type::i64 || elem_ty == Type::f64;
+    const bool has_start_elem = op_val & REDUCE_ORDERED;
+    const ReduceOp op = static_cast<ReduceOp::Value>(op_val & ~REDUCE_ORDERED);
+
+    const IRValueRef src_op = inst.ops[0];
+    const auto [nelem, elem_ty] = vector_info(this->adaptor->type_of_ref(src_op));
+    const unsigned bits = size_of_type(elem_ty);
+    const bool is_64 = bits == 64;
+    const bool float_elem = is_float(elem_ty);
 
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &);
     EncodeFnTy fn;
-    bool has_start_elem = false;
+    // Integer min / max need the lanes extended to 32 bit.
+    bool ext = false;
+    bool ext_sign = false;
     switch (op) {
-      case ReduceOp::add: fn = is_64 ? &Derived::encode_addi64 : &Derived::encode_addi32; break;
-      case ReduceOp::mul: fn = is_64 ? &Derived::encode_muli64 : &Derived::encode_muli32; break;
-      case ReduceOp::land: fn = is_64 ? &Derived::encode_landi64 : &Derived::encode_landi32; break;
-      case ReduceOp::lor: fn = is_64 ? &Derived::encode_lori64 : &Derived::encode_lori32; break;
-      case ReduceOp::lxor: fn = is_64 ? &Derived::encode_lxori64 : &Derived::encode_lxori32; break;
-      case ReduceOp::fadd:
-        fn = is_64 ? &Derived::encode_addf64 : &Derived::encode_addf32;
-        has_start_elem = true;
+      case ReduceOp::add:
+        if (float_elem) {
+          fn = is_64 ? EncodeFnTy{&Derived::encode_addf64} : EncodeFnTy{&Derived::encode_addf32};
+        } else {
+          fn = is_64 ? EncodeFnTy{&Derived::encode_addi64} : EncodeFnTy{&Derived::encode_addi32};
+        }
         break;
-      case ReduceOp::fmul:
-        fn = is_64 ? &Derived::encode_mulf64 : &Derived::encode_mulf32;
-        has_start_elem = true;
+      case ReduceOp::mul:
+        if (float_elem) {
+          fn = is_64 ? EncodeFnTy{&Derived::encode_mulf64} : EncodeFnTy{&Derived::encode_mulf32};
+        } else {
+          fn = is_64 ? EncodeFnTy{&Derived::encode_muli64} : EncodeFnTy{&Derived::encode_muli32};
+        }
         break;
-      default:
-        // Still missing: smin/smax/umin/umix/fmin/fmax/fminimum/fmaximum
-        return false;
+      // Mask lanes are all ones or zero, so any / all are or / and.
+      case ReduceOp::all:
+      case ReduceOp::land: fn = is_64 ? EncodeFnTy{&Derived::encode_landi64} : EncodeFnTy{&Derived::encode_landi32}; break;
+      case ReduceOp::any:
+      case ReduceOp::lor: fn = is_64 ? EncodeFnTy{&Derived::encode_lori64} : EncodeFnTy{&Derived::encode_lori32}; break;
+      case ReduceOp::lxor: fn = is_64 ? EncodeFnTy{&Derived::encode_lxori64} : EncodeFnTy{&Derived::encode_lxori32}; break;
+      case ReduceOp::smin:
+        fn = is_64 ? EncodeFnTy{&Derived::encode_smini64} : EncodeFnTy{&Derived::encode_smini32};
+        ext = true;
+        ext_sign = true;
+        break;
+      case ReduceOp::umin:
+        fn = is_64 ? EncodeFnTy{&Derived::encode_umini64} : EncodeFnTy{&Derived::encode_umini32};
+        ext = true;
+        break;
+      case ReduceOp::smax:
+        fn = is_64 ? EncodeFnTy{&Derived::encode_smaxi64} : EncodeFnTy{&Derived::encode_smaxi32};
+        ext = true;
+        ext_sign = true;
+        break;
+      case ReduceOp::umax:
+        fn = is_64 ? EncodeFnTy{&Derived::encode_umaxi64} : EncodeFnTy{&Derived::encode_umaxi32};
+        ext = true;
+        break;
+      case ReduceOp::fmin: fn = is_64 ? EncodeFnTy{&Derived::encode_minnumf64} : EncodeFnTy{&Derived::encode_minnumf32}; break;
+      case ReduceOp::fmax: fn = is_64 ? EncodeFnTy{&Derived::encode_maxnumf64} : EncodeFnTy{&Derived::encode_maxnumf32}; break;
+      default: return false;
     }
+    ext = ext && bits < 32;
 
-    const IRValueRef src_op = inst.ops[has_start_elem ? 1 : 0];
     ValueRef src_ref = this->val_ref(src_op);
     ValueRef src_ref_disowned = src_ref.disowned();
 
-    ValuePartRef elem{this, reg_bank_of_type(elem_ty)};
-    ValuePartRef acc{this, reg_bank_of_type(elem_ty)};
+    const tpde::RegBank bank = reg_bank_of_type(elem_ty);
+    ValuePartRef elem{this, bank};
+    ValuePartRef acc{this, bank};
 
     if (has_start_elem) {
-      acc.set_value(this->val_ref(inst.ops[0]).part(0));
+      acc.set_value(this->val_ref(inst.ops[1]).part(0));
     } else {
       derived()->extract_element(src_ref_disowned, 0, elem_ty, acc);
     }
+    if (ext) {
+      acc = std::move(acc).into_extended(ext_sign, bits, 32);
+    }
 
-    const unsigned nelem = vector_info(this->adaptor->type_of_ref(src_op)).first;
     for (unsigned i = has_start_elem ? 0 : 1; i != nelem; i++) {
       derived()->extract_element(src_ref_disowned, i, elem_ty, elem);
+      if (ext) {
+        elem = std::move(elem).into_extended(ext_sign, bits, 32);
+      }
       (derived()->*fn)(std::move(acc), std::move(elem), acc);
     }
 
     this->result_ref(inst.result).part(0).set_value(std::move(acc));
 
     return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  void RustCompilerBase<Adaptor, Derived, Config>::encode_load_elem(
+    GenericValuePart &&addr, Type ty, ValuePart &out) {
+    switch (ty) {
+      using enum Type;
+      case Bool:
+      case i8: derived()->encode_loadi8_zext(std::move(addr), out); break;
+      case i16: derived()->encode_loadi16_zext(std::move(addr), out); break;
+      case i32: derived()->encode_loadi32_zext(std::move(addr), out); break;
+      case i64:
+      case ptr: derived()->encode_loadi64(std::move(addr), out); break;
+      case f32: derived()->encode_loadf32(std::move(addr), out); break;
+      case f64: derived()->encode_loadf64(std::move(addr), out); break;
+      default: TPDE_UNREACHABLE("unexpected vector element type");
+    }
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  void RustCompilerBase<Adaptor, Derived, Config>::encode_store_elem(
+    GenericValuePart &&addr, Type ty, GenericValuePart &&val) {
+    switch (ty) {
+      using enum Type;
+      case Bool:
+      case i8: derived()->encode_storei8(std::move(addr), std::move(val)); break;
+      case i16: derived()->encode_storei16(std::move(addr), std::move(val)); break;
+      case i32: derived()->encode_storei32(std::move(addr), std::move(val)); break;
+      case i64:
+      case ptr: derived()->encode_storei64(std::move(addr), std::move(val)); break;
+      case f32: derived()->encode_storef32(std::move(addr), std::move(val)); break;
+      case f64: derived()->encode_storef64(std::move(addr), std::move(val)); break;
+      default: TPDE_UNREACHABLE("unexpected vector element type");
+    }
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  typename RustCompilerBase<Adaptor, Derived, Config>::GenericValuePart
+  RustCompilerBase<Adaptor, Derived, Config>::elem_stack_addr(
+    ValueRef &vec_vr, unsigned idx, u32 elem_sz) {
+    // Address of element idx in the spill slot of the vector. The register
+    // copy of the part stays valid.
+    tpde::ValueAssignment *va = vec_vr.assignment();
+    u32 vector_off = idx * elem_sz;
+    u32 part = vector_off / va->max_part_size;
+    u32 off_in_part = vector_off % va->max_part_size;
+    assert(part < va->part_count);
+
+    tpde::AssignmentPartRef ap{va, part};
+    if (ap.register_valid()) {
+      this->spill(ap);
+    } else if (!ap.stack_valid()) {
+      this->allocate_spill_slot(ap);
+      ap.set_stack_valid();
+    }
+    GenericValuePart addr = derived()->val_spill_slot(ap);
+    std::get<typename GenericValuePart::Expr>(addr.state).disp += off_in_part;
+    return addr;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_splat(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    // operands: scalar
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const auto [nelem, elem_ty] = vector_info(val_info.type);
+    const u32 size = size_of_type(elem_ty) / 8;
+    const tpde::RegBank bank = reg_bank_of_type(elem_ty);
+
+    ValueRef val_vr = this->val_ref(inst.ops[0]);
+    ValuePartRef val = val_vr.part(0);
+    ValueRef res = this->result_ref(inst.result);
+
+    // There are no encode functions for splats (encodegen lacks the moves into
+    // vector registers), so insert every element.
+    if (val.is_const()) {
+      const u64 data = val.const_data()[0];
+      for (u32 i = 0; i != nelem; ++i) {
+        derived()->insert_element(res, i, elem_ty, ValuePartRef{this, data, size, bank});
+      }
+      return true;
+    }
+
+    ValuePartRef tmp = std::move(val).into_temporary();
+    for (u32 i = 0; i != nelem; ++i) {
+      derived()->insert_element(res, i, elem_ty, tmp.get_unowned_ref());
+    }
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_conv(const Instruction &inst) {
+    // Element-wise integer / float conversion of vectors with the same length.
+    const Type src_ty = this->adaptor->type_of_ref(inst.ops[0]);
+    const Type dst_ty = this->adaptor->type_of_ref(inst.result);
+    const auto [nelem, src_elem] = vector_info(src_ty);
+    const Type dst_elem = vector_info(dst_ty).second;
+    assert(nelem == vector_info(dst_ty).first);
+    const unsigned src_bits = size_of_type(src_elem);
+    const unsigned dst_bits = size_of_type(dst_elem);
+
+    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &);
+    // float -> int, [src is f64][dst is 64 bit][sign][sat]
+    static constexpr auto ftoi_fns = []() {
+      std::array<EncodeFnTy[2][2][2], 2> fns{};
+      fns[0][0][0][0] = &Derived::encode_f32tou32;
+      fns[0][0][0][1] = &Derived::encode_f32tou32_sat;
+      fns[0][0][1][0] = &Derived::encode_f32toi32;
+      fns[0][0][1][1] = &Derived::encode_f32toi32_sat;
+      fns[0][1][0][0] = &Derived::encode_f32tou64;
+      fns[0][1][0][1] = &Derived::encode_f32tou64_sat;
+      fns[0][1][1][0] = &Derived::encode_f32toi64;
+      fns[0][1][1][1] = &Derived::encode_f32toi64_sat;
+      fns[1][0][0][0] = &Derived::encode_f64tou32;
+      fns[1][0][0][1] = &Derived::encode_f64tou32_sat;
+      fns[1][0][1][0] = &Derived::encode_f64toi32;
+      fns[1][0][1][1] = &Derived::encode_f64toi32_sat;
+      fns[1][1][0][0] = &Derived::encode_f64tou64;
+      fns[1][1][0][1] = &Derived::encode_f64tou64_sat;
+      fns[1][1][1][0] = &Derived::encode_f64toi64;
+      fns[1][1][1][1] = &Derived::encode_f64toi64_sat;
+      return fns;
+    }();
+    // int -> float, [unsigned][src is 64 bit][dst is f64]
+    static constexpr auto itof_fns = []() {
+      std::array<EncodeFnTy[2][2], 2> fns{};
+      fns[0][0][0] = &Derived::encode_i32tof32;
+      fns[0][0][1] = &Derived::encode_i32tof64;
+      fns[0][1][0] = &Derived::encode_i64tof32;
+      fns[0][1][1] = &Derived::encode_i64tof64;
+      fns[1][0][0] = &Derived::encode_u32tof32;
+      fns[1][0][1] = &Derived::encode_u32tof64;
+      fns[1][1][0] = &Derived::encode_u64tof32;
+      fns[1][1][1] = &Derived::encode_u64tof64;
+      return fns;
+    }();
+
+    const tpde::RegBank dst_bank = reg_bank_of_type(dst_elem);
+    map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&elem) {
+      switch (inst.kind) {
+        case InstructionKind::zExt:
+        case InstructionKind::sExt:
+          out = std::move(elem).into_extended(inst.kind == InstructionKind::sExt, src_bits, dst_bits);
+          break;
+        case InstructionKind::Trunc:
+          // Only the low bits get stored by insert_element.
+          out = std::move(elem);
+          break;
+        case InstructionKind::fExt:
+          derived()->encode_f32tof64(std::move(elem), out);
+          break;
+        case InstructionKind::fTrunc:
+          derived()->encode_f64tof32(std::move(elem), out);
+          break;
+        case InstructionKind::sTof:
+        case InstructionKind::uTof: {
+          const bool sign = inst.kind == InstructionKind::sTof;
+          if (src_bits < 32) {
+            elem = std::move(elem).into_extended(sign, src_bits, 32);
+          }
+          (derived()->*itof_fns[!sign][src_bits > 32][dst_elem == Type::f64])(std::move(elem), out);
+          break;
+        }
+        case InstructionKind::fTos:
+        case InstructionKind::fTou:
+        case InstructionKind::fTos_sat:
+        case InstructionKind::fTou_sat: {
+          const bool sign = inst.kind == InstructionKind::fTos || inst.kind == InstructionKind::fTos_sat;
+          const bool sat = inst.kind == InstructionKind::fTos_sat || inst.kind == InstructionKind::fTou_sat;
+          const bool src_64 = src_elem == Type::f64;
+          if (dst_bits >= 32) {
+            (derived()->*ftoi_fns[src_64][dst_bits > 32][sign][sat])(std::move(elem), out);
+            break;
+          }
+          // Narrow results: convert to i32 (in range for all narrow types) and
+          // clamp if saturating.
+          (derived()->*ftoi_fns[src_64][0][1][sat])(std::move(elem), out);
+          if (sat) {
+            const i64 lo = sign ? -(i64{1} << (dst_bits - 1)) : 0;
+            const i64 hi = sign ? (i64{1} << (dst_bits - 1)) - 1 : (i64{1} << dst_bits) - 1;
+            ValuePartRef clamped{this, dst_bank};
+            derived()->encode_smini32(std::move(out), ValuePartRef{this, u64(hi) & 0xffff'ffff, 4, dst_bank}, clamped);
+            derived()->encode_smaxi32(std::move(clamped), ValuePartRef{this, u64(lo) & 0xffff'ffff, 4, dst_bank}, out);
+          }
+          break;
+        }
+        default: TPDE_UNREACHABLE("invalid vector conversion");
+      }
+    }, inst.ops[0]);
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_select_bitmask(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    // operands: integer bitmask, then, else; lane i is selected by bit i
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const Type elem_ty = vector_info(val_info.type).second;
+
+    ValueRef mask_vr = this->val_ref(inst.ops[0]);
+    ValuePartRef mask = mask_vr.part(0);
+    const bool mask_const = mask.is_const();
+    const u64 mask_data = mask_const ? mask.const_data()[0] : 0;
+    if (!mask_const) {
+      mask = std::move(mask).into_temporary();
+    }
+
+    const auto fn = select_fn(elem_ty);
+
+    map_elements(inst.result, [&](u32 i, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
+      // The select only looks at the lowest bit of the condition.
+      ValuePartRef cond{this, Config::GP_BANK};
+      if (mask_const) {
+        cond = ValuePartRef{this, (mask_data >> i) & 1, 1, Config::GP_BANK};
+      } else {
+        derived()->encode_shri64(mask.get_unowned_ref(),
+                                 ValuePartRef{this, u64{i}, 8, Config::GP_BANK},
+                                 cond);
+      }
+      (derived()->*fn)(std::move(cond), std::move(l), std::move(r), out);
+    }, inst.ops[1], inst.ops[2]);
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_bitmask(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    // operands: mask vector; bit i of the result is the top bit of lane i
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const Type src_ty = this->adaptor->type_of_ref(inst.ops[0]);
+    if (vector_info(src_ty).first > 64) {
+      return false;
+    }
+
+    ValueRef src_vr = this->val_ref(inst.ops[0]);
+    ValuePartRef acc{this, u64{0}, 8, Config::GP_BANK};
+
+    auto parts = this->adaptor->val_parts(src_ty);
+    u32 lane = 0;
+    for (u32 i = 0, n = parts.count(); i != n; ++i) {
+      const Type part_ty = parts.type(i);
+      const u32 lanes = is_vector(part_ty) ? vector_info(part_ty).first : 1;
+
+      // Mask lanes are all ones or zero, so the lowest bit is the top bit. The
+      // upper result bits of the truncation are undefined and get cut off.
+      ValuePartRef part_mask{this, Config::GP_BANK};
+      switch (part_ty) {
+        using enum Type;
+        case v8i8: derived()->encode_trunc_v8i8_1(src_vr.part(i), part_mask); break;
+        case v4i16: derived()->encode_trunc_v4i16_1(src_vr.part(i), part_mask); break;
+        case v2i32: derived()->encode_trunc_v2i32_1(src_vr.part(i), part_mask); break;
+        case v16i8: derived()->encode_trunc_v16i8_1(src_vr.part(i), part_mask); break;
+        case v8i16: derived()->encode_trunc_v8i16_1(src_vr.part(i), part_mask); break;
+        case v4i32: derived()->encode_trunc_v4i32_1(src_vr.part(i), part_mask); break;
+        case v2i64: derived()->encode_trunc_v2i64_1(src_vr.part(i), part_mask); break;
+        case i8:
+        case i16:
+        case i32:
+        case i64: part_mask = src_vr.part(i); break;
+        default: return false;
+      }
+      ValuePartRef trimmed{this, Config::GP_BANK};
+      derived()->encode_landi64(std::move(part_mask),
+                                ValuePartRef{this, (u64{1} << lanes) - 1, 8, Config::GP_BANK},
+                                trimmed);
+      part_mask = std::move(trimmed);
+      if (lane != 0) {
+        ValuePartRef shifted{this, Config::GP_BANK};
+        derived()->encode_shli64(std::move(part_mask),
+                                 ValuePartRef{this, u64{lane}, 8, Config::GP_BANK},
+                                 shifted);
+        part_mask = std::move(shifted);
+      }
+      derived()->encode_lori64(std::move(acc), std::move(part_mask), acc);
+      lane += lanes;
+    }
+
+    this->result_ref(inst.result).part(0).set_value(std::move(acc));
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_masked_mem(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op_val) {
+    // operands:
+    //   gather: default, pointers, mask, align
+    //   scatter: values, pointers, mask, align
+    //   masked load: mask, pointer, default, align
+    //   masked store: mask, pointer, values, align
+    //
+    // Done element-wise without branches: disabled lanes access the element of
+    // the vector in its own spill slot instead (loading the default value or
+    // storing the value to where it already is).
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const MaskedMemOp op = static_cast<MaskedMemOp::Value>(op_val);
+    const bool is_load = op == MaskedMemOp::gather || op == MaskedMemOp::load;
+    const bool lane_ptrs = op == MaskedMemOp::gather || op == MaskedMemOp::scatter;
+
+    const IRValueRef vals = lane_ptrs ? inst.ops[0] : inst.ops[2];
+    const IRValueRef mask = lane_ptrs ? inst.ops[2] : inst.ops[0];
+    const auto [nelem, elem_ty] = vector_info(this->adaptor->type_of_ref(vals));
+    const Type mask_elem = vector_info(this->adaptor->type_of_ref(mask)).second;
+    const u32 elem_sz = size_of_type(elem_ty) / 8;
+    const tpde::RegBank bank = reg_bank_of_type(elem_ty);
+
+    ValueRef mask_vr = this->val_ref(mask);
+    ValueRef ptr_vr = this->val_ref(inst.ops[1]);
+    ValuePartRef base{this};
+    if (!lane_ptrs) {
+      base = ptr_vr.part(0).into_temporary();
+    }
+
+    ValueRef vec_vr{derived()};
+    if (is_load) {
+      // Start with the default values in the result.
+      ValueRef src_vr = this->val_ref(vals);
+      if (src_vr.is_owned()) {
+        vec_vr = this->result_ref_alias(inst.result, std::move(src_vr));
+      } else {
+        vec_vr = this->result_ref(inst.result);
+        for (u32 i = 0; i < vec_vr.assignment()->part_count; ++i) {
+          vec_vr.part(i).set_value(src_vr.part(i));
+        }
+      }
+    } else {
+      vec_vr = this->val_ref(vals);
+      if (!vec_vr.has_assignment()) {
+        // Constant values have no spill slot to redirect disabled lanes to.
+        return false;
+      }
+    }
+
+    for (u32 i = 0; i != nelem; ++i) {
+      ValuePartRef lane_mask{this, Config::GP_BANK};
+      ValueRef mask_unowned = mask_vr.disowned();
+      derived()->extract_element(mask_unowned, i, mask_elem, lane_mask);
+
+      ValuePartRef lane_ptr{this, Config::GP_BANK};
+      if (lane_ptrs) {
+        ValueRef ptr_unowned = ptr_vr.disowned();
+        derived()->extract_element(ptr_unowned, i, Type::i64, lane_ptr);
+      } else {
+        derived()->encode_addi64(base.get_unowned_ref(),
+                                 ValuePartRef{this, u64{i * elem_sz}, 8, Config::GP_BANK},
+                                 lane_ptr);
+      }
+
+      // Mask lanes are all ones or zero, the select only looks at the lowest bit.
+      ValuePartRef addr{this, Config::GP_BANK};
+      derived()->encode_select_i64(std::move(lane_mask),
+                                   std::move(lane_ptr),
+                                   elem_stack_addr(vec_vr, i, elem_sz),
+                                   addr);
+
+      ValuePartRef elem{this, bank};
+      if (is_load) {
+        derived()->encode_load_elem(std::move(addr), elem_ty, elem);
+        derived()->insert_element(vec_vr, i, elem_ty, std::move(elem));
+      } else {
+        ValueRef vals_unowned = vec_vr.disowned();
+        derived()->extract_element(vals_unowned, i, elem_ty, elem);
+        derived()->encode_store_elem(std::move(addr), elem_ty, std::move(elem));
+      }
+    }
+    return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_fabs(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    if (is_vector(val_info.type)) {
+      const bool is_64 = vector_info(val_info.type).second == Type::f64;
+      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&e) {
+        is_64 ? derived()->encode_fabsf64(std::move(e), out) : derived()->encode_fabsf32(std::move(e), out);
+      }, inst.ops[0]);
+      return true;
+    }
+
+    ValueRef src = this->val_ref(inst.ops[0]);
+    ValueRef res = this->result_ref(inst.result);
+    switch (val_info.type) {
+      case Type::f32: return derived()->encode_fabsf32(src.part(0), res.part(0));
+      case Type::f64: return derived()->encode_fabsf64(src.part(0), res.part(0));
+      default: return false;
+    }
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_fminmax(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64 is_max) {
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const Type elem_ty = is_vector(val_info.type) ? vector_info(val_info.type).second : val_info.type;
+
+    using EncodeFnTy =
+        bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &);
+    EncodeFnTy fn;
+    switch (elem_ty) {
+      using enum Type;
+      case f32: fn = is_max ? EncodeFnTy{&Derived::encode_maxnumf32} : EncodeFnTy{&Derived::encode_minnumf32}; break;
+      case f64: fn = is_max ? EncodeFnTy{&Derived::encode_maxnumf64} : EncodeFnTy{&Derived::encode_minnumf64}; break;
+      default: return false;
+    }
+
+    // Operands swapped: like LLVM, return the second operand for +0.0 / -0.0.
+    if (is_vector(val_info.type)) {
+      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
+        (derived()->*fn)(std::move(r), std::move(l), out);
+      }, inst.ops[0], inst.ops[1]);
+      return true;
+    }
+
+    ValueRef lhs = this->val_ref(inst.ops[1]);
+    ValueRef rhs = this->val_ref(inst.ops[0]);
+    ValueRef res = this->result_ref(inst.result);
+    ValuePartRef res_part = res.part(0);
+    return (derived()->*fn)(lhs.part(0), rhs.part(0), res_part);
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -3349,6 +4025,32 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_select(RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
     Instruction& inst = this->adaptor->get_instruction(inst_ref);
+
+    if (is_vector(this->adaptor->type_of_ref(inst.ops[0]))) {
+      // Mask vector condition, the select only looks at the lowest bit of a lane.
+      const auto fn = select_fn(vector_info(val_info.type).second);
+      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&c, ValuePartRef &&l, ValuePartRef &&r) {
+        (derived()->*fn)(std::move(c), std::move(l), std::move(r), out);
+      }, inst.ops[0], inst.ops[1], inst.ops[2]);
+      return true;
+    }
+    if (is_vector(val_info.type)) {
+      // Bool condition, select whole vector parts.
+      ValuePartRef cond = this->val_ref(inst.ops[0]).part(0).into_temporary();
+      auto lhs = this->val_ref(inst.ops[1]);
+      auto rhs = this->val_ref(inst.ops[2]);
+      auto res = this->result_ref(inst.result);
+      auto parts = this->adaptor->val_parts(val_info);
+      for (u32 i = 0, n = parts.count(); i != n; ++i) {
+        if (is_vector(parts.type(i))) {
+          derived()->encode_select_v2u64(cond.get_unowned_ref(), lhs.part(i), rhs.part(i), res.part(i));
+        } else {
+          ValuePartRef res_part = res.part(i);
+          (derived()->*select_fn(parts.type(i)))(cond.get_unowned_ref(), lhs.part(i), rhs.part(i), res_part);
+        }
+      }
+      return true;
+    }
 
     auto [cond_vr, cond] = this->val_ref_single(inst.ops[0]);
     auto lhs = this->val_ref(inst.ops[1]);

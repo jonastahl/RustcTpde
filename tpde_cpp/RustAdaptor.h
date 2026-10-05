@@ -61,6 +61,12 @@ namespace tpde_rust {
       assert(false && "invalid value ref");
     }
 
+    /// Element type for vectors, the type itself otherwise.
+    [[nodiscard]] Type elem_type_of_ref(const IRValueRef value) const {
+      const Type ty = type_of_ref(value);
+      return is_vector(ty) ? vector_info(ty).second : ty;
+    }
+
     [[nodiscard]] BasicBlock &get_basic_block(const IRBlockRef block) const {
       return cur_func->basic_blocks[block];
     }
@@ -297,7 +303,10 @@ namespace tpde_rust {
 
     [[nodiscard]] u32 val_alloca_align(IRValueRef val) const {
       if (operands::is_alloc(val)) {
-        return cur_func->allocas[operands::content(val)].align;
+        // TODO: over-aligned allocas. TPDE handles them as dynamic allocas,
+        // which need liveness info our allocas don't have. 16 byte suffice for
+        // the 128 bit vector parts.
+        return std::min<u32>(cur_func->allocas[operands::content(val)].align, 16);
       }
       throw std::runtime_error("not a alloc");
     }
@@ -378,7 +387,7 @@ namespace tpde_rust {
           case Type::i128:
             return 2;
           default:
-            return 1;
+            return is_vector(ty) ? vector_parts(ty).first : 1;
         }
       }
 
@@ -387,7 +396,7 @@ namespace tpde_rust {
           case Type::i128:
             return Type::i64;
           default:
-            return ty;
+            return is_vector(ty) ? vector_parts(ty).second : ty;
         }
       }
 
@@ -406,6 +415,10 @@ namespace tpde_rust {
 
     static ValueParts val_parts(const ValInfo &info) {
       return ValueParts{info.type};
+    }
+
+    static ValueParts val_parts(const Type ty) {
+      return ValueParts{ty};
     }
   };
 

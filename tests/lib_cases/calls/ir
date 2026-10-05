@@ -324,7 +324,7 @@ ModuleTpde {
         },
         Function {
             name: "apply_point",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -349,8 +349,6 @@ ModuleTpde {
                 ptr,
                 ptr,
                 ptr,
-                ptr,
-                ptr,
             ],
             flags: Flags {
                 extern_link: false,
@@ -364,8 +362,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Call> ([val: 1], [raw: 0], [alloc: 0], [val: 2]) -> [val: 3],
-                    <Call> ([val: 1], [raw: 1], [val: 0], [alloc: 0]) -> [val: 4],
+                    <Call> ([val: 1], [raw: 0], [alloc: 0], [val: 2]),
+                    <Call> ([val: 1], [raw: 1], [val: 0], [alloc: 0]),
                     <Ret> (),
                 ],
             ],
@@ -635,7 +633,7 @@ ModuleTpde {
         },
         Function {
             name: "big_struct_from_args",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -824,7 +822,6 @@ ModuleTpde {
             ],
             slots: [
                 i64,
-                ptr,
                 i64,
             ],
             flags: Flags {
@@ -839,9 +836,9 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 39], [alloc: 0], [val: 0]) -> [val: 1],
-                    <Call> ([func: 18], [alloc: 0]) -> [val: 2],
-                    <Ret> ([val: 2]),
+                    <Call> ([func: 39], [alloc: 0], [val: 0]),
+                    <Call> ([func: 18], [alloc: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
                 ],
             ],
             callee_infos: [],
@@ -1020,7 +1017,7 @@ ModuleTpde {
         },
         Function {
             name: "c_abi_point_transformer",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -1092,7 +1089,6 @@ ModuleTpde {
                 i64,
                 ptr,
                 i32,
-                ptr,
                 i64,
             ],
             flags: Flags {
@@ -1107,7 +1103,7 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Invoke> ([func: 39], [raw: 2], [raw: 1], [alloc: 0], [val: 0]) -> [val: 3],
+                    <Invoke> ([func: 39], [raw: 2], [raw: 1], [alloc: 0], [val: 0]),
                 ],
                 "terminate": [
                     <LandingPad> () -> [val: 1],
@@ -1116,8 +1112,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 "bb1": [
-                    <Call> ([func: 68], [alloc: 0]) -> [val: 4],
-                    <Ret> ([val: 4]),
+                    <Call> ([func: 68], [alloc: 0]) -> [val: 3],
+                    <Ret> ([val: 3]),
                 ],
             ],
             callee_infos: [],
@@ -1135,7 +1131,6 @@ ModuleTpde {
             ],
             slots: [
                 f64,
-                ptr,
                 f64,
             ],
             flags: Flags {
@@ -1150,9 +1145,9 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 69], [alloc: 0], [val: 0]) -> [val: 1],
-                    <Call> ([func: 70], [alloc: 0], [const: 52]) -> [val: 2],
-                    <Ret> ([val: 2]),
+                    <Call> ([func: 69], [alloc: 0], [val: 0]),
+                    <Call> ([func: 70], [alloc: 0], [const: 52]) -> [val: 1],
+                    <Ret> ([val: 1]),
                 ],
             ],
             callee_infos: [],
@@ -2628,7 +2623,7 @@ ModuleTpde {
         },
         Function {
             name: "nested_struct_build",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -2819,7 +2814,7 @@ ModuleTpde {
         },
         Function {
             name: "nested_tuple",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -2962,7 +2957,7 @@ ModuleTpde {
         },
         Function {
             name: "return_big_struct",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -3717,7 +3712,7 @@ ModuleTpde {
         },
         Function {
             name: "triple",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,
@@ -4793,7 +4788,7 @@ ModuleTpde {
         },
         Function {
             name: "external_make_point",
-            has_ret: true,
+            has_ret: false,
             args: [
                 ArgInfo {
                     kind: sRet,

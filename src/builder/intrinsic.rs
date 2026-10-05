@@ -38,7 +38,6 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 };
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }};
-            // Emits the instruction directly, the result has the type of `$ret`.
             ($self:ident, $args:ident -> $ret:ident: $($($p:ident),+ => $instr:ident),*) => {{
                 let (_, elem_ty) = $args[0].layout.ty.simd_size_and_type($self.tcx);
                 let instr = match elem_ty.kind() {
@@ -199,10 +198,12 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::simd_or => simd_binop!(self, args: Uint, Int => or),
             sym::simd_xor => simd_binop!(self, args: Uint, Int => xor),
             sym::simd_splat => {
-                let res = self.cx.module.borrow_mut().add_instruction_ret_first(
+                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
+                let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_splat,
-                    vec![args[0].immediate()]
+                    vec![args[0].immediate()],
+                    ret_ty
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -235,7 +236,6 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::simd_saturating_add => simd_binop!(self, args -> result_layout: Int => sat_sadd, Uint => sat_uadd),
             sym::simd_saturating_sub => simd_binop!(self, args -> result_layout: Int => sat_ssub, Uint => sat_usub),
 
-            // Comparisons produce a mask vector with all lane bits set or cleared.
             sym::simd_eq => simd_binop!(self, args -> result_layout: Uint, Int => CMPeq, Float => RealOEQ),
             sym::simd_ne => simd_binop!(self, args -> result_layout: Uint, Int => CMPne, Float => RealUNE),
             sym::simd_lt => simd_binop!(self, args -> result_layout: Int => CMPslt, Uint => CMPult, Float => RealOLT),
@@ -441,4 +441,3 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
         todo!()
     }
 }
-

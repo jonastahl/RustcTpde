@@ -334,7 +334,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 });
         }
 
-        let ret = if fn_abi.ret.is_ignore() {
+        let ret = if fn_abi.ret.is_ignore() || fn_abi.ret.is_indirect() {
             None
         } else {
             Some(self.tpde_direct_type(fn_abi.ret.layout))
