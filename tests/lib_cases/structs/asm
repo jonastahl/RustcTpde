@@ -11,130 +11,122 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000000000 <find_user>:
-   0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	53                   	push   %rbx
-   5:	48 81 ec 88 00 00 00 	sub    $0x88,%rsp
-   c:	48 89 fb             	mov    %rdi,%rbx
-   f:	83 fe 64             	cmp    $0x64,%esi
-  12:	0f 87 4a 00 00 00    	ja     62 <find_user+0x62>
-  18:	48 b8 0f 0f 0f 0f 0f 	movabs $0xf0f0f0f0f0f0f0f,%rax
-  1f:	0f 0f 0f 
-  22:	48 89 85 70 ff ff ff 	mov    %rax,-0x90(%rbp)
-  29:	c6 45 82 1f          	movb   $0x1f,-0x7e(%rbp)
-  2d:	c6 45 83 2f          	movb   $0x2f,-0x7d(%rbp)
-  31:	66 c7 45 80 3f 3f    	movw   $0x3f3f,-0x80(%rbp)
-  37:	48 b8 3f 3f 3f 3f 3f 	movabs $0x3f3f3f3f3f3f3f3f,%rax
-  3e:	3f 3f 3f 
-  41:	48 89 85 78 ff ff ff 	mov    %rax,-0x88(%rbp)
-  48:	48 8d 7d b0          	lea    -0x50(%rbp),%rdi
-  4c:	48 8d b5 70 ff ff ff 	lea    -0x90(%rbp),%rsi
-  53:	ba 18 00 00 00       	mov    $0x18,%edx
-  58:	e8 00 00 00 00       	call   5d <find_user+0x5d>
-  5d:	e9 3c 00 00 00       	jmp    9e <find_user+0x9e>
-  62:	48 b8 f0 f0 f0 f0 f0 	movabs $0xf0f0f0f0f0f0f0f0,%rax
-  69:	f0 f0 f0 
-  6c:	48 89 45 90          	mov    %rax,-0x70(%rbp)
-  70:	c6 45 a2 f1          	movb   $0xf1,-0x5e(%rbp)
-  74:	c6 45 a3 f2          	movb   $0xf2,-0x5d(%rbp)
-  78:	66 c7 45 a0 f3 73    	movw   $0x73f3,-0x60(%rbp)
-  7e:	48 b8 f3 f3 f3 f3 f3 	movabs $0xf3f3f3f3f3f3f3f3,%rax
-  85:	f3 f3 f3 
-  88:	48 89 45 98          	mov    %rax,-0x68(%rbp)
-  8c:	48 8d 7d b0          	lea    -0x50(%rbp),%rdi
-  90:	48 8d 75 90          	lea    -0x70(%rbp),%rsi
-  94:	ba 18 00 00 00       	mov    $0x18,%edx
-  99:	e8 00 00 00 00       	call   9e <find_user+0x9e>
-  9e:	48 89 df             	mov    %rbx,%rdi
-  a1:	48 8d 75 b0          	lea    -0x50(%rbp),%rsi
-  a5:	ba 18 00 00 00       	mov    $0x18,%edx
-  aa:	e8 00 00 00 00       	call   af <find_user+0xaf>
-  af:	48 81 c4 88 00 00 00 	add    $0x88,%rsp
-  b6:	5b                   	pop    %rbx
-  b7:	5d                   	pop    %rbp
-  b8:	c3                   	ret
-  b9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+<find_user>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x88,%rsp
+	mov    %rdi,%rbx
+	cmp    $0x64,%esi
+	ja     <find_user+0x62>
+	movabs $0xf0f0f0f0f0f0f0f,%rax
+	mov    %rax,-0x90(%rbp)
+	movb   $0x1f,-0x7e(%rbp)
+	movb   $0x2f,-0x7d(%rbp)
+	movw   $0x3f3f,-0x80(%rbp)
+	movabs $0x3f3f3f3f3f3f3f3f,%rax
+	mov    %rax,-0x88(%rbp)
+	lea    -0x50(%rbp),%rdi
+	lea    -0x90(%rbp),%rsi
+	mov    $0x18,%edx
+	call   <find_user+0x5d>
+	jmp    <find_user+0x9e>
+	movabs $0xf0f0f0f0f0f0f0f0,%rax
+	mov    %rax,-0x70(%rbp)
+	movb   $0xf1,-0x5e(%rbp)
+	movb   $0xf2,-0x5d(%rbp)
+	movw   $0x73f3,-0x60(%rbp)
+	movabs $0xf3f3f3f3f3f3f3f3,%rax
+	mov    %rax,-0x68(%rbp)
+	lea    -0x50(%rbp),%rdi
+	lea    -0x70(%rbp),%rsi
+	mov    $0x18,%edx
+	call   <find_user+0x9e>
+	mov    %rbx,%rdi
+	lea    -0x50(%rbp),%rsi
+	mov    $0x18,%edx
+	call   <find_user+0xaf>
+	add    $0x88,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
 
-00000000000000c0 <find_user_by_age>:
-  c0:	55                   	push   %rbp
-  c1:	48 89 e5             	mov    %rsp,%rbp
-  c4:	53                   	push   %rbx
-  c5:	48 89 fb             	mov    %rdi,%rbx
-  c8:	83 fe 64             	cmp    $0x64,%esi
-  cb:	0f 87 2e 00 00 00    	ja     ff <find_user_by_age+0x3f>
-  d1:	48 b8 0f 0f 0f 0f 0f 	movabs $0xf0f0f0f0f0f0f0f,%rax
-  d8:	0f 0f 0f 
-  db:	48 89 03             	mov    %rax,(%rbx)
-  de:	c6 43 12 1f          	movb   $0x1f,0x12(%rbx)
-  e2:	c6 43 13 2f          	movb   $0x2f,0x13(%rbx)
-  e6:	66 c7 43 10 3f 3f    	movw   $0x3f3f,0x10(%rbx)
-  ec:	48 b8 3f 3f 3f 3f 3f 	movabs $0x3f3f3f3f3f3f3f3f,%rax
-  f3:	3f 3f 3f 
-  f6:	48 89 43 08          	mov    %rax,0x8(%rbx)
-  fa:	e9 29 00 00 00       	jmp    128 <find_user_by_age+0x68>
-  ff:	48 b8 f0 f0 f0 f0 f0 	movabs $0xf0f0f0f0f0f0f0f0,%rax
- 106:	f0 f0 f0 
- 109:	48 89 03             	mov    %rax,(%rbx)
- 10c:	c6 43 12 f1          	movb   $0xf1,0x12(%rbx)
- 110:	c6 43 13 f2          	movb   $0xf2,0x13(%rbx)
- 114:	66 c7 43 10 f3 73    	movw   $0x73f3,0x10(%rbx)
- 11a:	48 b8 f3 f3 f3 f3 f3 	movabs $0xf3f3f3f3f3f3f3f3,%rax
- 121:	f3 f3 f3 
- 124:	48 89 43 08          	mov    %rax,0x8(%rbx)
- 128:	5b                   	pop    %rbx
- 129:	5d                   	pop    %rbp
- 12a:	c3                   	ret
- 12b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+<find_user_by_age>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	mov    %rdi,%rbx
+	cmp    $0x64,%esi
+	ja     <find_user_by_age+0x3f>
+	movabs $0xf0f0f0f0f0f0f0f,%rax
+	mov    %rax,(%rbx)
+	movb   $0x1f,0x12(%rbx)
+	movb   $0x2f,0x13(%rbx)
+	movw   $0x3f3f,0x10(%rbx)
+	movabs $0x3f3f3f3f3f3f3f3f,%rax
+	mov    %rax,0x8(%rbx)
+	jmp    <find_user_by_age+0x68>
+	movabs $0xf0f0f0f0f0f0f0f0,%rax
+	mov    %rax,(%rbx)
+	movb   $0xf1,0x12(%rbx)
+	movb   $0xf2,0x13(%rbx)
+	movw   $0x73f3,0x10(%rbx)
+	movabs $0xf3f3f3f3f3f3f3f3,%rax
+	mov    %rax,0x8(%rbx)
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
 
-0000000000000130 <increase_age>:
- 130:	55                   	push   %rbp
- 131:	48 89 e5             	mov    %rsp,%rbp
- 134:	53                   	push   %rbx
- 135:	41 54                	push   %r12
- 137:	41 55                	push   %r13
- 139:	41 56                	push   %r14
- 13b:	41 57                	push   %r15
- 13d:	48 83 ec 08          	sub    $0x8,%rsp
- 141:	48 89 fb             	mov    %rdi,%rbx
- 144:	49 89 f4             	mov    %rsi,%r12
- 147:	4d 8b 2c 24          	mov    (%r12),%r13
- 14b:	41 0f b6 44 24 12    	movzbl 0x12(%r12),%eax
- 151:	44 8d 70 01          	lea    0x1(%rax),%r14d
- 155:	41 38 c6             	cmp    %al,%r14b
- 158:	0f 82 79 00 00 00    	jb     1d7 <increase_age+0xa7>
- 15e:	41 0f b6 44 24 13    	movzbl 0x13(%r12),%eax
- 164:	44 8d 78 02          	lea    0x2(%rax),%r15d
- 168:	41 38 c7             	cmp    %al,%r15b
- 16b:	0f 82 5a 00 00 00    	jb     1cb <increase_age+0x9b>
- 171:	41 0f b7 44 24 10    	movzwl 0x10(%r12),%eax
- 177:	31 c9                	xor    %ecx,%ecx
- 179:	66 83 e8 14          	sub    $0x14,%ax
- 17d:	0f 90 c1             	seto   %cl
- 180:	0f 80 39 00 00 00    	jo     1bf <increase_age+0x8f>
- 186:	49 8b 4c 24 08       	mov    0x8(%r12),%rcx
- 18b:	4c 8d a1 67 2b 00 00 	lea    0x2b67(%rcx),%r12
- 192:	49 39 cc             	cmp    %rcx,%r12
- 195:	0f 82 18 00 00 00    	jb     1b3 <increase_age+0x83>
- 19b:	4c 89 2b             	mov    %r13,(%rbx)
- 19e:	44 88 73 12          	mov    %r14b,0x12(%rbx)
- 1a2:	44 88 7b 13          	mov    %r15b,0x13(%rbx)
- 1a6:	66 89 43 10          	mov    %ax,0x10(%rbx)
- 1aa:	4c 89 63 08          	mov    %r12,0x8(%rbx)
- 1ae:	e9 30 00 00 00       	jmp    1e3 <increase_age+0xb3>
- 1b3:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 1b2 <increase_age+0x82>
- 1ba:	e8 00 00 00 00       	call   1bf <increase_age+0x8f>
- 1bf:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 1be <increase_age+0x8e>
- 1c6:	e8 00 00 00 00       	call   1cb <increase_age+0x9b>
- 1cb:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 1ca <increase_age+0x9a>
- 1d2:	e8 00 00 00 00       	call   1d7 <increase_age+0xa7>
- 1d7:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 1d6 <increase_age+0xa6>
- 1de:	e8 00 00 00 00       	call   1e3 <increase_age+0xb3>
- 1e3:	48 83 c4 08          	add    $0x8,%rsp
- 1e7:	41 5f                	pop    %r15
- 1e9:	41 5e                	pop    %r14
- 1eb:	41 5d                	pop    %r13
- 1ed:	41 5c                	pop    %r12
- 1ef:	5b                   	pop    %rbx
- 1f0:	5d                   	pop    %rbp
- 1f1:	c3                   	ret
+<increase_age>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    (%r12),%r13
+	movzbl 0x12(%r12),%eax
+	lea    0x1(%rax),%r14d
+	cmp    %al,%r14b
+	jb     <increase_age+0xa7>
+	movzbl 0x13(%r12),%eax
+	lea    0x2(%rax),%r15d
+	cmp    %al,%r15b
+	jb     <increase_age+0x9b>
+	movzwl 0x10(%r12),%eax
+	xor    %ecx,%ecx
+	sub    $0x14,%ax
+	seto   %cl
+	jo     <increase_age+0x8f>
+	mov    0x8(%r12),%rcx
+	lea    0x2b67(%rcx),%r12
+	cmp    %rcx,%r12
+	jb     <increase_age+0x83>
+	mov    %r13,(%rbx)
+	mov    %r14b,0x12(%rbx)
+	mov    %r15b,0x13(%rbx)
+	mov    %ax,0x10(%rbx)
+	mov    %r12,0x8(%rbx)
+	jmp    <increase_age+0xb3>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x82>
+	call   <increase_age+0x8f>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x8e>
+	call   <increase_age+0x9b>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x9a>
+	call   <increase_age+0xa7>
+	lea    -0x8(%rip),%rdi        # <increase_age+0xa6>
+	call   <increase_age+0xb3>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret

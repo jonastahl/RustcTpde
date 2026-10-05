@@ -11,859 +11,834 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000000000 <accumulate_u8>:
-   0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	53                   	push   %rbx
-   5:	48 83 ec 28          	sub    $0x28,%rsp
-   9:	40 88 7d d7          	mov    %dil,-0x29(%rbp)
-   d:	0f b6 45 d7          	movzbl -0x29(%rbp),%eax
-  11:	8d 1c 30             	lea    (%rax,%rsi,1),%ebx
-  14:	38 c3                	cmp    %al,%bl
-  16:	0f 82 5c 00 00 00    	jb     78 <accumulate_u8+0x78>
-  1c:	88 5d d7             	mov    %bl,-0x29(%rbp)
-  1f:	0f b6 45 d7          	movzbl -0x29(%rbp),%eax
-  23:	88 45 d6             	mov    %al,-0x2a(%rbp)
-  26:	31 c9                	xor    %ecx,%ecx
-  28:	ba 02 00 00 00       	mov    $0x2,%edx
-  2d:	0f b6 75 d6          	movzbl -0x2a(%rbp),%esi
-  31:	89 f0                	mov    %esi,%eax
-  33:	f6 e2                	mul    %dl
-  35:	0f 90 c1             	seto   %cl
-  38:	89 c3                	mov    %eax,%ebx
-  3a:	0f 80 2c 00 00 00    	jo     6c <accumulate_u8+0x6c>
-  40:	88 5d d7             	mov    %bl,-0x29(%rbp)
-  43:	0f b6 45 d7          	movzbl -0x29(%rbp),%eax
-  47:	89 c3                	mov    %eax,%ebx
-  49:	83 eb 01             	sub    $0x1,%ebx
-  4c:	3c 01                	cmp    $0x1,%al
-  4e:	0f 82 0c 00 00 00    	jb     60 <accumulate_u8+0x60>
-  54:	88 5d d7             	mov    %bl,-0x29(%rbp)
-  57:	0f b6 45 d7          	movzbl -0x29(%rbp),%eax
-  5b:	e9 24 00 00 00       	jmp    84 <accumulate_u8+0x84>
-  60:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 5f <accumulate_u8+0x5f>
-  67:	e8 00 00 00 00       	call   6c <accumulate_u8+0x6c>
-  6c:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 6b <accumulate_u8+0x6b>
-  73:	e8 00 00 00 00       	call   78 <accumulate_u8+0x78>
-  78:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 77 <accumulate_u8+0x77>
-  7f:	e8 00 00 00 00       	call   84 <accumulate_u8+0x84>
-  84:	48 83 c4 28          	add    $0x28,%rsp
-  88:	5b                   	pop    %rbx
-  89:	5d                   	pop    %rbp
-  8a:	c3                   	ret
-  8b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+<accumulate_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %dil,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	lea    (%rax,%rsi,1),%ebx
+	cmp    %al,%bl
+	jb     <accumulate_u8+0x78>
+	mov    %bl,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	xor    %ecx,%ecx
+	mov    $0x2,%edx
+	movzbl -0x2a(%rbp),%esi
+	mov    %esi,%eax
+	mul    %dl
+	seto   %cl
+	mov    %eax,%ebx
+	jo     <accumulate_u8+0x6c>
+	mov    %bl,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	mov    %eax,%ebx
+	sub    $0x1,%ebx
+	cmp    $0x1,%al
+	jb     <accumulate_u8+0x60>
+	mov    %bl,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	jmp    <accumulate_u8+0x84>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x5f>
+	call   <accumulate_u8+0x6c>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x6b>
+	call   <accumulate_u8+0x78>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x77>
+	call   <accumulate_u8+0x84>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
 
-0000000000000090 <add8_args_u32>:
-  90:	55                   	push   %rbp
-  91:	48 89 e5             	mov    %rsp,%rbp
-  94:	53                   	push   %rbx
-  95:	41 54                	push   %r12
-  97:	41 55                	push   %r13
-  99:	41 56                	push   %r14
-  9b:	41 57                	push   %r15
-  9d:	48 83 ec 08          	sub    $0x8,%rsp
-  a1:	89 d3                	mov    %edx,%ebx
-  a3:	41 89 cc             	mov    %ecx,%r12d
-  a6:	45 89 c5             	mov    %r8d,%r13d
-  a9:	45 89 ce             	mov    %r9d,%r14d
-  ac:	44 8b 7d 10          	mov    0x10(%rbp),%r15d
-  b0:	8d 34 37             	lea    (%rdi,%rsi,1),%esi
-  b3:	39 fe                	cmp    %edi,%esi
-  b5:	0f 82 9f 00 00 00    	jb     15a <add8_args_u32+0xca>
-  bb:	8d 1c 1e             	lea    (%rsi,%rbx,1),%ebx
-  be:	39 f3                	cmp    %esi,%ebx
-  c0:	0f 82 88 00 00 00    	jb     14e <add8_args_u32+0xbe>
-  c6:	46 8d 24 23          	lea    (%rbx,%r12,1),%r12d
-  ca:	41 39 dc             	cmp    %ebx,%r12d
-  cd:	0f 82 6f 00 00 00    	jb     142 <add8_args_u32+0xb2>
-  d3:	43 8d 1c 2c          	lea    (%r12,%r13,1),%ebx
-  d7:	44 39 e3             	cmp    %r12d,%ebx
-  da:	0f 82 56 00 00 00    	jb     136 <add8_args_u32+0xa6>
-  e0:	46 8d 24 33          	lea    (%rbx,%r14,1),%r12d
-  e4:	41 39 dc             	cmp    %ebx,%r12d
-  e7:	0f 82 3d 00 00 00    	jb     12a <add8_args_u32+0x9a>
-  ed:	43 8d 1c 3c          	lea    (%r12,%r15,1),%ebx
-  f1:	44 39 e3             	cmp    %r12d,%ebx
-  f4:	0f 82 24 00 00 00    	jb     11e <add8_args_u32+0x8e>
-  fa:	8b 45 18             	mov    0x18(%rbp),%eax
-  fd:	44 8d 24 03          	lea    (%rbx,%rax,1),%r12d
- 101:	41 39 dc             	cmp    %ebx,%r12d
- 104:	0f 82 08 00 00 00    	jb     112 <add8_args_u32+0x82>
- 10a:	44 89 e0             	mov    %r12d,%eax
- 10d:	e9 54 00 00 00       	jmp    166 <add8_args_u32+0xd6>
- 112:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 111 <add8_args_u32+0x81>
- 119:	e8 00 00 00 00       	call   11e <add8_args_u32+0x8e>
- 11e:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 11d <add8_args_u32+0x8d>
- 125:	e8 00 00 00 00       	call   12a <add8_args_u32+0x9a>
- 12a:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 129 <add8_args_u32+0x99>
- 131:	e8 00 00 00 00       	call   136 <add8_args_u32+0xa6>
- 136:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 135 <add8_args_u32+0xa5>
- 13d:	e8 00 00 00 00       	call   142 <add8_args_u32+0xb2>
- 142:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 141 <add8_args_u32+0xb1>
- 149:	e8 00 00 00 00       	call   14e <add8_args_u32+0xbe>
- 14e:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 14d <add8_args_u32+0xbd>
- 155:	e8 00 00 00 00       	call   15a <add8_args_u32+0xca>
- 15a:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 159 <add8_args_u32+0xc9>
- 161:	e8 00 00 00 00       	call   166 <add8_args_u32+0xd6>
- 166:	48 83 c4 08          	add    $0x8,%rsp
- 16a:	41 5f                	pop    %r15
- 16c:	41 5e                	pop    %r14
- 16e:	41 5d                	pop    %r13
- 170:	41 5c                	pop    %r12
- 172:	5b                   	pop    %rbx
- 173:	5d                   	pop    %rbp
- 174:	c3                   	ret
- 175:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 17c:	00 00 
- 17e:	66 90                	xchg   %ax,%ax
+<add8_args_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %edx,%ebx
+	mov    %ecx,%r12d
+	mov    %r8d,%r13d
+	mov    %r9d,%r14d
+	mov    0x10(%rbp),%r15d
+	lea    (%rdi,%rsi,1),%esi
+	cmp    %edi,%esi
+	jb     <add8_args_u32+0xca>
+	lea    (%rsi,%rbx,1),%ebx
+	cmp    %esi,%ebx
+	jb     <add8_args_u32+0xbe>
+	lea    (%rbx,%r12,1),%r12d
+	cmp    %ebx,%r12d
+	jb     <add8_args_u32+0xb2>
+	lea    (%r12,%r13,1),%ebx
+	cmp    %r12d,%ebx
+	jb     <add8_args_u32+0xa6>
+	lea    (%rbx,%r14,1),%r12d
+	cmp    %ebx,%r12d
+	jb     <add8_args_u32+0x9a>
+	lea    (%r12,%r15,1),%ebx
+	cmp    %r12d,%ebx
+	jb     <add8_args_u32+0x8e>
+	mov    0x18(%rbp),%eax
+	lea    (%rbx,%rax,1),%r12d
+	cmp    %ebx,%r12d
+	jb     <add8_args_u32+0x82>
+	mov    %r12d,%eax
+	jmp    <add8_args_u32+0xd6>
+	lea    -0x8(%rip),%rdi        # <add8_args_u32+0x81>
+	call   <add8_args_u32+0x8e>
+	lea    -0x8(%rip),%rdi        # <add8_args_u32+0x8d>
+	call   <add8_args_u32+0x9a>
+	lea    -0x8(%rip),%rdi        # <add8_args_u32+0x99>
+	call   <add8_args_u32+0xa6>
+	lea    -0x8(%rip),%rdi        # <add8_args_u32+0xa5>
+	call   <add8_args_u32+0xb2>
+	lea    -0x8(%rip),%rdi        # <add8_args_u32+0xb1>
+	call   <add8_args_u32+0xbe>
+	lea    -0x8(%rip),%rdi        # <add8_args_u32+0xbd>
+	call   <add8_args_u32+0xca>
+	lea    -0x8(%rip),%rdi        # <add8_args_u32+0xc9>
+	call   <add8_args_u32+0xd6>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000180 <add_i16>:
- 180:	55                   	push   %rbp
- 181:	48 89 e5             	mov    %rsp,%rbp
- 184:	53                   	push   %rbx
- 185:	48 83 ec 28          	sub    $0x28,%rsp
- 189:	31 c0                	xor    %eax,%eax
- 18b:	89 fb                	mov    %edi,%ebx
- 18d:	66 01 f3             	add    %si,%bx
- 190:	0f 90 c0             	seto   %al
- 193:	0f 80 07 00 00 00    	jo     1a0 <add_i16+0x20>
- 199:	89 d8                	mov    %ebx,%eax
- 19b:	e9 0c 00 00 00       	jmp    1ac <add_i16+0x2c>
- 1a0:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 19f <add_i16+0x1f>
- 1a7:	e8 00 00 00 00       	call   1ac <add_i16+0x2c>
- 1ac:	48 83 c4 28          	add    $0x28,%rsp
- 1b0:	5b                   	pop    %rbx
- 1b1:	5d                   	pop    %rbp
- 1b2:	c3                   	ret
- 1b3:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 1ba:	00 00 
- 1bc:	0f 1f 40 00          	nopl   0x0(%rax)
+<add_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	add    %si,%bx
+	seto   %al
+	jo     <add_i16+0x20>
+	mov    %ebx,%eax
+	jmp    <add_i16+0x2c>
+	lea    -0x8(%rip),%rdi        # <add_i16+0x1f>
+	call   <add_i16+0x2c>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
-00000000000001c0 <add_i32>:
- 1c0:	55                   	push   %rbp
- 1c1:	48 89 e5             	mov    %rsp,%rbp
- 1c4:	53                   	push   %rbx
- 1c5:	48 83 ec 28          	sub    $0x28,%rsp
- 1c9:	31 c0                	xor    %eax,%eax
- 1cb:	89 fb                	mov    %edi,%ebx
- 1cd:	01 f3                	add    %esi,%ebx
- 1cf:	0f 90 c0             	seto   %al
- 1d2:	0f 80 07 00 00 00    	jo     1df <add_i32+0x1f>
- 1d8:	89 d8                	mov    %ebx,%eax
- 1da:	e9 0c 00 00 00       	jmp    1eb <add_i32+0x2b>
- 1df:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 1de <add_i32+0x1e>
- 1e6:	e8 00 00 00 00       	call   1eb <add_i32+0x2b>
- 1eb:	48 83 c4 28          	add    $0x28,%rsp
- 1ef:	5b                   	pop    %rbx
- 1f0:	5d                   	pop    %rbp
- 1f1:	c3                   	ret
- 1f2:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 1f9:	00 00 
- 1fb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+<add_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	add    %esi,%ebx
+	seto   %al
+	jo     <add_i32+0x1f>
+	mov    %ebx,%eax
+	jmp    <add_i32+0x2b>
+	lea    -0x8(%rip),%rdi        # <add_i32+0x1e>
+	call   <add_i32+0x2b>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
-0000000000000200 <add_i64>:
- 200:	55                   	push   %rbp
- 201:	48 89 e5             	mov    %rsp,%rbp
- 204:	53                   	push   %rbx
- 205:	48 83 ec 28          	sub    $0x28,%rsp
- 209:	31 c0                	xor    %eax,%eax
- 20b:	48 89 fb             	mov    %rdi,%rbx
- 20e:	48 01 f3             	add    %rsi,%rbx
- 211:	0f 90 c0             	seto   %al
- 214:	0f 80 08 00 00 00    	jo     222 <add_i64+0x22>
- 21a:	48 89 d8             	mov    %rbx,%rax
- 21d:	e9 0c 00 00 00       	jmp    22e <add_i64+0x2e>
- 222:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 221 <add_i64+0x21>
- 229:	e8 00 00 00 00       	call   22e <add_i64+0x2e>
- 22e:	48 83 c4 28          	add    $0x28,%rsp
- 232:	5b                   	pop    %rbx
- 233:	5d                   	pop    %rbp
- 234:	c3                   	ret
- 235:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 23c:	00 00 
- 23e:	66 90                	xchg   %ax,%ax
+<add_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %rdi,%rbx
+	add    %rsi,%rbx
+	seto   %al
+	jo     <add_i64+0x22>
+	mov    %rbx,%rax
+	jmp    <add_i64+0x2e>
+	lea    -0x8(%rip),%rdi        # <add_i64+0x21>
+	call   <add_i64+0x2e>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000240 <add_i8>:
- 240:	55                   	push   %rbp
- 241:	48 89 e5             	mov    %rsp,%rbp
- 244:	53                   	push   %rbx
- 245:	48 83 ec 28          	sub    $0x28,%rsp
- 249:	31 c0                	xor    %eax,%eax
- 24b:	89 fb                	mov    %edi,%ebx
- 24d:	40 00 f3             	add    %sil,%bl
- 250:	0f 90 c0             	seto   %al
- 253:	0f 80 07 00 00 00    	jo     260 <add_i8+0x20>
- 259:	89 d8                	mov    %ebx,%eax
- 25b:	e9 0c 00 00 00       	jmp    26c <add_i8+0x2c>
- 260:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 25f <add_i8+0x1f>
- 267:	e8 00 00 00 00       	call   26c <add_i8+0x2c>
- 26c:	48 83 c4 28          	add    $0x28,%rsp
- 270:	5b                   	pop    %rbx
- 271:	5d                   	pop    %rbp
- 272:	c3                   	ret
- 273:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 27a:	00 00 
- 27c:	0f 1f 40 00          	nopl   0x0(%rax)
+<add_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	add    %sil,%bl
+	seto   %al
+	jo     <add_i8+0x20>
+	mov    %ebx,%eax
+	jmp    <add_i8+0x2c>
+	lea    -0x8(%rip),%rdi        # <add_i8+0x1f>
+	call   <add_i8+0x2c>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
-0000000000000280 <add_then_sub_u32>:
- 280:	55                   	push   %rbp
- 281:	48 89 e5             	mov    %rsp,%rbp
- 284:	53                   	push   %rbx
- 285:	41 54                	push   %r12
- 287:	41 55                	push   %r13
- 289:	48 83 ec 18          	sub    $0x18,%rsp
- 28d:	89 d3                	mov    %edx,%ebx
- 28f:	44 8d 24 37          	lea    (%rdi,%rsi,1),%r12d
- 293:	41 39 fc             	cmp    %edi,%r12d
- 296:	0f 82 23 00 00 00    	jb     2bf <add_then_sub_u32+0x3f>
- 29c:	45 89 e5             	mov    %r12d,%r13d
- 29f:	41 29 dd             	sub    %ebx,%r13d
- 2a2:	41 39 dc             	cmp    %ebx,%r12d
- 2a5:	0f 82 08 00 00 00    	jb     2b3 <add_then_sub_u32+0x33>
- 2ab:	44 89 e8             	mov    %r13d,%eax
- 2ae:	e9 18 00 00 00       	jmp    2cb <add_then_sub_u32+0x4b>
- 2b3:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 2b2 <add_then_sub_u32+0x32>
- 2ba:	e8 00 00 00 00       	call   2bf <add_then_sub_u32+0x3f>
- 2bf:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 2be <add_then_sub_u32+0x3e>
- 2c6:	e8 00 00 00 00       	call   2cb <add_then_sub_u32+0x4b>
- 2cb:	48 83 c4 18          	add    $0x18,%rsp
- 2cf:	41 5d                	pop    %r13
- 2d1:	41 5c                	pop    %r12
- 2d3:	5b                   	pop    %rbx
- 2d4:	5d                   	pop    %rbp
- 2d5:	c3                   	ret
- 2d6:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 2dd:	00 00 
- 2df:	90                   	nop
+<add_then_sub_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %edx,%ebx
+	lea    (%rdi,%rsi,1),%r12d
+	cmp    %edi,%r12d
+	jb     <add_then_sub_u32+0x3f>
+	mov    %r12d,%r13d
+	sub    %ebx,%r13d
+	cmp    %ebx,%r12d
+	jb     <add_then_sub_u32+0x33>
+	mov    %r13d,%eax
+	jmp    <add_then_sub_u32+0x4b>
+	lea    -0x8(%rip),%rdi        # <add_then_sub_u32+0x32>
+	call   <add_then_sub_u32+0x3f>
+	lea    -0x8(%rip),%rdi        # <add_then_sub_u32+0x3e>
+	call   <add_then_sub_u32+0x4b>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-00000000000002e0 <add_then_sub_u8>:
- 2e0:	55                   	push   %rbp
- 2e1:	48 89 e5             	mov    %rsp,%rbp
- 2e4:	53                   	push   %rbx
- 2e5:	41 54                	push   %r12
- 2e7:	41 55                	push   %r13
- 2e9:	48 83 ec 18          	sub    $0x18,%rsp
- 2ed:	89 d3                	mov    %edx,%ebx
- 2ef:	44 8d 24 37          	lea    (%rdi,%rsi,1),%r12d
- 2f3:	41 38 fc             	cmp    %dil,%r12b
- 2f6:	0f 82 23 00 00 00    	jb     31f <add_then_sub_u8+0x3f>
- 2fc:	45 89 e5             	mov    %r12d,%r13d
- 2ff:	41 29 dd             	sub    %ebx,%r13d
- 302:	41 38 dc             	cmp    %bl,%r12b
- 305:	0f 82 08 00 00 00    	jb     313 <add_then_sub_u8+0x33>
- 30b:	44 89 e8             	mov    %r13d,%eax
- 30e:	e9 18 00 00 00       	jmp    32b <add_then_sub_u8+0x4b>
- 313:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 312 <add_then_sub_u8+0x32>
- 31a:	e8 00 00 00 00       	call   31f <add_then_sub_u8+0x3f>
- 31f:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 31e <add_then_sub_u8+0x3e>
- 326:	e8 00 00 00 00       	call   32b <add_then_sub_u8+0x4b>
- 32b:	48 83 c4 18          	add    $0x18,%rsp
- 32f:	41 5d                	pop    %r13
- 331:	41 5c                	pop    %r12
- 333:	5b                   	pop    %rbx
- 334:	5d                   	pop    %rbp
- 335:	c3                   	ret
- 336:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 33d:	00 00 
- 33f:	90                   	nop
+<add_then_sub_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %edx,%ebx
+	lea    (%rdi,%rsi,1),%r12d
+	cmp    %dil,%r12b
+	jb     <add_then_sub_u8+0x3f>
+	mov    %r12d,%r13d
+	sub    %ebx,%r13d
+	cmp    %bl,%r12b
+	jb     <add_then_sub_u8+0x33>
+	mov    %r13d,%eax
+	jmp    <add_then_sub_u8+0x4b>
+	lea    -0x8(%rip),%rdi        # <add_then_sub_u8+0x32>
+	call   <add_then_sub_u8+0x3f>
+	lea    -0x8(%rip),%rdi        # <add_then_sub_u8+0x3e>
+	call   <add_then_sub_u8+0x4b>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-0000000000000340 <add_twice_u32>:
- 340:	55                   	push   %rbp
- 341:	48 89 e5             	mov    %rsp,%rbp
- 344:	48 83 ec 30          	sub    $0x30,%rsp
- 348:	89 75 d4             	mov    %esi,-0x2c(%rbp)
- 34b:	e8 00 00 00 00       	call   350 <add_twice_u32+0x10>
- 350:	89 c7                	mov    %eax,%edi
- 352:	8b 75 d4             	mov    -0x2c(%rbp),%esi
- 355:	e8 00 00 00 00       	call   35a <add_twice_u32+0x1a>
- 35a:	48 83 c4 30          	add    $0x30,%rsp
- 35e:	5d                   	pop    %rbp
- 35f:	c3                   	ret
+<add_twice_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %esi,-0x2c(%rbp)
+	call   <add_twice_u32+0x10>
+	mov    %eax,%edi
+	mov    -0x2c(%rbp),%esi
+	call   <add_twice_u32+0x1a>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
 
-0000000000000360 <add_u16>:
- 360:	55                   	push   %rbp
- 361:	48 89 e5             	mov    %rsp,%rbp
- 364:	53                   	push   %rbx
- 365:	48 83 ec 28          	sub    $0x28,%rsp
- 369:	8d 1c 37             	lea    (%rdi,%rsi,1),%ebx
- 36c:	66 39 fb             	cmp    %di,%bx
- 36f:	0f 82 07 00 00 00    	jb     37c <add_u16+0x1c>
- 375:	89 d8                	mov    %ebx,%eax
- 377:	e9 0c 00 00 00       	jmp    388 <add_u16+0x28>
- 37c:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 37b <add_u16+0x1b>
- 383:	e8 00 00 00 00       	call   388 <add_u16+0x28>
- 388:	48 83 c4 28          	add    $0x28,%rsp
- 38c:	5b                   	pop    %rbx
- 38d:	5d                   	pop    %rbp
- 38e:	c3                   	ret
- 38f:	90                   	nop
+<add_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	lea    (%rdi,%rsi,1),%ebx
+	cmp    %di,%bx
+	jb     <add_u16+0x1c>
+	mov    %ebx,%eax
+	jmp    <add_u16+0x28>
+	lea    -0x8(%rip),%rdi        # <add_u16+0x1b>
+	call   <add_u16+0x28>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nop
 
-0000000000000390 <add_u32>:
- 390:	55                   	push   %rbp
- 391:	48 89 e5             	mov    %rsp,%rbp
- 394:	53                   	push   %rbx
- 395:	48 83 ec 28          	sub    $0x28,%rsp
- 399:	8d 1c 37             	lea    (%rdi,%rsi,1),%ebx
- 39c:	39 fb                	cmp    %edi,%ebx
- 39e:	0f 82 07 00 00 00    	jb     3ab <add_u32+0x1b>
- 3a4:	89 d8                	mov    %ebx,%eax
- 3a6:	e9 0c 00 00 00       	jmp    3b7 <add_u32+0x27>
- 3ab:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 3aa <add_u32+0x1a>
- 3b2:	e8 00 00 00 00       	call   3b7 <add_u32+0x27>
- 3b7:	48 83 c4 28          	add    $0x28,%rsp
- 3bb:	5b                   	pop    %rbx
- 3bc:	5d                   	pop    %rbp
- 3bd:	c3                   	ret
- 3be:	66 90                	xchg   %ax,%ax
+<add_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	lea    (%rdi,%rsi,1),%ebx
+	cmp    %edi,%ebx
+	jb     <add_u32+0x1b>
+	mov    %ebx,%eax
+	jmp    <add_u32+0x27>
+	lea    -0x8(%rip),%rdi        # <add_u32+0x1a>
+	call   <add_u32+0x27>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
 
-00000000000003c0 <add_u64>:
- 3c0:	55                   	push   %rbp
- 3c1:	48 89 e5             	mov    %rsp,%rbp
- 3c4:	53                   	push   %rbx
- 3c5:	48 83 ec 28          	sub    $0x28,%rsp
- 3c9:	48 8d 1c 37          	lea    (%rdi,%rsi,1),%rbx
- 3cd:	48 39 fb             	cmp    %rdi,%rbx
- 3d0:	0f 82 08 00 00 00    	jb     3de <add_u64+0x1e>
- 3d6:	48 89 d8             	mov    %rbx,%rax
- 3d9:	e9 0c 00 00 00       	jmp    3ea <add_u64+0x2a>
- 3de:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 3dd <add_u64+0x1d>
- 3e5:	e8 00 00 00 00       	call   3ea <add_u64+0x2a>
- 3ea:	48 83 c4 28          	add    $0x28,%rsp
- 3ee:	5b                   	pop    %rbx
- 3ef:	5d                   	pop    %rbp
- 3f0:	c3                   	ret
- 3f1:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 3f8:	00 00 
- 3fa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+<add_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	lea    (%rdi,%rsi,1),%rbx
+	cmp    %rdi,%rbx
+	jb     <add_u64+0x1e>
+	mov    %rbx,%rax
+	jmp    <add_u64+0x2a>
+	lea    -0x8(%rip),%rdi        # <add_u64+0x1d>
+	call   <add_u64+0x2a>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
 
-0000000000000400 <add_u8>:
- 400:	55                   	push   %rbp
- 401:	48 89 e5             	mov    %rsp,%rbp
- 404:	53                   	push   %rbx
- 405:	48 83 ec 28          	sub    $0x28,%rsp
- 409:	8d 1c 37             	lea    (%rdi,%rsi,1),%ebx
- 40c:	40 38 fb             	cmp    %dil,%bl
- 40f:	0f 82 07 00 00 00    	jb     41c <add_u8+0x1c>
- 415:	89 d8                	mov    %ebx,%eax
- 417:	e9 0c 00 00 00       	jmp    428 <add_u8+0x28>
- 41c:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 41b <add_u8+0x1b>
- 423:	e8 00 00 00 00       	call   428 <add_u8+0x28>
- 428:	48 83 c4 28          	add    $0x28,%rsp
- 42c:	5b                   	pop    %rbx
- 42d:	5d                   	pop    %rbp
- 42e:	c3                   	ret
- 42f:	90                   	nop
+<add_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	lea    (%rdi,%rsi,1),%ebx
+	cmp    %dil,%bl
+	jb     <add_u8+0x1c>
+	mov    %ebx,%eax
+	jmp    <add_u8+0x28>
+	lea    -0x8(%rip),%rdi        # <add_u8+0x1b>
+	call   <add_u8+0x28>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nop
 
-0000000000000430 <add_usize>:
- 430:	55                   	push   %rbp
- 431:	48 89 e5             	mov    %rsp,%rbp
- 434:	53                   	push   %rbx
- 435:	48 83 ec 28          	sub    $0x28,%rsp
- 439:	48 8d 1c 37          	lea    (%rdi,%rsi,1),%rbx
- 43d:	48 39 fb             	cmp    %rdi,%rbx
- 440:	0f 82 08 00 00 00    	jb     44e <add_usize+0x1e>
- 446:	48 89 d8             	mov    %rbx,%rax
- 449:	e9 0c 00 00 00       	jmp    45a <add_usize+0x2a>
- 44e:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 44d <add_usize+0x1d>
- 455:	e8 00 00 00 00       	call   45a <add_usize+0x2a>
- 45a:	48 83 c4 28          	add    $0x28,%rsp
- 45e:	5b                   	pop    %rbx
- 45f:	5d                   	pop    %rbp
- 460:	c3                   	ret
- 461:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 468:	00 00 
- 46a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+<add_usize>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	lea    (%rdi,%rsi,1),%rbx
+	cmp    %rdi,%rbx
+	jb     <add_usize+0x1e>
+	mov    %rbx,%rax
+	jmp    <add_usize+0x2a>
+	lea    -0x8(%rip),%rdi        # <add_usize+0x1d>
+	call   <add_usize+0x2a>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
 
-0000000000000470 <branchy_i32>:
- 470:	55                   	push   %rbp
- 471:	48 89 e5             	mov    %rsp,%rbp
- 474:	53                   	push   %rbx
- 475:	41 54                	push   %r12
- 477:	41 55                	push   %r13
- 479:	48 83 ec 18          	sub    $0x18,%rsp
- 47d:	89 fb                	mov    %edi,%ebx
- 47f:	41 89 f4             	mov    %esi,%r12d
- 482:	f6 c2 01             	test   $0x1,%dl
- 485:	0f 85 26 00 00 00    	jne    4b1 <branchy_i32+0x41>
- 48b:	31 c0                	xor    %eax,%eax
- 48d:	41 89 dd             	mov    %ebx,%r13d
- 490:	45 29 e5             	sub    %r12d,%r13d
- 493:	0f 90 c0             	seto   %al
- 496:	0f 80 09 00 00 00    	jo     4a5 <branchy_i32+0x35>
- 49c:	44 89 6d d4          	mov    %r13d,-0x2c(%rbp)
- 4a0:	e9 22 00 00 00       	jmp    4c7 <branchy_i32+0x57>
- 4a5:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 4a4 <branchy_i32+0x34>
- 4ac:	e8 00 00 00 00       	call   4b1 <branchy_i32+0x41>
- 4b1:	31 c0                	xor    %eax,%eax
- 4b3:	41 89 dd             	mov    %ebx,%r13d
- 4b6:	45 0f af ec          	imul   %r12d,%r13d
- 4ba:	0f 90 c0             	seto   %al
- 4bd:	0f 80 0c 00 00 00    	jo     4cf <branchy_i32+0x5f>
- 4c3:	44 89 6d d4          	mov    %r13d,-0x2c(%rbp)
- 4c7:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 4ca:	e9 0c 00 00 00       	jmp    4db <branchy_i32+0x6b>
- 4cf:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 4ce <branchy_i32+0x5e>
- 4d6:	e8 00 00 00 00       	call   4db <branchy_i32+0x6b>
- 4db:	48 83 c4 18          	add    $0x18,%rsp
- 4df:	41 5d                	pop    %r13
- 4e1:	41 5c                	pop    %r12
- 4e3:	5b                   	pop    %rbx
- 4e4:	5d                   	pop    %rbp
- 4e5:	c3                   	ret
- 4e6:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 4ed:	00 00 
- 4ef:	90                   	nop
+<branchy_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %edi,%ebx
+	mov    %esi,%r12d
+	test   $0x1,%dl
+	jne    <branchy_i32+0x41>
+	xor    %eax,%eax
+	mov    %ebx,%r13d
+	sub    %r12d,%r13d
+	seto   %al
+	jo     <branchy_i32+0x35>
+	mov    %r13d,-0x2c(%rbp)
+	jmp    <branchy_i32+0x57>
+	lea    -0x8(%rip),%rdi        # <branchy_i32+0x34>
+	call   <branchy_i32+0x41>
+	xor    %eax,%eax
+	mov    %ebx,%r13d
+	imul   %r12d,%r13d
+	seto   %al
+	jo     <branchy_i32+0x5f>
+	mov    %r13d,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	jmp    <branchy_i32+0x6b>
+	lea    -0x8(%rip),%rdi        # <branchy_i32+0x5e>
+	call   <branchy_i32+0x6b>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-00000000000004f0 <mul_add_i32>:
- 4f0:	55                   	push   %rbp
- 4f1:	48 89 e5             	mov    %rsp,%rbp
- 4f4:	53                   	push   %rbx
- 4f5:	41 54                	push   %r12
- 4f7:	41 55                	push   %r13
- 4f9:	48 83 ec 18          	sub    $0x18,%rsp
- 4fd:	89 d3                	mov    %edx,%ebx
- 4ff:	31 c0                	xor    %eax,%eax
- 501:	41 89 fc             	mov    %edi,%r12d
- 504:	44 0f af e6          	imul   %esi,%r12d
- 508:	0f 90 c0             	seto   %al
- 50b:	0f 80 25 00 00 00    	jo     536 <mul_add_i32+0x46>
- 511:	31 c0                	xor    %eax,%eax
- 513:	45 89 e5             	mov    %r12d,%r13d
- 516:	41 01 dd             	add    %ebx,%r13d
- 519:	0f 90 c0             	seto   %al
- 51c:	0f 80 08 00 00 00    	jo     52a <mul_add_i32+0x3a>
- 522:	44 89 e8             	mov    %r13d,%eax
- 525:	e9 18 00 00 00       	jmp    542 <mul_add_i32+0x52>
- 52a:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 529 <mul_add_i32+0x39>
- 531:	e8 00 00 00 00       	call   536 <mul_add_i32+0x46>
- 536:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 535 <mul_add_i32+0x45>
- 53d:	e8 00 00 00 00       	call   542 <mul_add_i32+0x52>
- 542:	48 83 c4 18          	add    $0x18,%rsp
- 546:	41 5d                	pop    %r13
- 548:	41 5c                	pop    %r12
- 54a:	5b                   	pop    %rbx
- 54b:	5d                   	pop    %rbp
- 54c:	c3                   	ret
- 54d:	0f 1f 00             	nopl   (%rax)
+<mul_add_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %edx,%ebx
+	xor    %eax,%eax
+	mov    %edi,%r12d
+	imul   %esi,%r12d
+	seto   %al
+	jo     <mul_add_i32+0x46>
+	xor    %eax,%eax
+	mov    %r12d,%r13d
+	add    %ebx,%r13d
+	seto   %al
+	jo     <mul_add_i32+0x3a>
+	mov    %r13d,%eax
+	jmp    <mul_add_i32+0x52>
+	lea    -0x8(%rip),%rdi        # <mul_add_i32+0x39>
+	call   <mul_add_i32+0x46>
+	lea    -0x8(%rip),%rdi        # <mul_add_i32+0x45>
+	call   <mul_add_i32+0x52>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
 
-0000000000000550 <mul_i16>:
- 550:	55                   	push   %rbp
- 551:	48 89 e5             	mov    %rsp,%rbp
- 554:	53                   	push   %rbx
- 555:	48 83 ec 28          	sub    $0x28,%rsp
- 559:	31 c0                	xor    %eax,%eax
- 55b:	89 fb                	mov    %edi,%ebx
- 55d:	66 0f af de          	imul   %si,%bx
- 561:	0f 90 c0             	seto   %al
- 564:	0f 80 07 00 00 00    	jo     571 <mul_i16+0x21>
- 56a:	89 d8                	mov    %ebx,%eax
- 56c:	e9 0c 00 00 00       	jmp    57d <mul_i16+0x2d>
- 571:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 570 <mul_i16+0x20>
- 578:	e8 00 00 00 00       	call   57d <mul_i16+0x2d>
- 57d:	48 83 c4 28          	add    $0x28,%rsp
- 581:	5b                   	pop    %rbx
- 582:	5d                   	pop    %rbp
- 583:	c3                   	ret
- 584:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 58b:	00 00 
- 58d:	0f 1f 00             	nopl   (%rax)
+<mul_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	imul   %si,%bx
+	seto   %al
+	jo     <mul_i16+0x21>
+	mov    %ebx,%eax
+	jmp    <mul_i16+0x2d>
+	lea    -0x8(%rip),%rdi        # <mul_i16+0x20>
+	call   <mul_i16+0x2d>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000590 <mul_i32>:
- 590:	55                   	push   %rbp
- 591:	48 89 e5             	mov    %rsp,%rbp
- 594:	53                   	push   %rbx
- 595:	48 83 ec 28          	sub    $0x28,%rsp
- 599:	31 c0                	xor    %eax,%eax
- 59b:	89 fb                	mov    %edi,%ebx
- 59d:	0f af de             	imul   %esi,%ebx
- 5a0:	0f 90 c0             	seto   %al
- 5a3:	0f 80 07 00 00 00    	jo     5b0 <mul_i32+0x20>
- 5a9:	89 d8                	mov    %ebx,%eax
- 5ab:	e9 0c 00 00 00       	jmp    5bc <mul_i32+0x2c>
- 5b0:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 5af <mul_i32+0x1f>
- 5b7:	e8 00 00 00 00       	call   5bc <mul_i32+0x2c>
- 5bc:	48 83 c4 28          	add    $0x28,%rsp
- 5c0:	5b                   	pop    %rbx
- 5c1:	5d                   	pop    %rbp
- 5c2:	c3                   	ret
- 5c3:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 5ca:	00 00 
- 5cc:	0f 1f 40 00          	nopl   0x0(%rax)
+<mul_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	imul   %esi,%ebx
+	seto   %al
+	jo     <mul_i32+0x20>
+	mov    %ebx,%eax
+	jmp    <mul_i32+0x2c>
+	lea    -0x8(%rip),%rdi        # <mul_i32+0x1f>
+	call   <mul_i32+0x2c>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
-00000000000005d0 <mul_i64>:
- 5d0:	55                   	push   %rbp
- 5d1:	48 89 e5             	mov    %rsp,%rbp
- 5d4:	53                   	push   %rbx
- 5d5:	48 83 ec 28          	sub    $0x28,%rsp
- 5d9:	31 c0                	xor    %eax,%eax
- 5db:	48 89 fb             	mov    %rdi,%rbx
- 5de:	48 0f af de          	imul   %rsi,%rbx
- 5e2:	0f 90 c0             	seto   %al
- 5e5:	0f 80 08 00 00 00    	jo     5f3 <mul_i64+0x23>
- 5eb:	48 89 d8             	mov    %rbx,%rax
- 5ee:	e9 0c 00 00 00       	jmp    5ff <mul_i64+0x2f>
- 5f3:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 5f2 <mul_i64+0x22>
- 5fa:	e8 00 00 00 00       	call   5ff <mul_i64+0x2f>
- 5ff:	48 83 c4 28          	add    $0x28,%rsp
- 603:	5b                   	pop    %rbx
- 604:	5d                   	pop    %rbp
- 605:	c3                   	ret
- 606:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 60d:	00 00 
- 60f:	90                   	nop
+<mul_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %rdi,%rbx
+	imul   %rsi,%rbx
+	seto   %al
+	jo     <mul_i64+0x23>
+	mov    %rbx,%rax
+	jmp    <mul_i64+0x2f>
+	lea    -0x8(%rip),%rdi        # <mul_i64+0x22>
+	call   <mul_i64+0x2f>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-0000000000000610 <mul_i8>:
- 610:	55                   	push   %rbp
- 611:	48 89 e5             	mov    %rsp,%rbp
- 614:	53                   	push   %rbx
- 615:	48 83 ec 28          	sub    $0x28,%rsp
- 619:	31 c9                	xor    %ecx,%ecx
- 61b:	89 f8                	mov    %edi,%eax
- 61d:	40 f6 ee             	imul   %sil
- 620:	0f 90 c1             	seto   %cl
- 623:	89 c3                	mov    %eax,%ebx
- 625:	0f 80 07 00 00 00    	jo     632 <mul_i8+0x22>
- 62b:	89 d8                	mov    %ebx,%eax
- 62d:	e9 0c 00 00 00       	jmp    63e <mul_i8+0x2e>
- 632:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 631 <mul_i8+0x21>
- 639:	e8 00 00 00 00       	call   63e <mul_i8+0x2e>
- 63e:	48 83 c4 28          	add    $0x28,%rsp
- 642:	5b                   	pop    %rbx
- 643:	5d                   	pop    %rbp
- 644:	c3                   	ret
- 645:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 64c:	00 00 
- 64e:	66 90                	xchg   %ax,%ax
+<mul_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %ecx,%ecx
+	mov    %edi,%eax
+	imul   %sil
+	seto   %cl
+	mov    %eax,%ebx
+	jo     <mul_i8+0x22>
+	mov    %ebx,%eax
+	jmp    <mul_i8+0x2e>
+	lea    -0x8(%rip),%rdi        # <mul_i8+0x21>
+	call   <mul_i8+0x2e>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000650 <mul_isize>:
- 650:	55                   	push   %rbp
- 651:	48 89 e5             	mov    %rsp,%rbp
- 654:	53                   	push   %rbx
- 655:	48 83 ec 28          	sub    $0x28,%rsp
- 659:	31 c0                	xor    %eax,%eax
- 65b:	48 89 fb             	mov    %rdi,%rbx
- 65e:	48 0f af de          	imul   %rsi,%rbx
- 662:	0f 90 c0             	seto   %al
- 665:	0f 80 08 00 00 00    	jo     673 <mul_isize+0x23>
- 66b:	48 89 d8             	mov    %rbx,%rax
- 66e:	e9 0c 00 00 00       	jmp    67f <mul_isize+0x2f>
- 673:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 672 <mul_isize+0x22>
- 67a:	e8 00 00 00 00       	call   67f <mul_isize+0x2f>
- 67f:	48 83 c4 28          	add    $0x28,%rsp
- 683:	5b                   	pop    %rbx
- 684:	5d                   	pop    %rbp
- 685:	c3                   	ret
- 686:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 68d:	00 00 
- 68f:	90                   	nop
+<mul_isize>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %rdi,%rbx
+	imul   %rsi,%rbx
+	seto   %al
+	jo     <mul_isize+0x23>
+	mov    %rbx,%rax
+	jmp    <mul_isize+0x2f>
+	lea    -0x8(%rip),%rdi        # <mul_isize+0x22>
+	call   <mul_isize+0x2f>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-0000000000000690 <mul_u16>:
- 690:	55                   	push   %rbp
- 691:	48 89 e5             	mov    %rsp,%rbp
- 694:	53                   	push   %rbx
- 695:	48 83 ec 28          	sub    $0x28,%rsp
- 699:	31 c9                	xor    %ecx,%ecx
- 69b:	89 f8                	mov    %edi,%eax
- 69d:	66 f7 e6             	mul    %si
- 6a0:	0f 90 c1             	seto   %cl
- 6a3:	89 c3                	mov    %eax,%ebx
- 6a5:	0f 80 07 00 00 00    	jo     6b2 <mul_u16+0x22>
- 6ab:	89 d8                	mov    %ebx,%eax
- 6ad:	e9 0c 00 00 00       	jmp    6be <mul_u16+0x2e>
- 6b2:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 6b1 <mul_u16+0x21>
- 6b9:	e8 00 00 00 00       	call   6be <mul_u16+0x2e>
- 6be:	48 83 c4 28          	add    $0x28,%rsp
- 6c2:	5b                   	pop    %rbx
- 6c3:	5d                   	pop    %rbp
- 6c4:	c3                   	ret
- 6c5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 6cc:	00 00 
- 6ce:	66 90                	xchg   %ax,%ax
+<mul_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %ecx,%ecx
+	mov    %edi,%eax
+	mul    %si
+	seto   %cl
+	mov    %eax,%ebx
+	jo     <mul_u16+0x22>
+	mov    %ebx,%eax
+	jmp    <mul_u16+0x2e>
+	lea    -0x8(%rip),%rdi        # <mul_u16+0x21>
+	call   <mul_u16+0x2e>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000006d0 <mul_u32>:
- 6d0:	55                   	push   %rbp
- 6d1:	48 89 e5             	mov    %rsp,%rbp
- 6d4:	53                   	push   %rbx
- 6d5:	48 83 ec 28          	sub    $0x28,%rsp
- 6d9:	31 c9                	xor    %ecx,%ecx
- 6db:	89 f8                	mov    %edi,%eax
- 6dd:	f7 e6                	mul    %esi
- 6df:	0f 90 c1             	seto   %cl
- 6e2:	89 c3                	mov    %eax,%ebx
- 6e4:	0f 80 07 00 00 00    	jo     6f1 <mul_u32+0x21>
- 6ea:	89 d8                	mov    %ebx,%eax
- 6ec:	e9 0c 00 00 00       	jmp    6fd <mul_u32+0x2d>
- 6f1:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 6f0 <mul_u32+0x20>
- 6f8:	e8 00 00 00 00       	call   6fd <mul_u32+0x2d>
- 6fd:	48 83 c4 28          	add    $0x28,%rsp
- 701:	5b                   	pop    %rbx
- 702:	5d                   	pop    %rbp
- 703:	c3                   	ret
- 704:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 70b:	00 00 
- 70d:	0f 1f 00             	nopl   (%rax)
+<mul_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %ecx,%ecx
+	mov    %edi,%eax
+	mul    %esi
+	seto   %cl
+	mov    %eax,%ebx
+	jo     <mul_u32+0x21>
+	mov    %ebx,%eax
+	jmp    <mul_u32+0x2d>
+	lea    -0x8(%rip),%rdi        # <mul_u32+0x20>
+	call   <mul_u32+0x2d>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000710 <mul_u64>:
- 710:	55                   	push   %rbp
- 711:	48 89 e5             	mov    %rsp,%rbp
- 714:	53                   	push   %rbx
- 715:	48 83 ec 28          	sub    $0x28,%rsp
- 719:	31 c9                	xor    %ecx,%ecx
- 71b:	48 89 f8             	mov    %rdi,%rax
- 71e:	48 f7 e6             	mul    %rsi
- 721:	0f 90 c1             	seto   %cl
- 724:	48 89 c3             	mov    %rax,%rbx
- 727:	0f 80 08 00 00 00    	jo     735 <mul_u64+0x25>
- 72d:	48 89 d8             	mov    %rbx,%rax
- 730:	e9 0c 00 00 00       	jmp    741 <mul_u64+0x31>
- 735:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 734 <mul_u64+0x24>
- 73c:	e8 00 00 00 00       	call   741 <mul_u64+0x31>
- 741:	48 83 c4 28          	add    $0x28,%rsp
- 745:	5b                   	pop    %rbx
- 746:	5d                   	pop    %rbp
- 747:	c3                   	ret
- 748:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 74f:	00 
+<mul_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %ecx,%ecx
+	mov    %rdi,%rax
+	mul    %rsi
+	seto   %cl
+	mov    %rax,%rbx
+	jo     <mul_u64+0x25>
+	mov    %rbx,%rax
+	jmp    <mul_u64+0x31>
+	lea    -0x8(%rip),%rdi        # <mul_u64+0x24>
+	call   <mul_u64+0x31>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
 
-0000000000000750 <mul_u8>:
- 750:	55                   	push   %rbp
- 751:	48 89 e5             	mov    %rsp,%rbp
- 754:	53                   	push   %rbx
- 755:	48 83 ec 28          	sub    $0x28,%rsp
- 759:	31 c9                	xor    %ecx,%ecx
- 75b:	89 f8                	mov    %edi,%eax
- 75d:	40 f6 e6             	mul    %sil
- 760:	0f 90 c1             	seto   %cl
- 763:	89 c3                	mov    %eax,%ebx
- 765:	0f 80 07 00 00 00    	jo     772 <mul_u8+0x22>
- 76b:	89 d8                	mov    %ebx,%eax
- 76d:	e9 0c 00 00 00       	jmp    77e <mul_u8+0x2e>
- 772:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 771 <mul_u8+0x21>
- 779:	e8 00 00 00 00       	call   77e <mul_u8+0x2e>
- 77e:	48 83 c4 28          	add    $0x28,%rsp
- 782:	5b                   	pop    %rbx
- 783:	5d                   	pop    %rbp
- 784:	c3                   	ret
- 785:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 78c:	00 00 
- 78e:	66 90                	xchg   %ax,%ax
+<mul_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %ecx,%ecx
+	mov    %edi,%eax
+	mul    %sil
+	seto   %cl
+	mov    %eax,%ebx
+	jo     <mul_u8+0x22>
+	mov    %ebx,%eax
+	jmp    <mul_u8+0x2e>
+	lea    -0x8(%rip),%rdi        # <mul_u8+0x21>
+	call   <mul_u8+0x2e>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000790 <sub_i16>:
- 790:	55                   	push   %rbp
- 791:	48 89 e5             	mov    %rsp,%rbp
- 794:	53                   	push   %rbx
- 795:	48 83 ec 28          	sub    $0x28,%rsp
- 799:	31 c0                	xor    %eax,%eax
- 79b:	89 fb                	mov    %edi,%ebx
- 79d:	66 29 f3             	sub    %si,%bx
- 7a0:	0f 90 c0             	seto   %al
- 7a3:	0f 80 07 00 00 00    	jo     7b0 <sub_i16+0x20>
- 7a9:	89 d8                	mov    %ebx,%eax
- 7ab:	e9 0c 00 00 00       	jmp    7bc <sub_i16+0x2c>
- 7b0:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 7af <sub_i16+0x1f>
- 7b7:	e8 00 00 00 00       	call   7bc <sub_i16+0x2c>
- 7bc:	48 83 c4 28          	add    $0x28,%rsp
- 7c0:	5b                   	pop    %rbx
- 7c1:	5d                   	pop    %rbp
- 7c2:	c3                   	ret
- 7c3:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 7ca:	00 00 
- 7cc:	0f 1f 40 00          	nopl   0x0(%rax)
+<sub_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	sub    %si,%bx
+	seto   %al
+	jo     <sub_i16+0x20>
+	mov    %ebx,%eax
+	jmp    <sub_i16+0x2c>
+	lea    -0x8(%rip),%rdi        # <sub_i16+0x1f>
+	call   <sub_i16+0x2c>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
-00000000000007d0 <sub_i32>:
- 7d0:	55                   	push   %rbp
- 7d1:	48 89 e5             	mov    %rsp,%rbp
- 7d4:	53                   	push   %rbx
- 7d5:	48 83 ec 28          	sub    $0x28,%rsp
- 7d9:	31 c0                	xor    %eax,%eax
- 7db:	89 fb                	mov    %edi,%ebx
- 7dd:	29 f3                	sub    %esi,%ebx
- 7df:	0f 90 c0             	seto   %al
- 7e2:	0f 80 07 00 00 00    	jo     7ef <sub_i32+0x1f>
- 7e8:	89 d8                	mov    %ebx,%eax
- 7ea:	e9 0c 00 00 00       	jmp    7fb <sub_i32+0x2b>
- 7ef:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 7ee <sub_i32+0x1e>
- 7f6:	e8 00 00 00 00       	call   7fb <sub_i32+0x2b>
- 7fb:	48 83 c4 28          	add    $0x28,%rsp
- 7ff:	5b                   	pop    %rbx
- 800:	5d                   	pop    %rbp
- 801:	c3                   	ret
- 802:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 809:	00 00 
- 80b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+<sub_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	sub    %esi,%ebx
+	seto   %al
+	jo     <sub_i32+0x1f>
+	mov    %ebx,%eax
+	jmp    <sub_i32+0x2b>
+	lea    -0x8(%rip),%rdi        # <sub_i32+0x1e>
+	call   <sub_i32+0x2b>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
-0000000000000810 <sub_i64>:
- 810:	55                   	push   %rbp
- 811:	48 89 e5             	mov    %rsp,%rbp
- 814:	53                   	push   %rbx
- 815:	48 83 ec 28          	sub    $0x28,%rsp
- 819:	31 c0                	xor    %eax,%eax
- 81b:	48 89 fb             	mov    %rdi,%rbx
- 81e:	48 29 f3             	sub    %rsi,%rbx
- 821:	0f 90 c0             	seto   %al
- 824:	0f 80 08 00 00 00    	jo     832 <sub_i64+0x22>
- 82a:	48 89 d8             	mov    %rbx,%rax
- 82d:	e9 0c 00 00 00       	jmp    83e <sub_i64+0x2e>
- 832:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 831 <sub_i64+0x21>
- 839:	e8 00 00 00 00       	call   83e <sub_i64+0x2e>
- 83e:	48 83 c4 28          	add    $0x28,%rsp
- 842:	5b                   	pop    %rbx
- 843:	5d                   	pop    %rbp
- 844:	c3                   	ret
- 845:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 84c:	00 00 
- 84e:	66 90                	xchg   %ax,%ax
+<sub_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %rdi,%rbx
+	sub    %rsi,%rbx
+	seto   %al
+	jo     <sub_i64+0x22>
+	mov    %rbx,%rax
+	jmp    <sub_i64+0x2e>
+	lea    -0x8(%rip),%rdi        # <sub_i64+0x21>
+	call   <sub_i64+0x2e>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000850 <sub_i8>:
- 850:	55                   	push   %rbp
- 851:	48 89 e5             	mov    %rsp,%rbp
- 854:	53                   	push   %rbx
- 855:	48 83 ec 28          	sub    $0x28,%rsp
- 859:	31 c0                	xor    %eax,%eax
- 85b:	89 fb                	mov    %edi,%ebx
- 85d:	40 28 f3             	sub    %sil,%bl
- 860:	0f 90 c0             	seto   %al
- 863:	0f 80 07 00 00 00    	jo     870 <sub_i8+0x20>
- 869:	89 d8                	mov    %ebx,%eax
- 86b:	e9 0c 00 00 00       	jmp    87c <sub_i8+0x2c>
- 870:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 86f <sub_i8+0x1f>
- 877:	e8 00 00 00 00       	call   87c <sub_i8+0x2c>
- 87c:	48 83 c4 28          	add    $0x28,%rsp
- 880:	5b                   	pop    %rbx
- 881:	5d                   	pop    %rbp
- 882:	c3                   	ret
- 883:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 88a:	00 00 
- 88c:	0f 1f 40 00          	nopl   0x0(%rax)
+<sub_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	xor    %eax,%eax
+	mov    %edi,%ebx
+	sub    %sil,%bl
+	seto   %al
+	jo     <sub_i8+0x20>
+	mov    %ebx,%eax
+	jmp    <sub_i8+0x2c>
+	lea    -0x8(%rip),%rdi        # <sub_i8+0x1f>
+	call   <sub_i8+0x2c>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
-0000000000000890 <sub_u16>:
- 890:	55                   	push   %rbp
- 891:	48 89 e5             	mov    %rsp,%rbp
- 894:	53                   	push   %rbx
- 895:	48 83 ec 28          	sub    $0x28,%rsp
- 899:	89 fb                	mov    %edi,%ebx
- 89b:	29 f3                	sub    %esi,%ebx
- 89d:	66 39 f7             	cmp    %si,%di
- 8a0:	0f 82 07 00 00 00    	jb     8ad <sub_u16+0x1d>
- 8a6:	89 d8                	mov    %ebx,%eax
- 8a8:	e9 0c 00 00 00       	jmp    8b9 <sub_u16+0x29>
- 8ad:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 8ac <sub_u16+0x1c>
- 8b4:	e8 00 00 00 00       	call   8b9 <sub_u16+0x29>
- 8b9:	48 83 c4 28          	add    $0x28,%rsp
- 8bd:	5b                   	pop    %rbx
- 8be:	5d                   	pop    %rbp
- 8bf:	c3                   	ret
+<sub_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %edi,%ebx
+	sub    %esi,%ebx
+	cmp    %si,%di
+	jb     <sub_u16+0x1d>
+	mov    %ebx,%eax
+	jmp    <sub_u16+0x29>
+	lea    -0x8(%rip),%rdi        # <sub_u16+0x1c>
+	call   <sub_u16+0x29>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
 
-00000000000008c0 <sub_u32>:
- 8c0:	55                   	push   %rbp
- 8c1:	48 89 e5             	mov    %rsp,%rbp
- 8c4:	53                   	push   %rbx
- 8c5:	48 83 ec 28          	sub    $0x28,%rsp
- 8c9:	89 fb                	mov    %edi,%ebx
- 8cb:	29 f3                	sub    %esi,%ebx
- 8cd:	39 f7                	cmp    %esi,%edi
- 8cf:	0f 82 07 00 00 00    	jb     8dc <sub_u32+0x1c>
- 8d5:	89 d8                	mov    %ebx,%eax
- 8d7:	e9 0c 00 00 00       	jmp    8e8 <sub_u32+0x28>
- 8dc:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 8db <sub_u32+0x1b>
- 8e3:	e8 00 00 00 00       	call   8e8 <sub_u32+0x28>
- 8e8:	48 83 c4 28          	add    $0x28,%rsp
- 8ec:	5b                   	pop    %rbx
- 8ed:	5d                   	pop    %rbp
- 8ee:	c3                   	ret
- 8ef:	90                   	nop
+<sub_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %edi,%ebx
+	sub    %esi,%ebx
+	cmp    %esi,%edi
+	jb     <sub_u32+0x1c>
+	mov    %ebx,%eax
+	jmp    <sub_u32+0x28>
+	lea    -0x8(%rip),%rdi        # <sub_u32+0x1b>
+	call   <sub_u32+0x28>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nop
 
-00000000000008f0 <sub_u64>:
- 8f0:	55                   	push   %rbp
- 8f1:	48 89 e5             	mov    %rsp,%rbp
- 8f4:	53                   	push   %rbx
- 8f5:	48 83 ec 28          	sub    $0x28,%rsp
- 8f9:	48 89 fb             	mov    %rdi,%rbx
- 8fc:	48 29 f3             	sub    %rsi,%rbx
- 8ff:	48 39 f7             	cmp    %rsi,%rdi
- 902:	0f 82 08 00 00 00    	jb     910 <sub_u64+0x20>
- 908:	48 89 d8             	mov    %rbx,%rax
- 90b:	e9 0c 00 00 00       	jmp    91c <sub_u64+0x2c>
- 910:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 90f <sub_u64+0x1f>
- 917:	e8 00 00 00 00       	call   91c <sub_u64+0x2c>
- 91c:	48 83 c4 28          	add    $0x28,%rsp
- 920:	5b                   	pop    %rbx
- 921:	5d                   	pop    %rbp
- 922:	c3                   	ret
- 923:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 92a:	00 00 
- 92c:	0f 1f 40 00          	nopl   0x0(%rax)
+<sub_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %rdi,%rbx
+	sub    %rsi,%rbx
+	cmp    %rsi,%rdi
+	jb     <sub_u64+0x20>
+	mov    %rbx,%rax
+	jmp    <sub_u64+0x2c>
+	lea    -0x8(%rip),%rdi        # <sub_u64+0x1f>
+	call   <sub_u64+0x2c>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
-0000000000000930 <sub_u8>:
- 930:	55                   	push   %rbp
- 931:	48 89 e5             	mov    %rsp,%rbp
- 934:	53                   	push   %rbx
- 935:	48 83 ec 28          	sub    $0x28,%rsp
- 939:	89 fb                	mov    %edi,%ebx
- 93b:	29 f3                	sub    %esi,%ebx
- 93d:	40 38 f7             	cmp    %sil,%dil
- 940:	0f 82 07 00 00 00    	jb     94d <sub_u8+0x1d>
- 946:	89 d8                	mov    %ebx,%eax
- 948:	e9 0c 00 00 00       	jmp    959 <sub_u8+0x29>
- 94d:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 94c <sub_u8+0x1c>
- 954:	e8 00 00 00 00       	call   959 <sub_u8+0x29>
- 959:	48 83 c4 28          	add    $0x28,%rsp
- 95d:	5b                   	pop    %rbx
- 95e:	5d                   	pop    %rbp
- 95f:	c3                   	ret
+<sub_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %edi,%ebx
+	sub    %esi,%ebx
+	cmp    %sil,%dil
+	jb     <sub_u8+0x1d>
+	mov    %ebx,%eax
+	jmp    <sub_u8+0x29>
+	lea    -0x8(%rip),%rdi        # <sub_u8+0x1c>
+	call   <sub_u8+0x29>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
 
-0000000000000960 <sub_usize>:
- 960:	55                   	push   %rbp
- 961:	48 89 e5             	mov    %rsp,%rbp
- 964:	53                   	push   %rbx
- 965:	48 83 ec 28          	sub    $0x28,%rsp
- 969:	48 89 fb             	mov    %rdi,%rbx
- 96c:	48 29 f3             	sub    %rsi,%rbx
- 96f:	48 39 f7             	cmp    %rsi,%rdi
- 972:	0f 82 08 00 00 00    	jb     980 <sub_usize+0x20>
- 978:	48 89 d8             	mov    %rbx,%rax
- 97b:	e9 0c 00 00 00       	jmp    98c <sub_usize+0x2c>
- 980:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 97f <sub_usize+0x1f>
- 987:	e8 00 00 00 00       	call   98c <sub_usize+0x2c>
- 98c:	48 83 c4 28          	add    $0x28,%rsp
- 990:	5b                   	pop    %rbx
- 991:	5d                   	pop    %rbp
- 992:	c3                   	ret
- 993:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 99a:	00 00 
- 99c:	0f 1f 40 00          	nopl   0x0(%rax)
+<sub_usize>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %rdi,%rbx
+	sub    %rsi,%rbx
+	cmp    %rsi,%rdi
+	jb     <sub_usize+0x20>
+	mov    %rbx,%rax
+	jmp    <sub_usize+0x2c>
+	lea    -0x8(%rip),%rdi        # <sub_usize+0x1f>
+	call   <sub_usize+0x2c>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
-00000000000009a0 <sum_to_u8>:
- 9a0:	55                   	push   %rbp
- 9a1:	48 89 e5             	mov    %rsp,%rbp
- 9a4:	53                   	push   %rbx
- 9a5:	48 83 ec 28          	sub    $0x28,%rsp
- 9a9:	c6 45 d7 00          	movb   $0x0,-0x29(%rbp)
- 9ad:	c6 45 d6 01          	movb   $0x1,-0x2a(%rbp)
- 9b1:	40 88 7d d5          	mov    %dil,-0x2b(%rbp)
- 9b5:	0f b6 45 d6          	movzbl -0x2a(%rbp),%eax
- 9b9:	0f b6 4d d5          	movzbl -0x2b(%rbp),%ecx
- 9bd:	38 c8                	cmp    %cl,%al
- 9bf:	0f 87 2a 00 00 00    	ja     9ef <sum_to_u8+0x4f>
- 9c5:	0f b6 45 d6          	movzbl -0x2a(%rbp),%eax
- 9c9:	0f b6 55 d7          	movzbl -0x29(%rbp),%edx
- 9cd:	8d 1c 02             	lea    (%rdx,%rax,1),%ebx
- 9d0:	38 d3                	cmp    %dl,%bl
- 9d2:	0f 82 2c 00 00 00    	jb     a04 <sum_to_u8+0x64>
- 9d8:	88 5d d7             	mov    %bl,-0x29(%rbp)
- 9db:	0f b6 45 d6          	movzbl -0x2a(%rbp),%eax
- 9df:	8d 58 01             	lea    0x1(%rax),%ebx
- 9e2:	38 c3                	cmp    %al,%bl
- 9e4:	0f 82 0e 00 00 00    	jb     9f8 <sum_to_u8+0x58>
- 9ea:	88 5d d6             	mov    %bl,-0x2a(%rbp)
- 9ed:	eb c6                	jmp    9b5 <sum_to_u8+0x15>
- 9ef:	0f b6 45 d7          	movzbl -0x29(%rbp),%eax
- 9f3:	e9 18 00 00 00       	jmp    a10 <sum_to_u8+0x70>
- 9f8:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 9f7 <sum_to_u8+0x57>
- 9ff:	e8 00 00 00 00       	call   a04 <sum_to_u8+0x64>
- a04:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # a03 <sum_to_u8+0x63>
- a0b:	e8 00 00 00 00       	call   a10 <sum_to_u8+0x70>
- a10:	48 83 c4 28          	add    $0x28,%rsp
- a14:	5b                   	pop    %rbx
- a15:	5d                   	pop    %rbp
- a16:	c3                   	ret
+<sum_to_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	movb   $0x0,-0x29(%rbp)
+	movb   $0x1,-0x2a(%rbp)
+	mov    %dil,-0x2b(%rbp)
+	movzbl -0x2a(%rbp),%eax
+	movzbl -0x2b(%rbp),%ecx
+	cmp    %cl,%al
+	ja     <sum_to_u8+0x4f>
+	movzbl -0x2a(%rbp),%eax
+	movzbl -0x29(%rbp),%edx
+	lea    (%rdx,%rax,1),%ebx
+	cmp    %dl,%bl
+	jb     <sum_to_u8+0x64>
+	mov    %bl,-0x29(%rbp)
+	movzbl -0x2a(%rbp),%eax
+	lea    0x1(%rax),%ebx
+	cmp    %al,%bl
+	jb     <sum_to_u8+0x58>
+	mov    %bl,-0x2a(%rbp)
+	jmp    <sum_to_u8+0x15>
+	movzbl -0x29(%rbp),%eax
+	jmp    <sum_to_u8+0x70>
+	lea    -0x8(%rip),%rdi        # <sum_to_u8+0x57>
+	call   <sum_to_u8+0x64>
+	lea    -0x8(%rip),%rdi        # <sum_to_u8+0x63>
+	call   <sum_to_u8+0x70>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret

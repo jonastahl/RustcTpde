@@ -11,28 +11,28 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000000000 <_RNvMs4_NtCs94NUNretDkj_4core3fmtNtB5_9Arguments8from_strCseeGrevWVrEI_6source>:
-   0:	b8 01 00 00 00       	mov    $0x1,%eax
-   5:	83 e0 3f             	and    $0x3f,%eax
-   8:	89 c0                	mov    %eax,%eax
-   a:	89 c1                	mov    %eax,%ecx
-   c:	48 d3 e6             	shl    %cl,%rsi
-   f:	48 83 ce 01          	or     $0x1,%rsi
-  13:	48 89 f8             	mov    %rdi,%rax
-  16:	48 89 f2             	mov    %rsi,%rdx
-  19:	c3                   	ret
-  1a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+<_RNvMs4_NtCs94NUNretDkj_4core3fmtNtB5_9Arguments8from_strCseeGrevWVrEI_6source>:
+	mov    $0x1,%eax
+	and    $0x3f,%eax
+	mov    %eax,%eax
+	mov    %eax,%ecx
+	shl    %cl,%rsi
+	or     $0x1,%rsi
+	mov    %rdi,%rax
+	mov    %rsi,%rdx
+	ret
+	nopw   0x0(%rax,%rax,1)
 
-0000000000000020 <print>:
-  20:	55                   	push   %rbp
-  21:	48 89 e5             	mov    %rsp,%rbp
-  24:	48 83 ec 30          	sub    $0x30,%rsp
-  28:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # 27 <print+0x7>
-  2f:	be 0e 00 00 00       	mov    $0xe,%esi
-  34:	e8 00 00 00 00       	call   39 <print+0x19>
-  39:	48 89 c7             	mov    %rax,%rdi
-  3c:	48 89 d6             	mov    %rdx,%rsi
-  3f:	e8 00 00 00 00       	call   44 <print+0x24>
-  44:	48 83 c4 30          	add    $0x30,%rsp
-  48:	5d                   	pop    %rbp
-  49:	c3                   	ret
+<print>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	lea    -0x8(%rip),%rdi        # <print+0x7>
+	mov    $0xe,%esi
+	call   <print+0x19>
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	call   <print+0x24>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret

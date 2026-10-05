@@ -11,69 +11,62 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000000000 <find_user>:
-   0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	83 ff 64             	cmp    $0x64,%edi
-   7:	0f 87 17 00 00 00    	ja     24 <find_user+0x24>
-   d:	48 b8 0f 0f 0f 0f 0f 	movabs $0xf0f0f0f0f0f0f0f,%rax
-  14:	0f 0f 0f 
-  17:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
-  1b:	c6 45 c8 f2          	movb   $0xf2,-0x38(%rbp)
-  1f:	e9 12 00 00 00       	jmp    36 <find_user+0x36>
-  24:	48 b8 f0 f0 f0 f0 f0 	movabs $0xf0f0f0f0f0f0f0f0,%rax
-  2b:	f0 f0 f0 
-  2e:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
-  32:	c6 45 c8 f1          	movb   $0xf1,-0x38(%rbp)
-  36:	48 8b 45 c0          	mov    -0x40(%rbp),%rax
-  3a:	0f b6 4d c8          	movzbl -0x38(%rbp),%ecx
-  3e:	89 ca                	mov    %ecx,%edx
-  40:	5d                   	pop    %rbp
-  41:	c3                   	ret
-  42:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  49:	00 00 
-  4b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+<find_user>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0x64,%edi
+	ja     <find_user+0x24>
+	movabs $0xf0f0f0f0f0f0f0f,%rax
+	mov    %rax,-0x40(%rbp)
+	movb   $0xf2,-0x38(%rbp)
+	jmp    <find_user+0x36>
+	movabs $0xf0f0f0f0f0f0f0f0,%rax
+	mov    %rax,-0x40(%rbp)
+	movb   $0xf1,-0x38(%rbp)
+	mov    -0x40(%rbp),%rax
+	movzbl -0x38(%rbp),%ecx
+	mov    %ecx,%edx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
-0000000000000050 <find_user_by_age>:
-  50:	55                   	push   %rbp
-  51:	48 89 e5             	mov    %rsp,%rbp
-  54:	83 ff 64             	cmp    $0x64,%edi
-  57:	0f 87 1b 00 00 00    	ja     78 <find_user_by_age+0x28>
-  5d:	48 c7 45 c8 f2 00 00 	movq   $0xf2,-0x38(%rbp)
-  64:	00 
-  65:	48 b8 0f 0f 0f 0f 0f 	movabs $0xf0f0f0f0f0f0f0f,%rax
-  6c:	0f 0f 0f 
-  6f:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
-  73:	e9 16 00 00 00       	jmp    8e <find_user_by_age+0x3e>
-  78:	48 c7 45 c8 f1 00 00 	movq   $0xf1,-0x38(%rbp)
-  7f:	00 
-  80:	48 b8 f0 f0 f0 f0 f0 	movabs $0xf0f0f0f0f0f0f0f0,%rax
-  87:	f0 f0 f0 
-  8a:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
-  8e:	48 8b 45 c0          	mov    -0x40(%rbp),%rax
-  92:	0f b6 4d c8          	movzbl -0x38(%rbp),%ecx
-  96:	89 ca                	mov    %ecx,%edx
-  98:	5d                   	pop    %rbp
-  99:	c3                   	ret
-  9a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+<find_user_by_age>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0x64,%edi
+	ja     <find_user_by_age+0x28>
+	movq   $0xf2,-0x38(%rbp)
+	movabs $0xf0f0f0f0f0f0f0f,%rax
+	mov    %rax,-0x40(%rbp)
+	jmp    <find_user_by_age+0x3e>
+	movq   $0xf1,-0x38(%rbp)
+	movabs $0xf0f0f0f0f0f0f0f0,%rax
+	mov    %rax,-0x40(%rbp)
+	mov    -0x40(%rbp),%rax
+	movzbl -0x38(%rbp),%ecx
+	mov    %ecx,%edx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
 
-00000000000000a0 <increase_age>:
-  a0:	55                   	push   %rbp
-  a1:	48 89 e5             	mov    %rsp,%rbp
-  a4:	53                   	push   %rbx
-  a5:	41 54                	push   %r12
-  a7:	48 83 ec 20          	sub    $0x20,%rsp
-  ab:	48 89 fb             	mov    %rdi,%rbx
-  ae:	44 8d 66 01          	lea    0x1(%rsi),%r12d
-  b2:	41 38 f4             	cmp    %sil,%r12b
-  b5:	0f 82 0b 00 00 00    	jb     c6 <increase_age+0x26>
-  bb:	48 89 d8             	mov    %rbx,%rax
-  be:	44 89 e2             	mov    %r12d,%edx
-  c1:	e9 0c 00 00 00       	jmp    d2 <increase_age+0x32>
-  c6:	48 8d 3d f8 ff ff ff 	lea    -0x8(%rip),%rdi        # c5 <increase_age+0x25>
-  cd:	e8 00 00 00 00       	call   d2 <increase_age+0x32>
-  d2:	48 83 c4 20          	add    $0x20,%rsp
-  d6:	41 5c                	pop    %r12
-  d8:	5b                   	pop    %rbx
-  d9:	5d                   	pop    %rbp
-  da:	c3                   	ret
+<increase_age>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %rdi,%rbx
+	lea    0x1(%rsi),%r12d
+	cmp    %sil,%r12b
+	jb     <increase_age+0x26>
+	mov    %rbx,%rax
+	mov    %r12d,%edx
+	jmp    <increase_age+0x32>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x25>
+	call   <increase_age+0x32>
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret

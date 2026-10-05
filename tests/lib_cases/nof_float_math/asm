@@ -11,847 +11,776 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000000000 <add3_f64>:
-   0:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-   4:	f2 0f 58 c2          	addsd  %xmm2,%xmm0
-   8:	c3                   	ret
-   9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000010 <add9_args_f64>:
-  10:	55                   	push   %rbp
-  11:	48 89 e5             	mov    %rsp,%rbp
-  14:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-  18:	f2 0f 58 c2          	addsd  %xmm2,%xmm0
-  1c:	f2 0f 58 c3          	addsd  %xmm3,%xmm0
-  20:	f2 0f 58 c4          	addsd  %xmm4,%xmm0
-  24:	f2 0f 58 c5          	addsd  %xmm5,%xmm0
-  28:	f2 0f 58 c6          	addsd  %xmm6,%xmm0
-  2c:	f2 0f 58 c7          	addsd  %xmm7,%xmm0
-  30:	f2 0f 58 45 10       	addsd  0x10(%rbp),%xmm0
-  35:	5d                   	pop    %rbp
-  36:	c3                   	ret
-  37:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  3e:	00 00 
-
-0000000000000040 <add_big_f64>:
-  40:	48 b8 ff ff ff ff ff 	movabs $0x7fefffffffffffff,%rax
-  47:	ff ef 7f 
-  4a:	66 48 0f 6e c8       	movq   %rax,%xmm1
-  4f:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-  53:	c3                   	ret
-  54:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  5b:	00 00 
-  5d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000060 <add_const_f32>:
-  60:	b8 00 00 c0 3f       	mov    $0x3fc00000,%eax
-  65:	66 0f 6e c8          	movd   %eax,%xmm1
-  69:	f3 0f 58 c1          	addss  %xmm1,%xmm0
-  6d:	c3                   	ret
-  6e:	66 90                	xchg   %ax,%ax
-
-0000000000000070 <add_const_f64>:
-  70:	48 b8 00 00 00 00 00 	movabs $0x3ff8000000000000,%rax
-  77:	00 f8 3f 
-  7a:	66 48 0f 6e c8       	movq   %rax,%xmm1
-  7f:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-  83:	c3                   	ret
-  84:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  8b:	00 00 
-  8d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000090 <add_f32>:
-  90:	f3 0f 58 c1          	addss  %xmm1,%xmm0
-  94:	c3                   	ret
-  95:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  9c:	00 00 
-  9e:	66 90                	xchg   %ax,%ax
-
-00000000000000a0 <add_f64>:
-  a0:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-  a4:	c3                   	ret
-  a5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  ac:	00 00 
-  ae:	66 90                	xchg   %ax,%ax
-
-00000000000000b0 <add_inf_f64>:
-  b0:	48 b8 00 00 00 00 00 	movabs $0x7ff0000000000000,%rax
-  b7:	00 f0 7f 
-  ba:	66 48 0f 6e c8       	movq   %rax,%xmm1
-  bf:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-  c3:	c3                   	ret
-  c4:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  cb:	00 00 
-  cd:	0f 1f 00             	nopl   (%rax)
-
-00000000000000d0 <add_mul_f64>:
-  d0:	f2 0f 59 ca          	mulsd  %xmm2,%xmm1
-  d4:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-  d8:	c3                   	ret
-  d9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-00000000000000e0 <add_neg_inf_f64>:
-  e0:	48 b8 00 00 00 00 00 	movabs $0xfff0000000000000,%rax
-  e7:	00 f0 ff 
-  ea:	66 48 0f 6e c8       	movq   %rax,%xmm1
-  ef:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
-  f3:	c3                   	ret
-  f4:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  fb:	00 00 
-  fd:	0f 1f 00             	nopl   (%rax)
-
-0000000000000100 <add_neg_zero_f64>:
- 100:	48 b8 00 00 00 00 00 	movabs $0x8000000000000000,%rax
- 107:	00 00 80 
- 10a:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 10f:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
- 113:	c3                   	ret
- 114:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 11b:	00 00 
- 11d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000120 <add_sub_f64>:
- 120:	66 0f 28 d0          	movapd %xmm0,%xmm2
- 124:	f2 0f 58 d1          	addsd  %xmm1,%xmm2
- 128:	f2 0f 5c c1          	subsd  %xmm1,%xmm0
- 12c:	f2 0f 5c d0          	subsd  %xmm0,%xmm2
- 130:	66 0f 28 c2          	movapd %xmm2,%xmm0
- 134:	c3                   	ret
- 135:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 13c:	00 00 
- 13e:	66 90                	xchg   %ax,%ax
-
-0000000000000140 <add_zero_f64>:
- 140:	66 0f ef c9          	pxor   %xmm1,%xmm1
- 144:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
- 148:	c3                   	ret
- 149:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000150 <branch_const_f64>:
- 150:	55                   	push   %rbp
- 151:	48 89 e5             	mov    %rsp,%rbp
- 154:	31 c0                	xor    %eax,%eax
- 156:	48 b9 00 00 00 00 00 	movabs $0xbff4000000000000,%rcx
- 15d:	00 f4 bf 
- 160:	66 48 0f 6e c9       	movq   %rcx,%xmm1
- 165:	66 0f 2e c8          	ucomisd %xmm0,%xmm1
- 169:	0f 97 c0             	seta   %al
- 16c:	a8 01                	test   $0x1,%al
- 16e:	0f 85 0c 00 00 00    	jne    180 <branch_const_f64+0x30>
- 174:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 17b:	e9 07 00 00 00       	jmp    187 <branch_const_f64+0x37>
- 180:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 187:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 18a:	5d                   	pop    %rbp
- 18b:	c3                   	ret
- 18c:	0f 1f 40 00          	nopl   0x0(%rax)
-
-0000000000000190 <branch_eq_f32>:
- 190:	55                   	push   %rbp
- 191:	48 89 e5             	mov    %rsp,%rbp
- 194:	f3 0f c2 c1 00       	cmpeqss %xmm1,%xmm0
- 199:	66 0f 7e c0          	movd   %xmm0,%eax
- 19d:	83 e0 01             	and    $0x1,%eax
- 1a0:	a8 01                	test   $0x1,%al
- 1a2:	0f 85 0c 00 00 00    	jne    1b4 <branch_eq_f32+0x24>
- 1a8:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 1af:	e9 07 00 00 00       	jmp    1bb <branch_eq_f32+0x2b>
- 1b4:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 1bb:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 1be:	5d                   	pop    %rbp
- 1bf:	c3                   	ret
-
-00000000000001c0 <branch_eq_f64>:
- 1c0:	55                   	push   %rbp
- 1c1:	48 89 e5             	mov    %rsp,%rbp
- 1c4:	f2 0f c2 c1 00       	cmpeqsd %xmm1,%xmm0
- 1c9:	66 48 0f 7e c0       	movq   %xmm0,%rax
- 1ce:	83 e0 01             	and    $0x1,%eax
- 1d1:	a8 01                	test   $0x1,%al
- 1d3:	0f 85 0c 00 00 00    	jne    1e5 <branch_eq_f64+0x25>
- 1d9:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 1e0:	e9 07 00 00 00       	jmp    1ec <branch_eq_f64+0x2c>
- 1e5:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 1ec:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 1ef:	5d                   	pop    %rbp
- 1f0:	c3                   	ret
- 1f1:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 1f8:	00 00 
- 1fa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-0000000000000200 <branch_ge_f32>:
- 200:	55                   	push   %rbp
- 201:	48 89 e5             	mov    %rsp,%rbp
- 204:	31 c0                	xor    %eax,%eax
- 206:	0f 2e c1             	ucomiss %xmm1,%xmm0
- 209:	0f 93 c0             	setae  %al
- 20c:	a8 01                	test   $0x1,%al
- 20e:	0f 85 0c 00 00 00    	jne    220 <branch_ge_f32+0x20>
- 214:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 21b:	e9 07 00 00 00       	jmp    227 <branch_ge_f32+0x27>
- 220:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 227:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 22a:	5d                   	pop    %rbp
- 22b:	c3                   	ret
- 22c:	0f 1f 40 00          	nopl   0x0(%rax)
-
-0000000000000230 <branch_ge_f64>:
- 230:	55                   	push   %rbp
- 231:	48 89 e5             	mov    %rsp,%rbp
- 234:	31 c0                	xor    %eax,%eax
- 236:	66 0f 2e c1          	ucomisd %xmm1,%xmm0
- 23a:	0f 93 c0             	setae  %al
- 23d:	a8 01                	test   $0x1,%al
- 23f:	0f 85 0c 00 00 00    	jne    251 <branch_ge_f64+0x21>
- 245:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 24c:	e9 07 00 00 00       	jmp    258 <branch_ge_f64+0x28>
- 251:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 258:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 25b:	5d                   	pop    %rbp
- 25c:	c3                   	ret
- 25d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000260 <branch_gt_f32>:
- 260:	55                   	push   %rbp
- 261:	48 89 e5             	mov    %rsp,%rbp
- 264:	31 c0                	xor    %eax,%eax
- 266:	0f 2e c1             	ucomiss %xmm1,%xmm0
- 269:	0f 97 c0             	seta   %al
- 26c:	a8 01                	test   $0x1,%al
- 26e:	0f 85 0c 00 00 00    	jne    280 <branch_gt_f32+0x20>
- 274:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 27b:	e9 07 00 00 00       	jmp    287 <branch_gt_f32+0x27>
- 280:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 287:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 28a:	5d                   	pop    %rbp
- 28b:	c3                   	ret
- 28c:	0f 1f 40 00          	nopl   0x0(%rax)
-
-0000000000000290 <branch_gt_f64>:
- 290:	55                   	push   %rbp
- 291:	48 89 e5             	mov    %rsp,%rbp
- 294:	31 c0                	xor    %eax,%eax
- 296:	66 0f 2e c1          	ucomisd %xmm1,%xmm0
- 29a:	0f 97 c0             	seta   %al
- 29d:	a8 01                	test   $0x1,%al
- 29f:	0f 85 0c 00 00 00    	jne    2b1 <branch_gt_f64+0x21>
- 2a5:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 2ac:	e9 07 00 00 00       	jmp    2b8 <branch_gt_f64+0x28>
- 2b1:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 2b8:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 2bb:	5d                   	pop    %rbp
- 2bc:	c3                   	ret
- 2bd:	0f 1f 00             	nopl   (%rax)
-
-00000000000002c0 <branch_le_f32>:
- 2c0:	55                   	push   %rbp
- 2c1:	48 89 e5             	mov    %rsp,%rbp
- 2c4:	31 c0                	xor    %eax,%eax
- 2c6:	0f 2e c8             	ucomiss %xmm0,%xmm1
- 2c9:	0f 93 c0             	setae  %al
- 2cc:	a8 01                	test   $0x1,%al
- 2ce:	0f 85 0c 00 00 00    	jne    2e0 <branch_le_f32+0x20>
- 2d4:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 2db:	e9 07 00 00 00       	jmp    2e7 <branch_le_f32+0x27>
- 2e0:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 2e7:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 2ea:	5d                   	pop    %rbp
- 2eb:	c3                   	ret
- 2ec:	0f 1f 40 00          	nopl   0x0(%rax)
-
-00000000000002f0 <branch_le_f64>:
- 2f0:	55                   	push   %rbp
- 2f1:	48 89 e5             	mov    %rsp,%rbp
- 2f4:	31 c0                	xor    %eax,%eax
- 2f6:	66 0f 2e c8          	ucomisd %xmm0,%xmm1
- 2fa:	0f 93 c0             	setae  %al
- 2fd:	a8 01                	test   $0x1,%al
- 2ff:	0f 85 0c 00 00 00    	jne    311 <branch_le_f64+0x21>
- 305:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 30c:	e9 07 00 00 00       	jmp    318 <branch_le_f64+0x28>
- 311:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 318:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 31b:	5d                   	pop    %rbp
- 31c:	c3                   	ret
- 31d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000320 <branch_lt_f32>:
- 320:	55                   	push   %rbp
- 321:	48 89 e5             	mov    %rsp,%rbp
- 324:	31 c0                	xor    %eax,%eax
- 326:	0f 2e c8             	ucomiss %xmm0,%xmm1
- 329:	0f 97 c0             	seta   %al
- 32c:	a8 01                	test   $0x1,%al
- 32e:	0f 85 0c 00 00 00    	jne    340 <branch_lt_f32+0x20>
- 334:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 33b:	e9 07 00 00 00       	jmp    347 <branch_lt_f32+0x27>
- 340:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 347:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 34a:	5d                   	pop    %rbp
- 34b:	c3                   	ret
- 34c:	0f 1f 40 00          	nopl   0x0(%rax)
-
-0000000000000350 <branch_lt_f64>:
- 350:	55                   	push   %rbp
- 351:	48 89 e5             	mov    %rsp,%rbp
- 354:	31 c0                	xor    %eax,%eax
- 356:	66 0f 2e c8          	ucomisd %xmm0,%xmm1
- 35a:	0f 97 c0             	seta   %al
- 35d:	a8 01                	test   $0x1,%al
- 35f:	0f 85 0c 00 00 00    	jne    371 <branch_lt_f64+0x21>
- 365:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 36c:	e9 07 00 00 00       	jmp    378 <branch_lt_f64+0x28>
- 371:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 378:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 37b:	5d                   	pop    %rbp
- 37c:	c3                   	ret
- 37d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000380 <branch_ne_f32>:
- 380:	55                   	push   %rbp
- 381:	48 89 e5             	mov    %rsp,%rbp
- 384:	f3 0f c2 c1 04       	cmpneqss %xmm1,%xmm0
- 389:	66 0f 7e c0          	movd   %xmm0,%eax
- 38d:	83 e0 01             	and    $0x1,%eax
- 390:	a8 01                	test   $0x1,%al
- 392:	0f 85 0c 00 00 00    	jne    3a4 <branch_ne_f32+0x24>
- 398:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 39f:	e9 07 00 00 00       	jmp    3ab <branch_ne_f32+0x2b>
- 3a4:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 3ab:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 3ae:	5d                   	pop    %rbp
- 3af:	c3                   	ret
-
-00000000000003b0 <branch_ne_f64>:
- 3b0:	55                   	push   %rbp
- 3b1:	48 89 e5             	mov    %rsp,%rbp
- 3b4:	f2 0f c2 c1 04       	cmpneqsd %xmm1,%xmm0
- 3b9:	66 48 0f 7e c0       	movq   %xmm0,%rax
- 3be:	83 e0 01             	and    $0x1,%eax
- 3c1:	a8 01                	test   $0x1,%al
- 3c3:	0f 85 0c 00 00 00    	jne    3d5 <branch_ne_f64+0x25>
- 3c9:	c7 45 d4 14 00 00 00 	movl   $0x14,-0x2c(%rbp)
- 3d0:	e9 07 00 00 00       	jmp    3dc <branch_ne_f64+0x2c>
- 3d5:	c7 45 d4 0a 00 00 00 	movl   $0xa,-0x2c(%rbp)
- 3dc:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 3df:	5d                   	pop    %rbp
- 3e0:	c3                   	ret
- 3e1:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 3e8:	00 00 
- 3ea:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-00000000000003f0 <cmp_const_f64>:
- 3f0:	31 c0                	xor    %eax,%eax
- 3f2:	48 b9 00 00 00 00 00 	movabs $0x3fe0000000000000,%rcx
- 3f9:	00 e0 3f 
- 3fc:	66 48 0f 6e c9       	movq   %rcx,%xmm1
- 401:	66 0f 2e c1          	ucomisd %xmm1,%xmm0
- 405:	0f 97 c0             	seta   %al
- 408:	c3                   	ret
- 409:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000410 <cmp_eq_f32>:
- 410:	f3 0f c2 c1 00       	cmpeqss %xmm1,%xmm0
- 415:	66 0f 7e c0          	movd   %xmm0,%eax
- 419:	83 e0 01             	and    $0x1,%eax
- 41c:	c3                   	ret
- 41d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000420 <cmp_eq_f64>:
- 420:	f2 0f c2 c1 00       	cmpeqsd %xmm1,%xmm0
- 425:	66 48 0f 7e c0       	movq   %xmm0,%rax
- 42a:	83 e0 01             	and    $0x1,%eax
- 42d:	c3                   	ret
- 42e:	66 90                	xchg   %ax,%ax
-
-0000000000000430 <cmp_ge_f32>:
- 430:	31 c0                	xor    %eax,%eax
- 432:	0f 2e c1             	ucomiss %xmm1,%xmm0
- 435:	0f 93 c0             	setae  %al
- 438:	c3                   	ret
- 439:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000440 <cmp_ge_f64>:
- 440:	31 c0                	xor    %eax,%eax
- 442:	66 0f 2e c1          	ucomisd %xmm1,%xmm0
- 446:	0f 93 c0             	setae  %al
- 449:	c3                   	ret
- 44a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-0000000000000450 <cmp_gt_f32>:
- 450:	31 c0                	xor    %eax,%eax
- 452:	0f 2e c1             	ucomiss %xmm1,%xmm0
- 455:	0f 97 c0             	seta   %al
- 458:	c3                   	ret
- 459:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000460 <cmp_gt_f64>:
- 460:	31 c0                	xor    %eax,%eax
- 462:	66 0f 2e c1          	ucomisd %xmm1,%xmm0
- 466:	0f 97 c0             	seta   %al
- 469:	c3                   	ret
- 46a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-0000000000000470 <cmp_le_f32>:
- 470:	31 c0                	xor    %eax,%eax
- 472:	0f 2e c8             	ucomiss %xmm0,%xmm1
- 475:	0f 93 c0             	setae  %al
- 478:	c3                   	ret
- 479:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000480 <cmp_le_f64>:
- 480:	31 c0                	xor    %eax,%eax
- 482:	66 0f 2e c8          	ucomisd %xmm0,%xmm1
- 486:	0f 93 c0             	setae  %al
- 489:	c3                   	ret
- 48a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-0000000000000490 <cmp_lt_f32>:
- 490:	31 c0                	xor    %eax,%eax
- 492:	0f 2e c8             	ucomiss %xmm0,%xmm1
- 495:	0f 97 c0             	seta   %al
- 498:	c3                   	ret
- 499:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-00000000000004a0 <cmp_lt_f64>:
- 4a0:	31 c0                	xor    %eax,%eax
- 4a2:	66 0f 2e c8          	ucomisd %xmm0,%xmm1
- 4a6:	0f 97 c0             	seta   %al
- 4a9:	c3                   	ret
- 4aa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-00000000000004b0 <cmp_ne_f32>:
- 4b0:	f3 0f c2 c1 04       	cmpneqss %xmm1,%xmm0
- 4b5:	66 0f 7e c0          	movd   %xmm0,%eax
- 4b9:	83 e0 01             	and    $0x1,%eax
- 4bc:	c3                   	ret
- 4bd:	0f 1f 00             	nopl   (%rax)
-
-00000000000004c0 <cmp_ne_f64>:
- 4c0:	f2 0f c2 c1 04       	cmpneqsd %xmm1,%xmm0
- 4c5:	66 48 0f 7e c0       	movq   %xmm0,%rax
- 4ca:	83 e0 01             	and    $0x1,%eax
- 4cd:	c3                   	ret
- 4ce:	66 90                	xchg   %ax,%ax
-
-00000000000004d0 <const_div_f64>:
- 4d0:	48 b8 00 00 00 00 00 	movabs $0x3ff0000000000000,%rax
- 4d7:	00 f0 3f 
- 4da:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 4df:	f2 0f 5e c8          	divsd  %xmm0,%xmm1
- 4e3:	66 0f 28 c1          	movapd %xmm1,%xmm0
- 4e7:	c3                   	ret
- 4e8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 4ef:	00 
-
-00000000000004f0 <const_sub_f64>:
- 4f0:	48 b8 00 00 00 00 00 	movabs $0x4004000000000000,%rax
- 4f7:	00 04 40 
- 4fa:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 4ff:	f2 0f 5c c8          	subsd  %xmm0,%xmm1
- 503:	66 0f 28 c1          	movapd %xmm1,%xmm0
- 507:	c3                   	ret
- 508:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 50f:	00 
-
-0000000000000510 <div_const_f32>:
- 510:	b8 00 00 e0 40       	mov    $0x40e00000,%eax
- 515:	66 0f 6e c8          	movd   %eax,%xmm1
- 519:	f3 0f 5e c1          	divss  %xmm1,%xmm0
- 51d:	c3                   	ret
- 51e:	66 90                	xchg   %ax,%ax
-
-0000000000000520 <div_const_f64>:
- 520:	48 b8 00 00 00 00 00 	movabs $0x401c000000000000,%rax
- 527:	00 1c 40 
- 52a:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 52f:	f2 0f 5e c1          	divsd  %xmm1,%xmm0
- 533:	c3                   	ret
- 534:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 53b:	00 00 
- 53d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000540 <div_f32>:
- 540:	f3 0f 5e c1          	divss  %xmm1,%xmm0
- 544:	c3                   	ret
- 545:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 54c:	00 00 
- 54e:	66 90                	xchg   %ax,%ax
-
-0000000000000550 <div_f64>:
- 550:	f2 0f 5e c1          	divsd  %xmm1,%xmm0
- 554:	c3                   	ret
- 555:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 55c:	00 00 
- 55e:	66 90                	xchg   %ax,%ax
-
-0000000000000560 <f32_to_f64>:
- 560:	f3 0f 5a c0          	cvtss2sd %xmm0,%xmm0
- 564:	c3                   	ret
- 565:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 56c:	00 00 
- 56e:	66 90                	xchg   %ax,%ax
-
-0000000000000570 <f32_to_i32>:
- 570:	f3 0f 2c c0          	cvttss2si %xmm0,%eax
- 574:	0f 2e 05 f9 ff ff ff 	ucomiss -0x7(%rip),%xmm0        # 574 <f32_to_i32+0x4>
- 57b:	b9 ff ff ff 7f       	mov    $0x7fffffff,%ecx
- 580:	0f 46 c8             	cmovbe %eax,%ecx
- 583:	31 c0                	xor    %eax,%eax
- 585:	0f 2e c0             	ucomiss %xmm0,%xmm0
- 588:	0f 4b c1             	cmovnp %ecx,%eax
- 58b:	c3                   	ret
- 58c:	0f 1f 40 00          	nopl   0x0(%rax)
-
-0000000000000590 <f32_to_i64>:
- 590:	f3 48 0f 2c c0       	cvttss2si %xmm0,%rax
- 595:	0f 2e 05 f9 ff ff ff 	ucomiss -0x7(%rip),%xmm0        # 595 <f32_to_i64+0x5>
- 59c:	48 b9 ff ff ff ff ff 	movabs $0x7fffffffffffffff,%rcx
- 5a3:	ff ff 7f 
- 5a6:	48 0f 46 c8          	cmovbe %rax,%rcx
- 5aa:	31 c0                	xor    %eax,%eax
- 5ac:	0f 2e c0             	ucomiss %xmm0,%xmm0
- 5af:	48 0f 4b c1          	cmovnp %rcx,%rax
- 5b3:	c3                   	ret
- 5b4:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 5bb:	00 00 
- 5bd:	0f 1f 00             	nopl   (%rax)
-
-00000000000005c0 <f32_to_u32>:
- 5c0:	f3 48 0f 2c c0       	cvttss2si %xmm0,%rax
- 5c5:	31 c9                	xor    %ecx,%ecx
- 5c7:	0f 57 c9             	xorps  %xmm1,%xmm1
- 5ca:	0f 2e c1             	ucomiss %xmm1,%xmm0
- 5cd:	0f 43 c8             	cmovae %eax,%ecx
- 5d0:	0f 2e 05 f9 ff ff ff 	ucomiss -0x7(%rip),%xmm0        # 5d0 <f32_to_u32+0x10>
- 5d7:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
- 5dc:	0f 46 c1             	cmovbe %ecx,%eax
- 5df:	c3                   	ret
-
-00000000000005e0 <f32_to_u64>:
- 5e0:	f3 48 0f 2c c0       	cvttss2si %xmm0,%rax
- 5e5:	48 89 c1             	mov    %rax,%rcx
- 5e8:	48 c1 f9 3f          	sar    $0x3f,%rcx
- 5ec:	66 0f 28 c8          	movapd %xmm0,%xmm1
- 5f0:	f3 0f 5c 0d f8 ff ff 	subss  -0x8(%rip),%xmm1        # 5f0 <f32_to_u64+0x10>
- 5f7:	ff 
- 5f8:	f3 48 0f 2c d1       	cvttss2si %xmm1,%rdx
- 5fd:	48 21 ca             	and    %rcx,%rdx
- 600:	48 09 c2             	or     %rax,%rdx
- 603:	31 c9                	xor    %ecx,%ecx
- 605:	0f 57 c9             	xorps  %xmm1,%xmm1
- 608:	0f 2e c1             	ucomiss %xmm1,%xmm0
- 60b:	48 0f 43 ca          	cmovae %rdx,%rcx
- 60f:	0f 2e 05 f9 ff ff ff 	ucomiss -0x7(%rip),%xmm0        # 60f <f32_to_u64+0x2f>
- 616:	48 c7 c0 ff ff ff ff 	mov    $0xffffffffffffffff,%rax
- 61d:	48 0f 46 c1          	cmovbe %rcx,%rax
- 621:	c3                   	ret
- 622:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 629:	00 00 
- 62b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
-
-0000000000000630 <f64_to_f32>:
- 630:	f2 0f 5a c0          	cvtsd2ss %xmm0,%xmm0
- 634:	c3                   	ret
- 635:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 63c:	00 00 
- 63e:	66 90                	xchg   %ax,%ax
-
-0000000000000640 <f64_to_i32>:
- 640:	31 c0                	xor    %eax,%eax
- 642:	66 0f 2e c0          	ucomisd %xmm0,%xmm0
- 646:	f2 0f 5f 05 f8 ff ff 	maxsd  -0x8(%rip),%xmm0        # 646 <f64_to_i32+0x6>
- 64d:	ff 
- 64e:	f2 0f 5d 05 f8 ff ff 	minsd  -0x8(%rip),%xmm0        # 64e <f64_to_i32+0xe>
- 655:	ff 
- 656:	f2 0f 2c c8          	cvttsd2si %xmm0,%ecx
- 65a:	0f 4b c1             	cmovnp %ecx,%eax
- 65d:	c3                   	ret
- 65e:	66 90                	xchg   %ax,%ax
-
-0000000000000660 <f64_to_i64>:
- 660:	f2 48 0f 2c c0       	cvttsd2si %xmm0,%rax
- 665:	66 0f 2e 05 f8 ff ff 	ucomisd -0x8(%rip),%xmm0        # 665 <f64_to_i64+0x5>
- 66c:	ff 
- 66d:	48 b9 ff ff ff ff ff 	movabs $0x7fffffffffffffff,%rcx
- 674:	ff ff 7f 
- 677:	48 0f 46 c8          	cmovbe %rax,%rcx
- 67b:	31 c0                	xor    %eax,%eax
- 67d:	66 0f 2e c0          	ucomisd %xmm0,%xmm0
- 681:	48 0f 4b c1          	cmovnp %rcx,%rax
- 685:	c3                   	ret
- 686:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 68d:	00 00 
- 68f:	90                   	nop
-
-0000000000000690 <f64_to_u32>:
- 690:	66 0f 57 c9          	xorpd  %xmm1,%xmm1
- 694:	f2 0f 5f c8          	maxsd  %xmm0,%xmm1
- 698:	f2 0f 10 05 f8 ff ff 	movsd  -0x8(%rip),%xmm0        # 698 <f64_to_u32+0x8>
- 69f:	ff 
- 6a0:	f2 0f 5d c1          	minsd  %xmm1,%xmm0
- 6a4:	f2 48 0f 2c c0       	cvttsd2si %xmm0,%rax
- 6a9:	c3                   	ret
- 6aa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-00000000000006b0 <f64_to_u64>:
- 6b0:	f2 48 0f 2c c0       	cvttsd2si %xmm0,%rax
- 6b5:	48 89 c1             	mov    %rax,%rcx
- 6b8:	48 c1 f9 3f          	sar    $0x3f,%rcx
- 6bc:	66 0f 28 c8          	movapd %xmm0,%xmm1
- 6c0:	f2 0f 5c 0d f8 ff ff 	subsd  -0x8(%rip),%xmm1        # 6c0 <f64_to_u64+0x10>
- 6c7:	ff 
- 6c8:	f2 48 0f 2c d1       	cvttsd2si %xmm1,%rdx
- 6cd:	48 21 ca             	and    %rcx,%rdx
- 6d0:	48 09 c2             	or     %rax,%rdx
- 6d3:	31 c9                	xor    %ecx,%ecx
- 6d5:	66 0f 57 c9          	xorpd  %xmm1,%xmm1
- 6d9:	66 0f 2e c1          	ucomisd %xmm1,%xmm0
- 6dd:	48 0f 43 ca          	cmovae %rdx,%rcx
- 6e1:	66 0f 2e 05 f8 ff ff 	ucomisd -0x8(%rip),%xmm0        # 6e1 <f64_to_u64+0x31>
- 6e8:	ff 
- 6e9:	48 c7 c0 ff ff ff ff 	mov    $0xffffffffffffffff,%rax
- 6f0:	48 0f 46 c1          	cmovbe %rcx,%rax
- 6f4:	c3                   	ret
- 6f5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 6fc:	00 00 
- 6fe:	66 90                	xchg   %ax,%ax
-
-0000000000000700 <i32_to_f32>:
- 700:	f3 0f 2a c7          	cvtsi2ss %edi,%xmm0
- 704:	c3                   	ret
- 705:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 70c:	00 00 
- 70e:	66 90                	xchg   %ax,%ax
-
-0000000000000710 <i32_to_f64>:
- 710:	f2 0f 2a c7          	cvtsi2sd %edi,%xmm0
- 714:	c3                   	ret
- 715:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 71c:	00 00 
- 71e:	66 90                	xchg   %ax,%ax
-
-0000000000000720 <i64_to_f32>:
- 720:	f3 48 0f 2a c7       	cvtsi2ss %rdi,%xmm0
- 725:	c3                   	ret
- 726:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 72d:	00 00 
- 72f:	90                   	nop
-
-0000000000000730 <i64_to_f64>:
- 730:	f2 48 0f 2a c7       	cvtsi2sd %rdi,%xmm0
- 735:	c3                   	ret
- 736:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 73d:	00 00 
- 73f:	90                   	nop
-
-0000000000000740 <mixed_args>:
- 740:	f2 0f 58 c1          	addsd  %xmm1,%xmm0
- 744:	f2 0f 58 c2          	addsd  %xmm2,%xmm0
- 748:	48 8d 3c 37          	lea    (%rdi,%rsi,1),%rdi
- 74c:	48 8d 3c 17          	lea    (%rdi,%rdx,1),%rdi
- 750:	66 48 0f 6e cf       	movq   %rdi,%xmm1
- 755:	66 0f 62 0d f8 ff ff 	punpckldq -0x8(%rip),%xmm1        # 755 <mixed_args+0x15>
- 75c:	ff 
- 75d:	66 0f 5c 0d f8 ff ff 	subpd  -0x8(%rip),%xmm1        # 75d <mixed_args+0x1d>
- 764:	ff 
- 765:	66 0f 28 d1          	movapd %xmm1,%xmm2
- 769:	66 0f 15 d1          	unpckhpd %xmm1,%xmm2
- 76d:	f2 0f 58 d1          	addsd  %xmm1,%xmm2
- 771:	f2 0f 59 c2          	mulsd  %xmm2,%xmm0
- 775:	c3                   	ret
- 776:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 77d:	00 00 
- 77f:	90                   	nop
-
-0000000000000780 <mul_add_f32>:
- 780:	f3 0f 59 c1          	mulss  %xmm1,%xmm0
- 784:	f3 0f 58 c2          	addss  %xmm2,%xmm0
- 788:	c3                   	ret
- 789:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000790 <mul_add_f64>:
- 790:	f2 0f 59 c1          	mulsd  %xmm1,%xmm0
- 794:	f2 0f 58 c2          	addsd  %xmm2,%xmm0
- 798:	c3                   	ret
- 799:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-00000000000007a0 <mul_const_f32>:
- 7a0:	b8 00 00 40 40       	mov    $0x40400000,%eax
- 7a5:	66 0f 6e c8          	movd   %eax,%xmm1
- 7a9:	f3 0f 59 c1          	mulss  %xmm1,%xmm0
- 7ad:	c3                   	ret
- 7ae:	66 90                	xchg   %ax,%ax
-
-00000000000007b0 <mul_const_f64>:
- 7b0:	48 b8 00 00 00 00 00 	movabs $0x4008000000000000,%rax
- 7b7:	00 08 40 
- 7ba:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 7bf:	f2 0f 59 c1          	mulsd  %xmm1,%xmm0
- 7c3:	c3                   	ret
- 7c4:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 7cb:	00 00 
- 7cd:	0f 1f 00             	nopl   (%rax)
-
-00000000000007d0 <mul_f32>:
- 7d0:	f3 0f 59 c1          	mulss  %xmm1,%xmm0
- 7d4:	c3                   	ret
- 7d5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 7dc:	00 00 
- 7de:	66 90                	xchg   %ax,%ax
-
-00000000000007e0 <mul_f64>:
- 7e0:	f2 0f 59 c1          	mulsd  %xmm1,%xmm0
- 7e4:	c3                   	ret
- 7e5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 7ec:	00 00 
- 7ee:	66 90                	xchg   %ax,%ax
-
-00000000000007f0 <mul_neg_one_f64>:
- 7f0:	48 b8 00 00 00 00 00 	movabs $0xbff0000000000000,%rax
- 7f7:	00 f0 bf 
- 7fa:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 7ff:	f2 0f 59 c1          	mulsd  %xmm1,%xmm0
- 803:	c3                   	ret
- 804:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 80b:	00 00 
- 80d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000810 <mul_one_f64>:
- 810:	48 b8 00 00 00 00 00 	movabs $0x3ff0000000000000,%rax
- 817:	00 f0 3f 
- 81a:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 81f:	f2 0f 59 c1          	mulsd  %xmm1,%xmm0
- 823:	c3                   	ret
- 824:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 82b:	00 00 
- 82d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000830 <mul_pi_f64>:
- 830:	48 b8 18 2d 44 54 fb 	movabs $0x400921fb54442d18,%rax
- 837:	21 09 40 
- 83a:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 83f:	f2 0f 59 c1          	mulsd  %xmm1,%xmm0
- 843:	c3                   	ret
- 844:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 84b:	00 00 
- 84d:	0f 1f 00             	nopl   (%rax)
-
-0000000000000850 <neg_f32>:
- 850:	0f 57 05 f9 ff ff ff 	xorps  -0x7(%rip),%xmm0        # 850 <neg_f32>
- 857:	c3                   	ret
- 858:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 85f:	00 
-
-0000000000000860 <neg_f64>:
- 860:	0f 57 05 f9 ff ff ff 	xorps  -0x7(%rip),%xmm0        # 860 <neg_f64>
- 867:	c3                   	ret
- 868:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 86f:	00 
-
-0000000000000870 <rem_f32>:
- 870:	55                   	push   %rbp
- 871:	48 89 e5             	mov    %rsp,%rbp
- 874:	48 83 ec 30          	sub    $0x30,%rsp
- 878:	e8 00 00 00 00       	call   87d <rem_f32+0xd>
- 87d:	48 83 c4 30          	add    $0x30,%rsp
- 881:	5d                   	pop    %rbp
- 882:	c3                   	ret
- 883:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 88a:	00 00 
- 88c:	0f 1f 40 00          	nopl   0x0(%rax)
-
-0000000000000890 <rem_f64>:
- 890:	55                   	push   %rbp
- 891:	48 89 e5             	mov    %rsp,%rbp
- 894:	48 83 ec 30          	sub    $0x30,%rsp
- 898:	e8 00 00 00 00       	call   89d <rem_f64+0xd>
- 89d:	48 83 c4 30          	add    $0x30,%rsp
- 8a1:	5d                   	pop    %rbp
- 8a2:	c3                   	ret
- 8a3:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 8aa:	00 00 
- 8ac:	0f 1f 40 00          	nopl   0x0(%rax)
-
-00000000000008b0 <ret_const_f32>:
- 8b0:	b8 00 00 20 3e       	mov    $0x3e200000,%eax
- 8b5:	66 0f 6e c0          	movd   %eax,%xmm0
- 8b9:	c3                   	ret
- 8ba:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
-
-00000000000008c0 <ret_const_f64>:
- 8c0:	48 b8 9a 99 99 99 99 	movabs $0xbfb999999999999a,%rax
- 8c7:	99 b9 bf 
- 8ca:	66 48 0f 6e c0       	movq   %rax,%xmm0
- 8cf:	c3                   	ret
-
-00000000000008d0 <sub_const_f32>:
- 8d0:	b8 cd cc cc 3d       	mov    $0x3dcccccd,%eax
- 8d5:	66 0f 6e c8          	movd   %eax,%xmm1
- 8d9:	f3 0f 5c c1          	subss  %xmm1,%xmm0
- 8dd:	c3                   	ret
- 8de:	66 90                	xchg   %ax,%ax
-
-00000000000008e0 <sub_const_f64>:
- 8e0:	48 b8 9a 99 99 99 99 	movabs $0x3fb999999999999a,%rax
- 8e7:	99 b9 3f 
- 8ea:	66 48 0f 6e c8       	movq   %rax,%xmm1
- 8ef:	f2 0f 5c c1          	subsd  %xmm1,%xmm0
- 8f3:	c3                   	ret
- 8f4:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 8fb:	00 00 
- 8fd:	0f 1f 00             	nopl   (%rax)
-
-0000000000000900 <sub_f32>:
- 900:	f3 0f 5c c1          	subss  %xmm1,%xmm0
- 904:	c3                   	ret
- 905:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 90c:	00 00 
- 90e:	66 90                	xchg   %ax,%ax
-
-0000000000000910 <sub_f64>:
- 910:	f2 0f 5c c1          	subsd  %xmm1,%xmm0
- 914:	c3                   	ret
- 915:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 91c:	00 00 
- 91e:	66 90                	xchg   %ax,%ax
-
-0000000000000920 <u32_to_f32>:
- 920:	89 ff                	mov    %edi,%edi
- 922:	f3 48 0f 2a c7       	cvtsi2ss %rdi,%xmm0
- 927:	c3                   	ret
- 928:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 92f:	00 
-
-0000000000000930 <u32_to_f64>:
- 930:	89 ff                	mov    %edi,%edi
- 932:	f2 48 0f 2a c7       	cvtsi2sd %rdi,%xmm0
- 937:	c3                   	ret
- 938:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 93f:	00 
-
-0000000000000940 <u64_to_f32>:
- 940:	48 85 ff             	test   %rdi,%rdi
- 943:	0f 88 0a 00 00 00    	js     953 <u64_to_f32+0x13>
- 949:	f3 48 0f 2a c7       	cvtsi2ss %rdi,%xmm0
- 94e:	e9 15 00 00 00       	jmp    968 <u64_to_f32+0x28>
- 953:	48 89 f8             	mov    %rdi,%rax
- 956:	48 d1 e8             	shr    $1,%rax
- 959:	83 e7 01             	and    $0x1,%edi
- 95c:	48 09 c7             	or     %rax,%rdi
- 95f:	f3 48 0f 2a c7       	cvtsi2ss %rdi,%xmm0
- 964:	f3 0f 58 c0          	addss  %xmm0,%xmm0
- 968:	c3                   	ret
- 969:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
-
-0000000000000970 <u64_to_f64>:
- 970:	66 48 0f 6e c7       	movq   %rdi,%xmm0
- 975:	66 0f 62 05 f8 ff ff 	punpckldq -0x8(%rip),%xmm0        # 975 <u64_to_f64+0x5>
- 97c:	ff 
- 97d:	66 0f 5c 05 f8 ff ff 	subpd  -0x8(%rip),%xmm0        # 97d <u64_to_f64+0xd>
- 984:	ff 
- 985:	66 0f 28 c8          	movapd %xmm0,%xmm1
- 989:	66 0f 15 c8          	unpckhpd %xmm0,%xmm1
- 98d:	f2 0f 58 c8          	addsd  %xmm0,%xmm1
- 991:	66 0f 28 c1          	movapd %xmm1,%xmm0
- 995:	c3                   	ret
+<add3_f64>:
+	addsd  %xmm1,%xmm0
+	addsd  %xmm2,%xmm0
+	ret
+	nopl   0x0(%rax)
+
+<add9_args_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	addsd  %xmm1,%xmm0
+	addsd  %xmm2,%xmm0
+	addsd  %xmm3,%xmm0
+	addsd  %xmm4,%xmm0
+	addsd  %xmm5,%xmm0
+	addsd  %xmm6,%xmm0
+	addsd  %xmm7,%xmm0
+	addsd  0x10(%rbp),%xmm0
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<add_big_f64>:
+	movabs $0x7fefffffffffffff,%rax
+	movq   %rax,%xmm1
+	addsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<add_const_f32>:
+	mov    $0x3fc00000,%eax
+	movd   %eax,%xmm1
+	addss  %xmm1,%xmm0
+	ret
+	xchg   %ax,%ax
+
+<add_const_f64>:
+	movabs $0x3ff8000000000000,%rax
+	movq   %rax,%xmm1
+	addsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<add_f32>:
+	addss  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<add_f64>:
+	addsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<add_inf_f64>:
+	movabs $0x7ff0000000000000,%rax
+	movq   %rax,%xmm1
+	addsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<add_mul_f64>:
+	mulsd  %xmm2,%xmm1
+	addsd  %xmm1,%xmm0
+	ret
+	nopl   0x0(%rax)
+
+<add_neg_inf_f64>:
+	movabs $0xfff0000000000000,%rax
+	movq   %rax,%xmm1
+	addsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<add_neg_zero_f64>:
+	movabs $0x8000000000000000,%rax
+	movq   %rax,%xmm1
+	addsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<add_sub_f64>:
+	movapd %xmm0,%xmm2
+	addsd  %xmm1,%xmm2
+	subsd  %xmm1,%xmm0
+	subsd  %xmm0,%xmm2
+	movapd %xmm2,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<add_zero_f64>:
+	pxor   %xmm1,%xmm1
+	addsd  %xmm1,%xmm0
+	ret
+	nopl   0x0(%rax)
+
+<branch_const_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	movabs $0xbff4000000000000,%rcx
+	movq   %rcx,%xmm1
+	ucomisd %xmm0,%xmm1
+	seta   %al
+	test   $0x1,%al
+	jne    <branch_const_f64+0x30>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_const_f64+0x37>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<branch_eq_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmpeqss %xmm1,%xmm0
+	movd   %xmm0,%eax
+	and    $0x1,%eax
+	test   $0x1,%al
+	jne    <branch_eq_f32+0x24>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_eq_f32+0x2b>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+
+<branch_eq_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmpeqsd %xmm1,%xmm0
+	movq   %xmm0,%rax
+	and    $0x1,%eax
+	test   $0x1,%al
+	jne    <branch_eq_f64+0x25>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_eq_f64+0x2c>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+
+<branch_ge_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomiss %xmm1,%xmm0
+	setae  %al
+	test   $0x1,%al
+	jne    <branch_ge_f32+0x20>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_ge_f32+0x27>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<branch_ge_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomisd %xmm1,%xmm0
+	setae  %al
+	test   $0x1,%al
+	jne    <branch_ge_f64+0x21>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_ge_f64+0x28>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<branch_gt_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomiss %xmm1,%xmm0
+	seta   %al
+	test   $0x1,%al
+	jne    <branch_gt_f32+0x20>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_gt_f32+0x27>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<branch_gt_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomisd %xmm1,%xmm0
+	seta   %al
+	test   $0x1,%al
+	jne    <branch_gt_f64+0x21>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_gt_f64+0x28>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<branch_le_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm1
+	setae  %al
+	test   $0x1,%al
+	jne    <branch_le_f32+0x20>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_le_f32+0x27>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<branch_le_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm1
+	setae  %al
+	test   $0x1,%al
+	jne    <branch_le_f64+0x21>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_le_f64+0x28>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<branch_lt_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm1
+	seta   %al
+	test   $0x1,%al
+	jne    <branch_lt_f32+0x20>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_lt_f32+0x27>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<branch_lt_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm1
+	seta   %al
+	test   $0x1,%al
+	jne    <branch_lt_f64+0x21>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_lt_f64+0x28>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<branch_ne_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmpneqss %xmm1,%xmm0
+	movd   %xmm0,%eax
+	and    $0x1,%eax
+	test   $0x1,%al
+	jne    <branch_ne_f32+0x24>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_ne_f32+0x2b>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+
+<branch_ne_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmpneqsd %xmm1,%xmm0
+	movq   %xmm0,%rax
+	and    $0x1,%eax
+	test   $0x1,%al
+	jne    <branch_ne_f64+0x25>
+	movl   $0x14,-0x2c(%rbp)
+	jmp    <branch_ne_f64+0x2c>
+	movl   $0xa,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+
+<cmp_const_f64>:
+	xor    %eax,%eax
+	movabs $0x3fe0000000000000,%rcx
+	movq   %rcx,%xmm1
+	ucomisd %xmm1,%xmm0
+	seta   %al
+	ret
+	nopl   0x0(%rax)
+
+<cmp_eq_f32>:
+	cmpeqss %xmm1,%xmm0
+	movd   %xmm0,%eax
+	and    $0x1,%eax
+	ret
+	nopl   (%rax)
+
+<cmp_eq_f64>:
+	cmpeqsd %xmm1,%xmm0
+	movq   %xmm0,%rax
+	and    $0x1,%eax
+	ret
+	xchg   %ax,%ax
+
+<cmp_ge_f32>:
+	xor    %eax,%eax
+	ucomiss %xmm1,%xmm0
+	setae  %al
+	ret
+	nopl   0x0(%rax)
+
+<cmp_ge_f64>:
+	xor    %eax,%eax
+	ucomisd %xmm1,%xmm0
+	setae  %al
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<cmp_gt_f32>:
+	xor    %eax,%eax
+	ucomiss %xmm1,%xmm0
+	seta   %al
+	ret
+	nopl   0x0(%rax)
+
+<cmp_gt_f64>:
+	xor    %eax,%eax
+	ucomisd %xmm1,%xmm0
+	seta   %al
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<cmp_le_f32>:
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm1
+	setae  %al
+	ret
+	nopl   0x0(%rax)
+
+<cmp_le_f64>:
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm1
+	setae  %al
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<cmp_lt_f32>:
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm1
+	seta   %al
+	ret
+	nopl   0x0(%rax)
+
+<cmp_lt_f64>:
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm1
+	seta   %al
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<cmp_ne_f32>:
+	cmpneqss %xmm1,%xmm0
+	movd   %xmm0,%eax
+	and    $0x1,%eax
+	ret
+	nopl   (%rax)
+
+<cmp_ne_f64>:
+	cmpneqsd %xmm1,%xmm0
+	movq   %xmm0,%rax
+	and    $0x1,%eax
+	ret
+	xchg   %ax,%ax
+
+<const_div_f64>:
+	movabs $0x3ff0000000000000,%rax
+	movq   %rax,%xmm1
+	divsd  %xmm0,%xmm1
+	movapd %xmm1,%xmm0
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<const_sub_f64>:
+	movabs $0x4004000000000000,%rax
+	movq   %rax,%xmm1
+	subsd  %xmm0,%xmm1
+	movapd %xmm1,%xmm0
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<div_const_f32>:
+	mov    $0x40e00000,%eax
+	movd   %eax,%xmm1
+	divss  %xmm1,%xmm0
+	ret
+	xchg   %ax,%ax
+
+<div_const_f64>:
+	movabs $0x401c000000000000,%rax
+	movq   %rax,%xmm1
+	divsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<div_f32>:
+	divss  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<div_f64>:
+	divsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<f32_to_f64>:
+	cvtss2sd %xmm0,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<f32_to_i32>:
+	cvttss2si %xmm0,%eax
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_i32+0x4>
+	mov    $0x7fffffff,%ecx
+	cmovbe %eax,%ecx
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm0
+	cmovnp %ecx,%eax
+	ret
+	nopl   0x0(%rax)
+
+<f32_to_i64>:
+	cvttss2si %xmm0,%rax
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_i64+0x5>
+	movabs $0x7fffffffffffffff,%rcx
+	cmovbe %rax,%rcx
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm0
+	cmovnp %rcx,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<f32_to_u32>:
+	cvttss2si %xmm0,%rax
+	xor    %ecx,%ecx
+	xorps  %xmm1,%xmm1
+	ucomiss %xmm1,%xmm0
+	cmovae %eax,%ecx
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_u32+0x10>
+	mov    $0xffffffff,%eax
+	cmovbe %ecx,%eax
+	ret
+
+<f32_to_u64>:
+	cvttss2si %xmm0,%rax
+	mov    %rax,%rcx
+	sar    $0x3f,%rcx
+	movapd %xmm0,%xmm1
+	subss  -0x8(%rip),%xmm1        # <f32_to_u64+0x10>
+	cvttss2si %xmm1,%rdx
+	and    %rcx,%rdx
+	or     %rax,%rdx
+	xor    %ecx,%ecx
+	xorps  %xmm1,%xmm1
+	ucomiss %xmm1,%xmm0
+	cmovae %rdx,%rcx
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_u64+0x2f>
+	mov    $0xffffffffffffffff,%rax
+	cmovbe %rcx,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<f64_to_f32>:
+	cvtsd2ss %xmm0,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<f64_to_i32>:
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm0
+	maxsd  -0x8(%rip),%xmm0        # <f64_to_i32+0x6>
+	minsd  -0x8(%rip),%xmm0        # <f64_to_i32+0xe>
+	cvttsd2si %xmm0,%ecx
+	cmovnp %ecx,%eax
+	ret
+	xchg   %ax,%ax
+
+<f64_to_i64>:
+	cvttsd2si %xmm0,%rax
+	ucomisd -0x8(%rip),%xmm0        # <f64_to_i64+0x5>
+	movabs $0x7fffffffffffffff,%rcx
+	cmovbe %rax,%rcx
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm0
+	cmovnp %rcx,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<f64_to_u32>:
+	xorpd  %xmm1,%xmm1
+	maxsd  %xmm0,%xmm1
+	movsd  -0x8(%rip),%xmm0        # <f64_to_u32+0x8>
+	minsd  %xmm1,%xmm0
+	cvttsd2si %xmm0,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<f64_to_u64>:
+	cvttsd2si %xmm0,%rax
+	mov    %rax,%rcx
+	sar    $0x3f,%rcx
+	movapd %xmm0,%xmm1
+	subsd  -0x8(%rip),%xmm1        # <f64_to_u64+0x10>
+	cvttsd2si %xmm1,%rdx
+	and    %rcx,%rdx
+	or     %rax,%rdx
+	xor    %ecx,%ecx
+	xorpd  %xmm1,%xmm1
+	ucomisd %xmm1,%xmm0
+	cmovae %rdx,%rcx
+	ucomisd -0x8(%rip),%xmm0        # <f64_to_u64+0x31>
+	mov    $0xffffffffffffffff,%rax
+	cmovbe %rcx,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<i32_to_f32>:
+	cvtsi2ss %edi,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<i32_to_f64>:
+	cvtsi2sd %edi,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<i64_to_f32>:
+	cvtsi2ss %rdi,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<i64_to_f64>:
+	cvtsi2sd %rdi,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<mixed_args>:
+	addsd  %xmm1,%xmm0
+	addsd  %xmm2,%xmm0
+	lea    (%rdi,%rsi,1),%rdi
+	lea    (%rdi,%rdx,1),%rdi
+	movq   %rdi,%xmm1
+	punpckldq -0x8(%rip),%xmm1        # <mixed_args+0x15>
+	subpd  -0x8(%rip),%xmm1        # <mixed_args+0x1d>
+	movapd %xmm1,%xmm2
+	unpckhpd %xmm1,%xmm2
+	addsd  %xmm1,%xmm2
+	mulsd  %xmm2,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<mul_add_f32>:
+	mulss  %xmm1,%xmm0
+	addss  %xmm2,%xmm0
+	ret
+	nopl   0x0(%rax)
+
+<mul_add_f64>:
+	mulsd  %xmm1,%xmm0
+	addsd  %xmm2,%xmm0
+	ret
+	nopl   0x0(%rax)
+
+<mul_const_f32>:
+	mov    $0x40400000,%eax
+	movd   %eax,%xmm1
+	mulss  %xmm1,%xmm0
+	ret
+	xchg   %ax,%ax
+
+<mul_const_f64>:
+	movabs $0x4008000000000000,%rax
+	movq   %rax,%xmm1
+	mulsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<mul_f32>:
+	mulss  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<mul_f64>:
+	mulsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<mul_neg_one_f64>:
+	movabs $0xbff0000000000000,%rax
+	movq   %rax,%xmm1
+	mulsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<mul_one_f64>:
+	movabs $0x3ff0000000000000,%rax
+	movq   %rax,%xmm1
+	mulsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<mul_pi_f64>:
+	movabs $0x400921fb54442d18,%rax
+	movq   %rax,%xmm1
+	mulsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<neg_f32>:
+	xorps  -0x7(%rip),%xmm0        # <neg_f32>
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<neg_f64>:
+	xorps  -0x7(%rip),%xmm0        # <neg_f64>
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<rem_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <rem_f32+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<rem_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <rem_f64+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<ret_const_f32>:
+	mov    $0x3e200000,%eax
+	movd   %eax,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<ret_const_f64>:
+	movabs $0xbfb999999999999a,%rax
+	movq   %rax,%xmm0
+	ret
+
+<sub_const_f32>:
+	mov    $0x3dcccccd,%eax
+	movd   %eax,%xmm1
+	subss  %xmm1,%xmm0
+	ret
+	xchg   %ax,%ax
+
+<sub_const_f64>:
+	movabs $0x3fb999999999999a,%rax
+	movq   %rax,%xmm1
+	subsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<sub_f32>:
+	subss  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<sub_f64>:
+	subsd  %xmm1,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<u32_to_f32>:
+	mov    %edi,%edi
+	cvtsi2ss %rdi,%xmm0
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<u32_to_f64>:
+	mov    %edi,%edi
+	cvtsi2sd %rdi,%xmm0
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<u64_to_f32>:
+	test   %rdi,%rdi
+	js     <u64_to_f32+0x13>
+	cvtsi2ss %rdi,%xmm0
+	jmp    <u64_to_f32+0x28>
+	mov    %rdi,%rax
+	shr    $1,%rax
+	and    $0x1,%edi
+	or     %rax,%rdi
+	cvtsi2ss %rdi,%xmm0
+	addss  %xmm0,%xmm0
+	ret
+	nopl   0x0(%rax)
+
+<u64_to_f64>:
+	movq   %rdi,%xmm0
+	punpckldq -0x8(%rip),%xmm0        # <u64_to_f64+0x5>
+	subpd  -0x8(%rip),%xmm0        # <u64_to_f64+0xd>
+	movapd %xmm0,%xmm1
+	unpckhpd %xmm0,%xmm1
+	addsd  %xmm0,%xmm1
+	movapd %xmm1,%xmm0
+	ret

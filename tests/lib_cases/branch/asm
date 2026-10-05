@@ -11,880 +11,826 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000000000 <cmp_eq_i16>:
-   0:	55                   	push   %rbp
-   1:	48 89 e5             	mov    %rsp,%rbp
-   4:	66 39 f7             	cmp    %si,%di
-   7:	0f 84 0c 00 00 00    	je     19 <cmp_eq_i16+0x19>
-   d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
-  14:	e9 07 00 00 00       	jmp    20 <cmp_eq_i16+0x20>
-  19:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
-  20:	8b 45 d4             	mov    -0x2c(%rbp),%eax
-  23:	5d                   	pop    %rbp
-  24:	c3                   	ret
-  25:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  2c:	00 00 
-  2e:	66 90                	xchg   %ax,%ax
+<cmp_eq_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	je     <cmp_eq_i16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_i16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000030 <cmp_eq_i32>:
-  30:	55                   	push   %rbp
-  31:	48 89 e5             	mov    %rsp,%rbp
-  34:	39 f7                	cmp    %esi,%edi
-  36:	0f 84 0c 00 00 00    	je     48 <cmp_eq_i32+0x18>
-  3c:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
-  43:	e9 07 00 00 00       	jmp    4f <cmp_eq_i32+0x1f>
-  48:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
-  4f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
-  52:	5d                   	pop    %rbp
-  53:	c3                   	ret
-  54:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  5b:	00 00 
-  5d:	0f 1f 00             	nopl   (%rax)
+<cmp_eq_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	je     <cmp_eq_i32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_i32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000060 <cmp_eq_i64>:
-  60:	55                   	push   %rbp
-  61:	48 89 e5             	mov    %rsp,%rbp
-  64:	48 39 f7             	cmp    %rsi,%rdi
-  67:	0f 84 0c 00 00 00    	je     79 <cmp_eq_i64+0x19>
-  6d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
-  74:	e9 07 00 00 00       	jmp    80 <cmp_eq_i64+0x20>
-  79:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
-  80:	8b 45 d4             	mov    -0x2c(%rbp),%eax
-  83:	5d                   	pop    %rbp
-  84:	c3                   	ret
-  85:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  8c:	00 00 
-  8e:	66 90                	xchg   %ax,%ax
+<cmp_eq_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	je     <cmp_eq_i64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_i64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000090 <cmp_eq_i8>:
-  90:	55                   	push   %rbp
-  91:	48 89 e5             	mov    %rsp,%rbp
-  94:	40 38 f7             	cmp    %sil,%dil
-  97:	0f 84 0c 00 00 00    	je     a9 <cmp_eq_i8+0x19>
-  9d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
-  a4:	e9 07 00 00 00       	jmp    b0 <cmp_eq_i8+0x20>
-  a9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
-  b0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
-  b3:	5d                   	pop    %rbp
-  b4:	c3                   	ret
-  b5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  bc:	00 00 
-  be:	66 90                	xchg   %ax,%ax
+<cmp_eq_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	je     <cmp_eq_i8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_i8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000000c0 <cmp_eq_u16>:
-  c0:	55                   	push   %rbp
-  c1:	48 89 e5             	mov    %rsp,%rbp
-  c4:	66 39 f7             	cmp    %si,%di
-  c7:	0f 84 0c 00 00 00    	je     d9 <cmp_eq_u16+0x19>
-  cd:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
-  d4:	e9 07 00 00 00       	jmp    e0 <cmp_eq_u16+0x20>
-  d9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
-  e0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
-  e3:	5d                   	pop    %rbp
-  e4:	c3                   	ret
-  e5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  ec:	00 00 
-  ee:	66 90                	xchg   %ax,%ax
+<cmp_eq_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	je     <cmp_eq_u16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_u16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000000f0 <cmp_eq_u32>:
-  f0:	55                   	push   %rbp
-  f1:	48 89 e5             	mov    %rsp,%rbp
-  f4:	39 f7                	cmp    %esi,%edi
-  f6:	0f 84 0c 00 00 00    	je     108 <cmp_eq_u32+0x18>
-  fc:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 103:	e9 07 00 00 00       	jmp    10f <cmp_eq_u32+0x1f>
- 108:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 10f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 112:	5d                   	pop    %rbp
- 113:	c3                   	ret
- 114:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 11b:	00 00 
- 11d:	0f 1f 00             	nopl   (%rax)
+<cmp_eq_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	je     <cmp_eq_u32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_u32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000120 <cmp_eq_u64>:
- 120:	55                   	push   %rbp
- 121:	48 89 e5             	mov    %rsp,%rbp
- 124:	48 39 f7             	cmp    %rsi,%rdi
- 127:	0f 84 0c 00 00 00    	je     139 <cmp_eq_u64+0x19>
- 12d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 134:	e9 07 00 00 00       	jmp    140 <cmp_eq_u64+0x20>
- 139:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 140:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 143:	5d                   	pop    %rbp
- 144:	c3                   	ret
- 145:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 14c:	00 00 
- 14e:	66 90                	xchg   %ax,%ax
+<cmp_eq_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	je     <cmp_eq_u64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_u64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000150 <cmp_eq_u8>:
- 150:	55                   	push   %rbp
- 151:	48 89 e5             	mov    %rsp,%rbp
- 154:	40 38 f7             	cmp    %sil,%dil
- 157:	0f 84 0c 00 00 00    	je     169 <cmp_eq_u8+0x19>
- 15d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 164:	e9 07 00 00 00       	jmp    170 <cmp_eq_u8+0x20>
- 169:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 170:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 173:	5d                   	pop    %rbp
- 174:	c3                   	ret
- 175:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 17c:	00 00 
- 17e:	66 90                	xchg   %ax,%ax
+<cmp_eq_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	je     <cmp_eq_u8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_eq_u8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000180 <cmp_ge_i16>:
- 180:	55                   	push   %rbp
- 181:	48 89 e5             	mov    %rsp,%rbp
- 184:	66 39 f7             	cmp    %si,%di
- 187:	0f 8d 0c 00 00 00    	jge    199 <cmp_ge_i16+0x19>
- 18d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 194:	e9 07 00 00 00       	jmp    1a0 <cmp_ge_i16+0x20>
- 199:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 1a0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 1a3:	5d                   	pop    %rbp
- 1a4:	c3                   	ret
- 1a5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 1ac:	00 00 
- 1ae:	66 90                	xchg   %ax,%ax
+<cmp_ge_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jge    <cmp_ge_i16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_i16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000001b0 <cmp_ge_i32>:
- 1b0:	55                   	push   %rbp
- 1b1:	48 89 e5             	mov    %rsp,%rbp
- 1b4:	39 f7                	cmp    %esi,%edi
- 1b6:	0f 8d 0c 00 00 00    	jge    1c8 <cmp_ge_i32+0x18>
- 1bc:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 1c3:	e9 07 00 00 00       	jmp    1cf <cmp_ge_i32+0x1f>
- 1c8:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 1cf:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 1d2:	5d                   	pop    %rbp
- 1d3:	c3                   	ret
- 1d4:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 1db:	00 00 
- 1dd:	0f 1f 00             	nopl   (%rax)
+<cmp_ge_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jge    <cmp_ge_i32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_i32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-00000000000001e0 <cmp_ge_i64>:
- 1e0:	55                   	push   %rbp
- 1e1:	48 89 e5             	mov    %rsp,%rbp
- 1e4:	48 39 f7             	cmp    %rsi,%rdi
- 1e7:	0f 8d 0c 00 00 00    	jge    1f9 <cmp_ge_i64+0x19>
- 1ed:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 1f4:	e9 07 00 00 00       	jmp    200 <cmp_ge_i64+0x20>
- 1f9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 200:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 203:	5d                   	pop    %rbp
- 204:	c3                   	ret
- 205:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 20c:	00 00 
- 20e:	66 90                	xchg   %ax,%ax
+<cmp_ge_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jge    <cmp_ge_i64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_i64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000210 <cmp_ge_i8>:
- 210:	55                   	push   %rbp
- 211:	48 89 e5             	mov    %rsp,%rbp
- 214:	40 38 f7             	cmp    %sil,%dil
- 217:	0f 8d 0c 00 00 00    	jge    229 <cmp_ge_i8+0x19>
- 21d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 224:	e9 07 00 00 00       	jmp    230 <cmp_ge_i8+0x20>
- 229:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 230:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 233:	5d                   	pop    %rbp
- 234:	c3                   	ret
- 235:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 23c:	00 00 
- 23e:	66 90                	xchg   %ax,%ax
+<cmp_ge_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jge    <cmp_ge_i8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_i8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000240 <cmp_ge_u16>:
- 240:	55                   	push   %rbp
- 241:	48 89 e5             	mov    %rsp,%rbp
- 244:	66 39 f7             	cmp    %si,%di
- 247:	0f 83 0c 00 00 00    	jae    259 <cmp_ge_u16+0x19>
- 24d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 254:	e9 07 00 00 00       	jmp    260 <cmp_ge_u16+0x20>
- 259:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 260:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 263:	5d                   	pop    %rbp
- 264:	c3                   	ret
- 265:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 26c:	00 00 
- 26e:	66 90                	xchg   %ax,%ax
+<cmp_ge_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jae    <cmp_ge_u16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_u16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000270 <cmp_ge_u32>:
- 270:	55                   	push   %rbp
- 271:	48 89 e5             	mov    %rsp,%rbp
- 274:	39 f7                	cmp    %esi,%edi
- 276:	0f 83 0c 00 00 00    	jae    288 <cmp_ge_u32+0x18>
- 27c:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 283:	e9 07 00 00 00       	jmp    28f <cmp_ge_u32+0x1f>
- 288:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 28f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 292:	5d                   	pop    %rbp
- 293:	c3                   	ret
- 294:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 29b:	00 00 
- 29d:	0f 1f 00             	nopl   (%rax)
+<cmp_ge_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jae    <cmp_ge_u32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_u32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-00000000000002a0 <cmp_ge_u64>:
- 2a0:	55                   	push   %rbp
- 2a1:	48 89 e5             	mov    %rsp,%rbp
- 2a4:	48 39 f7             	cmp    %rsi,%rdi
- 2a7:	0f 83 0c 00 00 00    	jae    2b9 <cmp_ge_u64+0x19>
- 2ad:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 2b4:	e9 07 00 00 00       	jmp    2c0 <cmp_ge_u64+0x20>
- 2b9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 2c0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 2c3:	5d                   	pop    %rbp
- 2c4:	c3                   	ret
- 2c5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 2cc:	00 00 
- 2ce:	66 90                	xchg   %ax,%ax
+<cmp_ge_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jae    <cmp_ge_u64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_u64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000002d0 <cmp_ge_u8>:
- 2d0:	55                   	push   %rbp
- 2d1:	48 89 e5             	mov    %rsp,%rbp
- 2d4:	40 38 f7             	cmp    %sil,%dil
- 2d7:	0f 83 0c 00 00 00    	jae    2e9 <cmp_ge_u8+0x19>
- 2dd:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 2e4:	e9 07 00 00 00       	jmp    2f0 <cmp_ge_u8+0x20>
- 2e9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 2f0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 2f3:	5d                   	pop    %rbp
- 2f4:	c3                   	ret
- 2f5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 2fc:	00 00 
- 2fe:	66 90                	xchg   %ax,%ax
+<cmp_ge_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jae    <cmp_ge_u8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ge_u8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000300 <cmp_gt_i16>:
- 300:	55                   	push   %rbp
- 301:	48 89 e5             	mov    %rsp,%rbp
- 304:	66 39 f7             	cmp    %si,%di
- 307:	0f 8f 0c 00 00 00    	jg     319 <cmp_gt_i16+0x19>
- 30d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 314:	e9 07 00 00 00       	jmp    320 <cmp_gt_i16+0x20>
- 319:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 320:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 323:	5d                   	pop    %rbp
- 324:	c3                   	ret
- 325:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 32c:	00 00 
- 32e:	66 90                	xchg   %ax,%ax
+<cmp_gt_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jg     <cmp_gt_i16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_i16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000330 <cmp_gt_i32>:
- 330:	55                   	push   %rbp
- 331:	48 89 e5             	mov    %rsp,%rbp
- 334:	39 f7                	cmp    %esi,%edi
- 336:	0f 8f 0c 00 00 00    	jg     348 <cmp_gt_i32+0x18>
- 33c:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 343:	e9 07 00 00 00       	jmp    34f <cmp_gt_i32+0x1f>
- 348:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 34f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 352:	5d                   	pop    %rbp
- 353:	c3                   	ret
- 354:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 35b:	00 00 
- 35d:	0f 1f 00             	nopl   (%rax)
+<cmp_gt_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jg     <cmp_gt_i32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_i32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000360 <cmp_gt_i64>:
- 360:	55                   	push   %rbp
- 361:	48 89 e5             	mov    %rsp,%rbp
- 364:	48 39 f7             	cmp    %rsi,%rdi
- 367:	0f 8f 0c 00 00 00    	jg     379 <cmp_gt_i64+0x19>
- 36d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 374:	e9 07 00 00 00       	jmp    380 <cmp_gt_i64+0x20>
- 379:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 380:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 383:	5d                   	pop    %rbp
- 384:	c3                   	ret
- 385:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 38c:	00 00 
- 38e:	66 90                	xchg   %ax,%ax
+<cmp_gt_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jg     <cmp_gt_i64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_i64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000390 <cmp_gt_i8>:
- 390:	55                   	push   %rbp
- 391:	48 89 e5             	mov    %rsp,%rbp
- 394:	40 38 f7             	cmp    %sil,%dil
- 397:	0f 8f 0c 00 00 00    	jg     3a9 <cmp_gt_i8+0x19>
- 39d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 3a4:	e9 07 00 00 00       	jmp    3b0 <cmp_gt_i8+0x20>
- 3a9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 3b0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 3b3:	5d                   	pop    %rbp
- 3b4:	c3                   	ret
- 3b5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 3bc:	00 00 
- 3be:	66 90                	xchg   %ax,%ax
+<cmp_gt_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jg     <cmp_gt_i8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_i8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000003c0 <cmp_gt_u16>:
- 3c0:	55                   	push   %rbp
- 3c1:	48 89 e5             	mov    %rsp,%rbp
- 3c4:	66 39 f7             	cmp    %si,%di
- 3c7:	0f 87 0c 00 00 00    	ja     3d9 <cmp_gt_u16+0x19>
- 3cd:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 3d4:	e9 07 00 00 00       	jmp    3e0 <cmp_gt_u16+0x20>
- 3d9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 3e0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 3e3:	5d                   	pop    %rbp
- 3e4:	c3                   	ret
- 3e5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 3ec:	00 00 
- 3ee:	66 90                	xchg   %ax,%ax
+<cmp_gt_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	ja     <cmp_gt_u16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_u16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000003f0 <cmp_gt_u32>:
- 3f0:	55                   	push   %rbp
- 3f1:	48 89 e5             	mov    %rsp,%rbp
- 3f4:	39 f7                	cmp    %esi,%edi
- 3f6:	0f 87 0c 00 00 00    	ja     408 <cmp_gt_u32+0x18>
- 3fc:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 403:	e9 07 00 00 00       	jmp    40f <cmp_gt_u32+0x1f>
- 408:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 40f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 412:	5d                   	pop    %rbp
- 413:	c3                   	ret
- 414:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 41b:	00 00 
- 41d:	0f 1f 00             	nopl   (%rax)
+<cmp_gt_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	ja     <cmp_gt_u32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_u32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000420 <cmp_gt_u64>:
- 420:	55                   	push   %rbp
- 421:	48 89 e5             	mov    %rsp,%rbp
- 424:	48 39 f7             	cmp    %rsi,%rdi
- 427:	0f 87 0c 00 00 00    	ja     439 <cmp_gt_u64+0x19>
- 42d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 434:	e9 07 00 00 00       	jmp    440 <cmp_gt_u64+0x20>
- 439:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 440:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 443:	5d                   	pop    %rbp
- 444:	c3                   	ret
- 445:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 44c:	00 00 
- 44e:	66 90                	xchg   %ax,%ax
+<cmp_gt_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	ja     <cmp_gt_u64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_u64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000450 <cmp_gt_u8>:
- 450:	55                   	push   %rbp
- 451:	48 89 e5             	mov    %rsp,%rbp
- 454:	40 38 f7             	cmp    %sil,%dil
- 457:	0f 87 0c 00 00 00    	ja     469 <cmp_gt_u8+0x19>
- 45d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 464:	e9 07 00 00 00       	jmp    470 <cmp_gt_u8+0x20>
- 469:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 470:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 473:	5d                   	pop    %rbp
- 474:	c3                   	ret
- 475:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 47c:	00 00 
- 47e:	66 90                	xchg   %ax,%ax
+<cmp_gt_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	ja     <cmp_gt_u8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_gt_u8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000480 <cmp_imm_i64>:
- 480:	55                   	push   %rbp
- 481:	48 89 e5             	mov    %rsp,%rbp
- 484:	48 83 ff ff          	cmp    $0xffffffffffffffff,%rdi
- 488:	0f 8c 0c 00 00 00    	jl     49a <cmp_imm_i64+0x1a>
- 48e:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 495:	e9 07 00 00 00       	jmp    4a1 <cmp_imm_i64+0x21>
- 49a:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 4a1:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 4a4:	5d                   	pop    %rbp
- 4a5:	c3                   	ret
- 4a6:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 4ad:	00 00 
- 4af:	90                   	nop
+<cmp_imm_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0xffffffffffffffff,%rdi
+	jl     <cmp_imm_i64+0x1a>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_i64+0x21>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-00000000000004b0 <cmp_imm_i64_fits>:
- 4b0:	55                   	push   %rbp
- 4b1:	48 89 e5             	mov    %rsp,%rbp
- 4b4:	48 81 ff ff ff ff 7f 	cmp    $0x7fffffff,%rdi
- 4bb:	0f 8d 0c 00 00 00    	jge    4cd <cmp_imm_i64_fits+0x1d>
- 4c1:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 4c8:	e9 07 00 00 00       	jmp    4d4 <cmp_imm_i64_fits+0x24>
- 4cd:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 4d4:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 4d7:	5d                   	pop    %rbp
- 4d8:	c3                   	ret
- 4d9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+<cmp_imm_i64_fits>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0x7fffffff,%rdi
+	jge    <cmp_imm_i64_fits+0x1d>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_i64_fits+0x24>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
 
-00000000000004e0 <cmp_imm_i64_wide>:
- 4e0:	55                   	push   %rbp
- 4e1:	48 89 e5             	mov    %rsp,%rbp
- 4e4:	b8 00 00 00 80       	mov    $0x80000000,%eax
- 4e9:	48 39 c7             	cmp    %rax,%rdi
- 4ec:	0f 8d 0c 00 00 00    	jge    4fe <cmp_imm_i64_wide+0x1e>
- 4f2:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 4f9:	e9 07 00 00 00       	jmp    505 <cmp_imm_i64_wide+0x25>
- 4fe:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 505:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 508:	5d                   	pop    %rbp
- 509:	c3                   	ret
- 50a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+<cmp_imm_i64_wide>:
+	push   %rbp
+	mov    %rsp,%rbp
+	mov    $0x80000000,%eax
+	cmp    %rax,%rdi
+	jge    <cmp_imm_i64_wide+0x1e>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_i64_wide+0x25>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
 
-0000000000000510 <cmp_imm_i8>:
- 510:	55                   	push   %rbp
- 511:	48 89 e5             	mov    %rsp,%rbp
- 514:	40 80 ff ff          	cmp    $0xff,%dil
- 518:	0f 8f 0c 00 00 00    	jg     52a <cmp_imm_i8+0x1a>
- 51e:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 525:	e9 07 00 00 00       	jmp    531 <cmp_imm_i8+0x21>
- 52a:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 531:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 534:	5d                   	pop    %rbp
- 535:	c3                   	ret
- 536:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 53d:	00 00 
- 53f:	90                   	nop
+<cmp_imm_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0xff,%dil
+	jg     <cmp_imm_i8+0x1a>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_i8+0x21>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-0000000000000540 <cmp_imm_u16>:
- 540:	55                   	push   %rbp
- 541:	48 89 e5             	mov    %rsp,%rbp
- 544:	66 81 ff 00 80       	cmp    $0x8000,%di
- 549:	0f 83 0c 00 00 00    	jae    55b <cmp_imm_u16+0x1b>
- 54f:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 556:	e9 07 00 00 00       	jmp    562 <cmp_imm_u16+0x22>
- 55b:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 562:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 565:	5d                   	pop    %rbp
- 566:	c3                   	ret
- 567:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 56e:	00 00 
+<cmp_imm_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0x8000,%di
+	jae    <cmp_imm_u16+0x1b>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_u16+0x22>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
 
-0000000000000570 <cmp_imm_u32>:
- 570:	55                   	push   %rbp
- 571:	48 89 e5             	mov    %rsp,%rbp
- 574:	81 ff 00 00 00 80    	cmp    $0x80000000,%edi
- 57a:	0f 83 0c 00 00 00    	jae    58c <cmp_imm_u32+0x1c>
- 580:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 587:	e9 07 00 00 00       	jmp    593 <cmp_imm_u32+0x23>
- 58c:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 593:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 596:	5d                   	pop    %rbp
- 597:	c3                   	ret
- 598:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
- 59f:	00 
+<cmp_imm_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0x80000000,%edi
+	jae    <cmp_imm_u32+0x1c>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_u32+0x23>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
 
-00000000000005a0 <cmp_imm_u64_wide>:
- 5a0:	55                   	push   %rbp
- 5a1:	48 89 e5             	mov    %rsp,%rbp
- 5a4:	48 b8 00 00 00 00 00 	movabs $0x8000000000000000,%rax
- 5ab:	00 00 80 
- 5ae:	48 39 c7             	cmp    %rax,%rdi
- 5b1:	0f 83 0c 00 00 00    	jae    5c3 <cmp_imm_u64_wide+0x23>
- 5b7:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 5be:	e9 07 00 00 00       	jmp    5ca <cmp_imm_u64_wide+0x2a>
- 5c3:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 5ca:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 5cd:	5d                   	pop    %rbp
- 5ce:	c3                   	ret
- 5cf:	90                   	nop
+<cmp_imm_u64_wide>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movabs $0x8000000000000000,%rax
+	cmp    %rax,%rdi
+	jae    <cmp_imm_u64_wide+0x23>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_u64_wide+0x2a>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nop
 
-00000000000005d0 <cmp_imm_u8>:
- 5d0:	55                   	push   %rbp
- 5d1:	48 89 e5             	mov    %rsp,%rbp
- 5d4:	40 80 ff 80          	cmp    $0x80,%dil
- 5d8:	0f 87 0c 00 00 00    	ja     5ea <cmp_imm_u8+0x1a>
- 5de:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 5e5:	e9 07 00 00 00       	jmp    5f1 <cmp_imm_u8+0x21>
- 5ea:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 5f1:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 5f4:	5d                   	pop    %rbp
- 5f5:	c3                   	ret
- 5f6:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 5fd:	00 00 
- 5ff:	90                   	nop
+<cmp_imm_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0x80,%dil
+	ja     <cmp_imm_u8+0x1a>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_imm_u8+0x21>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
-0000000000000600 <cmp_le_i16>:
- 600:	55                   	push   %rbp
- 601:	48 89 e5             	mov    %rsp,%rbp
- 604:	66 39 f7             	cmp    %si,%di
- 607:	0f 8e 0c 00 00 00    	jle    619 <cmp_le_i16+0x19>
- 60d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 614:	e9 07 00 00 00       	jmp    620 <cmp_le_i16+0x20>
- 619:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 620:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 623:	5d                   	pop    %rbp
- 624:	c3                   	ret
- 625:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 62c:	00 00 
- 62e:	66 90                	xchg   %ax,%ax
+<cmp_le_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jle    <cmp_le_i16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_i16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000630 <cmp_le_i32>:
- 630:	55                   	push   %rbp
- 631:	48 89 e5             	mov    %rsp,%rbp
- 634:	39 f7                	cmp    %esi,%edi
- 636:	0f 8e 0c 00 00 00    	jle    648 <cmp_le_i32+0x18>
- 63c:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 643:	e9 07 00 00 00       	jmp    64f <cmp_le_i32+0x1f>
- 648:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 64f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 652:	5d                   	pop    %rbp
- 653:	c3                   	ret
- 654:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 65b:	00 00 
- 65d:	0f 1f 00             	nopl   (%rax)
+<cmp_le_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jle    <cmp_le_i32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_i32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000660 <cmp_le_i64>:
- 660:	55                   	push   %rbp
- 661:	48 89 e5             	mov    %rsp,%rbp
- 664:	48 39 f7             	cmp    %rsi,%rdi
- 667:	0f 8e 0c 00 00 00    	jle    679 <cmp_le_i64+0x19>
- 66d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 674:	e9 07 00 00 00       	jmp    680 <cmp_le_i64+0x20>
- 679:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 680:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 683:	5d                   	pop    %rbp
- 684:	c3                   	ret
- 685:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 68c:	00 00 
- 68e:	66 90                	xchg   %ax,%ax
+<cmp_le_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jle    <cmp_le_i64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_i64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000690 <cmp_le_i8>:
- 690:	55                   	push   %rbp
- 691:	48 89 e5             	mov    %rsp,%rbp
- 694:	40 38 f7             	cmp    %sil,%dil
- 697:	0f 8e 0c 00 00 00    	jle    6a9 <cmp_le_i8+0x19>
- 69d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 6a4:	e9 07 00 00 00       	jmp    6b0 <cmp_le_i8+0x20>
- 6a9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 6b0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 6b3:	5d                   	pop    %rbp
- 6b4:	c3                   	ret
- 6b5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 6bc:	00 00 
- 6be:	66 90                	xchg   %ax,%ax
+<cmp_le_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jle    <cmp_le_i8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_i8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000006c0 <cmp_le_u16>:
- 6c0:	55                   	push   %rbp
- 6c1:	48 89 e5             	mov    %rsp,%rbp
- 6c4:	66 39 f7             	cmp    %si,%di
- 6c7:	0f 86 0c 00 00 00    	jbe    6d9 <cmp_le_u16+0x19>
- 6cd:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 6d4:	e9 07 00 00 00       	jmp    6e0 <cmp_le_u16+0x20>
- 6d9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 6e0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 6e3:	5d                   	pop    %rbp
- 6e4:	c3                   	ret
- 6e5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 6ec:	00 00 
- 6ee:	66 90                	xchg   %ax,%ax
+<cmp_le_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jbe    <cmp_le_u16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_u16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000006f0 <cmp_le_u32>:
- 6f0:	55                   	push   %rbp
- 6f1:	48 89 e5             	mov    %rsp,%rbp
- 6f4:	39 f7                	cmp    %esi,%edi
- 6f6:	0f 86 0c 00 00 00    	jbe    708 <cmp_le_u32+0x18>
- 6fc:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 703:	e9 07 00 00 00       	jmp    70f <cmp_le_u32+0x1f>
- 708:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 70f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 712:	5d                   	pop    %rbp
- 713:	c3                   	ret
- 714:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 71b:	00 00 
- 71d:	0f 1f 00             	nopl   (%rax)
+<cmp_le_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jbe    <cmp_le_u32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_u32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000720 <cmp_le_u64>:
- 720:	55                   	push   %rbp
- 721:	48 89 e5             	mov    %rsp,%rbp
- 724:	48 39 f7             	cmp    %rsi,%rdi
- 727:	0f 86 0c 00 00 00    	jbe    739 <cmp_le_u64+0x19>
- 72d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 734:	e9 07 00 00 00       	jmp    740 <cmp_le_u64+0x20>
- 739:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 740:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 743:	5d                   	pop    %rbp
- 744:	c3                   	ret
- 745:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 74c:	00 00 
- 74e:	66 90                	xchg   %ax,%ax
+<cmp_le_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jbe    <cmp_le_u64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_u64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000750 <cmp_le_u8>:
- 750:	55                   	push   %rbp
- 751:	48 89 e5             	mov    %rsp,%rbp
- 754:	40 38 f7             	cmp    %sil,%dil
- 757:	0f 86 0c 00 00 00    	jbe    769 <cmp_le_u8+0x19>
- 75d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 764:	e9 07 00 00 00       	jmp    770 <cmp_le_u8+0x20>
- 769:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 770:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 773:	5d                   	pop    %rbp
- 774:	c3                   	ret
- 775:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 77c:	00 00 
- 77e:	66 90                	xchg   %ax,%ax
+<cmp_le_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jbe    <cmp_le_u8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_le_u8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000780 <cmp_lt_i16>:
- 780:	55                   	push   %rbp
- 781:	48 89 e5             	mov    %rsp,%rbp
- 784:	66 39 f7             	cmp    %si,%di
- 787:	0f 8c 0c 00 00 00    	jl     799 <cmp_lt_i16+0x19>
- 78d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 794:	e9 07 00 00 00       	jmp    7a0 <cmp_lt_i16+0x20>
- 799:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 7a0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 7a3:	5d                   	pop    %rbp
- 7a4:	c3                   	ret
- 7a5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 7ac:	00 00 
- 7ae:	66 90                	xchg   %ax,%ax
+<cmp_lt_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jl     <cmp_lt_i16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_i16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000007b0 <cmp_lt_i32>:
- 7b0:	55                   	push   %rbp
- 7b1:	48 89 e5             	mov    %rsp,%rbp
- 7b4:	39 f7                	cmp    %esi,%edi
- 7b6:	0f 8c 0c 00 00 00    	jl     7c8 <cmp_lt_i32+0x18>
- 7bc:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 7c3:	e9 07 00 00 00       	jmp    7cf <cmp_lt_i32+0x1f>
- 7c8:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 7cf:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 7d2:	5d                   	pop    %rbp
- 7d3:	c3                   	ret
- 7d4:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 7db:	00 00 
- 7dd:	0f 1f 00             	nopl   (%rax)
+<cmp_lt_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jl     <cmp_lt_i32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_i32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-00000000000007e0 <cmp_lt_i64>:
- 7e0:	55                   	push   %rbp
- 7e1:	48 89 e5             	mov    %rsp,%rbp
- 7e4:	48 39 f7             	cmp    %rsi,%rdi
- 7e7:	0f 8c 0c 00 00 00    	jl     7f9 <cmp_lt_i64+0x19>
- 7ed:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 7f4:	e9 07 00 00 00       	jmp    800 <cmp_lt_i64+0x20>
- 7f9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 800:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 803:	5d                   	pop    %rbp
- 804:	c3                   	ret
- 805:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 80c:	00 00 
- 80e:	66 90                	xchg   %ax,%ax
+<cmp_lt_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jl     <cmp_lt_i64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_i64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000810 <cmp_lt_i8>:
- 810:	55                   	push   %rbp
- 811:	48 89 e5             	mov    %rsp,%rbp
- 814:	40 38 f7             	cmp    %sil,%dil
- 817:	0f 8c 0c 00 00 00    	jl     829 <cmp_lt_i8+0x19>
- 81d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 824:	e9 07 00 00 00       	jmp    830 <cmp_lt_i8+0x20>
- 829:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 830:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 833:	5d                   	pop    %rbp
- 834:	c3                   	ret
- 835:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 83c:	00 00 
- 83e:	66 90                	xchg   %ax,%ax
+<cmp_lt_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jl     <cmp_lt_i8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_i8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000840 <cmp_lt_u16>:
- 840:	55                   	push   %rbp
- 841:	48 89 e5             	mov    %rsp,%rbp
- 844:	66 39 f7             	cmp    %si,%di
- 847:	0f 82 0c 00 00 00    	jb     859 <cmp_lt_u16+0x19>
- 84d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 854:	e9 07 00 00 00       	jmp    860 <cmp_lt_u16+0x20>
- 859:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 860:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 863:	5d                   	pop    %rbp
- 864:	c3                   	ret
- 865:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 86c:	00 00 
- 86e:	66 90                	xchg   %ax,%ax
+<cmp_lt_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jb     <cmp_lt_u16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_u16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000870 <cmp_lt_u32>:
- 870:	55                   	push   %rbp
- 871:	48 89 e5             	mov    %rsp,%rbp
- 874:	39 f7                	cmp    %esi,%edi
- 876:	0f 82 0c 00 00 00    	jb     888 <cmp_lt_u32+0x18>
- 87c:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 883:	e9 07 00 00 00       	jmp    88f <cmp_lt_u32+0x1f>
- 888:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 88f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 892:	5d                   	pop    %rbp
- 893:	c3                   	ret
- 894:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 89b:	00 00 
- 89d:	0f 1f 00             	nopl   (%rax)
+<cmp_lt_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jb     <cmp_lt_u32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_u32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-00000000000008a0 <cmp_lt_u64>:
- 8a0:	55                   	push   %rbp
- 8a1:	48 89 e5             	mov    %rsp,%rbp
- 8a4:	48 39 f7             	cmp    %rsi,%rdi
- 8a7:	0f 82 0c 00 00 00    	jb     8b9 <cmp_lt_u64+0x19>
- 8ad:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 8b4:	e9 07 00 00 00       	jmp    8c0 <cmp_lt_u64+0x20>
- 8b9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 8c0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 8c3:	5d                   	pop    %rbp
- 8c4:	c3                   	ret
- 8c5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 8cc:	00 00 
- 8ce:	66 90                	xchg   %ax,%ax
+<cmp_lt_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jb     <cmp_lt_u64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_u64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000008d0 <cmp_lt_u8>:
- 8d0:	55                   	push   %rbp
- 8d1:	48 89 e5             	mov    %rsp,%rbp
- 8d4:	40 38 f7             	cmp    %sil,%dil
- 8d7:	0f 82 0c 00 00 00    	jb     8e9 <cmp_lt_u8+0x19>
- 8dd:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 8e4:	e9 07 00 00 00       	jmp    8f0 <cmp_lt_u8+0x20>
- 8e9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 8f0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 8f3:	5d                   	pop    %rbp
- 8f4:	c3                   	ret
- 8f5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 8fc:	00 00 
- 8fe:	66 90                	xchg   %ax,%ax
+<cmp_lt_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jb     <cmp_lt_u8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_lt_u8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000900 <cmp_ne_i16>:
- 900:	55                   	push   %rbp
- 901:	48 89 e5             	mov    %rsp,%rbp
- 904:	66 39 f7             	cmp    %si,%di
- 907:	0f 85 0c 00 00 00    	jne    919 <cmp_ne_i16+0x19>
- 90d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 914:	e9 07 00 00 00       	jmp    920 <cmp_ne_i16+0x20>
- 919:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 920:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 923:	5d                   	pop    %rbp
- 924:	c3                   	ret
- 925:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 92c:	00 00 
- 92e:	66 90                	xchg   %ax,%ax
+<cmp_ne_i16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jne    <cmp_ne_i16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_i16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000930 <cmp_ne_i32>:
- 930:	55                   	push   %rbp
- 931:	48 89 e5             	mov    %rsp,%rbp
- 934:	39 f7                	cmp    %esi,%edi
- 936:	0f 85 0c 00 00 00    	jne    948 <cmp_ne_i32+0x18>
- 93c:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 943:	e9 07 00 00 00       	jmp    94f <cmp_ne_i32+0x1f>
- 948:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 94f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 952:	5d                   	pop    %rbp
- 953:	c3                   	ret
- 954:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 95b:	00 00 
- 95d:	0f 1f 00             	nopl   (%rax)
+<cmp_ne_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jne    <cmp_ne_i32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_i32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000960 <cmp_ne_i64>:
- 960:	55                   	push   %rbp
- 961:	48 89 e5             	mov    %rsp,%rbp
- 964:	48 39 f7             	cmp    %rsi,%rdi
- 967:	0f 85 0c 00 00 00    	jne    979 <cmp_ne_i64+0x19>
- 96d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 974:	e9 07 00 00 00       	jmp    980 <cmp_ne_i64+0x20>
- 979:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 980:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 983:	5d                   	pop    %rbp
- 984:	c3                   	ret
- 985:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 98c:	00 00 
- 98e:	66 90                	xchg   %ax,%ax
+<cmp_ne_i64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jne    <cmp_ne_i64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_i64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000990 <cmp_ne_i8>:
- 990:	55                   	push   %rbp
- 991:	48 89 e5             	mov    %rsp,%rbp
- 994:	40 38 f7             	cmp    %sil,%dil
- 997:	0f 85 0c 00 00 00    	jne    9a9 <cmp_ne_i8+0x19>
- 99d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 9a4:	e9 07 00 00 00       	jmp    9b0 <cmp_ne_i8+0x20>
- 9a9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 9b0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 9b3:	5d                   	pop    %rbp
- 9b4:	c3                   	ret
- 9b5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 9bc:	00 00 
- 9be:	66 90                	xchg   %ax,%ax
+<cmp_ne_i8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jne    <cmp_ne_i8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_i8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000009c0 <cmp_ne_u16>:
- 9c0:	55                   	push   %rbp
- 9c1:	48 89 e5             	mov    %rsp,%rbp
- 9c4:	66 39 f7             	cmp    %si,%di
- 9c7:	0f 85 0c 00 00 00    	jne    9d9 <cmp_ne_u16+0x19>
- 9cd:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- 9d4:	e9 07 00 00 00       	jmp    9e0 <cmp_ne_u16+0x20>
- 9d9:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- 9e0:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- 9e3:	5d                   	pop    %rbp
- 9e4:	c3                   	ret
- 9e5:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- 9ec:	00 00 
- 9ee:	66 90                	xchg   %ax,%ax
+<cmp_ne_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %si,%di
+	jne    <cmp_ne_u16+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_u16+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-00000000000009f0 <cmp_ne_u32>:
- 9f0:	55                   	push   %rbp
- 9f1:	48 89 e5             	mov    %rsp,%rbp
- 9f4:	39 f7                	cmp    %esi,%edi
- 9f6:	0f 85 0c 00 00 00    	jne    a08 <cmp_ne_u32+0x18>
- 9fc:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- a03:	e9 07 00 00 00       	jmp    a0f <cmp_ne_u32+0x1f>
- a08:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- a0f:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- a12:	5d                   	pop    %rbp
- a13:	c3                   	ret
- a14:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- a1b:	00 00 
- a1d:	0f 1f 00             	nopl   (%rax)
+<cmp_ne_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %esi,%edi
+	jne    <cmp_ne_u32+0x18>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_u32+0x1f>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
-0000000000000a20 <cmp_ne_u64>:
- a20:	55                   	push   %rbp
- a21:	48 89 e5             	mov    %rsp,%rbp
- a24:	48 39 f7             	cmp    %rsi,%rdi
- a27:	0f 85 0c 00 00 00    	jne    a39 <cmp_ne_u64+0x19>
- a2d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- a34:	e9 07 00 00 00       	jmp    a40 <cmp_ne_u64+0x20>
- a39:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- a40:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- a43:	5d                   	pop    %rbp
- a44:	c3                   	ret
- a45:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- a4c:	00 00 
- a4e:	66 90                	xchg   %ax,%ax
+<cmp_ne_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %rsi,%rdi
+	jne    <cmp_ne_u64+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_u64+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000a50 <cmp_ne_u8>:
- a50:	55                   	push   %rbp
- a51:	48 89 e5             	mov    %rsp,%rbp
- a54:	40 38 f7             	cmp    %sil,%dil
- a57:	0f 85 0c 00 00 00    	jne    a69 <cmp_ne_u8+0x19>
- a5d:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- a64:	e9 07 00 00 00       	jmp    a70 <cmp_ne_u8+0x20>
- a69:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- a70:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- a73:	5d                   	pop    %rbp
- a74:	c3                   	ret
- a75:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
- a7c:	00 00 
- a7e:	66 90                	xchg   %ax,%ax
+<cmp_ne_u8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    %sil,%dil
+	jne    <cmp_ne_u8+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <cmp_ne_u8+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
-0000000000000a80 <cmp_nested_i32>:
- a80:	55                   	push   %rbp
- a81:	48 89 e5             	mov    %rsp,%rbp
- a84:	53                   	push   %rbx
- a85:	41 54                	push   %r12
- a87:	89 fb                	mov    %edi,%ebx
- a89:	41 89 f4             	mov    %esi,%r12d
- a8c:	44 39 e3             	cmp    %r12d,%ebx
- a8f:	0f 8c 36 00 00 00    	jl     acb <cmp_nested_i32+0x4b>
- a95:	44 39 e3             	cmp    %r12d,%ebx
- a98:	0f 8f 0c 00 00 00    	jg     aaa <cmp_nested_i32+0x2a>
- a9e:	c7 45 d4 05 00 00 00 	movl   $0x5,-0x2c(%rbp)
- aa5:	e9 3c 00 00 00       	jmp    ae6 <cmp_nested_i32+0x66>
- aaa:	45 85 e4             	test   %r12d,%r12d
- aad:	0f 8c 0c 00 00 00    	jl     abf <cmp_nested_i32+0x3f>
- ab3:	c7 45 d4 04 00 00 00 	movl   $0x4,-0x2c(%rbp)
- aba:	e9 27 00 00 00       	jmp    ae6 <cmp_nested_i32+0x66>
- abf:	c7 45 d4 03 00 00 00 	movl   $0x3,-0x2c(%rbp)
- ac6:	e9 1b 00 00 00       	jmp    ae6 <cmp_nested_i32+0x66>
- acb:	85 db                	test   %ebx,%ebx
- acd:	0f 8c 0c 00 00 00    	jl     adf <cmp_nested_i32+0x5f>
- ad3:	c7 45 d4 02 00 00 00 	movl   $0x2,-0x2c(%rbp)
- ada:	e9 07 00 00 00       	jmp    ae6 <cmp_nested_i32+0x66>
- adf:	c7 45 d4 01 00 00 00 	movl   $0x1,-0x2c(%rbp)
- ae6:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- ae9:	41 5c                	pop    %r12
- aeb:	5b                   	pop    %rbx
- aec:	5d                   	pop    %rbp
- aed:	c3                   	ret
- aee:	66 90                	xchg   %ax,%ax
+<cmp_nested_i32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	mov    %edi,%ebx
+	mov    %esi,%r12d
+	cmp    %r12d,%ebx
+	jl     <cmp_nested_i32+0x4b>
+	cmp    %r12d,%ebx
+	jg     <cmp_nested_i32+0x2a>
+	movl   $0x5,-0x2c(%rbp)
+	jmp    <cmp_nested_i32+0x66>
+	test   %r12d,%r12d
+	jl     <cmp_nested_i32+0x3f>
+	movl   $0x4,-0x2c(%rbp)
+	jmp    <cmp_nested_i32+0x66>
+	movl   $0x3,-0x2c(%rbp)
+	jmp    <cmp_nested_i32+0x66>
+	test   %ebx,%ebx
+	jl     <cmp_nested_i32+0x5f>
+	movl   $0x2,-0x2c(%rbp)
+	jmp    <cmp_nested_i32+0x66>
+	movl   $0x1,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
 
-0000000000000af0 <simplebranch>:
- af0:	55                   	push   %rbp
- af1:	48 89 e5             	mov    %rsp,%rbp
- af4:	83 ff 64             	cmp    $0x64,%edi
- af7:	0f 87 0c 00 00 00    	ja     b09 <simplebranch+0x19>
- afd:	c7 45 d4 0f 0f 0f 0f 	movl   $0xf0f0f0f,-0x2c(%rbp)
- b04:	e9 07 00 00 00       	jmp    b10 <simplebranch+0x20>
- b09:	c7 45 d4 f0 f0 f0 f0 	movl   $0xf0f0f0f0,-0x2c(%rbp)
- b10:	8b 45 d4             	mov    -0x2c(%rbp),%eax
- b13:	5d                   	pop    %rbp
- b14:	c3                   	ret
+<simplebranch>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cmp    $0x64,%edi
+	ja     <simplebranch+0x19>
+	movl   $0xf0f0f0f,-0x2c(%rbp)
+	jmp    <simplebranch+0x20>
+	movl   $0xf0f0f0f0,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %rbp
+	ret

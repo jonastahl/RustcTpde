@@ -92,8 +92,12 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
 
     let asm_file = File::create(&actual_asm_path)
         .expect("Failed to create assembly output file");
+    // Raw bytes and addresses are left out, as their layout (line wrapping, symbol
+    // annotations) differs between binutils versions and shifts with every size change.
     Command::new("objdump")
         .arg("-d")
+        .arg("--no-show-raw-insn")
+        .arg("--no-addresses")
         .arg(&actual_obj_path)
         .stdout(Stdio::from(asm_file))
         .status()

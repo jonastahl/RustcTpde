@@ -11,22 +11,21 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-0000000000000000 <give_me_str>:
-   0:	48 8d 05 f8 ff ff ff 	lea    -0x8(%rip),%rax        # ffffffffffffffff <my_user+0xffffffffffffffcf>
-   7:	48 8b 08             	mov    (%rax),%rcx
-   a:	48 8b 50 08          	mov    0x8(%rax),%rdx
-   e:	48 89 c8             	mov    %rcx,%rax
-  11:	c3                   	ret
-  12:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
-  19:	00 00 
-  1b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+<give_me_str>:
+	lea    -0x8(%rip),%rax        # <my_user+0xffffffffffffffcf>
+	mov    (%rax),%rcx
+	mov    0x8(%rax),%rdx
+	mov    %rcx,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
-0000000000000020 <more_string>:
-  20:	48 8d 05 f8 ff ff ff 	lea    -0x8(%rip),%rax        # 1f <give_me_str+0x1f>
-  27:	ba 0b 00 00 00       	mov    $0xb,%edx
-  2c:	c3                   	ret
-  2d:	0f 1f 00             	nopl   (%rax)
+<more_string>:
+	lea    -0x8(%rip),%rax        # <give_me_str+0x1f>
+	mov    $0xb,%edx
+	ret
+	nopl   (%rax)
 
-0000000000000030 <my_user>:
-  30:	48 8d 05 f8 ff ff ff 	lea    -0x8(%rip),%rax        # 2f <more_string+0xf>
-  37:	c3                   	ret
+<my_user>:
+	lea    -0x8(%rip),%rax        # <more_string+0xf>
+	ret
