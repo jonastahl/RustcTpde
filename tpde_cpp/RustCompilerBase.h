@@ -541,8 +541,11 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   RustCompilerBase<Adaptor, Derived, Config>::SymRef
   RustCompilerBase<Adaptor, Derived, Config>::cur_personality_func() const {
-    // TODO
-    return {};
+    const Function *func = this->adaptor->cur_func;
+    if (!func->has_personality) {
+      return {};
+    }
+    return this->func_syms[func->personality];
   }
 
   template<typename Adaptor, typename Derived, typename Config>

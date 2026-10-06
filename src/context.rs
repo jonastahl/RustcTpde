@@ -13,7 +13,7 @@ use rustc_middle::ty::{ExistentialTraitRef, Instance, Ty, TyCtxt};
 use rustc_session::{PointerAuthSchema, Session};
 use rustc_span::def_id::DefId;
 use rustc_span::{Symbol, sym};
-use std::cell::{Cell, RefCell};
+use std::cell::{Cell, OnceCell, RefCell};
 use std::marker::PhantomData;
 use std::ops::{Deref, DerefMut};
 
@@ -35,6 +35,7 @@ pub struct FullCx<'tpde, 'tcx> {
 
     pub globals: RefCell<FxHashMap<DefId, Global>>,
     pub vtables: RefCell<FxHashMap<(Ty<'tcx>, Option<ty::ExistentialTraitRef<'tcx>>), Slot>>,
+    pub fallback_personality: OnceCell<Function>,
 
     pub data_layout: TargetDataLayout,
 
@@ -113,6 +114,7 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
                 global_gen_sym_counter: Cell::new(0),
                 local_gen_sym_counter: Cell::new(0),
                 vtables: RefCell::new(FxHashMap::default()),
+                fallback_personality: OnceCell::new(),
             },
             PhantomData,
         )
@@ -153,7 +155,21 @@ impl<'tcx> MiscCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         let def_id = match self.tcx.lang_items().eh_personality() {
             Some(id) => id,
             None => {
-                panic!("eh_personality is required but not defined in lang_items");
+                // If the function wasnt declared we just insert
+                // a placeholder for it (same as LLVM)
+
+                let mut module = self.module.borrow_mut();
+                if let Some(&f) = self.fallback_personality.get() {
+                    return f;
+                }
+                let f = module.add_function(
+                    "rust_eh_personality",
+                    FunctionSignature { slots: vec![], arg_infos: vec![], ret: None },
+                    Linkage::External,
+                    Binding::Declaration,
+                );
+                let _ = self.fallback_personality.set(f);
+                return f;
             }
         };
 
