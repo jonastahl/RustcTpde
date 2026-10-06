@@ -5,3 +5,4 @@ edition.workspace = true
 
 [dependencies]
 rustc_codegen_tpde = { path = "../rustc_codegen_tpde" }
+tikv-jemalloc-sys = { version = "0.7.1", features = ["unprefixed_malloc_on_supported_platforms"] }

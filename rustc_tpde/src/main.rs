@@ -9,6 +9,8 @@ use rustc_driver::{Callbacks, catch_with_exit_code, run_compiler};
 use rustc_interface::Config;
 use rustc_codegen_tpde::__rustc_codegen_backend;
 
+use tikv_jemalloc_sys as _;
+
 struct BackendCallbacks;
 
 impl Callbacks for BackendCallbacks {

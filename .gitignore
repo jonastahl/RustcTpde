@@ -3,6 +3,7 @@
 
 .idea
 .claude
+.mcp.json
 
 rustc-ice-*.txt
 rmeta*

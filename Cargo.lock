@@ -365,6 +365,7 @@ name = "rustc_tpde"
 version = "0.1.0"
 dependencies = [
  "rustc_codegen_tpde",
+ "tikv-jemalloc-sys",
 ]
 
 [[package]]
@@ -451,6 +452,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d050e60b33d41c19108b32cea32164033a9013fe3b46cbd4457559bfbf77afaa"
 dependencies = [
  "num_cpus",
+]
+
+[[package]]
+name = "tikv-jemalloc-sys"
+version = "0.7.1+5.3.1-0-g81034ce1f1373e37dc865038e1bc8eeecf559ce8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a2825c78386b4ae0314074867860ba9577875de945f05992c38815cbec327f0"
+dependencies = [
+ "cc",
+ "libc",
 ]
 
 [[package]]
