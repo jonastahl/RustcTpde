@@ -15,6 +15,7 @@ pub fn codegen(
     mut module: ModuleCodegen<Module>,
     config: &ModuleConfig,
 ) -> CompiledModule {
+    let _timer = prof.generic_activity_with_arg("TPDE_module_codegen", &*module.name);
     let bc_out = cgcx.output_filenames.temp_path_for_cgu(OutputType::Bitcode, &module.name);
     let obj_out = cgcx.output_filenames.temp_path_for_cgu(OutputType::Object, &module.name);
 
@@ -37,6 +38,8 @@ pub fn codegen(
 
     match config.emit_obj {
         EmitObj::ObjectCode(_) => {
+            let _timer =
+                prof.generic_activity_with_arg("TPDE_module_codegen_emit_obj", &*module.name);
             if !shared::compile_to_file(module.module_llvm.tpde_mut(), obj_out.to_str().expect("path to str")) {
                 panic!("Backend failed to compile to obj file, Consider falling back to llvm")
             }
