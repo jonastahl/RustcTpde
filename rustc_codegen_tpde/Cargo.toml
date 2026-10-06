@@ -1,0 +1,23 @@
+[package]
+name = "rustc_codegen_tpde"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cxx = "^1.0.197"
+
+[build-dependencies]
+cxx-build = "^1.0.197"
+cmake = "0.1.58"
+
+[lib]
+crate-type = ["dylib"]
+
+[dev-dependencies]
+libtest-mimic = "0.7"
+pretty_assertions = "1.4"
+similar = "3.1.1"
+
+[[test]]
+name = "runner"
+harness = false

@@ -2,7 +2,7 @@
 
 #include "tpde.h"
 
-#include <deps/tpde/tpde-llvm/src/base.hpp>
+#include <../deps/tpde/tpde-llvm/src/base.hpp>
 #include <tpde/IRAdaptor.hpp>
 #include <tpde/RegisterFile.hpp>
 #include <generator>

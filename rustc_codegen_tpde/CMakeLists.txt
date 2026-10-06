@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #set(TPDE_LOGGING OFF)
 
-add_subdirectory(deps/tpde)
+add_subdirectory(../deps/tpde tpde_build)
 
 set(TPDE_TARGETS "x86_64")
 #set(TPDE_TARGETS "x86_64;aarch64")
@@ -57,7 +57,7 @@ target_include_directories(tpde_cpp PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CXX_GEN_DIR}
         ${CMAKE_CURRENT_BINARY_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}/deps/tpde/tpde/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/../deps/tpde/tpde/include
 )
 
 target_link_libraries(tpde_cpp PRIVATE tpde)

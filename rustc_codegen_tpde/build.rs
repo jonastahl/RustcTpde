@@ -21,7 +21,7 @@ fn main() {
 
     cxx_build::bridge("src/shared.rs")
         .include(".")
-        .include("deps/tpde/tpde/include")
+        .include("../deps/tpde/tpde/include")
         .flag_if_supported("-std=c++23")
         // silence warning in generated cxx code
         .flag_if_supported("-Wno-maybe-uninitialized")
