@@ -354,6 +354,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "rustc_codegen_tpde_dylib"
+version = "0.1.0"
+dependencies = [
+ "rustc_codegen_tpde",
+]
+
+[[package]]
+name = "rustc_tpde"
+version = "0.1.0"
+dependencies = [
+ "rustc_codegen_tpde",
+]
+
+[[package]]
 name = "scratch"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"

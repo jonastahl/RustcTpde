@@ -1,0 +1,7 @@
+[package]
+name = "rustc_tpde"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+rustc_codegen_tpde = { path = "../rustc_codegen_tpde" }
