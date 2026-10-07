@@ -218,11 +218,11 @@ impl CodegenBackend for TpdeCodegenBackend {
     }
 
     fn has_zstd(&self) -> bool {
-        todo!()
+        false
     }
 
     fn has_mnemonic(&self, _sess: &Session, _mnemonic: &str) -> bool {
-        todo!()
+        false
     }
 
     fn provide(&self, providers: &mut Providers) {
