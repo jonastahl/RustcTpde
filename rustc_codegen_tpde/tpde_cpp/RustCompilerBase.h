@@ -1170,7 +1170,9 @@ namespace tpde_rust {
           return false;
         }
 
-        if (instr_size > instr.next().inst) {
+        // Fusion creates errors for i128 as the generated instruction before may not give a clear overflow flag
+        const bool flags_valid = this->adaptor->type_of_ref(inst.ops[0]) != Type::i128;
+        if (instr_size > instr.next().inst && flags_valid) {
           Instruction &pot_condbr = this->adaptor->get_instruction(instr.next().next());
           if (pot_condbr.kind == InstructionKind::CondBr && pot_overflow.result == pot_condbr.ops[0]) {
             assert(this->analyzer.liveness_info(this->adaptor->val_local_idx(pot_overflow.result)).ref_count == 2);
