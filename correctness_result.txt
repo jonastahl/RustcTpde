@@ -1,0 +1,2609 @@
+....
+[ui] tests/ui/abi/abi-sysv64-arg-passing.rs ... F
+.
+[ui] tests/ui/abi/avr-sram.rs#has_sram ... F
+..
+[ui] tests/ui/abi/c-zst.rs#powerpc-linux ... F
+
+[ui] tests/ui/abi/c-zst.rs#aarch64-darwin ... F
+
+[ui] tests/ui/abi/arm-unadjusted-intrinsic.rs#arm ... F
+
+[ui] tests/ui/abi/arm-unadjusted-intrinsic.rs#aarch64 ... F
+
+[ui] tests/ui/abi/abi-sysv64-register-usage.rs ... F
+.........
+[ui] tests/ui/abi/cannot-be-called.rs#avr ... F
+
+[ui] tests/ui/abi/cannot-be-called.rs#riscv64 ... F
+.
+[ui] tests/ui/abi/cannot-be-coroutine.rs#avr ... F
+....
+[ui] tests/ui/abi/cannot-be-called.rs#nvptx ... F
+.
+[ui] tests/ui/abi/cannot-be-coroutine.rs#riscv64 ... F
+..
+[ui] tests/ui/abi/cannot-be-coroutine.rs#nvptx ... F
+..
+[ui] tests/ui/abi/cannot-return.rs#nvptx ... F
+.
+[ui] tests/ui/abi/compatibility.rs#aarch64 ... F
+
+[ui] tests/ui/abi/compatibility.rs#bpf ... F
+.
+[ui] tests/ui/abi/compatibility.rs#aix ... F
+
+[ui] tests/ui/abi/compatibility.rs#loongarch32 ... F
+..
+[ui] tests/ui/abi/compatibility.rs#nvptx64 ... F
+.
+[ui] tests/ui/abi/compatibility.rs#loongarch64 ... F
+..
+[ui] tests/ui/abi/compatibility.rs#powerpc64 ... F
+
+[ui] tests/ui/abi/compatibility.rs#powerpc ... F
+
+[ui] tests/ui/abi/compatibility.rs#riscv ... F
+.........
+[ui] tests/ui/abi/custom.rs ... F
+.
+[ui] tests/ui/abi/debug.rs#loongarch64 ... F
+.
+[ui] tests/ui/abi/debug.rs#riscv64 ... F
+......
+[ui] tests/ui/abi/extern/extern-crosscrate.rs ... F
+
+[ui] tests/ui/abi/extern/extern-pass-FiveU16s.rs ... F
+
+[ui] tests/ui/abi/extern/extern-pass-TwoU16s.rs ... F
+
+[ui] tests/ui/abi/extern/extern-pass-TwoU32s.rs ... F
+.
+[ui] tests/ui/abi/extern/extern-pass-TwoU8s.rs ... F
+.....
+[ui] tests/ui/abi/extern/extern-return-TwoU32s.rs ... F
+    88/22044
+.
+[ui] tests/ui/abi/extern/extern-return-FiveU16s.rs ... F
+
+[ui] tests/ui/abi/fixed_x18.rs#i686 ... F
+
+[ui] tests/ui/abi/fixed_x18.rs#arm ... F
+
+[ui] tests/ui/abi/fixed_x18.rs#riscv32 ... F
+
+[ui] tests/ui/abi/extern/extern-return-TwoU16s.rs ... F
+
+[ui] tests/ui/abi/extern/extern-return-TwoU8s.rs ... F
+
+[ui] tests/ui/abi/fixed_x18.rs#x64 ... F
+
+[ui] tests/ui/abi/fixed_x18.rs#riscv64 ... F
+
+[ui] tests/ui/abi/interrupt-invalid-signature.rs#avr ... F
+.....
+[ui] tests/ui/abi/interrupt-invalid-signature.rs#riscv64 ... F
+.
+[ui] tests/ui/abi/interrupt-returns-never-or-unit.rs#avr ... F
+....
+[ui] tests/ui/abi/interrupt-returns-never-or-unit.rs#riscv64 ... F
+........
+[ui] tests/ui/abi/homogenous-floats-target-feature-mixup.rs ... F
+.
+[ui] tests/ui/abi/extern/extern-call-scrub.rs ... F
+i
+[ui] tests/ui/abi/extern/extern-call-deep2.rs ... F
+....
+[ui] tests/ui/abi/numbers-arithmetic/return-float.rs ... F
+..ii..
+[ui] tests/ui/abi/riscv-discoverability-guidance.rs#riscv64 ... F
+...
+[ui] tests/ui/abi/segfault-no-out-of-stack.rs ... F
+
+[ui] tests/ui/abi/shadow-call-stack-without-fixed-x18.rs ... F
+
+[ui] tests/ui/abi/s390x-softfloat-gate.rs#enable-softfloat ... F
+......
+[ui] tests/ui/abi/sparcv8plus.rs#sparc_cpu_v9 ... F
+.
+[ui] tests/ui/abi/sparcv8plus.rs#sparc_cpu_v9_feature_v8plus ... F
+ii.ii
+[ui] tests/ui/abi/sparcv8plus.rs#sparcv8plus ... F
+.
+[ui] tests/ui/abi/stack-probes-lto.rs#x64 ... F
+
+[ui] tests/ui/abi/stack-protector.rs#ssp ... F
+
+[ui] tests/ui/abi/stack-protector.rs#no-ssp ... F
+...
+[ui] tests/ui/abi/struct-enums/struct-return.rs ... F
+..
+[ui] tests/ui/abi/too-big-byval-abi-issue-148853.rs ... F
+...
+[ui] tests/ui/abi/unsupported.rs#arm ... F
+
+[ui] tests/ui/abi/rust-preserve-none-cc.rs ... F
+
+[ui] tests/ui/abi/large-byval-align.rs ... F
+
+[ui] tests/ui/abi/unsupported.rs#aarch64 ... F
+.   176/22044
+.
+[ui] tests/ui/abi/mir/mir_codegen_calls_variadic.rs ... F
+.
+[ui] tests/ui/abi/unsupported.rs#riscv64 ... F
+ii
+[ui] tests/ui/abi/rust-tail-cc.rs#x64 ... F
+........
+[ui] tests/ui/abi/variadic-ffi.rs ... F
+
+[ui] tests/ui/alloc-error/alloc-error-backtrace.rs ... F
+...........i
+[ui] tests/ui/allocator/no_std-alloc-error-handler-custom.rs ... F
+
+[ui] tests/ui/allocator/no_std-alloc-error-handler-default.rs ... F
+..
+[ui] tests/ui/abi/stack-probes.rs#x64 ... F
+......................................................   264/22044
+...........i.i.i............
+[ui] tests/ui/any/try_as_dyn_builtin_impl.rs#next ... F
+
+[ui] tests/ui/any/try_as_dyn_builtin_impl.rs#old ... F
+...........................
+[ui] tests/ui/annotate-snippet/multispan.rs ... F
+....
+[ui] tests/ui/array-slice-vec/check-static-slice.rs ... F
+.
+[ui] tests/ui/array-slice-vec/driftsort-off-by-one-issue-136103.rs ... F
+.....................
+[ui] tests/ui/array-slice-vec/fixed-length-vector-pattern-matching-7784.rs ... F
+.   352/22044
+.........
+[ui] tests/ui/array-slice-vec/box-of-array-of-drop-1.rs ... F
+
+[ui] tests/ui/array-slice-vec/box-of-array-of-drop-2.rs ... F
+............
+[ui] tests/ui/array-slice-vec/subslice-patterns-const-eval.rs ... F
+.
+[ui] tests/ui/array-slice-vec/subslice-patterns-const-eval-match.rs ... F
+.....
+[ui] tests/ui/array-slice-vec/nested-vec-3.rs ... F
+....
+[ui] tests/ui/array-slice-vec/vec-index-bounds-check-overflow.rs ... F
+.......
+[ui] tests/ui/array-slice-vec/slice-panic-1.rs ... F
+..
+[ui] tests/ui/asm/aarch64/aarch64-sve.rs ... F
+i
+[ui] tests/ui/asm/aarch64/arm64ec-sve.rs ... F
+.ii
+[ui] tests/ui/array-slice-vec/slice-panic-2.rs ... F
+
+[ui] tests/ui/asm/aarch64/bad-options.rs ... F
+i.iiii
+[ui] tests/ui/asm/aarch64/duplicate-options.rs ... F
+
+[ui] tests/ui/asm/aarch64/parse-error.rs ... F
+
+[ui] tests/ui/asm/aarch64/interpolated-idents.rs ... F
+
+[ui] tests/ui/asm/aarch64/ttbr0_el2.rs ... F
+
+[ui] tests/ui/array-slice-vec/vec-overrun.rs ... F
+
+[ui] tests/ui/asm/aarch64v8r.rs#hf ... F
+
+[ui] tests/ui/asm/arm-low-dreg.rs ... F
+
+[ui] tests/ui/asm/aarch64v8r.rs#sf ... F
+
+[ui] tests/ui/asm/asm-with-nested-closure.rs ... F
+i
+[ui] tests/ui/asm/asm-const-ptr-mir-inline.rs ... F
+
+[ui] tests/ui/array-slice-vec/vec-tail-matching.rs ... F
+
+[ui] tests/ui/asm/aarch64v8r.rs#r82 ... F
+.
+[ui] tests/ui/asm/aarch64/srcloc.rs ... F
+
+[ui] tests/ui/asm/bad-template.rs#aarch64 ... F
+......
+[ui] tests/ui/asm/const-refs-to-static.rs ... F
+.
+[ui] tests/ui/asm/cfg.rs#revb ... F
+
+[ui] tests/ui/asm/cfg.rs#reva ... F
+.   440/22044
+
+[ui] tests/ui/asm/empty_global_asm.rs ... F
+
+[ui] tests/ui/asm/global-asm-isnt-really-a-mir-body.rs#cfi ... F
+
+[ui] tests/ui/asm/generic-const.rs ... F
+
+[ui] tests/ui/asm/cortex-r82.rs ... F
+
+[ui] tests/ui/asm/global-asm-isnt-really-a-mir-body.rs#emit_mir ... F
+.
+[ui] tests/ui/asm/global-asm-isnt-really-a-mir-body.rs#instrument ... F
+
+[ui] tests/ui/asm/global-asm-mono-sym-fn.rs ... F
+.
+[ui] tests/ui/asm/global-asm-with-lifetimes.rs ... F
+.............iiiiii
+[ui] tests/ui/asm/issue-85247.rs#ropi ... F
+.
+[ui] tests/ui/asm/inline-syntax.rs#arm ... F
+
+[ui] tests/ui/asm/issue-85247.rs#rwpi ... F
+.
+[ui] tests/ui/asm/label-operand.rs#x86_64 ... F
+
+[ui] tests/ui/asm/issue-99071.rs ... F
+
+[ui] tests/ui/asm/issue-92378.rs ... F
+.
+[ui] tests/ui/asm/may_unwind.rs ... F
+..
+[ui] tests/ui/asm/loongarch/bad-reg.rs#loongarch32_ilp32d ... F
+..i.....
+[ui] tests/ui/asm/naked-functions/target-feature.rs ... F
+.
+[ui] tests/ui/asm/naked-functions/mono-sym-fn.rs ... F
+
+[ui] tests/ui/asm/naked-functions/rustic-abi.rs#x86_64 ... F
+
+[ui] tests/ui/asm/naked-functions/shim.rs#x86_64 ... F
+
+[ui] tests/ui/asm/naked-functions/instruction-set.rs ... F
+
+[ui] tests/ui/asm/naked-functions/unused.rs#aarch64 ... F
+...
+[ui] tests/ui/asm/naked-functions/shim.rs#aarch64 ... F
+......
+[ui] tests/ui/asm/powerpc/bad-reg.rs#aix64 ... F
+
+[ui] tests/ui/asm/powerpc/bad-reg.rs#powerpc ... F
+
+[ui] tests/ui/asm/powerpc/bad-reg.rs#powerpc64le ... F
+
+[ui] tests/ui/asm/reg-conflict.rs ... F
+
+[ui] tests/ui/asm/normalize-offsets-for-crlf.rs ... F
+
+[ui] tests/ui/asm/riscv/bad-reg.rs#riscv32e ... F
+
+[ui] tests/ui/asm/powerpc/bad-reg.rs#powerpcspe ... F
+i
+[ui] tests/ui/asm/powerpc/bad-reg.rs#powerpc64 ... F
+i
+[ui] tests/ui/asm/riscv/bad-reg.rs#riscv64gc ... F
+i.
+[ui] tests/ui/asm/riscv/bad-reg.rs#riscv32gc ... F
+.
+[ui] tests/ui/asm/riscv/bad-reg.rs#riscv32imafc ... F
+..
+[ui] tests/ui/asm/simple_global_asm.rs ... F
+..   528/22044
+....
+[ui] tests/ui/asm/riscv/riscv32e-registers.rs#riscv32e_llvm23 ... F
+.
+[ui] tests/ui/asm/riscv/riscv32e-registers.rs#riscv32em_llvm23 ... F
+
+[ui] tests/ui/asm/riscv/riscv32e-registers.rs#riscv32emc_llvm23 ... F
+......
+[ui] tests/ui/asm/x86_64/const.rs ... F
+
+[ui] tests/ui/asm/x86_64/global_asm_escape.rs ... F
+
+[ui] tests/ui/asm/x86_64/evex512-implicit-feature.rs ... F
+...
+[ui] tests/ui/asm/x86_64/goto.rs ... F
+
+[ui] tests/ui/asm/x86_64/issue-89875.rs ... F
+
+[ui] tests/ui/asm/x86_64/may_unwind.rs ... F
+
+[ui] tests/ui/asm/x86_64/multiple-clobber-abi.rs ... F
+
+[ui] tests/ui/asm/x86_64/issue-96797.rs ... F
+..
+[ui] tests/ui/asm/x86_64/naked_asm_escape.rs ... F
+.....
+[ui] tests/ui/asm/x86_64/sym.rs ... F
+......
+[ui] tests/ui/asm/x86_64/srcloc.rs ... F
+.............................................ii   616/22044
+........................................................................................   704/22044
+........................................................................................   792/22044
+........................................................................................   880/22044
+........................................................................................   968/22044
+........................................................................................  1056/22044
+........................................................................................  1144/22044
+................................................................................
+[ui] tests/ui/async-await/async-closures/debuginfo-by-move-body.rs ... F
+.......  1232/22044
+........................................................................................  1320/22044
+..................................................................
+[ui] tests/ui/async-await/deep-futures-are-freeze.rs ... F
+
+[ui] tests/ui/async-await/drop-order/drop-order-for-locals-when-cancelled.rs ... F
+
+[ui] tests/ui/async-await/drop-order/drop-order-for-temporary-in-tail-return-expr.rs#nomiropt ... F
+
+[ui] tests/ui/async-await/drop-order/drop-order-for-temporary-in-tail-return-expr.rs#default ... F
+
+[ui] tests/ui/async-await/drop-order/drop-order-for-async-fn-parameters.rs#default ... F
+
+[ui] tests/ui/async-await/drop-order/drop-order-for-async-fn-parameters-by-ref-binding.rs ... F
+
+[ui] tests/ui/async-await/drop-order/drop-order-for-async-fn-parameters.rs#nomiropt ... F
+.........
+[ui] tests/ui/async-await/drop-order/drop-order-when-cancelled.rs#default ... F
+.
+[ui] tests/ui/async-await/drop-order/drop-order-when-cancelled.rs#nomiropt ... F
+...  1408/22044
+........................................................................................  1496/22044
+..........
+[ui] tests/ui/async-await/in-trait/normalize-opaque-with-bound-vars.rs ... F
+..............
+[ui] tests/ui/async-await/issue-60709.rs ... F
+..............................................................  1584/22044
+...................................
+[ui] tests/ui/async-await/issues/issue-65419/issue-65419-async-fn-resume-after-completion.rs ... F
+....
+[ui] tests/ui/async-await/issues/issue-65419/issue-65419-coroutine-resume-after-completion.rs ... F
+...................
+[ui] tests/ui/async-await/issues/issue-60674.rs ... F
+..............
+[ui] tests/ui/async-await/issues/issue-65419/issue-65419-async-fn-resume-after-panic.rs ... F
+............  1672/22044
+........
+[ui] tests/ui/async-await/task-context-arg.rs ... F
+.........................................................................
+[ui] tests/ui/attributes/export/libcrate_type.rs ... F
+
+[ui] tests/ui/attributes/export/liblang_item.rs ... F
+...
+[ui] tests/ui/attributes/fn-align-dyn.rs ... F
+  1760/22044
+......................................
+[ui] tests/ui/async-await/track-caller/panic-track-caller.rs#nofeat ... F
+..
+[ui] tests/ui/async-await/track-caller/panic-track-caller.rs#cls ... F
+
+[ui] tests/ui/async-await/track-caller/panic-track-caller.rs#afn ... F
+..........................
+[ui] tests/ui/attributes/helper-attr-interpolated-non-lit-arg.rs ... F
+..................  1848/22044
+...................
+[ui] tests/ui/attributes/key-value-expansion.rs ... F
+..
+[ui] tests/ui/attributes/main-removed-2/main.rs ... F
+....
+[ui] tests/ui/attributes/used_with_archive.rs ... F
+....................
+[ui] tests/ui/attributes/proc-macro-unsafe.rs ... F
+.........iiiiiii..i....................  1936/22044
+i..
+[ui] tests/ui/attributes/use-extern-crate-named-macro-use.rs ... F
+..
+[ui] tests/ui/backtrace/line-tables-only.rs ... F
+
+[ui] tests/ui/backtrace/dylib-dep.rs ... F
+
+[ui] tests/ui/backtrace/sigbus-on-apple-missing-dwarf-backtrace.rs ... F
+.
+[ui] tests/ui/backtrace/backtrace.rs ... F
+
+[ui] tests/ui/backtrace/std-backtrace.rs ... F
+..........
+[ui] tests/ui/autodiff/visibility.rs#no_std_autodiff ... F
+.
+[ui] tests/ui/autodiff/visibility.rs#std_autodiff ... F
+.........................
+[ui] tests/ui/backtrace/synchronized-panic-handler.rs ... F
+
+[ui] tests/ui/binding/match-arm-statics.rs ... F
+..........................
+[ui] tests/ui/binding/fn-arg-incomplete-pattern-drop-order.rs ... F
+.........  2024/22044
+...................................................................................
+[ui] tests/ui/binop/binop-panic.rs ... F
+....  2112/22044
+................
+[ui] tests/ui/bootstrap/no_std-extern-libc.rs ... F
+.......................................................................  2200/22044
+....
+[ui] tests/ui/borrowck/borrow-box-in-map-3026.rs ... F
+................................................
+[ui] tests/ui/borrowck/borrowck-closures-slice-patterns-ok.rs ... F
+..................................  2288/22044
+.......................................................
+[ui] tests/ui/borrowck/borrowck-mut-uniq.rs ... F
+................................  2376/22044
+........................................................................................  2464/22044
+...................................................................................i....  2552/22044
+................................................................
+[ui] tests/ui/borrowck/rvalue-lifetime-match-equivalence-7660.rs ... F
+.......................  2640/22044
+....................................................................
+[ui] tests/ui/c-variadic/copy.rs ... F
+....ii
+[ui] tests/ui/c-variadic/inherent-method.rs ... F
+..i..
+[ui] tests/ui/c-variadic/naked.rs ... F
+..
+[ui] tests/ui/c-variadic/same-program-multiple-abis-x86_64.rs ... F
+
+[ui] tests/ui/c-variadic/roundtrip.rs ... F
+..  2728/22044
+...
+[ui] tests/ui/c-variadic/valid.rs ... F
+...
+[ui] tests/ui/c-variadic/trait-method.rs ... F
+....................................................
+[ui] tests/ui/box/unit/unique-send-2.rs ... F
+...........................  2816/22044
+.....................
+[ui] tests/ui/cast/cast-rfc0401.rs ... F
+.........
+[ui] tests/ui/cfg/cfg_target_object_format.rs#aix ... F
+
+[ui] tests/ui/cfg/cfg_target_object_format.rs#avr ... F
+..
+[ui] tests/ui/cfg/cfg_target_object_format.rs#bpfeb ... F
+
+[ui] tests/ui/cfg/cfg_target_object_format.rs#darwin ... F
+.
+[ui] tests/ui/cfg/cfg_target_object_format.rs#ios ... F
+
+[ui] tests/ui/cfg/cfg_target_object_format.rs#bpfel ... F
+
+[ui] tests/ui/cfg/cfg_target_object_format.rs#linux_gnu ... F
+
+[ui] tests/ui/cfg/cfg_target_object_format.rs#linux_musl ... F
+
+[ui] tests/ui/cfg/cfg_target_object_format.rs#linux_ohos ... F
+
+[ui] tests/ui/cfg/cfg_target_object_format.rs#linux_powerpc ... F
+...
+[ui] tests/ui/cfg/cfg_target_object_format.rs#uefi ... F
+...
+[ui] tests/ui/cfg/cfg_target_object_format.rs#win_msvc ... F
+...i...
+[ui] tests/ui/cast/supported-cast.rs ... F
+
+[ui] tests/ui/cfg/assume-incomplete-release/assume-incomplete.rs#no_assume ... F
+....
+[ui] tests/ui/cfg/assume-incomplete-release/assume-incomplete.rs#assume ... F
+......................  2904/22044
+........................................................................................  2992/22044
+........................................................................................  3080/22044
+........................................................................................  3168/22044
+........................................................................................  3256/22044
+.............................................
+[ui] tests/ui/closures/debug-info-for-closure-capture.rs ... F
+..........................................  3344/22044
+.............................................
+[ui] tests/ui/closures/issue-22864-2.rs ... F
+..............
+[ui] tests/ui/closures/move-closure-is-send.rs ... F
+.......................
+[ui] tests/ui/cmse-nonsecure/cmse-nonsecure-entry/trustzone-only.rs#aarch64 ... F
+...  3432/22044
+.....
+[ui] tests/ui/cmse-nonsecure/cmse-nonsecure-entry/via-registers.rs ... F
+.
+[ui] tests/ui/codegen/bool-negation-with-debug-info.rs ... F
+.....
+[ui] tests/ui/codegen/custom-target-invalid-llvm-target.rs ... F
+i.......
+[ui] tests/ui/codegen/StackColoring-not-blowup-stack-issue-40883.rs ... F
+
+[ui] tests/ui/codegen/deprecated-llvm-intrinsic.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/as-cast/segfault.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/as-cast/inline2.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/as-cast/zero.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/as-cast/inline1.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/exposed-provenance/inline1.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/exposed-provenance/inline2.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/exposed-provenance/segfault.rs ... F
+.
+[ui] tests/ui/codegen/equal-pointers-unequal/exposed-provenance/zero.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/strict-provenance/inline1.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/strict-provenance/segfault.rs ... F
+
+[ui] tests/ui/codegen/equal-pointers-unequal/strict-provenance/inline2.rs ... F
+.
+[ui] tests/ui/codegen/equal-pointers-unequal/strict-provenance/zero.rs ... F
+..
+[ui] tests/ui/codegen/incorrect-arch-intrinsic.rs ... F
+
+[ui] tests/ui/codegen/incorrect-llvm-intrinsic-signature.rs ... F
+........
+[ui] tests/ui/codegen/issue-82833-slice-miscompile.rs ... F
+
+[ui] tests/ui/codegen/issue-82859-slice-miscompile.rs ... F
+..
+[ui] tests/ui/codegen/llvm-args-invalid-flag.rs ... F
+
+[ui] tests/ui/codegen/huge-stacks.rs#optimized ... F
+.
+[ui] tests/ui/codegen/huge-stacks.rs#unoptimized ... F
+..
+[ui] tests/ui/codegen/mismatched-data-layouts.rs ... F
+.....i.........
+[ui] tests/ui/codegen/init-large-type.rs ... F
+.....
+[ui] tests/ui/codegen/issue-28950.rs ... F
+.....  3520/22044
+.
+[ui] tests/ui/codegen/remark-flag-functionality.rs#all ... F
+
+[ui] tests/ui/codegen/remark-flag-functionality.rs#inline ... F
+....
+[ui] tests/ui/codegen/remark-flag-functionality.rs#merge1 ... F
+....
+[ui] tests/ui/codegen/remark-flag-functionality.rs#merge2 ... F
+.....
+[ui] tests/ui/codegen/target-cpus.rs ... F
+............
+[ui] tests/ui/codegen/virtual-function-elimination.rs ... F
+.i
+[ui] tests/ui/codegen/unknown-llvm-intrinsic.rs ... F
+.....................................................  3608/22044
+................
+[ui] tests/ui/coercion/coerce-trait-object-removes-send-bound.rs ... F
+..
+[ui] tests/ui/coercion/coerce-expect-unsized.rs ... F
+........................................................
+[ui] tests/ui/coercion/trait-object-arrays-11205.rs ... F
+...........  3696/22044
+........................................................................................  3784/22044
+........................................................................................  3872/22044
+...........
+[ui] tests/ui/collections/hashmap/hashmap-debug-format.rs ... F
+
+[ui] tests/ui/collections/hashmap/hashmap-path-key.rs ... F
+.
+[ui] tests/ui/collections/hashmap/hashset-enum-variant.rs ... F
+.
+[ui] tests/ui/collections/hashset-connected-border-12860.rs ... F
+
+[ui] tests/ui/command/command-pre-exec.rs ... F
+
+[ui] tests/ui/collections/hashmap/hashmap-memory.rs ... F
+
+[ui] tests/ui/command/command-setgroups.rs ... F
+
+[ui] tests/ui/command/command-uid-gid.rs ... F
+..................................
+[ui] tests/ui/compile-flags/invalid/function-return/requires-x86-or-x86_64.rs#aarch64 ... F
+...
+[ui] tests/ui/compile-flags/invalid/indirect-branch-cs-prefix/requires-x86-or-x86_64.rs#aarch64 ... F
+...............
+[ui] tests/ui/compile-flags/invalid/reg-struct-return/requires-x86.rs#aarch64 ... F
+......
+[ui] tests/ui/compile-flags/invalid/regparm/requires-x86.rs#aarch64 ... F
+.....  3960/22044
+.......
+[ui] tests/ui/compile-flags/invalid/invalid-llvm-passes.rs ... F
+..................
+[ui] tests/ui/compile-flags/jobs/jobs-pass.rs#d ... F
+..................
+[ui] tests/ui/compile-flags/run-pass/repeated-debug-opt-flags.rs ... F
+..........................................  4048/22044
+....................i...................................................................  4136/22044
+..............................................................
+[ui] tests/ui/const-generics/associated-const-bindings/dyn-compat-self-const-projections-in-methods.rs ... F
+.........................  4224/22044
+...
+[ui] tests/ui/const-generics/const-ty-is-normalized.rs ... F
+....................................................................................  4312/22044
+........................................................................................  4400/22044
+........................................................................................  4488/22044
+........................................................................................  4576/22044
+........................................................................................  4664/22044
+........................................................................................  4752/22044
+........................................................................................  4840/22044
+........................................................................................  4928/22044
+.........
+[ui] tests/ui/const-ptr/allowed_slices.rs ... F
+.....
+[ui] tests/ui/const_prop/apfloat-remainder-regression.rs ... F
+.........................................................
+[ui] tests/ui/consts/const-binops.rs ... F
+..............  5016/22044
+.........
+[ui] tests/ui/consts/const-block-cross-crate-fn.rs ... F
+...................
+[ui] tests/ui/consts/const-enum-vec-ptr.rs ... F
+..................
+[ui] tests/ui/consts/const-eval/c-variadic.rs ... F
+.i.....................................  5104/22044
+........................................................................................  5192/22044
+.............................................
+[ui] tests/ui/consts/const-fn-stability-calls-3.rs ... F
+
+[ui] tests/ui/consts/const-fn-stability-calls.rs ... F
+.........................................  5280/22044
+..........................
+[ui] tests/ui/consts/const-region-ptrs-noncopy.rs ... F
+....
+[ui] tests/ui/consts/const-mut-refs-crate.rs ... F
+..............................
+[ui] tests/ui/consts/const_fn_return_nested_fn_ptr.rs ... F
+.........................  5368/22044
+........................................................................................  5456/22044
+............................................
+[ui] tests/ui/consts/issue-33537.rs ... F
+...........................................  5544/22044
+........................................................................................  5632/22044
+........................................................................................  5720/22044
+...................................................................
+[ui] tests/ui/consts/zst_no_llvm_alloc.rs ... F
+
+[ui] tests/ui/contracts/contract-attributes-generics.rs#chk_pass ... F
+
+[ui] tests/ui/contracts/contract-attributes-generics.rs#chk_fail_pre ... F
+
+[ui] tests/ui/contracts/contract-attributes-generics.rs#chk_fail_post ... F
+
+[ui] tests/ui/contracts/contract-attributes-generics.rs#chk_const_fail ... F
+.
+[ui] tests/ui/contracts/contract-attributes-nest.rs#chk_fail_post ... F
+.
+[ui] tests/ui/contracts/contract-attributes-nest.rs#chk_fail_pre ... F
+.
+[ui] tests/ui/contracts/contract-attributes-nest.rs#chk_pass ... F
+.
+[ui] tests/ui/contracts/contract-attributes-tail.rs#chk_fail_post ... F
+.
+[ui] tests/ui/contracts/contract-attributes-tail.rs#chk_fail_pre ... F
+..
+[ui] tests/ui/contracts/contract-attributes-tail.rs#chk_pass ... F
+..
+[ui] tests/ui/contracts/contract-captures-via-closure-copy.rs ... F
+  5808/22044
+.
+[ui] tests/ui/contracts/contract-const-fn.rs#all_pass ... F
+
+[ui] tests/ui/contracts/contract-const-fn.rs#runtime_fail_post ... F
+.
+[ui] tests/ui/contracts/contract-const-fn.rs#runtime_fail_pre ... F
+
+[ui] tests/ui/contracts/contracts-ensures-early-fn-exit.rs#chk_fail_ret ... F
+
+[ui] tests/ui/contracts/contracts-ensures-early-fn-exit.rs#chk_fail_try ... F
+
+[ui] tests/ui/contracts/contracts-ensures-early-fn-exit.rs#chk_fail_yeet ... F
+.
+[ui] tests/ui/contracts/contracts-requires-is-not-inherited-when-nesting.rs ... F
+
+[ui] tests/ui/contracts/contracts-ensures-early-fn-exit.rs#chk_pass ... F
+
+[ui] tests/ui/contracts/contracts-ensures-is-not-inherited-when-nesting.rs ... F
+
+[ui] tests/ui/contracts/cross-crate-checks/cross-crate.rs#chk_fail ... F
+.
+[ui] tests/ui/contracts/cross-crate-checks/cross-crate.rs#unchk_fail ... F
+
+[ui] tests/ui/contracts/declared-vars-referring-to-params.rs ... F
+
+[ui] tests/ui/contracts/declared-vars-used-in-ensures.rs ... F
+.
+[ui] tests/ui/contracts/declared-vars-used-in-requires-and-ensures.rs ... F
+...
+[ui] tests/ui/contracts/internal_machinery/contract-ast-extensions-nest.rs#chk_fail_pre ... F
+
+[ui] tests/ui/contracts/incomplete-feature.rs ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-ast-extensions-nest.rs#chk_fail_post ... F
+.
+[ui] tests/ui/contracts/internal_machinery/contract-ast-extensions-nest.rs#chk_pass ... F
+..
+[ui] tests/ui/contracts/internal_machinery/contract-ast-extensions-tail.rs#chk_fail_post ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-ast-extensions-tail.rs#chk_fail_pre ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-ast-extensions-tail.rs#chk_pass ... F
+...
+[ui] tests/ui/contracts/internal_machinery/contract-intrinsics.rs#chk_fail_ensures ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-intrinsics.rs#chk_fail_requires ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-intrinsics.rs#default ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-lang-items.rs#unchk_pass ... F
+
+[ui] tests/ui/contracts/internal_machinery/contracts-lowering-ensures-is-not-inherited-when-nesting.rs ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-lang-items.rs#chk_fail_post ... F
+
+[ui] tests/ui/contracts/internal_machinery/contract-lang-items.rs#chk_pass ... F
+.
+[ui] tests/ui/contracts/internal_machinery/contracts-lowering-requires-is-not-inherited-when-nesting.rs ... F
+........
+[ui] tests/ui/contracts/requires-block-stmt.rs ... F
+.
+[ui] tests/ui/contracts/internal_machinery/lowering/basics.rs ... F
+.................................  5896/22044
+................................................
+[ui] tests/ui/coroutine/issue-58888.rs ... F
+...
+[ui] tests/ui/coroutine/issue-87142.rs ... F
+.........
+[ui] tests/ui/coroutine/coroutine-resume-after-panic.rs ... F
+..................
+[ui] tests/ui/coroutine/gen_block_panic.rs ... F
+......  5984/22044
+......................
+[ui] tests/ui/coroutine/panic-safe.rs ... F
+..
+[ui] tests/ui/coroutine/panic-drops-resume.rs ... F
+
+[ui] tests/ui/coroutine/resume-after-return.rs ... F
+
+[ui] tests/ui/coroutine/panic-drops.rs ... F
+................ii............
+[ui] tests/ui/crate-loading/missing-std.rs ... F
+.
+[ui] tests/ui/crate-loading/missing-target-no-std-error.rs ... F
+...
+[ui] tests/ui/cross-crate/address-insignificant.rs ... F
+.....
+[ui] tests/ui/coroutine/smoke.rs#default ... F
+
+[ui] tests/ui/coroutine/smoke.rs#nomiropt ... F
+................  6072/22044
+......
+[ui] tests/ui/crate-loading/cross-compiled-proc-macro.rs ... F
+.........
+[ui] tests/ui/cross-crate/issue-64872/issue-64872.rs ... F
+........
+[ui] tests/ui/cross-crate/cci_capture_clause.rs ... F
+..
+[ui] tests/ui/cross-crate/monomorphize-index-op-cross-crate.rs ... F
+..
+[ui] tests/ui/cross-crate/static-addresses.rs ... F
+
+[ui] tests/ui/cross-crate/optimized-closure-with-debug-info-cross-crate.rs ... F
+....
+[ui] tests/ui/cross-crate/static-init.rs ... F
+................iiiiii.......
+[ui] tests/ui/debuginfo/debuginfo-box-with-large-allocator.rs ... F
+.
+[ui] tests/ui/debuginfo/cross-crate-multibyte-debuginfo.rs ... F
+.........
+[ui] tests/ui/debuginfo/debuginfo_with_uninhabitable_field_and_unsized.rs ... F
+.ii.
+[ui] tests/ui/custom_test_frameworks/full.rs ... F
+
+[ui] tests/ui/cross-crate/mut-ref-write-visible-after-unwind.rs ... F
+
+[ui] tests/ui/debuginfo/windows_gnu_split_debuginfo_off.rs#aarch64_gl ... F
+.  6160/22044
+...
+[ui] tests/ui/custom_test_frameworks/dynamic.rs ... F
+
+[ui] tests/ui/debuginfo/impl-copy-function-debuginfo-58463.rs ... F
+
+[ui] tests/ui/debuginfo/issue-105386-debuginfo-ub.rs ... F
+.
+[ui] tests/ui/debuginfo/late-bound-projection.rs ... F
+.
+[ui] tests/ui/debuginfo/sroa-fragment-debuginfo.rs ... F
+...
+[ui] tests/ui/debuginfo/windows_gnu_split_debuginfo_packed.rs#aarch64_gl ... F
+....
+[ui] tests/ui/debuginfo/windows_gnu_split_debuginfo_unpacked.rs#aarch64_gl ... F
+..............................
+[ui] tests/ui/delegation/fn-header-variadic.rs ... F
+.
+[ui] tests/ui/delegation/fn-header.rs ... F
+....................................  6248/22044
+........................................................................................  6336/22044
+........................................................................................  6424/22044
+....
+[ui] tests/ui/derives/coercepointee/built-in-proc-macro-scope.rs ... F
+.
+[ui] tests/ui/derives/coercepointee/deriving-coerce-pointee-neg.rs ... F
+
+[ui] tests/ui/derives/coercepointee/proc-macro-attribute-mixing.rs ... F
+.......................................
+[ui] tests/ui/derives/derive-marker-tricky.rs ... F
+........................................  6512/22044
+........................................................................................  6600/22044
+............
+[ui] tests/ui/diagnostic_namespace/do_not_recommend/proc-macro-span.rs#next ... F
+.
+[ui] tests/ui/diagnostic_namespace/do_not_recommend/proc-macro-span.rs#current ... F
+......
+[ui] tests/ui/diagnostic_namespace/existing_proc_macros.rs ... F
+..................................................................  6688/22044
+......ii..i.................................
+[ui] tests/ui/drop/drop-order-comparisons-let-chains.rs ... F
+
+[ui] tests/ui/drop/drop-order-comparisons.rs#e2021 ... F
+
+[ui] tests/ui/drop/drop-order-comparisons.rs#e2024 ... F
+..................
+[ui] tests/ui/drop/drop-with-type-ascription-2.rs ... F
+......
+[ui] tests/ui/drop/drop-once-on-panic.rs ... F
+
+[ui] tests/ui/drop/dropck_legal_cycles.rs ... F
+.....
+[ui] tests/ui/drop/drop-trait-enum.rs ... F
+...
+[ui] tests/ui/drop/if-let-guards.rs#e2021 ... F
+..
+[ui] tests/ui/drop/if-let-guards.rs#e2024 ... F
+.  6776/22044
+...
+[ui] tests/ui/drop/enum-destructor-on-unwind.rs ... F
+...................
+[ui] tests/ui/drop/dynamic-drop.rs ... F
+.
+[ui] tests/ui/drop/issue-30018-nopanic.rs ... F
+....
+[ui] tests/ui/drop/dynamic-drop-async.rs ... F
+.......
+[ui] tests/ui/drop/panic-in-drop-during-assignment.rs ... F
+....
+[ui] tests/ui/drop/or-pattern-drop-order.rs ... F
+.......
+[ui] tests/ui/drop/move-closure-drop-on-unwind.rs ... F
+......
+[ui] tests/ui/drop/panic-during-drop-14875.rs ... F
+......
+[ui] tests/ui/drop/repeat-drop.rs ... F
+.
+[ui] tests/ui/drop/panic-during-slice-init.rs ... F
+....................  6864/22044
+..............................
+[ui] tests/ui/drop/terminate-in-initializer.rs ... F
+.....................................
+[ui] tests/ui/dst/trait-impl-on-tuple-with-unsized-tail.rs ... F
+...........
+[ui] tests/ui/duplicate/dupe-symbols-7.rs ... F
+...
+[ui] tests/ui/duplicate/dupe-symbols-8.rs ... F
+...  6952/22044
+.............................................................................
+[ui] tests/ui/duplicate/inherent-impls-overlap-check/no-overlap.rs ... F
+.
+[ui] tests/ui/duplicate/inherent-impls-overlap-check/overlap.rs ... F
+........  7040/22044
+.....................
+[ui] tests/ui/eii/default/call_default_panics.rs ... F
+.
+[ui] tests/ui/eii/default/local_crate_explicit.rs ... F
+
+[ui] tests/ui/eii/default/local_crate.rs ... F
+
+[ui] tests/ui/eii/default/call_default.rs ... F
+..
+[ui] tests/ui/eii/duplicate/dylib_default_duplicate.rs ... F
+.
+[ui] tests/ui/eii/duplicate/duplicate1.rs ... F
+.
+[ui] tests/ui/eii/duplicate/duplicate2.rs ... F
+
+[ui] tests/ui/eii/duplicate/duplicate3.rs ... F
+...
+[ui] tests/ui/eii/default/call_impl.rs ... F
+...
+[ui] tests/ui/eii/eii_impl_with_contract.rs ... F
+
+[ui] tests/ui/eii/linking/codegen_single_crate.rs ... F
+
+[ui] tests/ui/eii/linking/same-symbol.rs ... F
+
+[ui] tests/ui/eii/linking/codegen_cross_crate.rs ... F
+.i..
+[ui] tests/ui/eii/privacy1.rs ... F
+
+[ui] tests/ui/eii/linking/track_caller_cross_crate.rs ... F
+
+[ui] tests/ui/eii/static/cross_crate_def.rs ... F
+
+[ui] tests/ui/eii/static/default.rs ... F
+..
+[ui] tests/ui/eii/static/default_explicit.rs ... F
+
+[ui] tests/ui/eii/static/cross_crate_decl.rs ... F
+.....
+[ui] tests/ui/eii/static/default_cross_crate.rs ... F
+.....
+[ui] tests/ui/eii/static/simple.rs ... F
+..
+[ui] tests/ui/eii/static/same_address.rs ... F
+
+[ui] tests/ui/eii/static/default_cross_crate_explicit.rs ... F
+......
+[ui] tests/ui/eii/track_caller.rs ... F
+........  7128/22044
+...............................
+[ui] tests/ui/enum-discriminant/invalid-niche-discriminant.rs#with_delayed ... F
+...................
+[ui] tests/ui/enum-discriminant/issue-70509-partial_eq.rs ... F
+....................................  7216/22044
+........................................................................................  7304/22044
+..........................................
+[ui] tests/ui/error-codes/E0152-duplicate-lang-items.rs ... F
+.............................................  7392/22044
+............................................................................
+[ui] tests/ui/error-codes/E0511.rs ... F
+...........  7480/22044
+........................................................................................  7568/22044
+............................
+[ui] tests/ui/explicit-tail-calls/become-cast-return.rs ... F
+
+[ui] tests/ui/explicit-tail-calls/become-indirect-return.rs ... F
+...
+[ui] tests/ui/explicit-tail-calls/callee_is_track_caller.rs ... F
+.
+[ui] tests/ui/explicit-tail-calls/callee_is_track_caller_polymorphic.rs ... F
+............
+[ui] tests/ui/explicit-tail-calls/default-trait-method.rs ... F
+
+[ui] tests/ui/explicit-tail-calls/indexer.rs ... F
+
+[ui] tests/ui/explicit-tail-calls/drop-order.rs ... F
+
+[ui] tests/ui/explicit-tail-calls/no-unsized-arguments.rs#aarch64 ... F
+
+[ui] tests/ui/explicit-tail-calls/indirect.rs ... F
+.....
+[ui] tests/ui/explicit-tail-calls/recursion-etc.rs ... F
+....
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#arm ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#aarch64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#bpf ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#i686 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#loongarch64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#loongarch32 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#m68k ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#nvptx64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#sparc ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#powerpc64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#sparc64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#s390x ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#thumb ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#riscv ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#wasip1 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#x86-64 ... F
+ii
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#wasm ... F
+
+[ui] tests/ui/explicit-tail-calls/support/basic.rs#x86-64-win ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#aarch64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#arm ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#bpf ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#i686 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#nvptx64 ... F
+  7656/22044
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#m68k ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#sparc64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#powerpc64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#sparc ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#s390x ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#thumb ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#wasip1 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#x86-64-win ... F
+ii
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#wasm ... F
+
+[ui] tests/ui/explicit-tail-calls/support/bystack.rs#x86-64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#aarch64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#arm ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#bpf ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#i686 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#m68k ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#nvptx64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#s390x ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#powerpc64 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#sparc ... F
+i
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#sparc64 ... F
+.
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#thumb ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#wasm ... F
+
+[ui] tests/ui/explicit-tail-calls/tailcc-no-signature-restriction.rs#x86_64 ... F
+.
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#wasip1 ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#x86-64-win ... F
+
+[ui] tests/ui/explicit-tail-calls/support/byval.rs#x86-64 ... F
+.........................................................  7744/22044
+...
+[ui] tests/ui/expr/if/if-cond-bot.rs ... F
+.........................i.............i.......
+[ui] tests/ui/extern/extern-take-value.rs ... F
+..
+[ui] tests/ui/extern/extern-types-field-offset.rs ... F
+i...........
+[ui] tests/ui/extern/extern_fat_drop.rs ... F
+..............
+[ui] tests/ui/extern/issue-64655-allow-unwind-when-calling-panic-directly.rs#fat ... F
+
+[ui] tests/ui/extern/issue-64655-allow-unwind-when-calling-panic-directly.rs#thin ... F
+
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#fat1 ... F
+
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#fat0 ... F
+
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#fat2 ... F
+
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#fat3 ... F
+  7832/22044
+
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#thin0 ... F
+
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#thin1 ... F
+
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#thin2 ... F
+.
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#thin3 ... F
+............
+[ui] tests/ui/feature-gates/feature-gate-abi-avr-interrupt.rs ... F
+......
+[ui] tests/ui/feature-gates/feature-gate-abi_gpu_kernel.rs#NVPTX ... F
+
+[ui] tests/ui/extern/issue-64655-allow-unwind-when-calling-panic-directly.rs#no ... F
+
+[ui] tests/ui/feature-gates/feature-gate-abi_ptx.rs ... F
+...
+[ui] tests/ui/feature-gates/feature-gate-abi_swift.rs ... F
+.......
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#no0 ... F
+..
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#no2 ... F
+.......
+[ui] tests/ui/feature-gates/feature-gate-asm_experimental_reg.rs ... F
+ii.....
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#no1 ... F
+.
+[ui] tests/ui/extern/issue-64655-extern-rust-must-allow-unwind.rs#no3 ... F
+.......
+[ui] tests/ui/feature-gates/feature-gate-c_variadic_experimental_arch.rs#avr ... F
+....................  7920/22044
+........................................................................................  8008/22044
+........................................................................................  8096/22044
+.......................................
+[ui] tests/ui/feature-gates/rustc-private.rs ... F
+......i.........................................  8184/22044
+...i
+[ui] tests/ui/float/f16-into-f32.rs ... F
+.
+[ui] tests/ui/float/conv-bits-runtime-const.rs ... F
+.......
+[ui] tests/ui/float/classify-runtime-const.rs#opt ... F
+
+[ui] tests/ui/float/classify-runtime-const.rs#noopt ... F
+..........
+[ui] tests/ui/fmt/format-enum-with-recursive-variant.rs ... F
+....
+[ui] tests/ui/fmt/format-args-capture-from-pm-first-arg-macro.rs ... F
+
+[ui] tests/ui/fmt/format-expanded-string.rs ... F
+.
+[ui] tests/ui/fmt/format-args-capture-first-literal-is-macro.rs ... F
+......
+[ui] tests/ui/fmt/format-args-capture.rs ... F
+
+[ui] tests/ui/fmt/format-args-capture-issue-106408.rs ... F
+.
+[ui] tests/ui/fmt/format-args-capture-macro-hygiene.rs ... F
+.
+[ui] tests/ui/fmt/debug-single-call.rs ... F
+.........................................  8272/22044
+............................................
+[ui] tests/ui/fmt/indoc-issue-106408.rs ... F
+..
+[ui] tests/ui/fmt/respanned-literal-issue-106191.rs ... F
+...................
+[ui] tests/ui/for-loop-while/foreach-external-iterators-hashmap-break-restart.rs ... F
+
+[ui] tests/ui/for-loop-while/foreach-external-iterators-hashmap.rs ... F
+
+[ui] tests/ui/for-loop-while/for-destruct.rs ... F
+..................  8360/22044
+...................................
+[ui] tests/ui/foreign/foreign2.rs ... F
+....................................................  8448/22044
+..............................
+[ui] tests/ui/functions-closures/bare-fn-implements-fn-mut.rs ... F
+.......................................
+[ui] tests/ui/frontmatter/location-proc-macro-observer.rs ... F
+.................  8536/22044
+........................................................................................  8624/22044
+..........................................................................
+[ui] tests/ui/generic-associated-types/streaming_iterator.rs ... F
+.............  8712/22044
+.......
+[ui] tests/ui/generics/autobind.rs ... F
+................................................................................  8800/22044
+........................................................................................  8888/22044
+........................................................................................  8976/22044
+......................................................................
+[ui] tests/ui/hygiene/issue-29746.rs ... F
+.................  9064/22044
+..................................
+[ui] tests/ui/hygiene/issue-77523-def-site-async-await.rs ... F
+.....................................................  9152/22044
+........................................................................................  9240/22044
+..................................................
+[ui] tests/ui/impl-trait/example-calendar.rs ... F
+.....................................  9328/22044
+........................................................................................  9416/22044
+........................................................................................  9504/22044
+................
+[ui] tests/ui/impl-trait/normalize-opaque-with-bound-vars.rs ... F
+.......................................................................  9592/22044
+................................................
+[ui] tests/ui/impl-trait/precise-capturing/external-macro.rs ... F
+.......................
+[ui] tests/ui/impl-trait/universal_in_adt_in_parameters.rs ... F
+.......
+[ui] tests/ui/impl-trait/universal_in_impl_trait_in_parameters.rs ... F
+.......  9680/22044
+........................................................................................  9768/22044
+..........
+[ui] tests/ui/imports/extern-crate-indirect-fn-ptr.rs ... F
+.
+[ui] tests/ui/imports/ambiguous-import-visibility-macro.rs ... F
+..................
+[ui] tests/ui/imports/ambiguous-import-visibility.rs ... F
+........
+[ui] tests/ui/imports/dummy-import-ice.rs ... F
+...............................................  9856/22044
+........................................................................................  9944/22044
+........................................................................................ 10032/22044
+...
+[ui] tests/ui/imports/same-res-ambigious.rs#pass ... F
+.
+[ui] tests/ui/imports/same-res-ambigious.rs#fail ... F
+.......
+[ui] tests/ui/imports/underscore-imports/duplicate.rs ... F
+...................
+[ui] tests/ui/inference/collection-type-copy-behavior-12909.rs ... F
+...................................................... 10120/22044
+..........................................................................i............. 10208/22044
+........
+[ui] tests/ui/instrument-xray/platform-support.rs#aarch64-darwin ... F
+i................
+[ui] tests/ui/intrinsics/bad-intrinsic-monomorphization.rs ... F
+..........
+[ui] tests/ui/intrinsics/intrinsic-fmuladd.rs ... F
+...
+[ui] tests/ui/intrinsics/intrinsic-volatile.rs ... F
+.
+[ui] tests/ui/intrinsics/panic-uninitialized-zeroed.rs#default ... F
+
+[ui] tests/ui/intrinsics/panic-uninitialized-zeroed.rs#strict ... F
+..
+[ui] tests/ui/intrinsics/intrinsics-math.rs ... F
+.
+[ui] tests/ui/intrinsics/not-overridden.rs ... F
+....
+[ui] tests/ui/intrinsics/intrinsics-integer.rs ... F
+..
+[ui] tests/ui/intrinsics/volatile-zst-intrinsics.rs ... F
+.
+[ui] tests/ui/intrinsics/volatile-composite-types.rs ... F
+............................ 10296/22044
+...ii.....ii.........
+[ui] tests/ui/io-checks/write-macro-error.rs ... F
+.
+[ui] tests/ui/io-checks/io-stdout-blocking-writes.rs ... F
+.....i
+[ui] tests/ui/iterators/iter-filter-count-debug-check.rs ... F
+....i..................
+[ui] tests/ui/iterators/iter-step-overflow-debug.rs ... F
+.
+[ui] tests/ui/iterators/rangefrom-overflow-debug.rs ... F
+.
+[ui] tests/ui/iterators/iter-sum-overflow-overflow-checks.rs ... F
+..........
+[ui] tests/ui/iterators/rangefrom-overflow-2crates.rs ... F
+
+[ui] tests/ui/iterators/rangefrom-overflow-overflow-checks.rs ... F
+
+[ui] tests/ui/iterators/iter-sum-overflow-debug.rs ... F
+................ 10384/22044
+......................
+[ui] tests/ui/layout/aggregate-lang/struct-offsets.rs ... F
+..........................................i....
+[ui] tests/ui/layout/reprc-power-alignment.rs ... F
+......
+[ui] tests/ui/layout/size-of-val-raw-too-big-64.rs#full-debuginfo ... F
+.
+[ui] tests/ui/layout/thumb-enum.rs ... F
+
+[ui] tests/ui/layout/size-of-val-raw-too-big-64.rs#no-debuginfo ... F
+i...... 10472/22044
+................
+[ui] tests/ui/layout/too-big-with-padding.rs ... F
+....................................................................... 10560/22044
+....................
+[ui] tests/ui/let-else/let-else-drop-order.rs ... F
+................................................................... 10648/22044
+........................................................................................ 10736/22044
+...
+[ui] tests/ui/lifetimes/issue-91763.rs ... F
+....................i.....
+[ui] tests/ui/limits/huge-array.rs#full-debuginfo ... F
+
+[ui] tests/ui/limits/huge-array-simple-64.rs#full-debuginfo ... F
+
+[ui] tests/ui/limits/huge-enum.rs#full-debuginfo ... F
+i
+[ui] tests/ui/limits/huge-array-simple-64.rs#no-debuginfo ... F
+.
+[ui] tests/ui/limits/huge-enum.rs#no-debuginfo ... F
+
+[ui] tests/ui/limits/huge-array.rs#no-debuginfo ... F
+
+[ui] tests/ui/limits/issue-15919-64.rs#full-debuginfo ... F
+..
+[ui] tests/ui/limits/issue-15919-64.rs#no-debuginfo ... F
+
+[ui] tests/ui/limits/issue-69485-var-size-diffs-too-large.rs ... F
+........i...................
+[ui] tests/ui/lifetimes/tail-expr-lock-poisoning.rs#edition2021 ... F
+
+[ui] tests/ui/lifetimes/tail-expr-lock-poisoning.rs#edition2024 ... F
+..i..iiii....
+[ui] tests/ui/linkage-attr/common-linkage-non-zero-init.rs ... F
+. 10824/22044
+
+[ui] tests/ui/limits/huge-struct.rs ... F
+...
+[ui] tests/ui/linkage-attr/link-section-macho.rs ... F
+....................
+[ui] tests/ui/linkage-attr/linkage1.rs ... F
+.i.
+[ui] tests/ui/linkage-attr/msvc-static-data-import.rs ... F
+..
+[ui] tests/ui/linkage-attr/propagate-generic-issue-18804/main.rs ... F
+i...i...
+[ui] tests/ui/linkage-attr/raw-dylib/windows/import-name-type-x86-only.rs ... F
+i.i....i....i....
+[ui] tests/ui/linking/export-executable-symbols.rs ... F
+....................ii..i... 10912/22044
+........................................................................................ 11000/22044
+.....................................................i.................................. 11088/22044
+...
+[ui] tests/ui/lint/dead-code/allow-derived-inherent-impl-issue-102190.rs ... F
+.................................................................................... 11176/22044
+......................i....................................................
+[ui] tests/ui/lint/lint-gpu-kernel.rs#nvptx ... F
+............ 11264/22044
+....................................................i................................... 11352/22044
+........................................................................................ 11440/22044
+...............................i.................................
+[ui] tests/ui/lint/redundant-semicolon/redundant-semi-proc-macro.rs ... F
+...................... 11528/22044
+............................
+[ui] tests/ui/lint/unsafe_code/forge_unsafe_block.rs ... F
+......
+[ui] tests/ui/lint/unused-qualification-in-derive-expansion.rs ... F
+.................................................... 11616/22044
+..........................................................
+[ui] tests/ui/lint/unused/unused-parens-trait-obj-proc-macro-144378.rs ... F
+.........
+[ui] tests/ui/lint/unused/unused_assignment.rs ... F
+.
+[ui] tests/ui/loop-match/valid-patterns.rs ... F
+................. 11704/22044
+..........
+[ui] tests/ui/lto/all-crates.rs ... F
+
+[ui] tests/ui/lto/debuginfo-lto.rs ... F
+
+[ui] tests/ui/loops/issue-69225-SCEVAddExpr-wrap-flag.rs ... F
+
+[ui] tests/ui/lto/dwarf-mixed-versions-lto.rs ... F
+
+[ui] tests/ui/loops/issue-69225-layout-repeated-checked-add.rs ... F
+
+[ui] tests/ui/lto/debuginfo-lto-alloc.rs ... F
+.
+[ui] tests/ui/lto/fat-lto.rs ... F
+.
+[ui] tests/ui/lto/issue-100772.rs ... F
+
+[ui] tests/ui/lto/issue-105637.rs ... F
+.
+[ui] tests/ui/lto/lto-avx-target-feature.rs ... F
+
+[ui] tests/ui/lto/lto-global-allocator.rs ... F
+
+[ui] tests/ui/lto/lto-many-codegen-units.rs ... F
+
+[ui] tests/ui/liveness/unused-assignments-from-macro-147648.rs ... F
+
+[ui] tests/ui/lto/lto-rustc-loads-linker-plugin.rs ... F
+
+[ui] tests/ui/lto/lto-opt-level-s.rs ... F
+.
+[ui] tests/ui/lto/lto-opt-level-z.rs ... F
+
+[ui] tests/ui/lto/lto-thin-rustc-loads-linker-plugin.rs ... F
+...
+[ui] tests/ui/lto/lto-still-runs-thread-dtors.rs ... F
+.
+[ui] tests/ui/lto/lto-duplicate-symbols.rs ... F
+....
+[ui] tests/ui/lto/thin-lto-inlines2.rs ... F
+...............
+[ui] tests/ui/lto/msvc-imp-present.rs ... F
+.............................
+[ui] tests/ui/macros/assert-macro-owned.rs ... F
+ 11792/22044
+......................i........................ii.........................
+[ui] tests/ui/macros/cfg-expr.rs ... F
+
+[ui] tests/ui/macros/cfg_select-expr.rs ... F
+............ 11880/22044
+..........................ii.............................................
+[ui] tests/ui/macros/issue-100199.rs ... F
+.............. 11968/22044
+............i........................................................................... 12056/22044
+......................................................................
+[ui] tests/ui/macros/macro-quote-test.rs ... F
+........
+[ui] tests/ui/macros/metavar-expressions/count-and-length-are-distinct.rs ... F
+
+[ui] tests/ui/macros/metavar-expressions/macro-expansion.rs ... F
+....... 12144/22044
+........
+[ui] tests/ui/macros/macro-with-braces-in-expr-position.rs ... F
+....................
+[ui] tests/ui/macros/missing-derive-1.rs ... F
+.
+[ui] tests/ui/macros/missing-derive-2.rs ... F
+
+[ui] tests/ui/macros/missing-derive-3.rs ... F
+.................
+[ui] tests/ui/macros/proc_macro.rs ... F
+........i............
+[ui] tests/ui/macros/rfc-2011-nicer-assert-messages/all-expr-kinds.rs ... F
+.
+[ui] tests/ui/macros/same-sequence-span.rs ... F
+
+[ui] tests/ui/macros/rfc-2011-nicer-assert-messages/assert-without-captures-does-not-create-unnecessary-code.rs ... F
+............ 12232/22044
+...
+[ui] tests/ui/macros/rfc-2011-nicer-assert-messages/all-not-available-cases.rs ... F
+...........................
+[ui] tests/ui/match/closure-in-match-guard.rs ... F
+........ii.............................................. 12320/22044
+........................................................................................ 12408/22044
+......................................................
+[ui] tests/ui/methods/method-self-arg-aux2.rs ... F
+................................. 12496/22044
+.i.................
+[ui] tests/ui/mir/debug-ref-undef.rs ... F
+................
+[ui] tests/ui/mir/enum/convert_non_integer_break.rs ... F
+..
+[ui] tests/ui/mir/enum/negative_discr_break.rs ... F
+..
+[ui] tests/ui/mir/enum/numbered_variants_break.rs ... F
+.
+[ui] tests/ui/mir/enum/plain_no_data_break.rs ... F
+........................................... 12584/22044
+.........................................
+[ui] tests/ui/mir/mir-inlining/var-debuginfo-issue-67586.rs ... F
+...............................
+[ui] tests/ui/mir/mir_codegen_calls_diverging_drops.rs ... F
+.......
+[ui] tests/ui/mir/mir_drop_panics.rs ... F
+.
+[ui] tests/ui/mir/mir_dynamic_drops_3.rs ... F
+...
+[ui] tests/ui/mir/mir_calls_to_shims.rs ... F
+ 12672/22044
+.......
+[ui] tests/ui/mir/mir_drop_order.rs ... F
+.
+[ui] tests/ui/mir/mir_raw_fat_ptr.rs ... F
+
+[ui] tests/ui/mir/mir_let_chains_drop_order.rs ... F
+
+[ui] tests/ui/mir/mir_match_guard_let_chains_drop_order.rs#edition2021 ... F
+
+[ui] tests/ui/mir/mir_match_guard_let_chains_drop_order.rs#edition2024 ... F
+..
+[ui] tests/ui/mir/mir_misc_casts.rs ... F
+..................................
+[ui] tests/ui/mir/var_debug_ref.rs#full ... F
+
+[ui] tests/ui/mir/var_debug_ref.rs#limited ... F
+.....
+[ui] tests/ui/mir/static_fnptr.rs ... F
+.............................. 12760/22044
+.........................................................................ii............. 12848/22044
+.i..i....iii.....i..............i....................................................... 12936/22044
+.............................
+[ui] tests/ui/mut-restriction/mut-restriction-check-asm.rs ... F
+.......................................................
+[ui] tests/ui/moves/moves-based-on-type-capture-clause.rs ... F
+.. 13024/22044
+........................................................................................ 13112/22044
+........................................................................................ 13200/22044
+..
+[ui] tests/ui/nll/issue-51345-2.rs ... F
+..................................................................................... 13288/22044
+........................................................................................ 13376/22044
+.
+[ui] tests/ui/nll/process_or_insert_default.rs ... F
+...................................................................................... 13464/22044
+................i..i................
+[ui] tests/ui/numbers-arithmetic/apfloat-modulo-wrong.rs ... F
+..................
+[ui] tests/ui/numbers-arithmetic/i128.rs ... F
+............
+[ui] tests/ui/numbers-arithmetic/next-power-of-two-overflow-ndebug.rs ... F
+..........ii......
+[ui] tests/ui/numbers-arithmetic/int-abs-overflow.rs ... F
+ 13552/22044
+....
+[ui] tests/ui/numbers-arithmetic/u128-as-f32.rs ... F
+..
+[ui] tests/ui/numbers-arithmetic/next-power-of-two-overflow-debug.rs ... F
+....
+[ui] tests/ui/numbers-arithmetic/issue-8460.rs ... F
+..........
+[ui] tests/ui/numbers-arithmetic/saturating-float-casts.rs ... F
+..................................iiii.......................... 13640/22044
+..............................................................
+[ui] tests/ui/or-patterns/for-loop.rs ... F
+......................... 13728/22044
+....................................................
+[ui] tests/ui/panic-runtime/lto-abort.rs ... F
+
+[ui] tests/ui/panic-runtime/lto-unwind.rs ... F
+.........i
+[ui] tests/ui/panic-handler/catch-unwind-during-unwind-68696.rs ... F
+....
+[ui] tests/ui/panic-runtime/unwind-interleaved.rs ... F
+..
+[ui] tests/ui/panic-runtime/unwind-rec2.rs ... F
+.......
+[ui] tests/ui/panics/issue-47429-short-backtraces.rs ... F
+
+[ui] tests/ui/panics/explicit-panic-msg.rs ... F
+...
+[ui] tests/ui/panics/fmt-panic.rs ... F
+.. 13816/22044
+
+[ui] tests/ui/panics/location-detail-unwrap-multiline.rs ... F
+..
+[ui] tests/ui/panics/alloc_error_hook-unwind.rs ... F
+.
+[ui] tests/ui/panics/catch-unwind-bang.rs ... F
+
+[ui] tests/ui/panics/abort-on-panic.rs#current ... F
+.
+[ui] tests/ui/panics/abort-on-panic.rs#next ... F
+.
+[ui] tests/ui/panics/nested_panic_caught.rs ... F
+
+[ui] tests/ui/panics/panic-during-display-formatting.rs ... F
+.
+[ui] tests/ui/panics/panic-handler-chain.rs ... F
+
+[ui] tests/ui/panics/panic-handler-chain-update-hook.rs ... F
+
+[ui] tests/ui/panics/panic-handler-set-twice.rs ... F
+
+[ui] tests/ui/panics/panic-handler-flail-wildly.rs ... F
+..
+[ui] tests/ui/panics/panic-macro-any-wrapped.rs ... F
+.....
+[ui] tests/ui/panics/panic-in-dtor-drops-fields.rs ... F
+.
+[ui] tests/ui/panics/panic-macro-any.rs ... F
+.....i.......
+[ui] tests/ui/panics/runtime-switch.rs ... F
+
+[ui] tests/ui/panics/result-get-panic.rs ... F
+....
+[ui] tests/ui/panics/panic-recover-propagate.rs ... F
+..
+[ui] tests/ui/panics/panic-task-name-none.rs ... F
+
+[ui] tests/ui/panics/panic-task-name-owned.rs ... F
+............
+[ui] tests/ui/panics/vec-extend-after-panic-3029.rs ... F
+....
+[ui] tests/ui/panics/rvalue-cleanup-during-box-panic.rs ... F
+.................. 13904/22044
+.
+[ui] tests/ui/panics/unwind-force-no-unwind-tables.rs ... F
+....................................................................i................. 13992/22044
+........................................................................................ 14080/22044
+....................................................i................................... 14168/22044
+.........................................................................i.............. 14256/22044
+
+[ui] tests/ui/parser/issues/issue-48508.rs ... F
+....................................................................................... 14344/22044
+....................................................................
+[ui] tests/ui/parser/issues/issue-89971-outer-attr-following-inner-attr-ice.rs ... F
+................... 14432/22044
+........................................................................................ 14520/22044
+.....i..............
+[ui] tests/ui/parser/macro/unicode-control-codepoints-macros.rs ... F
+................................................................... 14608/22044
+........................................................................................ 14696/22044
+........................................................................................ 14784/22044
+......................
+[ui] tests/ui/parser/utf8_idents-rpass.rs ... F
+........................
+[ui] tests/ui/parser/tuple-index-suffix-proc-macro.rs ... F
+........................................ 14872/22044
+............................
+[ui] tests/ui/pattern/deref-patterns/strings.rs ... F
+........................................................... 14960/22044
+....................
+[ui] tests/ui/pattern/move-ref-patterns/move-ref-patterns-dynamic-semantics.rs ... F
+................................................................... 15048/22044
+........................................................................................ 15136/22044
+...............................................................................
+[ui] tests/ui/pointer_authentication/enable_pointer_authentication_validation.rs#all_known ... F
+......
+[ui] tests/ui/pointer_authentication/invalid_target_pointer_authentication.rs ... F
+
+[ui] tests/ui/pointer_authentication/type_discrimination_not_supported_pointer_authentication.rs ... F
+ 15224/22044
+................ii..
+[ui] tests/ui/precondition-checks/read_volatile.rs#misaligned ... F
+...........................................iiii.....i
+[ui] tests/ui/precondition-checks/zero-size-null.rs ... F
+.........i.
+[ui] tests/ui/print-request/stability.rs#code_models ... F
+. 15312/22044
+.......
+[ui] tests/ui/print-request/stability.rs#relocation_models ... F
+
+[ui] tests/ui/print-request/stability.rs#target_cpus ... F
+..
+[ui] tests/ui/print-request/stability.rs#stack_protector_strategies ... F
+..
+[ui] tests/ui/print-request/stability.rs#target_features ... F
+....i
+[ui] tests/ui/print-request/stability.rs#tls_models ... F
+................................................................... 15400/22044
+........................................................................................ 15488/22044
+........
+[ui] tests/ui/privacy/pub-priv-dep/pub-priv1.rs ... F
+...
+[ui] tests/ui/privacy/reachable-unnameable-items.rs ... F
+.
+[ui] tests/ui/proc-macro/add-impl.rs ... F
+
+[ui] tests/ui/proc-macro/allowed-attr-stmt-expr.rs ... F
+
+[ui] tests/ui/proc-macro/ambiguous-builtin-attrs.rs ... F
+
+[ui] tests/ui/proc-macro/any-panic-payload.rs ... F
+
+[ui] tests/ui/proc-macro/ambiguous-builtin-attrs-test.rs ... F
+
+[ui] tests/ui/proc-macro/amputate-span.rs ... F
+
+[ui] tests/ui/proc-macro/attr-args.rs ... F
+
+[ui] tests/ui/proc-macro/append-impl.rs ... F
+
+[ui] tests/ui/proc-macro/attr-cfg.rs#bar ... F
+
+[ui] tests/ui/proc-macro/attr-cfg.rs#foo ... F
+
+[ui] tests/ui/proc-macro/attr-invalid-exprs.rs ... F
+
+[ui] tests/ui/proc-macro/attr-on-trait.rs ... F
+.
+[ui] tests/ui/proc-macro/attr-complex-fn.rs ... F
+
+[ui] tests/ui/proc-macro/attr-stmt-expr-rpass.rs ... F
+
+[ui] tests/ui/proc-macro/attr-stmt-expr.rs ... F
+
+[ui] tests/ui/proc-macro/attribute-spans-preserved.rs ... F
+
+[ui] tests/ui/proc-macro/attribute-after-derive.rs ... F
+test [ui] tests/ui/nll/issue-50343.rs has been running for a long time
+.
+[ui] tests/ui/proc-macro/attributes-on-definitions.rs ... F
+
+[ui] tests/ui/proc-macro/attribute-with-error.rs ... F
+
+[ui] tests/ui/proc-macro/attributes-included.rs ... F
+
+[ui] tests/ui/proc-macro/attributes-on-modules-fail.rs ... F
+
+[ui] tests/ui/proc-macro/attributes-on-modules.rs ... F
+
+[ui] tests/ui/proc-macro/bang-macro.rs ... F
+.
+[ui] tests/ui/proc-macro/break-token-spans.rs ... F
+
+[ui] tests/ui/proc-macro/call-deprecated.rs ... F
+
+[ui] tests/ui/proc-macro/call-site.rs ... F
+
+[ui] tests/ui/proc-macro/capture-macro-rules-invoke.rs ... F
+
+[ui] tests/ui/proc-macro/capture-unglued-token.rs ... F
+
+[ui] tests/ui/proc-macro/cfg-attr-trace.rs ... F
+
+[ui] tests/ui/proc-macro/cfg-eval-inner.rs ... F
+
+[ui] tests/ui/proc-macro/cfg-eval.rs ... F
+
+[ui] tests/ui/proc-macro/closure-hir-span.rs ... F
+
+[ui] tests/ui/proc-macro/count_compound_ops.rs ... F
+
+[ui] tests/ui/proc-macro/crate-attrs-multiple.rs ... F
+
+[ui] tests/ui/proc-macro/crt-static.rs ... F
+.
+[ui] tests/ui/proc-macro/crate-var.rs ... F
+
+[ui] tests/ui/proc-macro/debug/dump-debug-span-debug.rs ... F
+
+[ui] tests/ui/proc-macro/custom-attr-only-one-derive.rs ... F
+
+[ui] tests/ui/proc-macro/custom-attr-panic.rs ... F
+
+[ui] tests/ui/proc-macro/debug/dump-debug.rs ... F
+
+[ui] tests/ui/proc-macro/derive-b.rs ... F
+
+[ui] tests/ui/proc-macro/derive-bad.rs ... F
+
+[ui] tests/ui/proc-macro/derive-attr-cfg.rs ... F
+
+[ui] tests/ui/proc-macro/derive-expand-order.rs ... F
+
+[ui] tests/ui/proc-macro/derive-cfg-nested-tokens.rs ... F
+
+[ui] tests/ui/proc-macro/derive-helper-configured.rs ... F
+
+[ui] tests/ui/proc-macro/derive-helper-legacy-limits.rs ... F
+
+[ui] tests/ui/proc-macro/derive-helper-legacy-spurious.rs ... F
+
+[ui] tests/ui/proc-macro/derive-helper-shadowing-2.rs ... F
+..
+[ui] tests/ui/proc-macro/derive-helper-shadowing.rs#edition2015 ... F
+
+[ui] tests/ui/proc-macro/derive-helper-shadowing.rs#edition2018 ... F
+
+[ui] tests/ui/proc-macro/derive-helper-shadowed.rs ... F
+
+[ui] tests/ui/proc-macro/derive-helper-vs-legacy.rs ... F
+.
+[ui] tests/ui/proc-macro/derive-in-mod.rs ... F
+
+[ui] tests/ui/proc-macro/derive-same-struct.rs ... F
+
+[ui] tests/ui/proc-macro/derive-still-gated.rs ... F
+
+[ui] tests/ui/proc-macro/derive-two-attrs.rs ... F
+
+[ui] tests/ui/proc-macro/derive-union.rs ... F
+
+[ui] tests/ui/proc-macro/disappearing-resolution.rs ... F
+
+[ui] tests/ui/proc-macro/doc-comment-preserved.rs ... F
+.
+[ui] tests/ui/proc-macro/dollar-crate-issue-101211.rs ... F
+
+[ui] tests/ui/proc-macro/dollar-crate-issue-57089.rs ... F
+
+[ui] tests/ui/proc-macro/dollar-crate-issue-62325.rs ... F
+
+[ui] tests/ui/proc-macro/dollar-crate.rs ... F
+
+[ui] tests/ui/proc-macro/edition-gated-async-move-syntax-issue89699.rs ... F
+
+[ui] tests/ui/proc-macro/edition-imports-2018.rs ... F
+ 15576/22044
+.
+[ui] tests/ui/proc-macro/empty-where-clause.rs ... F
+..
+[ui] tests/ui/proc-macro/env.rs ... F
+
+[ui] tests/ui/proc-macro/expand-expr.rs ... F
+
+[ui] tests/ui/proc-macro/expand-to-derive.rs ... F
+
+[ui] tests/ui/proc-macro/expand-to-unstable.rs ... F
+
+[ui] tests/ui/proc-macro/expand-with-a-macro.rs ... F
+
+[ui] tests/ui/proc-macro/expr-stmt-nonterminal-tokens.rs ... F
+
+[ui] tests/ui/proc-macro/gen-lifetime-token.rs ... F
+
+[ui] tests/ui/proc-macro/gen-macro-rules-hygiene.rs ... F
+
+[ui] tests/ui/proc-macro/gen-macro-rules.rs ... F
+
+[ui] tests/ui/proc-macro/generate-dollar-ident.rs ... F
+
+[ui] tests/ui/proc-macro/generate-mod.rs ... F
+
+[ui] tests/ui/proc-macro/helper-attr-blocked-by-import-ambig.rs ... F
+.
+[ui] tests/ui/proc-macro/helper-attr-builtin-derive.rs ... F
+
+[ui] tests/ui/proc-macro/helper-attr-blocked-by-import.rs ... F
+
+[ui] tests/ui/proc-macro/helper-attr-compat-collision.rs ... F
+
+[ui] tests/ui/proc-macro/hygiene_example.rs ... F
+
+[ui] tests/ui/proc-macro/ice-wrong-span-114865.rs ... F
+
+[ui] tests/ui/proc-macro/identity-closure-preserving.rs ... F
+
+[ui] tests/ui/proc-macro/import.rs ... F
+.
+[ui] tests/ui/proc-macro/inert-attribute-order.rs ... F
+
+[ui] tests/ui/proc-macro/inner-attr-file-mod-cfg-attr.rs ... F
+
+[ui] tests/ui/proc-macro/inner-attrs.rs ... F
+
+[ui] tests/ui/proc-macro/inner-attr-file-mod-diagnostics.rs ... F
+
+[ui] tests/ui/proc-macro/input-interpolated.rs ... F
+
+[ui] tests/ui/proc-macro/inner-attr-file-mod.rs ... F
+
+[ui] tests/ui/proc-macro/invalid-punct-ident-1.rs ... F
+
+[ui] tests/ui/proc-macro/invalid-punct-ident-2.rs ... F
+.
+[ui] tests/ui/proc-macro/invalid-punct-ident-3.rs ... F
+
+[ui] tests/ui/proc-macro/is-available.rs ... F
+
+[ui] tests/ui/proc-macro/invalid-punct-ident-4.rs ... F
+
+[ui] tests/ui/proc-macro/issue-104884-trait-impl-sugg-err.rs ... F
+
+[ui] tests/ui/proc-macro/issue-107113-wrap.rs ... F
+
+[ui] tests/ui/proc-macro/issue-118809.rs ... F
+
+[ui] tests/ui/proc-macro/issue-36935.rs ... F
+
+[ui] tests/ui/proc-macro/issue-38586.rs ... F
+
+[ui] tests/ui/proc-macro/issue-37788.rs ... F
+
+[ui] tests/ui/proc-macro/issue-39889.rs ... F
+
+[ui] tests/ui/proc-macro/issue-42708.rs ... F
+
+[ui] tests/ui/proc-macro/issue-50061.rs ... F
+
+[ui] tests/ui/proc-macro/issue-50493.rs ... F
+
+[ui] tests/ui/proc-macro/issue-53481.rs ... F
+
+[ui] tests/ui/proc-macro/issue-66286.rs ... F
+
+[ui] tests/ui/proc-macro/issue-59191-replace-root-with-fn.rs ... F
+
+[ui] tests/ui/proc-macro/issue-73933-procedural-masquerade.rs ... F
+
+[ui] tests/ui/proc-macro/issue-75801.rs ... F
+
+[ui] tests/ui/proc-macro/issue-75734-pp-paren.rs ... F
+
+[ui] tests/ui/proc-macro/issue-75930-derive-cfg.rs ... F
+
+[ui] tests/ui/proc-macro/issue-79148.rs ... F
+
+[ui] tests/ui/proc-macro/issue-78675-captured-inner-attrs.rs ... F
+
+[ui] tests/ui/proc-macro/issue-76182-leading-vert-pat.rs ... F
+
+[ui] tests/ui/proc-macro/issue-79825.rs ... F
+
+[ui] tests/ui/proc-macro/issue-76270-panic-in-libproc-macro.rs ... F
+
+[ui] tests/ui/proc-macro/issue-79242-slow-retokenize-check.rs ... F
+..
+[ui] tests/ui/proc-macro/issue-80760-empty-stmt.rs ... F
+
+[ui] tests/ui/proc-macro/issue-83510.rs ... F
+
+[ui] tests/ui/proc-macro/issue-81007-item-attrs.rs ... F
+
+[ui] tests/ui/proc-macro/issue-81555.rs ... F
+
+[ui] tests/ui/proc-macro/issue-81543-item-parse-err.rs ... F
+
+[ui] tests/ui/proc-macro/issue-91800.rs ... F
+
+[ui] tests/ui/proc-macro/item-error.rs ... F
+
+[ui] tests/ui/proc-macro/issue-86781-bad-inner-doc.rs ... F
+
+[ui] tests/ui/proc-macro/keep-expr-tokens.rs ... F
+
+[ui] tests/ui/proc-macro/lints_in_proc_macros.rs ... F
+
+[ui] tests/ui/proc-macro/lifetimes.rs ... F
+
+[ui] tests/ui/proc-macro/literal-to-string.rs ... F
+
+[ui] tests/ui/proc-macro/lifetimes-rpass.rs ... F
+..
+[ui] tests/ui/proc-macro/load-panic.rs ... F
+
+[ui] tests/ui/proc-macro/load-panic-backtrace.rs ... F
+
+[ui] tests/ui/proc-macro/load-two.rs ... F
+
+[ui] tests/ui/proc-macro/macro-crate-multi-decorator.rs ... F
+
+[ui] tests/ui/proc-macro/macro-brackets.rs ... F
+
+[ui] tests/ui/proc-macro/macro-rules-derive.rs ... F
+
+[ui] tests/ui/proc-macro/macro-quote-cond.rs ... F
+.
+[ui] tests/ui/proc-macro/macro-rules-derive-cfg.rs ... F
+
+[ui] tests/ui/proc-macro/macro-rules-derive-cfg-nested.rs ... F
+
+[ui] tests/ui/proc-macro/macro-use-attr.rs ... F
+ 15664/22044
+.
+[ui] tests/ui/proc-macro/macro_rules_edition_from_pm.rs#edition2021 ... F
+
+[ui] tests/ui/proc-macro/macro_rules_edition_from_pm.rs#edition2024 ... F
+
+[ui] tests/ui/proc-macro/macro-use-bang.rs ... F
+
+[ui] tests/ui/proc-macro/match-expander.rs ... F
+ii
+[ui] tests/ui/proc-macro/macros-in-type.rs ... F
+
+[ui] tests/ui/proc-macro/macros-in-extern.rs ... F
+
+[ui] tests/ui/proc-macro/meta-macro-hygiene.rs ... F
+
+[ui] tests/ui/proc-macro/modify-ast.rs ... F
+
+[ui] tests/ui/proc-macro/meta-macro.rs ... F
+
+[ui] tests/ui/proc-macro/negative-token.rs ... F
+
+[ui] tests/ui/proc-macro/modules-in-input.rs ... F
+
+[ui] tests/ui/proc-macro/mixed-site-span.rs ... F
+
+[ui] tests/ui/proc-macro/multispan.rs ... F
+.
+[ui] tests/ui/proc-macro/nested-derive-cfg.rs ... F
+
+[ui] tests/ui/proc-macro/nested-empty-proc-macro.rs ... F
+.
+[ui] tests/ui/proc-macro/nested-item-spans.rs ... F
+
+[ui] tests/ui/proc-macro/no-macro-use-attr.rs ... F
+
+[ui] tests/ui/proc-macro/nested-nonterminal-tokens.rs ... F
+
+[ui] tests/ui/proc-macro/no-missing-docs.rs ... F
+
+[ui] tests/ui/proc-macro/nested-macro-rules.rs ... F
+
+[ui] tests/ui/proc-macro/nodelim-groups.rs ... F
+i.
+[ui] tests/ui/proc-macro/nonfatal-parsing.rs ... F
+
+[ui] tests/ui/proc-macro/nonterminal-expansion.rs ... F
+
+[ui] tests/ui/proc-macro/nonterminal-recollect-attr.rs ... F
+
+[ui] tests/ui/proc-macro/not-joint.rs ... F
+.
+[ui] tests/ui/proc-macro/nonterminal-token-hygiene.rs ... F
+..
+[ui] tests/ui/proc-macro/out-of-line-mod.rs ... F
+.
+[ui] tests/ui/proc-macro/parent-source-spans.rs ... F
+......
+[ui] tests/ui/proc-macro/parse-invis-delim-issue-128895.rs ... F
+..
+[ui] tests/ui/proc-macro/proc-macro-attributes.rs ... F
+
+[ui] tests/ui/proc-macro/pretty-print-tts.rs ... F
+
+[ui] tests/ui/proc-macro/proc-macro-gates.rs ... F
+
+[ui] tests/ui/proc-macro/proc-macro-gates2.rs ... F
+....
+[ui] tests/ui/proc-macro/raw-ident.rs ... F
+
+[ui] tests/ui/proc-macro/resolve-error.rs ... F
+
+[ui] tests/ui/proc-macro/quote/basic.rs ... F
+
+[ui] tests/ui/proc-macro/resolved-located-at.rs ... F
+
+[ui] tests/ui/proc-macro/shadow.rs ... F
+
+[ui] tests/ui/proc-macro/smoke.rs ... F
+
+[ui] tests/ui/proc-macro/span-absolute-posititions.rs ... F
+
+[ui] tests/ui/proc-macro/span-api-tests.rs ... F
+.
+[ui] tests/ui/proc-macro/span-preservation.rs ... F
+
+[ui] tests/ui/proc-macro/span-from-proc-macro.rs ... F
+
+[ui] tests/ui/proc-macro/struct-field-macro.rs ... F
+
+[ui] tests/ui/proc-macro/sub-error-diag.rs ... F
+..
+[ui] tests/ui/proc-macro/subspan.rs ... F
+
+[ui] tests/ui/proc-macro/test-followed-by-attr-macros.rs ... F
+..
+[ui] tests/ui/proc-macro/three-equals.rs ... F
+
+[ui] tests/ui/proc-macro/test.rs ... F
+
+[ui] tests/ui/proc-macro/trailing-plus.rs ... F
+
+[ui] tests/ui/proc-macro/unsafe-foreign-mod.rs ... F
+
+[ui] tests/ui/proc-macro/trait-fn-args-2015.rs ... F
+.
+[ui] tests/ui/process/env-funky-keys.rs ... F
+
+[ui] tests/ui/process/env-null-vars.rs ... F
+.
+[ui] tests/ui/proc-macro/unsafe-mod.rs ... F
+.
+[ui] tests/ui/process/fds-are-cloexec.rs ... F
+. 15752/22044
+
+[ui] tests/ui/proc-macro/weird-hygiene.rs ... F
+.
+[ui] tests/ui/proc-macro/weird-braces.rs ... F
+...
+[ui] tests/ui/process/issue-30490.rs ... F
+.
+[ui] tests/ui/process/nofile-limit.rs ... F
+
+[ui] tests/ui/process-termination/process-termination-simple.rs ... F
+
+[ui] tests/ui/process/no-stdio.rs ... F
+
+[ui] tests/ui/process-termination/process-termination-blocking-io.rs ... F
+
+[ui] tests/ui/process/process-panic-after-fork.rs ... F
+
+[ui] tests/ui/process/process-envs.rs ... F
+.
+[ui] tests/ui/process/core-run-destroy.rs ... F
+
+[ui] tests/ui/process/process-spawn-failure.rs ... F
+.....iiiii.......................................
+[ui] tests/ui/process/process-sigpipe.rs ... F
+.....
+[ui] tests/ui/process/multi-panic.rs ... F
+............... 15840/22044
+........................................................................................ 15928/22044
+........................................................................................ 16016/22044
+........................................................................................ 16104/22044
+...........................................................................
+[ui] tests/ui/regions/regions-refcell.rs ... F
+............ 16192/22044
+.....................................
+[ui] tests/ui/repr/16-bit-repr-c-enum.rs#avr ... F
+...............
+[ui] tests/ui/repr/repr-c-dead-variants.rs#aarch64-unknown-linux-gnu ... F
+.................................. 16280/22044
+..............................................................
+[ui] tests/ui/resolve/derive-macro-2.rs ... F
+
+[ui] tests/ui/resolve/derive-macro-1.rs ... F
+........................ 16368/22044
+.............................................................
+[ui] tests/ui/resolve/no-explicit-path.rs ... F
+.......................... 16456/22044
+................................................
+[ui] tests/ui/resolve/prelude-order.rs ... F
+.....
+[ui] tests/ui/resolve/proc_macro_generated_packed.rs ... F
+................................. 16544/22044
+...........................................
+[ui] tests/ui/rfcs/rfc-1014-stdout-existential-crisis/rfc-1014.rs ... F
+............................................ 16632/22044
+.....................
+[ui] tests/ui/rfcs/rfc-1937-termination-trait/termination-trait-for-never.rs ... F
+...............
+[ui] tests/ui/rfcs/rfc-2005-default-binding-mode/for-ok.rs ... F
+...............
+[ui] tests/ui/rfcs/rfc-1857-stabilize-drop-order/drop-order.rs ... F
+.................................. 16720/22044
+................................................................
+[ui] tests/ui/rfcs/rfc-2091-track-caller/std-panic-locations.rs#mir-opt ... F
+..
+[ui] tests/ui/rfcs/rfc-2091-track-caller/std-panic-locations.rs#default ... F
+.................... 16808/22044
+.................
+[ui] tests/ui/rfcs/rfc-2396-target_feature-11/safe-calls.rs ... F
+...............................................................
+[ui] tests/ui/rfcs/rfc-2565-param-attrs/param-attrs-pretty.rs ... F
+
+[ui] tests/ui/rfcs/rfc-2565-param-attrs/proc-macro-cannot-be-used.rs ... F
+i.
+[ui] tests/ui/rfcs/rfc-3348-c-string-literals/edition-spans.rs ... F
+.
+[ui] tests/ui/rfcs/rfc-2565-param-attrs/issue-64682-dropping-first-attrs-in-impl-fns.rs ... F
+ 16896/22044
+
+[ui] tests/ui/runtime/on-broken-pipe/child-processes.rs#default ... F
+
+[ui] tests/ui/runtime/on-broken-pipe/child-processes.rs#error ... F
+
+[ui] tests/ui/runtime/on-broken-pipe/child-processes.rs#inherit ... F
+
+[ui] tests/ui/runtime/on-broken-pipe/child-processes.rs#kill ... F
+..
+[ui] tests/ui/runtime/on-broken-pipe/error.rs ... F
+
+[ui] tests/ui/runtime/on-broken-pipe/inherit.rs ... F
+
+[ui] tests/ui/runtime/on-broken-pipe/kill.rs ... F
+..
+[ui] tests/ui/runtime/on-broken-pipe/not-used.rs ... F
+.
+[ui] tests/ui/runtime/out-of-stack.rs ... F
+
+[ui] tests/ui/runtime/backtrace-debuginfo.rs ... F
+i
+[ui] tests/ui/runtime/signal-alternate-stack-cleanup.rs ... F
+
+[ui] tests/ui/runtime/stdout-during-shutdown-unix.rs ... F
+..
+[ui] tests/ui/runtime/stdout-before-main.rs ... F
+...........
+[ui] tests/ui/runtime/rt-explody-panic-payloads.rs ... F
+
+[ui] tests/ui/runtime/atomic-print.rs ... F
+.
+[ui] tests/ui/runtime/running-with-no-runtime.rs ... F
+.............................
+[ui] tests/ui/rust-2018/proc-macro-crate-in-paths.rs ... F
+...........
+[ui] tests/ui/rust-2018/suggestions-not-always-applicable.rs ... F
+.......... 16984/22044
+..............................................
+[ui] tests/ui/rust-2021/reserved-prefixes-via-macro.rs ... F
+
+[ui] tests/ui/rust-2021/reserved-prefixes-via-macro-2.rs ... F
+....
+[ui] tests/ui/rust-2024/reserved-guarded-strings-via-macro-2.rs ... F
+
+[ui] tests/ui/rust-2024/unsafe-attributes/safe-proc-macro-attribute.rs#proc_macro_attr ... F
+.........
+[ui] tests/ui/rust-2024/reserved-guarded-strings-via-macro.rs ... F
+
+[ui] tests/ui/rust-2024/unsafe-attributes/unsafe-attributes-from-pm-in-2024.rs ... F
+..........
+[ui] tests/ui/rust-2024/unsafe-attributes/unsafe-attributes-from-pm.rs#edition2024 ... F
+.
+[ui] tests/ui/rust-2024/unsafe-attributes/unsafe-attributes-from-pm.rs#edition2021 ... F
+.......... 17072/22044
+........iii.....
+[ui] tests/ui/sanitizer/cfg-kasan.rs#riscv64gc ... F
+
+[ui] tests/ui/sanitizer/cfg-kasan.rs#aarch64 ... F
+.
+[ui] tests/ui/sanitizer/cfg-kasan.rs#x86_64 ... F
+..
+[ui] tests/ui/sanitizer/cfg.rs#kcfi ... F
+
+[ui] tests/ui/sanitizer/cfg-khwasan.rs ... F
+....
+[ui] tests/ui/sanitizer/cfi/assoc-const-projection-issue-151878.rs ... F
+
+[ui] tests/ui/sanitizer/cfi/async-closures.rs#cfi ... F
+
+[ui] tests/ui/sanitizer/cfi/can-reveal-opaques.rs ... F
+
+[ui] tests/ui/sanitizer/cfi/assoc-ty-lifetime-issue-123053.rs ... F
+..
+[ui] tests/ui/sanitizer/cfi/complex-receiver.rs#cfi ... F
+
+[ui] tests/ui/sanitizer/cfi/closures.rs#cfi ... F
+i.
+[ui] tests/ui/sanitizer/cfi/const-generics.rs ... F
+
+[ui] tests/ui/sanitizer/cfi/drop-no-principal.rs ... F
+
+[ui] tests/ui/sanitizer/cfi/fn-ptr-type-mismatch.rs#kcfi ... F
+
+[ui] tests/ui/sanitizer/cfi/coroutine.rs#cfi ... F
+
+[ui] tests/ui/sanitizer/cfi/drop-in-place.rs ... F
+.
+[ui] tests/ui/sanitizer/cfi/fn-ptr.rs#cfi ... F
+...
+[ui] tests/ui/sanitizer/cfi/is-incompatible-with-kcfi.rs#aarch64 ... F
+.
+[ui] tests/ui/sanitizer/cfi/is-incompatible-with-kcfi.rs#x86_64 ... F
+..
+[ui] tests/ui/sanitizer/cfi/fn-trait-objects.rs ... F
+.
+[ui] tests/ui/sanitizer/cfi/sized-associated-ty.rs#cfi ... F
+
+[ui] tests/ui/sanitizer/cfi/self-ref.rs#cfi ... F
+
+[ui] tests/ui/sanitizer/cfi/supertraits.rs#cfi ... F
+..ii....
+[ui] tests/ui/sanitizer/incompatible-khwasan.rs ... F
+i.
+[ui] tests/ui/sanitizer/cfi/transparent-has-regions.rs ... F
+.
+[ui] tests/ui/sanitizer/issue-111184-cfi-coroutine-witness.rs ... F
+
+[ui] tests/ui/sanitizer/cfi/virtual-auto.rs#cfi ... F
+iiiiiiiiiiii.i. 17160/22044
+
+[ui] tests/ui/sanitizer/kcfi-c-variadic.rs ... F
+ii.iiiiiiiiiiiiiiii
+[ui] tests/ui/sanitizer/unsupported-target-khwasan.rs ... F
+iiiiiii................
+[ui] tests/ui/scalable-vectors/project-into-field.rs ... F
+........................................... 17248/22044
+........................................................................................ 17336/22044
+......
+[ui] tests/ui/sepcomp/sepcomp-lib.rs ... F
+..
+[ui] tests/ui/sepcomp/sepcomp-lib-lto.rs ... F
+................i............
+[ui] tests/ui/simd/dont-invalid-bitcast-x86_64.rs ... F
+....
+[ui] tests/ui/simd/intrinsic/float-math-pass.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-arithmetic-2.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-arithmetic-pass.rs ... F
+.
+[ui] tests/ui/simd/intrinsic/generic-arithmetic-saturating-2.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-as.rs ... F
+.
+[ui] tests/ui/simd/intrinsic/generic-bitmask.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-bswap-byte.rs ... F
+.
+[ui] tests/ui/simd/intrinsic/generic-cast.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-cast-pass.rs ... F
+.
+[ui] tests/ui/simd/intrinsic/generic-comparison.rs ... F
+
+[ui] tests/ui/sepcomp/sepcomp-unwind.rs ... F
+.
+[ui] tests/ui/simd/intrinsic/generic-elements.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-reduction-pass.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-reduction.rs ... F
+.
+[ui] tests/ui/simd/intrinsic/generic-shuffle.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-select.rs ... F
+.....
+[ui] tests/ui/simd/intrinsic/splat.rs ... F
+....
+[ui] tests/ui/simd/issue-39720.rs ... F
+
+[ui] tests/ui/simd/libm_std_can_float.rs ... F
+.......
+[ui] tests/ui/simd/monomorphize-shuffle-index.rs#generic_with_fn ... F
+.
+[ui] tests/ui/simd/monomorphize-too-long.rs ... F
+ 17424/22044
+
+[ui] tests/ui/simd/monomorphize-zero-length.rs ... F
+..
+[ui] tests/ui/simd/not-out-of-bounds.rs ... F
+.
+[ui] tests/ui/simd/repr_packed.rs ... F
+
+[ui] tests/ui/simd/simd-bitmask-notpow2.rs ... F
+
+[ui] tests/ui/simd/intrinsic/generic-gather-scatter.rs ... F
+.
+[ui] tests/ui/simd/simd-bitmask.rs ... F
+..
+[ui] tests/ui/simd/simd-lane-limit-err.rs ... F
+
+[ui] tests/ui/simd/type-generic-monomorphisation-empty.rs ... F
+.
+[ui] tests/ui/simd/simd-lane-limit-err-npow2.rs ... F
+
+[ui] tests/ui/simd/type-generic-monomorphisation-oversized.rs ... F
+.
+[ui] tests/ui/simd/masked-load-store-build-fail.rs ... F
+....................
+[ui] tests/ui/simd/target-feature-mixup.rs ... F
+................................................ 17512/22044
+........................................................................................ 17600/22044
+.................................................................
+[ui] tests/ui/specialization/default-impl-partial-and-inherits.rs ... F
+...................... 17688/22044
+........................................................................................ 17776/22044
+..........................................................i....
+[ui] tests/ui/stack-protector/warn-stack-protector-unsupported.rs#all ... F
+
+[ui] tests/ui/stack-protector/warn-stack-protector-unsupported.rs#basic ... F
+...
+[ui] tests/ui/stack-protector/warn-stack-protector-unsupported.rs#strong ... F
+................... 17864/22044
+..............
+[ui] tests/ui/static/static-initializer-acyclic-issue-146787.rs ... F
+............i.....
+[ui] tests/ui/statics/const_generics.rs#opt ... F
+....
+[ui] tests/ui/statics/inner-static.rs ... F
+............................................i.i.
+[ui] tests/ui/std/linux-getrandom-fallback.rs ... F
+ 17952/22044
+
+[ui] tests/ui/statics/static-mut-xc.rs ... F
+..i.i...................
+[ui] tests/ui/stdlib-unit-tests/raw-fat-ptr.rs ... F
+....
+[ui] tests/ui/str/str-overrun.rs ... F
+.
+[ui] tests/ui/std/add-spawn-hook-reentrancy-159923.rs ... F
+..
+[ui] tests/ui/std/park-timeout-wakeup-59020.rs ... F
+.
+[ui] tests/ui/std/channel-stack-overflow-issue-102246.rs ... F
+.................................................. 18040/22044
+...................................
+[ui] tests/ui/structs-enums/tag-variant-disr-val.rs ... F
+.........................
+[ui] tests/ui/structs-enums/ivec-tag.rs ... F
+.......................... 18128/22044
+........................................................................................ 18216/22044
+....................
+[ui] tests/ui/structs/unit-like-struct-drop-run.rs ... F
+........................................i.......................... 18304/22044
+........................................................................................ 18392/22044
+.....
+[ui] tests/ui/suggestions/issue-61963.rs ... F
+.................................................................................. 18480/22044
+........................................................................................ 18568/22044
+........
+[ui] tests/ui/suggestions/suggest-ref-macro.rs ... F
+..........................................................
+[ui] tests/ui/symbol-names/const-in-global-asm.rs ... F
+............
+[ui] tests/ui/symbol-names/same-symbol-name-for-inner-statics-9188.rs ... F
+i...... 18656/22044
+......i
+[ui] tests/ui/target-cpu/explicit-target-cpu.rs#avr_cpu ... F
+..
+[ui] tests/ui/target-cpu/explicit-target-cpu.rs#avr_nocpu ... F
+......
+[ui] tests/ui/target-feature/abi-irrelevant-target-feature-flag-disable.rs ... F
+
+[ui] tests/ui/target-feature/abi-required-target-feature-attribute.rs ... F
+......
+[ui] tests/ui/target-feature/abi-required-target-feature-missing-in-target-cpu.rs#x86 ... F
+.........
+[ui] tests/ui/target-feature/forbidden-hardfloat-target-feature-attribute-f-zfinx.rs ... F
+.iii........
+[ui] tests/ui/target-feature/llvm-target-feature.rs ... F
+..
+[ui] tests/ui/target-feature/missing-plusminus-llvm.rs ... F
+...
+[ui] tests/ui/target-feature/packedstack-combinations.rs#backchain_attr ... F
+.i
+[ui] tests/ui/target-feature/packedstack-combinations.rs#with_softfloat ... F
+
+[ui] tests/ui/sync/track-caller-for-once-87707.rs ... F
+.
+[ui] tests/ui/target-feature/similar-feature-suggestion.rs ... F
+..
+[ui] tests/ui/target-feature/tied-features-cli.rs#four ... F
+..
+[ui] tests/ui/target-feature/tied-features-cli.rs#three ... F
+
+[ui] tests/ui/target-feature/tied-features-cli.rs#two ... F
+
+[ui] tests/ui/target-feature/tied-features-no-implication-1.rs#paca ... F
+
+[ui] tests/ui/target-feature/tied-features-cli.rs#one ... F
+.iii
+[ui] tests/ui/target-feature/tied-features-no-implication-1.rs#pacg ... F
+
+[ui] tests/ui/target-feature/tied-features-no-implication.rs#paca ... F
+
+[ui] tests/ui/target-feature/tied-features.rs ... F
+
+[ui] tests/ui/target-feature/tied-features-no-implication.rs#pacg ... F
+...iiii
+[ui] tests/ui/target-feature/x86-soft-float-cfg.rs#soft ... F
+. 18744/22044
+
+[ui] tests/ui/target_modifiers/incompatible_fixedx18.rs#allow_match ... F
+..
+[ui] tests/ui/target_modifiers/incompatible_fixedx18.rs#allow_mismatch ... F
+
+[ui] tests/ui/target_modifiers/incompatible_fixedx18.rs#error_generated ... F
+..................
+[ui] tests/ui/target_modifiers/target_cpu_default.rs#explicit_mismatch ... F
+
+[ui] tests/ui/target_modifiers/target_cpu_default.rs#explicit_default ... F
+.
+[ui] tests/ui/target_modifiers/target_cpu_default.rs#implicit_mismatch ... F
+
+[ui] tests/ui/target_modifiers/target_cpu_default.rs#implicit_default ... F
+..
+[ui] tests/ui/target_modifiers/incompatible_softfloat_targets.rs#enable-softfloat ... F
+..............
+[ui] tests/ui/test-attrs/custom_test_frameworks_simple.rs ... F
+........................................
+[ui] tests/ui/thread-local/spawn-hook-atexit.rs ... F
+. 18832/22044
+..
+[ui] tests/ui/test-attrs/test-panic-while-printing.rs ... F
+.....
+[ui] tests/ui/test-attrs/test-thread-capture.rs ... F
+
+[ui] tests/ui/test-attrs/test-thread-nocapture.rs ... F
+
+[ui] tests/ui/threads-sendsync/clone-with-exterior.rs ... F
+
+[ui] tests/ui/threads-sendsync/child-outlives-parent.rs ... F
+
+[ui] tests/ui/thread-local/tls.rs ... F
+
+[ui] tests/ui/threads-sendsync/comm.rs ... F
+
+[ui] tests/ui/threads-sendsync/eprint-on-tls-drop.rs ... F
+
+[ui] tests/ui/threads-sendsync/issue-29488.rs ... F
+
+[ui] tests/ui/threads-sendsync/issue-24313.rs ... F
+...
+[ui] tests/ui/threads-sendsync/mpsc_stress.rs ... F
+
+[ui] tests/ui/threads-sendsync/send-resource.rs ... F
+.
+[ui] tests/ui/threads-sendsync/send_str_hashmap.rs ... F
+...
+[ui] tests/ui/threads-sendsync/issue-4446.rs ... F
+.
+[ui] tests/ui/threads-sendsync/issue-4448.rs ... F
+
+[ui] tests/ui/threads-sendsync/issue-9396.rs ... F
+
+[ui] tests/ui/threads-sendsync/issue-8827.rs ... F
+...
+[ui] tests/ui/threads-sendsync/sync-send-iterators-in-libcollections.rs ... F
+.
+[ui] tests/ui/threads-sendsync/spawn.rs ... F
+
+[ui] tests/ui/threads-sendsync/spawning-with-debug.rs ... F
+
+[ui] tests/ui/threads-sendsync/sendfn-spawn-with-fn-arg.rs ... F
+
+[ui] tests/ui/threads-sendsync/spawn-fn.rs ... F
+
+[ui] tests/ui/threads-sendsync/spawn2.rs ... F
+
+[ui] tests/ui/threads-sendsync/spawn-types.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-12.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-1.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-0.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-10.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-13.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-14.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-11.rs ... F
+....
+[ui] tests/ui/threads-sendsync/task-comm-15.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-17.rs ... F
+.
+[ui] tests/ui/threads-sendsync/task-comm-3.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-life-0.rs ... F
+.
+[ui] tests/ui/threads-sendsync/task-comm-7.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-comm-9.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-spawn-barefn.rs ... F
+.
+[ui] tests/ui/threads-sendsync/thread-local-extern-static.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-stderr.rs ... F
+
+[ui] tests/ui/threads-sendsync/task-spawn-move-and-copy.rs ... F
+
+[ui] tests/ui/threads-sendsync/thread-join-unwrap.rs ... F
+
+[ui] tests/ui/threads-sendsync/threads.rs ... F
+
+[ui] tests/ui/threads-sendsync/tls-dont-move-after-init.rs ... F
+.
+[ui] tests/ui/threads-sendsync/tls-dtors-are-run-in-a-static-binary.rs ... F
+
+[ui] tests/ui/threads-sendsync/tls-in-global-alloc.rs ... F
+.......
+[ui] tests/ui/threads-sendsync/tls-init-on-init.rs ... F
+..
+[ui] tests/ui/threads-sendsync/tls-try-with.rs ... F
+.... 18920/22044
+.............................
+[ui] tests/ui/threads-sendsync/yield1.rs ... F
+
+[ui] tests/ui/threads-sendsync/yield.rs ... F
+....................
+[ui] tests/ui/threads-sendsync/unwind-resource.rs ... F
+.................................... 19008/22044
+........................................................................................ 19096/22044
+........................................
+[ui] tests/ui/traits/coerce-diverging-through-from.rs ... F
+....
+[ui] tests/ui/traits/bound/in-arc.rs ... F
+
+[ui] tests/ui/traits/clone-unwind-rc-cleanup.rs ... F
+......................................... 19184/22044
+........................................................................................ 19272/22044
+........................................................................................ 19360/22044
+.......................................................
+[ui] tests/ui/traits/dynamic-dispatch-trait-objects-5666.rs ... F
+................................ 19448/22044
+..............................................
+[ui] tests/ui/traits/inheritance/self-in-supertype.rs ... F
+......................................
+[ui] tests/ui/traits/issue-33096.rs ... F
+.. 19536/22044
+........................................................................................ 19624/22044
+...................................................................................
+[ui] tests/ui/traits/next-solver/canonical/erased-opaques.rs ... F
+.... 19712/22044
+........................................................................................ 19800/22044
+........................................................................................ 19888/22044
+................................i....................................................... 19976/22044
+........................................................................................ 20064/22044
+........................................................................................ 20152/22044
+..............................
+[ui] tests/ui/traits/objects-owned-object-borrowed-method-headerless.rs ... F
+......................................................... 20240/22044
+........................................................................................ 20328/22044
+........................................................................................ 20416/22044
+........................................................................................ 20504/22044
+......
+[ui] tests/ui/transmute/transmute-slice-to-dst.rs ... F
+................................................................................. 20592/22044
+........................................................................................ 20680/22044
+........................................................................................ 20768/22044
+........................................................................................ 20856/22044
+........................................................................................ 20944/22044
+....................
+[ui] tests/ui/type-alias-impl-trait/wf-check-fn-ptrs.rs ... F
+............
+[ui] tests/ui/type-alias-impl-trait/type-alias-nested-impl-trait.rs ... F
+...............................
+[ui] tests/ui/type-inference/partial-type-hint-12909.rs ... F
+...................... 21032/22044
+........................................................................................ 21120/22044
+........................................................................................ 21208/22044
+...............................
+[ui] tests/ui/typeck/invalid-sugg-for-derive-macro-issue-136343.rs ... F
+........................................................ 21296/22044
+........................................................................................ 21384/22044
+........................................................................................ 21472/22044
+.....................
+[ui] tests/ui/unboxed-closures/unboxed-closures-unique-type-id.rs ... F
+...................................i........
+[ui] tests/ui/uninhabited/uninhabited-type-layout-computation-88150.rs ... F
+..................... 21560/22044
+...................................
+[ui] tests/ui/uninhabited/uninhabited-transparent-return-abi.rs ... F
+.................................................... 21648/22044
+........................................................................................ 21736/22044
+..................
+[ui] tests/ui/unsized-locals/unsized-exprs-rpass.rs ... F
+....
+[ui] tests/ui/unsized-locals/unsized-index.rs ... F
+..
+[ui] tests/ui/unsized-locals/unsized-parameters.rs ... F
+............................................................. 21824/22044
+.......................................................................iiiiiiii..iii.... 21912/22044
+........................................................................................ 22000/22044
+...........................................
+
+success: 20625
+ignored: 242
+failed:  1176
+-> sum: 22043

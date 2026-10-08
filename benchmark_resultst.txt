@@ -1,0 +1,42 @@
+[✔] Loading all submodules
+[✔] Install cxxbridge-cmd for cmake
+[✔] Building tpde backend
+[✔] Building rustc-perf
+[✔] Install self-perf measureme
+[✔] Install nightly toolchain with gcc and cranelift
+[✔] Add gcc component for libgccjit
+[✔] Remove previous results
+[✔] Running benchmark with compiler rustc_tpde
+[✔] Running benchmark with compiler rustc_llvm
+[✔] Running benchmark with compiler rustc_cranelift
+[✔] Running benchmark with compiler rustc_tpde_dynamic
+[✔] Running benchmark with compiler rustc_gcc
+[✔] Reading the results
++--------------------+------------+----------------------+
+| Benchmarks         | helloworld | regex-automata-0.4.8 |
++--------------------+------------+----------------------+
+| rustc_cranelift    |    61.7 ms |            2118.6 ms |
+| rustc_gcc          |   103.2 ms |           11204.5 ms |
+| rustc_llvm         |    63.7 ms |            2129.4 ms |
+| rustc_tpde         |    67.3 ms |            2085.7 ms |
+| rustc_tpde_dynamic |    63.3 ms |            2072.4 ms |
++--------------------+------------+----------------------+
+[✔] Self profile on regex-automata-0.4.8 (LLVM)
+[✔] Self profile on regex-automata-0.4.8 (TPDE)
+[✔] Self profile on regex-automata-0.4.8 (TPDE dynamic)
+[✔] Self profile on regex-automata-0.4.8 (Cranelift)
+[✔] Self profile on regex-automata-0.4.8 (GCC)
+[✔] Fetch self perf results of LLVM
+[✔] Fetch self perf results of TPDE
+[✔] Fetch self perf results of TPDE dynamic
+[✔] Fetch self perf results of Cranelift
+[✔] Fetch self perf results of GCC
++--------------+---------------+----------------+----------------+
+| Self profile | IR generation | Obj generation | Total cpu time |
++--------------+---------------+----------------+----------------+
+| Cranelift    |      271.2 ms |       663.7 ms |      4069.6 ms |
+| GCC          |      552.2 ms |     11470.0 ms |     38613.8 ms |
+| LLVM         |      271.2 ms |       911.7 ms |      4490.5 ms |
+| TPDE         |      211.9 ms |        97.8 ms |      3415.3 ms |
+| TPDE dynamic |      205.2 ms |       107.0 ms |      3388.9 ms |
++--------------+---------------+----------------+----------------+
