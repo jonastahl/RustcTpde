@@ -139,7 +139,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
 
         let (name, arg_infos, ret) = match libfunc {
             LibFunc::MemCpy => ("memcpy", vec![ArgInfo::default(); 3], None),
-            LibFunc::MemMove => ("memmov", vec![ArgInfo::default(); 3], None),
+            LibFunc::MemMove => ("memmove", vec![ArgInfo::default(); 3], None),
             LibFunc::MemSet => ("memset", vec![ArgInfo::default(); 3], None),
             LibFunc::MemCmp => ("memcmp", vec![ArgInfo::default(); 3], Some(FullType::Single(Type::i32))),
         };

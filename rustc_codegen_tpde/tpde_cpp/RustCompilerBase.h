@@ -2378,8 +2378,10 @@ namespace tpde_rust {
       ValueRef src = this->val_ref(src_val);
 
       ValuePartRef src_op = src.part(0);
-      unsigned ext = tpde::util::align_up(bit_width, 32);
-      src_op = std::move(src_op).into_extended(sign, bit_width, ext);
+      if (bit_width < 32) {
+        unsigned ext = tpde::util::align_up(bit_width, 32);
+        src_op = std::move(src_op).into_extended(sign, bit_width, ext);
+      }
 
       using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
       static constexpr auto encode_fns = []() consteval {

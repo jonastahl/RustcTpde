@@ -851,7 +851,6 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                 ptr,
                 fill_byte,
                 size,
-                Slot::new_raw(align.bytes_usize() as u32),
             ],
         );
     }
