@@ -1,0 +1,1086 @@
+In archive tests/lib_cases/libcalls/actual_obj:
+
+lib.rmeta:     file format elf64-x86-64
+
+
+lib.rmeta-link:     file format elf64-x86-64
+
+
+actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+<_RINvNtCs94NUNretDkj_4core3ptr11write_byteshECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	sub    $0x10,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %rdx,%r13
+	mov    %rbx,%r14
+	test   %r13,%r13
+	sete   %al
+	mov    %al,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	mov    %r14,%rdi
+	mov    $0x1,%esi
+	movzbl %al,%edx
+	lea    -0x8(%rip),%rcx        # <_RINvNtCs94NUNretDkj_4core3ptr11write_byteshECseeGrevWVrEI_6source+0x32>
+	call   <_RINvNtCs94NUNretDkj_4core3ptr11write_byteshECseeGrevWVrEI_6source+0x3f>
+	mov    $0x1,%eax
+	imul   %rax,%r13
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13,%rdx
+	call   <_RINvNtCs94NUNretDkj_4core3ptr11write_byteshECseeGrevWVrEI_6source+0x56>
+	add    $0x10,%rsp
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<_RINvNtCs94NUNretDkj_4core3ptr11write_bytestECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	sub    $0x10,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %rdx,%r13
+	mov    %rbx,%r14
+	test   %r13,%r13
+	sete   %al
+	mov    %al,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	mov    %r14,%rdi
+	mov    $0x2,%esi
+	movzbl %al,%edx
+	lea    -0x8(%rip),%rcx        # <_RINvNtCs94NUNretDkj_4core3ptr11write_bytestECseeGrevWVrEI_6source+0x32>
+	call   <_RINvNtCs94NUNretDkj_4core3ptr11write_bytestECseeGrevWVrEI_6source+0x3f>
+	mov    $0x2,%eax
+	imul   %rax,%r13
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13,%rdx
+	call   <_RINvNtCs94NUNretDkj_4core3ptr11write_bytestECseeGrevWVrEI_6source+0x56>
+	add    $0x10,%rsp
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappinghECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %rbx,%rax
+	mov    %r12,%rcx
+	mov    %rax,%rdi
+	mov    %rcx,%rsi
+	mov    $0x1,%edx
+	mov    $0x1,%ecx
+	mov    %r13,%r8
+	lea    -0x8(%rip),%r9        # <_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappinghECseeGrevWVrEI_6source+0x2e>
+	call   <_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappinghECseeGrevWVrEI_6source+0x3b>
+	mov    $0x1,%eax
+	imul   %rax,%r13
+	mov    %r12,%rdi
+	mov    %rbx,%rsi
+	mov    %r13,%rdx
+	call   <_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappinghECseeGrevWVrEI_6source+0x52>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappingyECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %rbx,%rax
+	mov    %r12,%rcx
+	mov    %rax,%rdi
+	mov    %rcx,%rsi
+	mov    $0x8,%edx
+	mov    $0x8,%ecx
+	mov    %r13,%r8
+	lea    -0x8(%rip),%r9        # <_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappingyECseeGrevWVrEI_6source+0x2e>
+	call   <_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappingyECseeGrevWVrEI_6source+0x3b>
+	mov    $0x8,%eax
+	imul   %rax,%r13
+	mov    %r12,%rdi
+	mov    %rbx,%rsi
+	mov    %r13,%rdx
+	call   <_RINvNtCs94NUNretDkj_4core3ptr19copy_nonoverlappingyECseeGrevWVrEI_6source+0x52>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<_RINvNtCs94NUNretDkj_4core3ptr4copyhECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %rbx,%r14
+	mov    %r12,%r15
+	test   %r13,%r13
+	sete   %al
+	mov    %al,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	mov    %r14,%rdi
+	mov    %r15,%rsi
+	mov    $0x1,%edx
+	movzbl %al,%ecx
+	lea    -0x8(%rip),%r8        # <_RINvNtCs94NUNretDkj_4core3ptr4copyhECseeGrevWVrEI_6source+0x3a>
+	call   <_RINvNtCs94NUNretDkj_4core3ptr4copyhECseeGrevWVrEI_6source+0x47>
+	mov    $0x1,%eax
+	imul   %rax,%r13
+	mov    %r12,%rdi
+	mov    %rbx,%rsi
+	mov    %r13,%rdx
+	call   <_RINvNtCs94NUNretDkj_4core3ptr4copyhECseeGrevWVrEI_6source+0x5e>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<_RINvNtCs94NUNretDkj_4core3ptr4copymECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %rbx,%r14
+	mov    %r12,%r15
+	test   %r13,%r13
+	sete   %al
+	mov    %al,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	mov    %r14,%rdi
+	mov    %r15,%rsi
+	mov    $0x4,%edx
+	movzbl %al,%ecx
+	lea    -0x8(%rip),%r8        # <_RINvNtCs94NUNretDkj_4core3ptr4copymECseeGrevWVrEI_6source+0x3a>
+	call   <_RINvNtCs94NUNretDkj_4core3ptr4copymECseeGrevWVrEI_6source+0x47>
+	mov    $0x4,%eax
+	imul   %rax,%r13
+	mov    %r12,%rdi
+	mov    %rbx,%rsi
+	mov    %r13,%rdx
+	call   <_RINvNtCs94NUNretDkj_4core3ptr4copymECseeGrevWVrEI_6source+0x5e>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<_RNvMNtNtCs94NUNretDkj_4core3ptr7mut_ptrOh3addCseeGrevWVrEI_6source>:
+	lea    (%rdi,%rsi,1),%rdi
+	mov    %rdi,%rax
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<_RNvMNtNtCs94NUNretDkj_4core3ptr9const_ptrPu13is_aligned_toCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %r12,%rax
+	shr    $1,%rax
+	movabs $0x5555555555555555,%rcx
+	and    %rax,%rcx
+	mov    %r12,%rdx
+	sub    %rcx,%rdx
+	movabs $0x3333333333333333,%rax
+	mov    %rdx,%rcx
+	and    %rax,%rcx
+	shr    $0x2,%rdx
+	and    %rdx,%rax
+	add    %rcx,%rax
+	mov    %rax,%rcx
+	shr    $0x4,%rcx
+	add    %rax,%rcx
+	movabs $0xf0f0f0f0f0f0f0f,%rsi
+	and    %rcx,%rsi
+	movabs $0x101010101010101,%rax
+	imul   %rsi,%rax
+	shr    $0x38,%rax
+	cmp    $0x1,%rax
+	je     <_RNvMNtNtCs94NUNretDkj_4core3ptr9const_ptrPu13is_aligned_toCseeGrevWVrEI_6source+0xb0>
+	lea    -0x8(%rip),%rax        # <_RNvMNtNtCs94NUNretDkj_4core3ptr9const_ptrPu13is_aligned_toCseeGrevWVrEI_6source+0x76>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x30(%rbp)
+	mov    $0x2a,%edx
+	mov    -0x30(%rbp),%rsi
+	mov    %esi,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	lea    -0x8(%rip),%rdx        # <_RNvMNtNtCs94NUNretDkj_4core3ptr9const_ptrPu13is_aligned_toCseeGrevWVrEI_6source+0xa3>
+	call   <_RNvMNtNtCs94NUNretDkj_4core3ptr9const_ptrPu13is_aligned_toCseeGrevWVrEI_6source+0xb0>
+	sub    $0x1,%r12
+	and    %r12,%rbx
+	test   %rbx,%rbx
+	sete   %al
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<_RNvNtCs94NUNretDkj_4core10intrinsics9cold_pathCseeGrevWVrEI_6source>:
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+
+<_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	sub    $0x10,%rsp
+	mov    %rdi,%rbx
+	mov    %edx,%r12d
+	mov    %rcx,%r13
+	mov    %rbx,%rdi
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x20>
+	mov    %eax,%r14d
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x2d>
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x2d>
+	test   $0x1,%r14b
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x3c>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x56>
+	test   $0x1,%r12b
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x8d>
+	test   %rbx,%rbx
+	sete   %al
+	xor    $0x1,%al
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x8d>
+	lea    -0x8(%rip),%rax        # <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x55>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x30(%rbp)
+	mov    $0xe4,%edx
+	mov    -0x30(%rbp),%rbx
+	mov    %ebx,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	xor    %edx,%edx
+	mov    %r13,%rcx
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr11write_bytes18precondition_checkCseeGrevWVrEI_6source+0x8d>
+	add    $0x10,%rsp
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x28,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %rcx,%r14
+	mov    %r8,%r15
+	test   %r15,%r15
+	mov    %r9,-0x38(%rbp)
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x36>
+	movb   $0x1,-0x29(%rbp)
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x3f>
+	test   %r13,%r13
+	sete   %al
+	mov    %al,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	mov    %rbx,%rdi
+	mov    %r14,%rsi
+	mov    %al,-0x2a(%rbp)
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x51>
+	mov    %al,-0x39(%rbp)
+	movzbl -0x39(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x65>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x84>
+	movzbl -0x2a(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x89>
+	mov    %rbx,%rax
+	test   %rax,%rax
+	sete   %al
+	xor    $0x1,%al
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x89>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xc9>
+	mov    %r12,%rax
+	mov    %rax,%rdi
+	mov    %r14,%rsi
+	mov    %rax,-0x48(%rbp)
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x9b>
+	mov    %eax,%r14d
+	test   $0x1,%r14b
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xad>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xc9>
+	movzbl -0x29(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xce>
+	test   %r12,%r12
+	sete   %al
+	xor    $0x1,%al
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xce>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xf5>
+	mov    %rbx,%rdi
+	mov    -0x48(%rbp),%rsi
+	mov    %r13,%rdx
+	mov    %r15,%rcx
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xe0>
+	mov    %eax,%ebx
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xec>
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xec>
+	test   $0x1,%bl
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x12d>
+	lea    -0x8(%rip),%rax        # <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0xf4>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x48(%rbp)
+	mov    $0x11b,%edx
+	mov    -0x48(%rbp),%rbx
+	mov    %ebx,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	xor    %edx,%edx
+	mov    -0x38(%rbp),%rcx
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr19copy_nonoverlapping18precondition_checkCseeGrevWVrEI_6source+0x12d>
+	add    $0x28,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x28,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %ecx,%r14d
+	mov    %r8,%r15
+	mov    %rbx,%rdi
+	mov    %r13,%rsi
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x2b>
+	mov    %al,-0x3a(%rbp)
+	movzbl -0x3a(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x3f>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x59>
+	test   $0x1,%r14b
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xa1>
+	test   %rbx,%rbx
+	sete   %al
+	xor    $0x1,%al
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x5e>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xd3>
+	mov    %r12,%rax
+	mov    %rax,-0x30(%rbp)
+	mov    %r13,-0x38(%rbp)
+	mov    -0x30(%rbp),%rax
+	mov    %rax,%rdi
+	mov    %r13,%rsi
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x78>
+	mov    %eax,%ebx
+	mov    %bl,-0x39(%rbp)
+	movzbl -0x39(%rbp),%eax
+	test   $0x1,%al
+	je     <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xd3>
+	mov    %r12,%rax
+	test   %rax,%rax
+	sete   %al
+	xor    $0x1,%al
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x10a>
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xd3>
+	mov    %r12,-0x30(%rbp)
+	mov    %r13,-0x38(%rbp)
+	mov    -0x30(%rbp),%rax
+	mov    %rax,%rdi
+	mov    %r13,%rsi
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xb8>
+	mov    %eax,%ebx
+	jmp    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xc4>
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xc4>
+	mov    %bl,-0x39(%rbp)
+	movzbl -0x39(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x10a>
+	lea    -0x8(%rip),%rax        # <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0xd2>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x48(%rbp)
+	mov    $0xdd,%edx
+	mov    -0x48(%rbp),%rbx
+	mov    %ebx,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	xor    %edx,%edx
+	mov    %r15,%rcx
+	call   <_RNvNvNtCs94NUNretDkj_4core3ptr4copy18precondition_checkCseeGrevWVrEI_6source+0x10a>
+	add    $0x28,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<_RNvNvNtCs94NUNretDkj_4core9ub_checks23maybe_is_nonoverlapping7runtimeCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x38,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,-0x48(%rbp)
+	xor    %esi,%esi
+	mov    -0x48(%rbp),%rdi
+	mov    %rdi,%rax
+	mul    %rcx
+	seto   %sil
+	mov    %rax,%r13
+	jo     <_RNvNvNtCs94NUNretDkj_4core9ub_checks23maybe_is_nonoverlapping7runtimeCseeGrevWVrEI_6source+0x6e>
+	mov    %r13,-0x38(%rbp)
+	movq   $0x1,-0x40(%rbp)
+	mov    -0x38(%rbp),%r13
+	cmp    %r12,%rbx
+	jb     <_RNvNvNtCs94NUNretDkj_4core9ub_checks23maybe_is_nonoverlapping7runtimeCseeGrevWVrEI_6source+0x58>
+	mov    %rbx,%rax
+	sub    %r12,%rax
+	mov    %rax,-0x30(%rbp)
+	jmp    <_RNvNvNtCs94NUNretDkj_4core9ub_checks23maybe_is_nonoverlapping7runtimeCseeGrevWVrEI_6source+0x5f>
+	sub    %rbx,%r12
+	mov    %r12,-0x30(%rbp)
+	mov    -0x30(%rbp),%rax
+	cmp    %r13,%rax
+	setae  %al
+	jmp    <_RNvNvNtCs94NUNretDkj_4core9ub_checks23maybe_is_nonoverlapping7runtimeCseeGrevWVrEI_6source+0x7f>
+	lea    -0x8(%rip),%rdi        # <_RNvNvNtCs94NUNretDkj_4core9ub_checks23maybe_is_nonoverlapping7runtimeCseeGrevWVrEI_6source+0x6d>
+	mov    $0x3d,%esi
+	call   <_RNvNvNtCs94NUNretDkj_4core9ub_checks23maybe_is_nonoverlapping7runtimeCseeGrevWVrEI_6source+0x7f>
+	add    $0x38,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<copy_big>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x118,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %r12,%rax
+	mov    %rax,%r13
+	mov    $0x8,%eax
+	sub    $0x1,%rax
+	mov    %r13,%rcx
+	and    %rax,%rcx
+	test   %rcx,%rcx
+	jne    <copy_big+0xeb>
+	mov    %r12,%rax
+	mov    $0x100,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <copy_big+0xdf>
+	lea    -0x130(%rbp),%rdi
+	mov    %r12,%rsi
+	mov    $0x100,%edx
+	call   <copy_big+0x68>
+	mov    %rbx,%rax
+	mov    %rax,%r12
+	mov    $0x8,%eax
+	sub    $0x1,%rax
+	mov    %r12,%rcx
+	and    %rax,%rcx
+	test   %rcx,%rcx
+	jne    <copy_big+0xcb>
+	mov    %rbx,%rax
+	mov    $0x100,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <copy_big+0xbf>
+	mov    %rbx,%rdi
+	lea    -0x130(%rbp),%rsi
+	mov    $0x100,%edx
+	call   <copy_big+0xba>
+	jmp    <copy_big+0xff>
+	lea    -0x8(%rip),%rdi        # <copy_big+0xbe>
+	call   <copy_big+0xcb>
+	mov    $0x8,%edi
+	mov    %r12,%rsi
+	lea    -0x8(%rip),%rdx        # <copy_big+0xd2>
+	call   <copy_big+0xdf>
+	lea    -0x8(%rip),%rdi        # <copy_big+0xde>
+	call   <copy_big+0xeb>
+	mov    $0x8,%edi
+	mov    %r13,%rsi
+	lea    -0x8(%rip),%rdx        # <copy_big+0xf2>
+	call   <copy_big+0xff>
+	add    $0x118,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<do_memcpy>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	call   <do_memcpy+0x18>
+	jmp    <do_memcpy+0x22>
+	call   <do_memcpy+0x22>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<do_memcpy_u64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	call   <do_memcpy_u64+0x18>
+	jmp    <do_memcpy_u64+0x22>
+	call   <do_memcpy_u64+0x22>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<do_memmove>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	call   <do_memmove+0x18>
+	jmp    <do_memmove+0x22>
+	call   <do_memmove+0x22>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<do_memmove_u32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	call   <do_memmove_u32+0x18>
+	jmp    <do_memmove_u32+0x22>
+	call   <do_memmove_u32+0x22>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<do_memset>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <do_memset+0xd>
+	jmp    <do_memset+0x17>
+	call   <do_memset+0x17>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<do_memset_u16>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <do_memset_u16+0xd>
+	jmp    <do_memset_u16+0x17>
+	call   <do_memset_u16+0x17>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<fill_big>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x238,%rsp
+	movq   $0x0,-0x30(%rbp)
+	mov    %rsi,-0x238(%rbp)
+	mov    %rdi,-0x240(%rbp)
+	mov    -0x30(%rbp),%rbx
+	cmp    $0x20,%rbx
+	jae    <fill_big+0x55>
+	mov    %rbx,%rax
+	mov    $0x8,%ecx
+	imul   %rcx,%rax
+	mov    -0x238(%rbp),%rcx
+	mov    %rcx,-0x230(%rbp,%rax,1)
+	lea    0x1(%rbx),%rbx
+	mov    %rbx,-0x30(%rbp)
+	jmp    <fill_big+0x22>
+	lea    -0x130(%rbp),%rdi
+	lea    -0x230(%rbp),%rsi
+	mov    $0x100,%edx
+	call   <fill_big+0x6d>
+	mov    -0x240(%rbp),%rax
+	mov    $0x8,%ecx
+	sub    $0x1,%rcx
+	mov    %rax,%rdx
+	and    %rcx,%rdx
+	test   %rdx,%rdx
+	mov    %rax,-0x238(%rbp)
+	jne    <fill_big+0xe2>
+	mov    -0x240(%rbp),%rcx
+	mov    $0x100,%edx
+	test   %rdx,%rdx
+	setne  %dl
+	test   %rcx,%rcx
+	sete   %cl
+	and    %edx,%ecx
+	xor    $0x1,%cl
+	test   $0x1,%cl
+	je     <fill_big+0xd6>
+	mov    -0x240(%rbp),%rdi
+	lea    -0x130(%rbp),%rsi
+	mov    $0x100,%edx
+	call   <fill_big+0xd1>
+	jmp    <fill_big+0xfa>
+	lea    -0x8(%rip),%rdi        # <fill_big+0xd5>
+	call   <fill_big+0xe2>
+	mov    $0x8,%edi
+	mov    -0x238(%rbp),%rsi
+	lea    -0x8(%rip),%rdx        # <fill_big+0xed>
+	call   <fill_big+0xfa>
+	add    $0x238,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<memcpy_const_100>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	mov    $0x64,%edx
+	call   <memcpy_const_100+0x1d>
+	jmp    <memcpy_const_100+0x27>
+	call   <memcpy_const_100+0x27>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<memcpy_const_8>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	mov    $0x8,%edx
+	call   <memcpy_const_8+0x1d>
+	jmp    <memcpy_const_8+0x27>
+	call   <memcpy_const_8+0x27>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<memcpy_then_read>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%rdi
+	mov    %rbx,%rsi
+	call   <memcpy_then_read+0x17>
+	jmp    <memcpy_then_read+0x21>
+	call   <memcpy_then_read+0x21>
+	mov    %rbx,%rax
+	mov    $0x1,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <memcpy_then_read+0x4b>
+	movzbl (%rbx),%ebx
+	mov    %ebx,%eax
+	jmp    <memcpy_then_read+0x57>
+	lea    -0x8(%rip),%rdi        # <memcpy_then_read+0x4a>
+	call   <memcpy_then_read+0x57>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<memcpy_zero>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	xor    %edx,%edx
+	call   <memcpy_zero+0x1a>
+	jmp    <memcpy_zero+0x24>
+	call   <memcpy_zero+0x24>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<memmove_const_64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    -0x30(%rbp),%rsi
+	mov    $0x40,%edx
+	call   <memmove_const_64+0x1d>
+	jmp    <memmove_const_64+0x27>
+	call   <memmove_const_64+0x27>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<memset_const_0>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	xor    %esi,%esi
+	mov    $0x21,%edx
+	call   <memset_const_0+0x14>
+	jmp    <memset_const_0+0x1e>
+	call   <memset_const_0+0x1e>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<memset_const_val>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    $0xffffffab,%esi
+	mov    $0xc8,%edx
+	call   <memset_const_val+0x17>
+	jmp    <memset_const_val+0x21>
+	call   <memset_const_val+0x21>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<memset_then_sum>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x40,%rsp
+	mov    %rdi,-0x40(%rbp)
+	mov    %rsi,-0x48(%rbp)
+	mov    $0x3,%esi
+	mov    -0x48(%rbp),%rdx
+	call   <memset_then_sum+0x21>
+	movq   $0x0,-0x30(%rbp)
+	movq   $0x0,-0x38(%rbp)
+	mov    -0x38(%rbp),%rax
+	mov    -0x48(%rbp),%rcx
+	cmp    %rcx,%rax
+	jae    <memset_then_sum+0xae>
+	mov    -0x38(%rbp),%rax
+	mov    -0x40(%rbp),%rdi
+	mov    %rax,%rsi
+	lea    -0x8(%rip),%rdx        # <memset_then_sum+0x4c>
+	call   <memset_then_sum+0x59>
+	mov    %rax,%rbx
+	mov    %rbx,%rax
+	mov    $0x1,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <memset_then_sum+0xde>
+	movzbl (%rbx),%ebx
+	movzbl %bl,%ebx
+	mov    -0x30(%rbp),%rax
+	lea    (%rax,%rbx,1),%r12
+	cmp    %rax,%r12
+	jb     <memset_then_sum+0xc8>
+	mov    %r12,-0x30(%rbp)
+	mov    -0x38(%rbp),%rax
+	lea    0x1(%rax),%rbx
+	cmp    %rax,%rbx
+	jb     <memset_then_sum+0xb7>
+	mov    %rbx,-0x38(%rbp)
+	jmp    <memset_then_sum+0x31>
+	mov    -0x30(%rbp),%rax
+	jmp    <memset_then_sum+0xea>
+	lea    -0x8(%rip),%rdi        # <memset_then_sum+0xb6>
+	call   <memset_then_sum+0xc3>
+	jmp    <memset_then_sum+0xde>
+	lea    -0x8(%rip),%rdi        # <memset_then_sum+0xc7>
+	call   <memset_then_sum+0xd4>
+	jmp    <memset_then_sum+0xde>
+	call   <memset_then_sum+0xde>
+	lea    -0x8(%rip),%rdi        # <memset_then_sum+0xdd>
+	call   <memset_then_sum+0xea>
+	add    $0x40,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<shift_down>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rbx,%rdi
+	mov    %rdx,%rsi
+	lea    -0x8(%rip),%rdx        # <shift_down+0x18>
+	call   <shift_down+0x25>
+	mov    %rax,%r13
+	mov    %r13,%rdi
+	mov    %rbx,%rsi
+	mov    %r12,%rdx
+	call   <shift_down+0x36>
+	jmp    <shift_down+0x40>
+	call   <shift_down+0x40>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<shift_up>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rsi,%rbx
+	mov    %rdi,%r12
+	mov    %rdx,%rsi
+	lea    -0x8(%rip),%rdx        # <shift_up+0x15>
+	call   <shift_up+0x22>
+	mov    %rax,%r13
+	mov    %r12,%rdi
+	mov    %r13,%rsi
+	mov    %rbx,%rdx
+	call   <shift_up+0x33>
+	jmp    <shift_up+0x3d>
+	call   <shift_up+0x3d>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<zero_big>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x220,%rsp
+	mov    %rdi,%rbx
+	lea    -0x230(%rbp),%rdi
+	xor    %esi,%esi
+	mov    $0x100,%edx
+	call   <zero_big+0x24>
+	lea    -0x130(%rbp),%rdi
+	lea    -0x230(%rbp),%rsi
+	mov    $0x100,%edx
+	call   <zero_big+0x3c>
+	mov    %rbx,%rax
+	mov    %rax,%r12
+	mov    $0x8,%eax
+	sub    $0x1,%rax
+	mov    %r12,%rcx
+	and    %rax,%rcx
+	test   %rcx,%rcx
+	jne    <zero_big+0x9f>
+	mov    %rbx,%rax
+	mov    $0x100,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <zero_big+0x93>
+	mov    %rbx,%rdi
+	lea    -0x130(%rbp),%rsi
+	mov    $0x100,%edx
+	call   <zero_big+0x8e>
+	jmp    <zero_big+0xb3>
+	lea    -0x8(%rip),%rdi        # <zero_big+0x92>
+	call   <zero_big+0x9f>
+	mov    $0x8,%edi
+	mov    %r12,%rsi
+	lea    -0x8(%rip),%rdx        # <zero_big+0xa6>
+	call   <zero_big+0xb3>
+	add    $0x220,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret

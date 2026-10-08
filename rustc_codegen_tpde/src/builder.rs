@@ -2,7 +2,7 @@ mod coverageinfo;
 mod intrinsic;
 
 use core::borrow::Borrow;
-use crate::context::{CodegenCx, GenericCx, SCx};
+use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
 use crate::shared::ir::{convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, Module, Slot, Type, convert_atomic_op};
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
@@ -799,14 +799,14 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         flags: MemFlags,
         tt: Option<FncTree>,
     ) {
+        let func = self.cx.get_lib_fn(LibFunc::MemCpy);
         self.module.borrow_mut().add_instruction(
             self.basic_block,
-            InstructionKind::MemCpy,
+            InstructionKind::Call,
             vec![
+                func,
                 dst,
-                Slot::new_raw(dst_align.bytes_usize() as u32),
                 src,
-                Slot::new_raw(src_align.bytes_usize() as u32),
                 size,
             ],
         );
@@ -821,14 +821,14 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         size: Self::Value,
         flags: MemFlags,
     ) {
+        let func = self.cx.get_lib_fn(LibFunc::MemMove);
         self.module.borrow_mut().add_instruction(
             self.basic_block,
-            InstructionKind::MemMove,
+            InstructionKind::Call,
             vec![
+                func,
                 dst,
-                Slot::new_raw(dst_align.bytes_usize() as u32),
                 src,
-                Slot::new_raw(src_align.bytes_usize() as u32),
                 size,
             ],
         );
@@ -842,10 +842,12 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         align: rustc_abi::Align,
         flags: MemFlags,
     ) {
+        let func = self.cx.get_lib_fn(LibFunc::MemSet);
         self.module.borrow_mut().add_instruction(
             self.basic_block,
-            InstructionKind::MemSet,
+            InstructionKind::Call,
             vec![
+                func,
                 ptr,
                 fill_byte,
                 size,

@@ -634,10 +634,6 @@ namespace tpde_rust {
       set_fn(InstructionKind::GEP, &Derived::compile_gep);
       set_fn(InstructionKind::Store, &Derived::compile_store);
       set_fn(InstructionKind::Load, &Derived::compile_load);
-      set_fn(InstructionKind::MemCpy, &Derived::compile_memcpy);
-      set_fn(InstructionKind::MemMove, &Derived::compile_memmove);
-      set_fn(InstructionKind::MemSet, &Derived::compile_memset);
-      set_fn(InstructionKind::MemCmp, &Derived::compile_memcmp);
       set_fn(InstructionKind::Call, &Derived::compile_call);
       set_fn(InstructionKind::Invoke, &Derived::compile_invoke);
       set_fn(InstructionKind::LandingPad, &Derived::compile_landing_pad);
@@ -1817,65 +1813,6 @@ namespace tpde_rust {
 
     ValueRef res = this->result_ref(instr.result);
     (derived()->*encode_fn)(std::move(addr), res.part(0));
-    return true;
-  }
-
-  template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_memcpy(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-
-    const auto dst = inst.ops[0];
-    const auto src = inst.ops[2];
-    const auto len = inst.ops[4];
-
-    std::array<IRValueRef, 3> args{dst, src, len};
-
-    derived()->create_helper_call(args, nullptr, get_libfunc_sym(LibFunc::memcpy));
-    return true;
-  }
-
-  template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_memmove(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-
-    const auto dst = inst.ops[0];
-    const auto src = inst.ops[2];
-    const auto len = inst.ops[4];
-
-    std::array<IRValueRef, 3> args{dst, src, len};
-
-    derived()->create_helper_call(args, nullptr, get_libfunc_sym(LibFunc::memmove));
-    return true;
-  }
-
-  template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_memset(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-
-    const auto dst = inst.ops[0];
-    const auto val = inst.ops[1];
-    const auto len = inst.ops[2];
-
-    std::array<IRValueRef, 3> args{dst, val, len};
-
-    const auto sym = get_libfunc_sym(LibFunc::memset);
-    derived()->create_helper_call(args, nullptr, sym);
-    return true;
-  }
-
-  template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_memcmp(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-
-    const auto lhs = inst.ops[0];
-    const auto rhs = inst.ops[1];
-    const auto len = inst.ops[2];
-
-    std::array<IRValueRef, 3> args{lhs, rhs, len};
-
-    const auto sym = get_libfunc_sym(LibFunc::memcmp);
-    auto res = this->result_ref(inst.result);
-    derived()->create_helper_call(args, &res, sym);
     return true;
   }
 

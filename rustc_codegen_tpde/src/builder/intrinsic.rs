@@ -13,6 +13,7 @@ use rustc_middle::{bug, span_bug};
 use rustc_middle::ty::{self, Instance};
 use rustc_middle::ty::layout::{LayoutOf, TyAndLayout};
 use rustc_span::{Span, sym};
+use crate::context::LibFunc;
 
 impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
     fn codegen_intrinsic_call(
@@ -148,10 +149,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     self.cx.module.borrow_mut().add_const(Type::Bool, true as u128)
                 } else {
                     let len = self.const_usize(size);
+                    let func = self.cx.get_lib_fn(LibFunc::MemCmp);
                     let cmp = self.cx.module.borrow_mut().add_instruction_ret(
                         self.basic_block,
-                        InstructionKind::MemCmp,
-                        vec![args[0].immediate(), args[1].immediate(), len],
+                        InstructionKind::Call,
+                        vec![func, args[0].immediate(), args[1].immediate(), len],
                         Type::i32
                     );
                     let zero = self.const_i32(0);
@@ -160,10 +162,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
             sym::compare_bytes => {
+                let func = self.cx.get_lib_fn(LibFunc::MemCmp);
                 let cmp = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
-                    InstructionKind::MemCmp,
-                    vec![args[0].immediate(), args[1].immediate(), args[2].immediate()],
+                    InstructionKind::Call,
+                    vec![func, args[0].immediate(), args[1].immediate(), args[2].immediate()],
                     Type::i32
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(cmp))

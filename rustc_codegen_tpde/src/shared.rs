@@ -247,10 +247,6 @@ mod ffi {
         Store,
         Load,
         GEP,
-        MemCpy,
-        MemMove,
-        MemSet,
-        MemCmp,
 
         Select,
 

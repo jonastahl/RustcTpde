@@ -1,5 +1,5 @@
 use crate::builder::Builder;
-use crate::shared::ir::{Binding, Function, FunctionSignature, Global, Module, Slot};
+use crate::shared::ir::{ArgInfo, Binding, FullType, Function, FunctionSignature, Global, Module, Slot, Type};
 use core::borrow::Borrow;
 use rustc_abi::TargetDataLayout;
 use rustc_codegen_ssa::traits::MiscCodegenMethods;
@@ -32,6 +32,7 @@ pub struct FullCx<'tpde, 'tcx> {
     pub codegen_unit: &'tcx CodegenUnit<'tcx>,
 
     pub functions: RefCell<FxHashMap<Instance<'tcx>, Function>>,
+    pub libfuncs: RefCell<FxHashMap<LibFunc, Function>>,
 
     pub globals: RefCell<FxHashMap<DefId, Global>>,
     pub vtables: RefCell<FxHashMap<(Ty<'tcx>, Option<ty::ExistentialTraitRef<'tcx>>), Slot>>,
@@ -109,6 +110,7 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
                 scx: SCx::new(module),
                 codegen_unit: cgu,
                 functions: RefCell::new(FxHashMap::default()),
+                libfuncs: RefCell::new(FxHashMap::default()),
                 globals: RefCell::new(FxHashMap::default()),
                 data_layout,
                 global_gen_sym_counter: Cell::new(0),
@@ -118,6 +120,43 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
             },
             PhantomData,
         )
+    }
+}
+
+#[derive(Eq, Hash, PartialEq)]
+pub enum LibFunc {
+    MemCpy,
+    MemMove,
+    MemSet,
+    MemCmp,
+}
+
+impl<'tcx> CodegenCx<'_, 'tcx> {
+    pub fn get_lib_fn(&self, libfunc: LibFunc) -> Slot {
+        if let Some(&i) = self.libfuncs.borrow().get(&libfunc) {
+            return Slot::new_func(i);
+        };
+
+        let (name, arg_infos, ret) = match libfunc {
+            LibFunc::MemCpy => ("memcpy", vec![ArgInfo::default(); 3], None),
+            LibFunc::MemMove => ("memmov", vec![ArgInfo::default(); 3], None),
+            LibFunc::MemSet => ("memset", vec![ArgInfo::default(); 3], None),
+            LibFunc::MemCmp => ("memcmp", vec![ArgInfo::default(); 3], Some(FullType::Single(Type::i32))),
+        };
+
+        let func = self.module.borrow_mut()
+            .add_function(
+                name,
+                FunctionSignature {
+                    slots: vec![],
+                    arg_infos,
+                    ret,
+                },
+                Linkage::External,
+                Binding::Declaration
+            );
+        self.libfuncs.borrow_mut().insert(libfunc, func);
+        Slot::new_func(func)
     }
 }
 
