@@ -799,7 +799,7 @@ ModuleTpde {
                     <Store> ([val: 19], [val: 29], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 8], [const: 34]) -> [val: 30],
                     <Store> ([val: 21], [val: 30], [raw: 8]),
-                    <MemCpy> ([val: 0], [raw: 8], [alloc: 0], [raw: 8], [const: 35]),
+                    <Call> ([func: 62], [val: 0], [alloc: 0], [const: 35]),
                     <Ret> (),
                 ],
                 "panic": [
@@ -879,7 +879,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 63,
+            personality: 64,
             allocas: [
                 size: 3, align: 1,
                 size: 4, align: 1,
@@ -970,7 +970,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 65,
+            personality: 66,
             allocas: [
                 size: 3, align: 1,
             ],
@@ -1097,7 +1097,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 67,
+            personality: 68,
             allocas: [
                 size: 64, align: 8,
             ],
@@ -1112,7 +1112,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 "bb1": [
-                    <Call> ([func: 68], [alloc: 0]) -> [val: 3],
+                    <Call> ([func: 69], [alloc: 0]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
             ],
@@ -1145,8 +1145,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 69], [alloc: 0], [val: 0]),
-                    <Call> ([func: 70], [alloc: 0], [const: 52]) -> [val: 1],
+                    <Call> ([func: 70], [alloc: 0], [val: 0]),
+                    <Call> ([func: 71], [alloc: 0], [const: 52]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1169,7 +1169,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 71], [const: 53], [const: 54], [const: 55], [const: 56], [const: 57], [const: 58], [const: 59], [const: 60], [const: 61], [const: 62]) -> [val: 0],
+                    <Call> ([func: 72], [const: 53], [const: 54], [const: 55], [const: 56], [const: 57], [const: 58], [const: 59], [const: 60], [const: 61], [const: 62]) -> [val: 0],
                     <Ret> ([val: 0]),
                 ],
             ],
@@ -1208,7 +1208,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 74,
+            personality: 75,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1222,7 +1222,7 @@ ModuleTpde {
                     <CondBr> ([val: 7], [raw: 6], [raw: 5]),
                 ],
                 "panic": [
-                    <Invoke> ([func: 73], [raw: 4], [raw: 3], [global: 54]),
+                    <Invoke> ([func: 74], [raw: 4], [raw: 3], [global: 54]),
                 ],
                 "terminate": [
                     <LandingPad> () -> [val: 4],
@@ -2667,7 +2667,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 76,
+            personality: 77,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -2758,7 +2758,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 78,
+            personality: 79,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -2908,7 +2908,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 80,
+            personality: 81,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -3085,7 +3085,7 @@ ModuleTpde {
                     <Store> ([val: 12], [val: 22], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 8], [const: 131]) -> [val: 23],
                     <Store> ([val: 14], [val: 23], [raw: 8]),
-                    <MemCpy> ([val: 0], [raw: 8], [alloc: 0], [raw: 8], [const: 132]),
+                    <Call> ([func: 62], [val: 0], [alloc: 0], [const: 132]),
                     <Ret> (),
                 ],
                 "panic": [
@@ -3340,7 +3340,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 82,
+            personality: 83,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -3430,7 +3430,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 84,
+            personality: 85,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -3506,7 +3506,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 86,
+            personality: 87,
             allocas: [
                 size: 16, align: 8,
             ],
@@ -3593,7 +3593,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 88,
+            personality: 89,
             allocas: [
                 size: 8, align: 8,
                 size: 8, align: 8,
@@ -3641,7 +3641,7 @@ ModuleTpde {
                     <CondBr> ([val: 19], [raw: 8], [raw: 9]),
                 ],
                 "panic": [
-                    <Call> ([func: 89], [const: 148], [val: 10], [global: 172]),
+                    <Call> ([func: 90], [const: 148], [val: 10], [global: 172]),
                     <Unreachable> (),
                 ],
                 "bb8": [
@@ -3652,7 +3652,7 @@ ModuleTpde {
                     <CondBr> ([val: 23], [raw: 11], [raw: 10]),
                 ],
                 "panic": [
-                    <Call> ([func: 90], [global: 174]),
+                    <Call> ([func: 91], [global: 174]),
                     <Unreachable> (),
                 ],
                 "bb4": [
@@ -3704,7 +3704,7 @@ ModuleTpde {
                     <Store> ([const: 154], [val: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: 157]) -> [val: 1],
                     <Store> ([const: 156], [val: 1], [raw: 8]),
-                    <Call> ([func: 70], [alloc: 0], [const: 158]) -> [val: 2],
+                    <Call> ([func: 71], [alloc: 0], [const: 158]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
             ],
@@ -4152,7 +4152,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 92,
+            personality: 93,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -4169,7 +4169,7 @@ ModuleTpde {
                     <CondBr> ([val: 11], [raw: 5], [raw: 6]),
                 ],
                 "panic": [
-                    <Invoke> ([func: 73], [raw: 4], [raw: 3], [global: 194]),
+                    <Invoke> ([func: 74], [raw: 4], [raw: 3], [global: 194]),
                 ],
                 "terminate": [
                     <LandingPad> () -> [val: 5],
@@ -4190,7 +4190,7 @@ ModuleTpde {
                     <CondBr> ([val: 17], [raw: 7], [raw: 8]),
                 ],
                 "panic": [
-                    <Call> ([func: 89], [const: 176], [val: 8], [global: 196]),
+                    <Call> ([func: 90], [const: 176], [val: 8], [global: 196]),
                     <Unreachable> (),
                 ],
                 "bb4": [
@@ -4204,7 +4204,7 @@ ModuleTpde {
                     <CondBr> ([val: 23], [raw: 9], [raw: 10]),
                 ],
                 "panic": [
-                    <Call> ([func: 90], [global: 198]),
+                    <Call> ([func: 91], [global: 198]),
                     <Unreachable> (),
                 ],
                 "bb2": [
@@ -4217,7 +4217,7 @@ ModuleTpde {
                     <CondBr> ([val: 29], [raw: 11], [raw: 12]),
                 ],
                 "panic": [
-                    <Call> ([func: 89], [const: 183], [val: 20], [global: 200]),
+                    <Call> ([func: 90], [const: 183], [val: 20], [global: 200]),
                     <Unreachable> (),
                 ],
                 "bb5": [
@@ -4226,7 +4226,7 @@ ModuleTpde {
                     <Ret> (),
                 ],
                 "panic": [
-                    <Call> ([func: 90], [global: 202]),
+                    <Call> ([func: 91], [global: 202]),
                     <Unreachable> (),
                 ],
             ],
@@ -4431,6 +4431,41 @@ ModuleTpde {
             name: "_RNvNtCs94NUNretDkj_4core9panicking19panic_cannot_unwind",
             has_ret: false,
             args: [],
+            slots: [],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "memcpy",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
             slots: [],
             flags: Flags {
                 extern_link: true,

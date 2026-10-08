@@ -57,7 +57,7 @@ ModuleTpde {
                     <Store> ([const: 6], [val: 5], [raw: 8]),
                     <GEP> ([alloc: 2], [raw: 1], [const: 9]) -> [val: 6],
                     <Store> ([const: 8], [val: 6], [raw: 8]),
-                    <MemCpy> ([alloc: 0], [raw: 8], [alloc: 2], [raw: 8], [const: 10]),
+                    <Call> ([func: 3], [alloc: 0], [alloc: 2], [const: 10]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
@@ -70,11 +70,11 @@ ModuleTpde {
                     <Store> ([const: 16], [val: 9], [raw: 8]),
                     <GEP> ([alloc: 1], [raw: 1], [const: 19]) -> [val: 10],
                     <Store> ([const: 18], [val: 10], [raw: 8]),
-                    <MemCpy> ([alloc: 0], [raw: 8], [alloc: 1], [raw: 8], [const: 20]),
+                    <Call> ([func: 3], [alloc: 0], [alloc: 1], [const: 20]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
-                    <MemCpy> ([val: 0], [raw: 8], [alloc: 0], [raw: 8], [const: 21]),
+                    <Call> ([func: 3], [val: 0], [alloc: 0], [const: 21]),
                     <Ret> (),
                 ],
             ],
@@ -220,7 +220,7 @@ ModuleTpde {
                     <CondBr> ([val: 10], [raw: 4], [raw: 3]),
                 ],
                 "panic": [
-                    <Call> ([func: 3], [global: 0]),
+                    <Call> ([func: 4], [global: 0]),
                     <Unreachable> (),
                 ],
                 "bb2": [
@@ -231,7 +231,7 @@ ModuleTpde {
                     <CondBr> ([val: 14], [raw: 6], [raw: 5]),
                 ],
                 "panic": [
-                    <Call> ([func: 3], [global: 2]),
+                    <Call> ([func: 4], [global: 2]),
                     <Unreachable> (),
                 ],
                 "bb3": [
@@ -242,7 +242,7 @@ ModuleTpde {
                     <CondBr> ([val: 18], [raw: 8], [raw: 7]),
                 ],
                 "panic": [
-                    <Call> ([func: 4], [global: 4]),
+                    <Call> ([func: 5], [global: 4]),
                     <Unreachable> (),
                 ],
                 "bb4": [
@@ -258,10 +258,45 @@ ModuleTpde {
                     <Ret> (),
                 ],
                 "panic": [
-                    <Call> ([func: 3], [global: 6]),
+                    <Call> ([func: 4], [global: 6]),
                     <Unreachable> (),
                 ],
             ],
+            callee_infos: [],
+        },
+        Function {
+            name: "memcpy",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
             callee_infos: [],
         },
         Function {

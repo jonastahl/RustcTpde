@@ -62,7 +62,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Mul> ([const: 5], [val: 2]) -> [val: 6],
-                    <MemSet> ([val: 0], [val: 1], [val: 6], [raw: 1]),
+                    <Call> ([func: 32], [val: 0], [val: 1], [val: 6]),
                     <Ret> (),
                 ],
                 "bb2": [
@@ -133,7 +133,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Mul> ([const: 11], [val: 2]) -> [val: 6],
-                    <MemSet> ([val: 0], [val: 1], [val: 6], [raw: 2]),
+                    <Call> ([func: 32], [val: 0], [val: 1], [val: 6]),
                     <Ret> (),
                 ],
                 "bb2": [
@@ -193,7 +193,7 @@ ModuleTpde {
                 ],
                 "bb3": [
                     <Mul> ([val: 2], [const: 15]) -> [val: 5],
-                    <MemCpy> ([val: 1], [raw: 1], [val: 0], [raw: 1], [val: 5]),
+                    <Call> ([func: 33], [val: 1], [val: 0], [val: 5]),
                     <Ret> (),
                 ],
             ],
@@ -250,7 +250,7 @@ ModuleTpde {
                 ],
                 "bb3": [
                     <Mul> ([val: 2], [const: 19]) -> [val: 5],
-                    <MemCpy> ([val: 1], [raw: 8], [val: 0], [raw: 8], [val: 5]),
+                    <Call> ([func: 33], [val: 1], [val: 0], [val: 5]),
                     <Ret> (),
                 ],
             ],
@@ -320,7 +320,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Mul> ([const: 25], [val: 2]) -> [val: 7],
-                    <MemMove> ([val: 1], [raw: 1], [val: 0], [raw: 1], [val: 7]),
+                    <Call> ([func: 34], [val: 1], [val: 0], [val: 7]),
                     <Ret> (),
                 ],
                 "bb2": [
@@ -393,7 +393,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Mul> ([const: 31], [val: 2]) -> [val: 7],
-                    <MemMove> ([val: 1], [raw: 4], [val: 0], [raw: 4], [val: 7]),
+                    <Call> ([func: 34], [val: 1], [val: 0], [val: 7]),
                     <Ret> (),
                 ],
                 "bb2": [
@@ -502,7 +502,7 @@ ModuleTpde {
                     <Shl> ([const: 34], [val: 6]) -> [val: 7],
                     <Or> ([val: 7], [const: 37]) -> [val: 8],
                     <Cast> ([val: 8]) -> [val: 9],
-                    <Call> ([func: 32], [val: 4], [val: 9], [global: 14]),
+                    <Call> ([func: 35], [val: 4], [val: 9], [global: 14]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -589,7 +589,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 34,
+            personality: 37,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -598,7 +598,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 4],
                     <AddRet> () -> [val: 5],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb7": [
@@ -617,7 +617,7 @@ ModuleTpde {
                     <Shl> ([const: 42], [val: 12]) -> [val: 13],
                     <Or> ([val: 13], [const: 45]) -> [val: 14],
                     <Cast> ([val: 14]) -> [val: 15],
-                    <Call> ([func: 36], [val: 10], [val: 15], [const: 46], [val: 3]),
+                    <Call> ([func: 39], [val: 10], [val: 15], [const: 46], [val: 3]),
                     <Unreachable> (),
                 ],
                 "bb6": [
@@ -712,7 +712,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 38,
+            personality: 41,
             allocas: [
                 size: 1, align: 1,
             ],
@@ -737,7 +737,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 9],
                     <AddRet> () -> [val: 10],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb15": [
@@ -800,7 +800,7 @@ ModuleTpde {
                     <Shl> ([const: 53], [val: 24]) -> [val: 25],
                     <Or> ([val: 25], [const: 56]) -> [val: 26],
                     <Cast> ([val: 26]) -> [val: 27],
-                    <Call> ([func: 36], [val: 22], [val: 27], [const: 57], [val: 5]),
+                    <Call> ([func: 39], [val: 22], [val: 27], [const: 57], [val: 5]),
                     <Unreachable> (),
                 ],
                 "bb21": [
@@ -883,7 +883,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 40,
+            personality: 43,
             allocas: [
                 size: 8, align: 8,
                 size: 8, align: 8,
@@ -896,7 +896,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 5],
                     <AddRet> () -> [val: 6],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb9": [
@@ -938,7 +938,7 @@ ModuleTpde {
                     <Shl> ([const: 61], [val: 24]) -> [val: 25],
                     <Or> ([val: 25], [const: 64]) -> [val: 26],
                     <Cast> ([val: 26]) -> [val: 27],
-                    <Call> ([func: 36], [val: 22], [val: 27], [const: 65], [val: 4]),
+                    <Call> ([func: 39], [val: 22], [val: 27], [const: 65], [val: 4]),
                     <Unreachable> (),
                 ],
                 "bb15": [
@@ -1048,7 +1048,7 @@ ModuleTpde {
                     <CondBr> ([val: 11], [raw: 4], [raw: 3]),
                 ],
                 "bb1": [
-                    <Call> ([func: 41], [global: 22], [const: 70]),
+                    <Call> ([func: 44], [global: 22], [const: 70]),
                     <Unreachable> (),
                 ],
                 "bb5": [
@@ -1141,11 +1141,11 @@ ModuleTpde {
                     <CondBr> ([val: 12], [raw: 3], [raw: 4]),
                 ],
                 "panic": [
-                    <Call> ([func: 42], [const: 74], [val: 3], [global: 23]),
+                    <Call> ([func: 45], [const: 74], [val: 3], [global: 23]),
                     <Unreachable> (),
                 ],
                 "bb3": [
-                    <MemCpy> ([alloc: 0], [raw: 8], [val: 1], [raw: 8], [const: 78]),
+                    <Call> ([func: 33], [alloc: 0], [val: 1], [const: 78]),
                     <Cast> ([val: 0]) -> [val: 13],
                     <Cast> ([val: 13]) -> [val: 14],
                     <Sub> ([const: 79], [const: 80]) -> [val: 15],
@@ -1154,7 +1154,7 @@ ModuleTpde {
                     <CondBr> ([val: 17], [raw: 5], [raw: 6]),
                 ],
                 "panic": [
-                    <Call> ([func: 43], [global: 25]),
+                    <Call> ([func: 46], [global: 25]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1167,15 +1167,15 @@ ModuleTpde {
                     <CondBr> ([val: 23], [raw: 7], [raw: 8]),
                 ],
                 "panic": [
-                    <Call> ([func: 42], [const: 82], [val: 14], [global: 27]),
+                    <Call> ([func: 45], [const: 82], [val: 14], [global: 27]),
                     <Unreachable> (),
                 ],
                 "bb4": [
-                    <MemCpy> ([val: 0], [raw: 8], [alloc: 0], [raw: 8], [const: 86]),
+                    <Call> ([func: 33], [val: 0], [alloc: 0], [const: 86]),
                     <Ret> (),
                 ],
                 "panic": [
-                    <Call> ([func: 43], [global: 29]),
+                    <Call> ([func: 46], [global: 29]),
                     <Unreachable> (),
                 ],
             ],
@@ -1217,7 +1217,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 45,
+            personality: 48,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1226,7 +1226,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1271,7 +1271,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 47,
+            personality: 50,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1280,7 +1280,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1325,7 +1325,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 49,
+            personality: 52,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1334,7 +1334,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1379,7 +1379,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 51,
+            personality: 54,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1388,7 +1388,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1433,7 +1433,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 53,
+            personality: 56,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1442,7 +1442,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1487,7 +1487,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 55,
+            personality: 58,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1496,7 +1496,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1573,7 +1573,7 @@ ModuleTpde {
                     <Br> ([raw: 1]),
                 ],
                 "repeat_next": [
-                    <MemCpy> ([alloc: 0], [raw: 8], [alloc: 1], [raw: 8], [const: 92]),
+                    <Call> ([func: 33], [alloc: 0], [alloc: 1], [const: 92]),
                     <Cast> ([val: 0]) -> [val: 7],
                     <Cast> ([val: 7]) -> [val: 8],
                     <Sub> ([const: 93], [const: 94]) -> [val: 9],
@@ -1591,15 +1591,15 @@ ModuleTpde {
                     <CondBr> ([val: 17], [raw: 6], [raw: 7]),
                 ],
                 "panic": [
-                    <Call> ([func: 42], [const: 96], [val: 8], [global: 31]),
+                    <Call> ([func: 45], [const: 96], [val: 8], [global: 31]),
                     <Unreachable> (),
                 ],
                 "bb2": [
-                    <MemCpy> ([val: 0], [raw: 8], [alloc: 0], [raw: 8], [const: 100]),
+                    <Call> ([func: 33], [val: 0], [alloc: 0], [const: 100]),
                     <Ret> (),
                 ],
                 "panic": [
-                    <Call> ([func: 43], [global: 33]),
+                    <Call> ([func: 46], [global: 33]),
                     <Unreachable> (),
                 ],
             ],
@@ -1634,7 +1634,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 57,
+            personality: 60,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1643,7 +1643,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 2],
                     <AddRet> () -> [val: 3],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1681,7 +1681,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 59,
+            personality: 62,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1690,7 +1690,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 2],
                     <AddRet> () -> [val: 3],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1742,7 +1742,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 61,
+            personality: 64,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1751,7 +1751,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1768,7 +1768,7 @@ ModuleTpde {
                     <Ret> ([val: 11]),
                 ],
                 "panic": [
-                    <Call> ([func: 43], [global: 35]),
+                    <Call> ([func: 46], [global: 35]),
                     <Unreachable> (),
                 ],
             ],
@@ -1803,7 +1803,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 63,
+            personality: 66,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1812,7 +1812,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 2],
                     <AddRet> () -> [val: 3],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1850,7 +1850,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 65,
+            personality: 68,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1859,7 +1859,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 2],
                     <AddRet> () -> [val: 3],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1890,7 +1890,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 67,
+            personality: 70,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1899,7 +1899,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 1],
                     <AddRet> () -> [val: 2],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1930,7 +1930,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 69,
+            personality: 72,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -1939,7 +1939,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 1],
                     <AddRet> () -> [val: 2],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -1996,7 +1996,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 71,
+            personality: 74,
             allocas: [
                 size: 8, align: 8,
                 size: 8, align: 8,
@@ -2008,7 +2008,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 2],
                     <AddRet> () -> [val: 3],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -2047,7 +2047,7 @@ ModuleTpde {
                     <CondBr> ([val: 19], [raw: 10], [raw: 9]),
                 ],
                 "panic": [
-                    <Call> ([func: 43], [global: 39]),
+                    <Call> ([func: 46], [global: 39]),
                     <Unreachable> (),
                 ],
                 "bb5": [
@@ -2058,7 +2058,7 @@ ModuleTpde {
                     <CondBr> ([val: 22], [raw: 13], [raw: 12]),
                 ],
                 "panic": [
-                    <Invoke> ([func: 72], [raw: 11], [raw: 1], [global: 41]),
+                    <Invoke> ([func: 75], [raw: 11], [raw: 1], [global: 41]),
                 ],
                 "unreachable": [
                     <Unreachable> (),
@@ -2068,7 +2068,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 "panic": [
-                    <Invoke> ([func: 72], [raw: 11], [raw: 1], [global: 43]),
+                    <Invoke> ([func: 75], [raw: 11], [raw: 1], [global: 43]),
                 ],
             ],
             callee_infos: [],
@@ -2111,7 +2111,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 74,
+            personality: 77,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -2120,7 +2120,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 3],
                     <AddRet> () -> [val: 4],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -2171,7 +2171,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 76,
+            personality: 79,
             allocas: [],
             basic_blocks: [
                 "start": [
@@ -2181,7 +2181,7 @@ ModuleTpde {
                 "terminate": [
                     <LandingPad> () -> [val: 4],
                     <AddRet> () -> [val: 5],
-                    <Call> ([func: 35]),
+                    <Call> ([func: 38]),
                     <Unreachable> (),
                 ],
                 "bb1": [
@@ -2231,8 +2231,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <MemSet> ([alloc: 1], [const: 121], [const: 120], [raw: 8]),
-                    <MemCpy> ([alloc: 0], [raw: 8], [alloc: 1], [raw: 8], [const: 122]),
+                    <Call> ([func: 32], [alloc: 1], [const: 121], [const: 120]),
+                    <Call> ([func: 33], [alloc: 0], [alloc: 1], [const: 122]),
                     <Cast> ([val: 0]) -> [val: 1],
                     <Cast> ([val: 1]) -> [val: 2],
                     <Sub> ([const: 123], [const: 124]) -> [val: 3],
@@ -2250,18 +2250,123 @@ ModuleTpde {
                     <CondBr> ([val: 11], [raw: 3], [raw: 4]),
                 ],
                 "panic": [
-                    <Call> ([func: 42], [const: 126], [val: 2], [global: 49]),
+                    <Call> ([func: 45], [const: 126], [val: 2], [global: 49]),
                     <Unreachable> (),
                 ],
                 "bb2": [
-                    <MemCpy> ([val: 0], [raw: 8], [alloc: 0], [raw: 8], [const: 130]),
+                    <Call> ([func: 33], [val: 0], [alloc: 0], [const: 130]),
                     <Ret> (),
                 ],
                 "panic": [
-                    <Call> ([func: 43], [global: 51]),
+                    <Call> ([func: 46], [global: 51]),
                     <Unreachable> (),
                 ],
             ],
+            callee_infos: [],
+        },
+        Function {
+            name: "memset",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "memcpy",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "memmove",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
             callee_infos: [],
         },
         Function {

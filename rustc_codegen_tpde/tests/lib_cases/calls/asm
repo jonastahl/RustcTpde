@@ -766,23 +766,24 @@ Disassembly of section .text:
 	adc    %rax,%rsi
 	seto   %al
 	movzbl %al,%eax
-	jo     <i128_mix+0x4a>
+	test   $0x1,%al
+	jne    <i128_mix+0x4e>
 	add    %rcx,%rdi
 	adc    %r8,%rsi
 	seto   %al
 	movzbl %al,%eax
-	jo     <i128_mix+0x3e>
+	test   $0x1,%al
+	jne    <i128_mix+0x42>
 	mov    %rdi,%rax
 	mov    %rsi,%rdx
-	jmp    <i128_mix+0x56>
-	lea    -0x8(%rip),%rdi        # <i128_mix+0x3d>
-	call   <i128_mix+0x4a>
-	lea    -0x8(%rip),%rdi        # <i128_mix+0x49>
-	call   <i128_mix+0x56>
+	jmp    <i128_mix+0x5a>
+	lea    -0x8(%rip),%rdi        # <i128_mix+0x41>
+	call   <i128_mix+0x4e>
+	lea    -0x8(%rip),%rdi        # <i128_mix+0x4d>
+	call   <i128_mix+0x5a>
 	add    $0x30,%rsp
 	pop    %rbp
 	ret
-	nopl   0x0(%rax)
 
 <interleaved_args>:
 	push   %rbp
