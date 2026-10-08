@@ -822,3 +822,27 @@ void prefetch_wl3(void* addr) { __builtin_prefetch(addr, 1, 3); }
 
 u64 TARGET_V1 readcyclecounter(void) { return __builtin_readcyclecounter(); }
 u32 TARGET_V1 getrounding(void) { return __builtin_flt_rounds(); }
+
+/*
+ - NaN → 0
+ - x >= 2^127 → i128::MAX
+ - x <= -2^127 → i128::MIN
+ - otherwise → __fix*ti(x)
+ */
+#define SAT_FIX_I128(NAME, FT, LIM) \
+  i128 TARGET_V1 NAME(i128 conv, FT a) { \
+    i128 max = (i128)(((u128)1 << 127) - 1); \
+    i128 min = (i128)((u128)1 << 127); \
+    i128 r = a >= LIM ? max : (a <= -LIM ? min : conv); \
+    return a != a ? 0 : r; \
+  }
+SAT_FIX_I128(f32toi128_sat_fix, float, 0x1p127f)
+SAT_FIX_I128(f64toi128_sat_fix, double, 0x1p127)
+u128 TARGET_V1 f32tou128_sat_fix(u128 conv, float a) {
+  u128 r = a >= __builtin_inff() ? ~(u128)0 : conv;
+  return !(a > 0) ? 0 : r;
+}
+u128 TARGET_V1 f64tou128_sat_fix(u128 conv, double a) {
+  u128 r = a >= 0x1p128 ? ~(u128)0 : conv;
+  return !(a > 0) ? 0 : r;
+}

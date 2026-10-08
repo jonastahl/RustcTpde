@@ -88,8 +88,16 @@ namespace tpde_rust {
     floatditf,
     floatunditf,
     floatunsitf,
+    floattisf,
+    floattidf,
+    floatuntisf,
+    floatuntidf,
     fixtfdi,
     fixunstfdi,
+    fixsfti,
+    fixdfti,
+    fixunssfti,
+    fixunsdfti,
     addtf3,
     subtf3,
     multf3,
@@ -2205,12 +2213,9 @@ namespace tpde_rust {
 
     auto src_val = inst.ops[0];
     const Type src_ty = this->adaptor->type_of_ref(src_val);
+    const Type dst_ty = this->adaptor->type_of_ref(inst.result);
 
-    const auto bit_width = size_of_type(this->adaptor->type_of_ref(inst.result));
-
-    if (bit_width > 64) {
-      return false;
-    }
+    const auto bit_width = size_of_type(dst_ty);
 
     unsigned ty_idx;
     switch (src_ty) {
@@ -2220,38 +2225,102 @@ namespace tpde_rust {
       default: return false;
     }
 
-    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
-    static constexpr auto fns = []() {
-      // fns[is_double][dst64][sign][sat]
-      std::array<EncodeFnTy[2][2][2], 2> fns{};
-      fns[0][0][0][0] = &Derived::encode_f32tou32;
-      fns[0][0][0][1] = &Derived::encode_f32tou32_sat;
-      fns[0][0][1][0] = &Derived::encode_f32toi32;
-      fns[0][0][1][1] = &Derived::encode_f32toi32_sat;
-      fns[0][1][0][0] = &Derived::encode_f32tou64;
-      fns[0][1][0][1] = &Derived::encode_f32tou64_sat;
-      fns[0][1][1][0] = &Derived::encode_f32toi64;
-      fns[0][1][1][1] = &Derived::encode_f32toi64_sat;
-      fns[1][0][0][0] = &Derived::encode_f64tou32;
-      fns[1][0][0][1] = &Derived::encode_f64tou32_sat;
-      fns[1][0][1][0] = &Derived::encode_f64toi32;
-      fns[1][0][1][1] = &Derived::encode_f64toi32_sat;
-      fns[1][1][0][0] = &Derived::encode_f64tou64;
-      fns[1][1][0][1] = &Derived::encode_f64tou64_sat;
-      fns[1][1][1][0] = &Derived::encode_f64toi64;
-      fns[1][1][1][1] = &Derived::encode_f64toi64_sat;
-      return fns;
-    }();
-    EncodeFnTy fn = fns[ty_idx][bit_width > 32][sign][saturate];
+    if (dst_ty == Type::i128) {
+      if (!saturate) {
+        static constexpr auto encode_fns = []() consteval {
+          std::array<LibFunc[2], 2> res;
+          res[0][0] = LibFunc::fixunssfti;
+          res[0][1] = LibFunc::fixsfti;
+          res[1][0] = LibFunc::fixunsdfti;
+          res[1][1] = LibFunc::fixdfti;
+          return res;
+        }();
+        auto res_ref = this->result_ref(inst.result);
 
-    if (saturate && bit_width % 32 != 0) {
-      // TODO: clamp result to smaller integer bounds
-      return false;
+        std::array<IRValueRef, 1> args{src_val};
+        LibFunc libfunc = encode_fns[ty_idx][sign];
+        derived()->create_helper_call(args, &res_ref, get_libfunc_sym(libfunc));
+      } else {
+        ValueRef src_ref = this->val_ref(src_val);
+
+        static constexpr auto libfuncs = []() consteval {
+          std::array<LibFunc[2], 2> res; // [is_double][sign]
+          res[0][0] = LibFunc::fixunssfti;
+          res[0][1] = LibFunc::fixsfti;
+          res[1][0] = LibFunc::fixunsdfti;
+          res[1][1] = LibFunc::fixdfti;
+          return res;
+        }();
+
+        auto cb = derived()->create_call_builder();
+        if (!cb) {
+          return false;
+        }
+
+        tpde::CCAssignment cca;
+        ValuePartRef src_part = src_ref.part(0);
+        if (src_part.has_assignment()) {
+          this->spill(src_part.assignment());
+        }
+
+        ValuePartRef scratch_lo{this, Config::GP_BANK};
+        ValuePartRef scratch_hi{this, Config::GP_BANK};
+        cb->add_arg(std::move(src_part), cca);
+        cb->call(get_libfunc_sym(libfuncs[ty_idx][sign]));
+        cb->add_ret(std::move(scratch_lo), cca);
+        cb->add_ret(std::move(scratch_hi), cca);
+
+        using FixFnTy = bool (Derived::*)(
+            GenericValuePart &&, GenericValuePart &&, GenericValuePart &&,
+            ValuePart &&, ValuePart &&);
+        static constexpr auto fix_fns = []() consteval {
+          std::array<FixFnTy[2], 2> res; // [is_double][sign]
+          res[0][0] = &Derived::encode_f32tou128_sat_fix;
+          res[0][1] = &Derived::encode_f32toi128_sat_fix;
+          res[1][0] = &Derived::encode_f64tou128_sat_fix;
+          res[1][1] = &Derived::encode_f64toi128_sat_fix;
+          return res;
+        }();
+        ValueRef res_ref = this->result_ref(inst.result);
+        return (derived()->*fix_fns[ty_idx][sign])(
+            std::move(scratch_lo), std::move(scratch_hi),
+            src_ref.part(0),
+            res_ref.part(0), res_ref.part(1));
+      }
+    } else {
+      using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
+      static constexpr auto fns = []() {
+        // fns[is_double][dst64][sign][sat]
+        std::array<EncodeFnTy[2][2][2], 2> fns{};
+        fns[0][0][0][0] = &Derived::encode_f32tou32;
+        fns[0][0][0][1] = &Derived::encode_f32tou32_sat;
+        fns[0][0][1][0] = &Derived::encode_f32toi32;
+        fns[0][0][1][1] = &Derived::encode_f32toi32_sat;
+        fns[0][1][0][0] = &Derived::encode_f32tou64;
+        fns[0][1][0][1] = &Derived::encode_f32tou64_sat;
+        fns[0][1][1][0] = &Derived::encode_f32toi64;
+        fns[0][1][1][1] = &Derived::encode_f32toi64_sat;
+        fns[1][0][0][0] = &Derived::encode_f64tou32;
+        fns[1][0][0][1] = &Derived::encode_f64tou32_sat;
+        fns[1][0][1][0] = &Derived::encode_f64toi32;
+        fns[1][0][1][1] = &Derived::encode_f64toi32_sat;
+        fns[1][1][0][0] = &Derived::encode_f64tou64;
+        fns[1][1][0][1] = &Derived::encode_f64tou64_sat;
+        fns[1][1][1][0] = &Derived::encode_f64toi64;
+        fns[1][1][1][1] = &Derived::encode_f64toi64_sat;
+        return fns;
+      }();
+      EncodeFnTy fn = fns[ty_idx][bit_width > 32][sign][saturate];
+
+      if (saturate && bit_width % 32 != 0) {
+        // TODO: clamp result to smaller integer bounds
+        return false;
+      }
+
+      auto src_ref = this->val_ref(src_val);
+      auto res_ref = this->result_ref(inst.result);
+      return (derived()->*fn)(src_ref.part(0), res_ref.part(0));
     }
-
-    auto src_ref = this->val_ref(src_val);
-    auto res_ref = this->result_ref(inst.result);
-    return (derived()->*fn)(src_ref.part(0), res_ref.part(0));
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -2261,21 +2330,12 @@ namespace tpde_rust {
       return compile_vector_conv(inst);
     }
     const auto src_val = inst.ops[0];
+    const Type src_ty = this->adaptor->type_of_ref(src_val);
     const Type dst_ty = this->adaptor->type_of_ref(inst.result);
 
-    auto bit_width = size_of_type(this->adaptor->type_of_ref(src_val));
-    if (bit_width > 64) {
-      return false;
-    }
+    auto bit_width = size_of_type(src_ty);
 
-    ValueRef src_ref = this->val_ref(src_val);
-    ValuePartRef src_op = src_ref.part(0);
     ValueRef res = this->result_ref(inst.result);
-
-    if (bit_width != 32 && bit_width != 64) {
-      unsigned ext = tpde::util::align_up(bit_width, 32);
-      src_op = std::move(src_op).into_extended(sign, bit_width, ext);
-    }
 
     unsigned ty_idx;
     switch (val_info.type) {
@@ -2285,21 +2345,42 @@ namespace tpde_rust {
       default: return false;
     }
 
-    using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
-    static constexpr auto encode_fns = []() consteval {
-      std::array<EncodeFnTy[2][2], 2> res;
-      res[0][0][0] = &Derived::encode_i32tof32;
-      res[0][0][1] = &Derived::encode_i32tof64;
-      res[0][1][0] = &Derived::encode_i64tof32;
-      res[0][1][1] = &Derived::encode_i64tof64;
-      res[1][0][0] = &Derived::encode_u32tof32;
-      res[1][0][1] = &Derived::encode_u32tof64;
-      res[1][1][0] = &Derived::encode_u64tof32;
-      res[1][1][1] = &Derived::encode_u64tof64;
-      return res;
-    }();
-    EncodeFnTy fn = encode_fns[!sign][bit_width > 32][ty_idx];
-    (derived()->*fn)(std::move(src_op), res.part(0));
+    if (src_ty == Type::i128) {
+      static constexpr auto encode_fns = []() consteval {
+        std::array<LibFunc[2], 2> res;
+        res[0][0] = LibFunc::floattisf;
+        res[0][1] = LibFunc::floattidf;
+        res[1][0] = LibFunc::floatuntisf;
+        res[1][1] = LibFunc::floatuntidf;
+        return res;
+      }();
+
+      std::array<IRValueRef, 1> args{src_val};
+      LibFunc libfunc = encode_fns[!sign][ty_idx];
+      derived()->create_helper_call(args, &res, get_libfunc_sym(libfunc));
+    } else {
+      ValueRef src = this->val_ref(src_val);
+
+      ValuePartRef src_op = src.part(0);
+      unsigned ext = tpde::util::align_up(bit_width, 32);
+      src_op = std::move(src_op).into_extended(sign, bit_width, ext);
+
+      using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
+      static constexpr auto encode_fns = []() consteval {
+        std::array<EncodeFnTy[2][2], 2> res;
+        res[0][0][0] = &Derived::encode_i32tof32;
+        res[0][0][1] = &Derived::encode_i32tof64;
+        res[0][1][0] = &Derived::encode_i64tof32;
+        res[0][1][1] = &Derived::encode_i64tof64;
+        res[1][0][0] = &Derived::encode_u32tof32;
+        res[1][0][1] = &Derived::encode_u32tof64;
+        res[1][1][0] = &Derived::encode_u64tof32;
+        res[1][1][1] = &Derived::encode_u64tof64;
+        return res;
+      }();
+      EncodeFnTy fn = encode_fns[!sign][bit_width > 32][ty_idx];
+      (derived()->*fn)(std::move(src_op), res.part(0));
+    }
     return true;
   }
 
@@ -3949,9 +4030,25 @@ namespace tpde_rust {
         break;
       case floatunditf: name = "__floatunditf";
         break;
+      case floattisf: name = "__floattisf";
+        break;
+      case floattidf: name = "__floattidf";
+        break;
+      case floatuntisf: name = "__floatuntisf";
+        break;
+      case floatuntidf: name = "__floatuntidf";
+        break;
       case fixtfdi: name = "__fixtfdi";
         break;
       case fixunstfdi: name = "__fixunstfdi";
+        break;
+      case fixsfti: name = "__fixsfti";
+        break;
+      case fixdfti: name = "__fixdfti";
+        break;
+      case fixunssfti: name = "__fixunssfti";
+        break;
+      case fixunsdfti: name = "__fixunsdfti";
         break;
       case addtf3: name = "__addtf3";
         break;
