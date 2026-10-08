@@ -333,6 +333,8 @@ mod ffi {
         simd_masked_load,
         simd_masked_store,
 
+        copysign,
+
         fAbs,
         fMin,
         fMax,

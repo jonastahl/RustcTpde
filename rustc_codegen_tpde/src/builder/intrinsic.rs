@@ -438,6 +438,14 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     }
                 }
             }
+            sym::copysignf32 | sym::copysignf64 => {
+                let result = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::copysign,
+                    vec![args[0].immediate(), args[1].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
             _ => {
                 todo!("Unimplemented intrinsic: {}", name.as_str());
             }

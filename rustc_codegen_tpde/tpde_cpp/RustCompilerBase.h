@@ -511,6 +511,8 @@ namespace tpde_rust {
     bool compile_atomicrmw(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_fence(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
+    bool compile_copysign(RustAdaptor::IRInstRef, const ValInfo &, u64);
+
     SymRef get_libfunc_sym(LibFunc func);
 
     bool hook_post_func_sym_init();
@@ -723,6 +725,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::fAbs, &Derived::compile_fabs);
       set_fn(InstructionKind::fMin, &Derived::compile_fminmax, /*max=*/false);
       set_fn(InstructionKind::fMax, &Derived::compile_fminmax, /*max=*/true);
+      set_fn(InstructionKind::copysign, &Derived::compile_copysign);
 
       return res;
     }();
@@ -2060,33 +2063,44 @@ namespace tpde_rust {
     Instruction &casti = this->adaptor->get_instruction(instr);
     assert(operands::is_val(casti.result));
 
-    IRValueRef src_ref = casti.ops[0];
-    IRValueRef res_ref = casti.result;
+    const auto src = casti.ops[0];
+    ValueRef src_ref = this->val_ref(src);
+    ValueRef res_ref = this->result_ref(casti.result);
 
-    const Type src_ty = this->adaptor->type_of_ref(src_ref);
-    const Type res_ty = this->adaptor->type_of_ref(res_ref);
-    assert(size_of_type(src_ty) == size_of_type(res_ty));
-
-    // Bitcasts are only supported between values with the same part layout.
-    auto src_parts = this->adaptor->val_parts(src_ty);
-    auto res_parts = this->adaptor->val_parts(res_ty);
-    auto part_count = res_parts.count();
-    if (src_parts.count() != part_count) {
-      return false;
-    }
-    for (u32 i = 0; i != part_count; ++i) {
-      if (src_parts.size_bytes(i) != res_parts.size_bytes(i) ||
-          src_parts.reg_bank(i) != res_parts.reg_bank(i)) {
-        return false;
+    const auto src_part_count = this->adaptor->val_parts(src).count();
+    const auto dst_part_count = this->adaptor->val_parts(val_info).count();
+    // bitcast only support scalar and vector types of the same size. Multi-part
+    // values must be of homogeneous element type.
+    if (src_part_count == dst_part_count) {
+      for (u32 i = 0; i != dst_part_count; ++i) {
+        ValuePartRef res_vpr = res_ref.part(i);
+        ValuePartRef src_vpr = src_ref.part(i);
+        assert(src_vpr.part_size() == res_vpr.part_size());
+        if (src_vpr.bank() == res_vpr.bank()) {
+          res_vpr.set_value(std::move(src_vpr));
+        } else {
+          AsmReg src_reg = src_vpr.load_to_reg();
+          derived()->mov(res_vpr.alloc_reg(), src_reg, res_vpr.part_size());
+        }
       }
+      return true;
     }
 
-    ValueRef src = this->val_ref(src_ref);
-    ValueRef res = this->result_ref(res_ref);
-
-    for (u32 i = 0; i != part_count; ++i) {
-      res.part(i).set_value(src.part(i));
+    // In-memory bitcast.
+    this->allocate_spill_slot(tpde::AssignmentPartRef{res_ref.assignment(), 0});
+    for (u32 i = 0; i != dst_part_count; ++i) {
+      tpde::AssignmentPartRef ap{res_ref.assignment(), i};
+      ap.set_stack_valid();
     }
+
+    i32 frame_off = tpde::AssignmentPartRef{res_ref.assignment(), 0}.frame_off();
+    for (u32 i = 0, n = src_part_count; i != n; ++i) {
+      ValuePartRef src_vpr = src_ref.part(i);
+      u32 part_size = src_vpr.part_size();
+      derived()->spill_reg(src_vpr.load_to_reg(), frame_off, part_size);
+      frame_off += part_size;
+    }
+
     return true;
   }
 
@@ -4267,5 +4281,30 @@ namespace tpde_rust {
     derived()->encode_trap();
     this->release_regs_after_return();
     return true;
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_copysign(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    Type type = this->adaptor->type_of_ref(inst.ops[0]);
+
+    using EncodeFnTy = bool (Derived::*)(
+        GenericValuePart &&, GenericValuePart &&, ValuePart &&);
+    EncodeFnTy fn;
+    switch (type) {
+      case Type::f32:
+        fn = &Derived::encode_copysignf32;
+        break;
+      case Type::f64:
+        fn = &Derived::encode_copysignf64;
+        break;
+      default:
+        assert(false);
+    }
+
+    auto lhs = this->val_ref(inst.ops[0]);
+    auto rhs = this->val_ref(inst.ops[1]);
+    auto res = this->result_ref(inst.result);
+    return (derived()->*fn)(lhs.part(0), rhs.part(0), res.part(0));
   }
 }
