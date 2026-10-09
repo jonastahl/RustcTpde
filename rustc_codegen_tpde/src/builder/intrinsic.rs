@@ -1,5 +1,6 @@
 use crate::builder::Builder;
-use crate::shared::ir::{FullType, InstructionKind, Slot, Type};
+use crate::shared::ir::{FullType, InstructionKind, LandingPadKind, Slot, Type};
+use rustc_abi::{Align, Size};
 use rustc_codegen_ssa::RetagInfo;
 use rustc_codegen_ssa::diagnostics::InvalidMonomorphization;
 use rustc_codegen_ssa::mir::IntrinsicResult;
@@ -7,6 +8,7 @@ use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
 use rustc_codegen_ssa::mir::place::PlaceValue;
 use rustc_codegen_ssa::traits::{
     BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods,
+    MiscCodegenMethods,
     LayoutTypeCodegenMethods,
 };
 use rustc_middle::{bug, span_bug};
@@ -444,6 +446,56 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     InstructionKind::copysign,
                     vec![args[0].immediate(), args[1].immediate()]
                 );
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
+            sym::catch_unwind => {
+                let (try_fn, data, catch_fn) = (args[0].immediate(), args[1].immediate(), args[2].immediate());
+                let ptr_ty = FullType::Single(Type::ptr);
+                let try_sig = self.function_signature(&[ptr_ty], None);
+
+                let result = if !self.tcx.sess.panic_strategy().unwinds() {
+                    // No unwinding, so just try and panic
+                    self.module.borrow_mut().add_call(self.basic_block, try_fn, &try_sig, &[data]);
+                    self.const_bool(false)
+                } else {
+                    // cur_block:
+                    // panic = false
+                    // try_fn(...)
+                    // - suc -> continue_block
+                    // - exc -> exception_block
+
+                    // exception_block:
+                    // catch_fn()
+                    // panic = true
+                    // jump to continue_block
+
+                    // continue_block:
+                    // return panic
+
+                    let catch_sig = self.function_signature(&[ptr_ty, ptr_ty], None);
+                    let align = Align::ONE;
+                    let res = self.alloca(Size::from_bytes(1), align);
+                    let catch_bb = self.append_sibling_block("catch_unwind_catch");
+                    let cont_bb = self.append_sibling_block("catch_unwind_cont");
+
+                    // res = false, set to true in the catch block
+                    let no_panic = self.const_bool(false);
+                    self.store(no_panic, res, align);
+                    self.module.borrow_mut().add_invoke(
+                        self.basic_block, try_fn, &try_sig, cont_bb, catch_bb, &[data]);
+
+                    self.switch_to_block(catch_bb);
+                    let pers = self.eh_personality();
+                    let (exn, _) = self.landing_pad(pers, LandingPadKind::CatchAll);
+                    self.module.borrow_mut().add_call(self.basic_block, catch_fn, &catch_sig, &[data, exn]);
+                    let panicked = self.const_bool(true);
+                    self.store(panicked, res, align);
+                    self.br(cont_bb);
+
+                    self.switch_to_block(cont_bb);
+                    let bool_ty = FullType::Single(Type::Bool);
+                    self.load(bool_ty, res, align)
+                };
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
             _ => {

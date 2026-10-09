@@ -1,0 +1,520 @@
+In archive tests/lib_cases/catch_unwind/actual_obj:
+
+lib.rmeta:     file format elf64-x86-64
+
+
+lib.rmeta-link:     file format elf64-x86-64
+
+
+actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+<_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBK_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x58,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,-0x40(%rbp)
+	movb   $0x0,-0x55(%rbp)
+	lea    -0x40(%rbp),%rdi
+	call   <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBK_+0x1d>
+	jmp    <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBK_+0x32>
+	lea    -0x40(%rbp),%rdi
+	mov    %rax,%rsi
+	call   <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBK_+0x2e>
+	movb   $0x1,-0x55(%rbp)
+	movzbl -0x55(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBK_+0x59>
+	mov    -0x40(%rbp),%eax
+	mov    %eax,-0x54(%rbp)
+	lea    -0x54(%rbp),%rax
+	mov    (%rax),%eax
+	mov    %eax,0x8(%rbx)
+	movq   $0x0,(%rbx)
+	jmp    <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBK_+0x7b>
+	mov    -0x40(%rbp),%rax
+	mov    -0x38(%rbp),%rcx
+	mov    %rax,-0x50(%rbp)
+	mov    %rcx,-0x48(%rbp)
+	lea    -0x50(%rbp),%rax
+	mov    (%rax),%rcx
+	mov    0x8(%rax),%rdx
+	mov    %rcx,(%rbx)
+	mov    %rdx,0x8(%rbx)
+	add    $0x58,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source8try_call0lEBK_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x58,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,-0x40(%rbp)
+	movb   $0x0,-0x55(%rbp)
+	lea    -0x40(%rbp),%rdi
+	call   <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source8try_call0lEBK_+0x1d>
+	jmp    <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source8try_call0lEBK_+0x32>
+	lea    -0x40(%rbp),%rdi
+	mov    %rax,%rsi
+	call   <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source8try_call0lEBK_+0x2e>
+	movb   $0x1,-0x55(%rbp)
+	movzbl -0x55(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source8try_call0lEBK_+0x59>
+	mov    -0x40(%rbp),%eax
+	mov    %eax,-0x54(%rbp)
+	lea    -0x54(%rbp),%rax
+	mov    (%rax),%eax
+	mov    %eax,0x8(%rbx)
+	movq   $0x0,(%rbx)
+	jmp    <_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source8try_call0lEBK_+0x7b>
+	mov    -0x40(%rbp),%rax
+	mov    -0x38(%rbp),%rcx
+	mov    %rax,-0x50(%rbp)
+	mov    %rcx,-0x48(%rbp)
+	lea    -0x50(%rbp),%rax
+	mov    (%rax),%rcx
+	mov    0x8(%rax),%rdx
+	mov    %rcx,(%rbx)
+	mov    %rdx,0x8(%rbx)
+	add    $0x58,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<_RINvNtCs94NUNretDkj_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %rdi,%rbx
+	mov    (%rsi),%r12
+	test   %r12,%r12
+	je     <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECseeGrevWVrEI_6source+0x20>
+	mov    %rbx,%rdi
+	call   *%r12
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %rdi,%rbx
+	mov    (%rbx),%rax
+	test   %rax,%rax
+	sete   %al
+	test   $0x1,%al
+	mov    $0x0,%eax
+	mov    $0x1,%ecx
+	cmove  %rcx,%rax
+	test   %rax,%rax
+	je     <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECseeGrevWVrEI_6source+0x36>
+	mov    %rbx,%rdi
+	call   <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECseeGrevWVrEI_6source+0x36>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x28,%rsp
+	mov    %rdi,%rbx
+	mov    (%rbx),%rax
+	mov    0x8(%rbx),%rcx
+	mov    %rax,%r12
+	mov    (%rcx),%r13
+	test   %r13,%r13
+	je     <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source+0x5b>
+	mov    %r12,%rdi
+	call   *%r13
+	jmp    <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source+0x5b>
+	mov    %rax,-0x40(%rbp)
+	mov    %edx,-0x38(%rbp)
+	mov    %rbx,%rdi
+	call   <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source+0x40>
+	jmp    <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source+0x4a>
+	call   <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source+0x4a>
+	mov    -0x40(%rbp),%rax
+	mov    -0x38(%rbp),%ecx
+	mov    %rax,%rdi
+	call   <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source+0x59>
+	ud2
+	mov    %rbx,%rdi
+	call   <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source+0x63>
+	add    $0x28,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<_RINvNtCs94NUNretDkj_4core3ptr9drop_glueNtCseeGrevWVrEI_6source5GuardEBD_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueNtCseeGrevWVrEI_6source5GuardEBD_+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind7do_callNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBY_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    (%rdi),%rax
+	mov    %rdi,-0x30(%rbp)
+	mov    %rax,%rdi
+	call   <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind7do_callNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBY_+0x17>
+	mov    -0x30(%rbp),%rcx
+	mov    %eax,(%rcx)
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind7do_callNCNvCseeGrevWVrEI_6source8try_call0lEBY_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    (%rdi),%rax
+	mov    %rdi,-0x30(%rbp)
+	mov    %rax,%rdi
+	call   <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind7do_callNCNvCseeGrevWVrEI_6source8try_call0lEBY_+0x17>
+	mov    -0x30(%rbp),%rcx
+	mov    %eax,(%rcx)
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBZ_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%rdi
+	call   <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBZ_+0x18>
+	mov    %rax,%r12
+	mov    %rdx,%r13
+	jmp    <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBZ_+0x28>
+	call   <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBZ_+0x28>
+	mov    %r12,(%rbx)
+	mov    %r13,0x8(%rbx)
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source8try_call0lEBZ_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%rdi
+	call   <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source8try_call0lEBZ_+0x18>
+	mov    %rax,%r12
+	mov    %rdx,%r13
+	jmp    <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source8try_call0lEBZ_+0x28>
+	call   <_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source8try_call0lEBZ_+0x28>
+	mov    %r12,(%rbx)
+	mov    %r13,0x8(%rbx)
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x38,%rsp
+	mov    (%rdi),%edi
+	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x10>
+	mov    %eax,%ebx
+	jmp    <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x42>
+	mov    %rax,-0x40(%rbp)
+	mov    %edx,-0x38(%rbp)
+	lea    0x0(%rbp),%rdi
+	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x27>
+	jmp    <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x31>
+	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x31>
+	mov    -0x40(%rbp),%rax
+	mov    -0x38(%rbp),%ecx
+	mov    %rax,%rdi
+	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x40>
+	ud2
+	lea    0x0(%rbp),%rdi
+	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x4b>
+	mov    %ebx,%eax
+	add    $0x38,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<_RNCNvCseeGrevWVrEI_6source8try_call0B3_>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    (%rdi),%edi
+	call   <_RNCNvCseeGrevWVrEI_6source8try_call0B3_+0xf>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<_RNvNvMNtNtCs94NUNretDkj_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %rsi,%rbx
+	mov    %rdi,%rax
+	shr    $1,%rax
+	movabs $0x5555555555555555,%rcx
+	and    %rax,%rcx
+	sub    %rcx,%rdi
+	movabs $0x3333333333333333,%rax
+	mov    %rdi,%rcx
+	and    %rax,%rcx
+	shr    $0x2,%rdi
+	and    %rdi,%rax
+	add    %rcx,%rax
+	mov    %rax,%rcx
+	shr    $0x4,%rcx
+	add    %rax,%rcx
+	movabs $0xf0f0f0f0f0f0f0f,%rdx
+	and    %rcx,%rdx
+	movabs $0x101010101010101,%rax
+	imul   %rdx,%rax
+	shr    $0x38,%rax
+	cmp    $0x1,%rax
+	je     <_RNvNvMNtNtCs94NUNretDkj_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCseeGrevWVrEI_6source+0xa6>
+	lea    -0x8(%rip),%rax        # <_RNvNvMNtNtCs94NUNretDkj_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCseeGrevWVrEI_6source+0x6e>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x30(%rbp)
+	mov    $0xc6,%edx
+	mov    -0x30(%rbp),%rsi
+	mov    %esi,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	xor    %edx,%edx
+	mov    %rbx,%rcx
+	call   <_RNvNvMNtNtCs94NUNretDkj_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCseeGrevWVrEI_6source+0xa6>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<_RNvNvMNtNtCs94NUNretDkj_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	mov    %rdx,%rbx
+	movabs $0x8000000000000000,%rax
+	sub    %rsi,%rax
+	cmp    %rax,%rdi
+	jbe    <_RNvNvMNtNtCs94NUNretDkj_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCseeGrevWVrEI_6source+0x59>
+	lea    -0x8(%rip),%rax        # <_RNvNvMNtNtCs94NUNretDkj_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCseeGrevWVrEI_6source+0x21>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x30(%rbp)
+	mov    $0x103,%edx
+	mov    -0x30(%rbp),%rsi
+	mov    %esi,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	xor    %edx,%edx
+	mov    %rbx,%rcx
+	call   <_RNvNvMNtNtCs94NUNretDkj_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCseeGrevWVrEI_6source+0x59>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+
+<_RNvXCseeGrevWVrEI_6sourceNtB2_5GuardNtNtNtCs94NUNretDkj_4core3ops4drop4Drop4drop>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <_RNvXCseeGrevWVrEI_6sourceNtB2_5GuardNtNtNtCs94NUNretDkj_4core3ops4drop4Drop4drop+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<_RNvXs1_NtCsgu7ECEkAoBX_5alloc5allocNtB5_6GlobalNtNtCs94NUNretDkj_4core5alloc9Allocator10deallocateCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rsi,%rbx
+	mov    %rdx,%r12
+	mov    %rcx,%r13
+	test   %r13,%r13
+	je     <_RNvXs1_NtCsgu7ECEkAoBX_5alloc5allocNtB5_6GlobalNtNtCs94NUNretDkj_4core5alloc9Allocator10deallocateCseeGrevWVrEI_6source+0x2d>
+	mov    %rbx,%rdi
+	mov    %r13,%rsi
+	mov    %r12,%rdx
+	call   <_RNvXs1_NtCsgu7ECEkAoBX_5alloc5allocNtB5_6GlobalNtNtCs94NUNretDkj_4core5alloc9Allocator10deallocateCseeGrevWVrEI_6source+0x2d>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %rdi,%rbx
+	mov    (%rbx),%rax
+	mov    0x8(%rbx),%rcx
+	mov    %rax,%r12
+	mov    0x8(%rcx),%r13
+	mov    0x10(%rcx),%rax
+	mov    0x8(%rcx),%rax
+	mov    0x10(%rcx),%r14
+	mov    %r14,%rdi
+	lea    -0x8(%rip),%rsi        # <_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source+0x30>
+	call   <_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source+0x3d>
+	mov    %r14,%r15
+	mov    %r13,%rdi
+	mov    %r15,%rsi
+	lea    -0x8(%rip),%rdx        # <_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source+0x45>
+	call   <_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source+0x52>
+	test   %r13,%r13
+	je     <_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source+0x70>
+	lea    0x10(%rbx),%rbx
+	mov    %rbx,%rdi
+	mov    %r12,%rsi
+	mov    %r15,%rdx
+	mov    %r13,%rcx
+	call   <_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source+0x70>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nop
+
+<try_call>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x40,%rsp
+	mov    %edi,-0x2c(%rbp)
+	lea    -0x40(%rbp),%rdi
+	lea    -0x2c(%rbp),%rsi
+	call   <try_call+0x18>
+	mov    -0x40(%rbp),%rax
+	test   %rax,%rax
+	sete   %al
+	test   $0x1,%al
+	mov    $0x0,%eax
+	mov    $0x1,%ecx
+	cmove  %rcx,%rax
+	test   $0x1,%al
+	je     <try_call+0x46>
+	movl   $0xffffffff,-0x30(%rbp)
+	jmp    <try_call+0x4c>
+	mov    -0x38(%rbp),%eax
+	mov    %eax,-0x30(%rbp)
+	lea    -0x40(%rbp),%rdi
+	call   <try_call+0x55>
+	mov    -0x30(%rbp),%eax
+	add    $0x40,%rsp
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<try_call_guarded>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x40,%rsp
+	mov    %edi,-0x2c(%rbp)
+	lea    -0x40(%rbp),%rdi
+	lea    -0x2c(%rbp),%rsi
+	call   <try_call_guarded+0x18>
+	mov    -0x40(%rbp),%rax
+	test   %rax,%rax
+	sete   %al
+	test   $0x1,%al
+	mov    $0x0,%eax
+	mov    $0x1,%ecx
+	cmove  %rcx,%rax
+	test   $0x1,%al
+	je     <try_call_guarded+0x46>
+	movl   $0xffffffff,-0x30(%rbp)
+	jmp    <try_call_guarded+0x4c>
+	mov    -0x38(%rbp),%eax
+	mov    %eax,-0x30(%rbp)
+	lea    -0x40(%rbp),%rdi
+	call   <try_call_guarded+0x55>
+	mov    -0x30(%rbp),%eax
+	add    $0x40,%rsp
+	pop    %rbp
+	ret

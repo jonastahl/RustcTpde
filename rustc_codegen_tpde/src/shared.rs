@@ -187,6 +187,13 @@ mod ffi {
         Last,
     }
 
+    #[derive(Debug, Copy, Clone)]
+    pub enum LandingPadKind {
+        Cleanup,
+        Filter,
+        CatchAll,
+    }
+
     #[derive(Debug)]
     pub enum InstructionKind {
         // Bitwise

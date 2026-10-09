@@ -596,7 +596,7 @@ ModuleTpde {
                     <Invoke> ([func: 7], [raw: 2], [raw: 1], [val: 0], [val: 1]) -> [val: 6],
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 4],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -735,7 +735,7 @@ ModuleTpde {
                     <Invoke> ([func: 7], [raw: 5], [raw: 4], [val: 0], [val: 3]) -> [val: 11],
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 9],
+                    <LandingPad> ([raw: 1]) -> [val: 9],
                     <AddRet> () -> [val: 10],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -894,7 +894,7 @@ ModuleTpde {
                     <Invoke> ([func: 7], [raw: 2], [raw: 1], [val: 0], [val: 2]) -> [val: 7],
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 5],
+                    <LandingPad> ([raw: 1]) -> [val: 5],
                     <AddRet> () -> [val: 6],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1224,7 +1224,7 @@ ModuleTpde {
                     <Invoke> ([func: 2], [raw: 2], [raw: 1], [val: 1], [val: 0], [val: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1278,7 +1278,7 @@ ModuleTpde {
                     <Invoke> ([func: 3], [raw: 2], [raw: 1], [val: 1], [val: 0], [val: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1332,7 +1332,7 @@ ModuleTpde {
                     <Invoke> ([func: 4], [raw: 2], [raw: 1], [val: 1], [val: 0], [val: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1386,7 +1386,7 @@ ModuleTpde {
                     <Invoke> ([func: 5], [raw: 2], [raw: 1], [val: 1], [val: 0], [val: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1440,7 +1440,7 @@ ModuleTpde {
                     <Invoke> ([func: 0], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1494,7 +1494,7 @@ ModuleTpde {
                     <Invoke> ([func: 1], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1641,7 +1641,7 @@ ModuleTpde {
                     <Invoke> ([func: 2], [raw: 2], [raw: 1], [val: 1], [val: 0], [const: 101]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 2],
+                    <LandingPad> ([raw: 1]) -> [val: 2],
                     <AddRet> () -> [val: 3],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1688,7 +1688,7 @@ ModuleTpde {
                     <Invoke> ([func: 2], [raw: 2], [raw: 1], [val: 1], [val: 0], [const: 102]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 2],
+                    <LandingPad> ([raw: 1]) -> [val: 2],
                     <AddRet> () -> [val: 3],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1749,7 +1749,7 @@ ModuleTpde {
                     <Invoke> ([func: 2], [raw: 2], [raw: 1], [val: 1], [val: 0], [val: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1810,7 +1810,7 @@ ModuleTpde {
                     <Invoke> ([func: 2], [raw: 2], [raw: 1], [val: 1], [val: 0], [const: 106]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 2],
+                    <LandingPad> ([raw: 1]) -> [val: 2],
                     <AddRet> () -> [val: 3],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1857,7 +1857,7 @@ ModuleTpde {
                     <Invoke> ([func: 4], [raw: 2], [raw: 1], [val: 1], [val: 0], [const: 107]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 2],
+                    <LandingPad> ([raw: 1]) -> [val: 2],
                     <AddRet> () -> [val: 3],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1897,7 +1897,7 @@ ModuleTpde {
                     <Invoke> ([func: 0], [raw: 2], [raw: 1], [val: 0], [const: 108], [const: 109]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 1],
+                    <LandingPad> ([raw: 1]) -> [val: 1],
                     <AddRet> () -> [val: 2],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -1937,7 +1937,7 @@ ModuleTpde {
                     <Invoke> ([func: 0], [raw: 2], [raw: 1], [val: 0], [const: 110], [const: 111]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 1],
+                    <LandingPad> ([raw: 1]) -> [val: 1],
                     <AddRet> () -> [val: 2],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -2006,7 +2006,7 @@ ModuleTpde {
                     <Invoke> ([func: 0], [raw: 2], [raw: 1], [val: 0], [const: 112], [val: 1]),
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 2],
+                    <LandingPad> ([raw: 1]) -> [val: 2],
                     <AddRet> () -> [val: 3],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -2118,7 +2118,7 @@ ModuleTpde {
                     <Invoke> ([func: 6], [raw: 2], [raw: 1], [val: 0], [val: 2], [global: 45]) -> [val: 5],
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 3],
+                    <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 38]),
                     <Unreachable> (),
@@ -2179,7 +2179,7 @@ ModuleTpde {
                     <Invoke> ([func: 6], [raw: 2], [raw: 1], [val: 0], [val: 2], [global: 47]) -> [val: 6],
                 ],
                 "terminate": [
-                    <LandingPad> () -> [val: 4],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 38]),
                     <Unreachable> (),

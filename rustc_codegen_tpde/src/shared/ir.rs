@@ -174,7 +174,7 @@ pub fn vector_type(elem: Type, count: u64) -> Option<Type> {
     })
 }
 
-pub use super::ffi::{ArgInfo, ArgKind, Type, InstructionKind, ArgExtension, AtomicRmwBinOp, AtomicOrdering};
+pub use super::ffi::{ArgInfo, ArgKind, Type, InstructionKind, LandingPadKind, ArgExtension, AtomicRmwBinOp, AtomicOrdering};
 
 pub struct Module {
     tpde: ModuleTpde,

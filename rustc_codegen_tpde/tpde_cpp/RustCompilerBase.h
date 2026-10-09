@@ -2011,26 +2011,25 @@ namespace tpde_rust {
     this->release_spilled_regs(spilled);
   }
 
-  const auto is_cleanup = false;  // TODO
-  const auto num_clauses = unwind_block.instructions.size();
-  const auto only_cleanup = is_cleanup && num_clauses == 0;
+  const Instruction &lp = unwind_block.instructions[0];
+  assert(lp.kind == InstructionKind::LandingPad);
+  const auto kind = static_cast<LandingPadKind>(operands::content(lp.ops[0]));
 
   this->text_writer.except_add_call_site(off_before_call,
                                          off_after_call - off_before_call,
                                          unwind_label,
-                                         only_cleanup);
+                                         kind == LandingPadKind::Cleanup);
 
-  if (only_cleanup) {
-    // no clause so we are done
-    return true;
-  }
-
-  // Only filters are used, no need for catch
-  this->text_writer.except_add_empty_spec_action(true);
-
-  if (is_cleanup) {
-    assert(num_clauses != 0);
-    this->text_writer.except_add_cleanup_action();
+  switch (kind) {
+    case LandingPadKind::Cleanup:
+      // no clause so we are done
+      break;
+    case LandingPadKind::Filter:
+      this->text_writer.except_add_empty_spec_action(true);
+      break;
+    case LandingPadKind::CatchAll:
+      this->text_writer.except_add_action(true, SymRef{});
+      break;
   }
 
   return true;

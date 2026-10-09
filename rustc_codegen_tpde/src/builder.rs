@@ -3,7 +3,7 @@ mod intrinsic;
 
 use core::borrow::Borrow;
 use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
-use crate::shared::ir::{convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, Module, Slot, Type, convert_atomic_op};
+use crate::shared::ir::{convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type, convert_atomic_op};
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::common::{
@@ -51,6 +51,24 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BackendTypes for GenericCx<'tpde, CX> {
 }
 
 impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
+    pub fn landing_pad(&mut self, pers_fn: Function, kind: LandingPadKind) -> (Slot, Slot) {
+        self.set_personality_fn(pers_fn);
+        let module = &mut self.module.borrow_mut();
+        let a = module.add_instruction_ret(
+            self.basic_block,
+            InstructionKind::LandingPad,
+            vec![Slot::new_raw(kind.repr as u32)],
+            Type::ptr
+        );
+        let b = module.add_instruction_ret(
+            self.basic_block,
+            InstructionKind::AddRet,
+            vec![],
+            Type::i32
+        );
+        (a, b)
+    }
+
     fn with_cx(cx: &'a CodegenCx<'tpde, 'tcx>, basic_block: BasicBlock) -> Self {
         Builder { cx, basic_block }
     }
@@ -928,25 +946,11 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn cleanup_landing_pad(&mut self, pers_fn: Self::Function) -> (Self::Value, Self::Value) {
-        self.set_personality_fn(pers_fn);
-        let module = &mut self.module.borrow_mut();
-        let a = module.add_instruction_ret(
-            self.basic_block,
-            InstructionKind::LandingPad,
-            vec![],
-            Type::ptr
-        );
-        let b = module.add_instruction_ret(
-            self.basic_block,
-            InstructionKind::AddRet,
-            vec![],
-            Type::i32
-        );
-        (a, b)
+        self.landing_pad(pers_fn, LandingPadKind::Cleanup)
     }
 
     fn filter_landing_pad(&mut self, pers_fn: Self::Function) {
-        self.cleanup_landing_pad(pers_fn);
+        self.landing_pad(pers_fn, LandingPadKind::Filter);
     }
 
     fn resume(&mut self, exn0: Self::Value, exn1: Self::Value) {
