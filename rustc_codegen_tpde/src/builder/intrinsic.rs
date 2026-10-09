@@ -214,10 +214,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     sym::cttz => InstructionKind::cttz,
                     _ => bug!(),
                 };
-                let res = self.cx.module.borrow_mut().add_instruction_ret_first(
+                let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     instr,
-                    vec![args[0].immediate()]
+                    vec![args[0].immediate()],
+                    Type::i32
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }

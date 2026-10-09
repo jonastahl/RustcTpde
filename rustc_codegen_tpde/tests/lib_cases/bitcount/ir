@@ -1,0 +1,632 @@
+ModuleTpde {
+    functions: [
+        Function {
+            name: "_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCseeGrevWVrEI_6source",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 1],
+                    <ctlz_nonzero> ([val: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCseeGrevWVrEI_6source",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Cast> ([val: 0]) -> [val: 1],
+                    <cttz_nonzero> ([val: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs4_NtCs94NUNretDkj_4core3numh13leading_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i8,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs4_NtCs94NUNretDkj_4core3numh14trailing_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i8,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs6_NtCs94NUNretDkj_4core3numm13leading_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs6_NtCs94NUNretDkj_4core3numm14trailing_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs7_NtCs94NUNretDkj_4core3numy13leading_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i64,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs7_NtCs94NUNretDkj_4core3numy14trailing_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i64,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs8_NtCs94NUNretDkj_4core3numo13leading_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs8_NtCs94NUNretDkj_4core3numo14trailing_zeros",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "lz_nz_u128",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 0], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "lz_u128",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 8], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "lz_u32",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 4], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "lz_u64",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i64,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 6], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "lz_u8",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i8,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 2], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "tz_nz_u128",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 1], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "tz_u128",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i128,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 9], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "tz_u32",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 5], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "tz_u64",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i64,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 7], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "tz_u8",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i8,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 3], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+    ],
+    consts: [],
+    globals: [],
+    global_ptrs: [],
+    const_vectors: [],
+}

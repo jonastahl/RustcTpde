@@ -2611,6 +2611,14 @@ namespace tpde_rust {
       case 16: width_idx = 1; break;
       case 32: width_idx = 2; break;
       case 64: width_idx = 3; break;
+      case 128: {
+        ValueRef val_ref = this->val_ref(val);
+        auto res_ref = this->result_ref(inst.result);
+        if (op & 2) {
+          return derived()->encode_cttzi128(val_ref.part(0), val_ref.part(1), res_ref.part(0));
+        }
+        return derived()->encode_ctlzi128(val_ref.part(0), val_ref.part(1), res_ref.part(0));
+      }
       default: return false;
     }
 

@@ -284,6 +284,16 @@ u32 TARGET_V1 ctlzi16(u32 a) { return !(u16)a ? 16 : __builtin_clz((u16)a) - 16;
 u32 TARGET_V1 ctlzi32(u32 a) { return !a ? 32 : __builtin_clz(a); }
 u64 TARGET_V1 ctlzi64(u64 a) { return !a ? 64 : __builtin_clzll(a); }
 
+// Also used for the zero-is-poison variants.
+u32 TARGET_V1 ctlzi128(u128 a) {
+  u64 hi = a >> 64, lo = a;
+  return hi ? __builtin_clzll(hi) : 64 + (lo ? __builtin_clzll(lo) : 64);
+}
+u32 TARGET_V1 cttzi128(u128 a) {
+  u64 hi = a >> 64, lo = a;
+  return lo ? __builtin_ctzll(lo) : 64 + (hi ? __builtin_ctzll(hi) : 64);
+}
+
 u32 TARGET_V1 bitreversei32(u32 a) { return __builtin_bitreverse32(a); }
 u64 TARGET_V1 bitreversei64(u64 a) { return __builtin_bitreverse64(a); }
 
