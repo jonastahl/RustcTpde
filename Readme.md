@@ -13,10 +13,15 @@ cargo build --release
 
 Use in rustc
 ```bash
-rustc -Zcodegen-backend=target/release/librustc_codegen_tpde.so <files>
+rustc -Zcodegen-backend=target/release/librustc_codegen_tpde_dylib.so <files>
 ```
 Use in cargo
 ```bash
 WORKDIR=$(pwd) # replace by this directory
-RUSTFLAGS="-Zcodegen-backend=$WORKDIR/target/release/librustc_codegen_tpde.so" cargo build
+RUSTFLAGS="-Zcodegen-backend=$WORKDIR/target/release/librustc_codegen_tpde_dylib.so" cargo build
+```
+
+To test the difference 
+```bash
+./target/release/rustc_tpde <files>
 ```

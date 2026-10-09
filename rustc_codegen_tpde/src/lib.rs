@@ -42,7 +42,3 @@ mod allocator;
 pub fn __rustc_codegen_backend() -> Box<dyn CodegenBackend> {
     Box::new(TpdeCodegenBackend::new())
 }
-
-#[cfg(test)]
-mod tests {
-}
