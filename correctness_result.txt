@@ -2603,7 +2603,20 @@ i...... 18656/22044
 ........................................................................................ 22000/22044
 ...........................................
 
+*****custom IR
 success: 20625
 ignored: 242
 failed:  1176
 -> sum: 22043
+
+****LLVM-TPDE:
+test result: FAILED. 20708 passed; 1094 failed; 242 ignored; 0 measured; 0 filtered out; finished in 601.79s
+
+Some tests failed in compiletest suite=ui mode=ui host=x86_64-unknown-linux-gnu target=x86_64-unknown-linux-gnu
+Build completed unsuccessfully in 0:10:08
+
+****original LLVM
+test result: FAILED. 21761 passed; 41 failed; 242 ignored; 0 measured; 0 filtered out; finished in 489.79s
+
+Some tests failed in compiletest suite=ui mode=ui host=x86_64-unknown-linux-gnu target=x86_64-unknown-linux-gnu
+Build completed unsuccessfully in 0:08:15
