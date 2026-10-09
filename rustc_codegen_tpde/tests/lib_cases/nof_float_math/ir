@@ -1931,6 +1931,37 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
+            name: "f32_to_i16",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                i16,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTos_sat> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
             name: "f32_to_i32",
             has_ret: true,
             args: [
@@ -1987,6 +2018,68 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <fTos_sat> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "f32_to_i8",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTos_sat> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "f32_to_u16",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                i16,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -2055,6 +2148,37 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
+            name: "f32_to_u8",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTou_sat> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
             name: "f64_to_f32",
             has_ret: true,
             args: [
@@ -2080,6 +2204,37 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <fTrunc> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "f64_to_i16",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f64,
+                i16,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -2148,6 +2303,68 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
+            name: "f64_to_i8",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f64,
+                i8,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTos_sat> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "f64_to_u16",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f64,
+                i16,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTou_sat> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
             name: "f64_to_u32",
             has_ret: true,
             args: [
@@ -2192,6 +2409,37 @@ ModuleTpde {
             slots: [
                 f64,
                 i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <fTou_sat> ([val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "f64_to_u8",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f64,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,

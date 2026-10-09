@@ -597,6 +597,19 @@ i64 TARGET_V1 f64toi64_sat(double a) { return llvm_fptosi_sat_i64_double(a); }
 u64 TARGET_V1 llvm_fptoui_sat_i64_double(double) __asm__("llvm.fptoui.sat.i64.f64");
 u64 TARGET_V1 f64tou64_sat(double a) { return llvm_fptoui_sat_i64_double(a); }
 
+#define SAT_NARROW_SI(name, src, sat32, lo, hi) \
+  i32 TARGET_V1 name(src a) { i32 v = sat32(a); return v < (lo) ? (lo) : v > (hi) ? (hi) : v; }
+#define SAT_NARROW_UI(name, src, sat32, hi) \
+  u32 TARGET_V1 name(src a) { u32 v = sat32(a); return v > (hi) ? (hi) : v; }
+SAT_NARROW_SI(f32toi8_sat, float, llvm_fptosi_sat_i32_float, -128, 127)
+SAT_NARROW_SI(f32toi16_sat, float, llvm_fptosi_sat_i32_float, -32768, 32767)
+SAT_NARROW_UI(f32tou8_sat, float, llvm_fptoui_sat_i32_float, 0xFF)
+SAT_NARROW_UI(f32tou16_sat, float, llvm_fptoui_sat_i32_float, 0xFFFF)
+SAT_NARROW_SI(f64toi8_sat, double, llvm_fptosi_sat_i32_double, -128, 127)
+SAT_NARROW_SI(f64toi16_sat, double, llvm_fptosi_sat_i32_double, -32768, 32767)
+SAT_NARROW_UI(f64tou8_sat, double, llvm_fptoui_sat_i32_double, 0xFF)
+SAT_NARROW_UI(f64tou16_sat, double, llvm_fptoui_sat_i32_double, 0xFFFF)
+
 float TARGET_V1 i8tof32(u8 a) { return (float)(i8)a; }
 float TARGET_V1 i16tof32(u16 a) { return (float)(i16)a; }
 float TARGET_V1 i32tof32(u32 a) { return (float)(i32)a; }

@@ -2304,32 +2304,48 @@ namespace tpde_rust {
       }
     } else {
       using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
-      static constexpr auto fns = []() {
-        // fns[is_double][dst64][sign][sat]
-        std::array<EncodeFnTy[2][2][2], 2> fns{};
-        fns[0][0][0][0] = &Derived::encode_f32tou32;
-        fns[0][0][0][1] = &Derived::encode_f32tou32_sat;
-        fns[0][0][1][0] = &Derived::encode_f32toi32;
-        fns[0][0][1][1] = &Derived::encode_f32toi32_sat;
-        fns[0][1][0][0] = &Derived::encode_f32tou64;
-        fns[0][1][0][1] = &Derived::encode_f32tou64_sat;
-        fns[0][1][1][0] = &Derived::encode_f32toi64;
-        fns[0][1][1][1] = &Derived::encode_f32toi64_sat;
-        fns[1][0][0][0] = &Derived::encode_f64tou32;
-        fns[1][0][0][1] = &Derived::encode_f64tou32_sat;
-        fns[1][0][1][0] = &Derived::encode_f64toi32;
-        fns[1][0][1][1] = &Derived::encode_f64toi32_sat;
-        fns[1][1][0][0] = &Derived::encode_f64tou64;
-        fns[1][1][0][1] = &Derived::encode_f64tou64_sat;
-        fns[1][1][1][0] = &Derived::encode_f64toi64;
-        fns[1][1][1][1] = &Derived::encode_f64toi64_sat;
-        return fns;
-      }();
-      EncodeFnTy fn = fns[ty_idx][bit_width > 32][sign][saturate];
-
-      if (saturate && bit_width % 32 != 0) {
-        // TODO: clamp result to smaller integer bounds
-        return false;
+      EncodeFnTy fn;
+      if (saturate && bit_width < 32) {
+        static constexpr auto narrow_fns = []() {
+          // narrow_fns[is_double][is_16bit][sign]
+          std::array<EncodeFnTy[2][2], 2> fns{};
+          fns[0][0][0] = &Derived::encode_f32tou8_sat;
+          fns[0][0][1] = &Derived::encode_f32toi8_sat;
+          fns[0][1][0] = &Derived::encode_f32tou16_sat;
+          fns[0][1][1] = &Derived::encode_f32toi16_sat;
+          fns[1][0][0] = &Derived::encode_f64tou8_sat;
+          fns[1][0][1] = &Derived::encode_f64toi8_sat;
+          fns[1][1][0] = &Derived::encode_f64tou16_sat;
+          fns[1][1][1] = &Derived::encode_f64toi16_sat;
+          return fns;
+        }();
+        if (bit_width != 8 && bit_width != 16) {
+          return false;
+        }
+        fn = narrow_fns[ty_idx][bit_width == 16][sign];
+      } else {
+        static constexpr auto fns = []() {
+          // fns[is_double][dst64][sign][sat]
+          std::array<EncodeFnTy[2][2][2], 2> fns{};
+          fns[0][0][0][0] = &Derived::encode_f32tou32;
+          fns[0][0][0][1] = &Derived::encode_f32tou32_sat;
+          fns[0][0][1][0] = &Derived::encode_f32toi32;
+          fns[0][0][1][1] = &Derived::encode_f32toi32_sat;
+          fns[0][1][0][0] = &Derived::encode_f32tou64;
+          fns[0][1][0][1] = &Derived::encode_f32tou64_sat;
+          fns[0][1][1][0] = &Derived::encode_f32toi64;
+          fns[0][1][1][1] = &Derived::encode_f32toi64_sat;
+          fns[1][0][0][0] = &Derived::encode_f64tou32;
+          fns[1][0][0][1] = &Derived::encode_f64tou32_sat;
+          fns[1][0][1][0] = &Derived::encode_f64toi32;
+          fns[1][0][1][1] = &Derived::encode_f64toi32_sat;
+          fns[1][1][0][0] = &Derived::encode_f64tou64;
+          fns[1][1][0][1] = &Derived::encode_f64tou64_sat;
+          fns[1][1][1][0] = &Derived::encode_f64toi64;
+          fns[1][1][1][1] = &Derived::encode_f64toi64_sat;
+          return fns;
+        }();
+        fn = fns[ty_idx][bit_width > 32][sign][saturate];
       }
 
       auto src_ref = this->val_ref(src_val);

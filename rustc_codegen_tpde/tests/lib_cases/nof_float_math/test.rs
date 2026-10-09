@@ -53,6 +53,14 @@ extern "Rust" {
   fn f64_to_i64(a: f64) -> i64;
   fn f64_to_u32(a: f64) -> u32;
   fn f64_to_u64(a: f64) -> u64;
+  fn f32_to_i8(a: f32) -> i8;
+  fn f32_to_u8(a: f32) -> u8;
+  fn f32_to_i16(a: f32) -> i16;
+  fn f32_to_u16(a: f32) -> u16;
+  fn f64_to_i8(a: f64) -> i8;
+  fn f64_to_u8(a: f64) -> u8;
+  fn f64_to_i16(a: f64) -> i16;
+  fn f64_to_u16(a: f64) -> u16;
   fn i32_to_f32(a: i32) -> f32;
   fn i32_to_f64(a: i32) -> f64;
   fn i64_to_f32(a: i64) -> f32;
@@ -248,6 +256,25 @@ fn main() {
     assert_eq!(unsafe { f64_to_i64(a) }, a as i64, "f64_to_i64({:?})", a);
     assert_eq!(unsafe { f64_to_u32(a) }, a as u32, "f64_to_u32({:?})", a);
     assert_eq!(unsafe { f64_to_u64(a) }, a as u64, "f64_to_u64({:?})", a);
+  }
+
+  // Integers narrower than 32 bit must clamp to their own bounds, so probe
+  // just below, at and just above each of them.
+  const NARROW_EDGES: [f32; 18] = [
+    127.0, 127.9, 128.0, -128.0, -128.9, -129.0, 255.0, 255.9, 256.0,
+    32767.0, 32768.0, -32768.0, -32769.0, 65535.0, 65536.0, -300.0, 1e10, -1e10,
+  ];
+  for &a in f32_vals.iter().chain(NARROW_EDGES.iter()) {
+    assert_eq!(unsafe { f32_to_i8(a) }, a as i8, "f32_to_i8({:?})", a);
+    assert_eq!(unsafe { f32_to_u8(a) }, a as u8, "f32_to_u8({:?})", a);
+    assert_eq!(unsafe { f32_to_i16(a) }, a as i16, "f32_to_i16({:?})", a);
+    assert_eq!(unsafe { f32_to_u16(a) }, a as u16, "f32_to_u16({:?})", a);
+  }
+  for &a in f64_vals.iter().chain(NARROW_EDGES.iter().map(|&e| e as f64).collect::<Vec<_>>().iter()) {
+    assert_eq!(unsafe { f64_to_i8(a) }, a as i8, "f64_to_i8({:?})", a);
+    assert_eq!(unsafe { f64_to_u8(a) }, a as u8, "f64_to_u8({:?})", a);
+    assert_eq!(unsafe { f64_to_i16(a) }, a as i16, "f64_to_i16({:?})", a);
+    assert_eq!(unsafe { f64_to_u16(a) }, a as u16, "f64_to_u16({:?})", a);
   }
 
   // Int-to-float. The 64-bit cases include values with more significant bits

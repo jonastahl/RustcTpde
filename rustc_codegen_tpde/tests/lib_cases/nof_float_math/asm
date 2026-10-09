@@ -465,6 +465,23 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	xchg   %ax,%ax
 
+<f32_to_i16>:
+	cvttss2si %xmm0,%eax
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_i16+0x4>
+	mov    $0x7fffffff,%ecx
+	cmovbe %eax,%ecx
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm0
+	cmovnp %ecx,%eax
+	cmp    $0xffff8001,%eax
+	mov    $0xffff8000,%ecx
+	cmovge %eax,%ecx
+	cmp    $0x7fff,%ecx
+	mov    $0x7fff,%eax
+	cmovl  %ecx,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+
 <f32_to_i32>:
 	cvttss2si %xmm0,%eax
 	ucomiss -0x7(%rip),%xmm0        # <f32_to_i32+0x4>
@@ -487,6 +504,39 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nopl   (%rax)
+
+<f32_to_i8>:
+	cvttss2si %xmm0,%eax
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_i8+0x4>
+	mov    $0x7fffffff,%ecx
+	cmovbe %eax,%ecx
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm0
+	cmovnp %ecx,%eax
+	cmp    $0xffffff81,%eax
+	mov    $0xffffff80,%ecx
+	cmovge %eax,%ecx
+	cmp    $0x7f,%ecx
+	mov    $0x7f,%eax
+	cmovl  %ecx,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<f32_to_u16>:
+	cvttss2si %xmm0,%rax
+	xor    %ecx,%ecx
+	xorps  %xmm1,%xmm1
+	ucomiss %xmm1,%xmm0
+	cmovae %eax,%ecx
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_u16+0x10>
+	mov    $0xffffffff,%edx
+	cmovbe %ecx,%edx
+	cmp    $0xffff,%edx
+	mov    $0xffff,%eax
+	cmovb  %edx,%eax
+	ret
+	xchg   %ax,%ax
 
 <f32_to_u32>:
 	cvttss2si %xmm0,%rax
@@ -519,11 +569,42 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax,%rax,1)
 
+<f32_to_u8>:
+	cvttss2si %xmm0,%rax
+	xor    %ecx,%ecx
+	xorps  %xmm1,%xmm1
+	ucomiss %xmm1,%xmm0
+	cmovae %eax,%ecx
+	ucomiss -0x7(%rip),%xmm0        # <f32_to_u8+0x10>
+	mov    $0xffffffff,%edx
+	cmovbe %ecx,%edx
+	cmp    $0xff,%edx
+	mov    $0xff,%eax
+	cmovb  %edx,%eax
+	ret
+	xchg   %ax,%ax
+
 <f64_to_f32>:
 	cvtsd2ss %xmm0,%xmm0
 	ret
 	nopw   0x0(%rax,%rax,1)
 	xchg   %ax,%ax
+
+<f64_to_i16>:
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm0
+	maxsd  -0x8(%rip),%xmm0        # <f64_to_i16+0x6>
+	minsd  -0x8(%rip),%xmm0        # <f64_to_i16+0xe>
+	cvttsd2si %xmm0,%ecx
+	cmovnp %ecx,%eax
+	cmp    $0xffff8001,%eax
+	mov    $0xffff8000,%ecx
+	cmovge %eax,%ecx
+	cmp    $0x7fff,%ecx
+	mov    $0x7fff,%eax
+	cmovl  %ecx,%eax
+	ret
+	nopl   0x0(%rax)
 
 <f64_to_i32>:
 	xor    %eax,%eax
@@ -546,6 +627,36 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nop
+
+<f64_to_i8>:
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm0
+	maxsd  -0x8(%rip),%xmm0        # <f64_to_i8+0x6>
+	minsd  -0x8(%rip),%xmm0        # <f64_to_i8+0xe>
+	cvttsd2si %xmm0,%ecx
+	cmovnp %ecx,%eax
+	cmp    $0xffffff81,%eax
+	mov    $0xffffff80,%ecx
+	cmovge %eax,%ecx
+	cmp    $0x7f,%ecx
+	mov    $0x7f,%eax
+	cmovl  %ecx,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<f64_to_u16>:
+	xorpd  %xmm1,%xmm1
+	maxsd  %xmm0,%xmm1
+	movsd  -0x8(%rip),%xmm0        # <f64_to_u16+0x8>
+	minsd  %xmm1,%xmm0
+	cvttsd2si %xmm0,%rax
+	cmp    $0xffff,%eax
+	mov    $0xffff,%ecx
+	cmovb  %eax,%ecx
+	mov    %ecx,%eax
+	ret
+	nopl   0x0(%rax)
 
 <f64_to_u32>:
 	xorpd  %xmm1,%xmm1
@@ -575,6 +686,19 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	xchg   %ax,%ax
+
+<f64_to_u8>:
+	xorpd  %xmm1,%xmm1
+	maxsd  %xmm0,%xmm1
+	movsd  -0x8(%rip),%xmm0        # <f64_to_u8+0x8>
+	minsd  %xmm1,%xmm0
+	cvttsd2si %xmm0,%rax
+	cmp    $0xff,%eax
+	mov    $0xff,%ecx
+	cmovb  %eax,%ecx
+	mov    %ecx,%eax
+	ret
+	nopl   0x0(%rax)
 
 <i32_to_f32>:
 	cvtsi2ss %edi,%xmm0

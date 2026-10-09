@@ -251,6 +251,49 @@ pub fn f64_to_u64(a: f64) -> u64 {
     a as u64
 }
 
+// Integers narrower than 32 bit saturate at their own bounds, not at those of
+// the 32 bit conversion the hardware offers.
+
+#[no_mangle]
+pub fn f32_to_i8(a: f32) -> i8 {
+    a as i8
+}
+
+#[no_mangle]
+pub fn f32_to_u8(a: f32) -> u8 {
+    a as u8
+}
+
+#[no_mangle]
+pub fn f32_to_i16(a: f32) -> i16 {
+    a as i16
+}
+
+#[no_mangle]
+pub fn f32_to_u16(a: f32) -> u16 {
+    a as u16
+}
+
+#[no_mangle]
+pub fn f64_to_i8(a: f64) -> i8 {
+    a as i8
+}
+
+#[no_mangle]
+pub fn f64_to_u8(a: f64) -> u8 {
+    a as u8
+}
+
+#[no_mangle]
+pub fn f64_to_i16(a: f64) -> i16 {
+    a as i16
+}
+
+#[no_mangle]
+pub fn f64_to_u16(a: f64) -> u16 {
+    a as u16
+}
+
 #[no_mangle]
 pub fn i32_to_f32(a: i32) -> f32 {
     a as f32
