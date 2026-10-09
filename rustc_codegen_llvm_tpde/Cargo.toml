@@ -1,0 +1,12 @@
+[package]
+name = "rustc_codegen_llvm_tpde"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["dylib"]
+
+[dependencies]
+
+[build-dependencies]
+cmake = "0.1.58"

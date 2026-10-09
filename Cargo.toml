@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["rustc_codegen_tpde", "rustc_codegen_tpde_dylib", "rustc_tpde"]
+members = ["rustc_codegen_llvm_tpde","rustc_codegen_tpde", "rustc_codegen_tpde_dylib", "rustc_tpde"]
 
 [workspace.package]
 version = "0.1.0"

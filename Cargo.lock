@@ -342,6 +342,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "rustc_codegen_llvm_tpde"
+version = "0.1.0"
+dependencies = [
+ "cmake",
+]
+
+[[package]]
 name = "rustc_codegen_tpde"
 version = "0.1.0"
 dependencies = [
