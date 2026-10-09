@@ -7,3 +7,4 @@
 
 rustc-ice-*.txt
 rmeta*
+/deps/rust-llvm-build

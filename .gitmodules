@@ -1,3 +1,7 @@
 [submodule "deps/tpde"]
 	path = deps/tpde
 	url = https://github.com/tpde2/tpde.git
+[submodule "deps/rust-llvm-project"]
+	path = deps/rust-llvm-project
+	url = https://github.com/rust-lang/llvm-project.git
+	shallow = true
