@@ -40,7 +40,6 @@ pub struct FullCx<'tpde, 'tcx> {
 
     pub data_layout: TargetDataLayout,
 
-    pub global_gen_sym_counter: Cell<usize>,
     pub local_gen_sym_counter: Cell<usize>,
 }
 
@@ -113,7 +112,6 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
                 libfuncs: RefCell::new(FxHashMap::default()),
                 globals: RefCell::new(FxHashMap::default()),
                 data_layout,
-                global_gen_sym_counter: Cell::new(0),
                 local_gen_sym_counter: Cell::new(0),
                 vtables: RefCell::new(FxHashMap::default()),
                 fallback_personality: OnceCell::new(),
@@ -274,20 +272,6 @@ impl CodegenCx<'_, '_> {
         self.local_gen_sym_counter.set(idx + 1);
         // Include a '.' character, so there can be no accidental conflicts with
         // user defined names
-        let mut name = String::with_capacity(prefix.len() + 6);
-        name.push_str(prefix);
-        name.push('.');
-        name.push_str(&(idx as u64).to_base(ALPHANUMERIC_ONLY));
-        name
-    }
-
-    /// Generates a new global symbol name with the given prefix.
-    pub(crate) fn generate_global_symbol_name(&self) -> String {
-        let idx = self.global_gen_sym_counter.get();
-        self.global_gen_sym_counter.set(idx + 1);
-
-        let sym = self.codegen_unit.symbol_name();
-        let prefix = sym.as_str();
         let mut name = String::with_capacity(prefix.len() + 6);
         name.push_str(prefix);
         name.push('.');

@@ -50,9 +50,6 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
 }
 
 impl<'tpde, CX: Borrow<SCx<'tpde>>> GenericCx<'tpde, CX> {
-    pub fn type_void(&self) -> FullType {
-        FullType::Single(Type::Void)
-    }
 
     pub fn type_vector(&self, elem: FullType, count: u64) -> FullType {
         let FullType::Single(elem) = elem else {

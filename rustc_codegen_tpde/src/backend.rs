@@ -13,7 +13,6 @@ use rustc_data_structures::smallvec::SmallVec;
 use rustc_errors::DiagCtxt;
 use rustc_middle::dep_graph::{WorkProduct, WorkProductMap};
 use rustc_middle::ty::TyCtxt;
-use rustc_middle::util::Providers;
 use rustc_session::config::{OptLevel, OutputFilenames, PrintRequest};
 use rustc_session::{IncrCompSession, Session};
 use rustc_span::Symbol;
@@ -76,6 +75,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         _opt_level: OptLevel,
         _target_features: &[String],
     ) -> TargetMachineFactoryFn<Self> {
+        // By now we only support x64 and no optimization anyway
         Arc::new(|_, _| ())
     }
 
@@ -88,7 +88,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         each_linked_rlib_for_lto: &[PathBuf],
         modules: Vec<FatLtoInput<Self>>,
     ) -> CompiledModule {
-        todo!()
+        unimplemented!()
     }
 
     fn run_thin_lto(
@@ -99,7 +99,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         each_linked_rlib_for_lto: &[PathBuf],
         modules: Vec<ThinLtoInput<Self>>,
     ) -> (Vec<ThinModule<Self>>, Vec<WorkProduct>) {
-        unreachable!()
+        unimplemented!()
     }
 
     fn optimize(
@@ -109,7 +109,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         module: &mut ModuleCodegen<Self::Module>,
         config: &ModuleConfig,
     ) {
-        // for setting the optimization level, probably not needed
+        // We don't support optimizations by now
     }
 
     fn optimize_and_codegen_thin(
@@ -119,7 +119,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         tm_factory: TargetMachineFactoryFn<Self>,
         thin: ThinModule<Self>,
     ) -> CompiledModule {
-        unreachable!()
+        unimplemented!()
     }
 
     fn codegen(
@@ -195,54 +195,15 @@ impl CodegenBackend for TpdeCodegenBackend {
         }
     }
 
-    fn print_passes(&self) {
-        todo!()
-    }
-
     fn print_version(&self) {
         println!("rustc_codegen_tpde version 0.0.1");
-    }
-
-    fn replaced_intrinsics(&self) -> Vec<Symbol> {
-        // let's first use the fallback for everything
-        vec![]
-    }
-
-    fn fallback_intrinsics(&self) -> Vec<Symbol> {
-        // place all not used intrinsics here that we do not replace
-        vec![]
     }
 
     fn thin_lto_supported(&self) -> bool {
         false
     }
 
-    fn has_zstd(&self) -> bool {
-        false
-    }
-
-    fn has_mnemonic(&self, _sess: &Session, _mnemonic: &str) -> bool {
-        false
-    }
-
-    fn provide(&self, providers: &mut Providers) {
-        // Can parse features provided by the user
-        // Maybe use this later
-    }
-
     fn target_cpu(&self, sess: &Session) -> String {
         sess.opts.cg.target_cpu.as_deref().unwrap_or_else(|| &sess.target.cpu).to_string()
-    }
-
-    fn print_pass_timings(&self) {
-        todo!()
-    }
-
-    fn print_statistics(&self) {
-        todo!()
-    }
-
-    fn print_statistics_json(&self) -> String {
-        todo!()
     }
 }
