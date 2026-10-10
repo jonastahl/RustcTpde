@@ -64,6 +64,7 @@ namespace tpde_rust::x64 {
     bool compile_overflow_jump(Instruction&, InstructionKind, bool);
 
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
@@ -297,6 +298,27 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64) {
     ASM(PAUSE);
+    return true;
+  }
+
+  bool RustCompilerX64::compile_clmul(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    // operands: <2 x i64> <2 x i64> <i2>
+    // selector: bit 0: control halve of first operand, bit 1: control halve of second operand
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    assert(this->adaptor->type_of_ref(inst.ops[0]) == Type::v2i64);
+    assert(this->adaptor->type_of_ref(inst.ops[1]) == Type::v2i64);
+    const u32 sel = operands::content(inst.ops[2]);
+    const u8 imm = static_cast<u8>((sel & 1) | (((sel >> 1) & 1) << 4));
+
+    auto lhs = this->val_ref(inst.ops[0]);
+    auto rhs = this->val_ref(inst.ops[1]);
+    auto res = this->result_ref(inst.result);
+
+    // pclmulqdq is destructive: dst = dst clmul src
+    auto dst = lhs.part(0).into_temporary();
+    auto src_reg = rhs.part(0).load_to_reg();
+    ASM(SSE_PCLMULQDQrri, dst.cur_reg(), src_reg, imm);
+    res.part(0).set_value(std::move(dst));
     return true;
   }
 

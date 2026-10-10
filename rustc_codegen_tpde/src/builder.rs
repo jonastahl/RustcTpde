@@ -677,12 +677,18 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn trunc(&mut self, val: Self::Value, dest_ty: Self::Type) -> Self::Value {
+        if let Some(folded) = self.fold_const_int_cast(val, dest_ty) {
+            return folded;
+        }
         self.unop(InstructionKind::Trunc, val, dest_ty)
     }
 
     fn zext(&mut self, val: Self::Value, dest_ty: Self::Type) -> Self::Value {
         if self.int_width(self.val_ty(val)) == self.int_width(dest_ty) {
             return self.bitcast(val, dest_ty);
+        }
+        if let Some(folded) = self.fold_const_int_cast(val, dest_ty) {
+            return folded;
         }
         self.unop(InstructionKind::zExt, val, dest_ty)
     }
@@ -1100,6 +1106,25 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 }
 
 impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
+    /// Fold a `trunc`/`zext` of an integer constant into a constant. Intrinsics with immediate
+    /// operands (e.g. `IMM8 as u8`) need a constant even when nothing ran const propagation.
+    fn fold_const_int_cast(&self, val: Slot, dest_ty: FullType) -> Option<Slot> {
+        let mut module = self.module.borrow_mut();
+        let (FullType::Single(src), FullType::Single(dst)) = (module.type_of_slot(val), dest_ty) else {
+            return None;
+        };
+        let is_int = |t: Type| matches!(t, Type::i8 | Type::i16 | Type::i32 | Type::i64);
+        if !is_int(src) || !is_int(dst) {
+            return None;
+        }
+        let data = module.const_data(val)?;
+        let mask = |t: Type| (1u128 << (size_of_type(t) * 8)) - 1;
+        // Truncation keeps the low bits of the destination width; zero extension only sees the
+        // low bits of the source width. Masking by the smaller of the two covers both.
+        let data = data & mask(src) & mask(dst);
+        Some(module.add_const(dst, data))
+    }
+
     fn unop(&self, instr: InstructionKind, val: Slot, dest_ty: FullType) -> Slot {
         let FullType::Single(dest_ty) = dest_ty else {
             todo!()

@@ -554,6 +554,21 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 }
                 res
             }
+            "pclmulqdq" => {
+                let (a, b) = (args[0].immediate(), args[1].immediate());
+                let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {
+                    bug!("pclmulqdq immediate must be a constant");
+                };
+                let sel = (imm & 1) | (((imm >> 4) & 1) << 1);
+                let vec_ty = self.val_ty(a);
+                let FullType::Single(vec_ty) = vec_ty else { bug!() };
+                self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::clmul,
+                    vec![a, b, Slot::new_raw(sel as u32)],
+                    vec_ty,
+                )
+            }
             _ => {
                 todo!("Unimplemented llvm intrinsic: {}", name.as_str());
             }
