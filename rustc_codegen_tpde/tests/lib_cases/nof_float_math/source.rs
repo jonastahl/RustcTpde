@@ -553,3 +553,9 @@ pub fn min_f64(a: f64, b: f64) -> f64 {
 pub fn max_f64(a: f64, b: f64) -> f64 {
     a.max(b)
 }
+
+// `log2` has no instruction of its own and is lowered to a call of `log2f`.
+#[no_mangle]
+pub fn log2_f32(a: f32) -> f32 {
+    a.log2()
+}

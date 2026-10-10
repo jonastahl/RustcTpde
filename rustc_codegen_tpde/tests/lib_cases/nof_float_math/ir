@@ -33,7 +33,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 121,
+            personality: 124,
             allocas: [
                 size: 1, align: 1,
                 size: 16, align: 8,
@@ -41,16 +41,16 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Store> ([const: 0], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 16], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
+                    <Invoke> ([func: 18], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
                 ],
                 "terminate": [
                     <LandingPad> ([raw: 1]) -> [val: 1],
                     <AddRet> () -> [val: 2],
-                    <Call> ([func: 119]),
+                    <Call> ([func: 122]),
                     <Unreachable> (),
                 ],
                 "bb1": [
-                    <Invoke> ([func: 13], [raw: 5], [raw: 4], [const: 1]) -> [val: 7],
+                    <Invoke> ([func: 15], [raw: 5], [raw: 4], [const: 1]) -> [val: 7],
                 ],
                 "bb7": [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 13],
@@ -66,13 +66,13 @@ ModuleTpde {
                 ],
                 "bb2": [
                     <Store> ([const: 3], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 19], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
+                    <Invoke> ([func: 21], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
                 ],
                 "bb3": [
-                    <Invoke> ([func: 17], [raw: 9], [raw: 8], [val: 8]) -> [val: 12],
+                    <Invoke> ([func: 19], [raw: 9], [raw: 8], [val: 8]) -> [val: 12],
                 ],
                 "bb5": [
-                    <Call> ([func: 119]),
+                    <Call> ([func: 122]),
                     <Unreachable> (),
                 ],
                 "cleanup": [
@@ -125,7 +125,7 @@ ModuleTpde {
                 weak_link: false,
             },
             has_personality: true,
-            personality: 125,
+            personality: 128,
             allocas: [
                 size: 1, align: 1,
                 size: 16, align: 8,
@@ -133,16 +133,16 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Store> ([const: 5], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 14], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
+                    <Invoke> ([func: 16], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
                 ],
                 "terminate": [
                     <LandingPad> ([raw: 1]) -> [val: 1],
                     <AddRet> () -> [val: 2],
-                    <Call> ([func: 119]),
+                    <Call> ([func: 122]),
                     <Unreachable> (),
                 ],
                 "bb1": [
-                    <Invoke> ([func: 12], [raw: 5], [raw: 4], [const: 6]) -> [val: 7],
+                    <Invoke> ([func: 14], [raw: 5], [raw: 4], [const: 6]) -> [val: 7],
                 ],
                 "bb7": [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 13],
@@ -158,13 +158,13 @@ ModuleTpde {
                 ],
                 "bb2": [
                     <Store> ([const: 8], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 18], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
+                    <Invoke> ([func: 20], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
                 ],
                 "bb3": [
-                    <Invoke> ([func: 15], [raw: 9], [raw: 8], [val: 8]) -> [val: 12],
+                    <Invoke> ([func: 17], [raw: 9], [raw: 8], [val: 8]) -> [val: 12],
                 ],
                 "bb5": [
-                    <Call> ([func: 119]),
+                    <Call> ([func: 122]),
                     <Unreachable> (),
                 ],
                 "cleanup": [
@@ -180,6 +180,37 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Br> ([raw: 7]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMNtCs72J22aohzRW_3std3f32f4log2CseeGrevWVrEI_6source",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                f32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 129], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
                 ],
             ],
             callee_infos: [],
@@ -643,6 +674,37 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
+            name: "_RNvNtCs94NUNretDkj_4core10intrinsics7log2f32CseeGrevWVrEI_6source",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                f32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 130], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
             name: "_RNvXs3_NtNtCs94NUNretDkj_4core3ops3bitmNtB5_3Not3notCseeGrevWVrEI_6source",
             has_ret: true,
             args: [
@@ -929,7 +991,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 2], [val: 0]) -> [val: 1],
+                    <Call> ([func: 3], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -960,7 +1022,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 5], [val: 0]) -> [val: 1],
+                    <Call> ([func: 6], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -3548,83 +3610,38 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
+            name: "log2_f32",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                f32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 2], [val: 0]) -> [val: 1],
+                    <Ret> ([val: 1]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
             name: "max_f32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-            ],
-            slots: [
-                f32,
-                f32,
-                f32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                weak_link: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                "start": [
-                    <Call> ([func: 3], [val: 0], [val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "max_f64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-            ],
-            slots: [
-                f64,
-                f64,
-                f64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                weak_link: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                "start": [
-                    <Call> ([func: 6], [val: 0], [val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "min_f32",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -3662,7 +3679,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "min_f64",
+            name: "max_f64",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -3694,6 +3711,82 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Call> ([func: 7], [val: 0], [val: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "min_f32",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
+                f32,
+                f32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 5], [val: 0], [val: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "min_f64",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f64,
+                f64,
+                f64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                "start": [
+                    <Call> ([func: 8], [val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
             ],
@@ -4968,6 +5061,54 @@ ModuleTpde {
                 i64,
                 ptr,
                 ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "log2f",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "log2f",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                f32,
             ],
             flags: Flags {
                 extern_link: true,

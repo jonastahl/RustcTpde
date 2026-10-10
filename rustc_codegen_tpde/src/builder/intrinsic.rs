@@ -507,6 +507,16 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
+            sym::log2f32 => {
+                let func = self.cx.get_lib_fn(LibFunc::Log2F32);
+                let result = self.cx.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::Call,
+                    vec![func, args[0].immediate()],
+                    Type::f32
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
             _ => {
                 todo!("Unimplemented intrinsic: {}", name.as_str());
             }

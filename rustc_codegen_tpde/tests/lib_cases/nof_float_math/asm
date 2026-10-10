@@ -93,6 +93,17 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	xchg   %ax,%ax
 
+<_RNvMNtCs72J22aohzRW_3std3f32f4log2CseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <_RNvMNtCs72J22aohzRW_3std3f32f4log2CseeGrevWVrEI_6source+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
 <_RNvMNtCs94NUNretDkj_4core3f32f3absCseeGrevWVrEI_6source>:
 	andps  -0x7(%rip),%xmm0        # <_RNvMNtCs94NUNretDkj_4core3f32f3absCseeGrevWVrEI_6source>
 	ret
@@ -246,6 +257,17 @@ Disassembly of section .text:
 	movsd  -0x30(%rbp),%xmm0
 	pop    %rbp
 	ret
+
+<_RNvNtCs94NUNretDkj_4core10intrinsics7log2f32CseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <_RNvNtCs94NUNretDkj_4core10intrinsics7log2f32CseeGrevWVrEI_6source+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <_RNvXs3_NtNtCs94NUNretDkj_4core3ops3bitmNtB5_3Not3notCseeGrevWVrEI_6source>:
 	not    %edi
@@ -1031,6 +1053,17 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nop
+
+<log2_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <log2_f32+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <max_f32>:
 	push   %rbp

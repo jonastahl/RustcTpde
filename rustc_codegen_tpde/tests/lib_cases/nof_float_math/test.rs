@@ -15,6 +15,7 @@ extern "Rust" {
   fn neg_f64(a: f64) -> f64;
 
   fn abs_f32(a: f32) -> f32;
+  fn log2_f32(a: f32) -> f32;
   fn abs_f64(a: f64) -> f64;
   fn min_f32(a: f32, b: f32) -> f32;
   fn max_f32(a: f32, b: f32) -> f32;
@@ -247,6 +248,9 @@ fn main() {
         assert!(got == want || (got.is_nan() && want.is_nan()), "{}({:?}, {:?}): got {:?}, want {:?}", name, a, b, got, want);
       }
     }
+  }
+  for &a in &f32_vals {
+    assert_float_eq!(unsafe { log2_f32(a) }, a.log2(), "log2_f32({:?})", a);
   }
   for &a in &f64_vals {
     assert_float_eq!(unsafe { abs_f64(a) }, a.abs(), "abs_f64({:?})", a);
