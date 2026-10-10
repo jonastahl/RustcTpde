@@ -72,7 +72,7 @@ namespace tpde_rust::x64 {
                         ValueRef *result,
                         SymRef sym);
 
-    std::optional<CallBuilder> create_call_builder();
+    std::optional<CallBuilder> create_call_builder(bool vararg = false);
 
     void load_address_of_var_reference(tpde::x64::AsmReg dst, tpde::AssignmentPartRef ap);
 
@@ -337,8 +337,8 @@ namespace tpde_rust::x64 {
   }
 
   std::optional<tpde::x64::CompilerX64<RustAdaptor, RustCompilerX64, RustCompilerBase, CompilerConfig>::CallBuilder>
-  RustCompilerX64::create_call_builder() {
-    cc_assigners = tpde::x64::CCAssignerSysV(false);
+  RustCompilerX64::create_call_builder(bool vararg) {
+    cc_assigners = tpde::x64::CCAssignerSysV(vararg);
     return CallBuilder{*this, std::get<tpde::x64::CCAssignerSysV>(cc_assigners)};
   }
 

@@ -1852,14 +1852,16 @@ namespace tpde_rust {
       arg_start += 1;
     }
 
+    auto& infos = is_dynamic_function ?
+      this->adaptor->cur_func->callee_infos[operands::content(calli.ops[arg_start - 1])].info
+      : this->adaptor->mod->functions[operands::content(func)].args;
+    const size_t num_args = calli.ops.size() - arg_start;
+    assert(infos.size() <= num_args);
+    const bool is_vararg = num_args > infos.size();
     {
-      auto& infos = is_dynamic_function ?
-        this->adaptor->cur_func->callee_infos[operands::content(calli.ops[arg_start - 1])].info
-        : this->adaptor->mod->functions[operands::content(func)].args;
-      assert(infos.size() == calli.ops.size() - arg_start);
-      for (size_t i = 0; i < infos.size(); ++i) {
+      for (size_t i = 0; i < num_args; ++i) {
         auto& op = calli.ops[arg_start + i];
-        ArgInfo& info = infos[i];
+        ArgInfo info = i < infos.size() ? infos[i] : ArgInfo{};
 
         using CallArg = typename Derived::CallArg;
         CallArg arg{op};
