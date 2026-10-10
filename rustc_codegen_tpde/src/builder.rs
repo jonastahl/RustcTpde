@@ -2,6 +2,7 @@ mod coverageinfo;
 mod intrinsic;
 
 use core::borrow::Borrow;
+use std::cmp::max;
 use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
 use crate::shared::ir::{convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type, convert_atomic_op};
 use rustc_ast::expand::typetree::FncTree;
@@ -654,7 +655,10 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     fn gep(&mut self, ty: Self::Type, ptr: Self::Value, indices: &[Self::Value]) -> Self::Value {
         let offset = match ty {
             FullType::Single(ty) => size_of_type(ty),
-            FullType::Pair(_, _, offset) => offset,
+            FullType::Pair(ty_a, ty_b, offset_b) => {
+                let (size_a, size_b) = (size_of_type(ty_a), size_of_type(ty_b));
+                (offset_b + size_b).next_multiple_of(max(size_a, size_b))
+            }
             FullType::Memory { size, .. } => size,
         };
         assert_eq!(indices.len(), 1);

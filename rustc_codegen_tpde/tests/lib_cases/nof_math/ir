@@ -21,7 +21,6 @@ ModuleTpde {
                 i8,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -38,22 +37,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 0]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 1]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 2]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 1], [const: 2]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 3]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shl> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 0]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -84,7 +82,6 @@ ModuleTpde {
                 i32,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -101,22 +98,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 3]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 4]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 5]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 5], [const: 6]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 7]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shl> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 2]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -147,7 +143,6 @@ ModuleTpde {
                 i16,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -164,22 +159,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 6]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 7]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 8]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 9], [const: 10]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 11]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shl> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 4]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -210,7 +204,6 @@ ModuleTpde {
                 i64,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -227,22 +220,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 9]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 10]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 11]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 13], [const: 14]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 15]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shl> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 6]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -273,7 +265,6 @@ ModuleTpde {
                 i8,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -290,22 +281,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 12]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 13]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 14]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 17], [const: 18]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 19]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shr> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 8]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -336,7 +326,6 @@ ModuleTpde {
                 i32,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -353,22 +342,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 15]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 16]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 17]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 21], [const: 22]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 23]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shr> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 10]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -399,7 +387,6 @@ ModuleTpde {
                 i16,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -416,22 +403,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 18]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 19]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 20]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 25], [const: 26]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 27]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shr> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 12]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -462,7 +448,6 @@ ModuleTpde {
                 i64,
                 i32,
                 i32,
-                i32,
                 Bool,
                 ptr,
                 i32,
@@ -479,22 +464,21 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Trunc> ([const: 21]) -> [val: 2],
-                    <Mul> ([val: 2], [const: 22]) -> [val: 3],
-                    <CMPeq> ([val: 3], [const: 23]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
+                    <Mul> ([const: 29], [const: 30]) -> [val: 2],
+                    <CMPeq> ([val: 2], [const: 31]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <uRem> ([val: 1], [val: 3]) -> [val: 7],
-                    <funnel_shr> ([val: 0], [val: 0], [val: 7]) -> [val: 8],
-                    <Ret> ([val: 8]),
+                    <uRem> ([val: 1], [val: 2]) -> [val: 6],
+                    <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
+                    <Ret> ([val: 7]),
                 ],
                 "panic": [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 14]),
                 ],
                 "terminate": [
-                    <LandingPad> ([raw: 1]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
+                    <LandingPad> ([raw: 1]) -> [val: 4],
+                    <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
@@ -1255,7 +1239,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: 24]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 32]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
@@ -1297,7 +1281,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: 25]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 33]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
@@ -1339,7 +1323,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: 26]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 34]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
@@ -1381,7 +1365,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: 27]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 35]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
@@ -1437,8 +1421,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 28]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 29]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 36]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 37]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1448,7 +1432,7 @@ ModuleTpde {
                 "bb2": [
                     <Trunc> ([val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
-                    <Sub> ([const: 31], [val: 2]) -> [val: 7],
+                    <Sub> ([const: 39], [val: 2]) -> [val: 7],
                     <Trunc> ([val: 7]) -> [val: 8],
                     <lShr> ([val: 1], [val: 8]) -> [val: 9],
                     <Or> ([val: 6], [val: 9]) -> [val: 10],
@@ -1511,8 +1495,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 33]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 34]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 41]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 42]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1520,7 +1504,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 "bb2": [
-                    <Sub> ([const: 35], [val: 2]) -> [val: 5],
+                    <Sub> ([const: 43], [val: 2]) -> [val: 5],
                     <Trunc> ([val: 5]) -> [val: 6],
                     <Shl> ([val: 0], [val: 6]) -> [val: 7],
                     <Trunc> ([val: 2]) -> [val: 8],
@@ -1585,8 +1569,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 38]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 39]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 46]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 47]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1596,7 +1580,7 @@ ModuleTpde {
                 "bb2": [
                     <Trunc> ([val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
-                    <Sub> ([const: 41], [val: 2]) -> [val: 7],
+                    <Sub> ([const: 49], [val: 2]) -> [val: 7],
                     <Trunc> ([val: 7]) -> [val: 8],
                     <lShr> ([val: 1], [val: 8]) -> [val: 9],
                     <Or> ([val: 6], [val: 9]) -> [val: 10],
@@ -1659,8 +1643,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 43]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 44]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 51]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 52]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1668,7 +1652,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 "bb2": [
-                    <Sub> ([const: 45], [val: 2]) -> [val: 5],
+                    <Sub> ([const: 53], [val: 2]) -> [val: 5],
                     <Trunc> ([val: 5]) -> [val: 6],
                     <Shl> ([val: 0], [val: 6]) -> [val: 7],
                     <Trunc> ([val: 2]) -> [val: 8],
@@ -1731,8 +1715,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 48]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 49]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 56]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 57]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1741,7 +1725,7 @@ ModuleTpde {
                 ],
                 "bb2": [
                     <Shl> ([val: 0], [val: 2]) -> [val: 5],
-                    <Sub> ([const: 51], [val: 2]) -> [val: 6],
+                    <Sub> ([const: 59], [val: 2]) -> [val: 6],
                     <lShr> ([val: 1], [val: 6]) -> [val: 7],
                     <Or> ([val: 5], [val: 7]) -> [val: 8],
                     <Store> ([val: 8], [alloc: 0], [raw: 4]),
@@ -1801,8 +1785,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 53]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 54]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 61]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 62]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1810,7 +1794,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 "bb2": [
-                    <Sub> ([const: 55], [val: 2]) -> [val: 5],
+                    <Sub> ([const: 63], [val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
                     <lShr> ([val: 1], [val: 2]) -> [val: 7],
                     <Or> ([val: 6], [val: 7]) -> [val: 8],
@@ -1873,8 +1857,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 58]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 59]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 66]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 67]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1884,7 +1868,7 @@ ModuleTpde {
                 "bb2": [
                     <zExt> ([val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
-                    <Sub> ([const: 61], [val: 2]) -> [val: 7],
+                    <Sub> ([const: 69], [val: 2]) -> [val: 7],
                     <zExt> ([val: 7]) -> [val: 8],
                     <lShr> ([val: 1], [val: 8]) -> [val: 9],
                     <Or> ([val: 6], [val: 9]) -> [val: 10],
@@ -1947,8 +1931,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPult> ([val: 2], [const: 63]) -> [val: 3],
-                    <CMPeq> ([val: 2], [const: 64]) -> [val: 4],
+                    <CMPult> ([val: 2], [const: 71]) -> [val: 3],
+                    <CMPeq> ([val: 2], [const: 72]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
                 "bb1": [
@@ -1956,7 +1940,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 "bb2": [
-                    <Sub> ([const: 65], [val: 2]) -> [val: 5],
+                    <Sub> ([const: 73], [val: 2]) -> [val: 5],
                     <zExt> ([val: 5]) -> [val: 6],
                     <Shl> ([val: 0], [val: 6]) -> [val: 7],
                     <zExt> ([val: 2]) -> [val: 8],
@@ -2993,9 +2977,9 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 69]) -> [val: 2],
-                    <Shl> ([const: 68], [val: 2]) -> [val: 3],
-                    <Sub> ([val: 3], [const: 70]) -> [val: 4],
+                    <And> ([val: 1], [const: 77]) -> [val: 2],
+                    <Shl> ([const: 76], [val: 2]) -> [val: 3],
+                    <Sub> ([val: 3], [const: 78]) -> [val: 4],
                     <Not> ([val: 4]) -> [val: 5],
                     <And> ([val: 0], [val: 5]) -> [val: 6],
                     <Ret> ([val: 6]),
@@ -3135,12 +3119,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 71]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 79]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 72]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 73]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 80]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 81]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -3195,12 +3179,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 74]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 82]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 75]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 76]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 83]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 84]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -3255,12 +3239,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 77]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 85]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 78]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 79]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 86]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 87]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -3315,12 +3299,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 80]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 88]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 81]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 82]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 89]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 90]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -3375,12 +3359,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 83]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 91]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 84]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 85]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 92]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 93]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -3442,12 +3426,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 86]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 94]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 87]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 88]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 95]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 96]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -3458,7 +3442,7 @@ ModuleTpde {
                 "bb2": [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Mul> ([val: 6], [val: 1]) -> [val: 7],
-                    <CMPeq> ([val: 1], [const: 89]) -> [val: 8],
+                    <CMPeq> ([val: 1], [const: 97]) -> [val: 8],
                     <CondBr> ([val: 8], [raw: 6], [raw: 5]),
                 ],
                 "panic": [
@@ -3466,8 +3450,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 "bb3": [
-                    <CMPeq> ([val: 1], [const: 90]) -> [val: 9],
-                    <CMPeq> ([val: 0], [const: 91]) -> [val: 10],
+                    <CMPeq> ([val: 1], [const: 98]) -> [val: 9],
+                    <CMPeq> ([val: 0], [const: 99]) -> [val: 10],
                     <And> ([val: 9], [val: 10]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 8], [raw: 7]),
                 ],
@@ -3530,12 +3514,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 92]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 100]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 93]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 94]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 101]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 102]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -3546,7 +3530,7 @@ ModuleTpde {
                 "bb2": [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Mul> ([val: 6], [val: 1]) -> [val: 7],
-                    <CMPeq> ([val: 1], [const: 95]) -> [val: 8],
+                    <CMPeq> ([val: 1], [const: 103]) -> [val: 8],
                     <CondBr> ([val: 8], [raw: 6], [raw: 5]),
                 ],
                 "panic": [
@@ -3554,8 +3538,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 "bb3": [
-                    <CMPeq> ([val: 1], [const: 96]) -> [val: 9],
-                    <CMPeq> ([val: 0], [const: 97]) -> [val: 10],
+                    <CMPeq> ([val: 1], [const: 104]) -> [val: 9],
+                    <CMPeq> ([val: 0], [const: 105]) -> [val: 10],
                     <And> ([val: 9], [val: 10]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 8], [raw: 7]),
                 ],
@@ -3612,13 +3596,13 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 98]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 106]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Mul> ([val: 3], [val: 1]) -> [val: 4],
-                    <CMPeq> ([val: 1], [const: 99]) -> [val: 5],
+                    <CMPeq> ([val: 1], [const: 107]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
                 "panic": [
@@ -3674,13 +3658,13 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 100]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 108]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Mul> ([val: 3], [val: 1]) -> [val: 4],
-                    <CMPeq> ([val: 1], [const: 101]) -> [val: 5],
+                    <CMPeq> ([val: 1], [const: 109]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
                 "panic": [
@@ -3732,7 +3716,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 102]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 110]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -3779,7 +3763,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 103]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 111]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -3826,7 +3810,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 104]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 112]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -3873,7 +3857,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 105]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 113]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -3920,7 +3904,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 106]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 114]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -4329,9 +4313,9 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 108]) -> [val: 2],
-                    <Shl> ([const: 107], [val: 2]) -> [val: 3],
-                    <Sub> ([val: 3], [const: 109]) -> [val: 4],
+                    <And> ([val: 1], [const: 116]) -> [val: 2],
+                    <Shl> ([const: 115], [val: 2]) -> [val: 3],
+                    <Sub> ([val: 3], [const: 117]) -> [val: 4],
                     <And> ([val: 0], [val: 4]) -> [val: 5],
                     <Ret> ([val: 5]),
                 ],
@@ -5101,7 +5085,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Not> ([val: 0]) -> [val: 1],
-                    <Add> ([val: 1], [const: 110]) -> [val: 2],
+                    <Add> ([val: 1], [const: 118]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
             ],
@@ -5134,7 +5118,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Not> ([val: 0]) -> [val: 1],
-                    <Add> ([val: 1], [const: 111]) -> [val: 2],
+                    <Add> ([val: 1], [const: 119]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
             ],
@@ -5707,12 +5691,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 112]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 120]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 113]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 114]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 121]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 122]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -5767,12 +5751,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 115]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 123]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 116]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 117]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 124]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 125]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -5827,12 +5811,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 118]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 126]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 119]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 120]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 127]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 128]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -5887,12 +5871,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 121]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 129]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 122]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 123]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 130]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 131]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -5947,12 +5931,12 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 124]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 132]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
-                    <CMPeq> ([val: 1], [const: 125]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const: 126]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const: 133]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const: 134]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -6004,7 +5988,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 127]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 135]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -6051,7 +6035,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 128]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 136]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -6098,7 +6082,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 129]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 137]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -6145,7 +6129,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 130]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 138]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -6192,7 +6176,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <CMPeq> ([val: 1], [const: 131]) -> [val: 2],
+                    <CMPeq> ([val: 1], [const: 139]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb1": [
@@ -6568,7 +6552,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([const: 132], [const: 133]) -> [val: 1],
+                    <And> ([const: 140], [const: 141]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -6602,7 +6586,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([const: 134], [const: 135]) -> [val: 1],
+                    <And> ([const: 142], [const: 143]) -> [val: 1],
                     <Shl> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6636,7 +6620,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([const: 136], [const: 137]) -> [val: 1],
+                    <And> ([const: 144], [const: 145]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -6677,7 +6661,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 138]) -> [val: 2],
+                    <And> ([val: 1], [const: 146]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -6717,7 +6701,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 139]) -> [val: 2],
+                    <And> ([val: 1], [const: 147]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -6757,7 +6741,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 140]) -> [val: 2],
+                    <And> ([val: 1], [const: 148]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -6797,7 +6781,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 141]) -> [val: 2],
+                    <And> ([val: 1], [const: 149]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -6837,7 +6821,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 142]) -> [val: 2],
+                    <And> ([val: 1], [const: 150]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -6881,10 +6865,10 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 143]) -> [val: 2],
+                    <And> ([val: 1], [const: 151]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
-                    <And> ([val: 1], [const: 145]) -> [val: 4],
-                    <Shl> ([const: 144], [val: 4]) -> [val: 5],
+                    <And> ([val: 1], [const: 153]) -> [val: 4],
+                    <Shl> ([const: 152], [val: 4]) -> [val: 5],
                     <Mul> ([val: 0], [val: 5]) -> [val: 6],
                     <Sub> ([val: 3], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
@@ -6925,7 +6909,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 146]) -> [val: 2],
+                    <And> ([val: 1], [const: 154]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -6965,7 +6949,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 147]) -> [val: 2],
+                    <And> ([val: 1], [const: 155]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7005,7 +6989,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 148]) -> [val: 2],
+                    <And> ([val: 1], [const: 156]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7045,7 +7029,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 149]) -> [val: 2],
+                    <And> ([val: 1], [const: 157]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7085,7 +7069,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 150]) -> [val: 2],
+                    <And> ([val: 1], [const: 158]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7119,7 +7103,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([const: 151], [const: 152]) -> [val: 1],
+                    <And> ([const: 159], [const: 160]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7153,7 +7137,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([const: 153], [const: 154]) -> [val: 1],
+                    <And> ([const: 161], [const: 162]) -> [val: 1],
                     <aShr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -7186,7 +7170,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([const: 155], [const: 156]) -> [val: 1],
+                    <And> ([const: 163], [const: 164]) -> [val: 1],
                     <lShr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -7220,7 +7204,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([const: 157], [const: 158]) -> [val: 1],
+                    <And> ([const: 165], [const: 166]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7261,7 +7245,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 159]) -> [val: 2],
+                    <And> ([val: 1], [const: 167]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7301,7 +7285,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 160]) -> [val: 2],
+                    <And> ([val: 1], [const: 168]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7341,7 +7325,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 161]) -> [val: 2],
+                    <And> ([val: 1], [const: 169]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7381,7 +7365,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 162]) -> [val: 2],
+                    <And> ([val: 1], [const: 170]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7421,7 +7405,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 163]) -> [val: 2],
+                    <And> ([val: 1], [const: 171]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7463,9 +7447,9 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 164]) -> [val: 2],
+                    <And> ([val: 1], [const: 172]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
-                    <And> ([val: 1], [const: 165]) -> [val: 4],
+                    <And> ([val: 1], [const: 173]) -> [val: 4],
                     <Shl> ([val: 3], [val: 4]) -> [val: 5],
                     <Ret> ([val: 5]),
                 ],
@@ -7507,9 +7491,9 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 166]) -> [val: 2],
+                    <And> ([val: 1], [const: 174]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
-                    <And> ([val: 1], [const: 167]) -> [val: 4],
+                    <And> ([val: 1], [const: 175]) -> [val: 4],
                     <Shl> ([val: 3], [val: 4]) -> [val: 5],
                     <Ret> ([val: 5]),
                 ],
@@ -7549,7 +7533,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 168]) -> [val: 2],
+                    <And> ([val: 1], [const: 176]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7589,7 +7573,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 169]) -> [val: 2],
+                    <And> ([val: 1], [const: 177]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7629,7 +7613,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 170]) -> [val: 2],
+                    <And> ([val: 1], [const: 178]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7669,7 +7653,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 171]) -> [val: 2],
+                    <And> ([val: 1], [const: 179]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -7709,7 +7693,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <And> ([val: 1], [const: 172]) -> [val: 2],
+                    <And> ([val: 1], [const: 180]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -10848,27 +10832,35 @@ ModuleTpde {
     ],
     consts: [
         [i64] (0 1) -> 1,
+        [i32] (0 1) -> 1,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i64] (0 4) -> 4,
+        [i32] (0 4) -> 4,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i64] (0 2) -> 2,
+        [i32] (0 2) -> 2,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i64] (0 8) -> 8,
+        [i32] (0 8) -> 8,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i64] (0 1) -> 1,
+        [i32] (0 1) -> 1,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i64] (0 4) -> 4,
+        [i32] (0 4) -> 4,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i64] (0 2) -> 2,
+        [i32] (0 2) -> 2,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i64] (0 8) -> 8,
+        [i32] (0 8) -> 8,
         [i32] (0 8) -> 8,
         [i32] (0 0) -> 0,
         [i8] (0 0) -> 0,
