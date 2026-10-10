@@ -3,7 +3,7 @@ use crate::context::CodegenCx;
 use crate::shared::ir::{FullType, Slot};
 use rustc_abi::{HasDataLayout, TargetDataLayout};
 use rustc_codegen_ssa::mir::operand::OperandValue;
-use rustc_codegen_ssa::mir::place::PlaceRef;
+use rustc_codegen_ssa::mir::place::{PlaceRef, PlaceValue};
 use rustc_codegen_ssa::traits::{AbiBuilderMethods, ArgAbiBuilderMethods, BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, LayoutTypeCodegenMethods};
 use rustc_middle::bug;
 use rustc_middle::ty::layout::{FnAbiError, FnAbiOfHelpers, FnAbiRequest, HasTypingEnv, LayoutError, LayoutOfHelpers, MaybeResult, TyAndLayout};
@@ -35,10 +35,13 @@ impl<'tpde, 'tcx> ArgAbiBuilderMethods<'tcx> for Builder<'_, 'tpde, 'tcx> {
             PassMode::Indirect { attrs: _, meta_attrs: Some(_), on_stack: _ } => {
                 bug!("unsized `ArgAbi` cannot be stored");
             }
-            PassMode::Direct(_)
-            | PassMode::Indirect { attrs: _, meta_attrs: None, on_stack: _ } => {
+            PassMode::Direct(_) => {
                 let val = next();
                 self.store_arg(arg_abi, val, dst);
+            }
+            PassMode::Indirect { attrs: _, meta_attrs: None, on_stack: _ } => {
+                let ptr = next();
+                OperandValue::Ref(PlaceValue::new_sized(ptr, arg_abi.layout.align.abi)).store(self, dst);
             }
             PassMode::Pair(..) => {
                 OperandValue::Pair(next(), next()).store(self, dst);
