@@ -755,9 +755,12 @@ impl Module {
         };
 
         assert!(cases.len() <= 200000, "Too many cases: {}", cases.len());
-        for (val, bb) in cases {
-            ops.push(Slot::Raw(*val as u32));
-            ops.push(Slot::new_raw(bb.index as u32));
+        // Case values live in the constant pool, a raw operand only has 29 bits.
+        for (val, target) in cases {
+            assert!(*val <= u64::MAX as u128, "switch case does not fit in 64 bit");
+            let case_val = self.add_const(ty, *val);
+            ops.push(case_val);
+            ops.push(Slot::new_raw(target.index as u32));
         }
         self.add_instruction(
             bb,

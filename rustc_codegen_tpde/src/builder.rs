@@ -149,7 +149,45 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         cases: impl ExactSizeIterator<Item = (u128, Self::BasicBlock)>,
     ) {
         let cases = cases.map(|(val, bb)| (val, bb)).collect::<Vec<_>>();
-        self.module.borrow_mut().add_switch(self.basic_block, v, else_llbb, &cases);
+
+        // Tpde native implementation only supports up to 64 bit values
+        // for 128 bit we do the following:
+        // - if value is bigger than 64 bit -> else_branch
+        // - truncate to 64 bit and use the native implementation
+        // - if a case is bigger than 64 bit, fall back to a chain of compares
+        let is_i128 = matches!(
+            self.module.borrow().type_of_slot(v),
+            FullType::Single(Type::i128)
+        );
+        if cases.is_empty() {
+            self.br(else_llbb);
+            return;
+        }
+        if is_i128 && cases.iter().any(|&(val, _)| val > u64::MAX as u128) {
+            for (val, target) in cases {
+                let case_val = self.module.borrow_mut().add_const(Type::i128, val);
+                let is_case = self.icmp(IntPredicate::IntEQ, v, case_val);
+                let next = self.append_sibling_block("switch_i128_next");
+                self.cond_br(is_case, target, next);
+                self.switch_to_block(next);
+            }
+            self.br(else_llbb);
+            return;
+        }
+        let (bb, val) = if is_i128 {
+            let max = self.module.borrow_mut().add_const(Type::i128, u64::MAX as u128);
+            let in_range = self.icmp(IntPredicate::IntULE, v, max);
+            let trunc_bb = self.append_sibling_block("switch_i128_narrow");
+            self.cond_br(in_range, trunc_bb, else_llbb);
+            self.switch_to_block(trunc_bb);
+
+            let trunc_64 = self.trunc(v, FullType::Single(Type::i64));
+            (trunc_bb, trunc_64)
+        } else {
+            (self.basic_block, v)
+        };
+
+        self.module.borrow_mut().add_switch(bb, val, else_llbb, &cases);
     }
 
     fn invoke(

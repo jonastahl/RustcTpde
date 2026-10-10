@@ -4215,8 +4215,9 @@ namespace tpde_rust {
     assert(num_cases <= 200000);
     cases.reserve(num_cases);
     for (size_t i = 0; i < num_cases; ++i) {
+      // case values are constants (data2 = low 64 bit), a raw operand would only hold 29 bits
       cases.push_back(std::make_pair(
-          static_cast<u64>(operands::content(inst.ops[2 + 2 * i])),
+          static_cast<u64>(this->adaptor->mod->consts[operands::content(inst.ops[2 + 2 * i])].data2),
           operands::content(inst.ops[2 + 2 * i + 1])));
     }
     std::sort(cases.begin(), cases.end(), [](const auto &lhs, const auto &rhs) {
