@@ -14,6 +14,13 @@ extern "Rust" {
   fn neg_f32(a: f32) -> f32;
   fn neg_f64(a: f64) -> f64;
 
+  fn abs_f32(a: f32) -> f32;
+  fn abs_f64(a: f64) -> f64;
+  fn min_f32(a: f32, b: f32) -> f32;
+  fn max_f32(a: f32, b: f32) -> f32;
+  fn min_f64(a: f64, b: f64) -> f64;
+  fn max_f64(a: f64, b: f64) -> f64;
+
   fn cmp_eq_f32(a: f32, b: f32) -> bool;
   fn cmp_ne_f32(a: f32, b: f32) -> bool;
   fn cmp_lt_f32(a: f32, b: f32) -> bool;
@@ -227,6 +234,31 @@ fn main() {
 
   check_arith!(f32, add_f32, sub_f32, mul_f32, div_f32, rem_f32, neg_f32, f32_vals);
   check_arith!(f64, add_f64, sub_f64, mul_f64, div_f64, rem_f64, neg_f64, f64_vals);
+
+  // `min`/`max` may return either zero for a (-0.0, 0.0) pair, so the
+  // expectation compares by value, with NaN only equal to NaN.
+  for &a in &f32_vals {
+    assert_float_eq!(unsafe { abs_f32(a) }, a.abs(), "abs_f32({:?})", a);
+    for &b in &f32_vals {
+      for (got, want, name) in [
+        (unsafe { min_f32(a, b) }, a.min(b), "min_f32"),
+        (unsafe { max_f32(a, b) }, a.max(b), "max_f32"),
+      ] {
+        assert!(got == want || (got.is_nan() && want.is_nan()), "{}({:?}, {:?}): got {:?}, want {:?}", name, a, b, got, want);
+      }
+    }
+  }
+  for &a in &f64_vals {
+    assert_float_eq!(unsafe { abs_f64(a) }, a.abs(), "abs_f64({:?})", a);
+    for &b in &f64_vals {
+      for (got, want, name) in [
+        (unsafe { min_f64(a, b) }, a.min(b), "min_f64"),
+        (unsafe { max_f64(a, b) }, a.max(b), "max_f64"),
+      ] {
+        assert!(got == want || (got.is_nan() && want.is_nan()), "{}({:?}, {:?}): got {:?}, want {:?}", name, a, b, got, want);
+      }
+    }
+  }
 
   check_cmp!(f32, cmp_eq_f32, cmp_ne_f32, cmp_lt_f32, cmp_le_f32, cmp_gt_f32, cmp_ge_f32, f32_vals);
   check_cmp!(f64, cmp_eq_f64, cmp_ne_f64, cmp_lt_f64, cmp_le_f64, cmp_gt_f64, cmp_ge_f64, f64_vals);

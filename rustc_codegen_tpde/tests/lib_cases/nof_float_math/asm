@@ -11,6 +11,314 @@ actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
+<_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x40,%rsp
+	movb   $0x1,-0x29(%rbp)
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x14>
+	mov    %rax,%rbx
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x21>
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x21>
+	movabs $0x8000000000000000,%rdi
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x30>
+	mov    %rax,%r12
+	movb   $0x0,-0x29(%rbp)
+	mov    %rbx,%rdi
+	mov    %r12,%rsi
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x42>
+	mov    %rax,%rbx
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x62>
+	mov    %rax,-0x40(%rbp)
+	mov    %edx,-0x38(%rbp)
+	movzbl -0x29(%rbp),%eax
+	test   $0x1,%al
+	je     <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x7c>
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x7c>
+	mov    %rbx,%rdi
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x6a>
+	movq   %xmm0,-0x48(%rbp)
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x81>
+	mov    %rax,-0x40(%rbp)
+	mov    %edx,-0x38(%rbp)
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsdECseeGrevWVrEI_6source+0x81>
+	movq   -0x48(%rbp),%xmm0
+	add    $0x40,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+
+<_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x30,%rsp
+	movb   $0x1,-0x29(%rbp)
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x14>
+	mov    %eax,%ebx
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x20>
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x20>
+	mov    $0x80000000,%edi
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x2a>
+	mov    %eax,%r12d
+	movb   $0x0,-0x29(%rbp)
+	mov    %ebx,%edi
+	mov    %r12d,%esi
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x3b>
+	mov    %eax,%ebx
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x5a>
+	mov    %rax,-0x40(%rbp)
+	mov    %edx,-0x38(%rbp)
+	movzbl -0x29(%rbp),%eax
+	test   $0x1,%al
+	je     <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x72>
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x72>
+	mov    %ebx,%edi
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x61>
+	movd   %xmm0,-0x30(%rbp)
+	jmp    <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x77>
+	mov    %rax,-0x40(%rbp)
+	mov    %edx,-0x38(%rbp)
+	call   <_RINvNtCs94NUNretDkj_4core10intrinsics4fabsfECseeGrevWVrEI_6source+0x77>
+	movd   -0x30(%rbp),%xmm0
+	add    $0x30,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<_RNvMNtCs94NUNretDkj_4core3f32f3absCseeGrevWVrEI_6source>:
+	andps  -0x7(%rip),%xmm0        # <_RNvMNtCs94NUNretDkj_4core3f32f3absCseeGrevWVrEI_6source>
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<_RNvMNtCs94NUNretDkj_4core3f32f3maxCseeGrevWVrEI_6source>:
+	movapd %xmm1,%xmm2
+	cmpunordss %xmm1,%xmm2
+	movaps %xmm2,%xmm3
+	andps  %xmm0,%xmm3
+	maxss  %xmm1,%xmm0
+	andnps %xmm0,%xmm2
+	orps   %xmm3,%xmm2
+	movapd %xmm2,%xmm0
+	ret
+	xchg   %ax,%ax
+
+<_RNvMNtCs94NUNretDkj_4core3f32f3minCseeGrevWVrEI_6source>:
+	movapd %xmm1,%xmm2
+	cmpunordss %xmm1,%xmm2
+	movaps %xmm2,%xmm3
+	andps  %xmm0,%xmm3
+	minss  %xmm1,%xmm0
+	andnps %xmm0,%xmm2
+	orps   %xmm3,%xmm2
+	movapd %xmm2,%xmm0
+	ret
+	xchg   %ax,%ax
+
+<_RNvMNtCs94NUNretDkj_4core3f64d3absCseeGrevWVrEI_6source>:
+	andps  -0x7(%rip),%xmm0        # <_RNvMNtCs94NUNretDkj_4core3f64d3absCseeGrevWVrEI_6source>
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<_RNvMNtCs94NUNretDkj_4core3f64d3maxCseeGrevWVrEI_6source>:
+	movapd %xmm1,%xmm2
+	cmpunordsd %xmm1,%xmm2
+	movapd %xmm2,%xmm3
+	andpd  %xmm0,%xmm3
+	maxsd  %xmm1,%xmm0
+	andnpd %xmm0,%xmm2
+	orpd   %xmm3,%xmm2
+	movapd %xmm2,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<_RNvMNtCs94NUNretDkj_4core3f64d3minCseeGrevWVrEI_6source>:
+	movapd %xmm1,%xmm2
+	cmpunordsd %xmm1,%xmm2
+	movapd %xmm2,%xmm3
+	andpd  %xmm0,%xmm3
+	minsd  %xmm1,%xmm0
+	andnpd %xmm0,%xmm2
+	orpd   %xmm3,%xmm2
+	movapd %xmm2,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f32CseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movapd %xmm0,%xmm2
+	cmpneqss %xmm0,%xmm2
+	movd   %xmm2,%eax
+	and    $0x1,%eax
+	test   $0x1,%al
+	movd   %xmm1,-0x30(%rbp)
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f32CseeGrevWVrEI_6source+0x3b>
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm1
+	setae  %al
+	test   $0x1,%al
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f32CseeGrevWVrEI_6source+0x3b>
+	movss  %xmm0,-0x2c(%rbp)
+	jmp    <_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f32CseeGrevWVrEI_6source+0x45>
+	movd   -0x30(%rbp),%xmm0
+	movss  %xmm0,-0x2c(%rbp)
+	movss  -0x2c(%rbp),%xmm0
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f64CseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movapd %xmm0,%xmm2
+	cmpneqsd %xmm0,%xmm2
+	movq   %xmm2,%rax
+	and    $0x1,%eax
+	test   $0x1,%al
+	movq   %xmm1,-0x38(%rbp)
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f64CseeGrevWVrEI_6source+0x3e>
+	xor    %eax,%eax
+	ucomisd %xmm0,%xmm1
+	setae  %al
+	test   $0x1,%al
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f64CseeGrevWVrEI_6source+0x3e>
+	movsd  %xmm0,-0x30(%rbp)
+	jmp    <_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f64CseeGrevWVrEI_6source+0x49>
+	movq   -0x38(%rbp),%xmm0
+	movsd  %xmm0,-0x30(%rbp)
+	movsd  -0x30(%rbp),%xmm0
+	pop    %rbp
+	ret
+
+<_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f32CseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movapd %xmm0,%xmm2
+	cmpneqss %xmm0,%xmm2
+	movd   %xmm2,%eax
+	and    $0x1,%eax
+	test   $0x1,%al
+	movd   %xmm1,-0x30(%rbp)
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f32CseeGrevWVrEI_6source+0x3b>
+	xor    %eax,%eax
+	ucomiss %xmm1,%xmm0
+	setae  %al
+	test   $0x1,%al
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f32CseeGrevWVrEI_6source+0x3b>
+	movss  %xmm0,-0x2c(%rbp)
+	jmp    <_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f32CseeGrevWVrEI_6source+0x45>
+	movd   -0x30(%rbp),%xmm0
+	movss  %xmm0,-0x2c(%rbp)
+	movss  -0x2c(%rbp),%xmm0
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f64CseeGrevWVrEI_6source>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movapd %xmm0,%xmm2
+	cmpneqsd %xmm0,%xmm2
+	movq   %xmm2,%rax
+	and    $0x1,%eax
+	test   $0x1,%al
+	movq   %xmm1,-0x38(%rbp)
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f64CseeGrevWVrEI_6source+0x3e>
+	xor    %eax,%eax
+	ucomisd %xmm1,%xmm0
+	setae  %al
+	test   $0x1,%al
+	jne    <_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f64CseeGrevWVrEI_6source+0x3e>
+	movsd  %xmm0,-0x30(%rbp)
+	jmp    <_RNvNtCs94NUNretDkj_4core10intrinsics22minimum_number_nsz_f64CseeGrevWVrEI_6source+0x49>
+	movq   -0x38(%rbp),%xmm0
+	movsd  %xmm0,-0x30(%rbp)
+	movsd  -0x30(%rbp),%xmm0
+	pop    %rbp
+	ret
+
+<_RNvXs3_NtNtCs94NUNretDkj_4core3ops3bitmNtB5_3Not3notCseeGrevWVrEI_6source>:
+	not    %edi
+	mov    %edi,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<_RNvXs4_NtNtCs94NUNretDkj_4core3ops3bityNtB5_3Not3notCseeGrevWVrEI_6source>:
+	not    %rdi
+	mov    %rdi,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<_RNvXs7_NtNtCs94NUNretDkj_4core10intrinsics6boundsfNtB5_14FloatPrimitive7to_bitsCseeGrevWVrEI_6source>:
+	movd   %xmm0,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<_RNvXs7_NtNtCs94NUNretDkj_4core10intrinsics6boundsfNtB5_14FloatPrimitive9from_bitsCseeGrevWVrEI_6source>:
+	movd   %edi,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<_RNvXs8_NtNtCs94NUNretDkj_4core10intrinsics6boundsdNtB5_14FloatPrimitive7to_bitsCseeGrevWVrEI_6source>:
+	movq   %xmm0,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<_RNvXs8_NtNtCs94NUNretDkj_4core10intrinsics6boundsdNtB5_14FloatPrimitive9from_bitsCseeGrevWVrEI_6source>:
+	movq   %rdi,%xmm0
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<_RNvXst_NtNtCs94NUNretDkj_4core3ops3bitmNtB5_6BitAnd6bitandCseeGrevWVrEI_6source>:
+	and    %esi,%edi
+	mov    %edi,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<_RNvXsu_NtNtCs94NUNretDkj_4core3ops3bityNtB5_6BitAnd6bitandCseeGrevWVrEI_6source>:
+	and    %rsi,%rdi
+	mov    %rdi,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<abs_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <abs_f32+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<abs_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <abs_f64+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
 <add3_f64>:
 	addsd  %xmm1,%xmm0
 	addsd  %xmm2,%xmm0
@@ -723,6 +1031,50 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nop
+
+<max_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <max_f32+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<max_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <max_f64+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<min_f32>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <min_f32+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<min_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <min_f64+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <mixed_args>:
 	addsd  %xmm1,%xmm0

@@ -499,6 +499,14 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 };
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
+            sym::fabs => {
+                let result = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::fAbs,
+                    vec![args[0].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
             _ => {
                 todo!("Unimplemented intrinsic: {}", name.as_str());
             }

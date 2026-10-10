@@ -29,15 +29,12 @@ Disassembly of section .text:
 	test   %rdi,%rdi
 	je     <_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCseeGrevWVrEI_6source+0x12>
 	bsf    %rdi,%rax
-	jmp    <_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCseeGrevWVrEI_6source+0x24>
-	bsf    %rsi,%rcx
-	or     $0x40,%ecx
-	or     %rsi,%rdi
-	mov    $0x80,%eax
-	cmovne %ecx,%eax
+	jmp    <_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCseeGrevWVrEI_6source+0x1e>
+	mov    $0x40,%eax
+	bsf    %rsi,%rax
+	add    $0x40,%eax
 	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nop
 
 <_RNvMs4_NtCs94NUNretDkj_4core3numh13leading_zeros>:
 	movzbl %dil,%edi
@@ -101,15 +98,12 @@ Disassembly of section .text:
 	test   %rdi,%rdi
 	je     <_RNvMs8_NtCs94NUNretDkj_4core3numo14trailing_zeros+0x12>
 	bsf    %rdi,%rax
-	jmp    <_RNvMs8_NtCs94NUNretDkj_4core3numo14trailing_zeros+0x24>
-	bsf    %rsi,%rcx
-	or     $0x40,%ecx
-	or     %rsi,%rdi
-	mov    $0x80,%eax
-	cmovne %ecx,%eax
+	jmp    <_RNvMs8_NtCs94NUNretDkj_4core3numo14trailing_zeros+0x1e>
+	mov    $0x40,%eax
+	bsf    %rsi,%rax
+	add    $0x40,%eax
 	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nop
 
 <lz_nz_u128>:
 	push   %rbp

@@ -520,3 +520,36 @@ pub fn ret_const_f32() -> f32 {
 pub fn ret_const_f64() -> f64 {
     -0.1
 }
+
+// `abs` clears the sign bit, so it is defined on the zeros and NaNs as well.
+#[no_mangle]
+pub fn abs_f32(a: f32) -> f32 {
+    a.abs()
+}
+
+#[no_mangle]
+pub fn abs_f64(a: f64) -> f64 {
+    a.abs()
+}
+
+// `min` and `max` return the other operand when one is NaN; the order of the
+// two zeros is unspecified.
+#[no_mangle]
+pub fn min_f32(a: f32, b: f32) -> f32 {
+    a.min(b)
+}
+
+#[no_mangle]
+pub fn max_f32(a: f32, b: f32) -> f32 {
+    a.max(b)
+}
+
+#[no_mangle]
+pub fn min_f64(a: f64, b: f64) -> f64 {
+    a.min(b)
+}
+
+#[no_mangle]
+pub fn max_f64(a: f64, b: f64) -> f64 {
+    a.max(b)
+}
