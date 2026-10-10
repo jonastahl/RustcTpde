@@ -5,7 +5,8 @@ use rustc_codegen_ssa::RetagInfo;
 use rustc_codegen_ssa::diagnostics::InvalidMonomorphization;
 use rustc_codegen_ssa::mir::IntrinsicResult;
 use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
-use rustc_codegen_ssa::mir::place::PlaceValue;
+use rustc_codegen_ssa::MemFlags;
+use rustc_codegen_ssa::mir::place::{PlaceRef, PlaceValue};
 use rustc_codegen_ssa::traits::{
     BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods,
     MiscCodegenMethods,
@@ -198,6 +199,33 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 };
 
                 IntrinsicResult::Operand(val)
+            }
+            sym::volatile_load | sym::unaligned_volatile_load => {
+                let ptr = args[0].immediate();
+                let abi_align = result_layout.align.abi;
+                let ptr_align = if name == sym::volatile_load { abi_align } else { Align::ONE };
+                if result_layout.is_zst() {
+                    return IntrinsicResult::Operand(OperandValue::ZeroSized);
+                }
+                match self.cx.tpde_direct_type(result_layout) {
+                    FullType::Memory { .. } => {
+                        let temp = match result_place {
+                            Some(val) => PlaceRef { val, layout: result_layout },
+                            None => PlaceRef::alloca(self, result_layout),
+                        };
+                        let size = self.const_usize(result_layout.size.bytes());
+                        self.memcpy(temp.val.llval, abi_align, ptr, ptr_align, size, MemFlags::VOLATILE, None);
+                        if result_place.is_none() {
+                            IntrinsicResult::Operand(self.load_operand(temp).val)
+                        } else {
+                            IntrinsicResult::WroteIntoPlace
+                        }
+                    }
+                    _ => {
+                        let src = PlaceRef { val: PlaceValue::new_sized(ptr, ptr_align), layout: result_layout };
+                        IntrinsicResult::Operand(self.load_operand(src).val)
+                    }
+                }
             }
             sym::abort => {
                 self.abort();

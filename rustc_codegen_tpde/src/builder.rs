@@ -493,7 +493,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         ptr: Self::Value,
         align: rustc_abi::Align,
     ) -> Self::Value {
-        todo!()
+        self.load(ty, ptr, align)
     }
 
     fn atomic_load(
