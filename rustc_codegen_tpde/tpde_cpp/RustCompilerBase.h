@@ -727,6 +727,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::fMax, &Derived::compile_fminmax, /*max=*/true);
       set_fn(InstructionKind::copysign, &Derived::compile_copysign);
       set_fn(InstructionKind::clmul, &Derived::compile_clmul);
+      set_fn(InstructionKind::crc32, &Derived::compile_crc32);
 
       return res;
     }();

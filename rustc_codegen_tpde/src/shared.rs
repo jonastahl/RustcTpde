@@ -346,9 +346,8 @@ mod ffi {
         fMin,
         fMax,
 
-        // Carry-less multiply of one 64-bit half of each <2 x i64> operand.
-        // ops: lhs, rhs, raw selector (bit 0: lhs high half, bit 1: rhs high half)
         clmul,
+        crc32,
 
         Last,
     }

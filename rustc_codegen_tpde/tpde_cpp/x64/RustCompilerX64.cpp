@@ -65,6 +65,7 @@ namespace tpde_rust::x64 {
 
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
@@ -318,6 +319,25 @@ namespace tpde_rust::x64 {
     auto dst = lhs.part(0).into_temporary();
     auto src_reg = rhs.part(0).load_to_reg();
     ASM(SSE_PCLMULQDQrri, dst.cur_reg(), src_reg, imm);
+    res.part(0).set_value(std::move(dst));
+    return true;
+  }
+
+  bool RustCompilerX64::compile_crc32(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    auto crc = this->val_ref(inst.ops[0]);
+    auto data = this->val_ref(inst.ops[1]);
+    auto res = this->result_ref(inst.result);
+
+    auto dst = crc.part(0).into_temporary();
+    auto src = data.part(0).load_to_reg();
+    switch (size_of_type(this->adaptor->type_of_ref(inst.ops[1]))) {
+      case 8: ASM(CRC32_8rr, dst.cur_reg(), src); break;
+      case 16: ASM(CRC32_16rr, dst.cur_reg(), src); break;
+      case 32: ASM(CRC32_32rr, dst.cur_reg(), src); break;
+      case 64: ASM(CRC32_64rr, dst.cur_reg(), src); break;
+      default: return false;
+    }
     res.part(0).set_value(std::move(dst));
     return true;
   }
