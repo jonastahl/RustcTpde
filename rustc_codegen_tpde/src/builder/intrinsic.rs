@@ -655,7 +655,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     out_ty,
                 )
             }
-            "pmaddubsw" => {
+            "pmaddubsw" | "pmaddubsw128" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
                 let out_ty = match in_ty {
@@ -686,7 +686,6 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     vec_ty,
                 )
             }
-            // llvm.x86.sse42.crc32.{32.8,32.16,32.32,64.64}: (crc, data) -> crc
             "crc32_32_8" | "crc32_32_16" | "crc32_32_32" | "crc32_64_64" => {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
