@@ -347,6 +347,7 @@ mod ffi {
         simd_minmax,
         simd_approx,
         simd_cmp,
+        simd_cvt,
 
         copysign,
 

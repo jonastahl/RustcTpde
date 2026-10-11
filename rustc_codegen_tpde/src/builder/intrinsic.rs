@@ -763,6 +763,23 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                          Slot::new_raw((kind as u32) | ((pred as u32) << 2))],
                 )
             }
+            "cvtps2dq" | "cvttps2dq" | "vcvtps2dq" | "vcvttps2dq" => {
+                let a = args[0].immediate();
+                let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
+                let out_ty = match in_ty {
+                    Type::v4f32 => Type::v4i32,
+                    Type::v8f32 => Type::v8i32,
+                    Type::v16f32 => Type::v16i32,
+                    _ => bug!("{} on {in_ty:?}", name),
+                };
+                let truncate = name.as_str().contains("cvtt");
+                self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::simd_cvt,
+                    vec![a, Slot::new_raw(truncate as u32)],
+                    out_ty,
+                )
+            }
             "pclmulqdq" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {

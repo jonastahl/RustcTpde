@@ -737,6 +737,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::simd_minmax, &Derived::compile_simd_minmax);
       set_fn(InstructionKind::simd_approx, &Derived::compile_simd_approx);
       set_fn(InstructionKind::simd_cmp, &Derived::compile_simd_cmp);
+      set_fn(InstructionKind::simd_cvt, &Derived::compile_simd_cvt);
 
       return res;
     }();

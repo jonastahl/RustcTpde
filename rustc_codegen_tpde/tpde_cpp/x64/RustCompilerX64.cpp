@@ -71,6 +71,7 @@ namespace tpde_rust::x64 {
     bool compile_simd_minmax(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_approx(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_cmp(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_simd_cvt(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
@@ -441,7 +442,6 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_cmp(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    // raw operand: bits 0-1 select ps/pd/ss/sd, bits 2-4 are the predicate
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
     const u32 raw = operands::content(inst.ops[2]);
     const u8 pred = static_cast<u8>(raw >> 2);
@@ -458,6 +458,25 @@ namespace tpde_rust::x64 {
         case 1: ASM(SSE_CMPPDrri, dst.cur_reg(), src_reg, pred); break;
         case 2: ASM(SSE_CMPSSrri, dst.cur_reg(), src_reg, pred); break;
         default: ASM(SSE_CMPSDrri, dst.cur_reg(), src_reg, pred); break;
+      }
+      res.part(i).set_value(std::move(dst));
+    }
+    return true;
+  }
+
+  bool RustCompilerX64::compile_simd_cvt(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const u32 op = operands::content(inst.ops[1]);
+    auto vec = this->val_ref(inst.ops[0]);
+    auto res = this->result_ref(inst.result);
+
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.ops[0])).first;
+    for (u32 i = 0; i != parts; ++i) {
+      auto dst = vec.part(i).into_temporary();
+      if (op == 0) {
+        ASM(SSE_CVTPS2DQrr, dst.cur_reg(), dst.cur_reg());
+      } else {
+        ASM(SSE_CVTTPS2DQrr, dst.cur_reg(), dst.cur_reg());
       }
       res.part(i).set_value(std::move(dst));
     }
