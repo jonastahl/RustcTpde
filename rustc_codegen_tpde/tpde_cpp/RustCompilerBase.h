@@ -465,6 +465,7 @@ namespace tpde_rust {
     bool compile_vector_bitmask(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_masked_mem(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_fabs(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_fsqrt(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_fminmax(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     void encode_load_elem(GenericValuePart &&addr, Type ty, ValuePart &out);
@@ -723,6 +724,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::simd_masked_store, &Derived::compile_masked_mem, MaskedMemOp::store);
 
       set_fn(InstructionKind::fAbs, &Derived::compile_fabs);
+      set_fn(InstructionKind::fSqrt, &Derived::compile_fsqrt);
       set_fn(InstructionKind::fMin, &Derived::compile_fminmax, /*max=*/false);
       set_fn(InstructionKind::fMax, &Derived::compile_fminmax, /*max=*/true);
       set_fn(InstructionKind::copysign, &Derived::compile_copysign);
@@ -3624,6 +3626,19 @@ namespace tpde_rust {
     switch (val_info.type) {
       case Type::f32: return derived()->encode_fabsf32(src.part(0), res.part(0));
       case Type::f64: return derived()->encode_fabsf64(src.part(0), res.part(0));
+      default: return false;
+    }
+  }
+
+  template<typename Adaptor, typename Derived, typename Config>
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_fsqrt(
+    RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
+    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    ValueRef src = this->val_ref(inst.ops[0]);
+    ValueRef res = this->result_ref(inst.result);
+    switch (val_info.type) {
+      case Type::f32: return derived()->encode_sqrtf32(src.part(0), res.part(0));
+      case Type::f64: return derived()->encode_sqrtf64(src.part(0), res.part(0));
       default: return false;
     }
   }

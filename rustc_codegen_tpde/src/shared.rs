@@ -343,6 +343,7 @@ mod ffi {
         copysign,
 
         fAbs,
+        fSqrt,
         fMin,
         fMax,
 

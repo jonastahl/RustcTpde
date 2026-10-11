@@ -545,6 +545,14 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
+            sym::sqrtf32 | sym::sqrtf64 => {
+                let result = self.cx.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::fSqrt,
+                    vec![args[0].immediate()]
+                );
+                IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
             sym::log2f32 => {
                 let func = self.cx.get_lib_fn(LibFunc::Log2F32);
                 let result = self.cx.module.borrow_mut().add_instruction_ret(
