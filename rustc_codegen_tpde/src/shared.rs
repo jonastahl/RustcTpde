@@ -346,6 +346,7 @@ mod ffi {
         simd_shift,
         simd_minmax,
         simd_approx,
+        simd_cmp,
 
         copysign,
 

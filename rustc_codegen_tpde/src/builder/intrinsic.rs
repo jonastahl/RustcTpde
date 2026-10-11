@@ -745,6 +745,24 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     vec![args[0].immediate(), Slot::new_raw(op as u32)],
                 )
             }
+            "cmpps" | "cmppd" | "cmpss" | "cmpsd" | "vcmpps" | "vcmppd" => {
+                let kind = ["cmpps", "cmppd", "cmpss", "cmpsd"]
+                    .iter()
+                    .position(|n| *n == name.as_str().trim_start_matches('v'))
+                    .unwrap();
+                let Some(pred) = self.cx.const_to_opt_uint(args[2].immediate()) else {
+                    bug!("{} predicate must be a constant", name);
+                };
+                if pred >= 8 {
+                    bug!("{} predicate {} needs AVX encoding, only 0..8 supported", name, pred);
+                }
+                self.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::simd_cmp,
+                    vec![args[0].immediate(), args[1].immediate(),
+                         Slot::new_raw((kind as u32) | ((pred as u32) << 2))],
+                )
+            }
             "pclmulqdq" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {
