@@ -66,7 +66,7 @@ namespace tpde_rust::x64 {
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
-    bool compile_psadbw(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_sse_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
@@ -343,7 +343,7 @@ namespace tpde_rust::x64 {
     return true;
   }
 
-  bool RustCompilerX64::compile_psadbw(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+  bool RustCompilerX64::compile_sse_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 is_pmaddwd) {
     // Wide vectors are split into 128 bit parts, each sum only depends on its own part.
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
     auto lhs = this->val_ref(inst.ops[0]);
@@ -354,7 +354,11 @@ namespace tpde_rust::x64 {
     for (u32 i = 0; i != parts; ++i) {
       auto dst = lhs.part(i).into_temporary();
       auto src_reg = rhs.part(i).load_to_reg();
-      ASM(SSE_PSADBWrr, dst.cur_reg(), src_reg);
+      if (is_pmaddwd) {
+        ASM(SSE_PMADDWDrr, dst.cur_reg(), src_reg);
+      } else {
+        ASM(SSE_PSADBWrr, dst.cur_reg(), src_reg);
+      }
       res.part(i).set_value(std::move(dst));
     }
     return true;

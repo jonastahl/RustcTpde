@@ -354,6 +354,10 @@ mod ffi {
         // ops: <N x i8>, <N x i8> (N = 16/32/64); result <N/8 x i64>
         psadbw,
 
+        // Multiply signed i16 pairs and add neighbouring products (`pmaddwd`).
+        // ops: <N x i16>, <N x i16> (N = 8/16/32); result <N/2 x i32>
+        pmaddwd,
+
         Last,
     }
 

@@ -639,6 +639,22 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     out_ty,
                 )
             }
+            "pmaddwd" => {
+                let (a, b) = (args[0].immediate(), args[1].immediate());
+                let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
+                let out_ty = match in_ty {
+                    Type::v8i16 => Type::v4i32,
+                    Type::v16i16 => Type::v8i32,
+                    Type::v32i16 => Type::v16i32,
+                    _ => bug!("pmaddwd on {in_ty:?}"),
+                };
+                self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::pmaddwd,
+                    vec![a, b],
+                    out_ty,
+                )
+            }
             "pclmulqdq" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {
