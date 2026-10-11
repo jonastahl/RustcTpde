@@ -556,7 +556,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::sinf32 | sym::sinf64 | sym::cosf32 | sym::cosf64
             | sym::expf32 | sym::expf64 | sym::exp2f32 | sym::exp2f64
             | sym::logf32 | sym::logf64 | sym::log10f32 | sym::log10f64
-            | sym::log2f32 | sym::log2f64 | sym::powf32 | sym::powf64 => {
+            | sym::log2f32 | sym::log2f64 | sym::powf32 | sym::powf64
+            | sym::ceilf32 | sym::ceilf64 | sym::floorf32 | sym::floorf64
+            | sym::truncf32 | sym::truncf64 | sym::roundf32 | sym::roundf64
+            | sym::round_ties_even_f32 | sym::round_ties_even_f64
+            | sym::fmaf32 | sym::fmaf64 | sym::powif32 | sym::powif64 => {
                 let (lib_name, is_f64) = match name {
                     sym::sinf32 => ("sinf", false), sym::sinf64 => ("sin", true),
                     sym::cosf32 => ("cosf", false), sym::cosf64 => ("cos", true),
@@ -566,6 +570,14 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     sym::log10f32 => ("log10f", false), sym::log10f64 => ("log10", true),
                     sym::log2f32 => ("log2f", false), sym::log2f64 => ("log2", true),
                     sym::powf32 => ("powf", false), sym::powf64 => ("pow", true),
+                    sym::ceilf32 => ("ceilf", false), sym::ceilf64 => ("ceil", true),
+                    sym::floorf32 => ("floorf", false), sym::floorf64 => ("floor", true),
+                    sym::truncf32 => ("truncf", false), sym::truncf64 => ("trunc", true),
+                    sym::roundf32 => ("roundf", false), sym::roundf64 => ("round", true),
+                    sym::round_ties_even_f32 => ("rintf", false),
+                    sym::round_ties_even_f64 => ("rint", true),
+                    sym::fmaf32 => ("fmaf", false), sym::fmaf64 => ("fma", true),
+                    sym::powif32 => ("__powisf2", false), sym::powif64 => ("__powidf2", true),
                     _ => unreachable!()
                 };
                 let func = self.cx.get_lib_fn(LibFunc::Math(lib_name, is_f64, args.len()));
@@ -578,6 +590,29 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     if is_f64 { Type::f64 } else { Type::f32 }
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
+            }
+            sym::bitreverse => {
+                let ty = self.cx.backend_type(args[0].layout);
+                let bits = args[0].layout.size.bits();
+                let mut x = args[0].immediate();
+                if bits > 8 {
+                    x = self.cx.module.borrow_mut().add_instruction_ret_first(
+                        self.basic_block,
+                        InstructionKind::bswap,
+                        vec![x]
+                    );
+                }
+                for (shift, pattern) in [(4, 0x0F), (2, 0x33), (1, 0x55)] {
+                    let mask = (u128::MAX / 0xFF * pattern) & (u128::MAX >> (128 - bits));
+                    let mask = self.const_uint_big(ty, mask);
+                    let shift = self.const_uint(ty, shift);
+                    let hi = self.lshr(x, shift);
+                    let hi = self.and(hi, mask);
+                    let lo = self.and(x, mask);
+                    let lo = self.shl(lo, shift);
+                    x = self.or(hi, lo);
+                }
+                IntrinsicResult::Operand(OperandValue::Immediate(x))
             }
             _ => {
                 todo!("Unimplemented intrinsic: {}", name.as_str());
