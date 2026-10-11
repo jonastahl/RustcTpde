@@ -733,6 +733,17 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     vec![args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
                 )
             }
+            "rcpps" | "rsqrtps" | "rcpss" | "rsqrtss" | "vrcpps" | "vrsqrtps" => {
+                let op = ["rcpps", "rsqrtps", "rcpss", "rsqrtss"]
+                    .iter()
+                    .position(|n| *n == name.as_str().trim_start_matches('v'))
+                    .unwrap();
+                self.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::simd_approx,
+                    vec![args[0].immediate(), Slot::new_raw(op as u32)],
+                )
+            }
             "pclmulqdq" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {

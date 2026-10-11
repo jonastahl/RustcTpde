@@ -69,6 +69,7 @@ namespace tpde_rust::x64 {
     bool compile_simd_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_shift(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_minmax(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_simd_approx(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
@@ -412,6 +413,26 @@ namespace tpde_rust::x64 {
         case 5: ASM(SSE_MAXSSrr, dst.cur_reg(), src_reg); break;
         case 6: ASM(SSE_MINSDrr, dst.cur_reg(), src_reg); break;
         default: ASM(SSE_MAXSDrr, dst.cur_reg(), src_reg); break;
+      }
+      res.part(i).set_value(std::move(dst));
+    }
+    return true;
+  }
+
+  bool RustCompilerX64::compile_simd_approx(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const u32 op = operands::content(inst.ops[1]);
+    auto vec = this->val_ref(inst.ops[0]);
+    auto res = this->result_ref(inst.result);
+
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.ops[0])).first;
+    for (u32 i = 0; i != parts; ++i) {
+      auto dst = vec.part(i).into_temporary();
+      switch (op) {
+        case 0: ASM(SSE_RCPPSrr, dst.cur_reg(), dst.cur_reg()); break;
+        case 1: ASM(SSE_RSQRTPSrr, dst.cur_reg(), dst.cur_reg()); break;
+        case 2: ASM(SSE_RCPSSrr, dst.cur_reg(), dst.cur_reg()); break;
+        default: ASM(SSE_RSQRTSSrr, dst.cur_reg(), dst.cur_reg()); break;
       }
       res.part(i).set_value(std::move(dst));
     }
