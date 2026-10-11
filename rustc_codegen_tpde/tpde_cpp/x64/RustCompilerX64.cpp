@@ -343,7 +343,8 @@ namespace tpde_rust::x64 {
     return true;
   }
 
-  bool RustCompilerX64::compile_sse_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 is_pmaddwd) {
+  bool RustCompilerX64::compile_sse_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
+    // op: 0 psadbw, 1 pmaddwd, 2 pmaddubsw
     // Wide vectors are split into 128 bit parts, each sum only depends on its own part.
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
     auto lhs = this->val_ref(inst.ops[0]);
@@ -354,10 +355,10 @@ namespace tpde_rust::x64 {
     for (u32 i = 0; i != parts; ++i) {
       auto dst = lhs.part(i).into_temporary();
       auto src_reg = rhs.part(i).load_to_reg();
-      if (is_pmaddwd) {
-        ASM(SSE_PMADDWDrr, dst.cur_reg(), src_reg);
-      } else {
-        ASM(SSE_PSADBWrr, dst.cur_reg(), src_reg);
+      switch (op) {
+        case 0: ASM(SSE_PSADBWrr, dst.cur_reg(), src_reg); break;
+        case 1: ASM(SSE_PMADDWDrr, dst.cur_reg(), src_reg); break;
+        default: ASM(SSE_PMADDUBSWrr, dst.cur_reg(), src_reg); break;
       }
       res.part(i).set_value(std::move(dst));
     }
