@@ -710,6 +710,18 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     out_ty,
                 )
             }
+            // llvm.x86.{sse2,avx2,avx512}.ps{ll,rl,ra}.{w,d,q}: (vector, count vector) -> vector
+            "psllw" | "pslld" | "psllq" | "psrlw" | "psrld" | "psrlq" | "psraw" | "psrad" => {
+                let op = ["psllw", "pslld", "psllq", "psrlw", "psrld", "psrlq", "psraw", "psrad"]
+                    .iter()
+                    .position(|n| *n == name.as_str())
+                    .unwrap();
+                self.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::simd_shift,
+                    vec![args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
+                )
+            }
             "pclmulqdq" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {

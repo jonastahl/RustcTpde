@@ -730,9 +730,10 @@ namespace tpde_rust {
       set_fn(InstructionKind::copysign, &Derived::compile_copysign);
       set_fn(InstructionKind::clmul, &Derived::compile_clmul);
       set_fn(InstructionKind::crc32, &Derived::compile_crc32);
-      set_fn(InstructionKind::psadbw, &Derived::compile_sse_reduce_pairs, /*op=*/0);
-      set_fn(InstructionKind::pmaddwd, &Derived::compile_sse_reduce_pairs, /*op=*/1);
-      set_fn(InstructionKind::pmaddubsw, &Derived::compile_sse_reduce_pairs, /*op=*/2);
+      set_fn(InstructionKind::psadbw, &Derived::compile_simd_reduce_pairs, /*op=*/0);
+      set_fn(InstructionKind::pmaddwd, &Derived::compile_simd_reduce_pairs, /*op=*/1);
+      set_fn(InstructionKind::pmaddubsw, &Derived::compile_simd_reduce_pairs, /*op=*/2);
+      set_fn(InstructionKind::simd_shift, &Derived::compile_simd_shift);
 
       return res;
     }();

@@ -66,7 +66,8 @@ namespace tpde_rust::x64 {
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
-    bool compile_sse_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_simd_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_simd_shift(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
@@ -343,7 +344,7 @@ namespace tpde_rust::x64 {
     return true;
   }
 
-  bool RustCompilerX64::compile_sse_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
+  bool RustCompilerX64::compile_simd_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
     // op: 0 psadbw, 1 pmaddwd, 2 pmaddubsw
     // Wide vectors are split into 128 bit parts, each sum only depends on its own part.
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
@@ -359,6 +360,33 @@ namespace tpde_rust::x64 {
         case 0: ASM(SSE_PSADBWrr, dst.cur_reg(), src_reg); break;
         case 1: ASM(SSE_PMADDWDrr, dst.cur_reg(), src_reg); break;
         default: ASM(SSE_PMADDUBSWrr, dst.cur_reg(), src_reg); break;
+      }
+      res.part(i).set_value(std::move(dst));
+    }
+    return true;
+  }
+
+  bool RustCompilerX64::compile_simd_shift(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    // The count is a single xmm register shared by all 128 bit parts of the shifted vector.
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const u32 op = operands::content(inst.ops[2]);
+    auto vec = this->val_ref(inst.ops[0]);
+    auto cnt = this->val_ref(inst.ops[1]);
+    auto res = this->result_ref(inst.result);
+
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.ops[0])).first;
+    for (u32 i = 0; i != parts; ++i) {
+      auto dst = vec.part(i).into_temporary();
+      auto cnt_reg = cnt.part(0).load_to_reg();
+      switch (op) {
+        case 0: ASM(SSE_PSLLWrr, dst.cur_reg(), cnt_reg); break;
+        case 1: ASM(SSE_PSLLDrr, dst.cur_reg(), cnt_reg); break;
+        case 2: ASM(SSE_PSLLQrr, dst.cur_reg(), cnt_reg); break;
+        case 3: ASM(SSE_PSRLWrr, dst.cur_reg(), cnt_reg); break;
+        case 4: ASM(SSE_PSRLDrr, dst.cur_reg(), cnt_reg); break;
+        case 5: ASM(SSE_PSRLQrr, dst.cur_reg(), cnt_reg); break;
+        case 6: ASM(SSE_PSRAWrr, dst.cur_reg(), cnt_reg); break;
+        default: ASM(SSE_PSRADrr, dst.cur_reg(), cnt_reg); break;
       }
       res.part(i).set_value(std::move(dst));
     }

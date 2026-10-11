@@ -343,6 +343,7 @@ mod ffi {
         psadbw,
         pmaddwd,
         pmaddubsw,
+        simd_shift,
 
         copysign,
 
