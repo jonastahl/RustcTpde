@@ -17626,13 +17626,13 @@ Disassembly of section .text:
 	mov    %sil,0x3(%rax)
 	lea    -0x64(%rbp),%rdi
 	call   <cast_i32x4_to_i8+0x6d>
-	mov    %rax,-0x2c(%rbp)
+	mov    %eax,-0x2c(%rbp)
 	mov    -0x2c(%rbp),%eax
 	add    $0x68,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
 
 <cast_i32x8_to_f32x8>:
 	push   %rbp
@@ -82911,14 +82911,14 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2a(%rbp)
-	movzbl -0x2a(%rbp),%eax
+	mov    %al,-0x2b(%rbp)
+	movzbl -0x2b(%rbp),%eax
 	test   $0x1,%al
-	mov    %dl,-0x42(%rbp)
+	mov    %dl,-0x43(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x320EB1H_+0x12b>
-	movb   $0x0,-0x41(%rbp)
-	movb   $0x1,-0x2c(%rbp)
-	mov    %dl,-0x2b(%rbp)
+	movb   $0x0,-0x42(%rbp)
+	movb   $0x1,-0x41(%rbp)
+	mov    %dl,-0x2c(%rbp)
 	movq   $0x0,-0x38(%rbp)
 	mov    %rsi,%rax
 	mov    %rdi,%rax
@@ -82952,16 +82952,16 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x40(%rbp)
-	movb   $0x0,-0x2c(%rbp)
-	movzbl -0x2b(%rbp),%eax
+	movb   $0x0,-0x41(%rbp)
+	movzbl -0x2c(%rbp),%eax
 	mov    -0x38(%rbp),%rcx
 	mov    -0x50(%rbp),%rdx
 	lea    (%rdx,%rcx,1),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x320EB1H_+0xe3>
 	mov    %eax,%ebx
-	mov    %bl,-0x2b(%rbp)
+	mov    %bl,-0x2c(%rbp)
 	mov    -0x38(%rbp),%rax
 	mov    %rax,%rdi
 	mov    $0x1,%esi
@@ -82975,13 +82975,13 @@ Disassembly of section .text:
 	cmp    %rcx,%rax
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x320EB1H_+0x11f>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x320EB1H_+0xc4>
-	movzbl -0x2b(%rbp),%eax
-	mov    %al,-0x29(%rbp)
+	movzbl -0x2c(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x320EB1H_+0x136>
-	movb   $0x0,-0x41(%rbp)
-	movzbl -0x42(%rbp),%eax
-	mov    %al,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	movb   $0x0,-0x42(%rbp)
+	movzbl -0x43(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	add    $0x58,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -82998,14 +82998,14 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2a(%rbp)
-	movzbl -0x2a(%rbp),%eax
+	mov    %al,-0x2b(%rbp)
+	movzbl -0x2b(%rbp),%eax
 	test   $0x1,%al
-	mov    %dl,-0x42(%rbp)
+	mov    %dl,-0x43(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x640EB1H_+0x12b>
-	movb   $0x0,-0x41(%rbp)
-	movb   $0x1,-0x2c(%rbp)
-	mov    %dl,-0x2b(%rbp)
+	movb   $0x0,-0x42(%rbp)
+	movb   $0x1,-0x41(%rbp)
+	mov    %dl,-0x2c(%rbp)
 	movq   $0x0,-0x38(%rbp)
 	mov    %rsi,%rax
 	mov    %rdi,%rax
@@ -83039,16 +83039,16 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x40(%rbp)
-	movb   $0x0,-0x2c(%rbp)
-	movzbl -0x2b(%rbp),%eax
+	movb   $0x0,-0x41(%rbp)
+	movzbl -0x2c(%rbp),%eax
 	mov    -0x38(%rbp),%rcx
 	mov    -0x50(%rbp),%rdx
 	lea    (%rdx,%rcx,1),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x640EB1H_+0xe3>
 	mov    %eax,%ebx
-	mov    %bl,-0x2b(%rbp)
+	mov    %bl,-0x2c(%rbp)
 	mov    -0x38(%rbp),%rax
 	mov    %rax,%rdi
 	mov    $0x1,%esi
@@ -83062,13 +83062,13 @@ Disassembly of section .text:
 	cmp    %rcx,%rax
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x640EB1H_+0x11f>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x640EB1H_+0xc4>
-	movzbl -0x2b(%rbp),%eax
-	mov    %al,-0x29(%rbp)
+	movzbl -0x2c(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IteraENtNtNtNtBb_4iter6traits8iterator8Iterator4foldaNCNvCseeGrevWVrEI_6source15sum_slice_i8x640EB1H_+0x136>
-	movb   $0x0,-0x41(%rbp)
-	movzbl -0x42(%rbp),%eax
-	mov    %al,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	movb   $0x0,-0x42(%rbp)
+	movzbl -0x43(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	add    $0x58,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83085,13 +83085,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x31(%rbp)
-	movzbl -0x31(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	movq   %xmm0,-0x60(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterdENtNtNtNtBb_4iter6traits8iterator8Iterator4folddNCINvNtNtBY_8adapters6copied9copy_foldddNvMNtBb_3f64d3maxE0ECseeGrevWVrEI_6source+0x135>
-	movb   $0x0,-0x51(%rbp)
-	movb   $0x1,-0x32(%rbp)
+	movb   $0x0,-0x52(%rbp)
+	movb   $0x1,-0x51(%rbp)
 	movsd  %xmm0,-0x40(%rbp)
 	movq   $0x0,-0x48(%rbp)
 	mov    %rsi,%rax
@@ -83126,12 +83126,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x50(%rbp)
-	movb   $0x0,-0x32(%rbp)
+	movb   $0x0,-0x51(%rbp)
 	movsd  -0x40(%rbp),%xmm0
 	mov    -0x48(%rbp),%rax
 	mov    -0x68(%rbp),%rcx
 	lea    (%rcx,%rax,8),%rcx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %rcx,%rsi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterdENtNtNtNtBb_4iter6traits8iterator8Iterator4folddNCINvNtNtBY_8adapters6copied9copy_foldddNvMNtBb_3f64d3maxE0ECseeGrevWVrEI_6source+0xea>
 	movsd  %xmm0,-0x40(%rbp)
@@ -83149,12 +83149,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterdENtNtNtNtBb_4iter6traits8iterator8Iterator4folddNCINvNtNtBY_8adapters6copied9copy_foldddNvMNtBb_3f64d3maxE0ECseeGrevWVrEI_6source+0x126>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterdENtNtNtNtBb_4iter6traits8iterator8Iterator4folddNCINvNtNtBY_8adapters6copied9copy_foldddNvMNtBb_3f64d3maxE0ECseeGrevWVrEI_6source+0xc9>
 	movsd  -0x40(%rbp),%xmm0
-	movsd  %xmm0,-0x30(%rbp)
+	movsd  %xmm0,-0x38(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterdENtNtNtNtBb_4iter6traits8iterator8Iterator4folddNCINvNtNtBY_8adapters6copied9copy_foldddNvMNtBb_3f64d3maxE0ECseeGrevWVrEI_6source+0x144>
-	movb   $0x0,-0x51(%rbp)
+	movb   $0x0,-0x52(%rbp)
 	movq   -0x60(%rbp),%xmm0
-	movsd  %xmm0,-0x30(%rbp)
-	movsd  -0x30(%rbp),%xmm0
+	movsd  %xmm0,-0x38(%rbp)
+	movsd  -0x38(%rbp),%xmm0
 	add    $0x78,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83169,13 +83169,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2d(%rbp)
-	movzbl -0x2d(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	movd   %xmm0,-0x38(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterfENtNtNtNtBb_4iter6traits8iterator8Iterator4foldfNCINvNtNtBY_8adapters6copied9copy_foldffNvMNtBb_3f32f3maxE0ECseeGrevWVrEI_6source+0x134>
-	movb   $0x0,-0x49(%rbp)
-	movb   $0x1,-0x2e(%rbp)
+	movb   $0x0,-0x4a(%rbp)
+	movb   $0x1,-0x49(%rbp)
 	movss  %xmm0,-0x34(%rbp)
 	movq   $0x0,-0x40(%rbp)
 	mov    %rsi,%rax
@@ -83210,12 +83210,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x48(%rbp)
-	movb   $0x0,-0x2e(%rbp)
+	movb   $0x0,-0x49(%rbp)
 	movss  -0x34(%rbp),%xmm0
 	mov    -0x40(%rbp),%rax
 	mov    -0x58(%rbp),%rcx
 	lea    (%rcx,%rax,4),%rcx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %rcx,%rsi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterfENtNtNtNtBb_4iter6traits8iterator8Iterator4foldfNCINvNtNtBY_8adapters6copied9copy_foldffNvMNtBb_3f32f3maxE0ECseeGrevWVrEI_6source+0xe9>
 	movss  %xmm0,-0x34(%rbp)
@@ -83233,12 +83233,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterfENtNtNtNtBb_4iter6traits8iterator8Iterator4foldfNCINvNtNtBY_8adapters6copied9copy_foldffNvMNtBb_3f32f3maxE0ECseeGrevWVrEI_6source+0x125>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterfENtNtNtNtBb_4iter6traits8iterator8Iterator4foldfNCINvNtNtBY_8adapters6copied9copy_foldffNvMNtBb_3f32f3maxE0ECseeGrevWVrEI_6source+0xc8>
 	movss  -0x34(%rbp),%xmm0
-	movss  %xmm0,-0x2c(%rbp)
+	movss  %xmm0,-0x30(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterfENtNtNtNtBb_4iter6traits8iterator8Iterator4foldfNCINvNtNtBY_8adapters6copied9copy_foldffNvMNtBb_3f32f3maxE0ECseeGrevWVrEI_6source+0x142>
-	movb   $0x0,-0x49(%rbp)
+	movb   $0x0,-0x4a(%rbp)
 	movd   -0x38(%rbp),%xmm0
-	movss  %xmm0,-0x2c(%rbp)
-	movss  -0x2c(%rbp),%xmm0
+	movss  %xmm0,-0x30(%rbp)
+	movss  -0x30(%rbp),%xmm0
 	add    $0x68,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83254,13 +83254,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2d(%rbp)
-	movzbl -0x2d(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	mov    %edx,-0x38(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCINvXsc_NtBW_5accumlINtB1M_3SumRlE3sumBF_E0ECseeGrevWVrEI_6source+0x129>
-	movb   $0x0,-0x49(%rbp)
-	movb   $0x1,-0x2e(%rbp)
+	movb   $0x0,-0x4a(%rbp)
+	movb   $0x1,-0x49(%rbp)
 	mov    %edx,-0x34(%rbp)
 	movq   $0x0,-0x40(%rbp)
 	mov    %rsi,%rax
@@ -83295,12 +83295,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x48(%rbp)
-	movb   $0x0,-0x2e(%rbp)
+	movb   $0x0,-0x49(%rbp)
 	mov    -0x34(%rbp),%eax
 	mov    -0x40(%rbp),%rcx
 	mov    -0x58(%rbp),%rdx
 	lea    (%rdx,%rcx,4),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCINvXsc_NtBW_5accumlINtB1M_3SumRlE3sumBF_E0ECseeGrevWVrEI_6source+0xe2>
 	mov    %eax,%ebx
@@ -83319,12 +83319,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCINvXsc_NtBW_5accumlINtB1M_3SumRlE3sumBF_E0ECseeGrevWVrEI_6source+0x11e>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCINvXsc_NtBW_5accumlINtB1M_3SumRlE3sumBF_E0ECseeGrevWVrEI_6source+0xc4>
 	mov    -0x34(%rbp),%eax
-	mov    %eax,-0x2c(%rbp)
+	mov    %eax,-0x30(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCINvXsc_NtBW_5accumlINtB1M_3SumRlE3sumBF_E0ECseeGrevWVrEI_6source+0x133>
-	movb   $0x0,-0x49(%rbp)
+	movb   $0x0,-0x4a(%rbp)
 	mov    -0x38(%rbp),%eax
-	mov    %eax,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	mov    %eax,-0x30(%rbp)
+	mov    -0x30(%rbp),%eax
 	add    $0x68,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83340,13 +83340,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2d(%rbp)
-	movzbl -0x2d(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	mov    %edx,-0x38(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source15sum_slice_i32x80EB1H_+0x129>
-	movb   $0x0,-0x49(%rbp)
-	movb   $0x1,-0x2e(%rbp)
+	movb   $0x0,-0x4a(%rbp)
+	movb   $0x1,-0x49(%rbp)
 	mov    %edx,-0x34(%rbp)
 	movq   $0x0,-0x40(%rbp)
 	mov    %rsi,%rax
@@ -83381,12 +83381,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x48(%rbp)
-	movb   $0x0,-0x2e(%rbp)
+	movb   $0x0,-0x49(%rbp)
 	mov    -0x34(%rbp),%eax
 	mov    -0x40(%rbp),%rcx
 	mov    -0x58(%rbp),%rdx
 	lea    (%rdx,%rcx,4),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source15sum_slice_i32x80EB1H_+0xe2>
 	mov    %eax,%ebx
@@ -83405,12 +83405,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source15sum_slice_i32x80EB1H_+0x11e>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source15sum_slice_i32x80EB1H_+0xc4>
 	mov    -0x34(%rbp),%eax
-	mov    %eax,-0x2c(%rbp)
+	mov    %eax,-0x30(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source15sum_slice_i32x80EB1H_+0x133>
-	movb   $0x0,-0x49(%rbp)
+	movb   $0x0,-0x4a(%rbp)
 	mov    -0x38(%rbp),%eax
-	mov    %eax,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	mov    %eax,-0x30(%rbp)
+	mov    -0x30(%rbp),%eax
 	add    $0x68,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83426,13 +83426,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2d(%rbp)
-	movzbl -0x2d(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	mov    %edx,-0x38(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source16sum_slice_i32x160EB1H_+0x129>
-	movb   $0x0,-0x49(%rbp)
-	movb   $0x1,-0x2e(%rbp)
+	movb   $0x0,-0x4a(%rbp)
+	movb   $0x1,-0x49(%rbp)
 	mov    %edx,-0x34(%rbp)
 	movq   $0x0,-0x40(%rbp)
 	mov    %rsi,%rax
@@ -83467,12 +83467,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x48(%rbp)
-	movb   $0x0,-0x2e(%rbp)
+	movb   $0x0,-0x49(%rbp)
 	mov    -0x34(%rbp),%eax
 	mov    -0x40(%rbp),%rcx
 	mov    -0x58(%rbp),%rdx
 	lea    (%rdx,%rcx,4),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source16sum_slice_i32x160EB1H_+0xe2>
 	mov    %eax,%ebx
@@ -83491,12 +83491,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source16sum_slice_i32x160EB1H_+0x11e>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source16sum_slice_i32x160EB1H_+0xc4>
 	mov    -0x34(%rbp),%eax
-	mov    %eax,-0x2c(%rbp)
+	mov    %eax,-0x30(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterlENtNtNtNtBb_4iter6traits8iterator8Iterator4foldlNCNvCseeGrevWVrEI_6source16sum_slice_i32x160EB1H_+0x133>
-	movb   $0x0,-0x49(%rbp)
+	movb   $0x0,-0x4a(%rbp)
 	mov    -0x38(%rbp),%eax
-	mov    %eax,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	mov    %eax,-0x30(%rbp)
+	mov    -0x30(%rbp),%eax
 	add    $0x68,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83512,13 +83512,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2b(%rbp)
-	movzbl -0x2b(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	mov    %dx,-0x30(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x160EB1H_+0x12f>
-	movb   $0x0,-0x41(%rbp)
-	movb   $0x1,-0x2c(%rbp)
+	movb   $0x0,-0x42(%rbp)
+	movb   $0x1,-0x41(%rbp)
 	mov    %dx,-0x2e(%rbp)
 	movq   $0x0,-0x38(%rbp)
 	mov    %rsi,%rax
@@ -83553,12 +83553,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x40(%rbp)
-	movb   $0x0,-0x2c(%rbp)
+	movb   $0x0,-0x41(%rbp)
 	movzwl -0x2e(%rbp),%eax
 	mov    -0x38(%rbp),%rcx
 	mov    -0x50(%rbp),%rdx
 	lea    (%rdx,%rcx,2),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x160EB1H_+0xe5>
 	mov    %eax,%ebx
@@ -83577,12 +83577,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x160EB1H_+0x122>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x160EB1H_+0xc6>
 	movzwl -0x2e(%rbp),%eax
-	mov    %ax,-0x2a(%rbp)
+	mov    %ax,-0x2c(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x160EB1H_+0x13b>
-	movb   $0x0,-0x41(%rbp)
+	movb   $0x0,-0x42(%rbp)
 	movzwl -0x30(%rbp),%eax
-	mov    %ax,-0x2a(%rbp)
-	movzwl -0x2a(%rbp),%eax
+	mov    %ax,-0x2c(%rbp)
+	movzwl -0x2c(%rbp),%eax
 	add    $0x58,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83599,13 +83599,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x2b(%rbp)
-	movzbl -0x2b(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	mov    %dx,-0x30(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x320EB1H_+0x12f>
-	movb   $0x0,-0x41(%rbp)
-	movb   $0x1,-0x2c(%rbp)
+	movb   $0x0,-0x42(%rbp)
+	movb   $0x1,-0x41(%rbp)
 	mov    %dx,-0x2e(%rbp)
 	movq   $0x0,-0x38(%rbp)
 	mov    %rsi,%rax
@@ -83640,12 +83640,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x40(%rbp)
-	movb   $0x0,-0x2c(%rbp)
+	movb   $0x0,-0x41(%rbp)
 	movzwl -0x2e(%rbp),%eax
 	mov    -0x38(%rbp),%rcx
 	mov    -0x50(%rbp),%rdx
 	lea    (%rdx,%rcx,2),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x320EB1H_+0xe5>
 	mov    %eax,%ebx
@@ -83664,12 +83664,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x320EB1H_+0x122>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x320EB1H_+0xc6>
 	movzwl -0x2e(%rbp),%eax
-	mov    %ax,-0x2a(%rbp)
+	mov    %ax,-0x2c(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4ItersENtNtNtNtBb_4iter6traits8iterator8Iterator4foldsNCNvCseeGrevWVrEI_6source16sum_slice_i16x320EB1H_+0x13b>
-	movb   $0x0,-0x41(%rbp)
+	movb   $0x0,-0x42(%rbp)
 	movzwl -0x30(%rbp),%eax
-	mov    %ax,-0x2a(%rbp)
-	movzwl -0x2a(%rbp),%eax
+	mov    %ax,-0x2c(%rbp)
+	movzwl -0x2c(%rbp),%eax
 	add    $0x58,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83686,13 +83686,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x31(%rbp)
-	movzbl -0x31(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	mov    %rdx,-0x60(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x40EB1H_+0x131>
-	movb   $0x0,-0x51(%rbp)
-	movb   $0x1,-0x32(%rbp)
+	movb   $0x0,-0x52(%rbp)
+	movb   $0x1,-0x51(%rbp)
 	mov    %rdx,-0x40(%rbp)
 	movq   $0x0,-0x48(%rbp)
 	mov    %rsi,%rax
@@ -83727,12 +83727,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x50(%rbp)
-	movb   $0x0,-0x32(%rbp)
+	movb   $0x0,-0x51(%rbp)
 	mov    -0x40(%rbp),%rax
 	mov    -0x48(%rbp),%rcx
 	mov    -0x68(%rbp),%rdx
 	lea    (%rdx,%rcx,8),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %rax,%rsi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x40EB1H_+0xe6>
 	mov    %rax,%rbx
@@ -83751,12 +83751,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x40EB1H_+0x124>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x40EB1H_+0xc6>
 	mov    -0x40(%rbp),%rax
-	mov    %rax,-0x30(%rbp)
+	mov    %rax,-0x38(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x40EB1H_+0x13d>
-	movb   $0x0,-0x51(%rbp)
+	movb   $0x0,-0x52(%rbp)
 	mov    -0x60(%rbp),%rax
-	mov    %rax,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
+	mov    %rax,-0x38(%rbp)
+	mov    -0x38(%rbp),%rax
 	add    $0x78,%rsp
 	pop    %rbx
 	pop    %rbp
@@ -83772,13 +83772,13 @@ Disassembly of section .text:
 	mov    %rdi,%rcx
 	cmp    %rax,%rcx
 	sete   %al
-	mov    %al,-0x31(%rbp)
-	movzbl -0x31(%rbp),%eax
+	mov    %al,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%eax
 	test   $0x1,%al
 	mov    %rdx,-0x60(%rbp)
 	jne    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x80EB1H_+0x131>
-	movb   $0x0,-0x51(%rbp)
-	movb   $0x1,-0x32(%rbp)
+	movb   $0x0,-0x52(%rbp)
+	movb   $0x1,-0x51(%rbp)
 	mov    %rdx,-0x40(%rbp)
 	movq   $0x0,-0x48(%rbp)
 	mov    %rsi,%rax
@@ -83813,12 +83813,12 @@ Disassembly of section .text:
 	mov    %rbx,%rax
 	div    %rcx
 	mov    %rax,-0x50(%rbp)
-	movb   $0x0,-0x32(%rbp)
+	movb   $0x0,-0x51(%rbp)
 	mov    -0x40(%rbp),%rax
 	mov    -0x48(%rbp),%rcx
 	mov    -0x68(%rbp),%rdx
 	lea    (%rdx,%rcx,8),%rdx
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	mov    %rax,%rsi
 	call   <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x80EB1H_+0xe6>
 	mov    %rax,%rbx
@@ -83837,12 +83837,12 @@ Disassembly of section .text:
 	je     <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x80EB1H_+0x124>
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x80EB1H_+0xc6>
 	mov    -0x40(%rbp),%rax
-	mov    %rax,-0x30(%rbp)
+	mov    %rax,-0x38(%rbp)
 	jmp    <_RINvXs2J_NtNtCs94NUNretDkj_4core5slice4iterINtB7_4IterxENtNtNtNtBb_4iter6traits8iterator8Iterator4foldxNCNvCseeGrevWVrEI_6source15sum_slice_i64x80EB1H_+0x13d>
-	movb   $0x0,-0x51(%rbp)
+	movb   $0x0,-0x52(%rbp)
 	mov    -0x60(%rbp),%rax
-	mov    %rax,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
+	mov    %rax,-0x38(%rbp)
+	mov    -0x38(%rbp),%rax
 	add    $0x78,%rsp
 	pop    %rbx
 	pop    %rbp

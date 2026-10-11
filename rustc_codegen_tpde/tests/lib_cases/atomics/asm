@@ -18,47 +18,47 @@ Disassembly of section .text:
 	mov    %rdi,%rax
 	mov    %rdi,-0x48(%rbp)
 	mov    %rax,%rdi
-	mov    %sil,-0x49(%rbp)
+	mov    %sil,-0x2a(%rbp)
 	mov    %edx,%esi
-	mov    %dl,-0x4a(%rbp)
+	mov    %dl,-0x49(%rbp)
 	call   <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x20>
-	mov    %eax,-0x3c(%rbp)
-	mov    -0x3c(%rbp),%eax
-	lea    0x0(%rbp),%rdi
+	mov    %eax,-0x30(%rbp)
+	mov    -0x30(%rbp),%eax
+	lea    -0x29(%rbp),%rdi
 	mov    %eax,%esi
 	call   <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x31>
+	mov    %eax,-0x40(%rbp)
+	mov    %edx,-0x3c(%rbp)
+	mov    -0x40(%rbp),%eax
+	mov    -0x3c(%rbp),%ecx
+	mov    %eax,%eax
+	test   $0x1,%al
+	je     <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x89>
+	mov    -0x3c(%rbp),%eax
+	mov    -0x48(%rbp),%rcx
+	mov    -0x30(%rbp),%edx
+	mov    %rcx,%rdi
+	mov    %edx,%esi
+	mov    %eax,%edx
+	movzbl -0x2a(%rbp),%ecx
+	movzbl -0x49(%rbp),%r8d
+	call   <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x66>
 	mov    %eax,-0x38(%rbp)
 	mov    %edx,-0x34(%rbp)
 	mov    -0x38(%rbp),%eax
 	mov    -0x34(%rbp),%ecx
 	mov    %eax,%eax
 	test   $0x1,%al
-	je     <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x89>
-	mov    -0x34(%rbp),%eax
-	mov    -0x48(%rbp),%rcx
-	mov    -0x3c(%rbp),%edx
-	mov    %rcx,%rdi
-	mov    %edx,%esi
-	mov    %eax,%edx
-	movzbl -0x49(%rbp),%ecx
-	movzbl -0x4a(%rbp),%r8d
-	call   <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x66>
-	mov    %eax,-0x30(%rbp)
-	mov    %edx,-0x2c(%rbp)
-	mov    -0x30(%rbp),%eax
-	mov    -0x2c(%rbp),%ecx
-	mov    %eax,%eax
-	test   $0x1,%al
 	je     <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x84>
-	mov    -0x2c(%rbp),%eax
-	mov    %eax,-0x3c(%rbp)
+	mov    -0x34(%rbp),%eax
+	mov    %eax,-0x30(%rbp)
 	jmp    <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x23>
 	jmp    <_RINvMsQ_NtNtCs94NUNretDkj_4core4sync6atomicINtB6_6AtomicmE10try_updateNCNvCseeGrevWVrEI_6source23fetch_update_double_u320EB1a_+0x96>
-	mov    -0x3c(%rbp),%eax
-	mov    %eax,-0x2c(%rbp)
-	movl   $0x1,-0x30(%rbp)
 	mov    -0x30(%rbp),%eax
-	mov    -0x2c(%rbp),%ecx
+	mov    %eax,-0x34(%rbp)
+	movl   $0x1,-0x38(%rbp)
+	mov    -0x38(%rbp),%eax
+	mov    -0x34(%rbp),%ecx
 	mov    %ecx,%edx
 	add    $0x50,%rsp
 	pop    %rbp

@@ -275,7 +275,7 @@ Disassembly of section .text:
 	jmp    <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x42>
 	mov    %rax,-0x40(%rbp)
 	mov    %edx,-0x38(%rbp)
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x27>
 	jmp    <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x31>
 	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x31>
@@ -284,7 +284,7 @@ Disassembly of section .text:
 	mov    %rax,%rdi
 	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x40>
 	ud2
-	lea    0x0(%rbp),%rdi
+	lea    -0x29(%rbp),%rdi
 	call   <_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_+0x4b>
 	mov    %ebx,%eax
 	add    $0x38,%rsp

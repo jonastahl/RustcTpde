@@ -6678,7 +6678,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1026,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 1, align: 1,
                 size: 1, align: 1,
                 size: 1, align: 1,
@@ -6884,7 +6884,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1028,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 1, align: 1,
                 size: 1, align: 1,
                 size: 1, align: 1,
@@ -7090,7 +7090,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1029,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 8, align: 8,
                 size: 1, align: 1,
                 size: 8, align: 8,
@@ -7296,7 +7296,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1030,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 4, align: 4,
                 size: 1, align: 1,
                 size: 4, align: 4,
@@ -7502,7 +7502,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1031,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 4, align: 4,
                 size: 1, align: 1,
                 size: 4, align: 4,
@@ -7708,7 +7708,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1032,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 4, align: 4,
                 size: 1, align: 1,
                 size: 4, align: 4,
@@ -7914,7 +7914,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1033,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 4, align: 4,
                 size: 1, align: 1,
                 size: 4, align: 4,
@@ -8120,7 +8120,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1034,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 2, align: 2,
                 size: 1, align: 1,
                 size: 2, align: 2,
@@ -8326,7 +8326,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1035,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 2, align: 2,
                 size: 1, align: 1,
                 size: 2, align: 2,
@@ -8532,7 +8532,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1036,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 8, align: 8,
                 size: 1, align: 1,
                 size: 8, align: 8,
@@ -8738,7 +8738,7 @@ ModuleTpde {
             has_personality: true,
             personality: 1037,
             allocas: [
-                size: 0, align: 1,
+                size: 1, align: 1,
                 size: 8, align: 8,
                 size: 1, align: 1,
                 size: 8, align: 8,
@@ -44748,7 +44748,7 @@ ModuleTpde {
                 ptr,
                 v4i32,
                 v4i8,
-                ptr,
+                i32,
                 i32,
             ],
             flags: Flags {

@@ -490,15 +490,15 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x28,%rsp
-	mov    %rdi,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
-	lea    0x0(%rbp),%rdi
+	sub    $0x38,%rsp
+	mov    %rdi,-0x38(%rbp)
+	mov    -0x38(%rbp),%rax
+	lea    -0x29(%rbp),%rdi
 	mov    %rax,%rsi
 	call   <_RNvYNCNKNvCseeGrevWVrEI_6source4BYTE0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBJ_6option6OptionQIB1o_INtNtBJ_4cell4CellhEEEEE9call_onceB8_+0x1d>
 	mov    %rax,%rbx
 	mov    %rbx,%rax
-	add    $0x28,%rsp
+	add    $0x38,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
@@ -508,15 +508,15 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x28,%rsp
-	mov    %rdi,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
-	lea    0x0(%rbp),%rdi
+	sub    $0x38,%rsp
+	mov    %rdi,-0x38(%rbp)
+	mov    -0x38(%rbp),%rax
+	lea    -0x29(%rbp),%rdi
 	mov    %rax,%rsi
 	call   <_RNvYNCNKNvCseeGrevWVrEI_6source6ZEROED0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellmEEEEE9call_onceB8_+0x1d>
 	mov    %rax,%rbx
 	mov    %rbx,%rax
-	add    $0x28,%rsp
+	add    $0x38,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
@@ -526,15 +526,15 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x28,%rsp
-	mov    %rdi,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
-	lea    0x0(%rbp),%rdi
+	sub    $0x38,%rsp
+	mov    %rdi,-0x38(%rbp)
+	mov    -0x38(%rbp),%rax
+	lea    -0x29(%rbp),%rdi
 	mov    %rax,%rsi
 	call   <_RNvYNCNKNvCseeGrevWVrEI_6source7COUNTER0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBM_6option6OptionQIB1r_INtNtBM_4cell4CellyEEEEE9call_onceB8_+0x1d>
 	mov    %rax,%rbx
 	mov    %rbx,%rax
-	add    $0x28,%rsp
+	add    $0x38,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret

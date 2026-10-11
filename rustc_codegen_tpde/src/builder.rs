@@ -488,9 +488,12 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn alloca(&mut self, size: rustc_abi::Size, align: rustc_abi::Align) -> Self::Value {
+        // For llvm allocas are always stored with some padding, which is what Rust expects.
+        // So we just add this for sanity reasons.
+        let size = size.bytes_usize();
         self.module.borrow_mut().add_alloca(
             self.basic_block.function(),
-            size.bytes_usize(),
+            if size < 16 { size.next_power_of_two() } else { size.next_multiple_of(8) },
             align.bytes_usize(),
         )
     }

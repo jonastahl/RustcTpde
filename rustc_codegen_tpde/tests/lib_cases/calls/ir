@@ -881,7 +881,7 @@ ModuleTpde {
             has_personality: true,
             personality: 64,
             allocas: [
-                size: 3, align: 1,
+                size: 4, align: 1,
                 size: 4, align: 1,
             ],
             basic_blocks: [
@@ -972,7 +972,7 @@ ModuleTpde {
             has_personality: true,
             personality: 66,
             allocas: [
-                size: 3, align: 1,
+                size: 4, align: 1,
             ],
             basic_blocks: [
                 "start": [

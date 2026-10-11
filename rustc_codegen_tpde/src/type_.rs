@@ -331,10 +331,10 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 });
         }
 
-        let ret = if fn_abi.ret.is_ignore() || fn_abi.ret.is_indirect() {
-            None
-        } else {
-            Some(self.tpde_direct_type(fn_abi.ret.layout))
+        let ret = match &fn_abi.ret.mode {
+            PassMode::Ignore | PassMode::Indirect { .. } => None,
+            PassMode::Cast { cast, .. } => Some(self.cast_backend_type(cast)),
+            PassMode::Direct(_) | PassMode::Pair(..) => Some(self.tpde_direct_type(fn_abi.ret.layout)),
         };
 
         FunctionSignature { slots, arg_infos, ret }
