@@ -2272,6 +2272,7 @@ namespace tpde_rust {
         std::array<IRValueRef, 1> args{src_val};
         LibFunc libfunc = encode_fns[ty_idx][sign];
         derived()->create_helper_call(args, &res_ref, get_libfunc_sym(libfunc));
+        return true;
       } else {
         ValueRef src_ref = this->val_ref(src_val);
 
