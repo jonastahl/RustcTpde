@@ -127,7 +127,7 @@ pub enum LibFunc {
     MemMove,
     MemSet,
     MemCmp,
-    Log2F32,
+    Math(&'static str, bool),
 }
 
 impl<'tcx> CodegenCx<'_, 'tcx> {
@@ -141,7 +141,10 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             LibFunc::MemMove => ("memmove", vec![ArgInfo::default(); 3], None),
             LibFunc::MemSet => ("memset", vec![ArgInfo::default(); 3], None),
             LibFunc::MemCmp => ("memcmp", vec![ArgInfo::default(); 3], Some(FullType::Single(Type::i32))),
-            LibFunc::Log2F32 => ("log2f", vec![ArgInfo::default(); 1], Some(FullType::Single(Type::f32))),
+            LibFunc::Math(name, is_f64) => {
+                let ty = FullType::Single(if is_f64 { Type::f64 } else { Type::f32 });
+                (name, vec![ArgInfo::default(); 1], Some(ty))
+            }
         };
 
         let func = self.module.borrow_mut()
