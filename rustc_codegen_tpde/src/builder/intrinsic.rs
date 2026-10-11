@@ -622,6 +622,23 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 }
                 res
             }
+            "psadbw" => {
+                let (a, b) = (args[0].immediate(), args[1].immediate());
+                let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
+                // SSE2 / AVX2 / AVX-512 forms: one 64-bit sum per 8 bytes
+                let out_ty = match in_ty {
+                    Type::v16i8 => Type::v2i64,
+                    Type::v32i8 => Type::v4i64,
+                    Type::v64i8 => Type::v8i64,
+                    _ => bug!("psadbw on {in_ty:?}"),
+                };
+                self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::psadbw,
+                    vec![a, b],
+                    out_ty,
+                )
+            }
             "pclmulqdq" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {

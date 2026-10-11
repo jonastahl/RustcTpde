@@ -350,6 +350,10 @@ mod ffi {
         clmul,
         crc32,
 
+        // Sum of absolute differences of the unsigned bytes of each 64-bit half (`psadbw`).
+        // ops: <N x i8>, <N x i8> (N = 16/32/64); result <N/8 x i64>
+        psadbw,
+
         Last,
     }
 
