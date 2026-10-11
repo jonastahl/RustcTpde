@@ -842,16 +842,56 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     vec![args[0].immediate(), args[1].immediate()],
                 )
             }
-            "llvm_vcvtps2ph_128" => {
+            "llvm_vcvtps2ph_128" | "llvm_vcvtps2ph_256" => {
+                let op = if name.as_str().ends_with("256") { 3 } else { 2 };
                 let Some(imm) = self.cx.const_to_opt_uint(args[1].immediate()) else {
                     bug!("vcvtps2ph rounding control must be a constant");
                 };
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_cvt,
-                    vec![args[0].immediate(), Slot::new_raw(2 | ((imm as u32 & 0xFF) << 2))],
+                    vec![args[0].immediate(), Slot::new_raw(op | ((imm as u32 & 0xFF) << 2))],
                     Type::v8i16,
                 )
+            }
+            "rdtscp" => {
+                let aux_align = Align::from_bytes(4).unwrap();
+                let aux_ptr = self.alloca(Size::from_bytes(4), aux_align);
+                let tsc = self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::rdtscp,
+                    vec![aux_ptr],
+                    Type::i64,
+                );
+                let aux = self.load(FullType::Single(Type::i32), aux_ptr, aux_align);
+                self.module.borrow_mut().add_pair(tsc, aux, 8)
+            }
+            "llvm_addcarry_u32" | "llvm_addcarry_u64" | "llvm_subborrow_u32" | "llvm_subborrow_u64" => {
+                use rustc_codegen_ssa::common::IntPredicate::{IntNE, IntULT};
+                let is_64 = name.as_str().ends_with("64");
+                let is_add = name.as_str().contains("addcarry");
+                let carry_in = args[0].immediate();
+                let a = args[1].immediate();
+                let b = args[2].immediate();
+                let ty = self.cx.backend_type(args[1].layout);
+                let i8_ty = FullType::Single(Type::i8);
+
+                let zero = self.const_u8(0);
+                let carry_in = self.icmp(IntNE, carry_in, zero);
+                let carry_in = self.zext(carry_in, ty);
+                let (o1, res, o2) = if is_add {
+                    let t = self.add(a, b);
+                    let res = self.add(t, carry_in);
+                    (self.icmp(IntULT, t, a), res, self.icmp(IntULT, res, t))
+                } else {
+                    let t = self.sub(a, b);
+                    let res = self.sub(t, carry_in);
+                    (self.icmp(IntULT, a, b), res, self.icmp(IntULT, t, carry_in))
+                };
+                let o1 = self.zext(o1, i8_ty);
+                let o2 = self.zext(o2, i8_ty);
+                let carry_out = self.or(o1, o2);
+                self.module.borrow_mut().add_pair(carry_out, res, if is_64 { 8 } else { 4 })
             }
             "rdtsc" => {
                 self.module.borrow_mut().add_instruction_ret(

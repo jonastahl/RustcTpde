@@ -65,6 +65,7 @@ namespace tpde_rust::x64 {
 
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_rdtsc(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_rdtscp(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -321,6 +322,23 @@ namespace tpde_rust::x64 {
     return true;
   }
 
+  bool RustCompilerX64::compile_rdtscp(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    ScratchReg lo{this}, hi{this}, aux{this};
+    lo.alloc_specific(AsmReg::AX);
+    hi.alloc_specific(AsmReg::DX);
+    aux.alloc_specific(AsmReg::CX);
+
+    auto ptr = this->val_ref(inst.ops[0]);
+    const AsmReg ptr_reg = ptr.part(0).load_to_reg();
+    ASM(RDTSCP);
+    ASM(MOV32mr, FE_MEM(ptr_reg, 0, FE_NOREG, 0), aux.cur_reg());
+    ASM(SHL64ri, hi.cur_reg(), 32);
+    ASM(OR64rr, lo.cur_reg(), hi.cur_reg());
+    this->result_ref(inst.result).part(0).set_value(std::move(lo));
+    return true;
+  }
+
   bool RustCompilerX64::compile_clmul(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     // operands: <2 x i64> <2 x i64> <i2>
     // selector: bit 0: control halve of first operand, bit 1: control halve of second operand
@@ -484,6 +502,16 @@ namespace tpde_rust::x64 {
     const u32 op = raw & 3;
     auto vec = this->val_ref(inst.ops[0]);
     auto res = this->result_ref(inst.result);
+
+    if (op == 3) {
+      auto lo = vec.part(0).into_temporary();
+      auto hi = vec.part(1).into_temporary();
+      ASM(VCVTPS2PH128rri, lo.cur_reg(), lo.cur_reg(), static_cast<u8>(raw >> 2));
+      ASM(VCVTPS2PH128rri, hi.cur_reg(), hi.cur_reg(), static_cast<u8>(raw >> 2));
+      ASM(SSE_PUNPCKLQDQrr, lo.cur_reg(), hi.cur_reg());
+      res.part(0).set_value(std::move(lo));
+      return true;
+    }
 
     const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.ops[0])).first;
     for (u32 i = 0; i != parts; ++i) {

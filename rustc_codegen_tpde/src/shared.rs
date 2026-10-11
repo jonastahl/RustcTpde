@@ -310,6 +310,7 @@ mod ffi {
         Atomic_fence,
         Pause,
         rdtsc,
+        rdtscp,
 
         TlsAddr,
 
