@@ -556,7 +556,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::sinf32 | sym::sinf64 | sym::cosf32 | sym::cosf64
             | sym::expf32 | sym::expf64 | sym::exp2f32 | sym::exp2f64
             | sym::logf32 | sym::logf64 | sym::log10f32 | sym::log10f64
-            | sym::log2f32 | sym::log2f64 => {
+            | sym::log2f32 | sym::log2f64 | sym::powf32 | sym::powf64 => {
                 let (lib_name, is_f64) = match name {
                     sym::sinf32 => ("sinf", false), sym::sinf64 => ("sin", true),
                     sym::cosf32 => ("cosf", false), sym::cosf64 => ("cos", true),
@@ -564,13 +564,17 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     sym::exp2f32 => ("exp2f", false), sym::exp2f64 => ("exp2", true),
                     sym::logf32 => ("logf", false), sym::logf64 => ("log", true),
                     sym::log10f32 => ("log10f", false), sym::log10f64 => ("log10", true),
-                    sym::log2f32 => ("log2f", false), _ => ("log2", true),
+                    sym::log2f32 => ("log2f", false), sym::log2f64 => ("log2", true),
+                    sym::powf32 => ("powf", false), sym::powf64 => ("pow", true),
+                    _ => unreachable!()
                 };
-                let func = self.cx.get_lib_fn(LibFunc::Math(lib_name, is_f64));
+                let func = self.cx.get_lib_fn(LibFunc::Math(lib_name, is_f64, args.len()));
+                let mut ops = vec![func];
+                ops.extend(args.iter().map(|arg| arg.immediate()));
                 let result = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::Call,
-                    vec![func, args[0].immediate()],
+                    ops,
                     if is_f64 { Type::f64 } else { Type::f32 }
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))

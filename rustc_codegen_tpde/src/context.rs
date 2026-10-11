@@ -127,7 +127,8 @@ pub enum LibFunc {
     MemMove,
     MemSet,
     MemCmp,
-    Math(&'static str, bool),
+    /// libm function: name, whether it works on f64 instead of f32 and the number of arguments.
+    Math(&'static str, bool, usize),
 }
 
 impl<'tcx> CodegenCx<'_, 'tcx> {
@@ -141,9 +142,9 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             LibFunc::MemMove => ("memmove", vec![ArgInfo::default(); 3], None),
             LibFunc::MemSet => ("memset", vec![ArgInfo::default(); 3], None),
             LibFunc::MemCmp => ("memcmp", vec![ArgInfo::default(); 3], Some(FullType::Single(Type::i32))),
-            LibFunc::Math(name, is_f64) => {
+            LibFunc::Math(name, is_f64, nargs) => {
                 let ty = FullType::Single(if is_f64 { Type::f64 } else { Type::f32 });
-                (name, vec![ArgInfo::default(); 1], Some(ty))
+                (name, vec![ArgInfo::default(); nargs], Some(ty))
             }
         };
 
