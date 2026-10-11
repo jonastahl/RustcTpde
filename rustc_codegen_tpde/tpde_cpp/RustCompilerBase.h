@@ -734,6 +734,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::pmaddwd, &Derived::compile_simd_reduce_pairs, /*op=*/1);
       set_fn(InstructionKind::pmaddubsw, &Derived::compile_simd_reduce_pairs, /*op=*/2);
       set_fn(InstructionKind::simd_shift, &Derived::compile_simd_shift);
+      set_fn(InstructionKind::simd_minmax, &Derived::compile_simd_minmax);
 
       return res;
     }();

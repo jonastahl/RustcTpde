@@ -68,6 +68,7 @@ namespace tpde_rust::x64 {
     bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_shift(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_simd_minmax(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     static GenericValuePart create_addr_for_alloca(tpde::AssignmentPartRef ap);
 
@@ -346,7 +347,6 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
     // op: 0 psadbw, 1 pmaddwd, 2 pmaddubsw
-    // Wide vectors are split into 128 bit parts, each sum only depends on its own part.
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
     auto lhs = this->val_ref(inst.ops[0]);
     auto rhs = this->val_ref(inst.ops[1]);
@@ -367,7 +367,6 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_shift(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    // The count is a single xmm register shared by all 128 bit parts of the shifted vector.
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
     const u32 op = operands::content(inst.ops[2]);
     auto vec = this->val_ref(inst.ops[0]);
@@ -387,6 +386,32 @@ namespace tpde_rust::x64 {
         case 5: ASM(SSE_PSRLQrr, dst.cur_reg(), cnt_reg); break;
         case 6: ASM(SSE_PSRAWrr, dst.cur_reg(), cnt_reg); break;
         default: ASM(SSE_PSRADrr, dst.cur_reg(), cnt_reg); break;
+      }
+      res.part(i).set_value(std::move(dst));
+    }
+    return true;
+  }
+
+  bool RustCompilerX64::compile_simd_minmax(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const u32 op = operands::content(inst.ops[2]);
+    auto lhs = this->val_ref(inst.ops[0]);
+    auto rhs = this->val_ref(inst.ops[1]);
+    auto res = this->result_ref(inst.result);
+
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.ops[0])).first;
+    for (u32 i = 0; i != parts; ++i) {
+      auto dst = lhs.part(i).into_temporary();
+      auto src_reg = rhs.part(i).load_to_reg();
+      switch (op) {
+        case 0: ASM(SSE_MINPSrr, dst.cur_reg(), src_reg); break;
+        case 1: ASM(SSE_MAXPSrr, dst.cur_reg(), src_reg); break;
+        case 2: ASM(SSE_MINPDrr, dst.cur_reg(), src_reg); break;
+        case 3: ASM(SSE_MAXPDrr, dst.cur_reg(), src_reg); break;
+        case 4: ASM(SSE_MINSSrr, dst.cur_reg(), src_reg); break;
+        case 5: ASM(SSE_MAXSSrr, dst.cur_reg(), src_reg); break;
+        case 6: ASM(SSE_MINSDrr, dst.cur_reg(), src_reg); break;
+        default: ASM(SSE_MAXSDrr, dst.cur_reg(), src_reg); break;
       }
       res.part(i).set_value(std::move(dst));
     }

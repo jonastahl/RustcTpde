@@ -710,7 +710,6 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     out_ty,
                 )
             }
-            // llvm.x86.{sse2,avx2,avx512}.ps{ll,rl,ra}.{w,d,q}: (vector, count vector) -> vector
             "psllw" | "pslld" | "psllq" | "psrlw" | "psrld" | "psrlq" | "psraw" | "psrad" => {
                 let op = ["psllw", "pslld", "psllq", "psrlw", "psrld", "psrlq", "psraw", "psrad"]
                     .iter()
@@ -719,6 +718,18 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_shift,
+                    vec![args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
+                )
+            }
+            "minps" | "maxps" | "minpd" | "maxpd" | "minss" | "maxss" | "minsd" | "maxsd"
+            | "vminps" | "vmaxps" | "vminpd" | "vmaxpd" => {
+                let op = ["minps", "maxps", "minpd", "maxpd", "minss", "maxss", "minsd", "maxsd"]
+                    .iter()
+                    .position(|n| *n == name.as_str().trim_start_matches('v'))
+                    .unwrap();
+                self.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::simd_minmax,
                     vec![args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
                 )
             }

@@ -344,6 +344,7 @@ mod ffi {
         pmaddwd,
         pmaddubsw,
         simd_shift,
+        simd_minmax,
 
         copysign,
 
