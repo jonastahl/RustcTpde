@@ -227,6 +227,16 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     }
                 }
             }
+            sym::typed_swap_nonoverlapping => {
+                let pointee_layout = self.layout_of(instance.args.type_at(0));
+                if !pointee_layout.is_zst() {
+                    let align = pointee_layout.align.abi;
+                    let x_place = PlaceValue::new_sized(args[0].immediate(), align);
+                    let y_place = PlaceValue::new_sized(args[1].immediate(), align);
+                    self.typed_place_swap(x_place, y_place, pointee_layout);
+                }
+                IntrinsicResult::Operand(OperandValue::ZeroSized)
+            }
             sym::abort => {
                 self.abort();
                 IntrinsicResult::Operand(OperandValue::ZeroSized)
