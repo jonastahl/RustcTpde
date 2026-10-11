@@ -4175,7 +4175,7 @@ namespace tpde_rust {
     }
 
     for (size_t i = 0; i < global_symbols.size(); ++i) {
-      Global global = this->adaptor->mod->globals[i];
+      const Global& global = this->adaptor->mod->globals[i];
       if (global.flags.extern_link)
         continue;
 
@@ -4197,12 +4197,13 @@ namespace tpde_rust {
           kind = tpde::SectionKind::Data;
         }
       }
-      SecRef sec = this->assembler.create_section(kind);
+      SecRef sec = global.flags.only_local ? this->assembler.get_default_section(kind)
+                                           : this->assembler.create_section(kind);
 
       if (global.init) {
         u32 off;
         this->assembler.sym_def_predef_data(sec, sym, global.data, global.align, &off);
-        for (Relocation &reloc: global.relocations) {
+        for (const Relocation &reloc: global.relocations) {
           if (operands::is_global(reloc.slot)) {
             SymRef &target = global_symbols[operands::content(reloc.slot)];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);

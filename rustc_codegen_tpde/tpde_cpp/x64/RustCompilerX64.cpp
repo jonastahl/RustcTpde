@@ -101,7 +101,7 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_cmp(const RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
-    const Instruction cmpi = this->adaptor->get_instruction(inst);
+    const Instruction &cmpi = this->adaptor->get_instruction(inst);
 
     Type type = this->adaptor->type_of_ref(cmpi.ops[0]);
     if (is_vector(type)) {
