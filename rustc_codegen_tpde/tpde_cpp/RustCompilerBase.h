@@ -3640,6 +3640,14 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fsqrt(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
     Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    if (is_vector(val_info.type)) {
+      const bool is_64 = vector_info(val_info.type).second == Type::f64;
+      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&e) {
+        is_64 ? derived()->encode_sqrtf64(std::move(e), out) : derived()->encode_sqrtf32(std::move(e), out);
+      }, inst.ops[0]);
+      return true;
+    }
+
     ValueRef src = this->val_ref(inst.ops[0]);
     ValueRef res = this->result_ref(inst.result);
     switch (val_info.type) {

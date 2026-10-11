@@ -336,6 +336,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             }
             sym::simd_neg => simd_unop!(self, args -> result_layout: Uint, Int => Neg, Float => fNeg),
             sym::simd_fabs => simd_unop!(self, args -> result_layout: Float => fAbs),
+            sym::simd_fsqrt => simd_unop!(self, args -> result_layout: Float => fSqrt),
             sym::simd_minimum_number_nsz => simd_binop!(self, args -> result_layout: Float => fMin),
             sym::simd_maximum_number_nsz => simd_binop!(self, args -> result_layout: Float => fMax),
             sym::simd_saturating_add => simd_binop!(self, args -> result_layout: Int => sat_sadd, Uint => sat_uadd),
