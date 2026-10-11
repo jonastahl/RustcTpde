@@ -32,9 +32,13 @@ impl CodegenCx<'_, '_> {
             None => {
                 let instance = Instance::mono(self.tcx, def_id);
                 let name = self.tcx.symbol_name(instance).name;
+                let linkage = match self.tcx.codegen_fn_attrs(def_id).import_linkage {
+                    Some(Linkage::ExternalWeak) => Linkage::ExternalWeak,
+                    _ => Linkage::External,
+                };
                 self.declare_static(
                     def_id,
-                    Linkage::ExternalWeak,
+                    linkage,
                     Visibility::Default,
                     Binding::Declaration,
                     name,
