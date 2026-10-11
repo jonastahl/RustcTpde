@@ -693,6 +693,7 @@ namespace tpde_rust {
 
       set_fn(InstructionKind::Abort, &Derived::compile_abort);
       set_fn(InstructionKind::Pause, &Derived::compile_pause);
+      set_fn(InstructionKind::rdtsc, &Derived::compile_rdtsc);
 
       // SIMD
       set_fn(InstructionKind::simd_splat, &Derived::compile_vector_splat);
@@ -733,6 +734,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::psadbw, &Derived::compile_simd_reduce_pairs, /*op=*/0);
       set_fn(InstructionKind::pmaddwd, &Derived::compile_simd_reduce_pairs, /*op=*/1);
       set_fn(InstructionKind::pmaddubsw, &Derived::compile_simd_reduce_pairs, /*op=*/2);
+      set_fn(InstructionKind::pmulhrsw, &Derived::compile_simd_reduce_pairs, /*op=*/3);
       set_fn(InstructionKind::simd_shift, &Derived::compile_simd_shift);
       set_fn(InstructionKind::simd_minmax, &Derived::compile_simd_minmax);
       set_fn(InstructionKind::simd_approx, &Derived::compile_simd_approx);

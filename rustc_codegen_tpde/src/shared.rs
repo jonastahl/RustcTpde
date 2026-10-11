@@ -309,6 +309,7 @@ mod ffi {
         Atomic_store,
         Atomic_fence,
         Pause,
+        rdtsc,
 
         TlsAddr,
 
@@ -343,6 +344,7 @@ mod ffi {
         psadbw,
         pmaddwd,
         pmaddubsw,
+        pmulhrsw,
         simd_shift,
         simd_minmax,
         simd_approx,

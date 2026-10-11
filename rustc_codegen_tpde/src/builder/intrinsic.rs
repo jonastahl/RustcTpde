@@ -335,6 +335,35 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
             sym::simd_neg => simd_unop!(self, args -> result_layout: Uint, Int => Neg, Float => fNeg),
+            // (a, b, c) -> a * b + c per lane, fused: no vector instruction without FMA3, so call
+            // libm fma(f) on each lane.
+            sym::simd_fma => {
+                let (lanes, elem) = args[0].layout.ty.simd_size_and_type(self.tcx);
+                let is_f64 = matches!(elem.kind(), ty::Float(rustc_ast::FloatTy::F64));
+                let (lib_name, elem_ty) = if is_f64 { ("fma", Type::f64) } else { ("fmaf", Type::f32) };
+                let func = self.cx.get_lib_fn(LibFunc::Math(lib_name, is_f64, 3));
+                let FullType::Single(vec_ty) = self.val_ty(args[0].immediate()) else { bug!() };
+                let mut res = args[0].immediate();
+                for i in 0..lanes {
+                    let idx = self.const_usize(i);
+                    let a = self.extract_element(args[0].immediate(), idx);
+                    let b = self.extract_element(args[1].immediate(), idx);
+                    let c = self.extract_element(args[2].immediate(), idx);
+                    let lane = self.cx.module.borrow_mut().add_instruction_ret(
+                        self.basic_block,
+                        InstructionKind::Call,
+                        vec![func, a, b, c],
+                        elem_ty,
+                    );
+                    res = self.cx.module.borrow_mut().add_instruction_ret(
+                        self.basic_block,
+                        InstructionKind::simd_insert,
+                        vec![res, idx, lane],
+                        vec_ty,
+                    );
+                }
+                IntrinsicResult::Operand(OperandValue::Immediate(res))
+            }
             sym::simd_fabs => simd_unop!(self, args -> result_layout: Float => fAbs),
             sym::simd_fsqrt => simd_unop!(self, args -> result_layout: Float => fSqrt),
             sym::simd_minimum_number_nsz => simd_binop!(self, args -> result_layout: Float => fMin),
@@ -800,6 +829,36 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     self.basic_block,
                     InstructionKind::crc32,
                     vec![args[0].immediate(), args[1].immediate()],
+                )
+            }
+            "lddqu" | "vlddqu" => {
+                let ty = if name.as_str() == "vlddqu" { Type::v32i8 } else { Type::v16i8 };
+                self.load(FullType::Single(ty), args[0].immediate(), Align::ONE)
+            }
+            "pmulhrsw" | "pmulhrsw128" => {
+                self.module.borrow_mut().add_instruction_ret_first(
+                    self.basic_block,
+                    InstructionKind::pmulhrsw,
+                    vec![args[0].immediate(), args[1].immediate()],
+                )
+            }
+            "llvm_vcvtps2ph_128" => {
+                let Some(imm) = self.cx.const_to_opt_uint(args[1].immediate()) else {
+                    bug!("vcvtps2ph rounding control must be a constant");
+                };
+                self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::simd_cvt,
+                    vec![args[0].immediate(), Slot::new_raw(2 | ((imm as u32 & 0xFF) << 2))],
+                    Type::v8i16,
+                )
+            }
+            "rdtsc" => {
+                self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::rdtsc,
+                    vec![],
+                    Type::i64,
                 )
             }
             _ => {

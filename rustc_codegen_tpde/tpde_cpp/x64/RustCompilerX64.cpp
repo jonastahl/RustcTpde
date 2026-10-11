@@ -64,6 +64,7 @@ namespace tpde_rust::x64 {
     bool compile_overflow_jump(Instruction&, InstructionKind, bool);
 
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_rdtsc(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -308,6 +309,18 @@ namespace tpde_rust::x64 {
     return true;
   }
 
+  bool RustCompilerX64::compile_rdtsc(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    ScratchReg lo{this}, hi{this};
+    lo.alloc_specific(AsmReg::AX);
+    hi.alloc_specific(AsmReg::DX);
+    ASM(RDTSC);
+    ASM(SHL64ri, hi.cur_reg(), 32);
+    ASM(OR64rr, lo.cur_reg(), hi.cur_reg());
+    this->result_ref(inst.result).part(0).set_value(std::move(lo));
+    return true;
+  }
+
   bool RustCompilerX64::compile_clmul(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     // operands: <2 x i64> <2 x i64> <i2>
     // selector: bit 0: control halve of first operand, bit 1: control halve of second operand
@@ -349,7 +362,7 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
-    // op: 0 psadbw, 1 pmaddwd, 2 pmaddubsw
+    // op: 0 psadbw, 1 pmaddwd, 2 pmaddubsw, 3 pmulhrsw
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
     auto lhs = this->val_ref(inst.ops[0]);
     auto rhs = this->val_ref(inst.ops[1]);
@@ -362,6 +375,7 @@ namespace tpde_rust::x64 {
       switch (op) {
         case 0: ASM(SSE_PSADBWrr, dst.cur_reg(), src_reg); break;
         case 1: ASM(SSE_PMADDWDrr, dst.cur_reg(), src_reg); break;
+        case 3: ASM(SSE_PMULHRSWrr, dst.cur_reg(), src_reg); break;
         default: ASM(SSE_PMADDUBSWrr, dst.cur_reg(), src_reg); break;
       }
       res.part(i).set_value(std::move(dst));
@@ -466,14 +480,17 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_cvt(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const u32 op = operands::content(inst.ops[1]);
+    const u32 raw = operands::content(inst.ops[1]);
+    const u32 op = raw & 3;
     auto vec = this->val_ref(inst.ops[0]);
     auto res = this->result_ref(inst.result);
 
     const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.ops[0])).first;
     for (u32 i = 0; i != parts; ++i) {
       auto dst = vec.part(i).into_temporary();
-      if (op == 0) {
+      if (op == 2) {
+        ASM(VCVTPS2PH128rri, dst.cur_reg(), dst.cur_reg(), static_cast<u8>(raw >> 2));
+      } else if (op == 0) {
         ASM(SSE_CVTPS2DQrr, dst.cur_reg(), dst.cur_reg());
       } else {
         ASM(SSE_CVTTPS2DQrr, dst.cur_reg(), dst.cur_reg());
