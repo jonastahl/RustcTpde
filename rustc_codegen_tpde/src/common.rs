@@ -204,8 +204,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 // TODO so far we ignore the address space
 
                 if offset != 0 {
-                    todo!()
-                    // module.add_global_ptr(g, offset as u32)
+                    self.module.borrow_mut().add_global_ptr(g, offset as u32)
                 } else {
                     Slot::new_global(g)
                 }
