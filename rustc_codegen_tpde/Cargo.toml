@@ -13,6 +13,11 @@ cmake = "0.1.58"
 [lib]
 crate-type = ["rlib"]
 
+[features]
+# Compares the objdump of the lib against expected asm files
+# There might be slight differences between llvm, objdump, ... versions, so it's behind a feature flag
+asm-cmp = []
+
 [dev-dependencies]
 libtest-mimic = "0.7"
 pretty_assertions = "1.4"

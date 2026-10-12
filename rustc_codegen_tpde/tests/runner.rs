@@ -47,6 +47,10 @@ fn main() {
 fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     let overflow = !path.file_name().map_or_else(|| false, |s| s.to_str().unwrap().starts_with("nof_"));
 
+    // Only run the asm comparison when explicitely called,
+    // otherwise we run into too many version conflicts
+    let check_asm = cfg!(feature = "asm-cmp");
+
     // 1. Resolve paths
     let source_path = path.join("source.rs");
     let expected_ir_path = path.join("ir");
@@ -90,18 +94,20 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .output() // Executes the command and captures stdout/stderr
         .map_err(|e| format!("Failed to execute rustc command: {}", e))?;
 
-    let asm_file = File::create(&actual_asm_path)
-        .expect("Failed to create assembly output file");
-    // Raw bytes and addresses are left out, as their layout (line wrapping, symbol
-    // annotations) differs between binutils versions and shifts with every size change.
-    Command::new("objdump")
-        .arg("-d")
-        .arg("--no-show-raw-insn")
-        .arg("--no-addresses")
-        .arg(&actual_obj_path)
-        .stdout(Stdio::from(asm_file))
-        .status()
-        .expect("Failed to execute objdump");
+    if check_asm {
+        let asm_file = File::create(&actual_asm_path)
+            .expect("Failed to create assembly output file");
+        // Raw bytes and addresses are left out, as their layout (line wrapping, symbol
+        // annotations) differs between binutils versions and shifts with every size change.
+        Command::new("objdump")
+            .arg("-d")
+            .arg("--no-show-raw-insn")
+            .arg("--no-addresses")
+            .arg(&actual_obj_path)
+            .stdout(Stdio::from(asm_file))
+            .status()
+            .expect("Failed to execute objdump");
+    }
 
     for entry in fs::read_dir(&path).expect("Failed to read directory") {
         let entry = entry.expect("Failed to read directory entry");
@@ -113,29 +119,35 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
 
     let expected_ir = fs::read_to_string(&expected_ir_path)
         .map_err(|_| eprintln!("Could not find expected ir")).unwrap_or_default();
-    let expected_result = fs::read_to_string(&expected_asm_path)
-        .map_err(|_| eprintln!("Could not find expected asm")).unwrap_or_default();
     let actual_ir = fs::read_to_string(&actual_ir_path)
         .map_err(|_| eprintln!("Could not find generated ir")).unwrap_or_default();
-    let actual_result = fs::read_to_string(&actual_asm_path)
-        .map_err(|_| eprintln!("Could not find generated asm")).unwrap_or_default();
-
-    let expected_result = normalize_asm(&expected_result);
-    let actual_result = normalize_asm(&actual_result);
 
     fs::rename(&actual_ir_path, &expected_ir_path)?;
-    fs::remove_file(&actual_asm_path)?;
-    fs::write(&expected_asm_path, &actual_result)?;
 
     // 4. Compare the outputs
     if actual_ir.trim() != expected_ir.trim() {
         return Err(Failed::from(format!(
             "IR mismatch in {:?}\n{}", path, reduced_diff(expected_ir.trim(), actual_ir.trim())
         )));
-    } else if actual_result != expected_result {
-        return Err(Failed::from(format!(
-            "Result mismatch in {:?}\n{}", path, reduced_diff(&expected_result, &actual_result)
-        )));
+    }
+
+    if check_asm {
+        let expected_result = fs::read_to_string(&expected_asm_path)
+            .map_err(|_| eprintln!("Could not find expected asm")).unwrap_or_default();
+        let actual_result = fs::read_to_string(&actual_asm_path)
+            .map_err(|_| eprintln!("Could not find generated asm")).unwrap_or_default();
+
+        let expected_result = normalize_asm(&expected_result);
+        let actual_result = normalize_asm(&actual_result);
+
+        fs::remove_file(&actual_asm_path)?;
+        fs::write(&expected_asm_path, &actual_result)?;
+
+        if actual_result != expected_result {
+            return Err(Failed::from(format!(
+                "Result mismatch in {:?}\n{}", path, reduced_diff(&expected_result, &actual_result)
+            )));
+        }
     }
 
     // 5. Compile the test files
