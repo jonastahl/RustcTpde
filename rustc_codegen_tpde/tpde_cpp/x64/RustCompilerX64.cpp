@@ -280,11 +280,16 @@ namespace tpde_rust::x64 {
     Instruction& condbr = adaptor->get_instruction(instr);
     assert(this->adaptor->type_of_ref(condbr.ops[0]) == Type::Bool);
 
-    ValueRef cond = this->val_ref(condbr.ops[0]);
-    ValuePartRef cond_op = cond.part(0);
-    const AsmReg cond_reg = cond_op.cur_reg_or_load();
+    // The condition must be unlocked (and ref-counted) before branching.
+    // Otherwise its register is not released at the end of the block and a
+    // later block with multiple predecessors assumes the value is still there.
+    {
+      ValueRef cond = this->val_ref(condbr.ops[0]);
+      ValuePartRef cond_op = cond.part(0);
+      const AsmReg cond_reg = cond_op.cur_reg_or_load();
 
-    ASM(TEST8ri, cond_reg, 1);
+      ASM(TEST8ri, cond_reg, 1);
+    }
     generate_cond_branch(Jump::jne, operands::content(condbr.ops[1]), operands::content(condbr.ops[2]));
     return true;
   }
