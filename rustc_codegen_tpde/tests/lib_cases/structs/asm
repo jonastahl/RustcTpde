@@ -18,7 +18,7 @@ Disassembly of section .text:
 	sub    $0x88,%rsp
 	mov    %rdi,%rbx
 	cmp    $0x64,%esi
-	ja     <find_user+0x62>
+	ja     <find_user+0x73>
 	movabs $0xf0f0f0f0f0f0f0f,%rax
 	mov    %rax,-0x90(%rbp)
 	movb   $0x1f,-0x7e(%rbp)
@@ -26,11 +26,15 @@ Disassembly of section .text:
 	movw   $0x3f3f,-0x80(%rbp)
 	movabs $0x3f3f3f3f3f3f3f3f,%rax
 	mov    %rax,-0x88(%rbp)
-	lea    -0x50(%rbp),%rdi
-	lea    -0x90(%rbp),%rsi
-	mov    $0x18,%edx
-	call   <find_user+0x5d>
-	jmp    <find_user+0x9e>
+	mov    -0x90(%rbp),%rax
+	mov    %rax,-0x50(%rbp)
+	mov    -0x88(%rbp),%rax
+	mov    %rax,-0x48(%rbp)
+	mov    -0x80(%rbp),%rax
+	mov    %rax,-0x40(%rbp)
+	lea    -0x78(%rbp),%rax
+	lea    -0x38(%rbp),%rax
+	jmp    <find_user+0xbd>
 	movabs $0xf0f0f0f0f0f0f0f0,%rax
 	mov    %rax,-0x70(%rbp)
 	movb   $0xf1,-0x5e(%rbp)
@@ -38,14 +42,24 @@ Disassembly of section .text:
 	movw   $0x73f3,-0x60(%rbp)
 	movabs $0xf3f3f3f3f3f3f3f3,%rax
 	mov    %rax,-0x68(%rbp)
-	lea    -0x50(%rbp),%rdi
-	lea    -0x70(%rbp),%rsi
-	mov    $0x18,%edx
-	call   <find_user+0x9e>
-	mov    %rbx,%rdi
-	lea    -0x50(%rbp),%rsi
-	mov    $0x18,%edx
-	call   <find_user+0xaf>
+	mov    -0x70(%rbp),%rax
+	mov    %rax,-0x50(%rbp)
+	mov    -0x68(%rbp),%rax
+	mov    %rax,-0x48(%rbp)
+	mov    -0x60(%rbp),%rax
+	mov    %rax,-0x40(%rbp)
+	lea    -0x58(%rbp),%rax
+	lea    -0x38(%rbp),%rax
+	mov    -0x50(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x48(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x40(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    -0x38(%rbp),%rax
+	lea    0x8(%rbx),%rbx
 	add    $0x88,%rsp
 	pop    %rbx
 	pop    %rbp

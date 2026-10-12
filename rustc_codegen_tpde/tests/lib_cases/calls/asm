@@ -273,7 +273,7 @@ Disassembly of section .text:
 	mov    %rdi,%rbx
 	lea    (%rsi,%rdx,1),%r12
 	cmp    %rsi,%r12
-	jb     <big_struct_from_args+0x163>
+	jb     <big_struct_from_args+0x1ae>
 	cvttsd2si %xmm0,%rax
 	mov    %rax,%rcx
 	sar    $0x3f,%rcx
@@ -291,28 +291,28 @@ Disassembly of section .text:
 	cmovbe %rcx,%rax
 	lea    (%r12,%rax,1),%r13
 	cmp    %r12,%r13
-	jb     <big_struct_from_args+0x157>
+	jb     <big_struct_from_args+0x1a2>
 	lea    0x1(%r13),%r12
 	cmp    %r13,%r12
-	jb     <big_struct_from_args+0x14b>
+	jb     <big_struct_from_args+0x196>
 	lea    0x2(%r13),%r14
 	cmp    %r13,%r14
-	jb     <big_struct_from_args+0x13f>
+	jb     <big_struct_from_args+0x18a>
 	lea    0x3(%r13),%r15
 	cmp    %r13,%r15
-	jb     <big_struct_from_args+0x133>
+	jb     <big_struct_from_args+0x17e>
 	lea    0x4(%r13),%rax
 	cmp    %r13,%rax
-	jb     <big_struct_from_args+0x127>
+	jb     <big_struct_from_args+0x172>
 	lea    0x5(%r13),%rcx
 	cmp    %r13,%rcx
-	jb     <big_struct_from_args+0x11b>
+	jb     <big_struct_from_args+0x166>
 	lea    0x6(%r13),%rdx
 	cmp    %r13,%rdx
-	jb     <big_struct_from_args+0x10f>
+	jb     <big_struct_from_args+0x15a>
 	lea    0x7(%r13),%rsi
 	cmp    %r13,%rsi
-	jb     <big_struct_from_args+0x103>
+	jb     <big_struct_from_args+0x14e>
 	mov    %r13,-0x70(%rbp)
 	mov    %r12,-0x68(%rbp)
 	mov    %r14,-0x60(%rbp)
@@ -321,29 +321,50 @@ Disassembly of section .text:
 	mov    %rcx,-0x48(%rbp)
 	mov    %rdx,-0x40(%rbp)
 	mov    %rsi,-0x38(%rbp)
-	mov    %rbx,%rdi
-	lea    -0x70(%rbp),%rsi
-	mov    $0x40,%edx
-	call   <big_struct_from_args+0xfe>
-	jmp    <big_struct_from_args+0x16f>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x102>
-	call   <big_struct_from_args+0x10f>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x10e>
-	call   <big_struct_from_args+0x11b>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x11a>
-	call   <big_struct_from_args+0x127>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x126>
-	call   <big_struct_from_args+0x133>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x132>
-	call   <big_struct_from_args+0x13f>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x13e>
-	call   <big_struct_from_args+0x14b>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x14a>
-	call   <big_struct_from_args+0x157>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x156>
-	call   <big_struct_from_args+0x163>
-	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x162>
-	call   <big_struct_from_args+0x16f>
+	mov    -0x70(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x68(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x60(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x58(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x50(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x48(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x40(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x38(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    -0x30(%rbp),%rax
+	lea    0x8(%rbx),%rbx
+	jmp    <big_struct_from_args+0x1ba>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x14d>
+	call   <big_struct_from_args+0x15a>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x159>
+	call   <big_struct_from_args+0x166>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x165>
+	call   <big_struct_from_args+0x172>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x171>
+	call   <big_struct_from_args+0x17e>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x17d>
+	call   <big_struct_from_args+0x18a>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x189>
+	call   <big_struct_from_args+0x196>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x195>
+	call   <big_struct_from_args+0x1a2>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x1a1>
+	call   <big_struct_from_args+0x1ae>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x1ad>
+	call   <big_struct_from_args+0x1ba>
 	add    $0x48,%rsp
 	pop    %r15
 	pop    %r14
@@ -352,7 +373,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nopl   0x0(%rax)
 
 <big_struct_roundtrip>:
 	push   %rbp
@@ -1351,25 +1372,25 @@ Disassembly of section .text:
 	mov    %rsi,%r12
 	lea    0x1(%r12),%r13
 	cmp    %r12,%r13
-	jb     <return_big_struct+0xf7>
+	jb     <return_big_struct+0x142>
 	lea    0x2(%r12),%r14
 	cmp    %r12,%r14
-	jb     <return_big_struct+0xeb>
+	jb     <return_big_struct+0x136>
 	lea    0x3(%r12),%r15
 	cmp    %r12,%r15
-	jb     <return_big_struct+0xdf>
+	jb     <return_big_struct+0x12a>
 	lea    0x4(%r12),%rax
 	cmp    %r12,%rax
-	jb     <return_big_struct+0xd3>
+	jb     <return_big_struct+0x11e>
 	lea    0x5(%r12),%rcx
 	cmp    %r12,%rcx
-	jb     <return_big_struct+0xc7>
+	jb     <return_big_struct+0x112>
 	lea    0x6(%r12),%rdx
 	cmp    %r12,%rdx
-	jb     <return_big_struct+0xbb>
+	jb     <return_big_struct+0x106>
 	lea    0x7(%r12),%rsi
 	cmp    %r12,%rsi
-	jb     <return_big_struct+0xaf>
+	jb     <return_big_struct+0xfa>
 	mov    %r12,-0x70(%rbp)
 	mov    %r13,-0x68(%rbp)
 	mov    %r14,-0x60(%rbp)
@@ -1378,25 +1399,46 @@ Disassembly of section .text:
 	mov    %rcx,-0x48(%rbp)
 	mov    %rdx,-0x40(%rbp)
 	mov    %rsi,-0x38(%rbp)
-	mov    %rbx,%rdi
-	lea    -0x70(%rbp),%rsi
-	mov    $0x40,%edx
-	call   <return_big_struct+0xaa>
-	jmp    <return_big_struct+0x103>
-	lea    -0x8(%rip),%rdi        # <return_big_struct+0xae>
-	call   <return_big_struct+0xbb>
-	lea    -0x8(%rip),%rdi        # <return_big_struct+0xba>
-	call   <return_big_struct+0xc7>
-	lea    -0x8(%rip),%rdi        # <return_big_struct+0xc6>
-	call   <return_big_struct+0xd3>
-	lea    -0x8(%rip),%rdi        # <return_big_struct+0xd2>
-	call   <return_big_struct+0xdf>
-	lea    -0x8(%rip),%rdi        # <return_big_struct+0xde>
-	call   <return_big_struct+0xeb>
-	lea    -0x8(%rip),%rdi        # <return_big_struct+0xea>
-	call   <return_big_struct+0xf7>
-	lea    -0x8(%rip),%rdi        # <return_big_struct+0xf6>
-	call   <return_big_struct+0x103>
+	mov    -0x70(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x68(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x60(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x58(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x50(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x48(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x40(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x38(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    -0x30(%rbp),%rax
+	lea    0x8(%rbx),%rbx
+	jmp    <return_big_struct+0x14e>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0xf9>
+	call   <return_big_struct+0x106>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x105>
+	call   <return_big_struct+0x112>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x111>
+	call   <return_big_struct+0x11e>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x11d>
+	call   <return_big_struct+0x12a>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x129>
+	call   <return_big_struct+0x136>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x135>
+	call   <return_big_struct+0x142>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x141>
+	call   <return_big_struct+0x14e>
 	add    $0x48,%rsp
 	pop    %r15
 	pop    %r14
@@ -1405,8 +1447,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <returns_unit>:
 	ret

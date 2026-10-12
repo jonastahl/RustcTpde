@@ -868,6 +868,43 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         flags: MemFlags,
         tt: Option<FncTree>,
     ) {
+        // Avoid having memcpy calls for small constant sizes
+        match self.const_to_opt_uint(size) {
+            Some(i) if i <= 64 => {
+                let mut i = i;
+                let mut src = src;
+                let mut dst = dst;
+
+                let const_1 = self.const_u8(1);
+                while i >= 8 {
+                    let tmp = self.load(FullType::Single(Type::i64), src, src_align);
+                    self.store(tmp, dst, dst_align);
+                    i -= 8;
+                    src = self.gep(FullType::Single(Type::i64), src, &[const_1]);
+                    dst = self.gep(FullType::Single(Type::i64), dst, &[const_1]);
+                }
+                if i >= 4 {
+                    let tmp = self.load(FullType::Single(Type::i32), src, src_align);
+                    self.store(tmp, dst, dst_align);
+                    i -= 4;
+                    src = self.gep(FullType::Single(Type::i32), src, &[const_1]);
+                    dst = self.gep(FullType::Single(Type::i32), dst, &[const_1]);
+                }
+                if i >= 2 {
+                    let tmp = self.load(FullType::Single(Type::i16), src, src_align);
+                    self.store(tmp, dst, dst_align);
+                    i -= 2;
+                    src = self.gep(FullType::Single(Type::i16), src, &[const_1]);
+                    dst = self.gep(FullType::Single(Type::i16), dst, &[const_1]);
+                }
+                if i >= 1 {
+                    let tmp = self.load(FullType::Single(Type::i8), src, src_align);
+                    self.store(tmp, dst, dst_align);
+                }
+                return;
+            }
+            _ => {}
+        }
         let func = self.cx.get_lib_fn(LibFunc::MemCpy);
         self.module.borrow_mut().add_instruction(
             self.basic_block,
@@ -890,6 +927,47 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         size: Self::Value,
         flags: MemFlags,
     ) {
+        // Avoid having memcpy calls for small constant sizes
+        match self.const_to_opt_uint(size) {
+            Some(i) if i <= 64 && flags == MemFlags::VOLATILE => {
+                let mut i = i;
+                let mut src = src;
+                let mut dst = dst;
+                let mut stores = vec![];
+
+                let const_1 = self.const_u8(1);
+                while i >= 8 {
+                    let tmp = self.load(FullType::Single(Type::i64), src, src_align);
+                    i -= 8;
+                    stores.push((tmp, dst));
+                    src = self.gep(FullType::Single(Type::i64), src, &[const_1]);
+                    dst = self.gep(FullType::Single(Type::i64), dst, &[const_1]);
+                }
+                if i >= 4 {
+                    let tmp = self.load(FullType::Single(Type::i32), src, src_align);
+                    i -= 4;
+                    stores.push((tmp, dst));
+                    src = self.gep(FullType::Single(Type::i32), src, &[const_1]);
+                    dst = self.gep(FullType::Single(Type::i32), dst, &[const_1]);
+                }
+                if i >= 2 {
+                    let tmp = self.load(FullType::Single(Type::i16), src, src_align);
+                    i -= 2;
+                    stores.push((tmp, dst));
+                    src = self.gep(FullType::Single(Type::i16), src, &[const_1]);
+                    dst = self.gep(FullType::Single(Type::i16), dst, &[const_1]);
+                }
+                if i >= 1 {
+                    let tmp = self.load(FullType::Single(Type::i8), src, src_align);
+                    stores.push((tmp, dst));
+                }
+                for (tmp, dst) in stores {
+                    self.store(tmp, dst, dst_align);
+                }
+                return;
+            }
+            _ => {}
+        }
         let func = self.cx.get_lib_fn(LibFunc::MemMove);
         self.module.borrow_mut().add_instruction(
             self.basic_block,
