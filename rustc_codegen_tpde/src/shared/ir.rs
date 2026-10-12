@@ -19,7 +19,6 @@ pub struct BasicBlock {
 pub enum Slot {
     Value(Function, u32),
     Pair(u32),
-    // Constant vector, its bytes live in `ModuleTpde::const_vectors`
     ConstVector(u32),
     Const(u32),
     Raw(u32),
@@ -615,7 +614,13 @@ impl Module {
             }
             _ => todo!()
         }
-        ops.extend_from_slice(args);
+        ops.extend(args.iter().flat_map(|arg| match arg {
+            Slot::Pair(_) => {
+                let (l, r, _) = self.extract_vals(*arg);
+                vec![l, r]
+            }
+            s => vec![*s]
+        }));
         self.add_instruction_raw_internal(
             bb,
             InstructionKind::Call,

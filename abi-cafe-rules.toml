@@ -1,0 +1,5 @@
+[target.'*'.'f16']
+run = "skip"
+
+[target.'*'.'f128']
+run = "skip"

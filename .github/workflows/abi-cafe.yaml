@@ -1,0 +1,54 @@
+name: ABI Cafe
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  abi-cafe:
+    name: Run abi-cafe
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Install LLVM 23
+        run: |
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 23 all
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          toolchain: nightly-2026-08-19
+          components: rustc-dev, llvm-tools-preview, rust-src
+
+      - name: Set up Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install cxxbridge
+        run: cargo install cxxbridge-cmd
+
+      - name: Install abi-cafe
+        run: cargo install --locked --git https://github.com/Gankra/abi-cafe abi-cafe
+
+      - name: Build backend
+        run: cargo build --release
+
+      - name: Run abi-cafe
+        run: |
+          abi-cafe \
+            --add-rustc-codegen-backend=tpde:$PWD/target/release/librustc_codegen_tpde_dylib.so \
+            --conventions c --conventions rust \
+            --pairs rustc_calls_tpde \
+            --pairs tpde_calls_rustc \
+            --pairs tpde_calls_tpde \
+            --pairs cc_calls_tpde \
+            --pairs tpde_calls_cc
