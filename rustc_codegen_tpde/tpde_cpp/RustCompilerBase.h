@@ -2597,8 +2597,20 @@ namespace tpde_rust {
     Instruction& inst = this->adaptor->get_instruction(inst_ref);
 
     const auto width = size_of_type(this->adaptor->type_of_ref(inst.ops[0]));
-    if (width > 64) {
-      return false;
+    if (width == 128) {
+      ValueRef val_ref = this->val_ref(inst.ops[0]);
+      auto res_ref = this->result_ref(inst.result);
+      ValuePartRef lo_cnt{this, Config::GP_BANK};
+      ValuePartRef hi_cnt{this, Config::GP_BANK};
+      ValuePartRef lo = val_ref.part(0);
+      ValuePartRef hi = val_ref.part(1);
+      if (!derived()->encode_ctpopi64(std::move(lo), lo_cnt) ||
+          !derived()->encode_ctpopi64(std::move(hi), hi_cnt) ||
+          !derived()->encode_addi64(std::move(lo_cnt), std::move(hi_cnt), res_ref.part(0))) {
+        return false;
+      }
+      res_ref.part(1).set_value(ValuePartRef(this, 0, 8, Config::GP_BANK));
+      return true;
     }
 
     ValueRef val_ref = this->val_ref(inst.ops[0]);
