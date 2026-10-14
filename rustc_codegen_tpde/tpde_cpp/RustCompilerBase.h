@@ -1179,7 +1179,7 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_overflowable(RustAdaptor::IRInstRef instr,
                                                                         const ValInfo &info, u64 op) {
-    auto instr_size = this->adaptor->get_basic_block(instr.block).instructions.size();
+    auto instr_size = this->adaptor->get_basic_block(instr.block).insts_len;
     if (instr_size > instr.inst) {
       Instruction &pot_overflow = this->adaptor->get_instruction(instr.next());
       if (pot_overflow.kind == InstructionKind::OverflowCheck) {
@@ -1474,8 +1474,7 @@ namespace tpde_rust {
           break;
 
         auto next_ref = gep_ref.next();
-        const auto &insts = this->adaptor->get_basic_block(gep_ref.block).instructions;
-        if (next_ref.inst >= insts.size())
+        if (next_ref.inst >= this->adaptor->get_basic_block(gep_ref.block).insts_len)
           break;
 
         next_val = &this->adaptor->get_instruction(next_ref);
@@ -1942,7 +1941,7 @@ namespace tpde_rust {
 
       res_to_ret(calli.result);
 
-      if (this->adaptor->get_basic_block(instr.block).instructions.size() > instr.next().inst) {
+      if (this->adaptor->get_basic_block(instr.block).insts_len > instr.next().inst) {
         const Instruction &pot_addret = this->adaptor->get_instruction(instr.next());
         if (pot_addret.kind == InstructionKind::AddRet) {
           res_to_ret(pot_addret.result);
@@ -1981,7 +1980,6 @@ namespace tpde_rust {
     IRBlockRef unwind_block_ref = operands::content(this->adaptor->ops(inst)[2]);
     auto unwind_block_has_phi = false; // TODO
 
-  const BasicBlock& unwind_block = this->adaptor->get_basic_block(unwind_block_ref);
   const BasicBlock& normal_block = this->adaptor->get_basic_block(normal_block_ref);
   auto unwind_label =
       this->block_labels[(u32)this->analyzer.block_idx(unwind_block_ref)];
@@ -2028,7 +2026,7 @@ namespace tpde_rust {
     this->release_spilled_regs(spilled);
   }
 
-  const Instruction &lp = unwind_block.instructions[0];
+  const Instruction &lp = this->adaptor->block_instructions(unwind_block_ref)[0];
   assert(lp.kind == InstructionKind::LandingPad);
   const auto kind = static_cast<LandingPadKind>(operands::content(this->adaptor->ops(lp)[0]));
 

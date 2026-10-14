@@ -35,6 +35,7 @@ mod ffi {
         personality: u32,
 
         operands: Vec<u32>,
+        instructions: Vec<Instruction>,
         allocas: Vec<Alloca>,
         basic_blocks: Vec<BasicBlock>,
 
@@ -104,7 +105,8 @@ mod ffi {
 
     pub struct BasicBlock {
         name: String,
-        instructions: Vec<Instruction>,
+        insts_start: u32,
+        insts_len: u32,
         // TODO add phis and similar
         info1: u32,
         info2: u32,
@@ -420,7 +422,7 @@ mod ffi {
 
 struct BlockDebug<'a> {
     block: &'a ffi::BasicBlock,
-    operands: &'a [u32],
+    function: &'a ffi::Function,
 }
 
 struct InstructionDebug<'a> {
@@ -433,7 +435,7 @@ impl Debug for ffi::Function {
         let blocks: Vec<BlockDebug> = self
             .basic_blocks
             .iter()
-            .map(|block| BlockDebug { block, operands: &self.operands })
+            .map(|block| BlockDebug { block, function: self })
             .collect();
         f.debug_struct("Function")
             .field("name", &self.name)
@@ -453,10 +455,12 @@ impl Debug for ffi::Function {
 impl Debug for BlockDebug<'_> {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
         write!(f, "{:?}: ", self.block.name)?;
+        let start = self.block.insts_start as usize;
+        let insts = &self.function.instructions[start..start + self.block.insts_len as usize];
         f.debug_list()
-            .entries(self.block.instructions.iter().map(|inst| InstructionDebug {
+            .entries(insts.iter().map(|inst| InstructionDebug {
                 inst,
-                operands: self.operands,
+                operands: &self.function.operands,
             }))
             .finish()
     }

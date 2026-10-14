@@ -75,7 +75,12 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] Instruction &get_instruction(const IRInstRef inst) const {
-      return get_basic_block(inst.block).instructions[inst.inst];
+      return cur_func->instructions[get_basic_block(inst.block).insts_start + inst.inst];
+    }
+
+    [[nodiscard]] std::span<Instruction> block_instructions(const IRBlockRef block) const {
+      const auto &bb = get_basic_block(block);
+      return {cur_func->instructions.data() + bb.insts_start, bb.insts_len};
     }
 
     [[nodiscard]] std::span<const u32> ops(const Instruction &inst) const {
@@ -167,10 +172,10 @@ namespace tpde_rust {
       size_t offset, count;
       size_t stride = 1;
 
-      auto& basic_block = get_basic_block(bb);
-      auto* br_instr = &basic_block.instructions.back();
+      const auto insts = block_instructions(bb);
+      auto* br_instr = &insts.back();
       if (br_instr->kind == InstructionKind::AddRet) {
-        br_instr = &basic_block.instructions[basic_block.instructions.size() - 2];
+        br_instr = &insts[insts.size() - 2];
       }
 
       switch (br_instr->kind) {
@@ -213,7 +218,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto block_insts(const IRBlockRef bb) {
-      return std::ranges::views::iota(0u, static_cast<uint32_t>(get_basic_block(bb).instructions.size()))
+      return std::ranges::views::iota(0u, static_cast<uint32_t>(get_basic_block(bb).insts_len))
              | std::ranges::views::transform([bb](uint32_t idx) { return IRInstRef{.inst = idx, .block = bb}; });
     }
 

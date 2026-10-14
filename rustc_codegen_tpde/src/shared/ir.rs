@@ -179,6 +179,7 @@ pub struct Module {
     tpde: ModuleTpde,
 
     pairs: Vec<PairRef>,
+    inst_blocks: Vec<Vec<u32>>,
 }
 
 #[derive(PartialEq)]
@@ -206,14 +207,49 @@ impl Module {
                 const_vectors: vec![],
             },
             pairs: vec![],
+            inst_blocks: vec![],
         }
     }
 
-    pub fn tpde(&self) -> &ModuleTpde {
-        &self.tpde
+    fn finalize(&mut self) {
+        for (func, inst_blocks) in self.tpde.functions.iter_mut().zip(self.inst_blocks.iter_mut()) {
+            if inst_blocks.is_empty() {
+                continue;
+            }
+
+            let mut next = 0;
+            for block in func.basic_blocks.iter_mut() {
+                block.insts_start = next;
+                next += block.insts_len;
+            }
+
+            let mut cursors: Vec<u32> = func.basic_blocks.iter().map(|b| b.insts_start).collect();
+            let mut in_place = true;
+            for (i, &block) in inst_blocks.iter().enumerate() {
+                let cursor = &mut cursors[block as usize];
+                if *cursor != i as u32 {
+                    in_place = false;
+                    break;
+                }
+                *cursor += 1;
+            }
+
+            if !in_place {
+                let mut order: Vec<u32> = (0..inst_blocks.len() as u32).collect();
+                // order.sort_by_key(|&i| (func.basic_blocks[inst_blocks[i as usize] as usize].insts_start, i));
+                order.sort_by_key(|&i| (inst_blocks[i as usize], i));
+
+                let mut old: Vec<Option<ffi::Instruction>> =
+                    std::mem::take(&mut func.instructions).into_iter().map(Some).collect();
+                func.instructions = order.iter().map(|&i| old[i as usize].take().unwrap()).collect();
+            }
+
+            inst_blocks.clear();
+        }
     }
 
     pub fn tpde_mut(&mut self) -> &mut ModuleTpde {
+        self.finalize();
         &mut self.tpde
     }
 
@@ -234,10 +270,12 @@ impl Module {
             slots: slots.iter().map(|ty| ffi::Slot { ty: *ty }).collect(),
             flags: Self::create_flags(linkage, ty),
             operands: vec![],
+            instructions: vec![],
             allocas: vec![],
             basic_blocks: vec![],
             callee_infos: vec![],
         });
+        self.inst_blocks.push(vec![]);
         Function(self.tpde.functions.len() - 1)
     }
 
@@ -433,7 +471,8 @@ impl Module {
         let function = self.get_function_mut(func);
         function.basic_blocks.push(ffi::BasicBlock {
             name: name.to_string(),
-            instructions: vec![],
+            insts_start: 0,
+            insts_len: 0,
             info1: 0,
             info2: 0,
         });
@@ -576,28 +615,36 @@ impl Module {
                 Some(FullType::Memory { .. }) => ReturnType::Single(self.add_slot(bb.function, Type::ptr)),
             };
 
-        let function = self.get_function_mut(&bb.function());
+        let function = &mut self.tpde.functions[bb.function().0];
+        let inst_blocks = &mut self.inst_blocks[bb.function().0];
+        let block_index = bb.index() as u32;
+
         let ops_start = function.operands.len() as u32;
         function.operands.extend(ops.iter().map(|s| s.to_ffi()));
 
-        let basic_block = Module::get_basic_block_mut_helper(function, bb);
-
-        basic_block.instructions.push(ffi::Instruction {
+        function.instructions.push(ffi::Instruction {
             kind: instr,
             ops_start,
             ops_len: ops.len() as u32,
             has_result: ret.num_ret() >= 1,
             result: ret.result_a(),
         });
+        inst_blocks.push(block_index);
+        let mut pushed = 1;
+
         if ret.num_ret() >= 2 {
-            basic_block.instructions.push(ffi::Instruction {
+            function.instructions.push(ffi::Instruction {
                 kind: InstructionKind::AddRet,
                 ops_start,
                 ops_len: 0,
                 has_result: true,
                 result: ret.result_b(),
             });
+            inst_blocks.push(block_index);
+            pushed += 1;
         }
+
+        function.basic_blocks[block_index as usize].insts_len += pushed;
 
         ret.result()
     }
