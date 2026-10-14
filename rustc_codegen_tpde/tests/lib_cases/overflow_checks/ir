@@ -52,7 +52,7 @@ ModuleTpde {
                 "bb1": [
                     <Store> ([val: 3], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 5],
-                    <Mul> ([val: 5], [const: 0]) -> [val: 6],
+                    <Mul> ([val: 5], [const: i8 2]) -> [val: 6],
                     <OverflowCheck> ([raw: 0]) -> [val: 7],
                     <CondBr> ([val: 7], [raw: 4], [raw: 3]),
                 ],
@@ -63,8 +63,8 @@ ModuleTpde {
                 "bb2": [
                     <Store> ([val: 6], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 8],
-                    <Sub> ([val: 8], [const: 1]) -> [val: 9],
-                    <CMPult> ([val: 8], [const: 1]) -> [val: 10],
+                    <Sub> ([val: 8], [const: i8 1]) -> [val: 9],
+                    <CMPult> ([val: 8], [const: i8 1]) -> [val: 10],
                     <CondBr> ([val: 10], [raw: 6], [raw: 5]),
                 ],
                 "panic": [
@@ -1859,8 +1859,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Store> ([const: 2], [alloc: 0], [raw: 1]),
-                    <Store> ([const: 3], [alloc: 1], [raw: 1]),
+                    <Store> ([const: i8 0], [alloc: 0], [raw: 1]),
+                    <Store> ([const: i8 1], [alloc: 1], [raw: 1]),
                     <Br> ([raw: 1]),
                 ],
                 "bb1": [
@@ -1882,7 +1882,7 @@ ModuleTpde {
                 "bb3": [
                     <Store> ([val: 6], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 1], [raw: 1]) -> [val: 8],
-                    <Add> ([val: 8], [const: 4]) -> [val: 9],
+                    <Add> ([val: 8], [const: i8 1]) -> [val: 9],
                     <CMPult> ([val: 9], [val: 8]) -> [val: 10],
                     <CondBr> ([val: 10], [raw: 7], [raw: 6]),
                 ],
@@ -1977,13 +1977,7 @@ ModuleTpde {
             callee_infos: [],
         },
     ],
-    consts: [
-        [i8] (0 2) -> 2,
-        [i8] (0 1) -> 1,
-        [i8] (0 0) -> 0,
-        [i8] (0 1) -> 1,
-        [i8] (0 1) -> 1,
-    ],
+    consts: [],
     globals: [
         alloc_068549dcef5b6dbe78fb9764415bbd9a {
             size: 24,

@@ -179,8 +179,12 @@ pub struct Module {
     tpde: ModuleTpde,
 
     pairs: Vec<PairRef>,
-    inst_blocks: Vec<Vec<u32>>,
 }
+
+/// We inline smaller constants to avoid overusing the constant pool with small values.
+pub const INLINE_CONST_BITS: u32 = 6;
+pub const INLINE_CONST_LIMIT: u128 = 1 << INLINE_CONST_BITS;
+pub const INLINE_CONST_END: u32 = (Type::Last.repr as u32) << INLINE_CONST_BITS;
 
 #[derive(PartialEq)]
 pub enum Binding {
@@ -207,64 +211,25 @@ impl Module {
                 const_vectors: vec![],
             },
             pairs: vec![],
-            inst_blocks: vec![],
-        }
-    }
-
-    fn finalize(&mut self) {
-        for (func, inst_blocks) in self.tpde.functions.iter_mut().zip(self.inst_blocks.iter_mut()) {
-            if inst_blocks.is_empty() {
-                continue;
-            }
-
-            let mut next = 0;
-            for block in func.basic_blocks.iter_mut() {
-                block.insts_start = next;
-                next += block.insts_len;
-            }
-
-            let mut cursors: Vec<u32> = func.basic_blocks.iter().map(|b| b.insts_start).collect();
-            let mut in_place = true;
-            for (i, &block) in inst_blocks.iter().enumerate() {
-                let cursor = &mut cursors[block as usize];
-                if *cursor != i as u32 {
-                    in_place = false;
-                    break;
-                }
-                *cursor += 1;
-            }
-
-            if !in_place {
-                let mut order: Vec<u32> = (0..inst_blocks.len() as u32).collect();
-                // order.sort_by_key(|&i| (func.basic_blocks[inst_blocks[i as usize] as usize].insts_start, i));
-                order.sort_by_key(|&i| (inst_blocks[i as usize], i));
-
-                let mut old: Vec<Option<ffi::Instruction>> =
-                    std::mem::take(&mut func.instructions).into_iter().map(Some).collect();
-                func.instructions = order.iter().map(|&i| old[i as usize].take().unwrap()).collect();
-            }
-
-            inst_blocks.clear();
         }
     }
 
     pub fn tpde_mut(&mut self) -> &mut ModuleTpde {
-        self.finalize();
         &mut self.tpde
     }
 
     pub fn add_function<'tpde, 'tcx>(
         &mut self,
         name: &str,
-        fn_sign: FunctionSignature,
+        fn_sign: &FunctionSignature,
         linkage: Linkage,
         ty: Binding
     ) -> Function {
         let FunctionSignature{slots, arg_infos, ret} = fn_sign;
         self.tpde.functions.push(ffi::Function {
             name: name.to_string(),
-            has_ret: fn_sign.ret.is_some(),
-            args: arg_infos,
+            has_ret: ret.is_some(),
+            args: arg_infos.clone(),
             has_personality: false,
             personality: 0,
             slots: slots.iter().map(|ty| ffi::Slot { ty: *ty }).collect(),
@@ -275,8 +240,16 @@ impl Module {
             basic_blocks: vec![],
             callee_infos: vec![],
         });
-        self.inst_blocks.push(vec![]);
         Function(self.tpde.functions.len() - 1)
+    }
+
+    /// Avoid constant resizing by already reserving the given stimations
+    pub fn reserve_function(&mut self, func: Function, blocks: usize, insts: usize, slots: usize, operands: usize) {
+        let function = &mut self.tpde.functions[func.0];
+        function.basic_blocks.reserve(blocks);
+        function.instructions.reserve(insts);
+        function.slots.reserve(slots);
+        function.operands.reserve(operands);
     }
 
     pub fn return_value(&mut self, func: Function) -> Option<Slot> {
@@ -435,7 +408,7 @@ impl Module {
             Slot::Value(func, ind) => {
                 FullType::Single(self.tpde.functions[func.0].slots[ind as usize].ty)
             }
-            Slot::Const(ind) => FullType::Single(self.tpde.consts[ind as usize].ty),
+            Slot::Const(c) => FullType::Single(self.const_value(c).0),
             Slot::Pair(ind) => {
                 let pair = &self.pairs[ind as usize];
                 let FullType::Single(slot_a) = self.type_of_slot(pair.slot_a)
@@ -502,8 +475,8 @@ impl Module {
     }
 
     #[inline]
-    pub fn add_instruction(&mut self, bb: BasicBlock, instr: InstructionKind, ops: Vec<Slot>) {
-        self.add_instruction_raw_internal(bb, instr, ops.as_slice(), None);
+    pub fn add_instruction(&mut self, bb: BasicBlock, instr: InstructionKind, ops: &[Slot]) {
+        self.add_instruction_raw_internal(bb, instr, ops, None);
     }
 
     #[inline]
@@ -511,10 +484,10 @@ impl Module {
         &mut self,
         bb: BasicBlock,
         instr: InstructionKind,
-        ops: Vec<Slot>,
+        ops: &[Slot],
         ret: Type,
     ) -> Slot {
-        self.add_instruction_raw_internal(bb, instr, ops.as_slice(), Some(FullType::Single(ret))).unwrap()
+        self.add_instruction_raw_internal(bb, instr, ops, Some(FullType::Single(ret))).unwrap()
     }
 
     #[inline]
@@ -522,7 +495,7 @@ impl Module {
         &mut self,
         bb: BasicBlock,
         instr: InstructionKind,
-        ops: Vec<Slot>,
+        ops: &[Slot],
         ret: usize
     ) -> Slot {
         assert!(ops.len() >= 1);
@@ -536,12 +509,10 @@ impl Module {
                 assert_eq!(bb.function(), f);
                 func.slots.get(v as usize).unwrap().ty
             }
-            Slot::Const(v) => {
-                self.tpde.consts.get(v as usize).unwrap().ty
-            }
+            Slot::Const(v) => self.const_value(v).0,
             _ => panic!("First operand of return instruction must be a value slot"),
         };
-        self.add_instruction_raw_internal(bb, instr, ops.as_slice(), Some(FullType::Single(ret))).unwrap()
+        self.add_instruction_raw_internal(bb, instr, ops, Some(FullType::Single(ret))).unwrap()
     }
 
     #[inline]
@@ -549,7 +520,7 @@ impl Module {
         &mut self,
         bb: BasicBlock,
         instr: InstructionKind,
-        ops: Vec<Slot>,
+        ops: &[Slot],
     ) -> Slot {
         self.add_instruction_ret_x(bb, instr, ops, 0)
     }
@@ -616,8 +587,19 @@ impl Module {
             };
 
         let function = &mut self.tpde.functions[bb.function().0];
-        let inst_blocks = &mut self.inst_blocks[bb.function().0];
-        let block_index = bb.index() as u32;
+        let block = &mut function.basic_blocks[bb.index()];
+
+        // In the default case we write each basic_block in on go
+        // Sometimes the ssa generater jumps to other blocks, this happens just rarely
+        // In this case we just copy everything of the block written so far to the end
+        let end = function.instructions.len() as u32;
+        if block.insts_len == 0 {
+            block.insts_start = end;
+        } else if block.insts_start + block.insts_len != end {
+            let start = block.insts_start as usize;
+            function.instructions.extend_from_within(start..start + block.insts_len as usize);
+            block.insts_start = end;
+        }
 
         let ops_start = function.operands.len() as u32;
         function.operands.extend(ops.iter().map(|s| s.to_ffi()));
@@ -629,8 +611,7 @@ impl Module {
             has_result: ret.num_ret() >= 1,
             result: ret.result_a(),
         });
-        inst_blocks.push(block_index);
-        let mut pushed = 1;
+        block.insts_len += 1;
 
         if ret.num_ret() >= 2 {
             function.instructions.push(ffi::Instruction {
@@ -640,11 +621,8 @@ impl Module {
                 has_result: true,
                 result: ret.result_b(),
             });
-            inst_blocks.push(block_index);
-            pushed += 1;
+            block.insts_len += 1;
         }
-
-        function.basic_blocks[block_index as usize].insts_len += pushed;
 
         ret.result()
     }
@@ -666,17 +644,20 @@ impl Module {
             }
             _ => todo!()
         }
-        ops.extend(args.iter().flat_map(|arg| match arg {
-            Slot::Pair(_) => {
-                let (l, r, _) = self.extract_vals(*arg);
-                vec![l, r]
+        for &arg in args {
+            match arg {
+                Slot::Pair(ind) => {
+                    let pair = self.pairs[ind as usize];
+                    ops.push(pair.slot_a);
+                    ops.push(pair.slot_b);
+                }
+                s => ops.push(s),
             }
-            s => vec![*s]
-        }));
+        }
         self.add_instruction_raw_internal(
             bb,
             InstructionKind::Call,
-            ops.as_slice(),
+            &ops,
             func_sign.ret
         )
     }
@@ -706,7 +687,7 @@ impl Module {
         self.add_instruction_raw_internal(
             bb,
             InstructionKind::Invoke,
-            ops.as_slice(),
+            &ops,
             func_sign.ret
         )
     }
@@ -719,15 +700,28 @@ impl Module {
     }
 
     pub fn add_const(&mut self, ty: Type, data: u128) -> Slot {
+        if data < INLINE_CONST_LIMIT {
+            return Slot::new_const((ty.repr as u32) << INLINE_CONST_BITS | data as u32);
+        }
         let consts = &mut self.tpde.consts;
         consts.push(ffi::Value::new(ty, data));
-        Slot::new_const((consts.len() - 1) as u32)
+        Slot::new_const(INLINE_CONST_END + (consts.len() - 1) as u32)
+    }
+
+    /// Wrapper to also convert back inlined constants
+    fn const_value(&self, c: u32) -> (Type, u128) {
+        if c < INLINE_CONST_END {
+            let ty = Type { repr: (c >> INLINE_CONST_BITS) as _ };
+            (ty, (c & (INLINE_CONST_LIMIT as u32 - 1)) as u128)
+        } else {
+            let value = &self.tpde.consts[(c - INLINE_CONST_END) as usize];
+            (value.ty, value.data())
+        }
     }
 
     pub fn const_data(&self, slot: Slot) -> Option<u128> {
         match slot {
-            Slot::Const(i) =>
-                Some(self.tpde.consts.get(i as usize).unwrap().data()),
+            Slot::Const(c) => Some(self.const_value(c).1),
             _ => None
         }
     }
@@ -799,13 +793,14 @@ impl Module {
         self.add_instruction(
             bb,
             InstructionKind::Br,
-            vec![Slot::new_raw(to.index as u32)],
+            &[Slot::new_raw(to.index as u32)],
         );
     }
 
     pub fn add_switch(&mut self, bb: BasicBlock, val: Slot, else_block: BasicBlock, cases: &[(u128, BasicBlock)]) {
-        let mut ops = vec![val, Slot::new_raw(else_block.index as u32)];
-        ops.reserve(cases.len() * 2 + 2);
+        let mut ops = Vec::with_capacity(cases.len() * 2 + 2);
+        ops.push(val);
+        ops.push(Slot::new_raw(else_block.index as u32));
 
         let FullType::Single(ty) = self.type_of_slot(val) else {
             todo!()
@@ -822,7 +817,7 @@ impl Module {
         self.add_instruction(
             bb,
             InstructionKind::Switch,
-            ops
+            &ops
         );
     }
 
@@ -836,7 +831,7 @@ impl Module {
         self.add_instruction(
             bb,
             InstructionKind::CondBr,
-            vec![
+            &[
                 cond,
                 Slot::new_raw(thenbb.index as u32),
                 Slot::new_raw(elsebb.index as u32),
@@ -959,7 +954,11 @@ impl Debug for Slot {
             Self::ConstVector(v) => write!(f, "[const vector: {}]", v),
             Self::Func(v) => write!(f, "[func: {}]", v.0),
             Self::Global(g) => write!(f, "[global: {}]", g.0),
-            Self::Const(v) => write!(f, "[const: {}]", v),
+            Self::Const(c) if *c < INLINE_CONST_END => {
+                let ty = Type { repr: (*c >> INLINE_CONST_BITS) as _ };
+                write!(f, "[const: {:?} {}]", ty, *c & (INLINE_CONST_LIMIT as u32 - 1))
+            }
+            Self::Const(c) => write!(f, "[const pool: {}]", c - INLINE_CONST_END),
             Self::GlobalPtr(p) => write!(f, "[globalptr: {}]", p),
             Self::Pair(..) =>
                 unreachable!("Only used for tracking during generation"),

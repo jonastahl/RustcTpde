@@ -32,24 +32,24 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPugt> ([val: 0], [const: 0]) -> [val: 1],
+                    <CMPugt> ([val: 0], [const pool: 0]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 1], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: 3]) -> [val: 2],
-                    <Store> ([const: 2], [val: 2], [raw: 8]),
+                    <Store> ([const pool: 1], [alloc: 0], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 2],
+                    <Store> ([const pool: 2], [val: 2], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 4], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: 6]) -> [val: 3],
-                    <Store> ([const: 5], [val: 3], [raw: 8]),
+                    <Store> ([const pool: 3], [alloc: 0], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 3],
+                    <Store> ([const pool: 4], [val: 3], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
-                    <GEP> ([alloc: 0], [raw: 8], [const: 7]) -> [val: 5],
+                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 8]) -> [val: 6],
                     <Ret> ([val: 4], [val: 6]),
                 ],
@@ -86,20 +86,20 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <CMPugt> ([val: 0], [const: 10]) -> [val: 1],
+                    <CMPugt> ([val: 0], [const pool: 5]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 11], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 6], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 12], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 7], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 2],
-                    <GEP> ([alloc: 0], [raw: 8], [const: 13]) -> [val: 3],
+                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
                     <Load> ([val: 3], [raw: 8]) -> [val: 4],
                     <Ret> ([val: 2], [val: 4]),
                 ],
@@ -139,7 +139,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Add> ([val: 1], [const: 16]) -> [val: 2],
+                    <Add> ([val: 1], [const: i8 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
@@ -183,22 +183,11 @@ ModuleTpde {
         [i32] (0 100) -> 100,
         [i64] (0 1085102592571150095) -> 1085102592571150095,
         [i8] (18446744073709551615 18446744073709551602) -> -14,
-        [i64] (0 8) -> 8,
         [i64] (18446744073709551615 17361641481138401520) -> -1085102592571150096,
         [i8] (18446744073709551615 18446744073709551601) -> -15,
-        [i64] (0 8) -> 8,
-        [i64] (0 1) -> 1,
-        [i64] (0 0) -> 0,
-        [i8] (0 0) -> 0,
         [i32] (0 100) -> 100,
         [i128] (242 1085102592571150095) -> 4464112065837711491314,
         [i128] (241 17361641481138401520) -> 4445665321764001939697,
-        [i64] (0 1) -> 1,
-        [i64] (0 0) -> 0,
-        [i8] (0 0) -> 0,
-        [i8] (0 1) -> 1,
-        [i64] (0 0) -> 0,
-        [i8] (0 0) -> 0,
     ],
     globals: [
         alloc_b0a41fa48238d98edf3007ed4918c047 {

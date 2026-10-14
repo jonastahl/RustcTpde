@@ -68,4 +68,8 @@ namespace operands {
   inline uint32_t content(size_t op) {
     return op & ~MARKER_BLOCK;
   }
+
+  inline constexpr uint32_t INLINE_CONST_BITS = 6;
+  inline constexpr uint32_t INLINE_CONST_MASK = (uint32_t{1} << INLINE_CONST_BITS) - 1;
+  inline constexpr uint32_t INLINE_CONST_END = static_cast<uint32_t>(Type::Last) << INLINE_CONST_BITS;
 }

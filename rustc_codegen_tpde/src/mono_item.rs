@@ -1,6 +1,6 @@
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, Function, Global};
-use rustc_codegen_ssa::traits::PreDefineCodegenMethods;
+use rustc_codegen_ssa::traits::{LayoutTypeCodegenMethods, PreDefineCodegenMethods};
 use rustc_hir::attrs::Linkage;
 use rustc_middle::mir::Mutability;
 use rustc_middle::mono::Visibility;
@@ -86,8 +86,9 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
         if self.module.try_borrow_mut().is_err() {
             println!("Module is already borrowed")
         }
+        let sig = self.fn_decl_backend_type(fn_abi);
         let func = self.module.borrow_mut()
-            .add_function(symbol_name, self.create_function_signature(fn_abi), linkage, binding);
+            .add_function(symbol_name, &self.function_signatures.borrow()[sig], linkage, binding);
         self.functions.borrow_mut().insert(instance, func);
         func
     }

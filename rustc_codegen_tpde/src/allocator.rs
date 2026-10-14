@@ -115,7 +115,7 @@ fn create_wrapper_function(
     let sign = scx.function_signature(args, output);
     let caller = module.add_function(
         from_name,
-        sign.clone(),
+        &sign,
         Linkage::Common,
         Binding::Definition,
     );
@@ -125,7 +125,7 @@ fn create_wrapper_function(
     let ret = if let Some(to_name) = to_name {
         let callee = module.add_function(
             to_name,
-            sign.clone(),
+            &sign,
             Linkage::ExternalWeak,
             Binding::Declaration,
         );
@@ -143,5 +143,5 @@ fn create_wrapper_function(
         vec![]
     };
 
-    module.add_instruction(bb, InstructionKind::Ret, ret);
+    module.add_instruction(bb, InstructionKind::Ret, &ret);
 }

@@ -40,7 +40,7 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Store> ([const: 0], [alloc: 0], [raw: 1]),
+                    <Store> ([const: Bool 1], [alloc: 0], [raw: 1]),
                     <Invoke> ([func: 18], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
                 ],
                 "terminate": [
@@ -50,7 +50,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 "bb1": [
-                    <Invoke> ([func: 15], [raw: 5], [raw: 4], [const: 1]) -> [val: 7],
+                    <Invoke> ([func: 15], [raw: 5], [raw: 4], [const pool: 0]) -> [val: 7],
                 ],
                 "bb7": [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 13],
@@ -60,12 +60,12 @@ ModuleTpde {
                     <LandingPad> ([raw: 0]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Store> ([val: 4], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: 2]) -> [val: 6],
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 6],
                     <Store> ([val: 5], [val: 6], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 "bb2": [
-                    <Store> ([const: 3], [alloc: 0], [raw: 1]),
+                    <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
                     <Invoke> ([func: 21], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
                 ],
                 "bb3": [
@@ -79,7 +79,7 @@ ModuleTpde {
                     <LandingPad> ([raw: 0]) -> [val: 9],
                     <AddRet> () -> [val: 10],
                     <Store> ([val: 9], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: 4]) -> [val: 11],
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 11],
                     <Store> ([val: 10], [val: 11], [raw: 8]),
                     <Br> ([raw: 7]),
                 ],
@@ -132,7 +132,7 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Store> ([const: 5], [alloc: 0], [raw: 1]),
+                    <Store> ([const: Bool 1], [alloc: 0], [raw: 1]),
                     <Invoke> ([func: 16], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
                 ],
                 "terminate": [
@@ -142,7 +142,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 "bb1": [
-                    <Invoke> ([func: 14], [raw: 5], [raw: 4], [const: 6]) -> [val: 7],
+                    <Invoke> ([func: 14], [raw: 5], [raw: 4], [const pool: 1]) -> [val: 7],
                 ],
                 "bb7": [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 13],
@@ -152,12 +152,12 @@ ModuleTpde {
                     <LandingPad> ([raw: 0]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Store> ([val: 4], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: 7]) -> [val: 6],
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 6],
                     <Store> ([val: 5], [val: 6], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 "bb2": [
-                    <Store> ([const: 8], [alloc: 0], [raw: 1]),
+                    <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
                     <Invoke> ([func: 20], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
                 ],
                 "bb3": [
@@ -171,7 +171,7 @@ ModuleTpde {
                     <LandingPad> ([raw: 0]) -> [val: 9],
                     <AddRet> () -> [val: 10],
                     <Store> ([val: 9], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: 9]) -> [val: 11],
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 11],
                     <Store> ([val: 10], [val: 11], [raw: 8]),
                     <Br> ([raw: 7]),
                 ],
@@ -1201,7 +1201,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fAdd> ([val: 0], [const: 10]) -> [val: 1],
+                    <fAdd> ([val: 0], [const pool: 2]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1232,7 +1232,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fAdd> ([val: 0], [const: 11]) -> [val: 1],
+                    <fAdd> ([val: 0], [const pool: 3]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1263,7 +1263,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fAdd> ([val: 0], [const: 12]) -> [val: 1],
+                    <fAdd> ([val: 0], [const pool: 4]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1370,7 +1370,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fAdd> ([val: 0], [const: 13]) -> [val: 1],
+                    <fAdd> ([val: 0], [const pool: 5]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1448,7 +1448,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fAdd> ([val: 0], [const: 14]) -> [val: 1],
+                    <fAdd> ([val: 0], [const pool: 6]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1479,7 +1479,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fAdd> ([val: 0], [const: 15]) -> [val: 1],
+                    <fAdd> ([val: 0], [const pool: 7]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1552,7 +1552,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fAdd> ([val: 0], [const: 16]) -> [val: 1],
+                    <fAdd> ([val: 0], [const: f64 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1586,15 +1586,15 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <RealOLT> ([val: 0], [const: 17]) -> [val: 1],
+                    <RealOLT> ([val: 0], [const pool: 8]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 18], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 19], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -1643,11 +1643,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 20], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 21], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -1696,11 +1696,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 22], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 23], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -1749,11 +1749,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 24], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 25], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -1802,11 +1802,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 26], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 27], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -1855,11 +1855,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 28], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 29], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -1908,11 +1908,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 30], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 31], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -1961,11 +1961,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 32], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 33], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -2014,11 +2014,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 34], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 35], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -2067,11 +2067,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 36], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 37], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -2120,11 +2120,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 38], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 39], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -2173,11 +2173,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 40], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 41], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -2226,11 +2226,11 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 "bb2": [
-                    <Store> ([const: 42], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb1": [
-                    <Store> ([const: 43], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 "bb3": [
@@ -2265,7 +2265,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <RealOGT> ([val: 0], [const: 44]) -> [val: 1],
+                    <RealOGT> ([val: 0], [const pool: 9]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -2752,7 +2752,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fDiv> ([const: 45], [val: 0]) -> [val: 1],
+                    <fDiv> ([const pool: 10], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -2783,7 +2783,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fSub> ([const: 46], [val: 0]) -> [val: 1],
+                    <fSub> ([const pool: 11], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -2814,7 +2814,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fDiv> ([val: 0], [const: 47]) -> [val: 1],
+                    <fDiv> ([val: 0], [const pool: 12]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -2845,7 +2845,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fDiv> ([val: 0], [const: 48]) -> [val: 1],
+                    <fDiv> ([val: 0], [const pool: 13]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -3987,7 +3987,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fMul> ([val: 0], [const: 49]) -> [val: 1],
+                    <fMul> ([val: 0], [const pool: 14]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -4018,7 +4018,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fMul> ([val: 0], [const: 50]) -> [val: 1],
+                    <fMul> ([val: 0], [const pool: 15]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -4125,7 +4125,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fMul> ([val: 0], [const: 51]) -> [val: 1],
+                    <fMul> ([val: 0], [const pool: 16]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -4156,7 +4156,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fMul> ([val: 0], [const: 52]) -> [val: 1],
+                    <fMul> ([val: 0], [const pool: 17]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -4187,7 +4187,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fMul> ([val: 0], [const: 53]) -> [val: 1],
+                    <fMul> ([val: 0], [const pool: 18]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -4346,7 +4346,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Ret> ([const: 54]),
+                    <Ret> ([const pool: 19]),
                 ],
             ],
             callee_infos: [],
@@ -4366,7 +4366,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Ret> ([const: 55]),
+                    <Ret> ([const pool: 20]),
                 ],
             ],
             callee_infos: [],
@@ -4396,7 +4396,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fSub> ([val: 0], [const: 56]) -> [val: 1],
+                    <fSub> ([val: 0], [const pool: 21]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -4427,7 +4427,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <fSub> ([val: 0], [const: 57]) -> [val: 1],
+                    <fSub> ([val: 0], [const pool: 22]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -5123,50 +5123,15 @@ ModuleTpde {
         },
     ],
     consts: [
-        [Bool] (0 1) -> true,
         [i64] (18446744073709551615 9223372036854775808) -> -9223372036854775808,
-        [i64] (0 8) -> 8,
-        [Bool] (0 0) -> false,
-        [i64] (0 8) -> 8,
-        [Bool] (0 1) -> true,
         [i32] (18446744073709551615 18446744071562067968) -> -2147483648,
-        [i64] (0 8) -> 8,
-        [Bool] (0 0) -> false,
-        [i64] (0 8) -> 8,
         [f64] (0 9218868437227405311) -> 179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
         [f32] (0 1069547520) -> 1.5,
         [f64] (0 4609434218613702656) -> 1.5,
         [f64] (0 9218868437227405312) -> inf,
         [f64] (0 18442240474082181120) -> -inf,
         [f64] (0 9223372036854775808) -> -0,
-        [f64] (0 0) -> 0,
         [f64] (0 13831680355561635840) -> -1.25,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
-        [i32] (0 20) -> 20,
-        [i32] (0 10) -> 10,
         [f64] (0 4602678819172646912) -> 0.5,
         [f64] (0 4607182418800017408) -> 1,
         [f64] (0 4612811918334230528) -> 2.5,

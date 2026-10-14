@@ -368,6 +368,7 @@ mod ffi {
         Last,
     }
 
+    #[derive(Copy, Clone)]
     pub struct Instruction {
         kind: InstructionKind,
         ops_start: u32,

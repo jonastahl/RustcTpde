@@ -17,7 +17,7 @@ impl<'tcx> StaticBuilderMethods for Builder<'_, '_, 'tcx> {
             return self.cx.module.borrow_mut().add_instruction_ret(
                 self.basic_block,
                 InstructionKind::TlsAddr,
-                vec![global],
+                &[global],
                 Type::ptr,
             );
         }

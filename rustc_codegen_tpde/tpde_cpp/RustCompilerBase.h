@@ -197,10 +197,10 @@ namespace tpde_rust {
 
     ValuePart val_part_ref_special(ValRefSpecial &vrs, u32 part) {
       if (operands::is_const_vector(vrs.data)) {
-        return const_vector_part(this->adaptor->mod->const_vectors[operands::content(vrs.data)], part);
+        return const_vector_part(this->adaptor->mod_data.const_vectors[operands::content(vrs.data)], part);
       }
       if (operands::is_const(vrs.data)) {
-        Value &imm = this->adaptor->mod->consts[operands::content(vrs.data)];
+        const Value imm = this->adaptor->const_value(vrs.data);
 
         switch (imm.ty) {
           using enum Type;
@@ -276,12 +276,12 @@ namespace tpde_rust {
             throw std::runtime_error("not implemented");
         }
       } {
-        uint32_t glob_start = this->adaptor->cur_func->allocas.size()
-                              + this->adaptor->cur_func->slots.size();
+        uint32_t glob_start = this->adaptor->cur_data.allocas.size()
+                              + this->adaptor->cur_data.slots.size();
         uint32_t glob_ptr_start = glob_start
-                                  + this->adaptor->mod->globals.size();
+                                  + this->adaptor->mod_data.globals.size();
         uint32_t func_start = glob_ptr_start
-                              + this->adaptor->mod->global_ptrs.size();
+                              + this->adaptor->mod_data.global_ptrs.size();
 
         u32 gv_id = operands::content(vrs.data);
         u32 loc_id;
@@ -317,7 +317,7 @@ namespace tpde_rust {
 
     void define_func_idx(IRFuncRef func, const u32 idx) {
       // As they are worked through in the same order as in the IR they should be equal
-      assert(func - this->adaptor->mod->functions.data() == idx);
+      assert(func - this->adaptor->mod_data.functions.data() == idx);
     }
 
     struct IntBinaryOp {
@@ -1419,7 +1419,7 @@ namespace tpde_rust {
         const IRValueRef idx = this->adaptor->ops(*gep)[2];
         if (operands::is_const(idx)) {
           // Constant index: fold into the displacement.
-          const Value &imm = this->adaptor->mod->consts[operands::content(idx)];
+          const Value imm = this->adaptor->const_value(idx);
           displacement += static_cast<u64>(scale) * imm.data2;
         } else if (scale == 0) {
           // The index doesn't contribute anything, but we still have to
@@ -1865,9 +1865,9 @@ namespace tpde_rust {
       arg_start += 1;
     }
 
-    auto& infos = is_dynamic_function ?
-      this->adaptor->cur_func->callee_infos[operands::content(this->adaptor->ops(calli)[arg_start - 1])].info
-      : this->adaptor->mod->functions[operands::content(func)].args;
+    const auto infos = Adaptor::view(is_dynamic_function ?
+      this->adaptor->cur_data.callee_infos[operands::content(this->adaptor->ops(calli)[arg_start - 1])].info
+      : this->adaptor->mod_data.functions[operands::content(func)].args);
     const size_t num_args = this->adaptor->ops(calli).size() - arg_start;
     assert(infos.size() <= num_args);
     const bool is_vararg = num_args > infos.size();
@@ -2752,7 +2752,7 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   u64 RustCompilerBase<Adaptor, Derived, Config>::const_vector_elem(IRValueRef vec, unsigned idx) {
     if (operands::is_const_vector(vec)) {
-      const ConstVector &cv = this->adaptor->mod->const_vectors[operands::content(vec)];
+      const ConstVector &cv = this->adaptor->mod_data.const_vectors[operands::content(vec)];
       const auto [nelem, elem_ty] = vector_info(cv.ty);
       assert(idx < nelem);
       const u32 elem_bytes = size_of_type(elem_ty) / 8;
@@ -2762,7 +2762,7 @@ namespace tpde_rust {
     }
     assert(operands::is_const(vec));
 
-    const Value &imm = this->adaptor->mod->consts[operands::content(vec)];
+    const Value imm = this->adaptor->const_value(vec);
     const auto [nelem, elem_ty] = vector_info(imm.ty);
     assert(idx < nelem);
     const unsigned bits = size_of_type(elem_ty);
@@ -2876,7 +2876,7 @@ namespace tpde_rust {
     const Type bvt = val_info.type;
 
     if (operands::is_const(index)) {
-      unsigned cidx = this->adaptor->mod->consts[operands::content(index)].data2;
+      unsigned cidx = this->adaptor->const_value(index).data2;
       cidx = cidx < nelem ? cidx : 0;
       derived()->extract_element(vec_vr, cidx, bvt, result);
       return true;
@@ -2946,7 +2946,7 @@ namespace tpde_rust {
     }
 
     if (operands::is_const(index)) {
-      unsigned cidx = this->adaptor->mod->consts[operands::content(index)].data2;
+      unsigned cidx = this->adaptor->const_value(index).data2;
       cidx = cidx < nelem ? cidx : 0;
       derived()->insert_element(res_vr, cidx, bvt, std::move(val));
       // No need for ref counting: all operands and results were ValuePartRefs.
@@ -4168,8 +4168,8 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::hook_post_func_sym_init() {
     global_symbols.clear();
 
-    global_symbols.reserve(this->adaptor->mod->globals.size());
-    for (const Global &global: this->adaptor->mod->globals) {
+    global_symbols.reserve(this->adaptor->mod_data.globals.size());
+    for (const Global &global: this->adaptor->mod_data.globals) {
       std::string_view name(global.name.data(), global.name.size());
 
       auto binding = convert_linkage(global);
@@ -4185,7 +4185,7 @@ namespace tpde_rust {
     }
 
     for (size_t i = 0; i < global_symbols.size(); ++i) {
-      const Global& global = this->adaptor->mod->globals[i];
+      const Global& global = this->adaptor->mod_data.globals[i];
       if (global.flags.extern_link)
         continue;
 
@@ -4221,7 +4221,7 @@ namespace tpde_rust {
             SymRef target = this->func_syms[operands::content(reloc.slot)];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
           } else if (operands::is_global_ptr(reloc.slot)) {
-            const auto &gp = this->adaptor->mod->global_ptrs[operands::content(reloc.slot)];
+            const auto &gp = this->adaptor->mod_data.global_ptrs[operands::content(reloc.slot)];
             SymRef &target = global_symbols[gp.global];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, gp.offset);
           } else {
@@ -4264,7 +4264,7 @@ namespace tpde_rust {
     for (size_t i = 0; i < num_cases; ++i) {
       // case values are constants (data2 = low 64 bit), a raw operand would only hold 29 bits
       cases.push_back(std::make_pair(
-          static_cast<u64>(this->adaptor->mod->consts[operands::content(this->adaptor->ops(inst)[2 + 2 * i])].data2),
+          static_cast<u64>(this->adaptor->const_value(this->adaptor->ops(inst)[2 + 2 * i]).data2),
           operands::content(this->adaptor->ops(inst)[2 + 2 * i + 1])));
     }
     std::sort(cases.begin(), cases.end(), [](const auto &lhs, const auto &rhs) {

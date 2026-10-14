@@ -554,8 +554,8 @@ namespace tpde_rust::x64 {
   }
 
   void RustCompilerX64::load_address_of_var_reference(tpde::x64::AsmReg dst, tpde::AssignmentPartRef ap) {
-    const uint32_t glob_ptr_start = this->adaptor->mod->globals.size();
-    const uint32_t func_start = glob_ptr_start + this->adaptor->mod->global_ptrs.size();
+    const uint32_t glob_ptr_start = this->adaptor->mod_data.globals.size();
+    const uint32_t func_start = glob_ptr_start + this->adaptor->mod_data.global_ptrs.size();
 
     uint32_t glob_id = ap.variable_ref_data();
     uint32_t offset = 0;
@@ -563,12 +563,12 @@ namespace tpde_rust::x64 {
     if (glob_id >= func_start) {
       // A function used as a value: load the address of its symbol.
       const uint32_t func_id = glob_id - func_start;
-      assert(func_id < this->adaptor->mod->functions.size());
+      assert(func_id < this->adaptor->mod_data.functions.size());
       assert(func_id < this->func_syms.size());
       const auto sym = this->func_syms[func_id];
       assert(sym.valid());
 
-      if (this->adaptor->mod->functions[func_id].flags.extern_link) {
+      if (this->adaptor->mod_data.functions[func_id].flags.extern_link) {
         // mov the ptr from the GOT
         ASM(MOV64rm, dst, FE_MEM(FE_IP, 0, FE_NOREG, -1));
         reloc_text(sym, tpde::elf::R_X86_64_GOTPCREL, text_writer.offset() - 4, -4);
@@ -581,13 +581,13 @@ namespace tpde_rust::x64 {
     }
 
     if (glob_id >= glob_ptr_start) {
-      auto &[id, off] = this->adaptor->mod->global_ptrs[glob_id - glob_ptr_start];
+      auto &[id, off] = this->adaptor->mod_data.global_ptrs[glob_id - glob_ptr_start];
       glob_id = id;
       offset = off;
     }
-    assert(glob_id < this->adaptor->mod->globals.size());
+    assert(glob_id < this->adaptor->mod_data.globals.size());
     assert(glob_id < this->global_symbols.size());
-    const Global& global = this->adaptor->mod->globals[glob_id];
+    const Global& global = this->adaptor->mod_data.globals[glob_id];
     const auto sym = this->global_symbols[glob_id];
     assert(sym.valid());
 

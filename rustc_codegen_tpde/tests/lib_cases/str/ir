@@ -20,7 +20,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([global: 0], [raw: 8]) -> [val: 0],
-                    <GEP> ([global: 0], [raw: 8], [const: 0]) -> [val: 1],
+                    <GEP> ([global: 0], [raw: 8], [const: i64 1]) -> [val: 1],
                     <Load> ([val: 1], [raw: 8]) -> [val: 2],
                     <Ret> ([val: 0], [val: 2]),
                 ],
@@ -42,7 +42,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Ret> ([global: 4], [const: 3]),
+                    <Ret> ([global: 4], [const: i64 11]),
                 ],
             ],
             callee_infos: [],
@@ -68,14 +68,7 @@ ModuleTpde {
             callee_infos: [],
         },
     ],
-    consts: [
-        [i64] (0 1) -> 1,
-        [ptr] (0 0) -> [ptr: 0],
-        [i64] (0 0) -> 0,
-        [i64] (0 11) -> 11,
-        [ptr] (0 0) -> [ptr: 0],
-        [i64] (0 0) -> 0,
-    ],
+    consts: [],
     globals: [
         HELLO_WORLD {
             size: 16,

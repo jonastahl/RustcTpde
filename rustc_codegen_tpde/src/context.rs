@@ -32,6 +32,7 @@ pub struct FullCx<'tpde, 'tcx> {
     pub codegen_unit: &'tcx CodegenUnit<'tcx>,
 
     pub functions: RefCell<FxHashMap<Instance<'tcx>, Function>>,
+    pub fn_abi_signatures: RefCell<FxHashMap<usize, usize>>,
     pub libfuncs: RefCell<FxHashMap<LibFunc, Function>>,
 
     pub globals: RefCell<FxHashMap<DefId, Global>>,
@@ -109,6 +110,7 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
                 scx: SCx::new(module),
                 codegen_unit: cgu,
                 functions: RefCell::new(FxHashMap::default()),
+                fn_abi_signatures: RefCell::new(FxHashMap::default()),
                 libfuncs: RefCell::new(FxHashMap::default()),
                 globals: RefCell::new(FxHashMap::default()),
                 data_layout,
@@ -151,7 +153,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
         let func = self.module.borrow_mut()
             .add_function(
                 name,
-                FunctionSignature {
+                &FunctionSignature {
                     slots: vec![],
                     arg_infos,
                     ret,
@@ -207,7 +209,7 @@ impl<'tcx> MiscCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
                 }
                 let f = module.add_function(
                     "rust_eh_personality",
-                    FunctionSignature { slots: vec![], arg_infos: vec![], ret: None },
+                    &FunctionSignature { slots: vec![], arg_infos: vec![], ret: None },
                     Linkage::External,
                     Binding::Declaration,
                 );
@@ -243,10 +245,9 @@ impl<'tcx> MiscCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
     fn declare_c_main(&self, fn_type: Self::FunctionSignature) -> Option<Self::Function> {
         let entry_name = self.sess().target.entry_name.as_ref();
 
-        let sign = self.function_signatures.borrow()[fn_type].clone();
         let func = self.module.borrow_mut().add_function(
             entry_name,
-            sign,
+            &self.function_signatures.borrow()[fn_type],
             Linkage::External,
             Binding::Definition,
         );

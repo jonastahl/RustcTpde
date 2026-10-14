@@ -58,13 +58,13 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         let a = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::LandingPad,
-            vec![Slot::new_raw(kind.repr as u32)],
+            &[Slot::new_raw(kind.repr as u32)],
             Type::ptr
         );
         let b = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::AddRet,
-            vec![],
+            &[],
             Type::i32
         );
         (a, b)
@@ -119,17 +119,17 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 
     fn ret_void(&mut self) {
         let module = &mut self.module.borrow_mut();
-        module.add_instruction(self.basic_block, InstructionKind::Ret, vec![])
+        module.add_instruction(self.basic_block, InstructionKind::Ret, &[])
     }
 
     fn ret(&mut self, v: Self::Value) {
         let module = &mut self.module.borrow_mut();
 
-        let ops = match v.pair_slots(module) {
-            Some((slot_a, slot_b)) => vec![slot_a, slot_b],
-            None => vec![v],
-        };
-        module.add_instruction(self.basic_block, InstructionKind::Ret, ops)
+        match v.pair_slots(module) {
+            Some((slot_a, slot_b)) =>
+                module.add_instruction(self.basic_block, InstructionKind::Ret, &[slot_a, slot_b]),
+            None => module.add_instruction(self.basic_block, InstructionKind::Ret, &[v]),
+        }
     }
 
     fn br(&mut self, dest: Self::BasicBlock) {
@@ -211,14 +211,14 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn unreachable(&mut self) {
-        self.module.borrow_mut().add_instruction(self.basic_block, InstructionKind::Unreachable, vec![]);
+        self.module.borrow_mut().add_instruction(self.basic_block, InstructionKind::Unreachable, &[]);
     }
 
     fn add(&mut self, lhs: Self::Value, rhs: Self::Value) -> Self::Value {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Add,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -226,7 +226,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::fAdd,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -242,7 +242,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Sub,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -250,7 +250,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::fSub,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -266,7 +266,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Mul,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -274,7 +274,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::fMul,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -290,7 +290,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::uDiv,
-            vec![lhs, rhs]
+            &[lhs, rhs]
         )
     }
 
@@ -302,7 +302,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::sDiv,
-            vec![lhs, rhs]
+            &[lhs, rhs]
         )
     }
 
@@ -314,7 +314,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::fDiv,
-            vec![lhs, rhs]
+            &[lhs, rhs]
         )
     }
 
@@ -330,7 +330,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::uRem,
-            vec![lhs, rhs]
+            &[lhs, rhs]
         )
     }
 
@@ -338,7 +338,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
             InstructionKind::sRem,
-            vec![lhs, rhs],
+            &[lhs, rhs],
             1
         )
     }
@@ -347,7 +347,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
             InstructionKind::fRem,
-            vec![lhs, rhs],
+            &[lhs, rhs],
             1
         )
     }
@@ -364,7 +364,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Shl,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -372,7 +372,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
             InstructionKind::lShr,
-            vec![lhs, rhs],
+            &[lhs, rhs],
             1
         )
     }
@@ -381,7 +381,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
             InstructionKind::aShr,
-            vec![lhs, rhs],
+            &[lhs, rhs],
             1
         )
     }
@@ -390,7 +390,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::And,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -398,7 +398,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Or,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -406,7 +406,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Xor,
-            vec![lhs, rhs],
+            &[lhs, rhs],
         )
     }
 
@@ -414,7 +414,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Neg,
-            vec![v],
+            &[v],
         )
     }
 
@@ -422,7 +422,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::fNeg,
-            vec![v],
+            &[v],
         )
     }
 
@@ -430,7 +430,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::Not,
-            vec![v],
+            &[v],
         )
     }
 
@@ -472,7 +472,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let of = self.module.borrow_mut()
             .add_instruction_ret(self.basic_block,
                                  InstructionKind::OverflowCheck,
-                                 vec![Slot::Raw(if signed { 1 } else { 0 })],
+                                 &[Slot::Raw(if signed { 1 } else { 0 })],
                                  Type::Bool);
         (res, of)
     }
@@ -550,7 +550,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             InstructionKind::Atomic_load,
-            vec![
+            &[
                 ptr,
                 Slot::new_raw(convert_atomic_order(order).repr),
                 Slot::new_raw(volatile as u32),
@@ -684,7 +684,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         module.add_instruction(
             self.basic_block,
             InstructionKind::Atomic_store,
-            vec![
+            &[
                 val,
                 ptr,
                 Slot::new_raw(convert_atomic_order(order).repr),
@@ -707,7 +707,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             InstructionKind::GEP,
-            vec![ptr, Slot::new_raw(offset), indices[0]],
+            &[ptr, Slot::new_raw(offset), indices[0]],
             Type::i64,
         )
     }
@@ -825,7 +825,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             instr,
-            vec![lhs, rhs],
+            &[lhs, rhs],
             Type::Bool,
         )
     }
@@ -853,7 +853,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             instr,
-            vec![lhs, rhs],
+            &[lhs, rhs],
             Type::Bool,
         )
     }
@@ -909,7 +909,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Call,
-            vec![
+            &[
                 func,
                 dst,
                 src,
@@ -972,7 +972,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Call,
-            vec![
+            &[
                 func,
                 dst,
                 src,
@@ -993,7 +993,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Call,
-            vec![
+            &[
                 func,
                 ptr,
                 fill_byte,
@@ -1015,7 +1015,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
             InstructionKind::Select,
-            vec![cond, then_val, else_val],
+            &[cond, then_val, else_val],
             1
         )
     }
@@ -1030,7 +1030,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             InstructionKind::simd_extract,
-            vec![vec, idx],
+            &[vec, idx],
             elem,
         )
     }
@@ -1043,7 +1043,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             InstructionKind::simd_splat,
-            vec![elt],
+            &[elt],
             ty,
         )
     }
@@ -1086,7 +1086,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Resume,
-            vec![exn0]
+            &[exn0]
         );
     }
 
@@ -1138,13 +1138,13 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let ret_val = module.add_instruction_ret_x(
             self.basic_block,
             InstructionKind::Atomic_cmpxchg,
-            vec![dst, cmp, src, Slot::new_raw(merged_order.repr)],
+            &[dst, cmp, src, Slot::new_raw(merged_order.repr)],
             2
         );
         let res = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::AddRet,
-            vec![],
+            &[],
             Type::Bool
         );
         (ret_val, res)
@@ -1163,7 +1163,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let ret_val = self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
             InstructionKind::Atomic_rmw,
-            vec![Slot::new_raw(op.repr), dst, src, Slot::new_raw(order.repr)],
+            &[Slot::new_raw(op.repr), dst, src, Slot::new_raw(order.repr)],
             2
         );
 
@@ -1174,7 +1174,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Atomic_fence,
-            vec![
+            &[
                 Slot::new_raw(convert_atomic_order(order).repr),
                 Slot::new_raw(match scope {
                     SynchronizationScope::SingleThread => 0,
@@ -1255,7 +1255,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             instr,
-            vec![val],
+            &[val],
             dest_ty,
         )
     }
@@ -1264,7 +1264,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         module.add_instruction_ret(
             self.basic_block,
             InstructionKind::Load,
-            vec![
+            &[
                 ptr,
                 Slot::new_raw(align.bytes() as u32),
             ],
@@ -1276,7 +1276,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         module.add_instruction(
             self.basic_block,
             InstructionKind::Store,
-            vec![val, ptr, Slot::new_raw(align.bytes_usize() as u32)],
+            &[val, ptr, Slot::new_raw(align.bytes_usize() as u32)],
         )
     }
 
@@ -1286,7 +1286,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         let ptr_b = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::GEP,
-            vec![ptr, Slot::new_raw(offset), ind],
+            &[ptr, Slot::new_raw(offset), ind],
             Type::i64,
         );
         let slot_b = self.load_single(module, ptr_b, align, ty_b);
@@ -1299,7 +1299,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         let ptr_b = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::GEP,
-            vec![ptr, Slot::new_raw(offset), ind],
+            &[ptr, Slot::new_raw(offset), ind],
             Type::i64,
         );
         self.store_single(module, val_b, ptr_b, align);

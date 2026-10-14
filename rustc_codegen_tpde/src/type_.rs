@@ -401,9 +401,15 @@ impl<'tcx> LayoutTypeCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
     }
 
     fn fn_decl_backend_type(&self, fn_abi: &FnAbi<'tcx, Ty<'tcx>>) -> Self::FunctionSignature {
+        let key = fn_abi as *const FnAbi<'tcx, Ty<'tcx>> as usize;
+        if let Some(&index) = self.fn_abi_signatures.borrow().get(&key) {
+            return index;
+        }
         let signs = &mut self.function_signatures.borrow_mut();
         signs.push(self.create_function_signature(fn_abi));
-        signs.len() - 1
+        let index = signs.len() - 1;
+        self.fn_abi_signatures.borrow_mut().insert(key, index);
+        index
     }
 
     fn fn_ptr_backend_type(&self, fn_abi: &FnAbi<'tcx, Ty<'tcx>>) -> Self::Type {

@@ -38,10 +38,10 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Cast> ([val: 0]) -> [val: 2],
-                    <And> ([const: 0], [const: 1]) -> [val: 3],
+                    <And> ([const: i32 1], [const: i32 63]) -> [val: 3],
                     <zExt> ([val: 3]) -> [val: 4],
                     <Shl> ([val: 1], [val: 4]) -> [val: 5],
-                    <Or> ([val: 5], [const: 2]) -> [val: 6],
+                    <Or> ([val: 5], [const: i64 1]) -> [val: 6],
                     <Cast> ([val: 6]) -> [val: 7],
                     <Ret> ([val: 2], [val: 7]),
                 ],
@@ -66,7 +66,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 0], [global: 0], [const: 5]) -> [val: 0],
+                    <Call> ([func: 0], [global: 0], [const: i64 14]) -> [val: 0],
                     <AddRet> () -> [val: 1],
                     <Call> ([func: 2], [val: 0], [val: 1]),
                     <Ret> (),
@@ -107,14 +107,7 @@ ModuleTpde {
             callee_infos: [],
         },
     ],
-    consts: [
-        [i32] (0 1) -> 1,
-        [i32] (0 63) -> 63,
-        [i64] (0 1) -> 1,
-        [ptr] (0 0) -> [ptr: 0],
-        [ptr] (0 0) -> [ptr: 0],
-        [i64] (0 14) -> 14,
-    ],
+    consts: [],
     globals: [
         alloc_3213114faf700a46436312d7d5d956d1 {
             size: 14,

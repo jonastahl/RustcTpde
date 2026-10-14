@@ -54,7 +54,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = $self.module.borrow_mut().add_instruction_ret(
                     $self.basic_block,
                     instr,
-                    vec![$args[0].immediate(), $args[1].immediate()],
+                    &[$args[0].immediate(), $args[1].immediate()],
                     ret_ty
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
@@ -74,7 +74,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = $self.module.borrow_mut().add_instruction_ret(
                     $self.basic_block,
                     instr,
-                    vec![$args[0].immediate()],
+                    &[$args[0].immediate()],
                     ret_ty
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
@@ -94,7 +94,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::ctpop,
-                    vec![input_val]
+                    &[input_val]
                 );
 
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
@@ -106,7 +106,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::bswap,
-                    vec![args[0].immediate()]
+                    &[args[0].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -136,7 +136,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     instruction,
-                    vec![lhs, rhs]
+                    &[lhs, rhs]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -156,7 +156,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     let cmp = self.cx.module.borrow_mut().add_instruction_ret(
                         self.basic_block,
                         InstructionKind::Call,
-                        vec![func, args[0].immediate(), args[1].immediate(), len],
+                        &[func, args[0].immediate(), args[1].immediate(), len],
                         Type::i32
                     );
                     let zero = self.const_i32(0);
@@ -169,7 +169,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let cmp = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::Call,
-                    vec![func, args[0].immediate(), args[1].immediate(), args[2].immediate()],
+                    &[func, args[0].immediate(), args[1].immediate(), args[2].immediate()],
                     Type::i32
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(cmp))
@@ -255,7 +255,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     instr,
-                    vec![args[0].immediate()],
+                    &[args[0].immediate()],
                     Type::i32
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
@@ -264,7 +264,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::rotl,
-                    vec![args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -272,7 +272,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::rotr,
-                    vec![args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -280,7 +280,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::funnel_shl,
-                    vec![args[0].immediate(), args[1].immediate(), args[2].immediate()]
+                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -288,7 +288,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::funnel_shr,
-                    vec![args[0].immediate(), args[1].immediate(), args[2].immediate()]
+                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -307,7 +307,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_splat,
-                    vec![args[0].immediate()],
+                    &[args[0].immediate()],
                     ret_ty
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
@@ -319,7 +319,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fMin,
-                    vec![args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -330,7 +330,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fMax,
-                    vec![args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -352,13 +352,13 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     let lane = self.cx.module.borrow_mut().add_instruction_ret(
                         self.basic_block,
                         InstructionKind::Call,
-                        vec![func, a, b, c],
+                        &[func, a, b, c],
                         elem_ty,
                     );
                     res = self.cx.module.borrow_mut().add_instruction_ret(
                         self.basic_block,
                         InstructionKind::simd_insert,
-                        vec![res, idx, lane],
+                        &[res, idx, lane],
                         vec_ty,
                     );
                 }
@@ -409,7 +409,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     instr,
-                    vec![args[0].immediate(), args[1].immediate(), args[2].immediate()],
+                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()],
                     ret_ty
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
@@ -418,12 +418,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             // (a, b, constant index vector): the backend reads the indices from the constant,
             // index i >= len(a) selects lane i - len(a) of b.
             sym::simd_shuffle => {
-                let ops = vec![args[0].immediate(), args[1].immediate(), args[2].immediate()];
                 let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_shuffle,
-                    ops,
+                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()],
                     ret_ty
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
@@ -456,7 +455,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     instr,
-                    vec![args[0].immediate()],
+                    &[args[0].immediate()],
                     ret_ty
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
@@ -485,7 +484,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let values = if matches!(name, sym::simd_gather | sym::simd_scatter) { 0 } else { 2 };
                 let (_, elem) = args[values].layout.ty.simd_size_and_type(self.tcx);
                 let align = Slot::new_raw(self.layout_of(elem).align.bytes() as u32);
-                let ops = vec![args[0].immediate(), args[1].immediate(), args[2].immediate(), align];
+                let ops = [args[0].immediate(), args[1].immediate(), args[2].immediate(), align];
                 let mut module = self.cx.module.borrow_mut();
                 match name {
                     sym::simd_gather | sym::simd_masked_load => {
@@ -495,7 +494,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                             InstructionKind::simd_masked_load
                         };
                         let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
-                        let res = module.add_instruction_ret(self.basic_block, instr, ops, ret_ty);
+                        let res = module.add_instruction_ret(self.basic_block, instr, &ops, ret_ty);
                         IntrinsicResult::Operand(OperandValue::Immediate(res))
                     }
                     _ => {
@@ -504,7 +503,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                         } else {
                             InstructionKind::simd_masked_store
                         };
-                        module.add_instruction(self.basic_block, instr, ops);
+                        module.add_instruction(self.basic_block, instr, &ops);
                         IntrinsicResult::Operand(OperandValue::ZeroSized)
                     }
                 }
@@ -513,7 +512,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::copysign,
-                    vec![args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -571,7 +570,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fAbs,
-                    vec![args[0].immediate()]
+                    &[args[0].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -579,7 +578,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fSqrt,
-                    vec![args[0].immediate()]
+                    &[args[0].immediate()]
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -616,7 +615,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::Call,
-                    ops,
+                    &ops,
                     if is_f64 { Type::f64 } else { Type::f32 }
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
@@ -629,7 +628,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     x = self.cx.module.borrow_mut().add_instruction_ret_first(
                         self.basic_block,
                         InstructionKind::bswap,
-                        vec![x]
+                        &[x]
                     );
                 }
                 for (shift, pattern) in [(4, 0x0F), (2, 0x33), (1, 0x55)] {
@@ -661,7 +660,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut()
                     .add_instruction_ret(self.basic_block,
                                      InstructionKind::Pause,
-                                     vec![],
+                                     &[],
                                     Type::Void)
             }
             "pshufb" | "pshufb128" => {
@@ -683,7 +682,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     res = self.module.borrow_mut().add_instruction_ret(
                         self.basic_block,
                         InstructionKind::simd_insert,
-                        vec![res, i_const, elem],
+                        &[res, i_const, elem],
                         vec_ty,
                     );
                 }
@@ -702,7 +701,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::psadbw,
-                    vec![a, b],
+                    &[a, b],
                     out_ty,
                 )
             }
@@ -718,7 +717,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::pmaddwd,
-                    vec![a, b],
+                    &[a, b],
                     out_ty,
                 )
             }
@@ -734,7 +733,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::pmaddubsw,
-                    vec![a, b],
+                    &[a, b],
                     out_ty,
                 )
             }
@@ -746,7 +745,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_shift,
-                    vec![args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
+                    &[args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
                 )
             }
             "minps" | "maxps" | "minpd" | "maxpd" | "minss" | "maxss" | "minsd" | "maxsd"
@@ -758,7 +757,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_minmax,
-                    vec![args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
+                    &[args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
                 )
             }
             "rcpps" | "rsqrtps" | "rcpss" | "rsqrtss" | "vrcpps" | "vrsqrtps" => {
@@ -769,7 +768,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_approx,
-                    vec![args[0].immediate(), Slot::new_raw(op as u32)],
+                    &[args[0].immediate(), Slot::new_raw(op as u32)],
                 )
             }
             "cmpps" | "cmppd" | "cmpss" | "cmpsd" | "vcmpps" | "vcmppd" => {
@@ -786,7 +785,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_cmp,
-                    vec![args[0].immediate(), args[1].immediate(),
+                    &[args[0].immediate(), args[1].immediate(),
                          Slot::new_raw((kind as u32) | ((pred as u32) << 2))],
                 )
             }
@@ -803,7 +802,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_cvt,
-                    vec![a, Slot::new_raw(truncate as u32)],
+                    &[a, Slot::new_raw(truncate as u32)],
                     out_ty,
                 )
             }
@@ -818,7 +817,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::clmul,
-                    vec![a, b, Slot::new_raw(sel as u32)],
+                    &[a, b, Slot::new_raw(sel as u32)],
                     vec_ty,
                 )
             }
@@ -826,7 +825,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::crc32,
-                    vec![args[0].immediate(), args[1].immediate()],
+                    &[args[0].immediate(), args[1].immediate()],
                 )
             }
             "lddqu" | "vlddqu" => {
@@ -837,7 +836,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::pmulhrsw,
-                    vec![args[0].immediate(), args[1].immediate()],
+                    &[args[0].immediate(), args[1].immediate()],
                 )
             }
             "llvm_vcvtps2ph_128" | "llvm_vcvtps2ph_256" => {
@@ -848,7 +847,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_cvt,
-                    vec![args[0].immediate(), Slot::new_raw(op | ((imm as u32 & 0xFF) << 2))],
+                    &[args[0].immediate(), Slot::new_raw(op | ((imm as u32 & 0xFF) << 2))],
                     Type::v8i16,
                 )
             }
@@ -858,7 +857,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let tsc = self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::rdtscp,
-                    vec![aux_ptr],
+                    &[aux_ptr],
                     Type::i64,
                 );
                 let aux = self.load(FullType::Single(Type::i32), aux_ptr, aux_align);
@@ -895,7 +894,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::rdtsc,
-                    vec![],
+                    &[],
                     Type::i64,
                 )
             }
@@ -908,7 +907,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
     fn abort(&mut self) {
         self.module.borrow_mut().add_instruction(self.basic_block,
                                                  InstructionKind::Abort,
-                                                 vec![])
+                                                 &[])
     }
 
     fn assume(&mut self, val: Self::Value) {
