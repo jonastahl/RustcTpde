@@ -23,7 +23,6 @@ mod ffi {
         External,
     }
 
-    #[derive(Debug)]
     pub struct Function {
         name: String,
         has_ret: bool,
@@ -35,6 +34,7 @@ mod ffi {
         has_personality: bool,
         personality: u32,
 
+        operands: Vec<u32>,
         allocas: Vec<Alloca>,
         basic_blocks: Vec<BasicBlock>,
 
@@ -368,7 +368,8 @@ mod ffi {
 
     pub struct Instruction {
         kind: InstructionKind,
-        ops: Vec<u32>,
+        ops_start: u32,
+        ops_len: u32,
         has_result: bool,
         result: u32,
     }
@@ -417,18 +418,58 @@ mod ffi {
     }
 }
 
-impl Debug for ffi::BasicBlock {
+struct BlockDebug<'a> {
+    block: &'a ffi::BasicBlock,
+    operands: &'a [u32],
+}
+
+struct InstructionDebug<'a> {
+    inst: &'a ffi::Instruction,
+    operands: &'a [u32],
+}
+
+impl Debug for ffi::Function {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
-        write!(f, "{:?}: ", self.name)?;
-        f.debug_list().entries(&self.instructions).finish()
+        let blocks: Vec<BlockDebug> = self
+            .basic_blocks
+            .iter()
+            .map(|block| BlockDebug { block, operands: &self.operands })
+            .collect();
+        f.debug_struct("Function")
+            .field("name", &self.name)
+            .field("has_ret", &self.has_ret)
+            .field("args", &self.args)
+            .field("slots", &self.slots)
+            .field("flags", &self.flags)
+            .field("has_personality", &self.has_personality)
+            .field("personality", &self.personality)
+            .field("allocas", &self.allocas)
+            .field("basic_blocks", &blocks)
+            .field("callee_infos", &self.callee_infos)
+            .finish()
     }
 }
 
-impl Debug for ffi::Instruction {
+impl Debug for BlockDebug<'_> {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
-        write!(f, "<{:?}> (", self.kind)?;
+        write!(f, "{:?}: ", self.block.name)?;
+        f.debug_list()
+            .entries(self.block.instructions.iter().map(|inst| InstructionDebug {
+                inst,
+                operands: self.operands,
+            }))
+            .finish()
+    }
+}
+
+impl Debug for InstructionDebug<'_> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
+        let inst = self.inst;
+        write!(f, "<{:?}> (", inst.kind)?;
+        let start = inst.ops_start as usize;
+        let ops = &self.operands[start..start + inst.ops_len as usize];
         let mut first = true;
-        for &op in &self.ops {
+        for &op in ops {
             if !first {
                 write!(f, ", ")?;
             }
@@ -437,8 +478,8 @@ impl Debug for ffi::Instruction {
         }
         write!(f, ")")?;
 
-        if self.has_result {
-            write!(f, " -> {:?}", Slot::from_ffi(self.result))?;
+        if inst.has_result {
+            write!(f, " -> {:?}", Slot::from_ffi(inst.result))?;
         }
 
         Ok(())

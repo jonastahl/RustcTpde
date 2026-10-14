@@ -6,6 +6,7 @@
 #include <tpde/IRAdaptor.hpp>
 #include <tpde/RegisterFile.hpp>
 #include <generator>
+#include <span>
 #include <unordered_set>
 
 #include "tpde/util/SmallVector.hpp"
@@ -75,6 +76,10 @@ namespace tpde_rust {
 
     [[nodiscard]] Instruction &get_instruction(const IRInstRef inst) const {
       return get_basic_block(inst.block).instructions[inst.inst];
+    }
+
+    [[nodiscard]] std::span<const u32> ops(const Instruction &inst) const {
+      return {cur_func->operands.data() + inst.ops_start, inst.ops_len};
     }
 
     struct ValInfo {
@@ -189,7 +194,7 @@ namespace tpde_rust {
           break;
         case InstructionKind::Switch:
           offset = 1;
-          count = br_instr->ops.size() - offset;
+          count = br_instr->ops_len - offset;
           stride = 2;
           break;
         case InstructionKind::Resume:
@@ -200,7 +205,7 @@ namespace tpde_rust {
       }
 
 
-      return br_instr->ops
+      return ops(*br_instr)
              | std::ranges::views::drop(offset)
              | std::ranges::views::take(count)
              | std::ranges::views::stride(stride)
@@ -319,7 +324,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto inst_operands(IRInstRef inst) const {
-      return get_instruction(inst).ops
+      return ops(get_instruction(inst))
              | std::views::filter([](auto op) {
                return operands::is_val(op);
              });

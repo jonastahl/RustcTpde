@@ -233,6 +233,7 @@ impl Module {
             personality: 0,
             slots: slots.iter().map(|ty| ffi::Slot { ty: *ty }).collect(),
             flags: Self::create_flags(linkage, ty),
+            operands: vec![],
             allocas: vec![],
             basic_blocks: vec![],
             callee_infos: vec![],
@@ -575,20 +576,24 @@ impl Module {
                 Some(FullType::Memory { .. }) => ReturnType::Single(self.add_slot(bb.function, Type::ptr)),
             };
 
-        let ffi_ops: Vec<u32> = ops.iter().map(|s| s.to_ffi()).collect();
+        let function = self.get_function_mut(&bb.function());
+        let ops_start = function.operands.len() as u32;
+        function.operands.extend(ops.iter().map(|s| s.to_ffi()));
 
-        let basic_block = self.get_basic_block_mut(bb);
+        let basic_block = Module::get_basic_block_mut_helper(function, bb);
 
         basic_block.instructions.push(ffi::Instruction {
             kind: instr,
-            ops: ffi_ops,
+            ops_start,
+            ops_len: ops.len() as u32,
             has_result: ret.num_ret() >= 1,
             result: ret.result_a(),
         });
         if ret.num_ret() >= 2 {
             basic_block.instructions.push(ffi::Instruction {
                 kind: InstructionKind::AddRet,
-                ops: vec![],
+                ops_start,
+                ops_len: 0,
                 has_result: true,
                 result: ret.result_b(),
             });
