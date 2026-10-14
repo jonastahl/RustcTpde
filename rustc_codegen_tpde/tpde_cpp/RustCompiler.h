@@ -19,5 +19,8 @@ namespace tpde_rust {
     static std::unique_ptr<RustCompiler> create();
 
     virtual bool compile_to_elf(ModuleTpde &mod, std::vector<uint8_t> &buf) = 0;
+
+    /// Clears all state of the previous compilation, keeping allocated memory where possible.
+    virtual void reset() = 0;
   };
 }

@@ -49,7 +49,7 @@ namespace tpde_rust::x64 {
       static_assert(tpde::Compiler<RustCompilerX64, CompilerConfig>);
     }
 
-    void reset() {
+    void reset() override {
       Base::reset();
       EncodeCompiler::reset();
     }

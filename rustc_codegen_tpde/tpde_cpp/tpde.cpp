@@ -1,17 +1,47 @@
 #include "tpde.h"
 
 #include <fstream>
+#include <mutex>
 
 #include "RustCompiler.h"
 #include "tpde/RegisterFile.hpp"
 
+namespace {
+    // Dont recreate the backend on every compilation request
+    // This pool holds as many tpde instances as the maximum repquests at a time
+    std::mutex compiler_pool_mutex;
+    std::vector<std::unique_ptr<tpde_rust::RustCompiler>> compiler_pool;
+
+    std::unique_ptr<tpde_rust::RustCompiler> acquire_compiler() {
+        std::unique_ptr<tpde_rust::RustCompiler> compiler;
+        {
+            std::lock_guard lock(compiler_pool_mutex);
+            if (!compiler_pool.empty()) {
+                compiler = std::move(compiler_pool.back());
+                compiler_pool.pop_back();
+            }
+        }
+        if (!compiler) {
+            return tpde_rust::RustCompiler::create();
+        }
+
+        compiler->reset();
+        return compiler;
+    }
+
+    void release_compiler(std::unique_ptr<tpde_rust::RustCompiler> compiler) {
+        std::lock_guard lock(compiler_pool_mutex);
+        compiler_pool.push_back(std::move(compiler));
+    }
+}
 
 bool compile_to_file(ModuleTpde& module, const rust::Str path) {
-    // TODO move this out, don't want to initialize it every time separately
-    const auto compiler = tpde_rust::RustCompiler::create();
+    auto compiler = acquire_compiler();
 
     std::vector<uint8_t> buf;
-    if (!compiler->compile_to_elf(module, buf)) {
+    const bool ok = compiler->compile_to_elf(module, buf);
+    release_compiler(std::move(compiler));
+    if (!ok) {
         return false;
     }
 

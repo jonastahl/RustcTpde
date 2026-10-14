@@ -159,6 +159,13 @@ namespace tpde_rust {
 
     bool compile_to_elf(ModuleTpde &mod, std::vector<uint8_t> &buf) override;
 
+    void reset() override {
+      const_allocator.reset();
+      global_symbols.clear();
+      libfunc_syms.fill({});
+      Base::reset();
+    }
+
     static bool cur_func_may_emit_calls() { return true; }
 
     SymRef cur_personality_func() const;
@@ -538,9 +545,6 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_to_elf(
     ModuleTpde &mod, std::vector<uint8_t> &buf) {
-    if (this->adaptor->mod) {
-      Base::derived()->reset();
-    }
     if (!compile(mod)) {
       return false;
     }
