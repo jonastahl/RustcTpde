@@ -644,9 +644,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 }
                 IntrinsicResult::Operand(OperandValue::Immediate(x))
             }
-            _ => {
-                todo!("Unimplemented intrinsic: {}", name.as_str());
-            }
+            _ => IntrinsicResult::Fallback(instance)
         }
     }
 
