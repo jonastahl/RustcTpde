@@ -499,7 +499,7 @@ impl Debug for ffi::Value {
             Type::i16 => format!("{}", self.data2 as i16),
             Type::i32 => format!("{}", self.data2 as i32),
             Type::i64 => format!("{}", self.data2 as i64),
-            Type::i128 => format!("{}", (self.data1 as i128) << 64 | (self.data1 as i128)),
+            Type::i128 => format!("{}", (self.data1 as i128) << 64 | (self.data2 as i128)),
             Type::ptr => format!("[ptr: {}]", self.data2),
             Type::f32 => format!("{}", f32::from_bits(self.data2 as u32)),
             Type::f64 => format!("{}", f64::from_bits(self.data2)),
