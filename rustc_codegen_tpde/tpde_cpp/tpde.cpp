@@ -1,5 +1,6 @@
 #include "tpde.h"
 
+#include <cstdlib>
 #include <fstream>
 #include <mutex>
 
@@ -33,16 +34,26 @@ namespace {
         std::lock_guard lock(compiler_pool_mutex);
         compiler_pool.push_back(std::move(compiler));
     }
+
+    unsigned repeat_obj_emit() {
+        static const unsigned count = [] {
+            const char *env = std::getenv("REPEAT_OBJ_EMIT");
+            const unsigned long n = env ? std::strtoul(env, nullptr, 10) : 1;
+            return n == 0 ? 1u : static_cast<unsigned>(n);
+        }();
+        return count;
+    }
 }
 
 bool compile_to_file(ModuleTpde& module, const rust::Str path) {
-    auto compiler = acquire_compiler();
-
     std::vector<uint8_t> buf;
-    const bool ok = compiler->compile_to_elf(module, buf);
-    release_compiler(std::move(compiler));
-    if (!ok) {
-        return false;
+    for (unsigned i = 0, n = repeat_obj_emit(); i < n; ++i) {
+        auto compiler = acquire_compiler();
+        const bool ok = compiler->compile_to_elf(module, buf);
+        release_compiler(std::move(compiler));
+        if (!ok) {
+            return false;
+        }
     }
 
     {

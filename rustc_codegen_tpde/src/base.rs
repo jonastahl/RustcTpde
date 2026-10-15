@@ -8,6 +8,7 @@ use rustc_middle::dep_graph;
 use rustc_middle::ty::TyCtxt;
 use rustc_span::Symbol;
 use std::cell::RefCell;
+use std::sync::OnceLock;
 use std::time::Instant;
 
 pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen<Module>, u64) {
@@ -25,6 +26,10 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
     // We assume that the cost to run TPDE on a CGU is proportional to
     // the time we needed for codegenning it.
     let cost = time_to_codegen.as_nanos() as u64;
+
+    for _ in 1..repeat_ir_gen() {
+        tcx.dep_graph.with_ignore(|| module_codegen(tcx, cgu_name));
+    }
 
     fn module_codegen(tcx: TyCtxt<'_>, cgu_name: Symbol) -> ModuleCodegen<Module> {
         let cgu = tcx.codegen_unit(cgu_name);
@@ -74,4 +79,12 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
     }
 
     (ir, cost)
+}
+
+/// Number of times the IR generation runs per CGU, set by the env var REPEAT_IR_GEN
+fn repeat_ir_gen() -> usize {
+    static COUNT: OnceLock<usize> = OnceLock::new();
+    *COUNT.get_or_init(|| {
+        std::env::var("REPEAT_IR_GEN").ok().and_then(|s| s.parse().ok()).unwrap_or(1)
+    })
 }
