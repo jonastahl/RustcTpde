@@ -197,7 +197,7 @@ impl CodegenBackend for TpdeCodegenBackend {
     }
 
     fn print_version(&self) {
-        println!("rustc_codegen_tpde version 0.0.1");
+        println!("rustc_codegen_tpde version 0.0.2");
     }
 
     fn thin_lto_supported(&self) -> bool {

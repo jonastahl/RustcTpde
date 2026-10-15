@@ -60,6 +60,8 @@ target_include_directories(tpde_cpp PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../deps/tpde/tpde/include
 )
 
+target_compile_options(tpde_cpp PRIVATE -fno-exceptions)
+
 target_link_libraries(tpde_cpp PRIVATE tpde)
 
 install(TARGETS tpde_cpp ARCHIVE DESTINATION lib)

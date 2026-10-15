@@ -244,7 +244,7 @@ namespace tpde_rust {
           offset = count = 0;
           break;
         default:
-          throw std::runtime_error("Invalid branching instruction");
+          TPDE_FATAL("Invalid branching instruction");
       }
 
 
@@ -329,15 +329,15 @@ namespace tpde_rust {
         }
 
         [[nodiscard]] IRValueRef incoming_val_for_slot(const u32 slot) const {
-          throw std::runtime_error("not implemented");
+          TPDE_FATAL("not implemented");
         }
 
         [[nodiscard]] IRBlockRef incoming_block_for_slot(const u32 slot) const {
-          throw std::runtime_error("not implemented");
+          TPDE_FATAL("not implemented");
         }
 
         [[nodiscard]] IRValueRef incoming_val_for_block(const IRBlockRef block) const {
-          throw std::runtime_error("not implemented");
+          TPDE_FATAL("not implemented");
         }
       };
 
@@ -348,7 +348,7 @@ namespace tpde_rust {
       if (operands::is_alloc(val)) {
         return cur_data.allocas[operands::content(val)].size;
       }
-      throw std::runtime_error("not a alloc");
+      TPDE_FATAL("not a alloc");
     }
 
     [[nodiscard]] u32 val_alloca_align(IRValueRef val) const {
@@ -358,7 +358,7 @@ namespace tpde_rust {
         // the 128 bit vector parts.
         return std::min<u32>(cur_data.allocas[operands::content(val)].align, 16);
       }
-      throw std::runtime_error("not a alloc");
+      TPDE_FATAL("not a alloc");
     }
 
     [[nodiscard]] std::string value_fmt_ref(const IRValueRef val) const {

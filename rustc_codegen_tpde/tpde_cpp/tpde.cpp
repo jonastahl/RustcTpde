@@ -112,7 +112,7 @@ std::pair<u32, Type> vector_info(Type type) {
         // 4096 bit vectors
         case Type::v64i64: return {64, Type::i64};
         default:
-            throw std::runtime_error("vector_info: not a vector type");
+            TPDE_FATAL("vector_info: not a vector type");
     }
 }
 
@@ -175,7 +175,7 @@ std::pair<u32, Type> vector_parts(Type type) {
         case Type::i64: part = Type::v2i64; break;
         case Type::f32: part = Type::v4f32; break;
         case Type::f64: part = Type::v2f64; break;
-        default: throw std::runtime_error("vector_parts: unsupported element type");
+        default: TPDE_FATAL("vector_parts: unsupported element type");
     }
     return {bits / 128, part};
 }
@@ -196,7 +196,7 @@ std::pair<u32, Type> vector_parts(Type type) {
                 const auto [nelem, elem] = vector_info(type);
                 return nelem * size_of_type(elem);
             }
-            throw std::runtime_error("size_of_type: unsupported type");
+            TPDE_FATAL("size_of_type: unsupported type");
     }
 }
 
@@ -223,7 +223,7 @@ std::pair<u32, Type> vector_parts(Type type) {
         case Type::v2f64:
             return tpde::RegBank{1};
         default:
-            throw std::runtime_error("reg_bank_of_type: unsupported type");
+            TPDE_FATAL("reg_bank_of_type: unsupported type");
     }
 }
 

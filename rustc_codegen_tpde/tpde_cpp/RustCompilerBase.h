@@ -228,7 +228,7 @@ namespace tpde_rust {
               case 1:
                 return ValuePart(imm.data1, 8, tpde::RegBank{0});
               default:
-                throw std::runtime_error("invalid part");
+                TPDE_FATAL("invalid part");
             }
           case f32:
               return ValuePart(imm.data2, 4, tpde::RegBank{1});
@@ -261,7 +261,7 @@ namespace tpde_rust {
                   // Value only holds 128 bits; zero (null/undef) is fine,
                   // anything else would be silently truncated.
                   if (imm.data1 != 0 || imm.data2 != 0) {
-                    throw std::runtime_error(
+                    TPDE_FATAL(
                         "vector constant wider than 128 bits not supported");
                   }
                   return 0;
@@ -280,7 +280,7 @@ namespace tpde_rust {
               }
               return ValuePart(word, part_bytes, reg_bank_of_type(part_ty));
             }
-            throw std::runtime_error("not implemented");
+            TPDE_FATAL("not implemented");
         }
       } {
         uint32_t glob_start = this->adaptor->cur_data.allocas.size()
@@ -301,7 +301,7 @@ namespace tpde_rust {
           assert(part == 0);
           loc_id = func_start + gv_id;
         } else {
-          throw std::runtime_error("unknown special mode");
+          TPDE_FATAL("unknown special mode");
         }
         tpde::ValLocalIdx local_idx{loc_id};
 
@@ -754,6 +754,10 @@ namespace tpde_rust {
     assert(static_cast<size_t>(instr->kind) < fns.size());
     const auto [compile_fn, arg] = fns[static_cast<std::size_t>(instr->kind)];
     if (! (derived()->*compile_fn)(inst_ref, val_info, arg) ) {
+      TPDE_LOG_ERR("Could not compile instruction {} (kind {}) in function {}",
+                   inst_ref.inst,
+                   static_cast<unsigned>(instr->kind),
+                   RustAdaptor::func_link_name(this->adaptor->cur_func));
       return false;
     }
     return true;
@@ -1676,7 +1680,6 @@ namespace tpde_rust {
 
     auto op_ref = this->val_ref(this->adaptor->ops(instr)[0]);
     if (!(derived()->*encode_fn)(std::move(addr), op_ref.part(0))) {
-      TPDE_LOG_ERR("fooooo");
       return false;
     }
     return true;
@@ -1766,7 +1769,7 @@ namespace tpde_rust {
 
       default:
         if (!is_vector(ty)) {
-          throw std::runtime_error("Unsupported type for loadi");
+          TPDE_FATAL("Unsupported type for loadi");
         }
         break;
     }
@@ -2204,7 +2207,7 @@ namespace tpde_rust {
         res_vr.part(1).set_value(src_vr.part(1));
         return true;
       default:
-        throw std::runtime_error("Invalid type for trunc");
+        TPDE_FATAL("Invalid type for trunc");
     }
   }
 

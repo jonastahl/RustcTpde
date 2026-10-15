@@ -6,14 +6,18 @@ fn main() {
         .define("CMAKE_CXX_COMPILER", "clang++")
         .define("TPDE_ENABLE_LLVM_PLUGIN", "OFF")
         .define("TPDE_INCLUDE_TESTS", "OFF")
-        .define("TPDE_LOGGING", "OFF")
+        .define("TPDE_LOGGING", "ON")
         .build();
 
     println!("cargo:rustc-link-search=native={}", dst.join("lib").display());
     println!("cargo:rustc-link-search=native={}", dst.join("lib64").display());
-
+    let spdlog_dir = dst.join("build/tpde_build/tpde/deps/spdlog");
+    println!("cargo:rustc-link-search=native={}", spdlog_dir.display());
+    
+    let spdlog_lib = if spdlog_dir.join("libspdlogd.a").exists() { "spdlogd" } else { "spdlog" };
     println!("cargo:rustc-link-lib=static=tpde_cpp");
     println!("cargo:rustc-link-lib=static=tpde");
+    println!("cargo:rustc-link-lib=static={spdlog_lib}");
     println!("cargo:rustc-link-lib=static=fadec");
     println!("cargo:rustc-link-lib=static=disarm64");
 
@@ -23,6 +27,7 @@ fn main() {
         .include(".")
         .include("../deps/tpde/tpde/include")
         .flag_if_supported("-std=c++23")
+        .flag_if_supported("-fno-exceptions")
         // silence warning in generated cxx code
         .flag_if_supported("-Wno-maybe-uninitialized")
         .compile("rustc_codegen_tpde");
