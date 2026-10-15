@@ -109,6 +109,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         module: &mut ModuleCodegen<Self::Module>,
         config: &ModuleConfig,
     ) {
+        let _timer = prof.generic_activity_with_arg("TPDE_module_optimize", &*module.name);
         // We don't support optimizations by now
     }
 
