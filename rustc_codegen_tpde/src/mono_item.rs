@@ -68,7 +68,12 @@ impl<'tcx> PreDefineCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         visibility: Visibility,
         symbol_name: &str,
     ) {
-        self.declare_fn(instance, symbol_name, linkage, visibility, Binding::Definition);
+        let func = self.declare_fn(instance, symbol_name, linkage, visibility, Binding::Definition);
+
+        let mir = self.tcx.instance_mir(instance.def);
+        let blocks = mir.basic_blocks.len();
+        let size = blocks + mir.basic_blocks.iter().map(|bb| bb.statements.len()).sum::<usize>();
+        self.module.borrow_mut().reserve_function(func, blocks, size * 2, size * 3 / 2, size * 4);
     }
 }
 
