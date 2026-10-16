@@ -61,7 +61,7 @@ namespace tpde_rust::x64 {
 
     bool compile_cmp(RustAdaptor::IRInstRef inst, const ValInfo &, u64);
     bool compile_condbr(RustAdaptor::IRInstRef, const ValInfo &, u64);
-    bool compile_overflow_jump(Instruction&, InstructionKind, bool);
+    bool compile_overflow_jump(IR::Instr, InstructionKind, bool);
 
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_rdtsc(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -101,9 +101,9 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_cmp(const RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
-    const Instruction &cmpi = this->adaptor->get_instruction(inst);
+    const IR::Instr cmpi = this->adaptor->get_instruction(inst);
 
-    Type type = this->adaptor->type_of_ref(this->adaptor->ops(cmpi)[0]);
+    Type type = this->adaptor->type_of_ref(cmpi.op(0));
     if (is_vector(type)) {
       return compile_icmp_vector(this->adaptor->get_instruction(inst));
     }
@@ -111,7 +111,7 @@ namespace tpde_rust::x64 {
 
     Jump jump;
     bool is_signed = false;
-    switch (cmpi.kind) {
+    switch (cmpi.kind()) {
       case InstructionKind::CMPeq: jump = Jump::je; break;
       case InstructionKind::CMPne: jump = Jump::jne; break;
       case InstructionKind::CMPugt: jump = Jump::ja; break;
@@ -137,14 +137,14 @@ namespace tpde_rust::x64 {
       default: TPDE_UNREACHABLE("invalid icmp predicate");
     }
 
-    const Instruction& jmp_instr = this->adaptor->get_instruction(inst.next());
-    bool fuse_br = jmp_instr.kind == InstructionKind::CondBr && this->adaptor->ops(jmp_instr)[0] == cmpi.result;
+    const IR::Instr jmp_instr = this->adaptor->get_instruction(inst.next());
+    bool fuse_br = jmp_instr.kind() == InstructionKind::CondBr && jmp_instr.op(0) == cmpi.result();
 
-    const auto local_idx = this->adaptor->val_local_idx(cmpi.result);
+    const auto local_idx = this->adaptor->val_local_idx(cmpi.result());
     const bool single_use = this->analyzer.liveness_info(local_idx).ref_count == 2;
 
-    auto lhs = this->val_ref(this->adaptor->ops(cmpi)[0]);
-    auto rhs = this->val_ref(this->adaptor->ops(cmpi)[1]);
+    auto lhs = this->val_ref(cmpi.op(0));
+    auto rhs = this->val_ref(cmpi.op(1));
 
     if (int_width > 64) {
       assert(int_width <= 128);
@@ -261,15 +261,15 @@ namespace tpde_rust::x64 {
     if (fuse_br) {
       this->adaptor->next_fused = true;
       if (!single_use) {
-        (void)result_ref(cmpi.result); // ref-count for branch
+        (void)result_ref(cmpi.result()); // ref-count for branch
         generate_raw_set(
-            jump, result_ref(cmpi.result).part(0).alloc_reg(), /*zext=*/false);
+            jump, result_ref(cmpi.result()).part(0).alloc_reg(), /*zext=*/false);
       }
-      assert(operands::is_raw(this->adaptor->ops(jmp_instr)[1]));
-      assert(operands::is_raw(this->adaptor->ops(jmp_instr)[2]));
-      generate_cond_branch(jump, operands::content(this->adaptor->ops(jmp_instr)[1]), operands::content(this->adaptor->ops(jmp_instr)[2]));
+      assert(operands::is_raw(jmp_instr.op(1)));
+      assert(operands::is_raw(jmp_instr.op(2)));
+      generate_cond_branch(jump, operands::content(jmp_instr.op(1)), operands::content(jmp_instr.op(2)));
     } else {
-      auto [_, res_ref] = result_ref_single(cmpi.result);
+      auto [_, res_ref] = result_ref_single(cmpi.result());
       generate_raw_set(jump, res_ref.alloc_reg(), /*zext=*/false);
     }
 
@@ -277,24 +277,24 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_condbr(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
-    Instruction& condbr = adaptor->get_instruction(instr);
-    assert(this->adaptor->type_of_ref(this->adaptor->ops(condbr)[0]) == Type::Bool);
+    const IR::Instr condbr = adaptor->get_instruction(instr);
+    assert(this->adaptor->type_of_ref(condbr.op(0)) == Type::Bool);
 
     // The condition must be unlocked (and ref-counted) before branching.
     // Otherwise its register is not released at the end of the block and a
     // later block with multiple predecessors assumes the value is still there.
     {
-      ValueRef cond = this->val_ref(this->adaptor->ops(condbr)[0]);
+      ValueRef cond = this->val_ref(condbr.op(0));
       ValuePartRef cond_op = cond.part(0);
       const AsmReg cond_reg = cond_op.cur_reg_or_load();
 
       ASM(TEST8ri, cond_reg, 1);
     }
-    generate_cond_branch(Jump::jne, operands::content(this->adaptor->ops(condbr)[1]), operands::content(this->adaptor->ops(condbr)[2]));
+    generate_cond_branch(Jump::jne, operands::content(condbr.op(1)), operands::content(condbr.op(2)));
     return true;
   }
 
-  bool RustCompilerX64::compile_overflow_jump(Instruction& jmpi, InstructionKind kind, bool is_signed) {
+  bool RustCompilerX64::compile_overflow_jump(IR::Instr jmpi, InstructionKind kind, bool is_signed) {
     Jump jump;
     switch (kind) {
       case InstructionKind::Add:
@@ -306,7 +306,7 @@ namespace tpde_rust::x64 {
         break;
       default: TPDE_UNREACHABLE("Invalid op for overflow");
     }
-    generate_cond_branch(jump, operands::content(this->adaptor->ops(jmpi)[1]), operands::content(this->adaptor->ops(jmpi)[2]));
+    generate_cond_branch(jump, operands::content(jmpi.op(1)), operands::content(jmpi.op(2)));
     return true;
   }
 
@@ -316,46 +316,46 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_rdtsc(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     ScratchReg lo{this}, hi{this};
     lo.alloc_specific(AsmReg::AX);
     hi.alloc_specific(AsmReg::DX);
     ASM(RDTSC);
     ASM(SHL64ri, hi.cur_reg(), 32);
     ASM(OR64rr, lo.cur_reg(), hi.cur_reg());
-    this->result_ref(inst.result).part(0).set_value(std::move(lo));
+    this->result_ref(inst.result()).part(0).set_value(std::move(lo));
     return true;
   }
 
   bool RustCompilerX64::compile_rdtscp(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     ScratchReg lo{this}, hi{this}, aux{this};
     lo.alloc_specific(AsmReg::AX);
     hi.alloc_specific(AsmReg::DX);
     aux.alloc_specific(AsmReg::CX);
 
-    auto ptr = this->val_ref(this->adaptor->ops(inst)[0]);
+    auto ptr = this->val_ref(inst.op(0));
     const AsmReg ptr_reg = ptr.part(0).load_to_reg();
     ASM(RDTSCP);
     ASM(MOV32mr, FE_MEM(ptr_reg, 0, FE_NOREG, 0), aux.cur_reg());
     ASM(SHL64ri, hi.cur_reg(), 32);
     ASM(OR64rr, lo.cur_reg(), hi.cur_reg());
-    this->result_ref(inst.result).part(0).set_value(std::move(lo));
+    this->result_ref(inst.result()).part(0).set_value(std::move(lo));
     return true;
   }
 
   bool RustCompilerX64::compile_clmul(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     // operands: <2 x i64> <2 x i64> <i2>
     // selector: bit 0: control halve of first operand, bit 1: control halve of second operand
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    assert(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]) == Type::v2i64);
-    assert(this->adaptor->type_of_ref(this->adaptor->ops(inst)[1]) == Type::v2i64);
-    const u32 sel = operands::content(this->adaptor->ops(inst)[2]);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    assert(this->adaptor->type_of_ref(inst.op(0)) == Type::v2i64);
+    assert(this->adaptor->type_of_ref(inst.op(1)) == Type::v2i64);
+    const u32 sel = operands::content(inst.op(2));
     const u8 imm = static_cast<u8>((sel & 1) | (((sel >> 1) & 1) << 4));
 
-    auto lhs = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto rhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    auto lhs = this->val_ref(inst.op(0));
+    auto rhs = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
 
     // pclmulqdq is destructive: dst = dst clmul src
     auto dst = lhs.part(0).into_temporary();
@@ -366,14 +366,14 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_crc32(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    auto crc = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto data = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    auto crc = this->val_ref(inst.op(0));
+    auto data = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
 
     auto dst = crc.part(0).into_temporary();
     auto src = data.part(0).load_to_reg();
-    switch (size_of_type(this->adaptor->type_of_ref(this->adaptor->ops(inst)[1]))) {
+    switch (size_of_type(this->adaptor->type_of_ref(inst.op(1)))) {
       case 8: ASM(CRC32_8rr, dst.cur_reg(), src); break;
       case 16: ASM(CRC32_16rr, dst.cur_reg(), src); break;
       case 32: ASM(CRC32_32rr, dst.cur_reg(), src); break;
@@ -386,12 +386,12 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_reduce_pairs(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
     // op: 0 psadbw, 1 pmaddwd, 2 pmaddubsw, 3 pmulhrsw
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    auto lhs = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto rhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    auto lhs = this->val_ref(inst.op(0));
+    auto rhs = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
 
-    const u32 parts = vector_parts(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0])).first;
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.op(0))).first;
     for (u32 i = 0; i != parts; ++i) {
       auto dst = lhs.part(i).into_temporary();
       auto src_reg = rhs.part(i).load_to_reg();
@@ -407,13 +407,13 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_shift(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const u32 op = operands::content(this->adaptor->ops(inst)[2]);
-    auto vec = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto cnt = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const u32 op = operands::content(inst.op(2));
+    auto vec = this->val_ref(inst.op(0));
+    auto cnt = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
 
-    const u32 parts = vector_parts(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0])).first;
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.op(0))).first;
     for (u32 i = 0; i != parts; ++i) {
       auto dst = vec.part(i).into_temporary();
       auto cnt_reg = cnt.part(0).load_to_reg();
@@ -433,13 +433,13 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_minmax(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const u32 op = operands::content(this->adaptor->ops(inst)[2]);
-    auto lhs = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto rhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const u32 op = operands::content(inst.op(2));
+    auto lhs = this->val_ref(inst.op(0));
+    auto rhs = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
 
-    const u32 parts = vector_parts(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0])).first;
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.op(0))).first;
     for (u32 i = 0; i != parts; ++i) {
       auto dst = lhs.part(i).into_temporary();
       auto src_reg = rhs.part(i).load_to_reg();
@@ -459,12 +459,12 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_approx(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const u32 op = operands::content(this->adaptor->ops(inst)[1]);
-    auto vec = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto res = this->result_ref(inst.result);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const u32 op = operands::content(inst.op(1));
+    auto vec = this->val_ref(inst.op(0));
+    auto res = this->result_ref(inst.result());
 
-    const u32 parts = vector_parts(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0])).first;
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.op(0))).first;
     for (u32 i = 0; i != parts; ++i) {
       auto dst = vec.part(i).into_temporary();
       switch (op) {
@@ -479,14 +479,14 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_cmp(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const u32 raw = operands::content(this->adaptor->ops(inst)[2]);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const u32 raw = operands::content(inst.op(2));
     const u8 pred = static_cast<u8>(raw >> 2);
-    auto lhs = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto rhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    auto lhs = this->val_ref(inst.op(0));
+    auto rhs = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
 
-    const u32 parts = vector_parts(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0])).first;
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.op(0))).first;
     for (u32 i = 0; i != parts; ++i) {
       auto dst = lhs.part(i).into_temporary();
       auto src_reg = rhs.part(i).load_to_reg();
@@ -502,11 +502,11 @@ namespace tpde_rust::x64 {
   }
 
   bool RustCompilerX64::compile_simd_cvt(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const u32 raw = operands::content(this->adaptor->ops(inst)[1]);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const u32 raw = operands::content(inst.op(1));
     const u32 op = raw & 3;
-    auto vec = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto res = this->result_ref(inst.result);
+    auto vec = this->val_ref(inst.op(0));
+    auto res = this->result_ref(inst.result());
 
     if (op == 3) {
       auto lo = vec.part(0).into_temporary();
@@ -518,7 +518,7 @@ namespace tpde_rust::x64 {
       return true;
     }
 
-    const u32 parts = vector_parts(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0])).first;
+    const u32 parts = vector_parts(this->adaptor->type_of_ref(inst.op(0))).first;
     for (u32 i = 0; i != parts; ++i) {
       auto dst = vec.part(i).into_temporary();
       if (op == 2) {

@@ -1,4 +1,6 @@
 #pragma once
+#include <optional>
+
 #include "RustAdaptor.h"
 #include "RustCompiler.h"
 #include "../deps/tpde/tpde/include/tpde/CompilerBase.hpp"
@@ -388,7 +390,7 @@ namespace tpde_rust {
     bool compile_inst(RustAdaptor::IRInstRef, InstRange);
 
     bool compile_unknown(RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
-      Instruction& instr = this->adaptor->get_instruction(inst);
+      const IR::Instr instr = this->adaptor->get_instruction(inst);
       assert(false);
       return false;
     }
@@ -400,7 +402,7 @@ namespace tpde_rust {
 
     bool compile_overflowable(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
-    bool compile_overflow(Instruction &, Instruction &);
+    bool compile_overflow(IR::Instr, IR::Instr);
 
     bool compile_saturating_intrin(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
@@ -416,12 +418,12 @@ namespace tpde_rust {
 
     bool compile_store(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
-    bool compile_store_generic(Instruction &, GenericValuePart &&);
+    bool compile_store_generic(IR::Instr, GenericValuePart &&);
     bool compile_store_atomic(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_load(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
-    bool compile_load_generic(Instruction &, GenericValuePart &&);
+    bool compile_load_generic(IR::Instr, GenericValuePart &&);
     bool compile_load_atomic(RustAdaptor::IRInstRef, const ValInfo &, u64);
 
     bool compile_memcpy(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -463,11 +465,11 @@ namespace tpde_rust {
     bool compile_extract_element(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_insert_element(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_shuffle_vector(RustAdaptor::IRInstRef, const ValInfo &, u64);
-    bool compile_icmp_vector(Instruction &);
+    bool compile_icmp_vector(IR::Instr);
     bool compile_fmuladd(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_vector_reduce(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_vector_splat(RustAdaptor::IRInstRef, const ValInfo &, u64);
-    bool compile_vector_conv(const Instruction &);
+    bool compile_vector_conv(IR::Instr);
     bool compile_select_bitmask(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_vector_bitmask(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_masked_mem(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -749,14 +751,14 @@ namespace tpde_rust {
       return res;
     }();
 
-    Instruction *instr = &this->adaptor->get_instruction(inst_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(inst_ref);
     const ValInfo val_info = this->adaptor->val_info(instr);
-    assert(static_cast<size_t>(instr->kind) < fns.size());
-    const auto [compile_fn, arg] = fns[static_cast<std::size_t>(instr->kind)];
+    assert(static_cast<size_t>(instr.kind()) < fns.size());
+    const auto [compile_fn, arg] = fns[static_cast<std::size_t>(instr.kind())];
     if (! (derived()->*compile_fn)(inst_ref, val_info, arg) ) {
       TPDE_LOG_ERR("Could not compile instruction {} (kind {}) in function {}",
                    inst_ref.inst,
-                   static_cast<unsigned>(instr->kind),
+                   static_cast<unsigned>(instr.kind()),
                    RustAdaptor::func_link_name(this->adaptor->cur_func));
       return false;
     }
@@ -766,11 +768,11 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_ret(
     RustAdaptor::IRInstRef instr_ref, const ValInfo &, u64) {
-    Instruction *instr = &this->adaptor->get_instruction(instr_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(instr_ref);
 
     typename Base::RetBuilder rb{*derived(), *derived()->cur_cc_assigner()};
-    if (!this->adaptor->ops(*instr).empty()) {
-      for (auto op: this->adaptor->ops(*instr)) {
+    if (!(instr.num_ops() == 0)) {
+      for (auto op: instr.ops()) {
         rb.add(op);
       }
     }
@@ -781,7 +783,7 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_int_binary_op(
     RustAdaptor::IRInstRef instr_ref, const ValInfo &info, u64 op_val) {
-    Instruction *instr = &this->adaptor->get_instruction(instr_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(instr_ref);
 
     IntBinaryOp op = typename IntBinaryOp::Value(op_val);
     auto parts = this->adaptor->val_parts(info);
@@ -875,11 +877,10 @@ namespace tpde_rust {
       return {fns[op.index()][ty_idx], ty_idx < 3};
     };
 
-    unsigned int_width = size_of_type(Base::adaptor->elem_type_of_ref(instr->result));
-    const auto &operands = this->adaptor->ops(*instr);
-    ValueRef lhs = this->val_ref(operands[0]);
-    ValueRef rhs = this->val_ref(operands[1]);
-    ValueRef res = this->result_ref(instr->result);
+    unsigned int_width = size_of_type(Base::adaptor->elem_type_of_ref(instr.result()));
+    ValueRef lhs = this->val_ref(instr.op(0));
+    ValueRef rhs = this->val_ref(instr.op(1));
+    ValueRef res = this->result_ref(instr.result());
 
     auto handle_part = [this, int_width, op](EncodeFnTy encode_fn,
                                              bool is_scalar,
@@ -953,14 +954,14 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_int_binary_op_i128(RustAdaptor::IRInstRef ref, const ValInfo &,
     IntBinaryOp op) {
-    const Instruction& inst = this->adaptor->get_instruction(ref);
+    const IR::Instr inst = this->adaptor->get_instruction(ref);
 
-    const unsigned int_width = size_of_type(this->adaptor->type_of_ref(inst.result));
+    const unsigned int_width = size_of_type(this->adaptor->type_of_ref(inst.result()));
     assert(int_width > 64 && int_width <= 128);
-    auto lhs_op = this->adaptor->ops(inst)[0];
-    auto rhs_op = this->adaptor->ops(inst)[1];
+    auto lhs_op = inst.op(0);
+    auto rhs_op = inst.op(1);
 
-    auto res = this->result_ref(inst.result);
+    auto res = this->result_ref(inst.result());
 
     if (op.is_div() || op.is_rem()) {
       LibFunc lf;
@@ -1123,11 +1124,11 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_float_binary_op(
     RustAdaptor::IRInstRef inst, const ValInfo &val_info, u64 op) {
-    Instruction &finstr = this->adaptor->get_instruction(inst);
+    const IR::Instr finstr = this->adaptor->get_instruction(inst);
 
-    auto lhs = this->val_ref(this->adaptor->ops(finstr)[0]);
-    auto rhs = this->val_ref(this->adaptor->ops(finstr)[1]);
-    ValueRef res = this->result_ref(finstr.result);
+    auto lhs = this->val_ref(finstr.op(0));
+    auto rhs = this->val_ref(finstr.op(1));
+    ValueRef res = this->result_ref(finstr.result());
 
     if (op == FloatBinaryOp::rem) {
       LibFunc lf;
@@ -1189,25 +1190,25 @@ namespace tpde_rust {
                                                                         const ValInfo &info, u64 op) {
     auto instr_size = this->adaptor->get_basic_block(instr.block).insts_len;
     if (instr_size > instr.inst) {
-      Instruction &pot_overflow = this->adaptor->get_instruction(instr.next());
-      if (pot_overflow.kind == InstructionKind::OverflowCheck) {
-        Instruction &inst = this->adaptor->get_instruction(instr);
+      const IR::Instr pot_overflow = this->adaptor->get_instruction(instr.next());
+      if (pot_overflow.kind() == InstructionKind::OverflowCheck) {
+        const IR::Instr inst = this->adaptor->get_instruction(instr);
         if (!compile_overflow(inst, pot_overflow)) {
           return false;
         }
 
         // Fusion creates errors for i128 as the generated instruction before may not give a clear overflow flag
-        const bool flags_valid = this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]) != Type::i128;
+        const bool flags_valid = this->adaptor->type_of_ref(inst.op(0)) != Type::i128;
         if (instr_size > instr.next().inst && flags_valid) {
-          Instruction &pot_condbr = this->adaptor->get_instruction(instr.next().next());
-          if (pot_condbr.kind == InstructionKind::CondBr && pot_overflow.result == this->adaptor->ops(pot_condbr)[0]) {
-            assert(this->analyzer.liveness_info(this->adaptor->val_local_idx(pot_overflow.result)).ref_count == 2);
+          const IR::Instr pot_condbr = this->adaptor->get_instruction(instr.next().next());
+          if (pot_condbr.kind() == InstructionKind::CondBr && pot_overflow.result() == pot_condbr.op(0)) {
+            assert(this->analyzer.liveness_info(this->adaptor->val_local_idx(pot_overflow.result())).ref_count == 2);
             this->adaptor->next_fused = true;
             // We can drop the register used for the overflow check
-            this->val_ref(pot_overflow.result).reset();
+            this->val_ref(pot_overflow.result()).reset();
 
-            bool is_signed = operands::content(this->adaptor->ops(pot_overflow)[0]);
-            return derived()->compile_overflow_jump(pot_condbr, inst.kind, is_signed);
+            bool is_signed = operands::content(pot_overflow.op(0));
+            return derived()->compile_overflow_jump(pot_condbr, inst.kind(), is_signed);
           }
         }
         return true;
@@ -1218,15 +1219,15 @@ namespace tpde_rust {
   }
 
   template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_overflow(Instruction &op_instr, Instruction &of_instr) {
-    ValueRef lhs = this->val_ref(this->adaptor->ops(op_instr)[0]);
-    ValueRef rhs = this->val_ref(this->adaptor->ops(op_instr)[1]);
-    ValueRef res = this->result_ref(op_instr.result);
-    ValueRef of_res = this->result_ref(of_instr.result);
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_overflow(IR::Instr op_instr, IR::Instr of_instr) {
+    ValueRef lhs = this->val_ref(op_instr.op(0));
+    ValueRef rhs = this->val_ref(op_instr.op(1));
+    ValueRef res = this->result_ref(op_instr.result());
+    ValueRef of_res = this->result_ref(of_instr.result());
 
     OverflowOp op;
-    bool is_signed = operands::content(this->adaptor->ops(of_instr)[0]);
-    switch (op_instr.kind) {
+    bool is_signed = operands::content(of_instr.op(0));
+    switch (op_instr.kind()) {
       case InstructionKind::Add:
         op = is_signed ? OverflowOp::sadd : OverflowOp::uadd;
         break;
@@ -1240,7 +1241,7 @@ namespace tpde_rust {
         assert(false && "Only support integer types");
     }
 
-    const Type ty = this->adaptor->type_of_ref(this->adaptor->ops(op_instr)[0]);
+    const Type ty = this->adaptor->type_of_ref(op_instr.op(0));
     switch (ty) {
       using enum Type;
       case i8:
@@ -1332,9 +1333,9 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_saturating_intrin(RustAdaptor::IRInstRef inst_ref, const ValInfo &,
     u64 op) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
 
-    const Type ty = this->adaptor->type_of_ref(inst.result);
+    const Type ty = this->adaptor->type_of_ref(inst.result());
 
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &);
@@ -1371,15 +1372,15 @@ namespace tpde_rust {
 
     EncodeFnTy fn = encode_fns[static_cast<u32>(op)][width_idx];
     if (is_vector(ty)) {
-      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
+      map_elements(inst.result(), [&](u32, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
         (derived()->*fn)(std::move(l), std::move(r), out);
-      }, this->adaptor->ops(inst)[0], this->adaptor->ops(inst)[1]);
+      }, inst.op(0), inst.op(1));
       return true;
     }
 
-    ValueRef lhs = this->val_ref(this->adaptor->ops(inst)[0]);
-    ValueRef rhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    ValueRef res = this->result_ref(inst.result);
+    ValueRef lhs = this->val_ref(inst.op(0));
+    ValueRef rhs = this->val_ref(inst.op(1));
+    ValueRef res = this->result_ref(inst.result());
     ValuePartRef res_part = res.part(0);
     return (derived()->*fn)(lhs.part(0), rhs.part(0), res_part);
   }
@@ -1393,7 +1394,7 @@ namespace tpde_rust {
     // index - val or const
 
     RustAdaptor::IRInstRef gep_ref = inst;
-    Instruction *gep = &this->adaptor->get_instruction(inst);
+    const IR::Instr gep = this->adaptor->get_instruction(inst);
 
     GenericValuePart addr = typename GenericValuePart::Expr{};
     {
@@ -1409,7 +1410,7 @@ namespace tpde_rust {
       // still uninitialized.
       bool base_is_stack_var = false;
 
-      auto [ptr_ref, base] = this->val_ref_single(this->adaptor->ops(*gep)[0]);
+      auto [ptr_ref, base] = this->val_ref_single(gep.op(0));
       if (base.has_assignment() && base.assignment().is_stack_variable()) {
         base_is_stack_var = true;
       } else {
@@ -1422,9 +1423,9 @@ namespace tpde_rust {
 
       // The instruction following the last fused GEP, if it might be fusable.
       {
-        const u64 scale = operands::content(this->adaptor->ops(*gep)[1]);
+        const u64 scale = operands::content(gep.op(1));
 
-        const IRValueRef idx = this->adaptor->ops(*gep)[2];
+        const IRValueRef idx = gep.op(2);
         if (operands::is_const(idx)) {
           // Constant index: fold into the displacement.
           const Value imm = this->adaptor->const_value(idx);
@@ -1474,10 +1475,10 @@ namespace tpde_rust {
         }
       }
 
-      Instruction* next_val = nullptr;
+      std::optional<IR::Instr> next_val;
       while (true) {
         // The definition itself counts as one reference.
-        const auto local_idx = this->adaptor->val_local_idx(gep->result);
+        const auto local_idx = this->adaptor->val_local_idx(gep.result());
         if (this->analyzer.liveness_info(local_idx).ref_count > 2)
           break;
 
@@ -1485,7 +1486,7 @@ namespace tpde_rust {
         if (next_ref.inst >= this->adaptor->get_basic_block(gep_ref.block).insts_len)
           break;
 
-        next_val = &this->adaptor->get_instruction(next_ref);
+        next_val.emplace(this->adaptor->get_instruction(next_ref));
         break;
       }
 
@@ -1494,7 +1495,7 @@ namespace tpde_rust {
           // Create a new stack variable reference to avoid materializing this
           // simple addition.
           (void) this->result_ref_stack_slot(
-            gep->result, base.assignment(), displacement);
+            gep.result(), base.assignment(), displacement);
           return true;
         }
 
@@ -1505,20 +1506,20 @@ namespace tpde_rust {
       }
 
       if (next_val) {
-        if (next_val->kind == InstructionKind::Store &&
-            this->adaptor->ops(*next_val)[1] == gep->result) {
+        if (next_val->is(InstructionKind::Store) &&
+            next_val->op(1) == gep.result()) {
           this->adaptor->next_fused = true;
           return compile_store_generic(*next_val, std::move(addr));
         }
-        if (next_val->kind == InstructionKind::Load &&
-            this->adaptor->ops(*next_val)[0] == gep->result) {
+        if (next_val->is(InstructionKind::Load) &&
+            next_val->op(0) == gep.result()) {
           this->adaptor->next_fused = true;
           return compile_load_generic(*next_val, std::move(addr));
         }
       }
     }
 
-    auto [res_vr, res_ref] = this->result_ref_single(gep->result);
+    auto [res_vr, res_ref] = this->result_ref_single(gep.result());
 
     AsmReg res_reg = derived()->gval_expr_as_reg(addr);
     if (auto *op_reg = std::get_if<ScratchReg>(&addr.state)) {
@@ -1533,9 +1534,9 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_store(
     RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
-    Instruction &storei = this->adaptor->get_instruction(inst);
+    const IR::Instr storei = this->adaptor->get_instruction(inst);
 
-    auto [_, ptr_ref] = this->val_ref_single(this->adaptor->ops(storei)[1]);
+    auto [_, ptr_ref] = this->val_ref_single(storei.op(1));
     if (ptr_ref.has_assignment() && ptr_ref.assignment().is_stack_variable()) {
       GenericValuePart addr =
           derived()->create_addr_for_alloca(ptr_ref.assignment());
@@ -1547,8 +1548,8 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_store_generic(
-    Instruction &storei, GenericValuePart &&ptr_op) {
-    const auto op_val = this->adaptor->ops(storei)[0];
+    IR::Instr storei, GenericValuePart &&ptr_op) {
+    const auto op_val = storei.op(0);
     auto op_ref = this->val_ref(op_val);
 
     Type ty = this->adaptor->type_of_ref(op_val);
@@ -1633,9 +1634,9 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_store_atomic(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(inst_ref);
 
-    auto [_, ptr_ref] = this->val_ref_single(this->adaptor->ops(instr)[1]);
+    auto [_, ptr_ref] = this->val_ref_single(instr.op(1));
     GenericValuePart addr;
     if (ptr_ref.has_assignment() && ptr_ref.assignment().is_stack_variable()) {
       addr = derived()->create_addr_for_alloca(ptr_ref.assignment());
@@ -1643,11 +1644,11 @@ namespace tpde_rust {
       addr = std::move(ptr_ref);
     }
 
-    const Type ty = this->adaptor->type_of_ref(this->adaptor->ops(instr)[0]);
+    const Type ty = this->adaptor->type_of_ref(instr.op(0));
     u32 width = size_of_type(ty);
     assert(width == 8 || width == 16 || width == 32 || width == 64);
 
-    const auto order = static_cast<AtomicOrdering>(operands::content(this->adaptor->ops(instr)[2]));
+    const auto order = static_cast<AtomicOrdering>(operands::content(instr.op(2)));
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&);
     EncodeFnTy encode_fn = nullptr;
@@ -1678,7 +1679,7 @@ namespace tpde_rust {
       }
     }
 
-    auto op_ref = this->val_ref(this->adaptor->ops(instr)[0]);
+    auto op_ref = this->val_ref(instr.op(0));
     if (!(derived()->*encode_fn)(std::move(addr), op_ref.part(0))) {
       return false;
     }
@@ -1688,9 +1689,9 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_load(
     RustAdaptor::IRInstRef inst, const ValInfo &, u64) {
-    Instruction &loadi = this->adaptor->get_instruction(inst);
+    const IR::Instr loadi = this->adaptor->get_instruction(inst);
 
-    auto [_, ptr_ref] = this->val_ref_single(this->adaptor->ops(loadi)[0]);
+    auto [_, ptr_ref] = this->val_ref_single(loadi.op(0));
     if (ptr_ref.has_assignment() && ptr_ref.assignment().is_stack_variable()) {
       GenericValuePart addr =
           derived()->create_addr_for_alloca(ptr_ref.assignment());
@@ -1702,8 +1703,8 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_load_generic(
-    Instruction &loadi, GenericValuePart &&ptr_op) {
-    Type ty = this->adaptor->type_of_ref(loadi.result);
+    IR::Instr loadi, GenericValuePart &&ptr_op) {
+    Type ty = this->adaptor->type_of_ref(loadi.result());
 
     using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
     static constexpr auto int_fns = []() consteval {
@@ -1734,17 +1735,17 @@ namespace tpde_rust {
         const auto num_bytes = size_of_type(ty) / 8;
         EncodeFnTy fn = int_fns[num_bytes - 1][sext];
 
-        (derived()->*fn)(std::move(ptr_op), this->result_ref(loadi.result).part(0));
+        (derived()->*fn)(std::move(ptr_op), this->result_ref(loadi.result()).part(0));
         return true;
       }
       case i128: {
-        ValueRef res = this->result_ref(loadi.result);
+        ValueRef res = this->result_ref(loadi.result());
         derived()->encode_loadi128(std::move(ptr_op), res.part(0), res.part(1));
         return true;
       }
       case f32: {
         derived()->encode_loadf32(std::move(ptr_op),
-                                  this->result_ref(loadi.result).part(0));
+                                  this->result_ref(loadi.result()).part(0));
         return true;
       }
       case v8i8:
@@ -1753,7 +1754,7 @@ namespace tpde_rust {
       case v2f32:
       case f64: {
         derived()->encode_loadf64(std::move(ptr_op),
-                                  this->result_ref(loadi.result).part(0));
+                                  this->result_ref(loadi.result()).part(0));
         return true;
       }
       case v16i8:
@@ -1763,7 +1764,7 @@ namespace tpde_rust {
       case v4f32:
       case v2f64: {
         derived()->encode_loadv128(std::move(ptr_op),
-                                   this->result_ref(loadi.result).part(0));
+                                   this->result_ref(loadi.result()).part(0));
         return true;
       }
 
@@ -1777,7 +1778,7 @@ namespace tpde_rust {
     // Vector split into multiple parts, load them one after another.
     auto parts = this->adaptor->val_parts(ty);
     AsmReg ptr_reg = this->gval_as_reg(ptr_op);
-    ValueRef res = this->result_ref(loadi.result);
+    ValueRef res = this->result_ref(loadi.result());
     i32 off = 0;
     for (u32 i = 0, n = parts.count(); i != n; ++i) {
       const Type part_ty = parts.type(i);
@@ -1795,9 +1796,9 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_load_atomic(RustAdaptor::IRInstRef instr_ref, const ValInfo &, u64) {
-    Instruction& instr = this->adaptor->get_instruction(instr_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(instr_ref);
 
-    auto [_, ptr_ref] = this->val_ref_single(this->adaptor->ops(instr)[0]);
+    auto [_, ptr_ref] = this->val_ref_single(instr.op(0));
     GenericValuePart addr;
     if (ptr_ref.has_assignment() && ptr_ref.assignment().is_stack_variable()) {
       addr = derived()->create_addr_for_alloca(ptr_ref.assignment());
@@ -1805,7 +1806,7 @@ namespace tpde_rust {
       addr = std::move(ptr_ref);
     }
 
-    const Type ty = this->adaptor->type_of_ref(instr.result);
+    const Type ty = this->adaptor->type_of_ref(instr.result());
     u32 width = size_of_type(ty);
     assert(width == 8 || width == 16 || width == 32 || width == 64);
     u32 needed_align = 1;
@@ -1815,7 +1816,7 @@ namespace tpde_rust {
     case 64: needed_align = 8; break;
     }
 
-    const auto order = static_cast<AtomicOrdering>(operands::content(this->adaptor->ops(instr)[1]));
+    const auto order = static_cast<AtomicOrdering>(operands::content(instr.op(1)));
     using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
     EncodeFnTy encode_fn = nullptr;
     if (order == AtomicOrdering::Monotonic) {
@@ -1845,7 +1846,7 @@ namespace tpde_rust {
       }
     }
 
-    ValueRef res = this->result_ref(instr.result);
+    ValueRef res = this->result_ref(instr.result());
     (derived()->*encode_fn)(std::move(addr), res.part(0));
     return true;
   }
@@ -1857,9 +1858,9 @@ namespace tpde_rust {
       return false;
     }
 
-    Instruction &calli = this->adaptor->get_instruction(instr);
-    const auto func = this->adaptor->ops(calli)[0];
-    size_t arg_start = calli.kind == InstructionKind::Call ? 1 : 3;
+    const IR::Instr calli = this->adaptor->get_instruction(instr);
+    const auto func = calli.op(0);
+    size_t arg_start = calli.kind() == InstructionKind::Call ? 1 : 3;
     bool is_dynamic_function;
     if (operands::is_func(func)) {
       is_dynamic_function = false;
@@ -1873,14 +1874,14 @@ namespace tpde_rust {
     }
 
     const auto infos = Adaptor::view(is_dynamic_function ?
-      this->adaptor->cur_data.callee_infos[operands::content(this->adaptor->ops(calli)[arg_start - 1])].info
+      this->adaptor->cur_data.callee_infos[operands::content(calli.op(arg_start - 1))].info
       : this->adaptor->mod_data.functions[operands::content(func)].args);
-    const size_t num_args = this->adaptor->ops(calli).size() - arg_start;
+    const size_t num_args = calli.num_ops() - arg_start;
     assert(infos.size() <= num_args);
     const bool is_vararg = num_args > infos.size();
     {
       for (size_t i = 0; i < num_args; ++i) {
-        auto& op = this->adaptor->ops(calli)[arg_start + i];
+        const u32 op = calli.op(arg_start + i);
         ArgInfo info = i < infos.size() ? infos[i] : ArgInfo{};
 
         using CallArg = typename Derived::CallArg;
@@ -1932,7 +1933,7 @@ namespace tpde_rust {
       }
     }
 
-    if (calli.has_result) {
+    if (calli.has_result()) {
       tpde::CCAssignment cca;
 
       const auto res_to_ret = [this, &cb, &cca](uint32_t res) {
@@ -1946,12 +1947,12 @@ namespace tpde_rust {
         }
       };
 
-      res_to_ret(calli.result);
+      res_to_ret(calli.result());
 
       if (this->adaptor->get_basic_block(instr.block).insts_len > instr.next().inst) {
-        const Instruction &pot_addret = this->adaptor->get_instruction(instr.next());
-        if (pot_addret.kind == InstructionKind::AddRet) {
-          res_to_ret(pot_addret.result);
+        const IR::Instr pot_addret = this->adaptor->get_instruction(instr.next());
+        if (pot_addret.kind() == InstructionKind::AddRet) {
+          res_to_ret(pot_addret.result());
         }
       }
     }
@@ -1961,7 +1962,7 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_invoke(RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
 
 
   // we need to spill here since the call might branch off
@@ -1983,8 +1984,8 @@ namespace tpde_rust {
   const auto off_after_call = this->text_writer.offset();
 
   // build the eh table
-    IRBlockRef normal_block_ref = operands::content(this->adaptor->ops(inst)[1]);
-    IRBlockRef unwind_block_ref = operands::content(this->adaptor->ops(inst)[2]);
+    IRBlockRef normal_block_ref = operands::content(inst.op(1));
+    IRBlockRef unwind_block_ref = operands::content(inst.op(2));
     auto unwind_block_has_phi = false; // TODO
 
   const BasicBlock& normal_block = this->adaptor->get_basic_block(normal_block_ref);
@@ -2033,9 +2034,9 @@ namespace tpde_rust {
     this->release_spilled_regs(spilled);
   }
 
-  const Instruction &lp = this->adaptor->block_instructions(unwind_block_ref)[0];
-  assert(lp.kind == InstructionKind::LandingPad);
-  const auto kind = static_cast<LandingPadKind>(operands::content(this->adaptor->ops(lp)[0]));
+  const IR::Instr lp = this->adaptor->get_instruction({.inst = 0, .block = unwind_block_ref});
+  assert(lp.is(InstructionKind::LandingPad));
+  const auto kind = static_cast<LandingPadKind>(operands::content(lp.op(0)));
 
   this->text_writer.except_add_call_site(off_before_call,
                                          off_after_call - off_before_call,
@@ -2059,18 +2060,18 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_landing_pad(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction &lp = this->adaptor->get_instruction(inst_ref);
-    Instruction &lp_next = this->adaptor->get_instruction(inst_ref.next());
-    this->result_ref(lp.result).part(0).set_value_reg(Derived::LANDING_PAD_RES_REGS[0]);
-    this->result_ref(lp_next.result).part(0).set_value_reg(Derived::LANDING_PAD_RES_REGS[1]);
+    const IR::Instr lp = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr lp_next = this->adaptor->get_instruction(inst_ref.next());
+    this->result_ref(lp.result()).part(0).set_value_reg(Derived::LANDING_PAD_RES_REGS[0]);
+    this->result_ref(lp_next.result()).part(0).set_value_reg(Derived::LANDING_PAD_RES_REGS[1]);
 
     return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_resume(RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    IRValueRef arg = this->adaptor->ops(inst)[0];
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    IRValueRef arg = inst.op(0);
 
     const auto sym = get_libfunc_sym(LibFunc::resume);
 
@@ -2081,12 +2082,12 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_cast(RustAdaptor::IRInstRef instr, const ValInfo &val_info,
                                                                 u64) {
-    Instruction &casti = this->adaptor->get_instruction(instr);
-    assert(operands::is_val(casti.result));
+    const IR::Instr casti = this->adaptor->get_instruction(instr);
+    assert(operands::is_val(casti.result()));
 
-    const auto src = this->adaptor->ops(casti)[0];
+    const auto src = casti.op(0);
     ValueRef src_ref = this->val_ref(src);
-    ValueRef res_ref = this->result_ref(casti.result);
+    ValueRef res_ref = this->result_ref(casti.result());
 
     const auto src_part_count = this->adaptor->val_parts(src).count();
     const auto dst_part_count = this->adaptor->val_parts(val_info).count();
@@ -2128,8 +2129,8 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_int_ext(RustAdaptor::IRInstRef instr, const ValInfo &,
                                                                    u64 sign) {
-    Instruction &exti = this->adaptor->get_instruction(instr);
-    const Type dst_ty = this->adaptor->type_of_ref(exti.result);
+    const IR::Instr exti = this->adaptor->get_instruction(instr);
+    const Type dst_ty = this->adaptor->type_of_ref(exti.result());
     if (is_vector(dst_ty)) {
       return compile_vector_conv(exti);
     }
@@ -2137,7 +2138,7 @@ namespace tpde_rust {
     if (!is_integer(dst_ty))
       return false;
 
-    auto src_val = this->adaptor->ops(exti)[0];
+    auto src_val = exti.op(0);
     const Type src_ty = this->adaptor->type_of_ref(src_val);
 
     unsigned src_width = size_of_type(src_ty);
@@ -2145,7 +2146,7 @@ namespace tpde_rust {
     assert(dst_width > src_width);
 
     auto src_ref = this->val_ref(src_val);
-    auto res = this->result_ref(exti.result);
+    auto res = this->result_ref(exti.result());
 
     if (src_width <= 64) {
       ValuePartRef low = src_ref.part(0);
@@ -2182,14 +2183,14 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_int_trunc(RustAdaptor::IRInstRef inst, const ValInfo &val_info, u64) {
-    const Instruction& trunci = this->adaptor->get_instruction(inst);
+    const IR::Instr trunci = this->adaptor->get_instruction(inst);
     if (is_vector(val_info.type)) {
       return compile_vector_conv(trunci);
     }
-    auto val = this->adaptor->ops(trunci)[0];
+    auto val = trunci.op(0);
 
     ValueRef src_vr = this->val_ref(val);
-    ValueRef res_vr = this->result_ref(trunci.result);
+    ValueRef res_vr = this->result_ref(trunci.result());
 
     switch (val_info.type) {
       using enum Type;
@@ -2214,16 +2215,16 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::
   compile_float_ext_trunc(RustAdaptor::IRInstRef instref, const ValInfo &val_info, u64) {
-    const Instruction& inst = this->adaptor->get_instruction(instref);
+    const IR::Instr inst = this->adaptor->get_instruction(instref);
     if (is_vector(val_info.type)) {
       return compile_vector_conv(inst);
     }
 
-    auto src_val = this->adaptor->ops(inst)[0];
+    auto src_val = inst.op(0);
     const Type src_ty = this->adaptor->type_of_ref(src_val);
-    const Type dst_ty = this->adaptor->type_of_ref(inst.result);
+    const Type dst_ty = this->adaptor->type_of_ref(inst.result());
 
-    auto res_vr = this->result_ref(inst.result);
+    auto res_vr = this->result_ref(inst.result());
 
     if (src_ty == Type::f64 && dst_ty == Type::f32) {
       auto src_ref = this->val_ref(src_val);
@@ -2240,7 +2241,7 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_float_to_int(RustAdaptor::IRInstRef instref, const ValInfo &val_info, u64 flags) {
-    const Instruction& inst = this->adaptor->get_instruction(instref);
+    const IR::Instr inst = this->adaptor->get_instruction(instref);
     if (is_vector(val_info.type)) {
       return compile_vector_conv(inst);
     }
@@ -2248,9 +2249,9 @@ namespace tpde_rust {
     bool sign = flags & 0b01;
     bool saturate = flags & 0b10;
 
-    auto src_val = this->adaptor->ops(inst)[0];
+    auto src_val = inst.op(0);
     const Type src_ty = this->adaptor->type_of_ref(src_val);
-    const Type dst_ty = this->adaptor->type_of_ref(inst.result);
+    const Type dst_ty = this->adaptor->type_of_ref(inst.result());
 
     const auto bit_width = size_of_type(dst_ty);
 
@@ -2272,7 +2273,7 @@ namespace tpde_rust {
           res[1][1] = LibFunc::fixdfti;
           return res;
         }();
-        auto res_ref = this->result_ref(inst.result);
+        auto res_ref = this->result_ref(inst.result());
 
         std::array<IRValueRef, 1> args{src_val};
         LibFunc libfunc = encode_fns[ty_idx][sign];
@@ -2319,7 +2320,7 @@ namespace tpde_rust {
           res[1][1] = &Derived::encode_f64toi128_sat_fix;
           return res;
         }();
-        ValueRef res_ref = this->result_ref(inst.result);
+        ValueRef res_ref = this->result_ref(inst.result());
         return (derived()->*fix_fns[ty_idx][sign])(
             std::move(scratch_lo), std::move(scratch_hi),
             src_ref.part(0),
@@ -2372,24 +2373,24 @@ namespace tpde_rust {
       }
 
       auto src_ref = this->val_ref(src_val);
-      auto res_ref = this->result_ref(inst.result);
+      auto res_ref = this->result_ref(inst.result());
       return (derived()->*fn)(src_ref.part(0), res_ref.part(0));
     }
   }
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_int_to_float(RustAdaptor::IRInstRef instref, const ValInfo &val_info, u64 sign) {
-    const Instruction& inst = this->adaptor->get_instruction(instref);
+    const IR::Instr inst = this->adaptor->get_instruction(instref);
     if (is_vector(val_info.type)) {
       return compile_vector_conv(inst);
     }
-    const auto src_val = this->adaptor->ops(inst)[0];
+    const auto src_val = inst.op(0);
     const Type src_ty = this->adaptor->type_of_ref(src_val);
-    const Type dst_ty = this->adaptor->type_of_ref(inst.result);
+    const Type dst_ty = this->adaptor->type_of_ref(inst.result());
 
     auto bit_width = size_of_type(src_ty);
 
-    ValueRef res = this->result_ref(inst.result);
+    ValueRef res = this->result_ref(inst.result());
 
     unsigned ty_idx;
     switch (val_info.type) {
@@ -2442,18 +2443,18 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_neg(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
-    Instruction &negi = this->adaptor->get_instruction(instr);
-    const Type type = this->adaptor->type_of_ref(this->adaptor->ops(negi)[0]);
+    const IR::Instr negi = this->adaptor->get_instruction(instr);
+    const Type type = this->adaptor->type_of_ref(negi.op(0));
     if (is_vector(type)) {
       const bool is_64 = size_of_type(vector_info(type).second) == 64;
-      map_elements(negi.result, [&](u32, ValuePartRef &out, ValuePartRef &&e) {
+      map_elements(negi.result(), [&](u32, ValuePartRef &out, ValuePartRef &&e) {
         is_64 ? derived()->encode_negi64(std::move(e), out) : derived()->encode_negi32(std::move(e), out);
-      }, this->adaptor->ops(negi)[0]);
+      }, negi.op(0));
       return true;
     }
 
-    ValueRef src = this->val_ref(this->adaptor->ops(negi)[0]);
-    ValueRef res = this->result_ref(negi.result);
+    ValueRef src = this->val_ref(negi.op(0));
+    ValueRef res = this->result_ref(negi.result());
 
     switch (type) {
       using enum Type;
@@ -2473,9 +2474,9 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fneg(RustAdaptor::IRInstRef inst, const ValInfo & val_info, u64) {
-    Instruction& fnegi = this->adaptor->get_instruction(inst);
-    ValueRef src = this->val_ref(this->adaptor->ops(fnegi)[0]);
-    ValueRef res = this->result_ref(fnegi.result);
+    const IR::Instr fnegi = this->adaptor->get_instruction(inst);
+    ValueRef src = this->val_ref(fnegi.op(0));
+    ValueRef res = this->result_ref(fnegi.result());
     auto parts = this->adaptor->val_parts(val_info);
     for (u32 i = 0, n = parts.count(); i != n; ++i) {
       switch (parts.type(i)) {
@@ -2493,8 +2494,8 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_not(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
-    Instruction &noti = this->adaptor->get_instruction(instr);
-    const Type type = this->adaptor->type_of_ref(this->adaptor->ops(noti)[0]);
+    const IR::Instr noti = this->adaptor->get_instruction(instr);
+    const Type type = this->adaptor->type_of_ref(noti.op(0));
     if (is_vector(type)) {
       const bool is_64 = size_of_type(vector_info(type).second) == 64;
       auto fn = [&](u32, ValuePartRef &out, ValuePartRef &&e) {
@@ -2503,12 +2504,12 @@ namespace tpde_rust {
         else
           derived()->encode_not32(std::move(e), out);
       };
-      map_elements(noti.result, fn, this->adaptor->ops(noti)[0]);
+      map_elements(noti.result(), fn, noti.op(0));
       return true;
     }
 
-    ValueRef src = this->val_ref(this->adaptor->ops(noti)[0]);
-    ValueRef res = this->result_ref(noti.result);
+    ValueRef src = this->val_ref(noti.op(0));
+    ValueRef res = this->result_ref(noti.result());
 
     switch (type) {
       using enum Type;
@@ -2529,9 +2530,9 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fcmp(RustAdaptor::IRInstRef instr, const ValInfo &, u64 op) {
-    Instruction& fcmpi = this->adaptor->get_instruction(instr);
-    const Type vec_ty = this->adaptor->type_of_ref(this->adaptor->ops(fcmpi)[0]);
-    const Type type = this->adaptor->elem_type_of_ref(this->adaptor->ops(fcmpi)[0]);
+    const IR::Instr fcmpi = this->adaptor->get_instruction(instr);
+    const Type vec_ty = this->adaptor->type_of_ref(fcmpi.op(0));
+    const Type type = this->adaptor->elem_type_of_ref(fcmpi.op(0));
 
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, ValuePart &&);
@@ -2587,24 +2588,24 @@ namespace tpde_rust {
         (derived()->*fn)(std::move(l), std::move(r), std::move(cmp));
         derived()->encode_negi64(std::move(cmp), out);
       };
-      map_elements(fcmpi.result, map_fn, this->adaptor->ops(fcmpi)[0], this->adaptor->ops(fcmpi)[1]);
+      map_elements(fcmpi.result(), map_fn, fcmpi.op(0), fcmpi.op(1));
       return true;
     }
 
-    ValueRef lhs = this->val_ref(this->adaptor->ops(fcmpi)[0]);
-    ValueRef rhs = this->val_ref(this->adaptor->ops(fcmpi)[1]);
-    ValueRef res = this->result_ref(fcmpi.result);
+    ValueRef lhs = this->val_ref(fcmpi.op(0));
+    ValueRef rhs = this->val_ref(fcmpi.op(1));
+    ValueRef res = this->result_ref(fcmpi.result());
     return (derived()->*fn)(lhs.part(0), rhs.part(0), res.part(0));
   }
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_ctpop(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
 
-    const auto width = size_of_type(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]));
+    const auto width = size_of_type(this->adaptor->type_of_ref(inst.op(0)));
     if (width == 128) {
-      ValueRef val_ref = this->val_ref(this->adaptor->ops(inst)[0]);
-      auto res_ref = this->result_ref(inst.result);
+      ValueRef val_ref = this->val_ref(inst.op(0));
+      auto res_ref = this->result_ref(inst.result());
       ValuePartRef lo_cnt{this, Config::GP_BANK};
       ValuePartRef hi_cnt{this, Config::GP_BANK};
       ValuePartRef lo = val_ref.part(0);
@@ -2618,14 +2619,14 @@ namespace tpde_rust {
       return true;
     }
 
-    ValueRef val_ref = this->val_ref(this->adaptor->ops(inst)[0]);
+    ValueRef val_ref = this->val_ref(inst.op(0));
     ValuePartRef op = val_ref.part(0);
     if (width % 32) {
       unsigned tgt_width = tpde::util::align_up(width, 32);
       op = std::move(op).into_extended(/*sign=*/false, width, tgt_width);
     }
 
-    auto [res_vr, res_ref] = this->result_ref_single(inst.result);
+    auto [res_vr, res_ref] = this->result_ref_single(inst.result());
     if (width <= 32) {
       derived()->encode_ctpopi32(std::move(op), res_ref);
     } else {
@@ -2636,11 +2637,11 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_bswap(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
 
-    ValueRef val_ref = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto res_vr = this->result_ref(inst.result);
-    switch (size_of_type(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]))) {
+    ValueRef val_ref = this->val_ref(inst.op(0));
+    auto res_vr = this->result_ref(inst.result());
+    switch (size_of_type(this->adaptor->type_of_ref(inst.op(0)))) {
       case 16: return derived()->encode_bswapi16(val_ref.part(0), res_vr.part(0));
       case 32: return derived()->encode_bswapi32(val_ref.part(0), res_vr.part(0));
       case 64: return derived()->encode_bswapi64(val_ref.part(0), res_vr.part(0));
@@ -2653,8 +2654,8 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_ct_lz_tz(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
-    auto val = this->adaptor->ops(inst)[0];
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    auto val = inst.op(0);
 
     u32 width_idx = 0;
     switch (size_of_type(this->adaptor->type_of_ref(val))) {
@@ -2664,7 +2665,7 @@ namespace tpde_rust {
       case 64: width_idx = 3; break;
       case 128: {
         ValueRef val_ref = this->val_ref(val);
-        auto res_ref = this->result_ref(inst.result);
+        auto res_ref = this->result_ref(inst.result());
         if (op & 2) {
           return derived()->encode_cttzi128(val_ref.part(0), val_ref.part(1), res_ref.part(0));
         }
@@ -2686,17 +2687,17 @@ namespace tpde_rust {
     bool is_cttz = (op & 2) == 2;
     EncodeFnTy fn = encode_fns[width_idx][is_cttz][zero_is_poison];
     return (derived()->*fn)(this->val_ref(val).part(0),
-                            this->result_ref(inst.result).part(0));
+                            this->result_ref(inst.result()).part(0));
   }
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_tls_addr(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
-    assert(operands::is_global(this->adaptor->ops(inst)[0]));
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    assert(operands::is_global(inst.op(0)));
 
-    auto [res_vr, res_ref] = this->result_ref_single(inst.result);
+    auto [res_vr, res_ref] = this->result_ref_single(inst.result());
     // TODO: optimize for other TLS access models
-    ScratchReg res = derived()->tls_get_addr(global_symbols[operands::content(this->adaptor->ops(inst)[0])],
+    ScratchReg res = derived()->tls_get_addr(global_symbols[operands::content(inst.op(0))],
                                              tpde::TLSModel::GlobalDynamic);
     res_ref.set_value(std::move(res));
     return true;
@@ -2704,8 +2705,8 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_rotate(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
-    auto val = this->adaptor->ops(inst)[0];
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    auto val = inst.op(0);
 
     u32 width_idx = 0;
     switch (size_of_type(this->adaptor->type_of_ref(val))) {
@@ -2724,14 +2725,14 @@ namespace tpde_rust {
     };
     EncodeFnTy fn = encode_fns[width_idx][op & 1];
     return (derived()->*fn)(this->val_ref(val).part(0),
-                            this->val_ref(this->adaptor->ops(inst)[1]).part(0),
-                            this->result_ref(inst.result).part(0));
+                            this->val_ref(inst.op(1)).part(0),
+                            this->result_ref(inst.result()).part(0));
   }
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_funnel_shift(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
-    auto val = this->adaptor->ops(inst)[0];
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    auto val = inst.op(0);
 
     u32 width_idx = 0;
     switch (size_of_type(this->adaptor->type_of_ref(val))) {
@@ -2750,9 +2751,9 @@ namespace tpde_rust {
     };
     EncodeFnTy fn = encode_fns[width_idx][op & 1];
     return (derived()->*fn)(this->val_ref(val).part(0),
-                            this->val_ref(this->adaptor->ops(inst)[1]).part(0),
-                            this->val_ref(this->adaptor->ops(inst)[2]).part(0),
-                            this->result_ref(inst.result).part(0));
+                            this->val_ref(inst.op(1)).part(0),
+                            this->val_ref(inst.op(2)).part(0),
+                            this->result_ref(inst.result()).part(0));
   }
 
   /// Lane `idx` of a constant vector (inline `Const` or `ConstVector`), read from the IR.
@@ -2872,12 +2873,12 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_extract_element(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
     // operands: vec, index
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const IRValueRef src = this->adaptor->ops(inst)[0];
-    const IRValueRef index = this->adaptor->ops(inst)[1];
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const IRValueRef src = inst.op(0);
+    const IRValueRef index = inst.op(1);
 
     ValueRef vec_vr = this->val_ref(src);
-    auto [res_vr, result] = this->result_ref_single(inst.result);
+    auto [res_vr, result] = this->result_ref_single(inst.result());
 
     const unsigned nelem = vector_info(this->adaptor->type_of_ref(src)).first;
     const Type bvt = val_info.type;
@@ -2929,23 +2930,23 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_insert_element(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
     // operands: vec, index, elem
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const IRValueRef index = this->adaptor->ops(inst)[1];
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const IRValueRef index = inst.op(1);
 
     const auto [nelem, bvt] = vector_info(val_info.type);
 
-    auto [val_ref, val] = this->val_ref_single(this->adaptor->ops(inst)[2]);
+    auto [val_ref, val] = this->val_ref_single(inst.op(2));
     ValueRef res_vr{derived()};
 
     // We do the dynamic insert in the spill slot of result.
     // First, copy value into the result. We must also do this for constant
     // indices, because the value reference must always be initialized.
     {
-      ValueRef src_vr = this->val_ref(this->adaptor->ops(inst)[0]);
+      ValueRef src_vr = this->val_ref(inst.op(0));
       if (src_vr.is_owned()) {
-        res_vr = this->result_ref_alias(inst.result, std::move(src_vr));
+        res_vr = this->result_ref_alias(inst.result(), std::move(src_vr));
       } else {
-        res_vr = this->result_ref(inst.result);
+        res_vr = this->result_ref(inst.result());
         for (u32 i = 0; i < res_vr.assignment()->part_count; ++i) {
           res_vr.part(i).set_value(src_vr.part(i));
         }
@@ -2999,21 +3000,21 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_shuffle_vector(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
     // operands: lhs, rhs, constant mask vector
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const IRValueRef lhs = this->adaptor->ops(inst)[0];
-    const IRValueRef rhs = this->adaptor->ops(inst)[1];
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const IRValueRef lhs = inst.op(0);
+    const IRValueRef rhs = inst.op(1);
 
     const auto [dst_nelem, bvt] = vector_info(val_info.type);
     const unsigned src_nelem = vector_info(this->adaptor->type_of_ref(lhs)).first;
-    assert(this->adaptor->ops(inst).size() == 3);
-    const IRValueRef mask_vec = this->adaptor->ops(inst)[2];
+    assert(inst.num_ops() == 3);
+    const IRValueRef mask_vec = inst.op(2);
 
     auto bank = reg_bank_of_type(bvt);
     auto size = size_of_type(bvt) / 8;
 
     ValueRef lhs_vr = this->val_ref(lhs);
     ValueRef rhs_vr = this->val_ref(rhs);
-    ValueRef res_vr = this->result_ref(inst.result);
+    ValueRef res_vr = this->result_ref(inst.result());
 
     ValuePartRef tmp{this, bank};
     for (unsigned i = 0; i < dst_nelem; i++) {
@@ -3044,7 +3045,7 @@ namespace tpde_rust {
   }
 
   template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_icmp_vector(Instruction &inst) {
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_icmp_vector(IR::Instr inst) {
     // Unlike LLVM, the result is not an i1 vector but a mask vector with the
     // same type as the operands (all bits of a lane set if true), as required
     // by the Rust simd comparison intrinsics.
@@ -3079,7 +3080,7 @@ namespace tpde_rust {
     }();
 
     unsigned pred_idx;
-    switch (inst.kind) {
+    switch (inst.kind()) {
       case InstructionKind::CMPeq: pred_idx = 0; break;
       case InstructionKind::CMPne: pred_idx = 1; break;
       case InstructionKind::CMPugt: pred_idx = 2; break;
@@ -3114,12 +3115,12 @@ namespace tpde_rust {
     }();
     const bool is_signed = pred_idx >= 6;
 
-    auto lhs_vr = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto rhs_vr = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    auto lhs_vr = this->val_ref(inst.op(0));
+    auto rhs_vr = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
 
     // Vectors wider than 128 bit are compared part by part.
-    auto parts = this->adaptor->val_parts(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]));
+    auto parts = this->adaptor->val_parts(this->adaptor->type_of_ref(inst.op(0)));
     for (u32 i = 0, n = parts.count(); i != n; ++i) {
       const Type part_ty = parts.type(i);
       unsigned ty_idx;
@@ -3156,11 +3157,11 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fmuladd(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    ValueRef op1 = this->val_ref(this->adaptor->ops(inst)[0]);
-    ValueRef op2 = this->val_ref(this->adaptor->ops(inst)[1]);
-    ValueRef op3 = this->val_ref(this->adaptor->ops(inst)[2]);
-    ValueRef res = this->result_ref(inst.result);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    ValueRef op1 = this->val_ref(inst.op(0));
+    ValueRef op2 = this->val_ref(inst.op(1));
+    ValueRef op3 = this->val_ref(inst.op(2));
+    ValueRef res = this->result_ref(inst.result());
 
     using EncodeFnTy = bool (Derived::*)(GenericValuePart &&,
                                          GenericValuePart &&,
@@ -3183,11 +3184,11 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_reduce(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op_val) {
     // operands: vec, or vec, start value for the ordered reductions
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     const bool has_start_elem = op_val & REDUCE_ORDERED;
     const ReduceOp op = static_cast<ReduceOp::Value>(op_val & ~REDUCE_ORDERED);
 
-    const IRValueRef src_op = this->adaptor->ops(inst)[0];
+    const IRValueRef src_op = inst.op(0);
     const auto [nelem, elem_ty] = vector_info(this->adaptor->type_of_ref(src_op));
     const unsigned bits = size_of_type(elem_ty);
     const bool is_64 = bits == 64;
@@ -3252,7 +3253,7 @@ namespace tpde_rust {
     ValuePartRef acc{this, bank};
 
     if (has_start_elem) {
-      acc.set_value(this->val_ref(this->adaptor->ops(inst)[1]).part(0));
+      acc.set_value(this->val_ref(inst.op(1)).part(0));
     } else {
       derived()->extract_element(src_ref_disowned, 0, elem_ty, acc);
     }
@@ -3268,7 +3269,7 @@ namespace tpde_rust {
       (derived()->*fn)(std::move(acc), std::move(elem), acc);
     }
 
-    this->result_ref(inst.result).part(0).set_value(std::move(acc));
+    this->result_ref(inst.result()).part(0).set_value(std::move(acc));
 
     return true;
   }
@@ -3335,14 +3336,14 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_splat(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
     // operands: scalar
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     const auto [nelem, elem_ty] = vector_info(val_info.type);
     const u32 size = size_of_type(elem_ty) / 8;
     const tpde::RegBank bank = reg_bank_of_type(elem_ty);
 
-    ValueRef val_vr = this->val_ref(this->adaptor->ops(inst)[0]);
+    ValueRef val_vr = this->val_ref(inst.op(0));
     ValuePartRef val = val_vr.part(0);
-    ValueRef res = this->result_ref(inst.result);
+    ValueRef res = this->result_ref(inst.result());
 
     // There are no encode functions for splats (encodegen lacks the moves into
     // vector registers), so insert every element.
@@ -3362,10 +3363,10 @@ namespace tpde_rust {
   }
 
   template<typename Adaptor, typename Derived, typename Config>
-  bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_conv(const Instruction &inst) {
+  bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_conv(IR::Instr inst) {
     // Element-wise integer / float conversion of vectors with the same length.
-    const Type src_ty = this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]);
-    const Type dst_ty = this->adaptor->type_of_ref(inst.result);
+    const Type src_ty = this->adaptor->type_of_ref(inst.op(0));
+    const Type dst_ty = this->adaptor->type_of_ref(inst.result());
     const auto [nelem, src_elem] = vector_info(src_ty);
     const Type dst_elem = vector_info(dst_ty).second;
     assert(nelem == vector_info(dst_ty).first);
@@ -3409,11 +3410,11 @@ namespace tpde_rust {
     }();
 
     const tpde::RegBank dst_bank = reg_bank_of_type(dst_elem);
-    map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&elem) {
-      switch (inst.kind) {
+    map_elements(inst.result(), [&](u32, ValuePartRef &out, ValuePartRef &&elem) {
+      switch (inst.kind()) {
         case InstructionKind::zExt:
         case InstructionKind::sExt:
-          out = std::move(elem).into_extended(inst.kind == InstructionKind::sExt, src_bits, dst_bits);
+          out = std::move(elem).into_extended(inst.kind() == InstructionKind::sExt, src_bits, dst_bits);
           break;
         case InstructionKind::Trunc:
           // Only the low bits get stored by insert_element.
@@ -3427,7 +3428,7 @@ namespace tpde_rust {
           break;
         case InstructionKind::sTof:
         case InstructionKind::uTof: {
-          const bool sign = inst.kind == InstructionKind::sTof;
+          const bool sign = inst.kind() == InstructionKind::sTof;
           if (src_bits < 32) {
             elem = std::move(elem).into_extended(sign, src_bits, 32);
           }
@@ -3438,8 +3439,8 @@ namespace tpde_rust {
         case InstructionKind::fTou:
         case InstructionKind::fTos_sat:
         case InstructionKind::fTou_sat: {
-          const bool sign = inst.kind == InstructionKind::fTos || inst.kind == InstructionKind::fTos_sat;
-          const bool sat = inst.kind == InstructionKind::fTos_sat || inst.kind == InstructionKind::fTou_sat;
+          const bool sign = inst.kind() == InstructionKind::fTos || inst.kind() == InstructionKind::fTos_sat;
+          const bool sat = inst.kind() == InstructionKind::fTos_sat || inst.kind() == InstructionKind::fTou_sat;
           const bool src_64 = src_elem == Type::f64;
           if (dst_bits >= 32) {
             (derived()->*ftoi_fns[src_64][dst_bits > 32][sign][sat])(std::move(elem), out);
@@ -3459,7 +3460,7 @@ namespace tpde_rust {
         }
         default: TPDE_UNREACHABLE("invalid vector conversion");
       }
-    }, this->adaptor->ops(inst)[0]);
+    }, inst.op(0));
     return true;
   }
 
@@ -3467,10 +3468,10 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_select_bitmask(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
     // operands: integer bitmask, then, else; lane i is selected by bit i
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     const Type elem_ty = vector_info(val_info.type).second;
 
-    ValueRef mask_vr = this->val_ref(this->adaptor->ops(inst)[0]);
+    ValueRef mask_vr = this->val_ref(inst.op(0));
     ValuePartRef mask = mask_vr.part(0);
     const bool mask_const = mask.is_const();
     const u64 mask_data = mask_const ? mask.const_data()[0] : 0;
@@ -3480,7 +3481,7 @@ namespace tpde_rust {
 
     const auto fn = select_fn(elem_ty);
 
-    map_elements(inst.result, [&](u32 i, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
+    map_elements(inst.result(), [&](u32 i, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
       // The select only looks at the lowest bit of the condition.
       ValuePartRef cond{this, Config::GP_BANK};
       if (mask_const) {
@@ -3491,7 +3492,7 @@ namespace tpde_rust {
                                  cond);
       }
       (derived()->*fn)(std::move(cond), std::move(l), std::move(r), out);
-    }, this->adaptor->ops(inst)[1], this->adaptor->ops(inst)[2]);
+    }, inst.op(1), inst.op(2));
     return true;
   }
 
@@ -3499,13 +3500,13 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_vector_bitmask(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     // operands: mask vector; bit i of the result is the top bit of lane i
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
-    const Type src_ty = this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const Type src_ty = this->adaptor->type_of_ref(inst.op(0));
     if (vector_info(src_ty).first > 64) {
       return false;
     }
 
-    ValueRef src_vr = this->val_ref(this->adaptor->ops(inst)[0]);
+    ValueRef src_vr = this->val_ref(inst.op(0));
     ValuePartRef acc{this, u64{0}, 8, Config::GP_BANK};
 
     auto parts = this->adaptor->val_parts(src_ty);
@@ -3548,7 +3549,7 @@ namespace tpde_rust {
       lane += lanes;
     }
 
-    this->result_ref(inst.result).part(0).set_value(std::move(acc));
+    this->result_ref(inst.result()).part(0).set_value(std::move(acc));
     return true;
   }
 
@@ -3564,20 +3565,20 @@ namespace tpde_rust {
     // Done element-wise without branches: disabled lanes access the element of
     // the vector in its own spill slot instead (loading the default value or
     // storing the value to where it already is).
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     const MaskedMemOp op = static_cast<MaskedMemOp::Value>(op_val);
     const bool is_load = op == MaskedMemOp::gather || op == MaskedMemOp::load;
     const bool lane_ptrs = op == MaskedMemOp::gather || op == MaskedMemOp::scatter;
 
-    const IRValueRef vals = lane_ptrs ? this->adaptor->ops(inst)[0] : this->adaptor->ops(inst)[2];
-    const IRValueRef mask = lane_ptrs ? this->adaptor->ops(inst)[2] : this->adaptor->ops(inst)[0];
+    const IRValueRef vals = lane_ptrs ? inst.op(0) : inst.op(2);
+    const IRValueRef mask = lane_ptrs ? inst.op(2) : inst.op(0);
     const auto [nelem, elem_ty] = vector_info(this->adaptor->type_of_ref(vals));
     const Type mask_elem = vector_info(this->adaptor->type_of_ref(mask)).second;
     const u32 elem_sz = size_of_type(elem_ty) / 8;
     const tpde::RegBank bank = reg_bank_of_type(elem_ty);
 
     ValueRef mask_vr = this->val_ref(mask);
-    ValueRef ptr_vr = this->val_ref(this->adaptor->ops(inst)[1]);
+    ValueRef ptr_vr = this->val_ref(inst.op(1));
     ValuePartRef base{this};
     if (!lane_ptrs) {
       base = ptr_vr.part(0).into_temporary();
@@ -3588,9 +3589,9 @@ namespace tpde_rust {
       // Start with the default values in the result.
       ValueRef src_vr = this->val_ref(vals);
       if (src_vr.is_owned()) {
-        vec_vr = this->result_ref_alias(inst.result, std::move(src_vr));
+        vec_vr = this->result_ref_alias(inst.result(), std::move(src_vr));
       } else {
-        vec_vr = this->result_ref(inst.result);
+        vec_vr = this->result_ref(inst.result());
         for (u32 i = 0; i < vec_vr.assignment()->part_count; ++i) {
           vec_vr.part(i).set_value(src_vr.part(i));
         }
@@ -3641,17 +3642,17 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fabs(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     if (is_vector(val_info.type)) {
       const bool is_64 = vector_info(val_info.type).second == Type::f64;
-      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&e) {
+      map_elements(inst.result(), [&](u32, ValuePartRef &out, ValuePartRef &&e) {
         is_64 ? derived()->encode_fabsf64(std::move(e), out) : derived()->encode_fabsf32(std::move(e), out);
-      }, this->adaptor->ops(inst)[0]);
+      }, inst.op(0));
       return true;
     }
 
-    ValueRef src = this->val_ref(this->adaptor->ops(inst)[0]);
-    ValueRef res = this->result_ref(inst.result);
+    ValueRef src = this->val_ref(inst.op(0));
+    ValueRef res = this->result_ref(inst.result());
     switch (val_info.type) {
       case Type::f32: return derived()->encode_fabsf32(src.part(0), res.part(0));
       case Type::f64: return derived()->encode_fabsf64(src.part(0), res.part(0));
@@ -3662,17 +3663,17 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fsqrt(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     if (is_vector(val_info.type)) {
       const bool is_64 = vector_info(val_info.type).second == Type::f64;
-      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&e) {
+      map_elements(inst.result(), [&](u32, ValuePartRef &out, ValuePartRef &&e) {
         is_64 ? derived()->encode_sqrtf64(std::move(e), out) : derived()->encode_sqrtf32(std::move(e), out);
-      }, this->adaptor->ops(inst)[0]);
+      }, inst.op(0));
       return true;
     }
 
-    ValueRef src = this->val_ref(this->adaptor->ops(inst)[0]);
-    ValueRef res = this->result_ref(inst.result);
+    ValueRef src = this->val_ref(inst.op(0));
+    ValueRef res = this->result_ref(inst.result());
     switch (val_info.type) {
       case Type::f32: return derived()->encode_sqrtf32(src.part(0), res.part(0));
       case Type::f64: return derived()->encode_sqrtf64(src.part(0), res.part(0));
@@ -3683,7 +3684,7 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fminmax(
     RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64 is_max) {
-    Instruction &inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     const Type elem_ty = is_vector(val_info.type) ? vector_info(val_info.type).second : val_info.type;
 
     using EncodeFnTy =
@@ -3698,15 +3699,15 @@ namespace tpde_rust {
 
     // Operands swapped: like LLVM, return the second operand for +0.0 / -0.0.
     if (is_vector(val_info.type)) {
-      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
+      map_elements(inst.result(), [&](u32, ValuePartRef &out, ValuePartRef &&l, ValuePartRef &&r) {
         (derived()->*fn)(std::move(r), std::move(l), out);
-      }, this->adaptor->ops(inst)[0], this->adaptor->ops(inst)[1]);
+      }, inst.op(0), inst.op(1));
       return true;
     }
 
-    ValueRef lhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    ValueRef rhs = this->val_ref(this->adaptor->ops(inst)[0]);
-    ValueRef res = this->result_ref(inst.result);
+    ValueRef lhs = this->val_ref(inst.op(1));
+    ValueRef rhs = this->val_ref(inst.op(0));
+    ValueRef res = this->result_ref(inst.result());
     ValuePartRef res_part = res.part(0);
     return (derived()->*fn)(lhs.part(0), rhs.part(0), res_part);
   }
@@ -3720,9 +3721,9 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_cmpxchg(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(inst_ref);
 
-    auto new_val = this->adaptor->ops(instr)[2];
+    auto new_val = instr.op(2);
     Type val_ty = this->adaptor->type_of_ref(new_val);
     unsigned width = size_of_type(val_ty);
     if (width > 64) {
@@ -3770,13 +3771,13 @@ namespace tpde_rust {
       return res;
     }();
 
-    auto ptr_ref = this->val_ref(this->adaptor->ops(instr)[0]);
-    auto cmp_ref = this->val_ref(this->adaptor->ops(instr)[1]);
+    auto ptr_ref = this->val_ref(instr.op(0));
+    auto cmp_ref = this->val_ref(instr.op(1));
     auto new_ref = this->val_ref(new_val);
-    auto res_val = this->result_ref(instr.result);
-    auto res = this->result_ref(this->adaptor->get_instruction(inst_ref.next()).result);
+    auto res_val = this->result_ref(instr.result());
+    auto res = this->result_ref(this->adaptor->get_instruction(inst_ref.next()).result());
 
-    auto order = static_cast<AtomicOrdering>(operands::content(this->adaptor->ops(instr)[3]));
+    auto order = static_cast<AtomicOrdering>(operands::content(instr.op(3)));
     EncodeFnTy encode_fn = fns[width_idx][size_t(order)];
     assert(encode_fn && "invalid cmpxchg ordering");
     if (!(derived()->*encode_fn)(ptr_ref.part(0),
@@ -3792,9 +3793,9 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_atomicrmw(RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(inst_ref);
 
-    Type ty = this->adaptor->type_of_ref(this->adaptor->ops(instr)[2]);
+    Type ty = this->adaptor->type_of_ref(instr.op(2));
     unsigned size = size_of_type(ty);
     // This is checked by the IR verifier.
     assert(size >= 8 && (size & (size - 1)) == 0 && "invalid atomicrmw size");
@@ -3806,7 +3807,7 @@ namespace tpde_rust {
     // x86-64, the current implementation gives many cmpxchg loops.
     bool (Derived::*fn)(GenericValuePart &&, GenericValuePart &&, ValuePart &&) =
         nullptr;
-    switch (static_cast<AtomicRmwBinOp>(operands::content(this->adaptor->ops(instr)[0]))) {
+    switch (static_cast<AtomicRmwBinOp>(operands::content(instr.op(0)))) {
     case AtomicRmwBinOp::Xchg:
       // TODO: support f32/f64
       switch (bvt) {
@@ -3922,22 +3923,22 @@ namespace tpde_rust {
     default: return false;
     }
 
-    auto ptr_ref = this->val_ref(this->adaptor->ops(instr)[1]);
-    auto val_ref = this->val_ref(this->adaptor->ops(instr)[2]);
-    auto res_ref = this->result_ref(instr.result);
+    auto ptr_ref = this->val_ref(instr.op(1));
+    auto val_ref = this->val_ref(instr.op(2));
+    auto res_ref = this->result_ref(instr.result());
     return (derived()->*fn)(ptr_ref.part(0), val_ref.part(0), res_ref.part(0));
   }
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fence(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction& instr = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr instr = this->adaptor->get_instruction(inst_ref);
 
-    if (operands::content(this->adaptor->ops(instr)[1]) == 0 /*= is single threaded*/) {
+    if (operands::content(instr.op(1)) == 0 /*= is single threaded*/) {
       // memory barrier only
       return true;
     }
 
-    switch (static_cast<AtomicOrdering>(operands::content(this->adaptor->ops(instr)[0]))) {
+    switch (static_cast<AtomicOrdering>(operands::content(instr.op(0)))) {
       using enum AtomicOrdering;
       case Acquire: derived()->encode_fence_acq(); break;
       case Release: derived()->encode_fence_rel(); break;
@@ -4245,19 +4246,19 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_br(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
-    Instruction &bri = this->adaptor->get_instruction(instr);
+    const IR::Instr bri = this->adaptor->get_instruction(instr);
 
-    assert(operands::is_raw(this->adaptor->ops(bri)[0]));
-    Base::generate_uncond_branch(operands::content(this->adaptor->ops(bri)[0]));
+    assert(operands::is_raw(bri.op(0)));
+    Base::generate_uncond_branch(operands::content(bri.op(0)));
 
     return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_switch(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
 
-    auto cond_ref = this->adaptor->ops(inst)[0];
+    auto cond_ref = inst.op(0);
     u32 width = size_of_type(this->adaptor->type_of_ref(cond_ref));
     if (width > 64) {
       return false;
@@ -4265,20 +4266,20 @@ namespace tpde_rust {
 
     // Collect cases, their target block and sort them in ascending order.
     tpde::util::SmallVector<std::pair<u64, IRBlockRef>, 64> cases;
-    size_t num_cases = this->adaptor->ops(inst).size() / 2 - 1;
+    size_t num_cases = inst.num_ops() / 2 - 1;
     assert(num_cases <= 200000);
     cases.reserve(num_cases);
     for (size_t i = 0; i < num_cases; ++i) {
       // case values are constants (data2 = low 64 bit), a raw operand would only hold 29 bits
       cases.push_back(std::make_pair(
-          static_cast<u64>(this->adaptor->const_value(this->adaptor->ops(inst)[2 + 2 * i]).data2),
-          operands::content(this->adaptor->ops(inst)[2 + 2 * i + 1])));
+          static_cast<u64>(this->adaptor->const_value(inst.op(2 + 2 * i)).data2),
+          operands::content(inst.op(2 + 2 * i + 1))));
     }
     std::sort(cases.begin(), cases.end(), [](const auto &lhs, const auto &rhs) {
       return lhs.first < rhs.first;
     });
 
-    IRBlockRef def = operands::content(this->adaptor->ops(inst)[1]);
+    IRBlockRef def = operands::content(inst.op(1));
 
     // cond must be ref-counted before generate_switch.
     ScratchReg cond_scratch = this->val_ref(cond_ref).part(0).into_scratch();
@@ -4288,22 +4289,22 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_select(RustAdaptor::IRInstRef inst_ref, const ValInfo &val_info, u64) {
-    Instruction& inst = this->adaptor->get_instruction(inst_ref);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
 
-    if (is_vector(this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]))) {
+    if (is_vector(this->adaptor->type_of_ref(inst.op(0)))) {
       // Mask vector condition, the select only looks at the lowest bit of a lane.
       const auto fn = select_fn(vector_info(val_info.type).second);
-      map_elements(inst.result, [&](u32, ValuePartRef &out, ValuePartRef &&c, ValuePartRef &&l, ValuePartRef &&r) {
+      map_elements(inst.result(), [&](u32, ValuePartRef &out, ValuePartRef &&c, ValuePartRef &&l, ValuePartRef &&r) {
         (derived()->*fn)(std::move(c), std::move(l), std::move(r), out);
-      }, this->adaptor->ops(inst)[0], this->adaptor->ops(inst)[1], this->adaptor->ops(inst)[2]);
+      }, inst.op(0), inst.op(1), inst.op(2));
       return true;
     }
     if (is_vector(val_info.type)) {
       // Bool condition, select whole vector parts.
-      ValuePartRef cond = this->val_ref(this->adaptor->ops(inst)[0]).part(0).into_temporary();
-      auto lhs = this->val_ref(this->adaptor->ops(inst)[1]);
-      auto rhs = this->val_ref(this->adaptor->ops(inst)[2]);
-      auto res = this->result_ref(inst.result);
+      ValuePartRef cond = this->val_ref(inst.op(0)).part(0).into_temporary();
+      auto lhs = this->val_ref(inst.op(1));
+      auto rhs = this->val_ref(inst.op(2));
+      auto res = this->result_ref(inst.result());
       auto parts = this->adaptor->val_parts(val_info);
       for (u32 i = 0, n = parts.count(); i != n; ++i) {
         if (is_vector(parts.type(i))) {
@@ -4316,11 +4317,11 @@ namespace tpde_rust {
       return true;
     }
 
-    auto [cond_vr, cond] = this->val_ref_single(this->adaptor->ops(inst)[0]);
-    auto lhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto rhs = this->val_ref(this->adaptor->ops(inst)[2]);
+    auto [cond_vr, cond] = this->val_ref_single(inst.op(0));
+    auto lhs = this->val_ref(inst.op(1));
+    auto rhs = this->val_ref(inst.op(2));
 
-    auto res = this->result_ref(inst.result);
+    auto res = this->result_ref(inst.result());
 
     switch (val_info.type) {
       using enum Type;
@@ -4368,8 +4369,8 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_copysign(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
-    const Instruction& inst = this->adaptor->get_instruction(inst_ref);
-    Type type = this->adaptor->type_of_ref(this->adaptor->ops(inst)[0]);
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    Type type = this->adaptor->type_of_ref(inst.op(0));
 
     using EncodeFnTy = bool (Derived::*)(
         GenericValuePart &&, GenericValuePart &&, ValuePart &&);
@@ -4385,9 +4386,9 @@ namespace tpde_rust {
         assert(false);
     }
 
-    auto lhs = this->val_ref(this->adaptor->ops(inst)[0]);
-    auto rhs = this->val_ref(this->adaptor->ops(inst)[1]);
-    auto res = this->result_ref(inst.result);
+    auto lhs = this->val_ref(inst.op(0));
+    auto rhs = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
     return (derived()->*fn)(lhs.part(0), rhs.part(0), res.part(0));
   }
 }

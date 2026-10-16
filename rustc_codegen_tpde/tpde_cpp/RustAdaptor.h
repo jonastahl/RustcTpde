@@ -12,6 +12,44 @@
 #include "tpde/util/SmallVector.hpp"
 
 namespace tpde_rust {
+  struct RustAdaptor;
+}
+
+namespace IR {
+  class Instr {
+    const Instruction& instruction;
+    const tpde_rust::RustAdaptor& adaptor;
+
+  public:
+    Instr(const Instruction& instruction, const tpde_rust::RustAdaptor& adaptor)
+      : instruction(instruction), adaptor(adaptor) {}
+
+    [[nodiscard]] InstructionKind kind() const {
+      return instruction.kind;
+    }
+
+    [[nodiscard]] bool is(InstructionKind kind) const {
+      return instruction.kind == kind;
+    }
+
+    [[nodiscard]] bool has_result() const {
+      return instruction.has_result;
+    }
+
+    [[nodiscard]] u32 result() const {
+      return instruction.result;
+    }
+
+    [[nodiscard]] u32 num_ops() const {
+      return instruction.ops_len;
+    }
+
+    [[nodiscard]] u32 op(size_t i) const;
+    [[nodiscard]] std::span<const u32> ops() const;
+  };
+}
+
+namespace tpde_rust {
   // doing this with a lambda throws magical errors
   struct PointifyFunctor {
     template<typename T>
@@ -112,18 +150,16 @@ namespace tpde_rust {
       return cur_data.basic_blocks[block];
     }
 
-    [[nodiscard]] Instruction &get_instruction(const IRInstRef inst) const {
-      return cur_data.instructions[get_basic_block(inst.block).insts_start + inst.inst];
+    [[nodiscard]] IR::Instr get_instruction(const IRInstRef inst) const {
+      return IR::Instr(cur_data.instructions[get_basic_block(inst.block).insts_start + inst.inst], *this);
     }
 
+  private:
     [[nodiscard]] std::span<Instruction> block_instructions(const IRBlockRef block) const {
       const auto &bb = get_basic_block(block);
       return cur_data.instructions.subspan(bb.insts_start, bb.insts_len);
     }
-
-    [[nodiscard]] std::span<const u32> ops(const Instruction &inst) const {
-      return cur_data.operands.subspan(inst.ops_start, inst.ops_len);
-    }
+  public:
 
     struct ValInfo {
       Type type;
@@ -211,7 +247,7 @@ namespace tpde_rust {
       size_t stride = 1;
 
       const auto insts = block_instructions(bb);
-      auto* br_instr = &insts.back();
+      const Instruction* br_instr = &insts.back();
       if (br_instr->kind == InstructionKind::AddRet) {
         br_instr = &insts[insts.size() - 2];
       }
@@ -247,8 +283,7 @@ namespace tpde_rust {
           TPDE_FATAL("Invalid branching instruction");
       }
 
-
-      return ops(*br_instr)
+      return IR::Instr(*br_instr, *this).ops()
              | std::ranges::views::drop(offset)
              | std::ranges::views::take(count)
              | std::ranges::views::stride(stride)
@@ -367,22 +402,22 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto inst_operands(IRInstRef inst) const {
-      return ops(get_instruction(inst))
+      return get_instruction(inst).ops()
              | std::views::filter([](auto op) {
                return operands::is_val(op);
              });
     }
 
     [[nodiscard]] auto inst_results(const IRInstRef instref) const {
-      const auto &inst = get_instruction(instref);
-      return std::views::single(inst.has_result ? inst.result : INVALID_VALUE_REF)
-             | std::views::take(inst.has_result ? 1 : 0);
+      const IR::Instr inst = get_instruction(instref);
+      return std::views::single(inst.has_result() ? inst.result() : INVALID_VALUE_REF)
+             | std::views::take(inst.has_result() ? 1 : 0);
     }
 
     bool next_fused = false;
     [[nodiscard]] bool inst_fused(const IRInstRef inst) {
-      const auto& cur = get_instruction(inst);
-      switch (cur.kind) {
+      const IR::Instr cur = get_instruction(inst);
+      switch (cur.kind()) {
         case InstructionKind::AddRet:
         case InstructionKind::OverflowCheck:
         case InstructionKind::Unreachable:
@@ -396,8 +431,8 @@ namespace tpde_rust {
       return false;
     }
 
-    ValInfo val_info(const Instruction *inst) const {
-      return ValInfo{inst->has_result ? cur_data.slots[inst->result].ty : Type::Void};
+    ValInfo val_info(const IR::Instr inst) const {
+      return ValInfo{inst.has_result() ? cur_data.slots[inst.result()].ty : Type::Void};
     }
 
     [[nodiscard]] std::string inst_fmt_ref(IRInstRef inst) const {
@@ -492,4 +527,13 @@ namespace tpde_rust {
   };
 
   static_assert(tpde::IRAdaptor<RustAdaptor>);
+}
+
+inline u32 IR::Instr::op(size_t i) const {
+  assert(i < instruction.ops_len);
+  return adaptor.cur_data.operands[instruction.ops_start + i];
+}
+
+inline std::span<const u32> IR::Instr::ops() const {
+  return adaptor.cur_data.operands.subspan(instruction.ops_start, instruction.ops_len);
 }
