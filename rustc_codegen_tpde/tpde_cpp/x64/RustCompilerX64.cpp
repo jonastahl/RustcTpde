@@ -265,9 +265,9 @@ namespace tpde_rust::x64 {
         generate_raw_set(
             jump, result_ref(cmpi.result()).part(0).alloc_reg(), /*zext=*/false);
       }
-      assert(operands::is_raw(jmp_instr.op(1)));
-      assert(operands::is_raw(jmp_instr.op(2)));
-      generate_cond_branch(jump, operands::content(jmp_instr.op(1)), operands::content(jmp_instr.op(2)));
+      assert(jmp_instr.op(1).is_raw());
+      assert(jmp_instr.op(2).is_raw());
+      generate_cond_branch(jump, jmp_instr.op(1).content(), jmp_instr.op(2).content());
     } else {
       auto [_, res_ref] = result_ref_single(cmpi.result());
       generate_raw_set(jump, res_ref.alloc_reg(), /*zext=*/false);
@@ -290,7 +290,7 @@ namespace tpde_rust::x64 {
 
       ASM(TEST8ri, cond_reg, 1);
     }
-    generate_cond_branch(Jump::jne, operands::content(condbr.op(1)), operands::content(condbr.op(2)));
+    generate_cond_branch(Jump::jne, condbr.op(1).content(), condbr.op(2).content());
     return true;
   }
 
@@ -306,7 +306,7 @@ namespace tpde_rust::x64 {
         break;
       default: TPDE_UNREACHABLE("Invalid op for overflow");
     }
-    generate_cond_branch(jump, operands::content(jmpi.op(1)), operands::content(jmpi.op(2)));
+    generate_cond_branch(jump, jmpi.op(1).content(), jmpi.op(2).content());
     return true;
   }
 
@@ -350,7 +350,7 @@ namespace tpde_rust::x64 {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     assert(this->adaptor->type_of_ref(inst.op(0)) == Type::v2i64);
     assert(this->adaptor->type_of_ref(inst.op(1)) == Type::v2i64);
-    const u32 sel = operands::content(inst.op(2));
+    const u32 sel = inst.op(2).content();
     const u8 imm = static_cast<u8>((sel & 1) | (((sel >> 1) & 1) << 4));
 
     auto lhs = this->val_ref(inst.op(0));
@@ -408,7 +408,7 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_shift(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
-    const u32 op = operands::content(inst.op(2));
+    const u32 op = inst.op(2).content();
     auto vec = this->val_ref(inst.op(0));
     auto cnt = this->val_ref(inst.op(1));
     auto res = this->result_ref(inst.result());
@@ -434,7 +434,7 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_minmax(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
-    const u32 op = operands::content(inst.op(2));
+    const u32 op = inst.op(2).content();
     auto lhs = this->val_ref(inst.op(0));
     auto rhs = this->val_ref(inst.op(1));
     auto res = this->result_ref(inst.result());
@@ -460,7 +460,7 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_approx(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
-    const u32 op = operands::content(inst.op(1));
+    const u32 op = inst.op(1).content();
     auto vec = this->val_ref(inst.op(0));
     auto res = this->result_ref(inst.result());
 
@@ -480,7 +480,7 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_cmp(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
-    const u32 raw = operands::content(inst.op(2));
+    const u32 raw = inst.op(2).content();
     const u8 pred = static_cast<u8>(raw >> 2);
     auto lhs = this->val_ref(inst.op(0));
     auto rhs = this->val_ref(inst.op(1));
@@ -503,7 +503,7 @@ namespace tpde_rust::x64 {
 
   bool RustCompilerX64::compile_simd_cvt(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
-    const u32 raw = operands::content(inst.op(1));
+    const u32 raw = inst.op(1).content();
     const u32 op = raw & 3;
     auto vec = this->val_ref(inst.op(0));
     auto res = this->result_ref(inst.result());

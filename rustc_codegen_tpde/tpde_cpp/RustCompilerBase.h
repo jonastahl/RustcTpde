@@ -182,9 +182,9 @@ namespace tpde_rust {
     }
 
     std::optional<ValRefSpecial> val_ref_special(IRValueRef value) {
-      if (operands::is_const(value) || operands::is_const_vector(value)
-          || operands::is_global(value)
-          || operands::is_global_ptr(value) || operands::is_func(value)) {
+      if (value.is_const() || value.is_const_vector()
+          || value.is_global()
+          || value.is_global_ptr() || value.is_func()) {
         return ValRefSpecial::make_const(value);
       }
       return std::nullopt;
@@ -205,10 +205,10 @@ namespace tpde_rust {
     }
 
     ValuePart val_part_ref_special(ValRefSpecial &vrs, u32 part) {
-      if (operands::is_const_vector(vrs.data)) {
-        return const_vector_part(this->adaptor->mod_data.const_vectors[operands::content(vrs.data)], part);
+      if (vrs.data.is_const_vector()) {
+        return const_vector_part(this->adaptor->mod_data.const_vectors[vrs.data.content()], part);
       }
-      if (operands::is_const(vrs.data)) {
+      if (vrs.data.is_const()) {
         const Value imm = this->adaptor->const_value(vrs.data);
 
         switch (imm.ty) {
@@ -292,13 +292,13 @@ namespace tpde_rust {
         uint32_t func_start = glob_ptr_start
                               + this->adaptor->mod_data.global_ptrs.size();
 
-        u32 gv_id = operands::content(vrs.data);
+        u32 gv_id = vrs.data.content();
         u32 loc_id;
-        if (operands::is_global(vrs.data)) {
+        if (vrs.data.is_global()) {
           loc_id = glob_start + gv_id;
-        } else if (operands::is_global_ptr(vrs.data)) {
+        } else if (vrs.data.is_global_ptr()) {
           loc_id = glob_ptr_start + gv_id;
-        } else if (operands::is_func(vrs.data)) {
+        } else if (vrs.data.is_func()) {
           // A function used as a value: materialize the address of its symbol.
           assert(part == 0);
           loc_id = func_start + gv_id;
@@ -320,7 +320,7 @@ namespace tpde_rust {
                              u32 arg_idx,
                              IRValueRef arg) {
       u32 align = size_of_type(Base::adaptor->type_of_ref(arg)) / 8;
-      bool allow_split = derived()->arg_allow_split_reg_stack_passing(arg_idx);
+      bool allow_split = derived()->arg_allow_split_reg_stack_passing(IR::Operand(arg_idx));
       Base::prologue_assign_arg(cc_assigner, arg_idx, arg, align, allow_split);
     }
 
@@ -1207,7 +1207,7 @@ namespace tpde_rust {
             // We can drop the register used for the overflow check
             this->val_ref(pot_overflow.result()).reset();
 
-            bool is_signed = operands::content(pot_overflow.op(0));
+            bool is_signed = pot_overflow.op(0).content();
             return derived()->compile_overflow_jump(pot_condbr, inst.kind(), is_signed);
           }
         }
@@ -1226,7 +1226,7 @@ namespace tpde_rust {
     ValueRef of_res = this->result_ref(of_instr.result());
 
     OverflowOp op;
-    bool is_signed = operands::content(of_instr.op(0));
+    bool is_signed = of_instr.op(0).content();
     switch (op_instr.kind()) {
       case InstructionKind::Add:
         op = is_signed ? OverflowOp::sadd : OverflowOp::uadd;
@@ -1423,10 +1423,10 @@ namespace tpde_rust {
 
       // The instruction following the last fused GEP, if it might be fusable.
       {
-        const u64 scale = operands::content(gep.op(1));
+        const u64 scale = gep.op(1).content();
 
         const IRValueRef idx = gep.op(2);
-        if (operands::is_const(idx)) {
+        if (idx.is_const()) {
           // Constant index: fold into the displacement.
           const Value imm = this->adaptor->const_value(idx);
           displacement += static_cast<u64>(scale) * imm.data2;
@@ -1648,7 +1648,7 @@ namespace tpde_rust {
     u32 width = size_of_type(ty);
     assert(width == 8 || width == 16 || width == 32 || width == 64);
 
-    const auto order = static_cast<AtomicOrdering>(operands::content(instr.op(2)));
+    const auto order = static_cast<AtomicOrdering>(instr.op(2).content());
     using EncodeFnTy =
         bool (Derived::*)(GenericValuePart &&, GenericValuePart &&);
     EncodeFnTy encode_fn = nullptr;
@@ -1816,7 +1816,7 @@ namespace tpde_rust {
     case 64: needed_align = 8; break;
     }
 
-    const auto order = static_cast<AtomicOrdering>(operands::content(instr.op(1)));
+    const auto order = static_cast<AtomicOrdering>(instr.op(1).content());
     using EncodeFnTy = bool (Derived::*)(GenericValuePart &&, ValuePart &&);
     EncodeFnTy encode_fn = nullptr;
     if (order == AtomicOrdering::Monotonic) {
@@ -1862,9 +1862,9 @@ namespace tpde_rust {
     const auto func = calli.op(0);
     size_t arg_start = calli.kind() == InstructionKind::Call ? 1 : 3;
     bool is_dynamic_function;
-    if (operands::is_func(func)) {
+    if (func.is_func()) {
       is_dynamic_function = false;
-    } else if (operands::is_val(func)) {
+    } else if (func.is_val()) {
       is_dynamic_function = true;
     } else {
       assert(false);
@@ -1874,14 +1874,14 @@ namespace tpde_rust {
     }
 
     const auto infos = Adaptor::view(is_dynamic_function ?
-      this->adaptor->cur_data.callee_infos[operands::content(calli.op(arg_start - 1))].info
-      : this->adaptor->mod_data.functions[operands::content(func)].args);
+      this->adaptor->cur_data.callee_infos[calli.op(arg_start - 1).content()].info
+      : this->adaptor->mod_data.functions[func.content()].args);
     const size_t num_args = calli.num_ops() - arg_start;
     assert(infos.size() <= num_args);
     const bool is_vararg = num_args > infos.size();
     {
       for (size_t i = 0; i < num_args; ++i) {
-        const u32 op = calli.op(arg_start + i);
+        const IR::Operand op = calli.op(arg_start + i);
         ArgInfo info = i < infos.size() ? infos[i] : ArgInfo{};
 
         using CallArg = typename Derived::CallArg;
@@ -1925,9 +1925,9 @@ namespace tpde_rust {
     }
     {
       if (!is_dynamic_function) {
-        SymRef sym = this->func_syms[operands::content(func)];
+        SymRef sym = this->func_syms[func.content()];
         cb->call(sym);
-      } else if (operands::is_val(func)) {
+      } else if (func.is_val()) {
         auto [_, tgt_vp] = this->val_ref_single(func);
         cb->call(std::move(tgt_vp));
       }
@@ -1936,8 +1936,8 @@ namespace tpde_rust {
     if (calli.has_result()) {
       tpde::CCAssignment cca;
 
-      const auto res_to_ret = [this, &cb, &cca](uint32_t res) {
-        assert(operands::is_val(res));
+      const auto res_to_ret = [this, &cb, &cca](IRValueRef res) {
+        assert(res.is_val());
 
         size_t count = this->adaptor->val_parts(res).count();
         ValueRef ref = this->result_ref(res);
@@ -1984,8 +1984,8 @@ namespace tpde_rust {
   const auto off_after_call = this->text_writer.offset();
 
   // build the eh table
-    IRBlockRef normal_block_ref = operands::content(inst.op(1));
-    IRBlockRef unwind_block_ref = operands::content(inst.op(2));
+    IRBlockRef normal_block_ref = inst.op(1).content();
+    IRBlockRef unwind_block_ref = inst.op(2).content();
     auto unwind_block_has_phi = false; // TODO
 
   const BasicBlock& normal_block = this->adaptor->get_basic_block(normal_block_ref);
@@ -2036,7 +2036,7 @@ namespace tpde_rust {
 
   const IR::Instr lp = this->adaptor->get_instruction({.inst = 0, .block = unwind_block_ref});
   assert(lp.is(InstructionKind::LandingPad));
-  const auto kind = static_cast<LandingPadKind>(operands::content(lp.op(0)));
+  const auto kind = static_cast<LandingPadKind>(lp.op(0).content());
 
   this->text_writer.except_add_call_site(off_before_call,
                                          off_after_call - off_before_call,
@@ -2083,7 +2083,7 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_cast(RustAdaptor::IRInstRef instr, const ValInfo &val_info,
                                                                 u64) {
     const IR::Instr casti = this->adaptor->get_instruction(instr);
-    assert(operands::is_val(casti.result()));
+    assert(casti.result().is_val());
 
     const auto src = casti.op(0);
     ValueRef src_ref = this->val_ref(src);
@@ -2693,11 +2693,11 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_tls_addr(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
-    assert(operands::is_global(inst.op(0)));
+    assert(inst.op(0).is_global());
 
     auto [res_vr, res_ref] = this->result_ref_single(inst.result());
     // TODO: optimize for other TLS access models
-    ScratchReg res = derived()->tls_get_addr(global_symbols[operands::content(inst.op(0))],
+    ScratchReg res = derived()->tls_get_addr(global_symbols[inst.op(0).content()],
                                              tpde::TLSModel::GlobalDynamic);
     res_ref.set_value(std::move(res));
     return true;
@@ -2759,8 +2759,8 @@ namespace tpde_rust {
   /// Lane `idx` of a constant vector (inline `Const` or `ConstVector`), read from the IR.
   template<typename Adaptor, typename Derived, typename Config>
   u64 RustCompilerBase<Adaptor, Derived, Config>::const_vector_elem(IRValueRef vec, unsigned idx) {
-    if (operands::is_const_vector(vec)) {
-      const ConstVector &cv = this->adaptor->mod_data.const_vectors[operands::content(vec)];
+    if (vec.is_const_vector()) {
+      const ConstVector &cv = this->adaptor->mod_data.const_vectors[vec.content()];
       const auto [nelem, elem_ty] = vector_info(cv.ty);
       assert(idx < nelem);
       const u32 elem_bytes = size_of_type(elem_ty) / 8;
@@ -2768,7 +2768,7 @@ namespace tpde_rust {
       std::memcpy(&lane, cv.data.data() + size_t{idx} * elem_bytes, elem_bytes);
       return lane;
     }
-    assert(operands::is_const(vec));
+    assert(vec.is_const());
 
     const Value imm = this->adaptor->const_value(vec);
     const auto [nelem, elem_ty] = vector_info(imm.ty);
@@ -2883,7 +2883,7 @@ namespace tpde_rust {
     const unsigned nelem = vector_info(this->adaptor->type_of_ref(src)).first;
     const Type bvt = val_info.type;
 
-    if (operands::is_const(index)) {
+    if (index.is_const()) {
       unsigned cidx = this->adaptor->const_value(index).data2;
       cidx = cidx < nelem ? cidx : 0;
       derived()->extract_element(vec_vr, cidx, bvt, result);
@@ -2953,7 +2953,7 @@ namespace tpde_rust {
       }
     }
 
-    if (operands::is_const(index)) {
+    if (index.is_const()) {
       unsigned cidx = this->adaptor->const_value(index).data2;
       cidx = cidx < nelem ? cidx : 0;
       derived()->insert_element(res_vr, cidx, bvt, std::move(val));
@@ -3021,7 +3021,7 @@ namespace tpde_rust {
       const unsigned mask = const_vector_elem(mask_vec, i);
       const bool src_is_lhs = mask < src_nelem;
       const IRValueRef src = src_is_lhs ? lhs : rhs;
-      if (operands::is_const(src) || operands::is_const_vector(src)) {
+      if (src.is_const() || src.is_const_vector()) {
         const u64 const_elem = const_vector_elem(src, mask % src_nelem);
         ValuePartRef const_ref{this, const_elem, size, bank};
         derived()->insert_element(res_vr, i, bvt, std::move(const_ref));
@@ -3777,7 +3777,7 @@ namespace tpde_rust {
     auto res_val = this->result_ref(instr.result());
     auto res = this->result_ref(this->adaptor->get_instruction(inst_ref.next()).result());
 
-    auto order = static_cast<AtomicOrdering>(operands::content(instr.op(3)));
+    auto order = static_cast<AtomicOrdering>(instr.op(3).content());
     EncodeFnTy encode_fn = fns[width_idx][size_t(order)];
     assert(encode_fn && "invalid cmpxchg ordering");
     if (!(derived()->*encode_fn)(ptr_ref.part(0),
@@ -3807,7 +3807,7 @@ namespace tpde_rust {
     // x86-64, the current implementation gives many cmpxchg loops.
     bool (Derived::*fn)(GenericValuePart &&, GenericValuePart &&, ValuePart &&) =
         nullptr;
-    switch (static_cast<AtomicRmwBinOp>(operands::content(instr.op(0)))) {
+    switch (static_cast<AtomicRmwBinOp>(instr.op(0).content())) {
     case AtomicRmwBinOp::Xchg:
       // TODO: support f32/f64
       switch (bvt) {
@@ -3933,12 +3933,12 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_fence(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr instr = this->adaptor->get_instruction(inst_ref);
 
-    if (operands::content(instr.op(1)) == 0 /*= is single threaded*/) {
+    if (instr.op(1).content() == 0 /*= is single threaded*/) {
       // memory barrier only
       return true;
     }
 
-    switch (static_cast<AtomicOrdering>(operands::content(instr.op(0)))) {
+    switch (static_cast<AtomicOrdering>(instr.op(0).content())) {
       using enum AtomicOrdering;
       case Acquire: derived()->encode_fence_acq(); break;
       case Release: derived()->encode_fence_rel(); break;
@@ -4222,14 +4222,14 @@ namespace tpde_rust {
         u32 off;
         this->assembler.sym_def_predef_data(sec, sym, global.data, global.align, &off);
         for (const Relocation &reloc: global.relocations) {
-          if (operands::is_global(reloc.slot)) {
-            SymRef &target = global_symbols[operands::content(reloc.slot)];
+          if (IR::Operand(reloc.slot).is_global()) {
+            SymRef &target = global_symbols[IR::Operand(reloc.slot).content()];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
-          } else if (operands::is_func(reloc.slot)) {
-            SymRef target = this->func_syms[operands::content(reloc.slot)];
+          } else if (IR::Operand(reloc.slot).is_func()) {
+            SymRef target = this->func_syms[IR::Operand(reloc.slot).content()];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
-          } else if (operands::is_global_ptr(reloc.slot)) {
-            const auto &gp = this->adaptor->mod_data.global_ptrs[operands::content(reloc.slot)];
+          } else if (IR::Operand(reloc.slot).is_global_ptr()) {
+            const auto &gp = this->adaptor->mod_data.global_ptrs[IR::Operand(reloc.slot).content()];
             SymRef &target = global_symbols[gp.global];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, gp.offset);
           } else {
@@ -4248,8 +4248,8 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_br(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
     const IR::Instr bri = this->adaptor->get_instruction(instr);
 
-    assert(operands::is_raw(bri.op(0)));
-    Base::generate_uncond_branch(operands::content(bri.op(0)));
+    assert(bri.op(0).is_raw());
+    Base::generate_uncond_branch(bri.op(0).content());
 
     return true;
   }
@@ -4273,13 +4273,13 @@ namespace tpde_rust {
       // case values are constants (data2 = low 64 bit), a raw operand would only hold 29 bits
       cases.push_back(std::make_pair(
           static_cast<u64>(this->adaptor->const_value(inst.op(2 + 2 * i)).data2),
-          operands::content(inst.op(2 + 2 * i + 1))));
+          inst.op(2 + 2 * i + 1).content()));
     }
     std::sort(cases.begin(), cases.end(), [](const auto &lhs, const auto &rhs) {
       return lhs.first < rhs.first;
     });
 
-    IRBlockRef def = operands::content(inst.op(1));
+    IRBlockRef def = inst.op(1).content();
 
     // cond must be ref-counted before generate_switch.
     ScratchReg cond_scratch = this->val_ref(cond_ref).part(0).into_scratch();

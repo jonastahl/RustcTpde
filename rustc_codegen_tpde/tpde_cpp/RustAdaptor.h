@@ -8,6 +8,7 @@
 #include <generator>
 #include <span>
 #include <unordered_set>
+#include <type_traits>
 
 #include "tpde/util/SmallVector.hpp"
 
@@ -16,6 +17,81 @@ namespace tpde_rust {
 }
 
 namespace IR {
+  inline constexpr uint32_t MARKER_BLOCK = size_t{7} << (std::numeric_limits<std::uint32_t>::digits - 3);
+
+  inline constexpr uint32_t MARKER_VAL = size_t{0} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_CONST = size_t{1} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_RAW = size_t{2} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_ALLOC = size_t{3} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_FUNC = size_t{4} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_GLOBAL = size_t{5} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_GLOBAL_PTR = size_t{6} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_CONST_VECTOR = size_t{7} << (std::numeric_limits<std::uint32_t>::digits - 3);
+
+  inline constexpr uint32_t INLINE_CONST_BITS = 6;
+  inline constexpr uint32_t INLINE_CONST_MASK = (uint32_t{1} << INLINE_CONST_BITS) - 1;
+  inline constexpr uint32_t INLINE_CONST_END = static_cast<uint32_t>(Type::Last) << INLINE_CONST_BITS;
+
+  class Operand {
+    u32 value;
+
+  public:
+    constexpr explicit Operand(u32 op) : value(op) {}
+
+  private:
+    [[nodiscard]] constexpr bool is(uint32_t marker) const {
+      return (value & MARKER_BLOCK) == marker;
+    }
+
+  public:
+    [[nodiscard]] constexpr bool is_val() const {
+      return is(MARKER_VAL);
+    }
+
+    [[nodiscard]] constexpr bool is_const() const {
+      return is(MARKER_CONST);
+    }
+
+    [[nodiscard]] constexpr bool is_raw() const {
+      return is(MARKER_RAW);
+    }
+
+    [[nodiscard]] constexpr bool is_alloc() const {
+      return is(MARKER_ALLOC);
+    }
+
+    [[nodiscard]] constexpr bool is_func() const {
+      return is(MARKER_FUNC);
+    }
+
+    [[nodiscard]] constexpr bool is_global() const {
+      return is(MARKER_GLOBAL);
+    }
+
+    [[nodiscard]] constexpr bool is_global_ptr() const {
+      return is(MARKER_GLOBAL_PTR);
+    }
+
+    [[nodiscard]] constexpr bool is_const_vector() const {
+      return is(MARKER_CONST_VECTOR);
+    }
+
+    [[nodiscard]] constexpr uint32_t content() const {
+      return value & ~MARKER_BLOCK;
+    }
+
+    [[nodiscard]] bool operator==(const Operand &other) const {
+      return this->value == other.value;
+    }
+  };
+
+  struct ToOperand {
+    constexpr Operand operator()(const u32 op) const { return Operand(op); }
+  };
+  using OperandView = std::ranges::transform_view<std::span<const u32>, ToOperand>;
+
+  static_assert(sizeof(Operand) == sizeof(u32) && std::is_trivially_copyable_v<Operand>);
+
   class Instr {
     const Instruction& instruction;
     const tpde_rust::RustAdaptor& adaptor;
@@ -36,16 +112,16 @@ namespace IR {
       return instruction.has_result;
     }
 
-    [[nodiscard]] u32 result() const {
-      return instruction.result;
+    [[nodiscard]] Operand result() const {
+      return Operand(instruction.result);
     }
 
     [[nodiscard]] u32 num_ops() const {
       return instruction.ops_len;
     }
 
-    [[nodiscard]] u32 op(size_t i) const;
-    [[nodiscard]] std::span<const u32> ops() const;
+    [[nodiscard]] Operand op(size_t i) const;
+    [[nodiscard]] OperandView ops() const;
   };
 }
 
@@ -61,7 +137,7 @@ namespace tpde_rust {
   constexpr auto view_pointify = std::views::transform(PointifyFunctor{});
 
   struct RustAdaptor {
-    using IRValueRef = uint32_t;
+    using IRValueRef = IR::Operand;
     using IRBlockRef = uint32_t;
 
     struct IRInstRef {
@@ -79,7 +155,7 @@ namespace tpde_rust {
 
     using IRFuncRef = Function *;
 
-    static constexpr IRValueRef INVALID_VALUE_REF = -1;
+    static constexpr IRValueRef INVALID_VALUE_REF = IR::Operand(static_cast<u32>(-1));
     static constexpr IRBlockRef INVALID_BLOCK_REF = ~0u;
     static constexpr IRFuncRef INVALID_FUNC_REF = nullptr;
 
@@ -116,26 +192,26 @@ namespace tpde_rust {
 
     // wrapper for handling inlined constant values
     [[nodiscard]] Value const_value(const IRValueRef value) const {
-      const u32 c = operands::content(value);
-      if (c < operands::INLINE_CONST_END) {
+      const u32 c = value.content();
+      if (c < IR::INLINE_CONST_END) {
         return Value{
-          .ty = static_cast<Type>(c >> operands::INLINE_CONST_BITS),
+          .ty = static_cast<Type>(c >> IR::INLINE_CONST_BITS),
           .data1 = 0,
-          .data2 = c & operands::INLINE_CONST_MASK,
+          .data2 = c & IR::INLINE_CONST_MASK,
         };
       }
-      return mod_data.consts[c - operands::INLINE_CONST_END];
+      return mod_data.consts[c - IR::INLINE_CONST_END];
     }
 
     [[nodiscard]] Type type_of_ref(const IRValueRef value) const {
-      if (operands::is_val(value))
-        return cur_data.slots[operands::content(value)].ty;
-      if (operands::is_const(value))
+      if (value.is_val())
+        return cur_data.slots[value.content()].ty;
+      if (value.is_const())
         return const_value(value).ty;
-      if (operands::is_const_vector(value))
-        return mod_data.const_vectors[operands::content(value)].ty;
-      if (operands::is_alloc(value) || operands::is_global(value) || operands::is_global_ptr(value)
-          || operands::is_func(value))
+      if (value.is_const_vector())
+        return mod_data.const_vectors[value.content()].ty;
+      if (value.is_alloc() || value.is_global() || value.is_global_ptr()
+          || value.is_func())
         return Type::ptr;
       assert(false && "invalid value ref");
     }
@@ -205,7 +281,8 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto cur_args() const {
-      return std::views::iota(0u, static_cast<u32>(cur_data.args.size()));
+      return std::views::iota(0u, static_cast<u32>(cur_data.args.size()))
+        | std::views::transform([](const u32 idx) { return IR::Operand(IR::MARKER_VAL | idx); });
     }
 
     [[nodiscard]] bool cur_arg_is_byval(const u32 idx) const {
@@ -225,8 +302,8 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto cur_static_allocas() const {
-      return std::ranges::views::iota(static_cast<IRValueRef>(0), static_cast<IRValueRef>(cur_data.allocas.size()))
-        | std::views::transform([](const IRValueRef idx) { return operands::MARKER_ALLOC | idx; });
+      return std::ranges::views::iota(static_cast<u32>(0), static_cast<u32>(cur_data.allocas.size()))
+        | std::views::transform([](const u32 idx) { return IR::Operand(IR::MARKER_ALLOC | idx); });
     }
 
     [[nodiscard]] static auto cur_has_dynamic_alloca() {
@@ -287,7 +364,7 @@ namespace tpde_rust {
              | std::ranges::views::drop(offset)
              | std::ranges::views::take(count)
              | std::ranges::views::stride(stride)
-             | std::ranges::views::transform([](uint32_t op) { return operands::content(op); });
+             | std::ranges::views::transform([](IR::Operand op) { return op.content(); });
     }
 
     [[nodiscard]] auto block_insts(const IRBlockRef bb) {
@@ -322,26 +399,26 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] tpde::ValLocalIdx val_local_idx(IRValueRef ir_value) {
-      if (operands::is_alloc(ir_value))
-        return static_cast<tpde::ValLocalIdx>(operands::content(ir_value));
+      if (ir_value.is_alloc())
+        return static_cast<tpde::ValLocalIdx>(ir_value.content());
       size_t prev = cur_data.allocas.size();
 
-      if (operands::is_val(ir_value))
-        return static_cast<tpde::ValLocalIdx>(operands::content(ir_value) + prev);
+      if (ir_value.is_val())
+        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
       prev += cur_data.slots.size();
 
-      if (operands::is_global(ir_value))
-        return static_cast<tpde::ValLocalIdx>(operands::content(ir_value) + prev);
+      if (ir_value.is_global())
+        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
       prev += mod_data.globals.size();
 
-      if (operands::is_global_ptr(ir_value))
-        return static_cast<tpde::ValLocalIdx>(operands::content(ir_value) + prev);
+      if (ir_value.is_global_ptr())
+        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
       prev += mod_data.global_ptrs.size();
 
       // Function references are materialized as variable refs holding the
       // address of the function symbol.
-      if (operands::is_func(ir_value))
-        return static_cast<tpde::ValLocalIdx>(operands::content(ir_value) + prev);
+      if (ir_value.is_func())
+        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
       prev += mod_data.functions.size();
 
       assert(false);
@@ -380,18 +457,18 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] u32 val_alloca_size(IRValueRef val) const {
-      if (operands::is_alloc(val)) {
-        return cur_data.allocas[operands::content(val)].size;
+      if (val.is_alloc()) {
+        return cur_data.allocas[val.content()].size;
       }
       TPDE_FATAL("not a alloc");
     }
 
     [[nodiscard]] u32 val_alloca_align(IRValueRef val) const {
-      if (operands::is_alloc(val)) {
+      if (val.is_alloc()) {
         // TODO: over-aligned allocas. TPDE handles them as dynamic allocas,
         // which need liveness info our allocas don't have. 16 byte suffice for
         // the 128 bit vector parts.
-        return std::min<u32>(cur_data.allocas[operands::content(val)].align, 16);
+        return std::min<u32>(cur_data.allocas[val.content()].align, 16);
       }
       TPDE_FATAL("not a alloc");
     }
@@ -403,8 +480,8 @@ namespace tpde_rust {
 
     [[nodiscard]] auto inst_operands(IRInstRef inst) const {
       return get_instruction(inst).ops()
-             | std::views::filter([](auto op) {
-               return operands::is_val(op);
+             | std::views::filter([](const IR::Operand op) {
+               return op.is_val();
              });
     }
 
@@ -432,7 +509,7 @@ namespace tpde_rust {
     }
 
     ValInfo val_info(const IR::Instr inst) const {
-      return ValInfo{inst.has_result() ? cur_data.slots[inst.result()].ty : Type::Void};
+      return ValInfo{inst.has_result() ? cur_data.slots[inst.result().content()].ty : Type::Void};
     }
 
     [[nodiscard]] std::string inst_fmt_ref(IRInstRef inst) const {
@@ -529,11 +606,11 @@ namespace tpde_rust {
   static_assert(tpde::IRAdaptor<RustAdaptor>);
 }
 
-inline u32 IR::Instr::op(size_t i) const {
+inline IR::Operand IR::Instr::op(size_t i) const {
   assert(i < instruction.ops_len);
-  return adaptor.cur_data.operands[instruction.ops_start + i];
+  return IR::Operand(adaptor.cur_data.operands[instruction.ops_start + i]);
 }
 
-inline std::span<const u32> IR::Instr::ops() const {
-  return adaptor.cur_data.operands.subspan(instruction.ops_start, instruction.ops_len);
+inline IR::OperandView IR::Instr::ops() const {
+  return OperandView(adaptor.cur_data.operands.subspan(instruction.ops_start, instruction.ops_len), ToOperand{});
 }
