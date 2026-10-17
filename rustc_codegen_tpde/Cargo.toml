@@ -3,6 +3,9 @@ name = "rustc_codegen_tpde"
 version.workspace = true
 edition.workspace = true
 
+[features]
+no-cache = []
+
 [dependencies]
 cxx = "^1.0.197"
 

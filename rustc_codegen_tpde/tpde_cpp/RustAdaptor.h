@@ -165,6 +165,12 @@ namespace tpde_rust {
     ModuleTpde *mod = nullptr;
     Function *cur_func = nullptr;
 
+    template<typename T>
+    [[nodiscard]] static std::span<T> view(rust::Vec<T> &vec) {
+      return {vec.data(), vec.size()};
+    }
+
+#ifndef TPDE_RUST_NO_CACHE
     // Every call to the cxxbridge taxes a lot of time, wile nothing is change in the IR while generating
     // We can just buffer when switching the function and use it for generation
     struct ModuleData {
@@ -185,10 +191,35 @@ namespace tpde_rust {
       std::span<CalleeInfo> callee_infos;
     } cur_data;
 
-    template<typename T>
-    [[nodiscard]] static std::span<T> view(rust::Vec<T> &vec) {
-      return {vec.data(), vec.size()};
-    }
+    [[nodiscard]] std::span<Function> get_functions() const { return mod_data.functions; }
+    [[nodiscard]] std::span<Value> get_consts() const { return mod_data.consts; }
+    [[nodiscard]] std::span<Global> get_globals() const { return mod_data.globals; }
+    [[nodiscard]] std::span<GlobalPtr> get_global_ptrs() const { return mod_data.global_ptrs; }
+    [[nodiscard]] std::span<ConstVector> get_const_vectors() const { return mod_data.const_vectors; }
+
+    [[nodiscard]] std::span<ArgInfo> get_args() const { return cur_data.args; }
+    [[nodiscard]] std::span<Slot> get_slots() const { return cur_data.slots; }
+    [[nodiscard]] std::span<const u32> get_operands() const { return cur_data.operands; }
+    [[nodiscard]] std::span<Instruction> get_instructions() const { return cur_data.instructions; }
+    [[nodiscard]] std::span<Alloca> get_allocas() const { return cur_data.allocas; }
+    [[nodiscard]] std::span<BasicBlock> get_basic_blocks() const { return cur_data.basic_blocks; }
+    [[nodiscard]] std::span<CalleeInfo> get_callee_infos() const { return cur_data.callee_infos; }
+#else
+    // no-cache: go through the cxxbridge on every access, to measure what the caching gains
+    [[nodiscard]] std::span<Function> get_functions() const { return view(mod->functions); }
+    [[nodiscard]] std::span<Value> get_consts() const { return view(mod->consts); }
+    [[nodiscard]] std::span<Global> get_globals() const { return view(mod->globals); }
+    [[nodiscard]] std::span<GlobalPtr> get_global_ptrs() const { return view(mod->global_ptrs); }
+    [[nodiscard]] std::span<ConstVector> get_const_vectors() const { return view(mod->const_vectors); }
+
+    [[nodiscard]] std::span<ArgInfo> get_args() const { return view(cur_func->args); }
+    [[nodiscard]] std::span<Slot> get_slots() const { return view(cur_func->slots); }
+    [[nodiscard]] std::span<const u32> get_operands() const { return view(cur_func->operands); }
+    [[nodiscard]] std::span<Instruction> get_instructions() const { return view(cur_func->instructions); }
+    [[nodiscard]] std::span<Alloca> get_allocas() const { return view(cur_func->allocas); }
+    [[nodiscard]] std::span<BasicBlock> get_basic_blocks() const { return view(cur_func->basic_blocks); }
+    [[nodiscard]] std::span<CalleeInfo> get_callee_infos() const { return view(cur_func->callee_infos); }
+#endif
 
     // wrapper for handling inlined constant values
     [[nodiscard]] Value const_value(const IRValueRef value) const {
@@ -200,16 +231,16 @@ namespace tpde_rust {
           .data2 = c & IR::INLINE_CONST_MASK,
         };
       }
-      return mod_data.consts[c - IR::INLINE_CONST_END];
+      return get_consts()[c - IR::INLINE_CONST_END];
     }
 
     [[nodiscard]] Type type_of_ref(const IRValueRef value) const {
       if (value.is_val())
-        return cur_data.slots[value.content()].ty;
+        return get_slots()[value.content()].ty;
       if (value.is_const())
         return const_value(value).ty;
       if (value.is_const_vector())
-        return mod_data.const_vectors[value.content()].ty;
+        return get_const_vectors()[value.content()].ty;
       if (value.is_alloc() || value.is_global() || value.is_global_ptr()
           || value.is_func())
         return Type::ptr;
@@ -223,17 +254,17 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] BasicBlock &get_basic_block(const IRBlockRef block) const {
-      return cur_data.basic_blocks[block];
+      return get_basic_blocks()[block];
     }
 
     [[nodiscard]] IR::Instr get_instruction(const IRInstRef inst) const {
-      return IR::Instr(cur_data.instructions[get_basic_block(inst.block).insts_start + inst.inst], *this);
+      return IR::Instr(get_instructions()[get_basic_block(inst.block).insts_start + inst.inst], *this);
     }
 
   private:
     [[nodiscard]] std::span<Instruction> block_instructions(const IRBlockRef block) const {
       const auto &bb = get_basic_block(block);
-      return cur_data.instructions.subspan(bb.insts_start, bb.insts_len);
+      return get_instructions().subspan(bb.insts_start, bb.insts_len);
     }
   public:
 
@@ -241,10 +272,10 @@ namespace tpde_rust {
       Type type;
     };
 
-    [[nodiscard]] u32 func_count() const { return mod_data.functions.size(); }
+    [[nodiscard]] u32 func_count() const { return get_functions().size(); }
 
     [[nodiscard]] auto funcs() const {
-      return mod_data.functions | std::views::transform([](Function &fn) { return &fn; });
+      return get_functions() | std::views::transform([](Function &fn) { return &fn; });
     }
 
     [[nodiscard]] auto funcs_to_compile() const { return funcs(); }
@@ -276,33 +307,33 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] u32 cur_highest_val_idx() const {
-      return cur_data.allocas.size() + cur_data.slots.size() + mod_data.globals.size() + mod_data.global_ptrs.size()
-             + mod_data.functions.size();
+      return get_allocas().size() + get_slots().size() + get_globals().size() + get_global_ptrs().size()
+             + get_functions().size();
     }
 
     [[nodiscard]] auto cur_args() const {
-      return std::views::iota(0u, static_cast<u32>(cur_data.args.size()))
+      return std::views::iota(0u, static_cast<u32>(get_args().size()))
         | std::views::transform([](const u32 idx) { return IR::Operand(IR::MARKER_VAL | idx); });
     }
 
     [[nodiscard]] bool cur_arg_is_byval(const u32 idx) const {
-      return cur_data.args[idx].kind == ArgKind::ByVal;
+      return get_args()[idx].kind == ArgKind::ByVal;
     }
 
     [[nodiscard]] u32 cur_arg_byval_size(const u32 idx) const {
-      return cur_data.args[idx].size;
+      return get_args()[idx].size;
     }
 
     [[nodiscard]] u32 cur_arg_byval_align(const u32 idx) const {
-      return cur_data.args[idx].align;
+      return get_args()[idx].align;
     }
 
     [[nodiscard]] u32 cur_arg_is_sret(const u32 idx) const {
-      return cur_data.args[idx].kind == ArgKind::sRet;
+      return get_args()[idx].kind == ArgKind::sRet;
     }
 
     [[nodiscard]] auto cur_static_allocas() const {
-      return std::ranges::views::iota(static_cast<u32>(0), static_cast<u32>(cur_data.allocas.size()))
+      return std::ranges::views::iota(static_cast<u32>(0), static_cast<u32>(get_allocas().size()))
         | std::views::transform([](const u32 idx) { return IR::Operand(IR::MARKER_ALLOC | idx); });
     }
 
@@ -316,7 +347,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto cur_blocks() const {
-      return std::ranges::views::iota(0ul, cur_data.basic_blocks.size());
+      return std::ranges::views::iota(0ul, get_basic_blocks().size());
     }
 
     [[nodiscard]] auto block_succs(IRBlockRef bb) const {
@@ -401,25 +432,25 @@ namespace tpde_rust {
     [[nodiscard]] tpde::ValLocalIdx val_local_idx(IRValueRef ir_value) {
       if (ir_value.is_alloc())
         return static_cast<tpde::ValLocalIdx>(ir_value.content());
-      size_t prev = cur_data.allocas.size();
+      size_t prev = get_allocas().size();
 
       if (ir_value.is_val())
         return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += cur_data.slots.size();
+      prev += get_slots().size();
 
       if (ir_value.is_global())
         return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += mod_data.globals.size();
+      prev += get_globals().size();
 
       if (ir_value.is_global_ptr())
         return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += mod_data.global_ptrs.size();
+      prev += get_global_ptrs().size();
 
       // Function references are materialized as variable refs holding the
       // address of the function symbol.
       if (ir_value.is_func())
         return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += mod_data.functions.size();
+      prev += get_functions().size();
 
       assert(false);
     }
@@ -458,7 +489,7 @@ namespace tpde_rust {
 
     [[nodiscard]] u32 val_alloca_size(IRValueRef val) const {
       if (val.is_alloc()) {
-        return cur_data.allocas[val.content()].size;
+        return get_allocas()[val.content()].size;
       }
       TPDE_FATAL("not a alloc");
     }
@@ -468,7 +499,7 @@ namespace tpde_rust {
         // TODO: over-aligned allocas. TPDE handles them as dynamic allocas,
         // which need liveness info our allocas don't have. 16 byte suffice for
         // the 128 bit vector parts.
-        return std::min<u32>(cur_data.allocas[val.content()].align, 16);
+        return std::min<u32>(get_allocas()[val.content()].align, 16);
       }
       TPDE_FATAL("not a alloc");
     }
@@ -509,7 +540,7 @@ namespace tpde_rust {
     }
 
     ValInfo val_info(const IR::Instr inst) const {
-      return ValInfo{inst.has_result() ? cur_data.slots[inst.result().content()].ty : Type::Void};
+      return ValInfo{inst.has_result() ? get_slots()[inst.result().content()].ty : Type::Void};
     }
 
     [[nodiscard]] std::string inst_fmt_ref(IRInstRef inst) const {
@@ -524,6 +555,7 @@ namespace tpde_rust {
 
     [[nodiscard]] bool switch_func(IRFuncRef func) {
       cur_func = func;
+#ifndef TPDE_RUST_NO_CACHE
       cur_data = FuncData{
         .args = view(func->args),
         .slots = view(func->slots),
@@ -533,11 +565,13 @@ namespace tpde_rust {
         .basic_blocks = view(func->basic_blocks),
         .callee_infos = view(func->callee_infos),
       };
+#endif
       return true;
     }
 
     bool switch_module(ModuleTpde &mod) {
       this->mod = &mod;
+#ifndef TPDE_RUST_NO_CACHE
       mod_data = ModuleData{
         .functions = view(mod.functions),
         .consts = view(mod.consts),
@@ -545,14 +579,17 @@ namespace tpde_rust {
         .global_ptrs = view(mod.global_ptrs),
         .const_vectors = view(mod.const_vectors),
       };
+#endif
       return true;
     }
 
     void reset() {
       mod = nullptr;
-      mod_data = {};
       cur_func = INVALID_FUNC_REF;
+#ifndef TPDE_RUST_NO_CACHE
+      mod_data = {};
       cur_data = {};
+#endif
     }
 
     // things for compiler
@@ -608,9 +645,9 @@ namespace tpde_rust {
 
 inline IR::Operand IR::Instr::op(size_t i) const {
   assert(i < instruction.ops_len);
-  return IR::Operand(adaptor.cur_data.operands[instruction.ops_start + i]);
+  return IR::Operand(adaptor.get_operands()[instruction.ops_start + i]);
 }
 
 inline IR::OperandView IR::Instr::ops() const {
-  return OperandView(adaptor.cur_data.operands.subspan(instruction.ops_start, instruction.ops_len), ToOperand{});
+  return OperandView(adaptor.get_operands().subspan(instruction.ops_start, instruction.ops_len), ToOperand{});
 }

@@ -206,7 +206,7 @@ namespace tpde_rust {
 
     ValuePart val_part_ref_special(ValRefSpecial &vrs, u32 part) {
       if (vrs.data.is_const_vector()) {
-        return const_vector_part(this->adaptor->mod_data.const_vectors[vrs.data.content()], part);
+        return const_vector_part(this->adaptor->get_const_vectors()[vrs.data.content()], part);
       }
       if (vrs.data.is_const()) {
         const Value imm = this->adaptor->const_value(vrs.data);
@@ -285,12 +285,12 @@ namespace tpde_rust {
             TPDE_FATAL("not implemented");
         }
       } {
-        uint32_t glob_start = this->adaptor->cur_data.allocas.size()
-                              + this->adaptor->cur_data.slots.size();
+        uint32_t glob_start = this->adaptor->get_allocas().size()
+                              + this->adaptor->get_slots().size();
         uint32_t glob_ptr_start = glob_start
-                                  + this->adaptor->mod_data.globals.size();
+                                  + this->adaptor->get_globals().size();
         uint32_t func_start = glob_ptr_start
-                              + this->adaptor->mod_data.global_ptrs.size();
+                              + this->adaptor->get_global_ptrs().size();
 
         u32 gv_id = vrs.data.content();
         u32 loc_id;
@@ -326,7 +326,7 @@ namespace tpde_rust {
 
     void define_func_idx(IRFuncRef func, const u32 idx) {
       // As they are worked through in the same order as in the IR they should be equal
-      assert(func - this->adaptor->mod_data.functions.data() == idx);
+      assert(func - this->adaptor->get_functions().data() == idx);
     }
 
     struct IntBinaryOp {
@@ -1874,8 +1874,8 @@ namespace tpde_rust {
     }
 
     const auto infos = Adaptor::view(is_dynamic_function ?
-      this->adaptor->cur_data.callee_infos[calli.op(arg_start - 1).content()].info
-      : this->adaptor->mod_data.functions[func.content()].args);
+      this->adaptor->get_callee_infos()[calli.op(arg_start - 1).content()].info
+      : this->adaptor->get_functions()[func.content()].args);
     const size_t num_args = calli.num_ops() - arg_start;
     assert(infos.size() <= num_args);
     const bool is_vararg = num_args > infos.size();
@@ -2760,7 +2760,7 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   u64 RustCompilerBase<Adaptor, Derived, Config>::const_vector_elem(IRValueRef vec, unsigned idx) {
     if (vec.is_const_vector()) {
-      const ConstVector &cv = this->adaptor->mod_data.const_vectors[vec.content()];
+      const ConstVector &cv = this->adaptor->get_const_vectors()[vec.content()];
       const auto [nelem, elem_ty] = vector_info(cv.ty);
       assert(idx < nelem);
       const u32 elem_bytes = size_of_type(elem_ty) / 8;
@@ -4176,8 +4176,8 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::hook_post_func_sym_init() {
     global_symbols.clear();
 
-    global_symbols.reserve(this->adaptor->mod_data.globals.size());
-    for (const Global &global: this->adaptor->mod_data.globals) {
+    global_symbols.reserve(this->adaptor->get_globals().size());
+    for (const Global &global: this->adaptor->get_globals()) {
       std::string_view name(global.name.data(), global.name.size());
 
       auto binding = convert_linkage(global);
@@ -4193,7 +4193,7 @@ namespace tpde_rust {
     }
 
     for (size_t i = 0; i < global_symbols.size(); ++i) {
-      const Global& global = this->adaptor->mod_data.globals[i];
+      const Global& global = this->adaptor->get_globals()[i];
       if (global.flags.extern_link)
         continue;
 
@@ -4229,7 +4229,7 @@ namespace tpde_rust {
             SymRef target = this->func_syms[IR::Operand(reloc.slot).content()];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
           } else if (IR::Operand(reloc.slot).is_global_ptr()) {
-            const auto &gp = this->adaptor->mod_data.global_ptrs[IR::Operand(reloc.slot).content()];
+            const auto &gp = this->adaptor->get_global_ptrs()[IR::Operand(reloc.slot).content()];
             SymRef &target = global_symbols[gp.global];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, gp.offset);
           } else {

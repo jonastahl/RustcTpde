@@ -6,5 +6,8 @@ edition.workspace = true
 [lib]
 crate-type = ["dylib"]
 
+[features]
+no-cache = ["rustc_codegen_tpde/no-cache"]
+
 [dependencies]
 rustc_codegen_tpde = { path = "../rustc_codegen_tpde" }

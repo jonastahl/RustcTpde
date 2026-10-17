@@ -1,5 +1,6 @@
 
 fn main() {
+    let no_cache = std::env::var_os("CARGO_FEATURE_NO_CACHE").is_some();
 
     let dst = cmake::Config::new(".")
         .define("CMAKE_C_COMPILER", "clang")
@@ -7,6 +8,7 @@ fn main() {
         .define("TPDE_ENABLE_LLVM_PLUGIN", "OFF")
         .define("TPDE_INCLUDE_TESTS", "OFF")
         .define("TPDE_LOGGING", "ON")
+        .define("TPDE_RUST_NO_CACHE", if no_cache { "ON" } else { "OFF" })
         .build();
 
     println!("cargo:rustc-link-search=native={}", dst.join("lib").display());
@@ -23,7 +25,11 @@ fn main() {
 
     println!("cargo:rustc-link-arg=-Wl,-z,defs");
 
-    cxx_build::bridge("src/shared.rs")
+    let mut bridge = cxx_build::bridge("src/shared.rs");
+    if no_cache {
+        bridge.define("TPDE_RUST_NO_CACHE", None);
+    }
+    bridge
         .include(".")
         .include("../deps/tpde/tpde/include")
         .flag_if_supported("-std=c++23")

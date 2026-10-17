@@ -62,6 +62,11 @@ target_include_directories(tpde_cpp PRIVATE
 
 target_compile_options(tpde_cpp PRIVATE -fno-exceptions)
 
+option(TPDE_RUST_NO_CACHE "Disable the span caching in RustAdaptor" OFF)
+if (TPDE_RUST_NO_CACHE)
+    target_compile_definitions(tpde_cpp PRIVATE TPDE_RUST_NO_CACHE)
+endif()
+
 target_link_libraries(tpde_cpp PRIVATE tpde)
 
 install(TARGETS tpde_cpp ARCHIVE DESTINATION lib)
