@@ -203,7 +203,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 1]) -> [val: 2],
-                    <Switch> ([val: 2], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 2], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -301,7 +301,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 1]) -> [val: 2],
-                    <Switch> ([val: 2], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 2], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -399,7 +399,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 1]) -> [val: 2],
-                    <Switch> ([val: 2], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 2], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -497,7 +497,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 1]) -> [val: 2],
-                    <Switch> ([val: 2], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 2], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -595,7 +595,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 1]) -> [val: 2],
-                    <Switch> ([val: 2], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 2], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -694,7 +694,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 2]) -> [val: 3],
-                    <Switch> ([val: 3], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 3], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -789,7 +789,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 2]) -> [val: 3],
-                    <Switch> ([val: 3], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 3], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -884,7 +884,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 2]) -> [val: 3],
-                    <Switch> ([val: 3], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 3], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -979,7 +979,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 2]) -> [val: 3],
-                    <Switch> ([val: 3], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 3], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -1074,7 +1074,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 2]) -> [val: 3],
-                    <Switch> ([val: 3], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 3], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -1169,7 +1169,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 2]) -> [val: 3],
-                    <Switch> ([val: 3], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 3], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -1341,30 +1341,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -1667,30 +1667,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -1993,30 +1993,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -2319,30 +2319,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -2645,30 +2645,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -2971,30 +2971,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -3297,30 +3297,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -3623,30 +3623,30 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 3]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 5], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb7": [
                     <Unreachable> (),
                 ],
                 "bb2": [
                     <zExt> ([val: 4]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 7], [const: i64 0], [raw: 8], [const: i64 2], [raw: 9], [const: i64 4], [raw: 10]),
+                    <Switch> ([val: 6], [raw: 7], [raw: 8], [raw: 9], [raw: 10], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb4": [
                     <zExt> ([val: 4]) -> [val: 16],
-                    <Switch> ([val: 16], [raw: 7], [const: i64 0], [raw: 12], [const: i64 2], [raw: 13], [const: i64 4], [raw: 14]),
+                    <Switch> ([val: 16], [raw: 7], [raw: 12], [raw: 13], [raw: 14], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb3": [
                     <zExt> ([val: 4]) -> [val: 26],
-                    <Switch> ([val: 26], [raw: 7], [const: i64 0], [raw: 15], [const: i64 2], [raw: 16], [const: i64 4], [raw: 17]),
+                    <Switch> ([val: 26], [raw: 7], [raw: 15], [raw: 16], [raw: 17], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb5": [
                     <zExt> ([val: 4]) -> [val: 36],
-                    <Switch> ([val: 36], [raw: 7], [const: i64 0], [raw: 18], [const: i64 2], [raw: 19], [const: i64 4], [raw: 20]),
+                    <Switch> ([val: 36], [raw: 7], [raw: 18], [raw: 19], [raw: 20], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb6": [
                     <zExt> ([val: 4]) -> [val: 46],
-                    <Switch> ([val: 46], [raw: 7], [const: i64 0], [raw: 21], [const: i64 2], [raw: 22], [const: i64 4], [raw: 23]),
+                    <Switch> ([val: 46], [raw: 7], [raw: 21], [raw: 22], [raw: 23], [const: i64 0], [const: i64 2], [const: i64 4]),
                 ],
                 "bb1": [
                     <zExt> ([val: 4]) -> [val: 64],
@@ -3949,7 +3949,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -4082,7 +4082,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -4188,13 +4188,13 @@ ModuleTpde {
                     <Cast> ([val: 0]) -> [val: 3],
                     <Cast> ([val: 0]) -> [val: 4],
                     <zExt> ([val: 2]) -> [val: 5],
-                    <Switch> ([val: 5], [raw: 3], [const: i64 0], [raw: 4], [const: i64 1], [raw: 5], [const: i64 2], [raw: 6], [const: i64 3], [raw: 7], [const: i64 4], [raw: 8]),
+                    <Switch> ([val: 5], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [raw: 7], [raw: 8], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Cast> ([val: 0]) -> [val: 13],
                     <Cast> ([val: 0]) -> [val: 14],
                     <zExt> ([val: 2]) -> [val: 15],
-                    <Switch> ([val: 15], [raw: 3], [const: i64 0], [raw: 11], [const: i64 1], [raw: 12], [const: i64 2], [raw: 13], [const: i64 3], [raw: 14], [const: i64 4], [raw: 15]),
+                    <Switch> ([val: 15], [raw: 3], [raw: 11], [raw: 12], [raw: 13], [raw: 14], [raw: 15], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb5": [
                     <Unreachable> (),
@@ -4491,7 +4491,7 @@ ModuleTpde {
                     <Cast> ([val: 0]) -> [val: 4],
                     <Cast> ([val: 1]) -> [val: 5],
                     <zExt> ([val: 2]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 6], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -4634,7 +4634,7 @@ ModuleTpde {
                     <Cast> ([val: 0]) -> [val: 4],
                     <Cast> ([val: 1]) -> [val: 5],
                     <zExt> ([val: 2]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 6], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -4727,7 +4727,7 @@ ModuleTpde {
                     <Cast> ([val: 0]) -> [val: 4],
                     <Cast> ([val: 1]) -> [val: 5],
                     <zExt> ([val: 2]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 6], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -4820,7 +4820,7 @@ ModuleTpde {
                     <Cast> ([val: 0]) -> [val: 4],
                     <Cast> ([val: 1]) -> [val: 5],
                     <zExt> ([val: 2]) -> [val: 6],
-                    <Switch> ([val: 6], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 6], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -5011,7 +5011,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -5356,7 +5356,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -5489,7 +5489,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -5576,7 +5576,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -5663,7 +5663,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -5750,7 +5750,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -5940,7 +5940,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6073,7 +6073,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6160,7 +6160,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6310,7 +6310,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6397,7 +6397,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6484,7 +6484,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6571,7 +6571,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6761,7 +6761,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -6894,7 +6894,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7012,7 +7012,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7099,7 +7099,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7186,7 +7186,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7273,7 +7273,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7360,7 +7360,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7447,7 +7447,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7534,7 +7534,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7621,7 +7621,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -7874,7 +7874,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -8007,7 +8007,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -8094,7 +8094,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -8181,7 +8181,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -8268,7 +8268,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -8355,7 +8355,7 @@ ModuleTpde {
                 "start": [
                     <Cast> ([val: 0]) -> [val: 3],
                     <zExt> ([val: 2]) -> [val: 4],
-                    <Switch> ([val: 4], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 4], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb2": [
                     <Unreachable> (),
@@ -8467,7 +8467,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 0]) -> [val: 1],
-                    <Switch> ([val: 1], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 1], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),
@@ -8536,7 +8536,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <zExt> ([val: 0]) -> [val: 1],
-                    <Switch> ([val: 1], [raw: 1], [const: i64 0], [raw: 2], [const: i64 1], [raw: 3], [const: i64 2], [raw: 4], [const: i64 3], [raw: 5], [const: i64 4], [raw: 6]),
+                    <Switch> ([val: 1], [raw: 1], [raw: 2], [raw: 3], [raw: 4], [raw: 5], [raw: 6], [const: i64 0], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4]),
                 ],
                 "bb1": [
                     <Unreachable> (),

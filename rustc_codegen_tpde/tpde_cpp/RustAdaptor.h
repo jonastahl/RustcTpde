@@ -358,7 +358,6 @@ namespace tpde_rust {
 
     [[nodiscard]] auto block_succs(IRBlockRef bb) const {
       size_t offset, count;
-      size_t stride = 1;
 
       const auto insts = block_instructions(bb);
       const Instruction* br_instr = &insts.back();
@@ -387,8 +386,7 @@ namespace tpde_rust {
           break;
         case InstructionKind::Switch:
           offset = 1;
-          count = br_instr->ops_len - offset;
-          stride = 2;
+          count = br_instr->ops_len / 2;
           break;
         case InstructionKind::Resume:
           offset = count = 0;
@@ -400,7 +398,6 @@ namespace tpde_rust {
       return IR::Instr(*br_instr, *this).ops()
              | std::ranges::views::drop(offset)
              | std::ranges::views::take(count)
-             | std::ranges::views::stride(stride)
              | std::ranges::views::transform([](IR::Operand op) { return op.content(); });
     }
 
