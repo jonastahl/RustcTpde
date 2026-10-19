@@ -83,6 +83,10 @@ namespace IR {
     [[nodiscard]] bool operator==(const Operand &other) const {
       return this->value == other.value;
     }
+
+    [[nodiscard]] u32 marker() const {
+      return value >> 29;
+    }
   };
 
   struct ToOperand {
@@ -164,6 +168,8 @@ namespace tpde_rust {
 
     ModuleTpde *mod = nullptr;
     Function *cur_func = nullptr;
+
+    std::array<u32, 8> starts_index;
 
     template<typename T>
     [[nodiscard]] static std::span<T> view(rust::Vec<T> &vec) {
@@ -307,7 +313,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] u32 cur_highest_val_idx() const {
-      return get_allocas().size() + get_slots().size() + get_globals().size() + get_global_ptrs().size()
+      return get_slots().size() + get_allocas().size() + get_globals().size() + get_global_ptrs().size()
              + get_functions().size();
     }
 
@@ -430,34 +436,12 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] tpde::ValLocalIdx val_local_idx(IRValueRef ir_value) {
-      if (ir_value.is_alloc())
-        return static_cast<tpde::ValLocalIdx>(ir_value.content());
-      size_t prev = get_allocas().size();
-
-      if (ir_value.is_val())
-        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += get_slots().size();
-
-      if (ir_value.is_global())
-        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += get_globals().size();
-
-      if (ir_value.is_global_ptr())
-        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += get_global_ptrs().size();
-
-      // Function references are materialized as variable refs holding the
-      // address of the function symbol.
-      if (ir_value.is_func())
-        return static_cast<tpde::ValLocalIdx>(ir_value.content() + prev);
-      prev += get_functions().size();
-
-      assert(false);
+      assert(ir_value.is_val() || ir_value.is_alloc());
+      return static_cast<tpde::ValLocalIdx>(ir_value.content() + starts_index[ir_value.marker()]);
     }
 
     [[nodiscard]] static bool val_ignore_in_liveness_analysis(const IRValueRef value) {
-      // TODO
-      return false;
+      return !value.is_val();
     }
 
     [[nodiscard]] bool val_is_phi(const IRValueRef value) const {
@@ -510,10 +494,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto inst_operands(IRInstRef inst) const {
-      return get_instruction(inst).ops()
-             | std::views::filter([](const IR::Operand op) {
-               return op.is_val();
-             });
+      return get_instruction(inst).ops();
     }
 
     [[nodiscard]] auto inst_results(const IRInstRef instref) const {
@@ -566,6 +547,12 @@ namespace tpde_rust {
         .callee_infos = view(func->callee_infos),
       };
 #endif
+
+      starts_index = {0};
+      starts_index[IR::MARKER_ALLOC >> 29] = cur_data.slots.size();
+      starts_index[IR::MARKER_GLOBAL >> 29] = starts_index[IR::MARKER_ALLOC >> 29] + cur_data.allocas.size();
+      starts_index[IR::MARKER_GLOBAL_PTR >> 29] = starts_index[IR::MARKER_GLOBAL >> 29] + mod_data.globals.size();
+      starts_index[IR::MARKER_FUNC >> 29] = starts_index[IR::MARKER_GLOBAL_PTR >> 29] + mod_data.global_ptrs.size();
       return true;
     }
 

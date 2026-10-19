@@ -285,31 +285,12 @@ namespace tpde_rust {
             TPDE_FATAL("not implemented");
         }
       } {
-        uint32_t glob_start = this->adaptor->get_allocas().size()
-                              + this->adaptor->get_slots().size();
-        uint32_t glob_ptr_start = glob_start
-                                  + this->adaptor->get_globals().size();
-        uint32_t func_start = glob_ptr_start
-                              + this->adaptor->get_global_ptrs().size();
-
-        u32 gv_id = vrs.data.content();
-        u32 loc_id;
-        if (vrs.data.is_global()) {
-          loc_id = glob_start + gv_id;
-        } else if (vrs.data.is_global_ptr()) {
-          loc_id = glob_ptr_start + gv_id;
-        } else if (vrs.data.is_func()) {
-          // A function used as a value: materialize the address of its symbol.
-          assert(part == 0);
-          loc_id = func_start + gv_id;
-        } else {
-          TPDE_FATAL("unknown special mode");
-        }
+        u32 loc_id = vrs.data.content() + this->adaptor->starts_index[vrs.data.marker()];
         tpde::ValLocalIdx local_idx{loc_id};
 
         auto *assignment = this->val_assignment(local_idx);
         if (!assignment) {
-          this->init_variable_ref(local_idx, loc_id - glob_start);
+          this->init_variable_ref(local_idx, loc_id - this->adaptor->starts_index[IR::MARKER_GLOBAL >> 29]);
           assignment = this->val_assignment(local_idx);
         }
         return ValuePart{local_idx, assignment, 0, /*owned=*/false};
