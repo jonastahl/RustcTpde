@@ -755,14 +755,7 @@ namespace tpde_rust {
     const ValInfo val_info = this->adaptor->val_info(instr);
     assert(static_cast<size_t>(instr.kind()) < fns.size());
     const auto [compile_fn, arg] = fns[static_cast<std::size_t>(instr.kind())];
-    if (! (derived()->*compile_fn)(inst_ref, val_info, arg) ) {
-      TPDE_LOG_ERR("Could not compile instruction {} (kind {}) in function {}",
-                   inst_ref.inst,
-                   static_cast<unsigned>(instr.kind()),
-                   RustAdaptor::func_link_name(this->adaptor->cur_func));
-      return false;
-    }
-    return true;
+    return (derived()->*compile_fn)(inst_ref, val_info, arg);
   }
 
   template<typename Adaptor, typename Derived, typename Config>
