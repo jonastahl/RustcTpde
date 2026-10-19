@@ -546,10 +546,10 @@ namespace tpde_rust {
 #endif
 
       starts_index = {0};
-      starts_index[IR::MARKER_ALLOC >> 29] = cur_data.slots.size();
-      starts_index[IR::MARKER_GLOBAL >> 29] = starts_index[IR::MARKER_ALLOC >> 29] + cur_data.allocas.size();
-      starts_index[IR::MARKER_GLOBAL_PTR >> 29] = starts_index[IR::MARKER_GLOBAL >> 29] + mod_data.globals.size();
-      starts_index[IR::MARKER_FUNC >> 29] = starts_index[IR::MARKER_GLOBAL_PTR >> 29] + mod_data.global_ptrs.size();
+      starts_index[IR::MARKER_ALLOC >> 29] = get_slots().size();
+      starts_index[IR::MARKER_GLOBAL >> 29] = starts_index[IR::MARKER_ALLOC >> 29] + get_allocas().size();
+      starts_index[IR::MARKER_GLOBAL_PTR >> 29] = starts_index[IR::MARKER_GLOBAL >> 29] + get_globals().size();
+      starts_index[IR::MARKER_FUNC >> 29] = starts_index[IR::MARKER_GLOBAL_PTR >> 29] + get_global_ptrs().size();
       return true;
     }
 
