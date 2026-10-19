@@ -152,6 +152,7 @@ inline constexpr auto type_infos = []() constexpr {
         if (bits < 64) {
             info.num_parts = nelem;
             info.part = elem;
+            info.reg_bank = tpde::RegBank{0};
         } else if (bits <= 128) {
             info.num_parts = 1;
             info.part = type;
@@ -159,6 +160,7 @@ inline constexpr auto type_infos = []() constexpr {
         } else {
             info.num_parts = bits / 128;
             info.part = vector_part_128(elem);
+            info.reg_bank = tpde::RegBank{1};
         }
     }
     return res;

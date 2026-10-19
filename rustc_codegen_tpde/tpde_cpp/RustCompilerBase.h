@@ -204,86 +204,40 @@ namespace tpde_rust {
       return ValuePart(word, part_bytes, reg_bank_of_type(part_ty));
     }
 
-    ValuePart val_part_ref_special(ValRefSpecial &vrs, u32 part) {
+    ValuePart val_part_ref_special(const ValRefSpecial &vrs, u32 part) {
       if (vrs.data.is_const_vector()) {
         return const_vector_part(this->adaptor->get_const_vectors()[vrs.data.content()], part);
       }
       if (vrs.data.is_const()) {
         const Value imm = this->adaptor->const_value(vrs.data);
 
-        switch (imm.ty) {
-          using enum Type;
-          case Bool:
-          case i8:
-            return ValuePart(imm.data2, 1, tpde::RegBank{0});
-          case i16:
-            return ValuePart(imm.data2, 2, tpde::RegBank{0});
-          case i32:
-            return ValuePart(imm.data2, 4, tpde::RegBank{0});
-          case ptr:
-          case i64:
-            return ValuePart(imm.data2, 8, tpde::RegBank{0});
-          case i128:
-            switch (part) {
-              case 0:
-                return ValuePart(imm.data2, 8, tpde::RegBank{0});
-              case 1:
-                return ValuePart(imm.data1, 8, tpde::RegBank{0});
-              default:
-                TPDE_FATAL("invalid part");
-            }
-          case f32:
-              return ValuePart(imm.data2, 4, tpde::RegBank{1});
-          case f64:
-          case v8i8:
-          case v4i16:
-          case v2i32:
-          case v2f32:
-            return ValuePart(imm.data2, 8, tpde::RegBank{1});
-          case v16i8:
-          case v8i16:
-          case v4i32:
-          case v2i64:
-          case v4f32:
-          case v2f64: {
-            // Little-endian: low half first
-            u64 *data = new (const_allocator) u64[2];
-            data[0] = imm.data2;
-            data[1] = imm.data1;
-            return ValuePart(data, 16, tpde::RegBank{1});
-          }
-
-          default:
-            if (is_vector(imm.ty)) {
-              const Type part_ty = vector_parts(imm.ty).second;
-              const u32 part_bytes = size_of_type(part_ty) / 8;
-              const u32 bit_off = part * part_bytes * 8;
-              auto bits_at = [&imm](u32 off) -> u64 {
-                if (off >= 128) {
-                  // Value only holds 128 bits; zero (null/undef) is fine,
-                  // anything else would be silently truncated.
-                  if (imm.data1 != 0 || imm.data2 != 0) {
-                    TPDE_FATAL(
-                        "vector constant wider than 128 bits not supported");
-                  }
-                  return 0;
-                }
-                return off < 64 ? imm.data2 : imm.data1;
-              };
-              if (part_bytes == 16) {
-                u64 *data = new (const_allocator) u64[2];
-                data[0] = bits_at(bit_off);
-                data[1] = bits_at(bit_off + 64);
-                return ValuePart(data, 16, tpde::RegBank{1});
-              }
-              u64 word = bits_at(bit_off) >> (bit_off % 64);
-              if (part_bytes < 8) {
-                word &= (u64{1} << (part_bytes * 8)) - 1;
-              }
-              return ValuePart(word, part_bytes, reg_bank_of_type(part_ty));
-            }
-            TPDE_FATAL("not implemented");
+        if (imm.ty == Type::i128) {
+          assert(part == 0 || part == 1);
+          return ValuePart(part == 1 ? imm.data1 : imm.data2, 8, tpde::RegBank{0});
         }
+
+        auto size = size_of_type(imm.ty) / 8;
+        auto reg_bank = reg_bank_of_type(imm.ty);
+
+        if (!is_vector(imm.ty)) {
+          return ValuePart(imm.data2, size, reg_bank);
+        }
+
+        if (size >= 16) {
+          u64 *data = new (const_allocator) u64[2];
+          data[0] = imm.data2;
+          data[1] = imm.data1;
+          return ValuePart(data, 16, reg_bank);
+        }
+        if (size == 8) {
+          return ValuePart(imm.data2, 8, reg_bank);
+        }
+
+        // small vectors with less than 64 bits -> every element is handled separately
+        Type elem_ty = vector_info(imm.ty).second;
+        size = size_of_type(elem_ty);
+        reg_bank = reg_bank_of_type(elem_ty);
+        return ValuePart(imm.data2 >> (part * size), size, reg_bank);
       } {
         u32 loc_id = vrs.data.content() + this->adaptor->starts_index[vrs.data.marker()];
         tpde::ValLocalIdx local_idx{loc_id};
