@@ -37,6 +37,7 @@ mod type_;
 mod mono_item;
 pub mod back;
 mod allocator;
+mod optimize;
 
 #[unsafe(no_mangle)]
 pub fn __rustc_codegen_backend() -> Box<dyn CodegenBackend> {

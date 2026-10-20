@@ -19,10 +19,6 @@ mod ffi {
         const_vectors: Vec<ConstVector>,
     }
 
-    enum Linkage {
-        External,
-    }
-
     pub struct Function {
         name: String,
         has_ret: bool,
