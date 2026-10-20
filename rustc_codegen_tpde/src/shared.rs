@@ -101,6 +101,7 @@ mod ffi {
         extern_link: bool,
         only_local: bool,
         weak_link: bool,
+        always_inline: bool,
     }
 
     pub struct BasicBlock {

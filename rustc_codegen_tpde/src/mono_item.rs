@@ -1,7 +1,7 @@
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, Function, Global};
 use rustc_codegen_ssa::traits::{LayoutTypeCodegenMethods, PreDefineCodegenMethods};
-use rustc_hir::attrs::Linkage;
+use rustc_hir::attrs::{InlineAttr, Linkage, OptimizeAttr};
 use rustc_middle::mir::Mutability;
 use rustc_middle::mono::Visibility;
 use rustc_middle::ty;
@@ -74,6 +74,14 @@ impl<'tcx> PreDefineCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         let blocks = mir.basic_blocks.len();
         let size = blocks + mir.basic_blocks.iter().map(|bb| bb.statements.len()).sum::<usize>();
         self.module.borrow_mut().reserve_function(func, blocks, size * 2, size * 3 / 2, size * 4);
+
+        // Same rule as rustc_codegen_llvm uses for `alwaysinline`, `#[optimize(none)]` wins.
+        let attrs = self.tcx.codegen_instance_attrs(instance.def);
+        if matches!(attrs.inline, InlineAttr::Always | InlineAttr::Force { .. })
+            && !matches!(attrs.optimize, OptimizeAttr::DoNotOptimize)
+        {
+            self.module.borrow_mut().set_always_inline(func);
+        }
     }
 }
 

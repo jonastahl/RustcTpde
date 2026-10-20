@@ -252,6 +252,10 @@ impl Module {
         function.operands.reserve(operands);
     }
 
+    pub fn set_always_inline(&mut self, func: Function) {
+        self.tpde.functions[func.0].flags.always_inline = true;
+    }
+
     pub fn return_value(&mut self, func: Function) -> Option<Slot> {
         if self.tpde.functions[func.0].has_ret {
             Some(Slot::new_val(func, 0))
@@ -396,6 +400,7 @@ impl Module {
             weak_link: linkage == Linkage::WeakODR
                 || linkage == Linkage::WeakAny
                 || linkage == Linkage::ExternalWeak,
+            always_inline: false,
         }
     }
 
