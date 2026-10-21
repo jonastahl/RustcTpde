@@ -2634,6 +2634,7 @@ ModuleTpde {
                 v8i8,
                 v8i8,
                 v32i8,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -2663,8 +2664,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 10]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 30]),
@@ -2685,6 +2685,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -2737,6 +2747,7 @@ ModuleTpde {
                 v8i8,
                 v8i8,
                 v64i8,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -2766,8 +2777,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 13]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const pool: 36], [global: 32]),
@@ -2788,6 +2798,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -2840,6 +2860,7 @@ ModuleTpde {
                 v32i8,
                 v32i8,
                 v32i8,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -2869,8 +2890,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 16]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 34]),
@@ -2891,6 +2911,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -2943,6 +2973,7 @@ ModuleTpde {
                 v32i8,
                 v32i8,
                 v64i8,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -2972,8 +3003,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 19]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const pool: 39], [global: 36]),
@@ -2994,6 +3024,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3046,6 +3086,7 @@ ModuleTpde {
                 v16i8,
                 v16i8,
                 v32i8,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3075,8 +3116,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 22]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 38]),
@@ -3097,6 +3137,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3149,6 +3199,7 @@ ModuleTpde {
                 v16i8,
                 v16i8,
                 v64i8,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3178,8 +3229,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 25]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const pool: 42], [global: 40]),
@@ -3200,6 +3250,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3252,6 +3312,7 @@ ModuleTpde {
                 v64i8,
                 v64i8,
                 v64i8,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3281,8 +3342,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 28]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const pool: 45], [global: 42]),
@@ -3303,6 +3363,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3355,6 +3425,7 @@ ModuleTpde {
                 v64i8,
                 v64i8,
                 v32i8,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3384,8 +3455,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 31]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 44]),
@@ -3406,6 +3476,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3458,6 +3538,7 @@ ModuleTpde {
                 v8i32,
                 v8i32,
                 v8i32,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3487,8 +3568,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 34]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 46]),
@@ -3509,6 +3589,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3561,6 +3651,7 @@ ModuleTpde {
                 v8i32,
                 v8i32,
                 v16i32,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3590,8 +3681,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 37]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 48]),
@@ -3612,6 +3702,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3664,6 +3764,7 @@ ModuleTpde {
                 v8i32,
                 v8i32,
                 v4i32,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3693,8 +3794,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 16]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 40]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 50]),
@@ -3715,6 +3815,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3767,6 +3877,7 @@ ModuleTpde {
                 v32i32,
                 v32i32,
                 v16i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3796,8 +3907,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 43]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 52]),
@@ -3818,6 +3928,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3870,6 +3990,7 @@ ModuleTpde {
                 v32i32,
                 v32i32,
                 v4i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3899,8 +4020,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 16]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 46]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 54]),
@@ -3921,6 +4041,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -3973,6 +4103,7 @@ ModuleTpde {
                 v32i32,
                 v32i32,
                 v8i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4002,8 +4133,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 49]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 56]),
@@ -4024,6 +4154,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4076,6 +4216,7 @@ ModuleTpde {
                 v16i32,
                 v16i32,
                 v16i32,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4105,8 +4246,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 52]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 58]),
@@ -4127,6 +4267,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4179,6 +4329,7 @@ ModuleTpde {
                 v16i32,
                 v16i32,
                 v4i32,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4208,8 +4359,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 16]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 55]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 60]),
@@ -4230,6 +4380,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4282,6 +4442,7 @@ ModuleTpde {
                 v16i32,
                 v16i32,
                 v8i32,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4311,8 +4472,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 58]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 62]),
@@ -4333,6 +4493,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4385,6 +4555,7 @@ ModuleTpde {
                 v64i32,
                 v64i32,
                 v16i32,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4414,8 +4585,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 61]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 64]),
@@ -4436,6 +4606,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4488,6 +4668,7 @@ ModuleTpde {
                 v64i32,
                 v64i32,
                 v4i32,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4517,8 +4698,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 16]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 64]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 66]),
@@ -4539,6 +4719,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4591,6 +4781,7 @@ ModuleTpde {
                 v64i32,
                 v64i32,
                 v8i32,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4620,8 +4811,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 67]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 68]),
@@ -4642,6 +4832,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4694,6 +4894,7 @@ ModuleTpde {
                 v8i16,
                 v8i16,
                 v16i16,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4723,8 +4924,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 70]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 70]),
@@ -4745,6 +4945,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4797,6 +5007,7 @@ ModuleTpde {
                 v8i16,
                 v8i16,
                 v32i16,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4826,8 +5037,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 73]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 72]),
@@ -4848,6 +5058,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -4900,6 +5120,7 @@ ModuleTpde {
                 v32i16,
                 v32i16,
                 v32i16,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4929,8 +5150,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 76]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 74]),
@@ -4951,6 +5171,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5003,6 +5233,7 @@ ModuleTpde {
                 v32i16,
                 v32i16,
                 v16i16,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5032,8 +5263,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 79]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 76]),
@@ -5054,6 +5284,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5106,6 +5346,7 @@ ModuleTpde {
                 v16i16,
                 v16i16,
                 v16i16,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5135,8 +5376,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 82]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 78]),
@@ -5157,6 +5397,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5209,6 +5459,7 @@ ModuleTpde {
                 v16i16,
                 v16i16,
                 v32i16,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5238,8 +5489,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 85]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 80]),
@@ -5260,6 +5510,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5312,6 +5572,7 @@ ModuleTpde {
                 v64i16,
                 v64i16,
                 v16i16,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5341,8 +5602,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 88]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 16], [global: 82]),
@@ -5363,6 +5623,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5415,6 +5685,7 @@ ModuleTpde {
                 v64i16,
                 v64i16,
                 v32i16,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5444,8 +5715,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 91]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 32], [global: 84]),
@@ -5466,6 +5736,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5518,6 +5798,7 @@ ModuleTpde {
                 v8i64,
                 v8i64,
                 v8i64,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5547,8 +5828,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 94]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 86]),
@@ -5569,6 +5849,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5621,6 +5911,7 @@ ModuleTpde {
                 v8i64,
                 v8i64,
                 v4i64,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5650,8 +5941,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 97]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 618], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 88]),
@@ -5672,6 +5962,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5724,6 +6024,7 @@ ModuleTpde {
                 v32i64,
                 v32i64,
                 v4i64,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5753,8 +6054,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 100]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 90]),
@@ -5775,6 +6075,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5827,6 +6137,7 @@ ModuleTpde {
                 v32i64,
                 v32i64,
                 v8i64,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5856,8 +6167,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 103]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 625], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 92]),
@@ -5878,6 +6188,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -5930,6 +6250,7 @@ ModuleTpde {
                 v16i64,
                 v16i64,
                 v4i64,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -5959,8 +6280,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 106]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 94]),
@@ -5981,6 +6301,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -6033,6 +6363,7 @@ ModuleTpde {
                 v16i64,
                 v16i64,
                 v8i64,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -6062,8 +6393,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 109]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 622], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 96]),
@@ -6084,6 +6414,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -6136,6 +6476,7 @@ ModuleTpde {
                 v64i64,
                 v64i64,
                 v4i64,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -6165,8 +6506,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 32]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 112]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 4], [global: 98]),
@@ -6187,6 +6527,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -6239,6 +6589,7 @@ ModuleTpde {
                 v64i64,
                 v64i64,
                 v8i64,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -6268,8 +6619,7 @@ ModuleTpde {
                     <Load> ([val: 3], [raw: 64]) -> [val: 12],
                     <simd_shuffle> ([val: 12], [val: 11], [const vector: 115]) -> [val: 13],
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Call> ([func: 626], [val: 1]) -> [val: 14],
-                    <Br> ([raw: 3]),
+                    <Br> ([raw: 9]),
                 ],
                 "panic": [
                     <Call> ([func: 989], [const: i64 0], [const: i64 8], [global: 100]),
@@ -6290,6 +6640,16 @@ ModuleTpde {
                 ],
                 "bb5": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 1]) -> [val: 14],
+                    <Br> ([raw: 7]),
+                ],
+                "start": [
+                    <Br> ([raw: 8]),
                 ],
             ],
             callee_infos: [],
@@ -10660,6 +11020,9 @@ ModuleTpde {
                 ptr,
                 i32,
                 i32,
+                i32,
+                i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -10673,8 +11036,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 4]) -> [val: 3],
-                    <Call> ([func: 268], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -10708,6 +11081,9 @@ ModuleTpde {
                 ptr,
                 i64,
                 i64,
+                i64,
+                i64,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -10721,8 +11097,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 8]) -> [val: 3],
-                    <Call> ([func: 292], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -10756,6 +11142,9 @@ ModuleTpde {
                 ptr,
                 i64,
                 i64,
+                i64,
+                i64,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -10769,8 +11158,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 8]) -> [val: 3],
-                    <Call> ([func: 292], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -10804,6 +11203,9 @@ ModuleTpde {
                 ptr,
                 i8,
                 i8,
+                i8,
+                i8,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -10817,8 +11219,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 1]) -> [val: 3],
-                    <Call> ([func: 134], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -10852,6 +11264,9 @@ ModuleTpde {
                 ptr,
                 i8,
                 i8,
+                i8,
+                i8,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -10865,8 +11280,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 1]) -> [val: 3],
-                    <Call> ([func: 134], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -10900,6 +11325,9 @@ ModuleTpde {
                 ptr,
                 i16,
                 i16,
+                i16,
+                i16,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -10913,8 +11341,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 2]) -> [val: 3],
-                    <Call> ([func: 298], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -10948,6 +11386,9 @@ ModuleTpde {
                 ptr,
                 i16,
                 i16,
+                i16,
+                i16,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -10961,8 +11402,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 2]) -> [val: 3],
-                    <Call> ([func: 298], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -10996,6 +11447,9 @@ ModuleTpde {
                 ptr,
                 i32,
                 i32,
+                i32,
+                i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -11009,8 +11463,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Load> ([val: 2], [raw: 4]) -> [val: 3],
-                    <Call> ([func: 268], [val: 1], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 4]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 7]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 1], [val: 3]) -> [val: 7],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -17241,7 +17705,9 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 578]) -> [val: 3],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <simd_splat> ([val: 3]) -> [val: 4],
                     <simd_splat> ([const pool: 137]) -> [val: 5],
                     <Store> ([val: 5], [alloc: 0], [raw: 64]),
@@ -17255,6 +17721,13 @@ ModuleTpde {
                     <simd_masked_load> ([val: 10], [val: 1], [val: 4], [raw: 4]) -> [val: 11],
                     <Store> ([val: 11], [val: 0], [raw: 64]),
                     <Ret> (),
+                ],
+                "Inline result": [
+                    <Cast> ([const: i32 0]) -> [val: 3],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -17710,7 +18183,9 @@ ModuleTpde {
             ],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 578]) -> [val: 3],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <simd_splat> ([val: 3]) -> [val: 4],
                     <simd_splat> ([const pool: 146]) -> [val: 5],
                     <Store> ([val: 5], [alloc: 0], [raw: 16]),
@@ -17724,6 +18199,13 @@ ModuleTpde {
                     <simd_masked_load> ([val: 10], [val: 1], [val: 4], [raw: 4]) -> [val: 11],
                     <Store> ([val: 11], [val: 0], [raw: 16]),
                     <Ret> (),
+                ],
+                "Inline result": [
+                    <Cast> ([const: i32 0]) -> [val: 3],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -44473,6 +44955,11 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
+                ptr,
+                ptr,
+                i64,
+                i64,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -44493,8 +44980,7 @@ ModuleTpde {
                     <Store> ([val: 0], [alloc: 0], [raw: 8]),
                     <Store> ([val: 1], [alloc: 1], [raw: 8]),
                     <Store> ([const: Bool 1], [alloc: 3], [raw: 1]),
-                    <Call> ([func: 512], [alloc: 1], [alloc: 0]) -> [val: 2],
-                    <Br> ([raw: 1]),
+                    <Br> ([raw: 11]),
                 ],
                 "bb1": [
                     <CondBr> ([val: 2], [raw: 3], [raw: 2]),
@@ -44525,6 +45011,19 @@ ModuleTpde {
                 ],
                 "bb8": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Br> ([raw: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 10]) -> [val: 2],
+                    <Br> ([raw: 9]),
+                ],
+                "start": [
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 8],
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 9],
+                    <CMPult> ([val: 8], [val: 9]) -> [val: 10],
+                    <Br> ([raw: 10]),
                 ],
             ],
             callee_infos: [],
@@ -53745,6 +54244,18 @@ ModuleTpde {
                 i64,
                 i64,
                 Bool,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -53805,25 +54316,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 31],
-                    <Call> ([func: 312], [val: 0], [val: 1], [val: 31], [global: 551]) -> [val: 32],
-                    <AddRet> () -> [val: 33],
-                    <Call> ([func: 178], [alloc: 4], [val: 32], [val: 33], [global: 553]),
-                    <Load> ([alloc: 4], [raw: 16]) -> [val: 34],
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
-                    <Call> ([func: 312], [val: 2], [val: 3], [val: 35], [global: 555]) -> [val: 36],
-                    <AddRet> () -> [val: 37],
-                    <Call> ([func: 178], [alloc: 5], [val: 36], [val: 37], [global: 557]),
-                    <Load> ([alloc: 5], [raw: 16]) -> [val: 38],
-                    <Store> ([val: 34], [alloc: 7], [raw: 16]),
-                    <Store> ([val: 38], [alloc: 8], [raw: 16]),
-                    <Call> ([func: 410], [alloc: 6], [alloc: 7], [alloc: 8], [global: 559]),
-                    <Load> ([alloc: 6], [raw: 16]) -> [val: 39],
-                    <Store> ([val: 39], [alloc: 9], [raw: 16]),
-                    <Call> ([func: 337], [alloc: 0], [alloc: 9]),
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
-                    <Add> ([val: 40], [const: i64 4]) -> [val: 41],
-                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
-                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                    <Br> ([raw: 21]),
                 ],
                 "bb15": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 13],
@@ -53882,6 +54375,48 @@ ModuleTpde {
                 "panic": [
                     <Call> ([func: 1038], [global: 561]),
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 178], [alloc: 4], [val: 32], [val: 33], [global: 553]),
+                    <Load> ([alloc: 4], [raw: 16]) -> [val: 34],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
+                    <Br> ([raw: 24]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 47]) -> [val: 32],
+                    <Cast> ([val: 48]) -> [val: 33],
+                    <Br> ([raw: 19]),
+                ],
+                "start": [
+                    <Call> ([func: 494], [val: 31], [val: 0], [val: 1], [global: 551]) -> [val: 47],
+                    <AddRet> () -> [val: 48],
+                    <Br> ([raw: 20]),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 178], [alloc: 5], [val: 36], [val: 37], [global: 557]),
+                    <Load> ([alloc: 5], [raw: 16]) -> [val: 38],
+                    <Store> ([val: 34], [alloc: 7], [raw: 16]),
+                    <Store> ([val: 38], [alloc: 8], [raw: 16]),
+                    <Call> ([func: 410], [alloc: 6], [alloc: 7], [alloc: 8], [global: 559]),
+                    <Load> ([alloc: 6], [raw: 16]) -> [val: 39],
+                    <Store> ([val: 39], [alloc: 9], [raw: 16]),
+                    <Call> ([func: 337], [alloc: 0], [alloc: 9]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
+                    <Add> ([val: 40], [const: i64 4]) -> [val: 41],
+                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
+                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 53]) -> [val: 36],
+                    <Cast> ([val: 54]) -> [val: 37],
+                    <Br> ([raw: 22]),
+                ],
+                "start": [
+                    <Call> ([func: 494], [val: 35], [val: 2], [val: 3], [global: 555]) -> [val: 53],
+                    <AddRet> () -> [val: 54],
+                    <Br> ([raw: 23]),
                 ],
             ],
             callee_infos: [],
@@ -53959,6 +54494,18 @@ ModuleTpde {
                 i64,
                 i64,
                 Bool,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -54019,25 +54566,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 31],
-                    <Call> ([func: 312], [val: 0], [val: 1], [val: 31], [global: 573]) -> [val: 32],
-                    <AddRet> () -> [val: 33],
-                    <Call> ([func: 173], [alloc: 4], [val: 32], [val: 33], [global: 575]),
-                    <Load> ([alloc: 4], [raw: 64]) -> [val: 34],
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
-                    <Call> ([func: 312], [val: 2], [val: 3], [val: 35], [global: 577]) -> [val: 36],
-                    <AddRet> () -> [val: 37],
-                    <Call> ([func: 173], [alloc: 5], [val: 36], [val: 37], [global: 579]),
-                    <Load> ([alloc: 5], [raw: 64]) -> [val: 38],
-                    <Store> ([val: 34], [alloc: 7], [raw: 64]),
-                    <Store> ([val: 38], [alloc: 8], [raw: 64]),
-                    <Call> ([func: 409], [alloc: 6], [alloc: 7], [alloc: 8], [global: 581]),
-                    <Load> ([alloc: 6], [raw: 64]) -> [val: 39],
-                    <Store> ([val: 39], [alloc: 9], [raw: 64]),
-                    <Call> ([func: 336], [alloc: 0], [alloc: 9]),
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
-                    <Add> ([val: 40], [const: i64 16]) -> [val: 41],
-                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
-                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                    <Br> ([raw: 21]),
                 ],
                 "bb15": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 13],
@@ -54096,6 +54625,48 @@ ModuleTpde {
                 "panic": [
                     <Call> ([func: 1038], [global: 583]),
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 173], [alloc: 4], [val: 32], [val: 33], [global: 575]),
+                    <Load> ([alloc: 4], [raw: 64]) -> [val: 34],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
+                    <Br> ([raw: 24]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 47]) -> [val: 32],
+                    <Cast> ([val: 48]) -> [val: 33],
+                    <Br> ([raw: 19]),
+                ],
+                "start": [
+                    <Call> ([func: 494], [val: 31], [val: 0], [val: 1], [global: 573]) -> [val: 47],
+                    <AddRet> () -> [val: 48],
+                    <Br> ([raw: 20]),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 173], [alloc: 5], [val: 36], [val: 37], [global: 579]),
+                    <Load> ([alloc: 5], [raw: 64]) -> [val: 38],
+                    <Store> ([val: 34], [alloc: 7], [raw: 64]),
+                    <Store> ([val: 38], [alloc: 8], [raw: 64]),
+                    <Call> ([func: 409], [alloc: 6], [alloc: 7], [alloc: 8], [global: 581]),
+                    <Load> ([alloc: 6], [raw: 64]) -> [val: 39],
+                    <Store> ([val: 39], [alloc: 9], [raw: 64]),
+                    <Call> ([func: 336], [alloc: 0], [alloc: 9]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
+                    <Add> ([val: 40], [const: i64 16]) -> [val: 41],
+                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
+                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 53]) -> [val: 36],
+                    <Cast> ([val: 54]) -> [val: 37],
+                    <Br> ([raw: 22]),
+                ],
+                "start": [
+                    <Call> ([func: 494], [val: 35], [val: 2], [val: 3], [global: 577]) -> [val: 53],
+                    <AddRet> () -> [val: 54],
+                    <Br> ([raw: 23]),
                 ],
             ],
             callee_infos: [],
@@ -54173,6 +54744,18 @@ ModuleTpde {
                 i64,
                 i64,
                 Bool,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -54233,25 +54816,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 31],
-                    <Call> ([func: 312], [val: 0], [val: 1], [val: 31], [global: 595]) -> [val: 32],
-                    <AddRet> () -> [val: 33],
-                    <Call> ([func: 183], [alloc: 4], [val: 32], [val: 33], [global: 597]),
-                    <Load> ([alloc: 4], [raw: 32]) -> [val: 34],
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
-                    <Call> ([func: 312], [val: 2], [val: 3], [val: 35], [global: 599]) -> [val: 36],
-                    <AddRet> () -> [val: 37],
-                    <Call> ([func: 183], [alloc: 5], [val: 36], [val: 37], [global: 601]),
-                    <Load> ([alloc: 5], [raw: 32]) -> [val: 38],
-                    <Store> ([val: 34], [alloc: 7], [raw: 32]),
-                    <Store> ([val: 38], [alloc: 8], [raw: 32]),
-                    <Call> ([func: 411], [alloc: 6], [alloc: 7], [alloc: 8], [global: 603]),
-                    <Load> ([alloc: 6], [raw: 32]) -> [val: 39],
-                    <Store> ([val: 39], [alloc: 9], [raw: 32]),
-                    <Call> ([func: 338], [alloc: 0], [alloc: 9]),
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
-                    <Add> ([val: 40], [const: i64 8]) -> [val: 41],
-                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
-                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                    <Br> ([raw: 21]),
                 ],
                 "bb15": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 13],
@@ -54310,6 +54875,48 @@ ModuleTpde {
                 "panic": [
                     <Call> ([func: 1038], [global: 605]),
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 183], [alloc: 4], [val: 32], [val: 33], [global: 597]),
+                    <Load> ([alloc: 4], [raw: 32]) -> [val: 34],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
+                    <Br> ([raw: 24]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 47]) -> [val: 32],
+                    <Cast> ([val: 48]) -> [val: 33],
+                    <Br> ([raw: 19]),
+                ],
+                "start": [
+                    <Call> ([func: 494], [val: 31], [val: 0], [val: 1], [global: 595]) -> [val: 47],
+                    <AddRet> () -> [val: 48],
+                    <Br> ([raw: 20]),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 183], [alloc: 5], [val: 36], [val: 37], [global: 601]),
+                    <Load> ([alloc: 5], [raw: 32]) -> [val: 38],
+                    <Store> ([val: 34], [alloc: 7], [raw: 32]),
+                    <Store> ([val: 38], [alloc: 8], [raw: 32]),
+                    <Call> ([func: 411], [alloc: 6], [alloc: 7], [alloc: 8], [global: 603]),
+                    <Load> ([alloc: 6], [raw: 32]) -> [val: 39],
+                    <Store> ([val: 39], [alloc: 9], [raw: 32]),
+                    <Call> ([func: 338], [alloc: 0], [alloc: 9]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
+                    <Add> ([val: 40], [const: i64 8]) -> [val: 41],
+                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
+                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 53]) -> [val: 36],
+                    <Cast> ([val: 54]) -> [val: 37],
+                    <Br> ([raw: 22]),
+                ],
+                "start": [
+                    <Call> ([func: 494], [val: 35], [val: 2], [val: 3], [global: 599]) -> [val: 53],
+                    <AddRet> () -> [val: 54],
+                    <Br> ([raw: 23]),
                 ],
             ],
             callee_infos: [],
@@ -54387,6 +54994,18 @@ ModuleTpde {
                 i64,
                 i64,
                 Bool,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -54447,25 +55066,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 31],
-                    <Call> ([func: 311], [val: 0], [val: 1], [val: 31], [global: 617]) -> [val: 32],
-                    <AddRet> () -> [val: 33],
-                    <Call> ([func: 163], [alloc: 4], [val: 32], [val: 33], [global: 619]),
-                    <Load> ([alloc: 4], [raw: 32]) -> [val: 34],
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
-                    <Call> ([func: 311], [val: 2], [val: 3], [val: 35], [global: 621]) -> [val: 36],
-                    <AddRet> () -> [val: 37],
-                    <Call> ([func: 163], [alloc: 5], [val: 36], [val: 37], [global: 623]),
-                    <Load> ([alloc: 5], [raw: 32]) -> [val: 38],
-                    <Store> ([val: 34], [alloc: 7], [raw: 32]),
-                    <Store> ([val: 38], [alloc: 8], [raw: 32]),
-                    <Call> ([func: 413], [alloc: 6], [alloc: 7], [alloc: 8], [global: 625]),
-                    <Load> ([alloc: 6], [raw: 32]) -> [val: 39],
-                    <Store> ([val: 39], [alloc: 9], [raw: 32]),
-                    <Call> ([func: 334], [alloc: 0], [alloc: 9]),
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
-                    <Add> ([val: 40], [const: i64 4]) -> [val: 41],
-                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
-                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                    <Br> ([raw: 21]),
                 ],
                 "bb15": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 13],
@@ -54524,6 +55125,48 @@ ModuleTpde {
                 "panic": [
                     <Call> ([func: 1038], [global: 627]),
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 163], [alloc: 4], [val: 32], [val: 33], [global: 619]),
+                    <Load> ([alloc: 4], [raw: 32]) -> [val: 34],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
+                    <Br> ([raw: 24]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 47]) -> [val: 32],
+                    <Cast> ([val: 48]) -> [val: 33],
+                    <Br> ([raw: 19]),
+                ],
+                "start": [
+                    <Call> ([func: 493], [val: 31], [val: 0], [val: 1], [global: 617]) -> [val: 47],
+                    <AddRet> () -> [val: 48],
+                    <Br> ([raw: 20]),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 163], [alloc: 5], [val: 36], [val: 37], [global: 623]),
+                    <Load> ([alloc: 5], [raw: 32]) -> [val: 38],
+                    <Store> ([val: 34], [alloc: 7], [raw: 32]),
+                    <Store> ([val: 38], [alloc: 8], [raw: 32]),
+                    <Call> ([func: 413], [alloc: 6], [alloc: 7], [alloc: 8], [global: 625]),
+                    <Load> ([alloc: 6], [raw: 32]) -> [val: 39],
+                    <Store> ([val: 39], [alloc: 9], [raw: 32]),
+                    <Call> ([func: 334], [alloc: 0], [alloc: 9]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
+                    <Add> ([val: 40], [const: i64 4]) -> [val: 41],
+                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
+                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 53]) -> [val: 36],
+                    <Cast> ([val: 54]) -> [val: 37],
+                    <Br> ([raw: 22]),
+                ],
+                "start": [
+                    <Call> ([func: 493], [val: 35], [val: 2], [val: 3], [global: 621]) -> [val: 53],
+                    <AddRet> () -> [val: 54],
+                    <Br> ([raw: 23]),
                 ],
             ],
             callee_infos: [],
@@ -54601,6 +55244,18 @@ ModuleTpde {
                 i64,
                 i64,
                 Bool,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
+                ptr,
+                i64,
+                i64,
+                ptr,
+                ptr,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -54661,25 +55316,7 @@ ModuleTpde {
                 ],
                 "bb6": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 31],
-                    <Call> ([func: 311], [val: 0], [val: 1], [val: 31], [global: 639]) -> [val: 32],
-                    <AddRet> () -> [val: 33],
-                    <Call> ([func: 168], [alloc: 4], [val: 32], [val: 33], [global: 641]),
-                    <Load> ([alloc: 4], [raw: 64]) -> [val: 34],
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
-                    <Call> ([func: 311], [val: 2], [val: 3], [val: 35], [global: 643]) -> [val: 36],
-                    <AddRet> () -> [val: 37],
-                    <Call> ([func: 168], [alloc: 5], [val: 36], [val: 37], [global: 645]),
-                    <Load> ([alloc: 5], [raw: 64]) -> [val: 38],
-                    <Store> ([val: 34], [alloc: 7], [raw: 64]),
-                    <Store> ([val: 38], [alloc: 8], [raw: 64]),
-                    <Call> ([func: 414], [alloc: 6], [alloc: 7], [alloc: 8], [global: 647]),
-                    <Load> ([alloc: 6], [raw: 64]) -> [val: 39],
-                    <Store> ([val: 39], [alloc: 9], [raw: 64]),
-                    <Call> ([func: 335], [alloc: 0], [alloc: 9]),
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
-                    <Add> ([val: 40], [const: i64 8]) -> [val: 41],
-                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
-                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                    <Br> ([raw: 21]),
                 ],
                 "bb15": [
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 13],
@@ -54738,6 +55375,48 @@ ModuleTpde {
                 "panic": [
                     <Call> ([func: 1038], [global: 649]),
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 168], [alloc: 4], [val: 32], [val: 33], [global: 641]),
+                    <Load> ([alloc: 4], [raw: 64]) -> [val: 34],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 35],
+                    <Br> ([raw: 24]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 47]) -> [val: 32],
+                    <Cast> ([val: 48]) -> [val: 33],
+                    <Br> ([raw: 19]),
+                ],
+                "start": [
+                    <Call> ([func: 493], [val: 31], [val: 0], [val: 1], [global: 639]) -> [val: 47],
+                    <AddRet> () -> [val: 48],
+                    <Br> ([raw: 20]),
+                ],
+                "Inline cont": [
+                    <AddRet> (),
+                    <Call> ([func: 168], [alloc: 5], [val: 36], [val: 37], [global: 645]),
+                    <Load> ([alloc: 5], [raw: 64]) -> [val: 38],
+                    <Store> ([val: 34], [alloc: 7], [raw: 64]),
+                    <Store> ([val: 38], [alloc: 8], [raw: 64]),
+                    <Call> ([func: 414], [alloc: 6], [alloc: 7], [alloc: 8], [global: 647]),
+                    <Load> ([alloc: 6], [raw: 64]) -> [val: 39],
+                    <Store> ([val: 39], [alloc: 9], [raw: 64]),
+                    <Call> ([func: 335], [alloc: 0], [alloc: 9]),
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 40],
+                    <Add> ([val: 40], [const: i64 8]) -> [val: 41],
+                    <CMPult> ([val: 41], [val: 40]) -> [val: 42],
+                    <CondBr> ([val: 42], [raw: 18], [raw: 17]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 53]) -> [val: 36],
+                    <Cast> ([val: 54]) -> [val: 37],
+                    <Br> ([raw: 22]),
+                ],
+                "start": [
+                    <Call> ([func: 493], [val: 35], [val: 2], [val: 3], [global: 643]) -> [val: 53],
+                    <AddRet> () -> [val: 54],
+                    <Br> ([raw: 23]),
                 ],
             ],
             callee_infos: [],
@@ -77639,6 +78318,10 @@ ModuleTpde {
                 i64,
                 i64,
                 v4i32,
+                ptr,
+                ptr,
+                ptr,
+                v4i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -77667,8 +78350,18 @@ ModuleTpde {
                     <Call> ([func: 211], [alloc: 1], [alloc: 0]),
                     <Load> ([alloc: 1], [raw: 16]) -> [val: 6],
                     <Store> ([val: 6], [alloc: 2], [raw: 16]),
-                    <Call> ([func: 19], [val: 1], [alloc: 2], [global: 781]),
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> (),
+                ],
+                "Inline result": [
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Load> ([alloc: 2], [raw: 16]) -> [val: 10],
+                    <Store> ([val: 10], [val: 1], [raw: 16]),
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -77703,6 +78396,10 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
+                v16i8,
+                ptr,
+                ptr,
+                ptr,
                 v16i8,
             ],
             flags: Flags {
@@ -77756,8 +78453,18 @@ ModuleTpde {
                     <Call> ([func: 187], [alloc: 1], [alloc: 0]),
                     <Load> ([alloc: 1], [raw: 16]) -> [val: 18],
                     <Store> ([val: 18], [alloc: 2], [raw: 16]),
-                    <Call> ([func: 18], [val: 1], [alloc: 2], [global: 783]),
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> (),
+                ],
+                "Inline result": [
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Load> ([alloc: 2], [raw: 16]) -> [val: 22],
+                    <Store> ([val: 22], [val: 1], [raw: 16]),
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -77782,6 +78489,10 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
+                ptr,
+                v2i64,
+                ptr,
+                ptr,
                 ptr,
                 v2i64,
             ],
@@ -77818,8 +78529,18 @@ ModuleTpde {
                     <Call> ([func: 245], [alloc: 3], [const: i64 0]),
                     <Load> ([alloc: 3], [raw: 16]) -> [val: 9],
                     <Store> ([val: 9], [alloc: 4], [raw: 16]),
-                    <Call> ([func: 20], [val: 8], [alloc: 4], [global: 785]),
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> (),
+                ],
+                "Inline result": [
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Load> ([alloc: 4], [raw: 16]) -> [val: 13],
+                    <Store> ([val: 13], [val: 8], [raw: 16]),
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -79268,6 +79989,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v16i16,
+                i16,
+                i16,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -79346,11 +80070,21 @@ ModuleTpde {
                     <Call> ([func: 140], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 84], [val: 20], [val: 21], [const: i16 0]) -> [val: 22],
-                    <Call> ([func: 298], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 40]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 40],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],
@@ -79423,6 +80157,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v32i16,
+                i16,
+                i16,
+                i16,
             ],
             flags: Flags {
                 extern_link: false,
@@ -79517,11 +80254,21 @@ ModuleTpde {
                     <Call> ([func: 140], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 85], [val: 20], [val: 21], [const: i16 0]) -> [val: 22],
-                    <Call> ([func: 298], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 52]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 52],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],
@@ -79732,6 +80479,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v16i32,
+                i32,
+                i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -79826,11 +80576,21 @@ ModuleTpde {
                     <Call> ([func: 138], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 83], [val: 20], [val: 21], [const: i32 0]) -> [val: 22],
-                    <Call> ([func: 268], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 52]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 52],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],
@@ -79891,6 +80651,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v8i32,
+                i32,
+                i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -79969,11 +80732,21 @@ ModuleTpde {
                     <Call> ([func: 138], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 82], [val: 20], [val: 21], [const: i32 0]) -> [val: 22],
-                    <Call> ([func: 268], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 40]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 40],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],
@@ -80034,6 +80807,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v4i64,
+                i64,
+                i64,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -80112,11 +80888,21 @@ ModuleTpde {
                     <Call> ([func: 142], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 86], [val: 20], [val: 21], [const: i64 0]) -> [val: 22],
-                    <Call> ([func: 292], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 40]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 40],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],
@@ -80189,6 +80975,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v8i64,
+                i64,
+                i64,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -80283,11 +81072,21 @@ ModuleTpde {
                     <Call> ([func: 142], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 87], [val: 20], [val: 21], [const: i64 0]) -> [val: 22],
-                    <Call> ([func: 292], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 52]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 52],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],
@@ -80348,6 +81147,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v32i8,
+                i8,
+                i8,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -80426,11 +81228,21 @@ ModuleTpde {
                     <Call> ([func: 136], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 77], [val: 20], [val: 21], [const: i8 0]) -> [val: 22],
-                    <Call> ([func: 134], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 40]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 40],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],
@@ -80503,6 +81315,9 @@ ModuleTpde {
                 i64,
                 i64,
                 v64i8,
+                i8,
+                i8,
+                i8,
             ],
             flags: Flags {
                 extern_link: false,
@@ -80597,11 +81412,21 @@ ModuleTpde {
                     <Call> ([func: 136], [val: 6], [val: 8]) -> [val: 20],
                     <AddRet> () -> [val: 21],
                     <Call> ([func: 78], [val: 20], [val: 21], [const: i8 0]) -> [val: 22],
-                    <Call> ([func: 134], [val: 19], [val: 22]) -> [val: 23],
-                    <Ret> ([val: 23]),
+                    <Br> ([raw: 7]),
                 ],
                 "bb6": [
                     <Unreachable> (),
+                ],
+                "Inline cont": [
+                    <Ret> ([val: 23]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 52]) -> [val: 23],
+                    <Br> ([raw: 5]),
+                ],
+                "start": [
+                    <Add> ([val: 19], [val: 22]) -> [val: 52],
+                    <Br> ([raw: 6]),
                 ],
             ],
             callee_infos: [],

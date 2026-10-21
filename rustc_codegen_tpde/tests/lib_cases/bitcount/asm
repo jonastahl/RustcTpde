@@ -119,46 +119,82 @@ Disassembly of section .text:
 <lz_u128>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <lz_u128+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	test   %rsi,%rsi
+	je     <lz_u128+0x1c>
+	bsr    %rsi,%rbx
+	xor    $0x3f,%ebx
+	jmp    <lz_u128+0x2b>
+	mov    $0x7f,%ebx
+	bsr    %rdi,%rbx
+	xor    $0x3f,%ebx
+	add    $0x40,%ebx
+	mov    %ebx,%r12d
+	mov    %r12d,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nop
 
 <lz_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <lz_u32+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	mov    %edi,%ebx
+	mov    $0x3f,%r12d
+	bsr    %ebx,%r12d
+	xor    $0x1f,%r12d
+	mov    %r12d,%ebx
+	mov    %ebx,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <lz_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <lz_u64+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	mov    %rdi,%rbx
+	mov    $0x7f,%r12d
+	bsr    %rbx,%r12
+	xor    $0x3f,%r12
+	mov    %r12d,%ebx
+	mov    %ebx,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nopl   0x0(%rax,%rax,1)
 
 <lz_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <lz_u8+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	mov    %edi,%ebx
+	movzbl %bl,%r12d
+	bsr    %r12d,%eax
+	xor    $0x1f,%eax
+	add    $0xffffffe8,%eax
+	test   %r12d,%r12d
+	mov    $0x8,%r12d
+	cmovne %eax,%r12d
+	mov    %r12d,%ebx
+	mov    %ebx,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	xchg   %ax,%ax
 
 <tz_nz_u128>:
 	push   %rbp
@@ -174,41 +210,65 @@ Disassembly of section .text:
 <tz_u128>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <tz_u128+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	test   %rdi,%rdi
+	je     <tz_u128+0x19>
+	bsf    %rdi,%rbx
+	jmp    <tz_u128+0x25>
+	mov    $0x40,%ebx
+	bsf    %rsi,%rbx
+	add    $0x40,%ebx
+	mov    %ebx,%r12d
+	mov    %r12d,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
 
 <tz_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <tz_u32+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	mov    %edi,%ebx
+	mov    $0x20,%r12d
+	bsf    %ebx,%r12d
+	mov    %r12d,%ebx
+	mov    %ebx,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nopl   (%rax)
 
 <tz_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <tz_u64+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	mov    %rdi,%rbx
+	mov    $0x40,%r12d
+	bsf    %rbx,%r12
+	mov    %r12d,%ebx
+	mov    %ebx,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	xchg   %ax,%ax
 
 <tz_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <tz_u8+0xd>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	mov    %edi,%ebx
+	or     $0x100,%ebx
+	bsf    %ebx,%r12d
+	mov    %r12d,%ebx
+	mov    %ebx,%eax
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret

@@ -1,10 +1,11 @@
 use crate::shared::ffi::{ArgExtension, ArgKind, GlobalPtr, Relocation, Type};
-use crate::shared::ir::{vector_info, ArgInfo, Slot, size_of_type};
+use crate::shared::ir::{ArgInfo, Slot, size_of_type, vector_info};
 use core::fmt::{Debug, Formatter};
 #[allow(unused_imports)]
 pub use ffi::compile_to_file;
 
 pub mod ir;
+pub mod optimize;
 
 #[cxx::bridge]
 mod ffi {
@@ -100,6 +101,7 @@ mod ffi {
         always_inline: bool,
     }
 
+    #[derive(Clone)]
     pub struct BasicBlock {
         name: String,
         insts_start: u32,
@@ -374,6 +376,7 @@ mod ffi {
         result: u32,
     }
 
+    #[derive(Clone)]
     pub struct Alloca {
         size: usize,
         align: usize,

@@ -999,6 +999,9 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
+                i64,
+                i64,
+                i64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1013,10 +1016,20 @@ ModuleTpde {
                 "start": [
                     <Call> ([func: 24], [val: 1]) -> [val: 2],
                     <Load> ([val: 0], [raw: 8]) -> [val: 3],
-                    <Call> ([func: 18], [val: 2], [val: 3]) -> [val: 4],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Call> ([func: 21], [val: 1], [val: 4]),
                     <Call> ([func: 24], [val: 1]) -> [val: 5],
                     <Ret> ([val: 5]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 8]) -> [val: 4],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 2], [val: 3]) -> [val: 8],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],

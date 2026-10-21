@@ -3972,6 +3972,9 @@ ModuleTpde {
                 i128,
                 i128,
                 i128,
+                i128,
+                i128,
+                i128,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3984,8 +3987,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 1], [val: 0], [val: 1]) -> [val: 2],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 2]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 5]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 0], [val: 1]) -> [val: 5],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],

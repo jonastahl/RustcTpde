@@ -357,26 +357,33 @@ Disassembly of section .text:
 <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x40,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	sub    $0x10,%rsp
+	mov    %rsi,%rbx
 	mov    %rdi,-0x30(%rbp)
-	mov    %rsi,%rdi
-	mov    %rsi,-0x38(%rbp)
-	call   <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_+0x18>
-	mov    -0x30(%rbp),%rcx
-	mov    (%rcx),%rcx
-	mov    %rax,%rdi
-	mov    %rcx,%rsi
-	call   <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_+0x2a>
-	mov    -0x38(%rbp),%rdi
-	mov    %rax,%rsi
-	call   <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_+0x36>
-	mov    -0x38(%rbp),%rdi
-	call   <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_+0x3f>
-	add    $0x40,%rsp
+	mov    %rbx,%rdi
+	call   <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_+0x1e>
+	mov    %rax,%r12
+	mov    -0x30(%rbp),%rax
+	mov    (%rax),%r13
+	lea    (%r12,%r13,1),%r14
+	mov    %r14,%r12
+	mov    %rbx,%rdi
+	mov    %r12,%rsi
+	call   <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_+0x3a>
+	mov    %rbx,%rdi
+	call   <_RNCNvCseeGrevWVrEI_6source11counter_add0B3_+0x42>
+	add    $0x10,%rsp
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nop
 
 <_RNCNvCseeGrevWVrEI_6source11counter_get0B3_>:
 	push   %rbp

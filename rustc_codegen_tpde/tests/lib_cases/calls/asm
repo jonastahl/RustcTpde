@@ -1756,15 +1756,12 @@ Disassembly of section .text:
 	nopl   0x0(%rax,%rax,1)
 
 <u128_add>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <u128_add+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
+	add    %rdx,%rdi
+	adc    %rcx,%rsi
+	mov    %rdi,%rax
+	mov    %rsi,%rdx
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nopl   (%rax)
 
 <u128_late>:
 	push   %rbp

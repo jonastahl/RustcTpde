@@ -20,8 +20,6 @@ use std::any::Any;
 use std::cell::RefCell;
 use std::path::PathBuf;
 use std::sync::Arc;
-use rustc_span::sym::optimize;
-use crate::optimize::inline_functions;
 
 #[derive(Clone)]
 pub struct TpdeCodegenBackend();
@@ -112,9 +110,12 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         config: &ModuleConfig,
     ) {
         let _timer = prof.generic_activity_with_arg("TPDE_module_optimize", &*module.name);
-        
-        // Do simple inlining for all always inline functions
-        inline_functions(&mut module.module_llvm);
+
+        if cfg!(feature = "inline") {
+            // Do simple inlining for all always inline functions
+            module.module_llvm.tpde_mut().inline_functions();
+        }
+
     }
 
     fn optimize_and_codegen_thin(

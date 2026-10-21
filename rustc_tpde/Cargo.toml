@@ -5,6 +5,7 @@ edition.workspace = true
 
 [features]
 no-cache = ["rustc_codegen_tpde/no-cache"]
+inline = ["rustc_codegen_tpde/inline"]
 
 [dependencies]
 rustc_codegen_tpde = { path = "../rustc_codegen_tpde" }

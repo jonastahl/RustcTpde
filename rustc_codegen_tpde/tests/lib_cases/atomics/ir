@@ -8827,6 +8827,11 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
+                ptr,
+                ptr,
+                i64,
+                i64,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -8842,8 +8847,7 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 1],
-                    <Call> ([func: 88], [val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <Br> ([raw: 6]),
                 ],
                 "bb4": [
                     <Store> ([const: i64 0], [alloc: 0], [raw: 8]),
@@ -8863,6 +8867,19 @@ ModuleTpde {
                     <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 7],
                     <Load> ([val: 7], [raw: 8]) -> [val: 8],
                     <Ret> ([val: 6], [val: 8]),
+                ],
+                "Inline cont": [
+                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 13]) -> [val: 2],
+                    <Br> ([raw: 4]),
+                ],
+                "start": [
+                    <Load> ([val: 0], [raw: 8]) -> [val: 11],
+                    <Load> ([val: 1], [raw: 8]) -> [val: 12],
+                    <CMPult> ([val: 11], [val: 12]) -> [val: 13],
+                    <Br> ([raw: 5]),
                 ],
             ],
             callee_infos: [],
@@ -8969,6 +8986,9 @@ ModuleTpde {
                 i32,
                 i32,
                 i32,
+                i32,
+                i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -8982,8 +9002,18 @@ ModuleTpde {
             basic_blocks: [
                 "start": [
                     <Call> ([func: 64], [val: 0], [val: 1], [const: i8 4]) -> [val: 2],
-                    <Call> ([func: 38], [val: 2], [val: 1]) -> [val: 3],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 3]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 6]) -> [val: 3],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <Add> ([val: 2], [val: 1]) -> [val: 6],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -11749,6 +11779,7 @@ ModuleTpde {
             slots: [
                 ptr,
                 Bool,
+                Void,
             ],
             flags: Flags {
                 extern_link: false,
@@ -11771,8 +11802,17 @@ ModuleTpde {
                     <Ret> (),
                 ],
                 "bb3": [
-                    <Call> ([func: 83]),
+                    <Br> ([raw: 6]),
+                ],
+                "Inline cont": [
                     <Br> ([raw: 1]),
+                ],
+                "Inline result": [
+                    <Br> ([raw: 4]),
+                ],
+                "start": [
+                    <Pause> () -> [val: 2],
+                    <Br> ([raw: 5]),
                 ],
             ],
             callee_infos: [],

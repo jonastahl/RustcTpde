@@ -5,14 +5,14 @@ use core::fmt::{Debug, Formatter};
 use rustc_hir::attrs::Linkage;
 use rustc_middle::mir::Mutability;
 
-#[derive(Debug, Copy, Clone, PartialEq)]
-pub struct Function(usize);
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct Function(pub(super) usize);
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Global(usize);
 #[derive(Debug, Copy, Clone)]
 pub struct BasicBlock {
-    function: Function,
-    index: usize,
+    pub(super) function: Function,
+    pub(super) index: usize,
 }
 
 #[derive(Copy, Clone, PartialEq)]

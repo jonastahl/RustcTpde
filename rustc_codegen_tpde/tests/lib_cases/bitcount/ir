@@ -370,6 +370,8 @@ ModuleTpde {
             slots: [
                 i128,
                 i32,
+                i128,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -382,8 +384,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 8], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -402,6 +414,8 @@ ModuleTpde {
             slots: [
                 i32,
                 i32,
+                i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -414,8 +428,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 4], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -434,6 +458,8 @@ ModuleTpde {
             slots: [
                 i64,
                 i32,
+                i64,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -446,8 +472,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 6], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -466,6 +502,8 @@ ModuleTpde {
             slots: [
                 i8,
                 i32,
+                i8,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -478,8 +516,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 2], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <ctlz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -530,6 +578,8 @@ ModuleTpde {
             slots: [
                 i128,
                 i32,
+                i128,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -542,8 +592,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 9], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -562,6 +622,8 @@ ModuleTpde {
             slots: [
                 i32,
                 i32,
+                i32,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -574,8 +636,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 5], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -594,6 +666,8 @@ ModuleTpde {
             slots: [
                 i64,
                 i32,
+                i64,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -606,8 +680,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 7], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -626,6 +710,8 @@ ModuleTpde {
             slots: [
                 i8,
                 i32,
+                i8,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -638,8 +724,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 "start": [
-                    <Call> ([func: 3], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                "Inline cont": [
                     <Ret> ([val: 1]),
+                ],
+                "Inline result": [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                "start": [
+                    <cttz> ([val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
