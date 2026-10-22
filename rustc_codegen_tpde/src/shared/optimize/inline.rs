@@ -3,6 +3,9 @@ use crate::shared::ir::{ArgKind, Function, InstructionKind, ModuleTpde, Slot};
 use crate::shared::ffi;
 use std::collections::HashSet;
 
+/// Upper bound of inlined calls per function, guards against recursive always inline functions
+const MAX_INLINES_PER_FUNCTION: u32 = 1024;
+
 impl ModuleTpde {
     pub fn inline_functions(&mut self) {
         let inline_functions: HashSet<Function> = self
@@ -39,12 +42,13 @@ impl ModuleTpde {
                 continue;
             }
 
-            // Upgrade to while loop for repeated inlining
-            for i in 0..caller.basic_blocks.len() {
+            let mut inline_budget = MAX_INLINES_PER_FUNCTION;
+
+            let mut i = 0;
+            while i < self.functions[f].basic_blocks.len() {
                 let bb = &self.functions[f].basic_blocks[i];
                 let (insts_start, insts_len) = (bb.insts_start as usize, bb.insts_len as usize);
-
-                let mut cur_bb = i;
+                i += 1;
 
                 for j in 0..insts_len {
                     let caller = &mut self.functions[f];
@@ -76,6 +80,10 @@ impl ModuleTpde {
                     if !can_inline_call(caller, callee, &caller.operands[args_start..args_end]) {
                         continue;
                     }
+                    if inline_budget == 0 {
+                        continue;
+                    }
+                    inline_budget -= 1;
 
                     // landing pads of the callee need its personality
                     if callee.has_personality && !caller.has_personality {
@@ -86,7 +94,7 @@ impl ModuleTpde {
                     return_slots.clear();
 
                     // split up the block after the call
-                    let cur = &mut caller.basic_blocks[cur_bb];
+                    let cur = &mut caller.basic_blocks[i - 1];
                     cur.insts_len = (insts_start + j + 1 - cur.insts_start as usize) as u32;
 
                     let cont_bb = Slot::new_raw(caller.basic_blocks.len() as u32);
@@ -97,7 +105,6 @@ impl ModuleTpde {
                         info1: 0,
                         info2: 0,
                     });
-                    cur_bb = caller.basic_blocks.len() - 1;
                     let results_bb = caller.basic_blocks.len();
                     caller.basic_blocks.push(BasicBlock {
                         name: "Inline result".parse().unwrap(),
@@ -195,6 +202,9 @@ impl ModuleTpde {
                     caller.operands.push(cont_bb.to_ffi());
 
                     bb.insts_len = caller.instructions.len() as u32 - bb.insts_start;
+
+                    // This block was split up so we can continue with the next one
+                    break;
                 }
             }
         }
