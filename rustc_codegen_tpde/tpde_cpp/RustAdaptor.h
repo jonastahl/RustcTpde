@@ -144,6 +144,7 @@ namespace tpde_rust {
     using IRValueRef = IR::Operand;
     using IRBlockRef = uint32_t;
 
+    // TODO
     struct IRInstRef {
       size_t inst;
       IRBlockRef block;
@@ -291,7 +292,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] static bool func_extern(const IRFuncRef func) {
-      return func->flags.extern_link;
+      return func->flags.extern_link || func->flags.dead;
     }
 
     [[nodiscard]] static bool func_only_local(const IRFuncRef func) {

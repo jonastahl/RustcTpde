@@ -776,24 +776,6 @@ Disassembly of section .text:
 	ret
 	nopl   0x0(%rax)
 
-<_RINvNtCs94NUNretDkj_4core3ptr5writeINtNtNtB4_9core_simd6vector4SimdhKj10_EECseeGrevWVrEI_6source>:
-	movups (%rsi),%xmm0
-	movups %xmm0,(%rdi)
-	ret
-	nopw   0x0(%rax,%rax,1)
-
-<_RINvNtCs94NUNretDkj_4core3ptr5writeINtNtNtB4_9core_simd6vector4SimdlKj4_EECseeGrevWVrEI_6source>:
-	movups (%rsi),%xmm0
-	movups %xmm0,(%rdi)
-	ret
-	nopw   0x0(%rax,%rax,1)
-
-<_RINvNtCs94NUNretDkj_4core3ptr5writeINtNtNtB4_9core_simd6vector4SimdxKj2_EECseeGrevWVrEI_6source>:
-	movups (%rsi),%xmm0
-	movups %xmm0,(%rdi)
-	ret
-	nopw   0x0(%rax,%rax,1)
-
 <_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtNtB4_5array4iter8IntoIterhKj10_EECseeGrevWVrEI_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -4812,13 +4794,6 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax,%rax,1)
 
-<_RNvMNtCs94NUNretDkj_4core3numa12wrapping_add>:
-	lea    (%rdi,%rsi,1),%edi
-	mov    %edi,%eax
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
-
 <_RNvMNtCs94NUNretDkj_4core5sliceSa18split_at_uncheckedCseeGrevWVrEI_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -5119,13 +5094,6 @@ Disassembly of section .text:
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
-
-<_RNvMs0_NtCs94NUNretDkj_4core3numl12wrapping_add>:
-	lea    (%rdi,%rsi,1),%edi
-	mov    %edi,%eax
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nop
@@ -12568,12 +12536,6 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopw   0x0(%rax,%rax,1)
 
-<_RNvMs1_NtCs94NUNretDkj_4core3numx12wrapping_add>:
-	lea    (%rdi,%rsi,1),%rdi
-	mov    %rdi,%rax
-	ret
-	nopl   0x0(%rax,%rax,1)
-
 <_RNvMs8_NtNtNtCs94NUNretDkj_4core5array4iter10iter_innerINtB5_15PolymorphicIterSINtNtNtBb_3mem12maybe_uninit11MaybeUninithEE4nextCseeGrevWVrEI_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -12649,13 +12611,6 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	xchg   %ax,%ax
-
-<_RNvMs_NtCs94NUNretDkj_4core3nums12wrapping_add>:
-	lea    (%rdi,%rsi,1),%edi
-	mov    %edi,%eax
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
 
 <_RNvNtCs94NUNretDkj_4core10intrinsics22maximum_number_nsz_f32CseeGrevWVrEI_6source>:
 	push   %rbp
@@ -13120,38 +13075,6 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax)
-
-<_RNvXNtNtCs94NUNretDkj_4core5slice5indexSdINtNtNtB6_3ops5index5IndexINtNtBI_5range9RangeFromjEE5indexCseeGrevWVrEI_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x40,%rsp
-	mov    %rdi,-0x30(%rbp)
-	mov    %rdx,%rdi
-	mov    %rsi,-0x38(%rbp)
-	mov    -0x30(%rbp),%rsi
-	mov    -0x38(%rbp),%rdx
-	call   <_RNvXNtNtCs94NUNretDkj_4core5slice5indexSdINtNtNtB6_3ops5index5IndexINtNtBI_5range9RangeFromjEE5indexCseeGrevWVrEI_6source+0x20>
-	add    $0x40,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
-
-<_RNvXNtNtCs94NUNretDkj_4core5slice5indexSfINtNtNtB6_3ops5index5IndexINtNtBI_5range9RangeFromjEE5indexCseeGrevWVrEI_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x40,%rsp
-	mov    %rdi,-0x30(%rbp)
-	mov    %rdx,%rdi
-	mov    %rsi,-0x38(%rbp)
-	mov    -0x30(%rbp),%rsi
-	mov    -0x38(%rbp),%rdx
-	call   <_RNvXNtNtCs94NUNretDkj_4core5slice5indexSfINtNtNtB6_3ops5index5IndexINtNtBI_5range9RangeFromjEE5indexCseeGrevWVrEI_6source+0x20>
-	add    $0x40,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
 
 <_RNvXNtNtCs94NUNretDkj_4core9core_simd6selectINtNtB4_5masks4MaskaKj20_EINtB2_6SelectINtNtB4_6vector4SimdaKB11_EE6selectCseeGrevWVrEI_6source>:
 	push   %rbp
@@ -14934,14 +14857,6 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopl   0x0(%rax)
-
-<_RNvXsU_NtNtCs94NUNretDkj_4core3cmp5implsjNtB7_10PartialOrd2lt>:
-	mov    (%rdi),%rdi
-	mov    (%rsi),%rsi
-	cmp    %rsi,%rdi
-	setb   %al
-	ret
-	nopl   (%rax)
 
 <_RNvXs_NtNtNtCs94NUNretDkj_4core4iter8adapters9enumerateINtB4_9EnumerateINtNtNtBa_5array4iter8IntoIterhKj10_EENtNtNtB8_6traits8iterator8Iterator4nextCseeGrevWVrEI_6source>:
 	push   %rbp
@@ -66774,12 +66689,6 @@ Disassembly of section .text:
 	ret
 	nop
 
-<_RNvXsb_NtCs94NUNretDkj_4core7defaultlNtB5_7Default7default>:
-	xor    %eax,%eax
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
 <_RNvXsb_NtNtCs94NUNretDkj_4core9core_simd3opsINtNtB7_6vector4SimdsKj10_ENtNtNtB9_3ops5arith3Mul3mulCseeGrevWVrEI_6source>:
 	movups (%rsi),%xmm0
 	movups 0x10(%rsi),%xmm1
@@ -91972,27 +91881,4 @@ Disassembly of section .text:
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
-	ret
-	nopl   0x0(%rax,%rax,1)
-
-<_RNvXsn_NtNtCs94NUNretDkj_4core9core_simd5maskshNtB5_13FixEndianness14fix_endianness>:
-	mov    %edi,%eax
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvXso_NtNtCs94NUNretDkj_4core9core_simd5maskstNtB5_13FixEndianness14fix_endianness>:
-	mov    %edi,%eax
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvXsp_NtNtCs94NUNretDkj_4core9core_simd5masksmNtB5_13FixEndianness14fix_endianness>:
-	mov    %edi,%eax
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvXsq_NtNtCs94NUNretDkj_4core9core_simd5masksyNtB5_13FixEndianness14fix_endianness>:
-	mov    %rdi,%rax
 	ret

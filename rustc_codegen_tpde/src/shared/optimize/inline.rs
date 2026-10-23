@@ -34,6 +34,12 @@ impl ModuleTpde {
             return;
         }
 
+        // Local functions stay dead unless a call to them could not be inlined
+        for f in &inline_functions {
+            let func = &mut self.functions[f.0];
+            func.flags.dead = func.flags.only_local;
+        }
+
         let mut return_slots: Vec<u32> = vec![];
 
         for f in 0..self.functions.len() {
@@ -56,6 +62,10 @@ impl ModuleTpde {
 
                     // We only support inlining calls, no invokes
                     if call.kind != InstructionKind::Call {
+                        if call.kind == InstructionKind::Invoke
+                            && let Slot::Func(callee) = Slot::from_ffi(caller.operands[call.ops_start as usize]) {
+                            self.functions[callee.0].flags.dead = false;
+                        }
                         continue;
                     }
 
@@ -77,10 +87,10 @@ impl ModuleTpde {
                     let call = &mut caller.instructions[insts_start + j];
                     let args_start = call.ops_start as usize + 1;
                     let args_end = args_start + call.ops_len as usize - 1;
-                    if !can_inline_call(caller, callee, &caller.operands[args_start..args_end]) {
-                        continue;
-                    }
-                    if inline_budget == 0 {
+                    if !can_inline_call(caller, callee, &caller.operands[args_start..args_end])
+                        || inline_budget == 0
+                    {
+                        callee.flags.dead = false;
                         continue;
                     }
                     inline_budget -= 1;
@@ -205,6 +215,29 @@ impl ModuleTpde {
 
                     // This block was split up so we can continue with the next one
                     break;
+                }
+            }
+        }
+
+        // If some functions cannot be inlined, then we also need to realive their dead callees.
+        let mut changed = true;
+        while changed {
+            changed = false;
+            for f in 0..self.functions.len() {
+                let func = &self.functions[f];
+                if !func.flags.always_inline || func.flags.dead || func.flags.extern_link {
+                    continue;
+                }
+                for k in 0..func.instructions.len() {
+                    let func = &self.functions[f];
+                    let instr = &func.instructions[k];
+                    if matches!(instr.kind, InstructionKind::Call | InstructionKind::Invoke)
+                        && let Slot::Func(callee) = Slot::from_ffi(func.operands[instr.ops_start as usize])
+                        && self.functions[callee.0].flags.dead
+                    {
+                        self.functions[callee.0].flags.dead = false;
+                        changed = true;
+                    }
                 }
             }
         }

@@ -17,14 +17,6 @@ Disassembly of section .text:
 	ret
 	nopl   0x0(%rax,%rax,1)
 
-<_RNvMs8_NtCs94NUNretDkj_4core3numo12wrapping_add>:
-	add    %rdx,%rdi
-	adc    %rcx,%rsi
-	mov    %rdi,%rax
-	mov    %rsi,%rdx
-	ret
-	nopl   (%rax)
-
 <ackermann>:
 	push   %rbp
 	mov    %rsp,%rbp

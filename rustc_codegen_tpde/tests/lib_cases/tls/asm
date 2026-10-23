@@ -448,12 +448,6 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopw   0x0(%rax,%rax,1)
 
-<_RNvMs7_NtCs94NUNretDkj_4core3numy12wrapping_add>:
-	lea    (%rdi,%rsi,1),%rdi
-	mov    %rdi,%rax
-	ret
-	nopl   0x0(%rax,%rax,1)
-
 <_RNvMs7_NtCs94NUNretDkj_4core4cellINtB5_4CellhE3setCseeGrevWVrEI_6source>:
 	movzbl (%rdi),%eax
 	mov    %sil,(%rdi)

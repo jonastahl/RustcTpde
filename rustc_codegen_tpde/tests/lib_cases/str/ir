@@ -14,6 +14,7 @@ ModuleTpde {
                 only_local: false,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -38,6 +39,7 @@ ModuleTpde {
                 only_local: false,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -59,6 +61,7 @@ ModuleTpde {
                 only_local: false,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -83,6 +86,7 @@ ModuleTpde {
                 only_local: false,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             init: true,
             data: (16 bytes)
@@ -101,6 +105,7 @@ ModuleTpde {
                 only_local: false,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             init: true,
             data: (24 bytes)
@@ -120,6 +125,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             init: true,
             data: (12 bytes)
@@ -136,6 +142,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             init: true,
             data: (4 bytes)
@@ -152,6 +159,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: false,
+                dead: false,
             },
             init: true,
             data: (11 bytes)

@@ -401,6 +401,7 @@ impl Module {
                 || linkage == Linkage::WeakAny
                 || linkage == Linkage::ExternalWeak,
             always_inline: false,
+            dead: false,
         }
     }
 

@@ -473,7 +473,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCs94NUNretDkj_4core4sync6atomic12atomic_storeOyKb0_ECseeGrevWVrEI_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffaf79>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffafa9>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -542,7 +542,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCs94NUNretDkj_4core4sync6atomic12atomic_storehKb0_ECseeGrevWVrEI_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb059>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb089>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -611,7 +611,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCs94NUNretDkj_4core4sync6atomic12atomic_storejKb0_ECseeGrevWVrEI_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb139>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb169>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -680,7 +680,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCs94NUNretDkj_4core4sync6atomic12atomic_storemKb0_ECseeGrevWVrEI_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb219>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb249>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -817,7 +817,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCs94NUNretDkj_4core4sync6atomic12atomic_storeyKb0_ECseeGrevWVrEI_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb3d9>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb409>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -2681,7 +2681,7 @@ Disassembly of section .text:
 	add    %al,(%rax)
 	(bad)
 	add    %al,(%rax)
-	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffcf6d>
+	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffcf9d>
 	add    %al,(%rax)
 	...
 
@@ -2741,7 +2741,7 @@ Disassembly of section .text:
 	add    %al,(%rax)
 	(bad)
 	add    %al,(%rax)
-	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffd02d>
+	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffd05d>
 	add    %al,(%rax)
 	...
 
@@ -3367,13 +3367,6 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax,%rax,1)
 
-<_RNvMs6_NtCs94NUNretDkj_4core3numm12wrapping_add>:
-	lea    (%rdi,%rsi,1),%edi
-	mov    %edi,%eax
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
-
 <_RNvMsA_NtNtCs94NUNretDkj_4core4sync6atomicINtB5_6AtomichE16compare_exchangeCseeGrevWVrEI_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -3446,7 +3439,7 @@ Disassembly of section .text:
 	add    %al,0x0(%rdi)
 	add    %al,(%rax)
 	ss add %al,(%rax)
-	add    %ah,0x14000000(%rip)        # <swap_u8+0x13ffd849>
+	add    %ah,0x14000000(%rip)        # <swap_u8+0x13ffd869>
 	add    %al,(%rax)
 	add    %cl,(%rdi)
 	(bad)
@@ -3897,7 +3890,7 @@ Disassembly of section .text:
 	add    %dl,0x0(%rdi)
 	add    %al,(%rax)
 	rex.X add %al,(%rax)
-	add    %ch,0x18000000(%rip)        # <swap_u8+0x17ffdd8d>
+	add    %ch,0x18000000(%rip)        # <swap_u8+0x17ffddad>
 	add    %al,(%rax)
 	...
 
@@ -4290,7 +4283,7 @@ Disassembly of section .text:
 	add    %al,(%rax)
 	pop    %rdx
 	add    %al,(%rax)
-	add    %bh,0x20000000(%rip)        # <swap_u8+0x1fffe1d5>
+	add    %bh,0x20000000(%rip)        # <swap_u8+0x1fffe1f5>
 	add    %al,(%rax)
 	add    %cl,(%rdi)
 	(bad)
@@ -5276,7 +5269,7 @@ Disassembly of section .text:
 	add    %al,(%rax)
 	(bad)
 	add    %al,(%rax)
-	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffed0d>
+	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffed2d>
 	add    %al,(%rax)
 	...
 
@@ -5504,7 +5497,7 @@ Disassembly of section .text:
 	add    %dl,0x0(%rdi)
 	add    %al,(%rax)
 	rex.X add %al,(%rax)
-	add    %ch,0x18000000(%rip)        # <swap_u8+0x17ffefcd>
+	add    %ch,0x18000000(%rip)        # <swap_u8+0x17ffefed>
 	add    %al,(%rax)
 	...
 
@@ -5512,12 +5505,6 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nopw   0x0(%rax,%rax,1)
-
-<_RNvNtCs94NUNretDkj_4core4hint9spin_loop>:
-	pause
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
 
 <_RNvNtNtCs94NUNretDkj_4core4sync6atomic14compiler_fenceCseeGrevWVrEI_6source>:
 	push   %rbp
@@ -5659,14 +5646,6 @@ Disassembly of section .text:
 	mov    %rsi,%rdx
 	ret
 	nopw   0x0(%rax,%rax,1)
-
-<_RNvXs12_NtNtCs94NUNretDkj_4core3cmp5implsyNtB8_10PartialOrd2lt>:
-	mov    (%rdi),%rdi
-	mov    (%rsi),%rsi
-	cmp    %rsi,%rdi
-	setb   %al
-	ret
-	nopl   (%rax)
 
 <_RNvXs3_NtNtCs94NUNretDkj_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCseeGrevWVrEI_6source>:
 	push   %rbp

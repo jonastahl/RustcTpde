@@ -99,6 +99,7 @@ mod ffi {
         only_local: bool,
         weak_link: bool,
         always_inline: bool,
+        dead: bool,
     }
 
     #[derive(Clone)]
