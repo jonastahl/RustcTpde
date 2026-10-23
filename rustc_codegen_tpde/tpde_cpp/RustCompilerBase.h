@@ -1116,9 +1116,9 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_overflowable(RustAdaptor::IRInstRef instr,
                                                                         const ValInfo &info, u64 op) {
-    auto instr_size = this->adaptor->get_basic_block(instr.block).insts_len;
-    if (instr_size > instr.inst) {
-      const IR::Instr pot_overflow = this->adaptor->get_instruction(instr.next());
+    // Not a terminator, so the next instruction is still in the same block
+    {
+      const IR::Instr pot_overflow = this->adaptor->get_instruction(instr + 1);
       if (pot_overflow.kind() == InstructionKind::OverflowCheck) {
         const IR::Instr inst = this->adaptor->get_instruction(instr);
         if (!compile_overflow(inst, pot_overflow)) {
@@ -1127,8 +1127,8 @@ namespace tpde_rust {
 
         // Fusion creates errors for i128 as the generated instruction before may not give a clear overflow flag
         const bool flags_valid = this->adaptor->type_of_ref(inst.op(0)) != Type::i128;
-        if (instr_size > instr.next().inst && flags_valid) {
-          const IR::Instr pot_condbr = this->adaptor->get_instruction(instr.next().next());
+        if (flags_valid) {
+          const IR::Instr pot_condbr = this->adaptor->get_instruction(instr + 2);
           if (pot_condbr.kind() == InstructionKind::CondBr && pot_overflow.result() == pot_condbr.op(0)) {
             assert(this->analyzer.liveness_info(this->adaptor->val_local_idx(pot_overflow.result())).ref_count == 2);
             this->adaptor->next_fused = true;
@@ -1410,11 +1410,8 @@ namespace tpde_rust {
         if (this->analyzer.liveness_info(local_idx).ref_count > 2)
           break;
 
-        auto next_ref = gep_ref.next();
-        if (next_ref.inst >= this->adaptor->get_basic_block(gep_ref.block).insts_len)
-          break;
-
-        next_val.emplace(this->adaptor->get_instruction(next_ref));
+        // A gep is not a terminator, so the next instruction is still in the same block
+        next_val.emplace(this->adaptor->get_instruction(gep_ref + 1));
         break;
       }
 
@@ -1877,8 +1874,10 @@ namespace tpde_rust {
 
       res_to_ret(calli.result());
 
-      if (this->adaptor->get_basic_block(instr.block).insts_len > instr.next().inst) {
-        const IR::Instr pot_addret = this->adaptor->get_instruction(instr.next());
+      // Invokes reuse this function and may be the last instruction of their block. An AddRet is never the first
+      // instruction of a block, so it is enough to stay within the instructions of the function.
+      if (instr + 1 < this->adaptor->get_instructions().size()) {
+        const IR::Instr pot_addret = this->adaptor->get_instruction(instr + 1);
         if (pot_addret.kind() == InstructionKind::AddRet) {
           res_to_ret(pot_addret.result());
         }
@@ -1962,7 +1961,7 @@ namespace tpde_rust {
     this->release_spilled_regs(spilled);
   }
 
-  const IR::Instr lp = this->adaptor->get_instruction({.inst = 0, .block = unwind_block_ref});
+  const IR::Instr lp = this->adaptor->get_instruction(this->adaptor->get_basic_block(unwind_block_ref).insts_start);
   assert(lp.is(InstructionKind::LandingPad));
   const auto kind = static_cast<LandingPadKind>(lp.op(0).content());
 
@@ -1989,7 +1988,7 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_landing_pad(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
     const IR::Instr lp = this->adaptor->get_instruction(inst_ref);
-    const IR::Instr lp_next = this->adaptor->get_instruction(inst_ref.next());
+    const IR::Instr lp_next = this->adaptor->get_instruction(inst_ref + 1);
     this->result_ref(lp.result()).part(0).set_value_reg(Derived::LANDING_PAD_RES_REGS[0]);
     this->result_ref(lp_next.result()).part(0).set_value_reg(Derived::LANDING_PAD_RES_REGS[1]);
 
@@ -2004,7 +2003,7 @@ namespace tpde_rust {
     const auto sym = get_libfunc_sym(LibFunc::resume);
 
     derived()->create_helper_call({&arg, 1}, nullptr, sym);
-    return derived()->compile_unreachable(RustAdaptor::IRInstRef{.inst = 0, .block = 0}, val_info, 0);
+    return derived()->compile_unreachable(0, val_info, 0);
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -3703,7 +3702,7 @@ namespace tpde_rust {
     auto cmp_ref = this->val_ref(instr.op(1));
     auto new_ref = this->val_ref(new_val);
     auto res_val = this->result_ref(instr.result());
-    auto res = this->result_ref(this->adaptor->get_instruction(inst_ref.next()).result());
+    auto res = this->result_ref(this->adaptor->get_instruction(inst_ref + 1).result());
 
     auto order = static_cast<AtomicOrdering>(instr.op(3).content());
     EncodeFnTy encode_fn = fns[width_idx][size_t(order)];

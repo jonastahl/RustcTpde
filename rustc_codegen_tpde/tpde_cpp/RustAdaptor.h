@@ -144,19 +144,7 @@ namespace tpde_rust {
     using IRValueRef = IR::Operand;
     using IRBlockRef = uint32_t;
 
-    // TODO
-    struct IRInstRef {
-      size_t inst;
-      IRBlockRef block;
-
-      [[nodiscard]] IRInstRef next() const {
-        return {.inst = inst + 1, .block = block};
-      }
-
-      [[nodiscard]] IRInstRef prev() const {
-        return {.inst = inst - 1, .block = block};
-      }
-    };
+    using IRInstRef = uint32_t;
 
     using IRFuncRef = Function *;
 
@@ -265,7 +253,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] IR::Instr get_instruction(const IRInstRef inst) const {
-      return IR::Instr(get_instructions()[get_basic_block(inst.block).insts_start + inst.inst], *this);
+      return IR::Instr(get_instructions()[inst], *this);
     }
 
   private:
@@ -403,8 +391,8 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto block_insts(const IRBlockRef bb) {
-      return std::ranges::views::iota(0u, static_cast<uint32_t>(get_basic_block(bb).insts_len))
-             | std::ranges::views::transform([bb](uint32_t idx) { return IRInstRef{.inst = idx, .block = bb}; });
+      const BasicBlock &block = get_basic_block(bb);
+      return std::ranges::views::iota(block.insts_start, block.insts_start + block.insts_len);
     }
 
     [[nodiscard]] static auto block_phis(const IRBlockRef bb) {

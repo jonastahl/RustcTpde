@@ -137,7 +137,7 @@ namespace tpde_rust::x64 {
       default: TPDE_UNREACHABLE("invalid icmp predicate");
     }
 
-    const IR::Instr jmp_instr = this->adaptor->get_instruction(inst.next());
+    const IR::Instr jmp_instr = this->adaptor->get_instruction(inst + 1);
     bool fuse_br = jmp_instr.kind() == InstructionKind::CondBr && jmp_instr.op(0) == cmpi.result();
 
     const auto local_idx = this->adaptor->val_local_idx(cmpi.result());
