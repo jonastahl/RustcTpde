@@ -104,7 +104,6 @@ mod ffi {
 
     #[derive(Clone)]
     pub struct BasicBlock {
-        name: String,
         insts_start: u32,
         insts_len: u32,
         // TODO add phis and similar
@@ -456,7 +455,7 @@ impl Debug for ffi::Function {
 
 impl Debug for BlockDebug<'_> {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
-        write!(f, "{:?}: ", self.block.name)?;
+        write!(f, "BasicBlock: ",)?;
         let start = self.block.insts_start as usize;
         let insts = &self.function.instructions[start..start + self.block.insts_len as usize];
         f.debug_list()

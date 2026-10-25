@@ -446,10 +446,9 @@ impl Module {
             .unwrap_or_else(|| panic!("Function not found"))
     }
 
-    pub fn add_basic_block(self: &mut Self, func: &Function, name: &str) -> BasicBlock {
+    pub fn add_basic_block(self: &mut Self, func: &Function) -> BasicBlock {
         let function = self.get_function_mut(func);
         function.basic_blocks.push(ffi::BasicBlock {
-            name: name.to_string(),
             insts_start: 0,
             insts_len: 0,
             info1: 0,

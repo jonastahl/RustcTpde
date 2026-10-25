@@ -36,19 +36,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 0], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 1], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -91,19 +91,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 2], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 3], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -146,19 +146,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 4], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 5], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -201,19 +201,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 6], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 7], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -256,19 +256,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 8], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 9], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -311,19 +311,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 10], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 11], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -366,19 +366,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 12], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 13], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -421,19 +421,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 14], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 15], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -476,19 +476,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 16], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 17], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -531,19 +531,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 18], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 19], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -586,19 +586,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 20], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 21], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -641,19 +641,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 22], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 23], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -696,19 +696,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 24], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 25], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -751,19 +751,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 26], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 27], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -806,19 +806,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 28], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 29], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -861,19 +861,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 30], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 31], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -916,19 +916,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 32], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 33], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -971,19 +971,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 34], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 35], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1026,19 +1026,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 36], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 37], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1081,19 +1081,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 38], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 39], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1136,19 +1136,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 40], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 41], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1191,19 +1191,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 42], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 43], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1246,19 +1246,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 44], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 45], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1301,19 +1301,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 46], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 47], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1349,19 +1349,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPslt> ([val: 0], [const pool: 48]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 49], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 50], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1397,19 +1397,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsge> ([val: 0], [const pool: 51]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 52], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 53], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1445,19 +1445,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsge> ([val: 0], [const pool: 54]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 55], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 56], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1493,19 +1493,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsgt> ([val: 0], [const pool: 57]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 58], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 59], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1541,19 +1541,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPuge> ([val: 0], [const pool: 60]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 61], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 62], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1589,19 +1589,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPuge> ([val: 0], [const pool: 63]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 64], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 65], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1637,19 +1637,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPuge> ([val: 0], [const pool: 66]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 67], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 68], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1685,19 +1685,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [const pool: 69]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 70], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 71], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -1740,19 +1740,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 72], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 73], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1795,19 +1795,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 74], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 75], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1850,19 +1850,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 76], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 77], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1905,19 +1905,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 78], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 79], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -1960,19 +1960,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPule> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 80], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 81], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2015,19 +2015,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPule> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 82], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 83], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2070,19 +2070,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPule> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 84], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 85], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2125,19 +2125,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPule> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 86], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 87], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2180,19 +2180,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 88], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 89], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2235,19 +2235,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 90], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 91], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2290,19 +2290,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 92], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 93], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2345,19 +2345,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 94], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 95], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2400,19 +2400,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 96], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 97], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2455,19 +2455,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 98], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 99], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2510,19 +2510,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 100], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 101], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2565,19 +2565,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 102], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 103], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2620,19 +2620,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 104], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 105], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2675,19 +2675,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 106], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 107], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2730,19 +2730,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 108], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 109], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2785,19 +2785,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 110], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 111], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2840,19 +2840,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 112], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 113], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2895,19 +2895,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 114], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 115], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -2950,19 +2950,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 116], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 117], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -3005,19 +3005,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPne> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 118], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 119], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -3063,43 +3063,43 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <CMPsgt> ([val: 0], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 4], [raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPslt> ([val: 0], [const: i32 0]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 9], [raw: 8]),
                 ],
-                "bb8": [
+                BasicBlock: [
                     <Store> ([const: i32 5], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
-                "bb5": [
+                BasicBlock: [
                     <CMPslt> ([val: 1], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 7], [raw: 6]),
                 ],
-                "bb9": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "bb7": [
+                BasicBlock: [
                     <Store> ([const: i32 4], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
-                "bb6": [
+                BasicBlock: [
                     <Store> ([const: i32 3], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Store> ([const: i32 2], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const: i32 1], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
@@ -3135,19 +3135,19 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [const pool: 120]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 121], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 122], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],

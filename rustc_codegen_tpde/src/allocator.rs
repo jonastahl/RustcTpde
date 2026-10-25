@@ -120,7 +120,7 @@ fn create_wrapper_function(
         Binding::Definition,
     );
 
-    let bb = module.add_basic_block(&caller, "entry");
+    let bb = module.add_basic_block(&caller);
 
     let ret = if let Some(to_name) = to_name {
         let callee = module.add_function(

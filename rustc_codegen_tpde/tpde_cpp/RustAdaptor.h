@@ -418,9 +418,8 @@ namespace tpde_rust {
       get_basic_block(bb).info2 = info;
     }
 
-    [[nodiscard]] std::string block_fmt_ref(IRBlockRef bb) {
-      // TODO
-      return std::string(get_basic_block(bb).name);
+    [[nodiscard]] uint32_t block_fmt_ref(IRBlockRef bb) {
+      return bb;
     }
 
     [[nodiscard]] tpde::ValLocalIdx val_local_idx(IRValueRef ir_value) {

@@ -38,26 +38,26 @@ ModuleTpde {
             personality: 193,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 1], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 0]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -101,26 +101,26 @@ ModuleTpde {
             personality: 196,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 4], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 2]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -164,26 +164,26 @@ ModuleTpde {
             personality: 198,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 2], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 4]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -227,26 +227,26 @@ ModuleTpde {
             personality: 200,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 8], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shl> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 6]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -290,26 +290,26 @@ ModuleTpde {
             personality: 202,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 1], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 8]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -353,26 +353,26 @@ ModuleTpde {
             personality: 204,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 4], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 10]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -416,26 +416,26 @@ ModuleTpde {
             personality: 206,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 2], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 12]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -479,26 +479,26 @@ ModuleTpde {
             personality: 208,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([const: i32 8], [const: i32 8]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 1], [val: 2]) -> [val: 6],
                     <funnel_shr> ([val: 0], [val: 0], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Invoke> ([func: 192], [raw: 4], [raw: 3], [global: 14]),
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "unreachable": [
+                BasicBlock: [
                     <Unreachable> (),
                 ],
             ],
@@ -546,16 +546,16 @@ ModuleTpde {
             personality: 210,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 20], [raw: 2], [raw: 1], [val: 0], [val: 1]) -> [val: 5],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 5]),
                 ],
             ],
@@ -603,16 +603,16 @@ ModuleTpde {
             personality: 212,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 22], [raw: 2], [raw: 1], [val: 0], [val: 1]) -> [val: 5],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 5]),
                 ],
             ],
@@ -660,16 +660,16 @@ ModuleTpde {
             personality: 214,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 21], [raw: 2], [raw: 1], [val: 0], [val: 1]) -> [val: 5],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 5]),
                 ],
             ],
@@ -717,16 +717,16 @@ ModuleTpde {
             personality: 216,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 23], [raw: 2], [raw: 1], [val: 0], [val: 1]) -> [val: 5],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 3],
                     <AddRet> () -> [val: 4],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 5]),
                 ],
             ],
@@ -781,16 +781,16 @@ ModuleTpde {
             personality: 218,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 24], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -845,16 +845,16 @@ ModuleTpde {
             personality: 220,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 28], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -909,16 +909,16 @@ ModuleTpde {
             personality: 222,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 26], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -973,16 +973,16 @@ ModuleTpde {
             personality: 224,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 30], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -1037,16 +1037,16 @@ ModuleTpde {
             personality: 226,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 25], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -1101,16 +1101,16 @@ ModuleTpde {
             personality: 228,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 29], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -1165,16 +1165,16 @@ ModuleTpde {
             personality: 230,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 27], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -1229,16 +1229,16 @@ ModuleTpde {
             personality: 232,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Invoke> ([func: 31], [raw: 2], [raw: 1], [val: 0], [val: 1], [val: 2]) -> [val: 6],
                 ],
-                "terminate": [
+                BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 4],
                     <AddRet> () -> [val: 5],
                     <Call> ([func: 194]),
                     <Unreachable> (),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -1279,7 +1279,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i8 0]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
@@ -1323,7 +1323,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i16 0]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
@@ -1367,7 +1367,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
@@ -1411,7 +1411,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
                     <Or> ([val: 0], [val: 1]) -> [val: 4],
@@ -1470,16 +1470,16 @@ ModuleTpde {
                 size: 1, align: 1,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const: i32 8]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 1]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Trunc> ([val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
                     <Sub> ([const: i32 8], [val: 2]) -> [val: 7],
@@ -1489,7 +1489,7 @@ ModuleTpde {
                     <Store> ([val: 10], [alloc: 0], [raw: 1]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 11],
                     <Ret> ([val: 11]),
                 ],
@@ -1546,16 +1546,16 @@ ModuleTpde {
                 size: 1, align: 1,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const: i32 8]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 1]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Sub> ([const: i32 8], [val: 2]) -> [val: 5],
                     <Trunc> ([val: 5]) -> [val: 6],
                     <Shl> ([val: 0], [val: 6]) -> [val: 7],
@@ -1565,7 +1565,7 @@ ModuleTpde {
                     <Store> ([val: 10], [alloc: 0], [raw: 1]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 11],
                     <Ret> ([val: 11]),
                 ],
@@ -1622,16 +1622,16 @@ ModuleTpde {
                 size: 2, align: 2,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const: i32 16]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 2]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Trunc> ([val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
                     <Sub> ([const: i32 16], [val: 2]) -> [val: 7],
@@ -1641,7 +1641,7 @@ ModuleTpde {
                     <Store> ([val: 10], [alloc: 0], [raw: 2]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 2]) -> [val: 11],
                     <Ret> ([val: 11]),
                 ],
@@ -1698,16 +1698,16 @@ ModuleTpde {
                 size: 2, align: 2,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const: i32 16]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 2]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Sub> ([const: i32 16], [val: 2]) -> [val: 5],
                     <Trunc> ([val: 5]) -> [val: 6],
                     <Shl> ([val: 0], [val: 6]) -> [val: 7],
@@ -1717,7 +1717,7 @@ ModuleTpde {
                     <Store> ([val: 10], [alloc: 0], [raw: 2]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 2]) -> [val: 11],
                     <Ret> ([val: 11]),
                 ],
@@ -1772,16 +1772,16 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const: i32 32]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Shl> ([val: 0], [val: 2]) -> [val: 5],
                     <Sub> ([const: i32 32], [val: 2]) -> [val: 6],
                     <lShr> ([val: 1], [val: 6]) -> [val: 7],
@@ -1789,7 +1789,7 @@ ModuleTpde {
                     <Store> ([val: 8], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 9],
                     <Ret> ([val: 9]),
                 ],
@@ -1844,16 +1844,16 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const: i32 32]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Sub> ([const: i32 32], [val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
                     <lShr> ([val: 1], [val: 2]) -> [val: 7],
@@ -1861,7 +1861,7 @@ ModuleTpde {
                     <Store> ([val: 8], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 9],
                     <Ret> ([val: 9]),
                 ],
@@ -1918,16 +1918,16 @@ ModuleTpde {
                 size: 8, align: 8,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const pool: 0]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <zExt> ([val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
                     <Sub> ([const pool: 1], [val: 2]) -> [val: 7],
@@ -1937,7 +1937,7 @@ ModuleTpde {
                     <Store> ([val: 10], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 11],
                     <Ret> ([val: 11]),
                 ],
@@ -1994,16 +1994,16 @@ ModuleTpde {
                 size: 8, align: 8,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPult> ([val: 2], [const pool: 2]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Sub> ([const pool: 3], [val: 2]) -> [val: 5],
                     <zExt> ([val: 5]) -> [val: 6],
                     <Shl> ([val: 0], [val: 6]) -> [val: 7],
@@ -2013,7 +2013,7 @@ ModuleTpde {
                     <Store> ([val: 10], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 11],
                     <Ret> ([val: 11]),
                 ],
@@ -2061,7 +2061,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 3],
                     <Add> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
@@ -2110,7 +2110,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 3],
                     <Add> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
@@ -2167,7 +2167,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 4],
                     <Add> ([val: 4], [val: 2]) -> [val: 5],
                     <Add> ([val: 5], [val: 3]) -> [val: 6],
@@ -2257,7 +2257,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 8],
                     <Add> ([val: 8], [val: 2]) -> [val: 9],
                     <Add> ([val: 9], [val: 3]) -> [val: 10],
@@ -2303,7 +2303,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2343,7 +2343,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2383,7 +2383,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2423,7 +2423,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2463,7 +2463,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2511,7 +2511,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 1], [val: 2]) -> [val: 3],
                     <Add> ([val: 0], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
@@ -2554,7 +2554,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Sub> ([val: 0], [val: 1]) -> [val: 3],
                     <Sub> ([val: 2], [val: 3]) -> [val: 4],
@@ -2598,7 +2598,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Sub> ([val: 0], [val: 1]) -> [val: 3],
                     <Sub> ([val: 2], [val: 3]) -> [val: 4],
@@ -2642,7 +2642,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Sub> ([val: 0], [val: 1]) -> [val: 3],
                     <Sub> ([val: 2], [val: 3]) -> [val: 4],
@@ -2684,7 +2684,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2724,7 +2724,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2764,7 +2764,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2804,7 +2804,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2844,7 +2844,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2884,7 +2884,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2924,7 +2924,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -2964,7 +2964,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -3004,7 +3004,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -3044,7 +3044,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -3088,7 +3088,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <Shl> ([const: i32 1], [val: 2]) -> [val: 3],
                     <Sub> ([val: 3], [const: i32 1]) -> [val: 4],
@@ -3137,7 +3137,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Not> ([val: 2]) -> [val: 3],
                     <Not> ([val: 0]) -> [val: 4],
@@ -3187,7 +3187,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Not> ([val: 2]) -> [val: 3],
                     <Not> ([val: 0]) -> [val: 4],
@@ -3236,25 +3236,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 4]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 5]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 16]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 234], [global: 18]),
                     <Unreachable> (),
                 ],
@@ -3298,25 +3298,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i16 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 6]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 7]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 20]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 234], [global: 22]),
                     <Unreachable> (),
                 ],
@@ -3360,25 +3360,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 8]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 9]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 24]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 234], [global: 26]),
                     <Unreachable> (),
                 ],
@@ -3422,25 +3422,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i64 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 10]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 11]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 28]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 234], [global: 30]),
                     <Unreachable> (),
                 ],
@@ -3484,25 +3484,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i8 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 12]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 13]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 32]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 234], [global: 34]),
                     <Unreachable> (),
                 ],
@@ -3553,46 +3553,46 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 14]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 15]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 36]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Mul> ([val: 6], [val: 1]) -> [val: 7],
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 8],
                     <CondBr> ([val: 8], [raw: 6], [raw: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 234], [global: 38]),
                     <Unreachable> (),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 16]) -> [val: 9],
                     <CMPeq> ([val: 0], [const pool: 17]) -> [val: 10],
                     <And> ([val: 9], [val: 10]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 8], [raw: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 40]),
                     <Unreachable> (),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <sRem> ([val: 0], [val: 1]) -> [val: 12],
                     <Add> ([val: 7], [val: 12]) -> [val: 13],
                     <Ret> ([val: 13]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 235], [global: 42]),
                     <Unreachable> (),
                 ],
@@ -3643,46 +3643,46 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 18]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 19]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 44]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
                     <Mul> ([val: 6], [val: 1]) -> [val: 7],
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 8],
                     <CondBr> ([val: 8], [raw: 6], [raw: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 234], [global: 46]),
                     <Unreachable> (),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 20]) -> [val: 9],
                     <CMPeq> ([val: 0], [const pool: 21]) -> [val: 10],
                     <And> ([val: 9], [val: 10]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 8], [raw: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 48]),
                     <Unreachable> (),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <sRem> ([val: 0], [val: 1]) -> [val: 12],
                     <Add> ([val: 7], [val: 12]) -> [val: 13],
                     <Ret> ([val: 13]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 235], [global: 50]),
                     <Unreachable> (),
                 ],
@@ -3727,26 +3727,26 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Mul> ([val: 3], [val: 1]) -> [val: 4],
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 52]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <uRem> ([val: 0], [val: 1]) -> [val: 6],
                     <Add> ([val: 4], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 54]),
                     <Unreachable> (),
                 ],
@@ -3791,26 +3791,26 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Mul> ([val: 3], [val: 1]) -> [val: 4],
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 56]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <uRem> ([val: 0], [val: 1]) -> [val: 6],
                     <Add> ([val: 4], [val: 6]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 58]),
                     <Unreachable> (),
                 ],
@@ -3851,15 +3851,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 60]),
                     <Unreachable> (),
                 ],
@@ -3900,15 +3900,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i16 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 62]),
                     <Unreachable> (),
                 ],
@@ -3949,15 +3949,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 64]),
                     <Unreachable> (),
                 ],
@@ -3998,15 +3998,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i64 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 66]),
                     <Unreachable> (),
                 ],
@@ -4047,15 +4047,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i8 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 233], [global: 68]),
                     <Unreachable> (),
                 ],
@@ -4102,7 +4102,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shl> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4149,7 +4149,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shl> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4196,7 +4196,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shl> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4243,7 +4243,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shl> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4290,7 +4290,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shr> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4337,7 +4337,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shr> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4384,7 +4384,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shr> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4431,7 +4431,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <funnel_shr> ([val: 0], [val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -4474,7 +4474,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <Shl> ([const: i32 1], [val: 2]) -> [val: 3],
                     <Sub> ([val: 3], [const: i32 1]) -> [val: 4],
@@ -4535,7 +4535,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <zExt> ([val: 0]) -> [val: 4],
                     <Add> ([val: 4], [val: 1]) -> [val: 5],
                     <zExt> ([val: 2]) -> [val: 6],
@@ -4587,7 +4587,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 3],
                     <Add> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
@@ -4636,7 +4636,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 3],
                     <Add> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
@@ -4685,7 +4685,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 3],
                     <Add> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
@@ -4726,7 +4726,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -4766,7 +4766,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -4806,7 +4806,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -4846,7 +4846,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -4886,7 +4886,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -4926,7 +4926,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -4966,7 +4966,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5006,7 +5006,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5046,7 +5046,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5086,7 +5086,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5119,7 +5119,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Neg> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5152,7 +5152,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Neg> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5185,7 +5185,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Neg> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5218,7 +5218,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Neg> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5251,7 +5251,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Neg> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5285,7 +5285,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Add> ([val: 1], [const: i128 1]) -> [val: 2],
                     <Ret> ([val: 2]),
@@ -5320,7 +5320,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Add> ([val: 1], [const: i32 1]) -> [val: 2],
                     <Ret> ([val: 2]),
@@ -5354,7 +5354,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5387,7 +5387,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5420,7 +5420,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5453,7 +5453,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5486,7 +5486,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5519,7 +5519,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5552,7 +5552,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5585,7 +5585,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5618,7 +5618,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5651,7 +5651,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5684,7 +5684,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -5724,7 +5724,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Or> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5764,7 +5764,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Or> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5804,7 +5804,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Or> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5844,7 +5844,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Or> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5884,7 +5884,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Or> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -5928,25 +5928,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 22]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 23]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 70]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sRem> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 235], [global: 72]),
                     <Unreachable> (),
                 ],
@@ -5990,25 +5990,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i16 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 24]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 25]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 74]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sRem> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 235], [global: 76]),
                     <Unreachable> (),
                 ],
@@ -6052,25 +6052,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 26]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 27]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 78]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sRem> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 235], [global: 80]),
                     <Unreachable> (),
                 ],
@@ -6114,25 +6114,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i64 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 28]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 29]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 82]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sRem> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 235], [global: 84]),
                     <Unreachable> (),
                 ],
@@ -6176,25 +6176,25 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i8 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const pool: 30]) -> [val: 3],
                     <CMPeq> ([val: 0], [const pool: 31]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 86]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <sRem> ([val: 0], [val: 1]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 235], [global: 88]),
                     <Unreachable> (),
                 ],
@@ -6235,15 +6235,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i128 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 90]),
                     <Unreachable> (),
                 ],
@@ -6284,15 +6284,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i16 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 92]),
                     <Unreachable> (),
                 ],
@@ -6333,15 +6333,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i32 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 94]),
                     <Unreachable> (),
                 ],
@@ -6382,15 +6382,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i64 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 96]),
                     <Unreachable> (),
                 ],
@@ -6431,15 +6431,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPeq> ([val: 1], [const: i8 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <uRem> ([val: 0], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 192], [global: 98]),
                     <Unreachable> (),
                 ],
@@ -6479,7 +6479,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotl> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6519,7 +6519,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotl> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6559,7 +6559,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotl> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6599,7 +6599,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotl> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6639,7 +6639,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6679,7 +6679,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6719,7 +6719,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6759,7 +6759,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <rotr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -6792,7 +6792,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <sExt> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -6827,7 +6827,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([const: i32 3], [const pool: 32]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
@@ -6863,7 +6863,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([const: i32 3], [const: i32 31]) -> [val: 1],
                     <Shl> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
@@ -6899,7 +6899,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([const pool: 33], [const pool: 34]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
@@ -6942,7 +6942,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const pool: 35]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -6984,7 +6984,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i16 15]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7026,7 +7026,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7068,7 +7068,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i64 63]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7110,7 +7110,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i8 7]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7156,7 +7156,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <And> ([val: 1], [const: i32 31]) -> [val: 4],
@@ -7202,7 +7202,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const pool: 36]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7244,7 +7244,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i16 15]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7286,7 +7286,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7328,7 +7328,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i64 63]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7370,7 +7370,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i8 7]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7406,7 +7406,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([const pool: 37], [const pool: 38]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
@@ -7442,7 +7442,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([const: i32 3], [const: i32 31]) -> [val: 1],
                     <aShr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
@@ -7477,7 +7477,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([const: i32 3], [const: i32 31]) -> [val: 1],
                     <lShr> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
@@ -7513,7 +7513,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([const pool: 39], [const pool: 40]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
@@ -7556,7 +7556,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const pool: 41]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7598,7 +7598,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i16 15]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7640,7 +7640,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7682,7 +7682,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i64 63]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7724,7 +7724,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i8 7]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7768,7 +7768,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const pool: 42]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <And> ([val: 1], [const pool: 43]) -> [val: 4],
@@ -7814,7 +7814,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <And> ([val: 1], [const: i32 31]) -> [val: 4],
@@ -7858,7 +7858,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const pool: 44]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7900,7 +7900,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i16 15]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7942,7 +7942,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i32 31]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -7984,7 +7984,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i64 63]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -8026,7 +8026,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <And> ([val: 1], [const: i8 7]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -8067,7 +8067,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8107,7 +8107,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8147,7 +8147,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8187,7 +8187,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8227,7 +8227,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8267,7 +8267,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8307,7 +8307,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8347,7 +8347,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8387,7 +8387,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8427,7 +8427,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8460,7 +8460,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Trunc> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -8493,7 +8493,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Trunc> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
@@ -8533,7 +8533,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8573,7 +8573,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8613,7 +8613,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8653,7 +8653,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8693,7 +8693,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8734,7 +8734,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Xor> ([val: 2], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -8775,7 +8775,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8815,7 +8815,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8855,7 +8855,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8895,7 +8895,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8935,7 +8935,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -8968,7 +8968,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <zExt> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],

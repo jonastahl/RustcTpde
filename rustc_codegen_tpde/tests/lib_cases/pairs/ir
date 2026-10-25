@@ -33,23 +33,23 @@ ModuleTpde {
                 size: 16, align: 8,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [const pool: 0]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 1], [alloc: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 2],
                     <Store> ([const pool: 2], [val: 2], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 3], [alloc: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 3],
                     <Store> ([const pool: 4], [val: 3], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
                     <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 8]) -> [val: 6],
@@ -89,19 +89,19 @@ ModuleTpde {
                 size: 16, align: 8,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 0], [const pool: 5]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 6], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 7], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 2],
                     <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
                     <Load> ([val: 3], [raw: 8]) -> [val: 4],
@@ -144,15 +144,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 1], [const: i8 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 0], [val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 3], [global: 0]),
                     <Unreachable> (),
                 ],

@@ -44,41 +44,41 @@ ModuleTpde {
                 size: 1, align: 1,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 2],
                     <Add> ([val: 2], [val: 1]) -> [val: 3],
                     <CMPult> ([val: 3], [val: 2]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([val: 3], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 5],
                     <Mul> ([val: 5], [const: i8 2]) -> [val: 6],
                     <OverflowCheck> ([raw: 0]) -> [val: 7],
                     <CondBr> ([val: 7], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 0]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([val: 6], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 8],
                     <Sub> ([val: 8], [const: i8 1]) -> [val: 9],
                     <CMPult> ([val: 8], [const: i8 1]) -> [val: 10],
                     <CondBr> ([val: 10], [raw: 6], [raw: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 2]),
                     <Unreachable> (),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Store> ([val: 9], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 11],
                     <Ret> ([val: 11]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 4]),
                     <Unreachable> (),
                 ],
@@ -173,69 +173,69 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 8],
                     <CMPult> ([val: 8], [val: 0]) -> [val: 9],
                     <CondBr> ([val: 9], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Add> ([val: 8], [val: 2]) -> [val: 10],
                     <CMPult> ([val: 10], [val: 8]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 6]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Add> ([val: 10], [val: 3]) -> [val: 12],
                     <CMPult> ([val: 12], [val: 10]) -> [val: 13],
                     <CondBr> ([val: 13], [raw: 6], [raw: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 8]),
                     <Unreachable> (),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Add> ([val: 12], [val: 4]) -> [val: 14],
                     <CMPult> ([val: 14], [val: 12]) -> [val: 15],
                     <CondBr> ([val: 15], [raw: 8], [raw: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 10]),
                     <Unreachable> (),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Add> ([val: 14], [val: 5]) -> [val: 16],
                     <CMPult> ([val: 16], [val: 14]) -> [val: 17],
                     <CondBr> ([val: 17], [raw: 10], [raw: 9]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 12]),
                     <Unreachable> (),
                 ],
-                "bb5": [
+                BasicBlock: [
                     <Add> ([val: 16], [val: 6]) -> [val: 18],
                     <CMPult> ([val: 18], [val: 16]) -> [val: 19],
                     <CondBr> ([val: 19], [raw: 12], [raw: 11]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 14]),
                     <Unreachable> (),
                 ],
-                "bb6": [
+                BasicBlock: [
                     <Add> ([val: 18], [val: 7]) -> [val: 20],
                     <CMPult> ([val: 20], [val: 18]) -> [val: 21],
                     <CondBr> ([val: 21], [raw: 14], [raw: 13]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 16]),
                     <Unreachable> (),
                 ],
-                "bb7": [
+                BasicBlock: [
                     <Ret> ([val: 20]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 18]),
                     <Unreachable> (),
                 ],
@@ -276,15 +276,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 20]),
                     <Unreachable> (),
                 ],
@@ -325,15 +325,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 22]),
                     <Unreachable> (),
                 ],
@@ -374,15 +374,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 24]),
                     <Unreachable> (),
                 ],
@@ -423,15 +423,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 26]),
                     <Unreachable> (),
                 ],
@@ -481,24 +481,24 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 3],
                     <CMPult> ([val: 3], [val: 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Sub> ([val: 3], [val: 2]) -> [val: 5],
                     <CMPult> ([val: 3], [val: 2]) -> [val: 6],
                     <CondBr> ([val: 6], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 28]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Ret> ([val: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 30]),
                     <Unreachable> (),
                 ],
@@ -548,24 +548,24 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 3],
                     <CMPult> ([val: 3], [val: 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Sub> ([val: 3], [val: 2]) -> [val: 5],
                     <CMPult> ([val: 3], [val: 2]) -> [val: 6],
                     <CondBr> ([val: 6], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 32]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Ret> ([val: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 34]),
                     <Unreachable> (),
                 ],
@@ -606,7 +606,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Call> ([func: 10], [val: 0], [val: 1]) -> [val: 2],
                     <Call> ([func: 10], [val: 2], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -648,15 +648,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 36]),
                     <Unreachable> (),
                 ],
@@ -697,15 +697,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 38]),
                     <Unreachable> (),
                 ],
@@ -746,15 +746,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 40]),
                     <Unreachable> (),
                 ],
@@ -795,15 +795,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 42]),
                     <Unreachable> (),
                 ],
@@ -844,15 +844,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 44]),
                     <Unreachable> (),
                 ],
@@ -905,36 +905,36 @@ ModuleTpde {
                 size: 4, align: 4,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 3],
                     <OverflowCheck> ([raw: 1]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 4], [raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 5],
                     <OverflowCheck> ([raw: 1]) -> [val: 6],
                     <CondBr> ([val: 6], [raw: 7], [raw: 6]),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Store> ([val: 3], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 46]),
                     <Unreachable> (),
                 ],
-                "bb5": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 7],
                     <Ret> ([val: 7]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([val: 5], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 48]),
                     <Unreachable> (),
                 ],
@@ -984,24 +984,24 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 3],
                     <OverflowCheck> ([raw: 1]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Add> ([val: 3], [val: 2]) -> [val: 5],
                     <OverflowCheck> ([raw: 1]) -> [val: 6],
                     <CondBr> ([val: 6], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 50]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Ret> ([val: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 52]),
                     <Unreachable> (),
                 ],
@@ -1042,15 +1042,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 54]),
                     <Unreachable> (),
                 ],
@@ -1091,15 +1091,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 56]),
                     <Unreachable> (),
                 ],
@@ -1140,15 +1140,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 58]),
                     <Unreachable> (),
                 ],
@@ -1189,15 +1189,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 60]),
                     <Unreachable> (),
                 ],
@@ -1238,15 +1238,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 62]),
                     <Unreachable> (),
                 ],
@@ -1287,15 +1287,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 64]),
                     <Unreachable> (),
                 ],
@@ -1336,15 +1336,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 66]),
                     <Unreachable> (),
                 ],
@@ -1385,15 +1385,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 68]),
                     <Unreachable> (),
                 ],
@@ -1434,15 +1434,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 0]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 36], [global: 70]),
                     <Unreachable> (),
                 ],
@@ -1483,15 +1483,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 72]),
                     <Unreachable> (),
                 ],
@@ -1532,15 +1532,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 74]),
                     <Unreachable> (),
                 ],
@@ -1581,15 +1581,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 76]),
                     <Unreachable> (),
                 ],
@@ -1630,15 +1630,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <OverflowCheck> ([raw: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 78]),
                     <Unreachable> (),
                 ],
@@ -1679,15 +1679,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 0], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 80]),
                     <Unreachable> (),
                 ],
@@ -1728,15 +1728,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 0], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 82]),
                     <Unreachable> (),
                 ],
@@ -1777,15 +1777,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 0], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 84]),
                     <Unreachable> (),
                 ],
@@ -1826,15 +1826,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 0], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 86]),
                     <Unreachable> (),
                 ],
@@ -1875,15 +1875,15 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Sub> ([val: 0], [val: 1]) -> [val: 2],
                     <CMPult> ([val: 0], [val: 1]) -> [val: 3],
                     <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Ret> ([val: 2]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 37], [global: 88]),
                     <Unreachable> (),
                 ],
@@ -1928,43 +1928,43 @@ ModuleTpde {
                 size: 1, align: 1,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Store> ([const: i8 0], [alloc: 0], [raw: 1]),
                     <Store> ([const: i8 1], [alloc: 1], [raw: 1]),
                     <Br> ([raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Load> ([alloc: 1], [raw: 1]) -> [val: 1],
                     <CMPule> ([val: 1], [val: 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 3], [raw: 2]),
                 ],
-                "bb5": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Load> ([alloc: 1], [raw: 1]) -> [val: 4],
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 5],
                     <Add> ([val: 5], [val: 4]) -> [val: 6],
                     <CMPult> ([val: 6], [val: 5]) -> [val: 7],
                     <CondBr> ([val: 7], [raw: 5], [raw: 4]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Store> ([val: 6], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 1], [raw: 1]) -> [val: 8],
                     <Add> ([val: 8], [const: i8 1]) -> [val: 9],
                     <CMPult> ([val: 9], [val: 8]) -> [val: 10],
                     <CondBr> ([val: 10], [raw: 7], [raw: 6]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 90]),
                     <Unreachable> (),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Store> ([val: 9], [alloc: 1], [raw: 1]),
                     <Br> ([raw: 1]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 35], [global: 92]),
                     <Unreachable> (),
                 ],

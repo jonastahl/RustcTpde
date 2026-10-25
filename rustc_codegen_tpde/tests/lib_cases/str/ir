@@ -20,7 +20,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Load> ([global: 0], [raw: 8]) -> [val: 0],
                     <GEP> ([global: 0], [raw: 8], [const: i64 1]) -> [val: 1],
                     <Load> ([val: 1], [raw: 8]) -> [val: 2],
@@ -45,7 +45,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Ret> ([global: 4], [const: i64 11]),
                 ],
             ],
@@ -67,7 +67,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Ret> ([global: 1]),
                 ],
             ],

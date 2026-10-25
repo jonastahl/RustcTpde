@@ -97,7 +97,6 @@ impl ModuleTpde {
 
                     let cont_bb = Slot::new_raw(caller.basic_blocks.len() as u32);
                     caller.basic_blocks.push(BasicBlock {
-                        name: "Inline cont".parse().unwrap(),
                         insts_start: (insts_start + j + 1) as u32,
                         insts_len: (insts_len - j - 1) as u32,
                         info1: 0,
@@ -105,7 +104,6 @@ impl ModuleTpde {
                     });
                     let results_bb = caller.basic_blocks.len();
                     caller.basic_blocks.push(BasicBlock {
-                        name: "Inline result".parse().unwrap(),
                         insts_start: 0,
                         insts_len: 0,
                         info1: 0,

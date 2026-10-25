@@ -106,7 +106,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         tpde_fn: Self::Function,
         name: &str,
     ) -> Self::BasicBlock {
-        cx.module.borrow_mut().add_basic_block(&tpde_fn, name)
+        cx.module.borrow_mut().add_basic_block(&tpde_fn)
     }
 
     fn append_sibling_block(&mut self, name: &str) -> Self::BasicBlock {

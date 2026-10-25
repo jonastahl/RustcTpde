@@ -72,11 +72,11 @@ ModuleTpde {
                 size: 24, align: 8,
             ],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 1], [const pool: 0]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 1], [alloc: 2], [raw: 8]),
                     <GEP> ([alloc: 2], [raw: 1], [const: i64 18]) -> [val: 3],
                     <Store> ([const: i8 31], [val: 3], [raw: 2]),
@@ -100,7 +100,7 @@ ModuleTpde {
                     <GEP> ([val: 12], [raw: 8], [const: i8 1]) -> [val: 15],
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 4], [alloc: 1], [raw: 8]),
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 18]) -> [val: 16],
                     <Store> ([const pool: 5], [val: 16], [raw: 2]),
@@ -124,7 +124,7 @@ ModuleTpde {
                     <GEP> ([val: 25], [raw: 8], [const: i8 1]) -> [val: 28],
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 29],
                     <Store> ([val: 29], [val: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 8], [const: i8 1]) -> [val: 30],
@@ -183,11 +183,11 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <CMPugt> ([val: 1], [const pool: 9]) -> [val: 2],
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <Store> ([const pool: 10], [val: 0], [raw: 8]),
                     <GEP> ([val: 0], [raw: 1], [const: i64 18]) -> [val: 3],
                     <Store> ([const: i8 31], [val: 3], [raw: 2]),
@@ -199,7 +199,7 @@ ModuleTpde {
                     <Store> ([const pool: 12], [val: 6], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <Store> ([const pool: 13], [val: 0], [raw: 8]),
                     <GEP> ([val: 0], [raw: 1], [const: i64 18]) -> [val: 7],
                     <Store> ([const pool: 14], [val: 7], [raw: 2]),
@@ -211,7 +211,7 @@ ModuleTpde {
                     <Store> ([const pool: 17], [val: 10], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <Ret> (),
                 ],
             ],
@@ -270,7 +270,7 @@ ModuleTpde {
             personality: 0,
             allocas: [],
             basic_blocks: [
-                "start": [
+                BasicBlock: [
                     <Load> ([val: 1], [raw: 8]) -> [val: 2],
                     <GEP> ([val: 1], [raw: 1], [const: i64 18]) -> [val: 3],
                     <Load> ([val: 3], [raw: 2]) -> [val: 4],
@@ -278,40 +278,40 @@ ModuleTpde {
                     <CMPult> ([val: 5], [val: 4]) -> [val: 6],
                     <CondBr> ([val: 6], [raw: 2], [raw: 1]),
                 ],
-                "bb1": [
+                BasicBlock: [
                     <GEP> ([val: 1], [raw: 1], [const: i64 19]) -> [val: 7],
                     <Load> ([val: 7], [raw: 1]) -> [val: 8],
                     <Add> ([val: 8], [const: i8 2]) -> [val: 9],
                     <CMPult> ([val: 9], [val: 8]) -> [val: 10],
                     <CondBr> ([val: 10], [raw: 4], [raw: 3]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 3], [global: 0]),
                     <Unreachable> (),
                 ],
-                "bb2": [
+                BasicBlock: [
                     <GEP> ([val: 1], [raw: 1], [const: i64 16]) -> [val: 11],
                     <Load> ([val: 11], [raw: 8]) -> [val: 12],
                     <Sub> ([val: 12], [const: i16 20]) -> [val: 13],
                     <OverflowCheck> ([raw: 1]) -> [val: 14],
                     <CondBr> ([val: 14], [raw: 6], [raw: 5]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 3], [global: 2]),
                     <Unreachable> (),
                 ],
-                "bb3": [
+                BasicBlock: [
                     <GEP> ([val: 1], [raw: 1], [const: i64 8]) -> [val: 15],
                     <Load> ([val: 15], [raw: 8]) -> [val: 16],
                     <Add> ([val: 16], [const pool: 18]) -> [val: 17],
                     <CMPult> ([val: 17], [val: 16]) -> [val: 18],
                     <CondBr> ([val: 18], [raw: 8], [raw: 7]),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 4], [global: 4]),
                     <Unreachable> (),
                 ],
-                "bb4": [
+                BasicBlock: [
                     <Store> ([val: 2], [val: 0], [raw: 8]),
                     <GEP> ([val: 0], [raw: 1], [const: i64 18]) -> [val: 19],
                     <Store> ([val: 5], [val: 19], [raw: 2]),
@@ -323,7 +323,7 @@ ModuleTpde {
                     <Store> ([val: 17], [val: 22], [raw: 8]),
                     <Ret> (),
                 ],
-                "panic": [
+                BasicBlock: [
                     <Call> ([func: 3], [global: 6]),
                     <Unreachable> (),
                 ],
