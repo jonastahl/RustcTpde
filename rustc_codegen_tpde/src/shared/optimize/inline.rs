@@ -34,12 +34,6 @@ impl ModuleTpde {
             return;
         }
 
-        // Local functions stay dead unless a call to them could not be inlined
-        for f in &inline_functions {
-            let func = &mut self.functions[f.0];
-            func.flags.dead = func.flags.only_local;
-        }
-
         let mut return_slots: Vec<u32> = vec![];
 
         for f in 0..self.functions.len() {
@@ -62,10 +56,6 @@ impl ModuleTpde {
 
                     // We only support inlining calls, no invokes
                     if call.kind != InstructionKind::Call {
-                        if call.kind == InstructionKind::Invoke
-                            && let Slot::Func(callee) = Slot::from_ffi(caller.operands[call.ops_start as usize]) {
-                            self.functions[callee.0].flags.dead = false;
-                        }
                         continue;
                     }
 
@@ -90,7 +80,6 @@ impl ModuleTpde {
                     if !can_inline_call(caller, callee, &caller.operands[args_start..args_end])
                         || inline_budget == 0
                     {
-                        callee.flags.dead = false;
                         continue;
                     }
                     inline_budget -= 1;
@@ -219,24 +208,52 @@ impl ModuleTpde {
             }
         }
 
-        // If some functions cannot be inlined, then we also need to realive their dead callees.
-        let mut changed = true;
-        while changed {
-            changed = false;
-            for f in 0..self.functions.len() {
-                let func = &self.functions[f];
-                if !func.flags.always_inline || func.flags.dead || func.flags.extern_link {
-                    continue;
+        self.mark_dead_functions(&inline_functions);
+    }
+
+    /// Local inlined functions are dead unless they are still referenced by a global (e.g. a vtable) or by any
+    /// operand of a live function (a call that could not be inlined, an invoke or a function pointer)
+    fn mark_dead_functions(&mut self, inline_functions: &HashSet<Function>) {
+        for f in inline_functions {
+            let func = &mut self.functions[f.0];
+            func.flags.dead = func.flags.only_local;
+        }
+
+        let mut worklist: Vec<Function> = self
+            .functions
+            .iter()
+            .enumerate()
+            .filter(|(_, f)| !f.flags.dead && !f.flags.extern_link)
+            .map(|(i, _)| Function(i))
+            .collect();
+        let mut referenced: Vec<Function> = vec![];
+
+        for global in &self.globals {
+            for reloc in &global.relocations {
+                if let Slot::Func(callee) = Slot::from_ffi(reloc.slot) {
+                    referenced.push(callee);
                 }
-                for k in 0..func.instructions.len() {
-                    let func = &self.functions[f];
-                    let instr = &func.instructions[k];
-                    if matches!(instr.kind, InstructionKind::Call | InstructionKind::Invoke)
-                        && let Slot::Func(callee) = Slot::from_ffi(func.operands[instr.ops_start as usize])
-                        && self.functions[callee.0].flags.dead
-                    {
-                        self.functions[callee.0].flags.dead = false;
-                        changed = true;
+            }
+        }
+
+        loop {
+            for callee in referenced.drain(..) {
+                let callee_func = &mut self.functions[callee.0];
+                if callee_func.flags.dead {
+                    callee_func.flags.dead = false;
+                    worklist.push(callee);
+                }
+            }
+
+            let Some(f) = worklist.pop() else {
+                break;
+            };
+            let func = &self.functions[f.0];
+            for instr in &func.instructions {
+                let ops = instr.ops_start as usize..(instr.ops_start + instr.ops_len) as usize;
+                for op in &func.operands[ops] {
+                    if let Slot::Func(callee) = Slot::from_ffi(*op) {
+                        referenced.push(callee);
                     }
                 }
             }
