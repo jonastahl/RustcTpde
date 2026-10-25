@@ -564,8 +564,7 @@ namespace tpde_rust::x64 {
       // A function used as a value: load the address of its symbol.
       const uint32_t func_id = glob_id - func_start;
       assert(func_id < this->adaptor->get_functions().size());
-      assert(func_id < this->func_syms.size());
-      const auto sym = this->func_syms[func_id];
+      const auto sym = this->ir_func_syms[func_id];
       assert(sym.valid());
 
       if (this->adaptor->get_functions()[func_id].flags.extern_link) {

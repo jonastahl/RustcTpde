@@ -127,6 +127,7 @@ namespace tpde_rust {
     using AsmReg = Base::AsmReg;
 
     std::vector<SymRef> global_symbols;
+    std::vector<SymRef> ir_func_syms;
 
     using ValInfo = Adaptor::ValInfo;
 
@@ -260,8 +261,7 @@ namespace tpde_rust {
     }
 
     void define_func_idx(IRFuncRef func, const u32 idx) {
-      // As they are worked through in the same order as in the IR they should be equal
-      assert(func - this->adaptor->get_functions().data() == idx);
+      ir_func_syms[func - this->adaptor->get_functions().data()] = this->func_syms[idx];
     }
 
     struct IntBinaryOp {
@@ -497,7 +497,7 @@ namespace tpde_rust {
     if (!func->has_personality) {
       return {};
     }
-    return this->func_syms[func->personality];
+    return this->ir_func_syms[func->personality];
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -505,6 +505,8 @@ namespace tpde_rust {
     if (!this->adaptor->switch_module(mod)) {
       return false;
     }
+
+    this->ir_func_syms.assign(this->adaptor->get_functions().size(), {});
 
     if (!Base::compile()) {
       return false;
@@ -1850,7 +1852,7 @@ namespace tpde_rust {
     }
     {
       if (!is_dynamic_function) {
-        SymRef sym = this->func_syms[func.content()];
+        SymRef sym = this->ir_func_syms[func.content()];
         cb->call(sym);
       } else if (func.is_val()) {
         auto [_, tgt_vp] = this->val_ref_single(func);
@@ -4153,7 +4155,7 @@ namespace tpde_rust {
             SymRef &target = global_symbols[IR::Operand(reloc.slot).content()];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
           } else if (IR::Operand(reloc.slot).is_func()) {
-            SymRef target = this->func_syms[IR::Operand(reloc.slot).content()];
+            SymRef target = this->ir_func_syms[IR::Operand(reloc.slot).content()];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
           } else if (IR::Operand(reloc.slot).is_global_ptr()) {
             const auto &gp = this->adaptor->get_global_ptrs()[IR::Operand(reloc.slot).content()];

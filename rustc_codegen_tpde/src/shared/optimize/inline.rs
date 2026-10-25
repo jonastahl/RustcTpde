@@ -1,19 +1,19 @@
 use crate::shared::ffi::BasicBlock;
 use crate::shared::ir::{ArgKind, Function, InstructionKind, ModuleTpde, Slot};
 use crate::shared::ffi;
-use std::collections::HashSet;
 
 /// Upper bound of inlined calls per function, guards against recursive always inline functions
 const MAX_INLINES_PER_FUNCTION: u32 = 1024;
 
 impl ModuleTpde {
     pub fn inline_functions(&mut self) {
-        let inline_functions: HashSet<Function> = self
+        let inline_functions: Vec<bool> = self
             .functions
             .iter()
-            .enumerate()
-            .filter(|(i, f)| f.flags.always_inline)
-            .filter(|(i, f)| {
+            .map(|f| {
+                if !f.flags.always_inline {
+                    return false;
+                }
                 if f.instructions
                     .iter()
                     .filter(|i| matches!(i.kind, InstructionKind::Ret))
@@ -26,11 +26,10 @@ impl ModuleTpde {
                 }
                 true
             })
-            .map(|(i, f)| Function(i))
             .collect();
 
         // Fast path if there is no function to inline
-        if inline_functions.is_empty() {
+        if !inline_functions.contains(&true) {
             return;
         }
 
@@ -68,7 +67,7 @@ impl ModuleTpde {
                     let Slot::Func(callee) = callee else {
                         continue;
                     };
-                    if !inline_functions.contains(&callee) {
+                    if !inline_functions[callee.0] {
                         continue;
                     }
                     let [caller, callee] = self.functions.get_disjoint_mut([f, callee_ref.0])
@@ -212,11 +211,11 @@ impl ModuleTpde {
     }
 
     /// Local inlined functions are dead unless they are still referenced by a global (e.g. a vtable) or by any
-    /// operand of a live function (a call that could not be inlined, an invoke or a function pointer)
-    fn mark_dead_functions(&mut self, inline_functions: &HashSet<Function>) {
-        for f in inline_functions {
-            let func = &mut self.functions[f.0];
-            func.flags.dead = func.flags.only_local;
+    /// operand of a live function (a call that could not be inlined, an invoke or a function pointer) or are its
+    /// personality
+    fn mark_dead_functions(&mut self, inline_functions: &[bool]) {
+        for (func, &inlined) in self.functions.iter_mut().zip(inline_functions) {
+            func.flags.dead = inlined && func.flags.only_local;
         }
 
         let mut worklist: Vec<Function> = self
@@ -249,6 +248,9 @@ impl ModuleTpde {
                 break;
             };
             let func = &self.functions[f.0];
+            if func.has_personality {
+                referenced.push(Function(func.personality as usize));
+            }
             for instr in &func.instructions {
                 let ops = instr.ops_start as usize..(instr.ops_start + instr.ops_len) as usize;
                 for op in &func.operands[ops] {

@@ -270,7 +270,9 @@ namespace tpde_rust {
     [[nodiscard]] u32 func_count() const { return get_functions().size(); }
 
     [[nodiscard]] auto funcs() const {
-      return get_functions() | std::views::transform([](Function &fn) { return &fn; });
+      return get_functions()
+             | std::views::filter([](const Function &fn) { return !fn.flags.dead; })
+             | std::views::transform([](Function &fn) { return &fn; });
     }
 
     [[nodiscard]] auto funcs_to_compile() const { return funcs(); }
@@ -280,7 +282,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] static bool func_extern(const IRFuncRef func) {
-      return func->flags.extern_link || func->flags.dead;
+      return func->flags.extern_link;
     }
 
     [[nodiscard]] static bool func_only_local(const IRFuncRef func) {
