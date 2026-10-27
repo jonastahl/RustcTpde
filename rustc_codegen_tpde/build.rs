@@ -2,14 +2,22 @@
 fn main() {
     let no_cache = std::env::var_os("CARGO_FEATURE_NO_CACHE").is_some();
 
-    let dst = cmake::Config::new(".")
+    let mut cmake_cfg = cmake::Config::new(".");
+    cmake_cfg
         .define("CMAKE_C_COMPILER", "clang")
         .define("CMAKE_CXX_COMPILER", "clang++")
         .define("TPDE_ENABLE_LLVM_PLUGIN", "OFF")
         .define("TPDE_INCLUDE_TESTS", "OFF")
         .define("TPDE_LOGGING", "ON")
-        .define("TPDE_RUST_NO_CACHE", if no_cache { "ON" } else { "OFF" })
-        .build();
+        .define("TPDE_RUST_NO_CACHE", if no_cache { "ON" } else { "OFF" });
+    // default selection would be -O2 so we need to force him to -O3
+    if matches!(std::env::var("OPT_LEVEL").as_deref(), Ok("1" | "2" | "3")) {
+        cmake_cfg.profile("Release");
+        if std::env::var("DEBUG").as_deref() == Ok("true") {
+            cmake_cfg.cflag("-gline-tables-only").cxxflag("-gline-tables-only");
+        }
+    }
+    let dst = cmake_cfg.build();
 
     println!("cargo:rustc-link-search=native={}", dst.join("lib").display());
     println!("cargo:rustc-link-search=native={}", dst.join("lib64").display());
