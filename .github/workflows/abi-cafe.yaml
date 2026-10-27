@@ -45,7 +45,7 @@ jobs:
       - name: Run abi-cafe
         run: |
           abi-cafe \
-            --add-rustc-codegen-backend=tpde:$PWD/target/release/librustc_codegen_tpde_dylib.so \
+            --add-rustc-codegen-backend=tpde:$PWD/target/release/librustc_codegen_tpde.so \
             --conventions c --conventions rust \
             --pairs rustc_calls_tpde \
             --pairs tpde_calls_rustc \

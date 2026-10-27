@@ -15,7 +15,7 @@ cxx-build = "^1.0.197"
 cmake = "0.1.58"
 
 [lib]
-crate-type = ["rlib"]
+crate-type = ["dylib"]
 
 [dev-dependencies]
 libtest-mimic = "0.7"
