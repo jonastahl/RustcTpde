@@ -3,8 +3,6 @@ use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, FullType, Slot, Type};
 use rustc_abi::Size;
 use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ConstCodegenMethods, MiscCodegenMethods};
-use rustc_data_structures::stable_hash::{StableHash, StableHasher};
-use rustc_hashes::Hash128;
 use rustc_hir::attrs::Linkage;
 use rustc_middle::mir::interpret::{CtfeProvenance, GlobalAlloc, Pointer, Scalar};
 use rustc_session::PointerAuthSchema;
@@ -185,17 +183,8 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 let offset = offset.bytes();
                 let alloc = alloc.inner();
 
-                let name = {
-                    let hash = self.tcx.with_stable_hashing_context(|mut hcx| {
-                        let mut hasher = StableHasher::new();
-                        alloc.stable_hash(&mut hcx, &mut hasher);
-                        hasher.finish::<Hash128>()
-                    });
-                    format!("alloc_{hash:032x}")
-                };
-
                 let g = self.module.borrow_mut()
-                    .add_global(&name,
+                    .add_global("",
                                 Linkage::Internal,
                                 alloc.mutability,
                                 Binding::Definition);

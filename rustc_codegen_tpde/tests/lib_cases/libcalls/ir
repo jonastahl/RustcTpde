@@ -4791,7 +4791,7 @@ ModuleTpde {
         [i64] (0 256) -> 256,
     ],
     globals: [
-        alloc_a4e534ae7214b5e110f91b38d647e9d4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -4811,7 +4811,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 1],
             ],
         },
-        alloc_837c0ae539ced10d83ee5e25ee74d54e {
+         {
             size: 58,
             align: 1,
             read_only: true,
@@ -4831,7 +4831,7 @@ ModuleTpde {
               0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
-        alloc_a4e534ae7214b5e110f91b38d647e9d4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -4851,7 +4851,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 3],
             ],
         },
-        alloc_837c0ae539ced10d83ee5e25ee74d54e {
+         {
             size: 58,
             align: 1,
             read_only: true,
@@ -4871,7 +4871,7 @@ ModuleTpde {
               0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
-        alloc_9bd644756a75e55eb0b968ee68f79be1 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -4891,7 +4891,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 5],
             ],
         },
-        alloc_837c0ae539ced10d83ee5e25ee74d54e {
+         {
             size: 58,
             align: 1,
             read_only: true,
@@ -4911,7 +4911,7 @@ ModuleTpde {
               0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
-        alloc_9bd644756a75e55eb0b968ee68f79be1 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -4931,7 +4931,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-        alloc_837c0ae539ced10d83ee5e25ee74d54e {
+         {
             size: 58,
             align: 1,
             read_only: true,
@@ -4951,7 +4951,7 @@ ModuleTpde {
               0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
-        alloc_91f0cedc98149e6bef4f93be3c4fb663 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -4971,7 +4971,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 9],
             ],
         },
-        alloc_837c0ae539ced10d83ee5e25ee74d54e {
+         {
             size: 58,
             align: 1,
             read_only: true,
@@ -4991,7 +4991,7 @@ ModuleTpde {
               0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
-        alloc_91f0cedc98149e6bef4f93be3c4fb663 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5011,7 +5011,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 11],
             ],
         },
-        alloc_837c0ae539ced10d83ee5e25ee74d54e {
+         {
             size: 58,
             align: 1,
             read_only: true,
@@ -5031,7 +5031,7 @@ ModuleTpde {
               0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
-        alloc_fad0cd83b7d1858a846a172eb260e593 {
+         {
             size: 42,
             align: 1,
             read_only: true,
@@ -5050,7 +5050,7 @@ ModuleTpde {
               0020  77 65 72 2d 6f 66 2d 74 77 6f                    |wer-of-two|,
             relocations: [],
         },
-        alloc_fad0cd83b7d1858a846a172eb260e593 {
+         {
             size: 42,
             align: 1,
             read_only: true,
@@ -5069,7 +5069,7 @@ ModuleTpde {
               0020  77 65 72 2d 6f 66 2d 74 77 6f                    |wer-of-two|,
             relocations: [],
         },
-        alloc_538e95311f2e0d3dc01708d10e7f15bd {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5089,7 +5089,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 15],
             ],
         },
-        alloc_505cd23258ff4ac62477704406f48e83 {
+         {
             size: 64,
             align: 1,
             read_only: true,
@@ -5109,7 +5109,7 @@ ModuleTpde {
               0030  74 72 2f 63 6f 6e 73 74 5f 70 74 72 2e 72 73 00  |tr/const_ptr.rs.|,
             relocations: [],
         },
-        alloc_dd79dfae92e8fdc23813c4c7a1b7cf72 {
+         {
             size: 228,
             align: 1,
             read_only: true,
@@ -5140,7 +5140,7 @@ ModuleTpde {
               00e0  65 74 79 2e                                      |ety.|,
             relocations: [],
         },
-        alloc_dd79dfae92e8fdc23813c4c7a1b7cf72 {
+         {
             size: 228,
             align: 1,
             read_only: true,
@@ -5171,7 +5171,7 @@ ModuleTpde {
               00e0  65 74 79 2e                                      |ety.|,
             relocations: [],
         },
-        alloc_bd3468a7b96187f70c1ce98a3e7a63bf {
+         {
             size: 283,
             align: 1,
             read_only: true,
@@ -5205,7 +5205,7 @@ ModuleTpde {
               0110  66 6f 72 20 73 61 66 65 74 79 2e                 |for safety.|,
             relocations: [],
         },
-        alloc_bd3468a7b96187f70c1ce98a3e7a63bf {
+         {
             size: 283,
             align: 1,
             read_only: true,
@@ -5239,7 +5239,7 @@ ModuleTpde {
               0110  66 6f 72 20 73 61 66 65 74 79 2e                 |for safety.|,
             relocations: [],
         },
-        alloc_5ee6cd0de5bab89c84438a39fb5fb08c {
+         {
             size: 221,
             align: 1,
             read_only: true,
@@ -5269,7 +5269,7 @@ ModuleTpde {
               00d0  6e 20 66 6f 72 20 73 61 66 65 74 79 2e           |n for safety.|,
             relocations: [],
         },
-        alloc_5ee6cd0de5bab89c84438a39fb5fb08c {
+         {
             size: 221,
             align: 1,
             read_only: true,
@@ -5299,7 +5299,7 @@ ModuleTpde {
               00d0  6e 20 66 6f 72 20 73 61 66 65 74 79 2e           |n for safety.|,
             relocations: [],
         },
-        alloc_763310d78c99c2c1ad3f8a9821e942f3 {
+         {
             size: 61,
             align: 1,
             read_only: true,
@@ -5319,7 +5319,7 @@ ModuleTpde {
               0030  66 6c 6f 77 73 20 61 20 75 73 69 7a 65           |flows a usize|,
             relocations: [],
         },
-        alloc_22c79252503be3c9ee6714816997d410 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5339,7 +5339,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 24],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5358,7 +5358,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_22c79252503be3c9ee6714816997d410 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5378,7 +5378,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 26],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5397,7 +5397,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_851b9eba4e9a9fbf0b018d6d86081b29 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5417,7 +5417,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 28],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5436,7 +5436,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_851b9eba4e9a9fbf0b018d6d86081b29 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5456,7 +5456,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 30],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5475,7 +5475,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_6c65dc7a44098c2c73a3fbd71d3c654b {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5495,7 +5495,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 32],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5514,7 +5514,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_6c65dc7a44098c2c73a3fbd71d3c654b {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5534,7 +5534,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 34],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5553,7 +5553,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_01cd67894df3774b543cd56c59689aeb {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5573,7 +5573,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 36],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5592,7 +5592,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_82c0f9e510d96b621343f976fe148f65 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5612,7 +5612,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 38],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5631,7 +5631,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_368b7aefb9a86ec757cc39512b5e7caf {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5651,7 +5651,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 40],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5670,7 +5670,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_52c9ad8ca299130536adadf873c52b48 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5690,7 +5690,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 42],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5709,7 +5709,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_9689633f67d6a91b23ddf07599015e11 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5729,7 +5729,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 44],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5748,7 +5748,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_8b185b23aa106d727091b7f634606772 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5768,7 +5768,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 46],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5787,7 +5787,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_4910ccc2ed1645ab75eff9077be0d2cd {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5807,7 +5807,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 48],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5826,7 +5826,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_a2762fe02a5a1d69b3fe5a5605f44abe {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5846,7 +5846,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 50],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,
@@ -5865,7 +5865,7 @@ ModuleTpde {
               0020  72 73 00                                         |rs.|,
             relocations: [],
         },
-        alloc_a2762fe02a5a1d69b3fe5a5605f44abe {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -5885,7 +5885,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 52],
             ],
         },
-        alloc_fdfdd36b58d7ac213d6bfaca5f321e4a {
+         {
             size: 35,
             align: 1,
             read_only: true,

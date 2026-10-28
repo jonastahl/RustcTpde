@@ -115,7 +115,7 @@ ModuleTpde {
     ],
     consts: [],
     globals: [
-        alloc_3213114faf700a46436312d7d5d956d1 {
+         {
             size: 14,
             align: 1,
             read_only: true,

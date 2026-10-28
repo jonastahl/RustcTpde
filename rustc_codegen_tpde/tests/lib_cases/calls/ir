@@ -6311,7 +6311,7 @@ ModuleTpde {
         [f64] (0 4611686018427387904) -> 2,
     ],
     globals: [
-        alloc_704eb6a197cfd0b5fdbc97d2c7e5cb1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6331,7 +6331,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 1],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6349,7 +6349,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_24d5ff7cb91fa97abecf8caf7169a8a1 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6369,7 +6369,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 3],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6387,7 +6387,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9a88aa7fefad3bf339aeae421650eb71 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6407,7 +6407,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 5],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6425,7 +6425,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_314fe878d4db776245f70fb7b031870a {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6445,7 +6445,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6463,7 +6463,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_91eb5324275fd2fb3fa364051adf2369 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6483,7 +6483,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 9],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6501,7 +6501,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_91eb5324275fd2fb3fa364051adf2369 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6521,7 +6521,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 11],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6539,7 +6539,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9b9a0237447037ae1e4850d3ee9c030a {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6559,7 +6559,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 13],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6577,7 +6577,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_b757ed4e57a449cd92cd52dfc553fc67 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6597,7 +6597,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 15],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6615,7 +6615,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9b9a0237447037ae1e4850d3ee9c030a {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6635,7 +6635,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 17],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6653,7 +6653,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_f8328012ccf508036a7597944e4d6069 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6673,7 +6673,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 19],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6691,7 +6691,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9b9a0237447037ae1e4850d3ee9c030a {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6711,7 +6711,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 21],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6729,7 +6729,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_cf67761ac75f4d39d2fdc4ab6e8dc8df {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6749,7 +6749,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 23],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6767,7 +6767,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9b9a0237447037ae1e4850d3ee9c030a {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6787,7 +6787,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 25],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6805,7 +6805,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_31c556331384508b97aeed8ae7c75f13 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6825,7 +6825,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 27],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6843,7 +6843,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_31c556331384508b97aeed8ae7c75f13 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6863,7 +6863,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 29],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6881,7 +6881,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9ad54bcc4e6d8ef9abb5d4f63f10b004 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6901,7 +6901,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 31],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6919,7 +6919,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_6f1feac14547fc392fab86200dae9a14 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6939,7 +6939,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 33],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6957,7 +6957,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c1fee08135937e5a5802b34d03b63664 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -6977,7 +6977,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 35],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -6995,7 +6995,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_2e59c0bae5381c04dcc2cbed24dbd50d {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7015,7 +7015,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 37],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7033,7 +7033,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_ebb3e2cba257a0e6a2321310a7b05cb7 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7053,7 +7053,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 39],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7071,7 +7071,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_96c2fceacfebccab58240a7bc05f5dd1 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7091,7 +7091,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 41],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7109,7 +7109,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_bbca9f006bcd1d36e98579514cc7d9bd {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7129,7 +7129,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 43],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7147,7 +7147,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_205db12911f48149fc32ef5f9c4f053e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7167,7 +7167,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 45],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7185,7 +7185,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_35a14a272fb9c25ddfb2d28497fa9735 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7205,7 +7205,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 47],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7223,7 +7223,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_79bf983bbd683ba37a3d2033bf189008 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7243,7 +7243,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 49],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7261,7 +7261,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_ca73b4599042d1759acf61511e8a14d5 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7281,7 +7281,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 51],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7299,7 +7299,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_ca73b4599042d1759acf61511e8a14d5 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7319,7 +7319,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 53],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7337,7 +7337,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9d8bd0b16c6ff8a61a9740a408dec688 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7357,7 +7357,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 55],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7375,7 +7375,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_9d8bd0b16c6ff8a61a9740a408dec688 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7395,7 +7395,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 57],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7413,7 +7413,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_57a4cff057b8f41e3dde1078d99de3f3 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7433,7 +7433,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 59],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7451,7 +7451,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_ebafb94e87fadc736330c690a3a9cbc3 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7471,7 +7471,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 61],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7489,7 +7489,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_b71da6f108346d68a6f531cad0de3d5c {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7509,7 +7509,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 63],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7527,7 +7527,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_4dcc112fcdecdc0b36e696209b7545ee {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7547,7 +7547,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 65],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7565,7 +7565,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_040764b03637fabd8d07d08c32c735c9 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7585,7 +7585,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 67],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7603,7 +7603,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_2d5daba1c1f6dc6233c3c45b12f4ef59 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7623,7 +7623,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 69],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7641,7 +7641,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_040764b03637fabd8d07d08c32c735c9 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7661,7 +7661,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 71],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7679,7 +7679,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_60e70c6748f4f3c11c387a2abd52871a {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7699,7 +7699,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 73],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7717,7 +7717,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_0e5ad2e1ff24851f49b0b4d878830c30 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7737,7 +7737,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 75],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7755,7 +7755,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_fde27c365cc0e4eaedfa6b8af91030c8 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7775,7 +7775,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 77],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7793,7 +7793,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_415a83a34b8a0c3d068b947a61d32c77 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7813,7 +7813,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 79],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7831,7 +7831,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_bcb25e1817bc3e7a61785484e29c021e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7851,7 +7851,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 81],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7869,7 +7869,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_bcb25e1817bc3e7a61785484e29c021e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7889,7 +7889,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 83],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7907,7 +7907,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_af0e06b6b6a9847dbd570b551e91413e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7927,7 +7927,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 85],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7945,7 +7945,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_af0e06b6b6a9847dbd570b551e91413e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -7965,7 +7965,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 87],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -7983,7 +7983,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_af0e06b6b6a9847dbd570b551e91413e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8003,7 +8003,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 89],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8021,7 +8021,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_af0e06b6b6a9847dbd570b551e91413e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8041,7 +8041,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 91],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8059,7 +8059,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_f6440ee65fc0464ad7a0d600ac0bf01a {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8079,7 +8079,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 93],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8097,7 +8097,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_a7c0385c822c10b8228e54d2008961f6 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8117,7 +8117,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 95],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8135,7 +8135,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_b883e9b7d877d0606846d798e8f02d29 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8155,7 +8155,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 97],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8173,7 +8173,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8193,7 +8193,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 99],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8211,7 +8211,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8231,7 +8231,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 101],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8249,7 +8249,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8269,7 +8269,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 103],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8287,7 +8287,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8307,7 +8307,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 105],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8325,7 +8325,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8345,7 +8345,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 107],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8363,7 +8363,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8383,7 +8383,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 109],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8401,7 +8401,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8421,7 +8421,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 111],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8439,7 +8439,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8aa631c94cc6b55478e0f07b0f97b1e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8459,7 +8459,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 113],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8477,7 +8477,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_bc64dfe65344499168c3287b9f0c66c8 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8497,7 +8497,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 115],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8515,7 +8515,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_11b15b2faaeaf0e8dc1d6fe30c1ae573 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8535,7 +8535,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 117],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8553,7 +8553,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_11b15b2faaeaf0e8dc1d6fe30c1ae573 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8573,7 +8573,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 119],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8591,7 +8591,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_11b15b2faaeaf0e8dc1d6fe30c1ae573 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8611,7 +8611,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 121],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8629,7 +8629,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_11b15b2faaeaf0e8dc1d6fe30c1ae573 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8649,7 +8649,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 123],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8667,7 +8667,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_11b15b2faaeaf0e8dc1d6fe30c1ae573 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8687,7 +8687,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 125],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8705,7 +8705,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_be47616601e051af3b80c36172987713 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8725,7 +8725,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 127],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8743,7 +8743,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_13dcc997a13b5f7c352424a939e8557e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8763,7 +8763,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 129],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8781,7 +8781,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_de563688a6f8738dec6e91f7541b6141 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8801,7 +8801,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 131],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8819,7 +8819,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_3b70dc1dc967241c44f97aec76c63751 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8839,7 +8839,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 133],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8857,7 +8857,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_3b70dc1dc967241c44f97aec76c63751 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8877,7 +8877,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 135],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8895,7 +8895,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_3686ad8a78fad54f1401c5692dbd6243 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8915,7 +8915,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 137],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8933,7 +8933,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_bf91ec0a9bfe754370115eadcc2db922 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8953,7 +8953,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 139],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -8971,7 +8971,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c0a52fdb4d5233a9be91ba219d6834d1 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -8991,7 +8991,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 141],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9009,7 +9009,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_7c859bec87c8f89390ed85f8ddca591e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9029,7 +9029,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 143],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9047,7 +9047,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_400172903ce0f4e057cdac3182525d1d {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9067,7 +9067,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 145],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9085,7 +9085,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_f223ae7d3bf8a902a3545af5b39d33f5 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9105,7 +9105,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 147],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9123,7 +9123,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_94abb3ee15fff72a3b62c88a9a50a89c {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9143,7 +9143,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 149],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9161,7 +9161,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_8e7dadeeff960c4c59e35d5b6fe1dcad {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9181,7 +9181,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 151],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9199,7 +9199,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_edff740e0130904de88306b3587c16ab {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9219,7 +9219,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 153],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9237,7 +9237,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_01082196bfffda80527a6f30c90a75b8 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9257,7 +9257,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 155],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9275,7 +9275,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_da38c30280926965e7c281f05f1efb74 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9295,7 +9295,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 157],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9313,7 +9313,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_da38c30280926965e7c281f05f1efb74 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9333,7 +9333,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 159],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9351,7 +9351,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_da38c30280926965e7c281f05f1efb74 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9371,7 +9371,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 161],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9389,7 +9389,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_b19604e5c52a5ef7b4edc707a6e930e0 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9409,7 +9409,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 163],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9427,7 +9427,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_e5179fdc8bda01a9c28113c2addcf6d0 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9447,7 +9447,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 165],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9465,7 +9465,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_e5179fdc8bda01a9c28113c2addcf6d0 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9485,7 +9485,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 167],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9503,7 +9503,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_c8d2e2752a52678f2bc3d5f32771a015 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9523,7 +9523,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 169],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9541,7 +9541,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_31eb511594eecfc2a674dba4d2e284e8 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9561,7 +9561,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 171],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9579,7 +9579,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_954962c2319d93c5de1622a51b985d45 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9599,7 +9599,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 173],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9617,7 +9617,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_954962c2319d93c5de1622a51b985d45 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9637,7 +9637,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 175],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9655,7 +9655,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_6cd5c307bc14f104724166537e3f56d4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9675,7 +9675,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 177],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9693,7 +9693,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_4d35541a61f32f82a02716b1b9e3b860 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9713,7 +9713,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 179],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9731,7 +9731,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_f06ec9db4fcff3e4b53f453f49601f4f {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9751,7 +9751,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 181],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9769,7 +9769,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_757e6fb17029e11dc9a063fec8a3f349 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9789,7 +9789,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 183],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9807,7 +9807,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_4cd1872f5a96a7f5cf5d5f79e3214838 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9827,7 +9827,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 185],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9845,7 +9845,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_4cd1872f5a96a7f5cf5d5f79e3214838 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9865,7 +9865,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 187],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9883,7 +9883,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_4cd1872f5a96a7f5cf5d5f79e3214838 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9903,7 +9903,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 189],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9921,7 +9921,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_bc7837c9afb389742e1626d14af006f2 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9941,7 +9941,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 191],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9959,7 +9959,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_bc7837c9afb389742e1626d14af006f2 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -9979,7 +9979,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 193],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -9997,7 +9997,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_810d0d80eed48dd249e86082cefe1384 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -10017,7 +10017,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 195],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -10035,7 +10035,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_8881854e81bd131ebed9561c35345490 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -10055,7 +10055,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 197],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -10073,7 +10073,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_8881854e81bd131ebed9561c35345490 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -10093,7 +10093,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 199],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -10111,7 +10111,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_080e76fb49e8a909ae7004d629be72d7 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -10131,7 +10131,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 201],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,
@@ -10149,7 +10149,7 @@ ModuleTpde {
               0010  63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00  |calls/source.rs.|,
             relocations: [],
         },
-        alloc_080e76fb49e8a909ae7004d629be72d7 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -10169,7 +10169,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 203],
             ],
         },
-        alloc_6b354d56c2e5a1ffc3869db3fc46506e {
+         {
             size: 32,
             align: 1,
             read_only: true,

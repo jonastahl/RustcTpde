@@ -407,7 +407,7 @@ ModuleTpde {
         [i64] (0 11111) -> 11111,
     ],
     globals: [
-        alloc_3ebdcad76328b54743883e34e325ebb4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -427,7 +427,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 1],
             ],
         },
-        alloc_75787c6b7f4327f28c540fb53083d5fd {
+         {
             size: 34,
             align: 1,
             read_only: true,
@@ -446,7 +446,7 @@ ModuleTpde {
               0020  73 00                                            |s.|,
             relocations: [],
         },
-        alloc_3421bead9c3005f7e525b88aacd422f6 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -466,7 +466,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 3],
             ],
         },
-        alloc_75787c6b7f4327f28c540fb53083d5fd {
+         {
             size: 34,
             align: 1,
             read_only: true,
@@ -485,7 +485,7 @@ ModuleTpde {
               0020  73 00                                            |s.|,
             relocations: [],
         },
-        alloc_c7676dd6c5a610d53128c67a5b69ab00 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -505,7 +505,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 5],
             ],
         },
-        alloc_75787c6b7f4327f28c540fb53083d5fd {
+         {
             size: 34,
             align: 1,
             read_only: true,
@@ -524,7 +524,7 @@ ModuleTpde {
               0020  73 00                                            |s.|,
             relocations: [],
         },
-        alloc_4d4c8525f4b8c1dd62611844cdbf052d {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -544,7 +544,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-        alloc_75787c6b7f4327f28c540fb53083d5fd {
+         {
             size: 34,
             align: 1,
             read_only: true,

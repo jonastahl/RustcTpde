@@ -2365,7 +2365,7 @@ ModuleTpde {
               0000  0a 00 00 00 00 00 00 00                          |........|,
             relocations: [],
         },
-        alloc_4c92789852ebfbf95a089ddceedecbd4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2385,7 +2385,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+         {
             size: 62,
             align: 1,
             read_only: true,
@@ -2405,7 +2405,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_4c92789852ebfbf95a089ddceedecbd4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2425,7 +2425,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 9],
             ],
         },
-        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+         {
             size: 62,
             align: 1,
             read_only: true,
@@ -2445,7 +2445,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_4c92789852ebfbf95a089ddceedecbd4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2465,7 +2465,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 11],
             ],
         },
-        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+         {
             size: 62,
             align: 1,
             read_only: true,
@@ -2485,7 +2485,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_4c92789852ebfbf95a089ddceedecbd4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2505,7 +2505,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 13],
             ],
         },
-        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+         {
             size: 62,
             align: 1,
             read_only: true,
@@ -2525,7 +2525,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_4c92789852ebfbf95a089ddceedecbd4 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2545,7 +2545,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 15],
             ],
         },
-        alloc_ca59a6af4e9a15f6359e086fbe9fdd32 {
+         {
             size: 62,
             align: 1,
             read_only: true,
@@ -2565,7 +2565,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-        alloc_b18a02d41e4217719bd880d458c3987e {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2585,7 +2585,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 17],
             ],
         },
-        alloc_20f0c9f16fda3bbe12b8821790595c75 {
+         {
             size: 30,
             align: 1,
             read_only: true,
@@ -2603,7 +2603,7 @@ ModuleTpde {
               0010  74 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00        |tls/source.rs.|,
             relocations: [],
         },
-        alloc_f4bc941e8aefc7d24dd02a23fc5e8b10 {
+         {
             size: 8,
             align: 8,
             read_only: true,
@@ -2622,7 +2622,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 25],
             ],
         },
-        alloc_f4bc941e8aefc7d24dd02a23fc5e8b10 {
+         {
             size: 8,
             align: 8,
             read_only: true,
@@ -2641,7 +2641,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 25],
             ],
         },
-        alloc_c5bd28a6402f5d8d5a48b554d4b75f83 {
+         {
             size: 8,
             align: 8,
             read_only: true,
@@ -2660,7 +2660,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 27],
             ],
         },
-        alloc_c5bd28a6402f5d8d5a48b554d4b75f83 {
+         {
             size: 8,
             align: 8,
             read_only: true,
@@ -2679,7 +2679,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 27],
             ],
         },
-        alloc_756829d27dd039ebf77132093d0691a3 {
+         {
             size: 8,
             align: 8,
             read_only: true,

@@ -2045,7 +2045,7 @@ ModuleTpde {
         [i32] (18446744073709551615 18446744073709551615) -> -1,
     ],
     globals: [
-        alloc_0625062a5eee489a7813ee965a38d15a {
+         {
             size: 198,
             align: 1,
             read_only: true,
@@ -2074,7 +2074,7 @@ ModuleTpde {
               00c0  61 66 65 74 79 2e                                |afety.|,
             relocations: [],
         },
-        alloc_0625062a5eee489a7813ee965a38d15a {
+         {
             size: 198,
             align: 1,
             read_only: true,
@@ -2103,7 +2103,7 @@ ModuleTpde {
               00c0  61 66 65 74 79 2e                                |afety.|,
             relocations: [],
         },
-        alloc_8cf3531fd3c828ab298b686071a40c17 {
+         {
             size: 259,
             align: 1,
             read_only: true,
@@ -2136,7 +2136,7 @@ ModuleTpde {
               0100  74 79 2e                                         |ty.|,
             relocations: [],
         },
-        alloc_8cf3531fd3c828ab298b686071a40c17 {
+         {
             size: 259,
             align: 1,
             read_only: true,
@@ -2169,7 +2169,7 @@ ModuleTpde {
               0100  74 79 2e                                         |ty.|,
             relocations: [],
         },
-        alloc_81afcfe8ca81cc55d442d2724d6f086d {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2189,7 +2189,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 5],
             ],
         },
-        alloc_2e2d5fa1a3b439dc8285e62bfe0e7057 {
+         {
             size: 64,
             align: 1,
             read_only: true,
@@ -2209,7 +2209,7 @@ ModuleTpde {
               0030  65 6d 2f 61 6c 69 67 6e 6d 65 6e 74 2e 72 73 00  |em/alignment.rs.|,
             relocations: [],
         },
-        alloc_941fa70ddf140cfd891dfe507cf6cd17 {
+         {
             size: 24,
             align: 8,
             read_only: true,
@@ -2229,7 +2229,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-        alloc_4fd4511d090c82a6dbda1c4bee8ed539 {
+         {
             size: 63,
             align: 1,
             read_only: true,

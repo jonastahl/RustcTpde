@@ -554,7 +554,7 @@ impl Debug for ffi::Global {
             }
         }
 
-        f.debug_struct(&self.name)
+        f.debug_struct(if self.name.is_empty() { "anonymous" } else { &self.name })
             .field("size", &self.size)
             .field("align", &self.align)
             .field("read_only", &self.read_only)

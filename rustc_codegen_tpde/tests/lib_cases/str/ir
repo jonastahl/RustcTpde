@@ -115,7 +115,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 3],
             ],
         },
-        alloc_cff95699b23abcffc3a34d7d19816221 {
+         {
             size: 12,
             align: 1,
             read_only: true,
@@ -132,7 +132,7 @@ ModuleTpde {
               0000  48 65 6c 6c 6f 20 77 6f 72 6c 64 21              |Hello world!|,
             relocations: [],
         },
-        alloc_81fe8a7e68e814739fa750d0216361b4 {
+         {
             size: 4,
             align: 1,
             read_only: true,
@@ -149,7 +149,7 @@ ModuleTpde {
               0000  4a 6f 68 6e                                      |John|,
             relocations: [],
         },
-        alloc_f7486cd712a27ca42f772f74632985be {
+         {
             size: 11,
             align: 1,
             read_only: true,
