@@ -44,7 +44,10 @@ fn main() {
         .flag_if_supported("-fno-exceptions")
         // silence warning in generated cxx code
         .flag_if_supported("-Wno-maybe-uninitialized")
+        .cpp_link_stdlib(None)
         .compile("rustc_codegen_tpde");
+
+    println!("cargo:rustc-link-lib=static=stdc++");
 
     println!("cargo:rerun-if-changed=src/lib.rs");
     println!("cargo:rerun-if-changed=tpde_cpp");
