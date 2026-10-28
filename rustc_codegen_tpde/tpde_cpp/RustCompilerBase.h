@@ -4144,8 +4144,10 @@ namespace tpde_rust {
           kind = tpde::SectionKind::Data;
         }
       }
-      SecRef sec = global.flags.only_local ? this->assembler.get_default_section(kind)
-                                           : this->assembler.create_section(kind);
+      // Large globals get their own section, which makes allows parallel copying for the linker
+      const bool own_section = !global.flags.only_local || global.size >= (64u << 10);
+      SecRef sec = own_section ? this->assembler.create_section(kind)
+                               : this->assembler.get_default_section(kind);
 
       if (global.init) {
         u32 off;
