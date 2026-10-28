@@ -115,7 +115,7 @@ ModuleTpde {
     ],
     consts: [],
     globals: [
-         {
+        anonymous {
             size: 14,
             align: 1,
             read_only: true,

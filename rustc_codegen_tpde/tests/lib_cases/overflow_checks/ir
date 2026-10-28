@@ -2055,7 +2055,7 @@ ModuleTpde {
     ],
     consts: [],
     globals: [
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2075,7 +2075,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 1],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2094,7 +2094,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2114,7 +2114,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 3],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2133,7 +2133,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2153,7 +2153,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 5],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2172,7 +2172,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2192,7 +2192,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2211,7 +2211,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2231,7 +2231,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 9],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2250,7 +2250,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2270,7 +2270,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 11],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2289,7 +2289,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2309,7 +2309,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 13],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2328,7 +2328,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2348,7 +2348,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 15],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2367,7 +2367,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2387,7 +2387,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 17],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2406,7 +2406,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2426,7 +2426,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 19],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2445,7 +2445,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2465,7 +2465,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 21],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2484,7 +2484,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2504,7 +2504,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 23],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2523,7 +2523,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2543,7 +2543,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 25],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2562,7 +2562,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2582,7 +2582,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 27],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2601,7 +2601,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2621,7 +2621,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 29],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2640,7 +2640,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2660,7 +2660,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 31],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2679,7 +2679,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2699,7 +2699,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 33],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2718,7 +2718,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2738,7 +2738,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 35],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2757,7 +2757,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2777,7 +2777,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 37],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2796,7 +2796,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2816,7 +2816,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 39],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2835,7 +2835,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2855,7 +2855,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 41],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2874,7 +2874,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2894,7 +2894,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 43],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2913,7 +2913,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2933,7 +2933,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 45],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2952,7 +2952,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2972,7 +2972,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 47],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -2991,7 +2991,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3011,7 +3011,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 49],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3030,7 +3030,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3050,7 +3050,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 51],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3069,7 +3069,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3089,7 +3089,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 53],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3108,7 +3108,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3128,7 +3128,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 55],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3147,7 +3147,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3167,7 +3167,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 57],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3186,7 +3186,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3206,7 +3206,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 59],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3225,7 +3225,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3245,7 +3245,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 61],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3264,7 +3264,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3284,7 +3284,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 63],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3303,7 +3303,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3323,7 +3323,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 65],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3342,7 +3342,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3362,7 +3362,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 67],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3381,7 +3381,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3401,7 +3401,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 69],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3420,7 +3420,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3440,7 +3440,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 71],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3459,7 +3459,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3479,7 +3479,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 73],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3498,7 +3498,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3518,7 +3518,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 75],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3537,7 +3537,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3557,7 +3557,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 77],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3576,7 +3576,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3596,7 +3596,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 79],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3615,7 +3615,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3635,7 +3635,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 81],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3654,7 +3654,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3674,7 +3674,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 83],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3693,7 +3693,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3713,7 +3713,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 85],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3732,7 +3732,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3752,7 +3752,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 87],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3771,7 +3771,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3791,7 +3791,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 89],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3810,7 +3810,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3830,7 +3830,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 91],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,
@@ -3849,7 +3849,7 @@ ModuleTpde {
               0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -3869,7 +3869,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 93],
             ],
         },
-         {
+        anonymous {
             size: 42,
             align: 1,
             read_only: true,

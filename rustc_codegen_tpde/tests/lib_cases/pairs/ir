@@ -198,7 +198,7 @@ ModuleTpde {
         [i128] (241 17361641481138401520) -> 4463026963245140340976,
     ],
     globals: [
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -218,7 +218,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 1],
             ],
         },
-         {
+        anonymous {
             size: 32,
             align: 1,
             read_only: true,

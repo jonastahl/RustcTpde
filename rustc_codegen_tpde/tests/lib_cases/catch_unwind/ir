@@ -2045,7 +2045,7 @@ ModuleTpde {
         [i32] (18446744073709551615 18446744073709551615) -> -1,
     ],
     globals: [
-         {
+        anonymous {
             size: 198,
             align: 1,
             read_only: true,
@@ -2074,7 +2074,7 @@ ModuleTpde {
               00c0  61 66 65 74 79 2e                                |afety.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 198,
             align: 1,
             read_only: true,
@@ -2103,7 +2103,7 @@ ModuleTpde {
               00c0  61 66 65 74 79 2e                                |afety.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 259,
             align: 1,
             read_only: true,
@@ -2136,7 +2136,7 @@ ModuleTpde {
               0100  74 79 2e                                         |ty.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 259,
             align: 1,
             read_only: true,
@@ -2169,7 +2169,7 @@ ModuleTpde {
               0100  74 79 2e                                         |ty.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2189,7 +2189,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 5],
             ],
         },
-         {
+        anonymous {
             size: 64,
             align: 1,
             read_only: true,
@@ -2209,7 +2209,7 @@ ModuleTpde {
               0030  65 6d 2f 61 6c 69 67 6e 6d 65 6e 74 2e 72 73 00  |em/alignment.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2229,7 +2229,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-         {
+        anonymous {
             size: 63,
             align: 1,
             read_only: true,

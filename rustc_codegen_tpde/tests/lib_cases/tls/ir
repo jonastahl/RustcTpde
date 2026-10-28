@@ -2365,7 +2365,7 @@ ModuleTpde {
               0000  0a 00 00 00 00 00 00 00                          |........|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2385,7 +2385,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 7],
             ],
         },
-         {
+        anonymous {
             size: 62,
             align: 1,
             read_only: true,
@@ -2405,7 +2405,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2425,7 +2425,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 9],
             ],
         },
-         {
+        anonymous {
             size: 62,
             align: 1,
             read_only: true,
@@ -2445,7 +2445,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2465,7 +2465,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 11],
             ],
         },
-         {
+        anonymous {
             size: 62,
             align: 1,
             read_only: true,
@@ -2485,7 +2485,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2505,7 +2505,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 13],
             ],
         },
-         {
+        anonymous {
             size: 62,
             align: 1,
             read_only: true,
@@ -2525,7 +2525,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2545,7 +2545,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 15],
             ],
         },
-         {
+        anonymous {
             size: 62,
             align: 1,
             read_only: true,
@@ -2565,7 +2565,7 @@ ModuleTpde {
               0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 24,
             align: 8,
             read_only: true,
@@ -2585,7 +2585,7 @@ ModuleTpde {
                 offset 0x0 insert [global: 17],
             ],
         },
-         {
+        anonymous {
             size: 30,
             align: 1,
             read_only: true,
@@ -2603,7 +2603,7 @@ ModuleTpde {
               0010  74 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00        |tls/source.rs.|,
             relocations: [],
         },
-         {
+        anonymous {
             size: 8,
             align: 8,
             read_only: true,
@@ -2622,7 +2622,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 25],
             ],
         },
-         {
+        anonymous {
             size: 8,
             align: 8,
             read_only: true,
@@ -2641,7 +2641,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 25],
             ],
         },
-         {
+        anonymous {
             size: 8,
             align: 8,
             read_only: true,
@@ -2660,7 +2660,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 27],
             ],
         },
-         {
+        anonymous {
             size: 8,
             align: 8,
             read_only: true,
@@ -2679,7 +2679,7 @@ ModuleTpde {
                 offset 0x0 insert [func: 27],
             ],
         },
-         {
+        anonymous {
             size: 8,
             align: 8,
             read_only: true,
