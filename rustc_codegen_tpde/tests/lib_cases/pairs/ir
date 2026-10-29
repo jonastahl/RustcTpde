@@ -212,14 +212,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00  |........(.......|
+              0000  00 00 00 00 00 00 00 00 1f 00 00 00 00 00 00 00  |................|
               0010  0b 00 00 00 0e 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 1],
             ],
         },
         anonymous {
-            size: 41,
+            size: 32,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -231,10 +231,9 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (41 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 70 61 69 72 73 2f 73  |ib_cases/pairs/s|
-              0020  6f 75 72 63 65 2e 72 73 00                       |ource.rs.|,
+            data: (32 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  70 61 69 72 73 2f 73 6f 75 72 63 65 2e 72 73 00  |pairs/source.rs.|,
             relocations: [],
         },
     ],

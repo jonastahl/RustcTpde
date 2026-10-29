@@ -4805,14 +4805,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7b 00 00 00 00 00 00 00  |........{.......|
+              0000  00 00 00 00 00 00 00 00 39 00 00 00 00 00 00 00  |........9.......|
               0010  d3 02 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 1],
             ],
         },
         anonymous {
-            size: 124,
+            size: 58,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -4824,15 +4824,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (124 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 70 74 72 2f 6d 6f 64 2e 72 73 00              |/ptr/mod.rs.|,
+            data: (58 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 70  |brary/core/src/p|
+              0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
         anonymous {
@@ -4849,14 +4845,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7b 00 00 00 00 00 00 00  |........{.......|
+              0000  00 00 00 00 00 00 00 00 39 00 00 00 00 00 00 00  |........9.......|
               0010  d3 02 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 3],
             ],
         },
         anonymous {
-            size: 124,
+            size: 58,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -4868,15 +4864,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (124 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 70 74 72 2f 6d 6f 64 2e 72 73 00              |/ptr/mod.rs.|,
+            data: (58 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 70  |brary/core/src/p|
+              0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
         anonymous {
@@ -4893,14 +4885,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7b 00 00 00 00 00 00 00  |........{.......|
+              0000  00 00 00 00 00 00 00 00 39 00 00 00 00 00 00 00  |........9.......|
               0010  26 02 00 00 05 00 00 00                          |&.......|,
             relocations: [
                 offset 0x0 insert [global: 5],
             ],
         },
         anonymous {
-            size: 124,
+            size: 58,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -4912,15 +4904,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (124 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 70 74 72 2f 6d 6f 64 2e 72 73 00              |/ptr/mod.rs.|,
+            data: (58 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 70  |brary/core/src/p|
+              0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
         anonymous {
@@ -4937,14 +4925,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7b 00 00 00 00 00 00 00  |........{.......|
+              0000  00 00 00 00 00 00 00 00 39 00 00 00 00 00 00 00  |........9.......|
               0010  26 02 00 00 05 00 00 00                          |&.......|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
         },
         anonymous {
-            size: 124,
+            size: 58,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -4956,15 +4944,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (124 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 70 74 72 2f 6d 6f 64 2e 72 73 00              |/ptr/mod.rs.|,
+            data: (58 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 70  |brary/core/src/p|
+              0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
         anonymous {
@@ -4981,14 +4965,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7b 00 00 00 00 00 00 00  |........{.......|
+              0000  00 00 00 00 00 00 00 00 39 00 00 00 00 00 00 00  |........9.......|
               0010  89 02 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 9],
             ],
         },
         anonymous {
-            size: 124,
+            size: 58,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5000,15 +4984,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (124 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 70 74 72 2f 6d 6f 64 2e 72 73 00              |/ptr/mod.rs.|,
+            data: (58 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 70  |brary/core/src/p|
+              0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
         anonymous {
@@ -5025,14 +5005,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7b 00 00 00 00 00 00 00  |........{.......|
+              0000  00 00 00 00 00 00 00 00 39 00 00 00 00 00 00 00  |........9.......|
               0010  89 02 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 11],
             ],
         },
         anonymous {
-            size: 124,
+            size: 58,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5044,15 +5024,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (124 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 70 74 72 2f 6d 6f 64 2e 72 73 00              |/ptr/mod.rs.|,
+            data: (58 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 70  |brary/core/src/p|
+              0030  74 72 2f 6d 6f 64 2e 72 73 00                    |tr/mod.rs.|,
             relocations: [],
         },
         anonymous {
@@ -5107,14 +5083,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 81 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3f 00 00 00 00 00 00 00  |........?.......|
               0010  4c 05 00 00 0d 00 00 00                          |L.......|,
             relocations: [
                 offset 0x0 insert [global: 15],
             ],
         },
         anonymous {
-            size: 130,
+            size: 64,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5126,16 +5102,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (130 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 70 74 72 2f 63 6f 6e 73 74 5f 70 74 72 2e 72  |/ptr/const_ptr.r|
-              0080  73 00                                            |s.|,
+            data: (64 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 70  |brary/core/src/p|
+              0030  74 72 2f 63 6f 6e 73 74 5f 70 74 72 2e 72 73 00  |tr/const_ptr.rs.|,
             relocations: [],
         },
         anonymous {
@@ -5362,14 +5333,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  57 00 00 00 0c 00 00 00                          |W.......|,
             relocations: [
                 offset 0x0 insert [global: 24],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5381,10 +5352,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5401,14 +5372,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  57 00 00 00 0c 00 00 00                          |W.......|,
             relocations: [
                 offset 0x0 insert [global: 26],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5420,10 +5391,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5440,14 +5411,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  57 00 00 00 05 00 00 00                          |W.......|,
             relocations: [
                 offset 0x0 insert [global: 28],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5459,10 +5430,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5479,14 +5450,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  57 00 00 00 05 00 00 00                          |W.......|,
             relocations: [
                 offset 0x0 insert [global: 30],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5498,10 +5469,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5518,14 +5489,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  61 00 00 00 05 00 00 00                          |a.......|,
             relocations: [
                 offset 0x0 insert [global: 32],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5537,10 +5508,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5557,14 +5528,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  61 00 00 00 05 00 00 00                          |a.......|,
             relocations: [
                 offset 0x0 insert [global: 34],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5576,10 +5547,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5596,14 +5567,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  68 00 00 00 05 00 00 00                          |h.......|,
             relocations: [
                 offset 0x0 insert [global: 36],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5615,10 +5586,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5635,14 +5606,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  71 00 00 00 15 00 00 00                          |q.......|,
             relocations: [
                 offset 0x0 insert [global: 38],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5654,10 +5625,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5674,14 +5645,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  71 00 00 00 10 00 00 00                          |q.......|,
             relocations: [
                 offset 0x0 insert [global: 40],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5693,10 +5664,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5713,14 +5684,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  71 00 00 00 09 00 00 00                          |q.......|,
             relocations: [
                 offset 0x0 insert [global: 42],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5732,10 +5703,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5752,14 +5723,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  72 00 00 00 09 00 00 00                          |r.......|,
             relocations: [
                 offset 0x0 insert [global: 44],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5771,10 +5742,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5791,14 +5762,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  4b 00 00 00 13 00 00 00                          |K.......|,
             relocations: [
                 offset 0x0 insert [global: 46],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5810,10 +5781,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5830,14 +5801,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  46 00 00 00 18 00 00 00                          |F.......|,
             relocations: [
                 offset 0x0 insert [global: 48],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5849,10 +5820,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5869,14 +5840,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  5c 00 00 00 05 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 50],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5888,10 +5859,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -5908,14 +5879,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  5c 00 00 00 05 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 52],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -5927,10 +5898,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6c 69 62 63 61 6c 6c  |ib_cases/libcall|
-              0020  73 2f 73 6f 75 72 63 65 2e 72 73 00              |s/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6c 69 62 63 61 6c 6c 73 2f 73 6f 75 72 63 65 2e  |libcalls/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
     ],

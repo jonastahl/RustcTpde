@@ -90,7 +90,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -123,7 +123,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -156,7 +156,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -189,7 +189,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -222,7 +222,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -255,7 +255,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -288,7 +288,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -321,7 +321,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -381,8 +381,6 @@ ModuleTpde {
             slots: [
                 i128,
                 i32,
-                i128,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -396,18 +394,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 8], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -426,8 +414,6 @@ ModuleTpde {
             slots: [
                 i32,
                 i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -441,18 +427,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 4], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -471,8 +447,6 @@ ModuleTpde {
             slots: [
                 i64,
                 i32,
-                i64,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -486,18 +460,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 6], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -516,8 +480,6 @@ ModuleTpde {
             slots: [
                 i8,
                 i32,
-                i8,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -531,18 +493,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 2], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -594,8 +546,6 @@ ModuleTpde {
             slots: [
                 i128,
                 i32,
-                i128,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -609,18 +559,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 9], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -639,8 +579,6 @@ ModuleTpde {
             slots: [
                 i32,
                 i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -654,18 +592,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 5], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -684,8 +612,6 @@ ModuleTpde {
             slots: [
                 i64,
                 i32,
-                i64,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -699,18 +625,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 7], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -729,8 +645,6 @@ ModuleTpde {
             slots: [
                 i8,
                 i32,
-                i8,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -744,18 +658,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 3], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],

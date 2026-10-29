@@ -17,6 +17,14 @@ Disassembly of section .text:
 	ret
 	nopl   0x0(%rax,%rax,1)
 
+<_RNvMs8_NtCsioHeeuq8fQz_4core3numo12wrapping_add>:
+	add    %rdx,%rdi
+	adc    %rcx,%rsi
+	mov    %rdi,%rax
+	mov    %rsi,%rdx
+	ret
+	nopl   (%rax)
+
 <ackermann>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -1748,12 +1756,15 @@ Disassembly of section .text:
 	nopl   0x0(%rax,%rax,1)
 
 <u128_add>:
-	add    %rdx,%rdi
-	adc    %rcx,%rsi
-	mov    %rdi,%rax
-	mov    %rsi,%rdx
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	call   <u128_add+0xd>
+	add    $0x30,%rsp
+	pop    %rbp
 	ret
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <u128_late>:
 	push   %rbp

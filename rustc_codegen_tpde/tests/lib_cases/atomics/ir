@@ -5268,7 +5268,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -8590,7 +8590,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -8880,7 +8880,7 @@ ModuleTpde {
                 only_local: true,
                 weak_link: false,
                 always_inline: true,
-                dead: true,
+                dead: false,
             },
             has_personality: false,
             personality: 0,
@@ -8916,11 +8916,6 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
-                ptr,
-                ptr,
-                i64,
-                i64,
-                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -8937,7 +8932,8 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 1],
-                    <Br> ([raw: 6]),
+                    <Call> ([func: 88], [val: 0], [val: 1]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
                     <Store> ([const: i64 0], [alloc: 0], [raw: 8]),
@@ -8957,19 +8953,6 @@ ModuleTpde {
                     <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 7],
                     <Load> ([val: 7], [raw: 8]) -> [val: 8],
                     <Ret> ([val: 6], [val: 8]),
-                ],
-                BasicBlock: [
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 13]) -> [val: 2],
-                    <Br> ([raw: 4]),
-                ],
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 8]) -> [val: 11],
-                    <Load> ([val: 1], [raw: 8]) -> [val: 12],
-                    <CMPult> ([val: 11], [val: 12]) -> [val: 13],
-                    <Br> ([raw: 5]),
                 ],
             ],
             callee_infos: [],
@@ -9078,9 +9061,6 @@ ModuleTpde {
                 i32,
                 i32,
                 i32,
-                i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -9095,18 +9075,8 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Call> ([func: 64], [val: 0], [val: 1], [const: i8 4]) -> [val: 2],
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 38], [val: 2], [val: 1]) -> [val: 3],
                     <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 6]) -> [val: 3],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <Add> ([val: 2], [val: 1]) -> [val: 6],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -11937,7 +11907,6 @@ ModuleTpde {
             slots: [
                 ptr,
                 Bool,
-                Void,
             ],
             flags: Flags {
                 extern_link: false,
@@ -11961,17 +11930,8 @@ ModuleTpde {
                     <Ret> (),
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 6]),
-                ],
-                BasicBlock: [
+                    <Call> ([func: 83]),
                     <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <Br> ([raw: 4]),
-                ],
-                BasicBlock: [
-                    <Pause> () -> [val: 2],
-                    <Br> ([raw: 5]),
                 ],
             ],
             callee_infos: [],
@@ -12915,14 +12875,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 4],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12934,15 +12894,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -12999,14 +12955,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 8],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13018,15 +12974,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13081,14 +13033,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 12],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13100,15 +13052,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13165,14 +13113,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 16],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13184,15 +13132,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13247,14 +13191,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 20],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13266,15 +13210,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13331,14 +13271,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 24],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13350,15 +13290,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13413,14 +13349,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 28],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13432,15 +13368,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13497,14 +13429,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 32],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13516,15 +13448,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13579,14 +13507,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 36],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13598,15 +13526,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13663,14 +13587,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  e3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 40],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13682,15 +13606,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13745,14 +13665,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 44],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13764,15 +13684,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13829,14 +13745,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 48],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13848,15 +13764,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13911,14 +13823,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 52],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13930,15 +13842,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -13995,14 +13903,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 56],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14014,15 +13922,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14077,14 +13981,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 60],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14096,15 +14000,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14161,14 +14061,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 64],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14180,15 +14080,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14243,14 +14139,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 68],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14262,15 +14158,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14327,14 +14219,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 72],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14346,15 +14238,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14409,14 +14297,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 76],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14428,15 +14316,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14493,14 +14377,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 80],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14512,15 +14396,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14575,14 +14455,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d2 10 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 84],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14594,15 +14474,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14659,14 +14535,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d3 10 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 88],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14678,15 +14554,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14743,14 +14615,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5c 11 00 00 1d 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 92],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14762,15 +14634,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14827,14 +14695,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5b 11 00 00 1c 00 00 00                          |[.......|,
             relocations: [
                 offset 0x0 insert [global: 96],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14846,15 +14714,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14911,14 +14775,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5c 11 00 00 1d 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 100],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -14930,15 +14794,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -14995,14 +14855,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5b 11 00 00 1c 00 00 00                          |[.......|,
             relocations: [
                 offset 0x0 insert [global: 104],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15014,15 +14874,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15079,14 +14935,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5c 11 00 00 1d 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 108],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15098,15 +14954,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15163,14 +15015,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5b 11 00 00 1c 00 00 00                          |[.......|,
             relocations: [
                 offset 0x0 insert [global: 112],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15182,15 +15034,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15247,14 +15095,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5c 11 00 00 1d 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 116],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15266,15 +15114,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15331,14 +15175,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5b 11 00 00 1c 00 00 00                          |[.......|,
             relocations: [
                 offset 0x0 insert [global: 120],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15350,15 +15194,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15415,14 +15255,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5c 11 00 00 1d 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 124],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15434,15 +15274,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15499,14 +15335,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5b 11 00 00 1c 00 00 00                          |[.......|,
             relocations: [
                 offset 0x0 insert [global: 128],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15518,15 +15354,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15583,14 +15415,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5c 11 00 00 1d 00 00 00                          |\.......|,
             relocations: [
                 offset 0x0 insert [global: 132],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15602,15 +15434,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15667,14 +15495,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  5b 11 00 00 1c 00 00 00                          |[.......|,
             relocations: [
                 offset 0x0 insert [global: 136],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15686,15 +15514,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15751,14 +15575,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  9e 11 00 00 1d 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 140],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15770,15 +15594,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15835,14 +15655,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  9d 11 00 00 1c 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 144],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15854,15 +15674,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -15919,14 +15735,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  9e 11 00 00 1d 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 148],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -15938,15 +15754,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -16003,14 +15815,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  9d 11 00 00 1c 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 152],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16022,15 +15834,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         global.0 {
@@ -16102,14 +15910,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  2b 13 00 00 18 00 00 00                          |+.......|,
             relocations: [
                 offset 0x0 insert [global: 157],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16121,15 +15929,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -16184,14 +15988,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
               0010  d6 12 00 00 18 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 161],
             ],
         },
         anonymous {
-            size: 128,
+            size: 62,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16203,15 +16007,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (128 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 73 79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00  |/sync/atomic.rs.|,
+            data: (62 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 73  |brary/core/src/s|
+              0030  79 6e 63 2f 61 74 6f 6d 69 63 2e 72 73 00        |ync/atomic.rs.|,
             relocations: [],
         },
         anonymous {
@@ -16284,14 +16084,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 7e 00 00 00 00 00 00 00  |........~.......|
+              0000  00 00 00 00 00 00 00 00 3c 00 00 00 00 00 00 00  |........<.......|
               0010  25 02 00 00 01 00 00 00                          |%.......|,
             relocations: [
                 offset 0x0 insert [global: 165],
             ],
         },
         anonymous {
-            size: 127,
+            size: 61,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16303,15 +16103,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (127 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 74 65 72 2f 72 61 6e 67 65 2e 72 73 00     |/iter/range.rs.|,
+            data: (61 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  74 65 72 2f 72 61 6e 67 65 2e 72 73 00           |ter/range.rs.|,
             relocations: [],
         },
         anonymous {
@@ -16328,14 +16124,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
+              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
               0010  a1 01 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 167],
             ],
         },
         anonymous {
-            size: 43,
+            size: 34,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16347,10 +16143,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (43 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 61 74 6f 6d 69 63 73  |ib_cases/atomics|
-              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
+            data: (34 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  61 74 6f 6d 69 63 73 2f 73 6f 75 72 63 65 2e 72  |atomics/source.r|
+              0020  73 00                                            |s.|,
             relocations: [],
         },
         anonymous {
@@ -16367,14 +16163,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
+              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
               0010  c2 01 00 00 36 00 00 00                          |....6...|,
             relocations: [
                 offset 0x0 insert [global: 169],
             ],
         },
         anonymous {
-            size: 43,
+            size: 34,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16386,10 +16182,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (43 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 61 74 6f 6d 69 63 73  |ib_cases/atomics|
-              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
+            data: (34 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  61 74 6f 6d 69 63 73 2f 73 6f 75 72 63 65 2e 72  |atomics/source.r|
+              0020  73 00                                            |s.|,
             relocations: [],
         },
         anonymous {
@@ -16406,14 +16202,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
+              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
               0010  b7 01 00 00 17 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 171],
             ],
         },
         anonymous {
-            size: 43,
+            size: 34,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16425,10 +16221,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (43 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 61 74 6f 6d 69 63 73  |ib_cases/atomics|
-              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
+            data: (34 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  61 74 6f 6d 69 63 73 2f 73 6f 75 72 63 65 2e 72  |atomics/source.r|
+              0020  73 00                                            |s.|,
             relocations: [],
         },
         anonymous {
@@ -16445,14 +16241,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
+              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
               0010  d6 01 00 00 0e 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 173],
             ],
         },
         anonymous {
-            size: 43,
+            size: 34,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16464,10 +16260,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (43 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 61 74 6f 6d 69 63 73  |ib_cases/atomics|
-              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
+            data: (34 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  61 74 6f 6d 69 63 73 2f 73 6f 75 72 63 65 2e 72  |atomics/source.r|
+              0020  73 00                                            |s.|,
             relocations: [],
         },
         anonymous {
@@ -16484,14 +16280,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
+              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
               0010  d6 01 00 00 0e 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 175],
             ],
         },
         anonymous {
-            size: 43,
+            size: 34,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -16503,10 +16299,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (43 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 61 74 6f 6d 69 63 73  |ib_cases/atomics|
-              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
+            data: (34 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  61 74 6f 6d 69 63 73 2f 73 6f 75 72 63 65 2e 72  |atomics/source.r|
+              0020  73 00                                            |s.|,
             relocations: [],
         },
     ],

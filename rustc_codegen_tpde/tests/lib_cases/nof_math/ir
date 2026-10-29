@@ -11364,14 +11364,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  52 08 00 00 29 00 00 00                          |R...)...|,
             relocations: [
                 offset 0x0 insert [global: 1],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11383,16 +11383,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11409,14 +11405,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  52 08 00 00 29 00 00 00                          |R...)...|,
             relocations: [
                 offset 0x0 insert [global: 3],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11428,16 +11424,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11454,14 +11446,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  52 08 00 00 29 00 00 00                          |R...)...|,
             relocations: [
                 offset 0x0 insert [global: 5],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11473,16 +11465,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11499,14 +11487,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  52 08 00 00 29 00 00 00                          |R...)...|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11518,16 +11506,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11544,14 +11528,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  68 08 00 00 29 00 00 00                          |h...)...|,
             relocations: [
                 offset 0x0 insert [global: 9],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11563,16 +11547,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11589,14 +11569,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  68 08 00 00 29 00 00 00                          |h...)...|,
             relocations: [
                 offset 0x0 insert [global: 11],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11608,16 +11588,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11634,14 +11610,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  68 08 00 00 29 00 00 00                          |h...)...|,
             relocations: [
                 offset 0x0 insert [global: 13],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11653,16 +11629,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11679,14 +11651,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 82 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00  |........@.......|
               0010  68 08 00 00 29 00 00 00                          |h...)...|,
             relocations: [
                 offset 0x0 insert [global: 15],
             ],
         },
         anonymous {
-            size: 131,
+            size: 65,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11698,16 +11670,12 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (131 bytes)
-              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
-              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
-              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
-              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
-              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
-              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
-              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
-              0070  2f 69 6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e  |/intrinsics/mod.|
-              0080  72 73 00                                         |rs.|,
+            data: (65 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 69  |brary/core/src/i|
+              0030  6e 74 72 69 6e 73 69 63 73 2f 6d 6f 64 2e 72 73  |ntrinsics/mod.rs|
+              0040  00                                               |.|,
             relocations: [],
         },
         anonymous {
@@ -11724,14 +11692,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  6f 02 00 00 05 00 00 00                          |o.......|,
             relocations: [
                 offset 0x0 insert [global: 17],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11743,10 +11711,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -11763,14 +11731,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  6f 02 00 00 05 00 00 00                          |o.......|,
             relocations: [
                 offset 0x0 insert [global: 19],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11782,10 +11750,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -11802,14 +11770,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  2b 01 00 00 05 00 00 00                          |+.......|,
             relocations: [
                 offset 0x0 insert [global: 21],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11821,10 +11789,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -11841,14 +11809,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  2b 01 00 00 05 00 00 00                          |+.......|,
             relocations: [
                 offset 0x0 insert [global: 23],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11860,10 +11828,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -11880,14 +11848,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  30 01 00 00 05 00 00 00                          |0.......|,
             relocations: [
                 offset 0x0 insert [global: 25],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11899,10 +11867,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -11919,14 +11887,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  30 01 00 00 05 00 00 00                          |0.......|,
             relocations: [
                 offset 0x0 insert [global: 27],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11938,10 +11906,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -11958,14 +11926,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  35 01 00 00 05 00 00 00                          |5.......|,
             relocations: [
                 offset 0x0 insert [global: 29],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -11977,10 +11945,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -11997,14 +11965,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  35 01 00 00 05 00 00 00                          |5.......|,
             relocations: [
                 offset 0x0 insert [global: 31],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12016,10 +11984,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12036,14 +12004,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  26 01 00 00 05 00 00 00                          |&.......|,
             relocations: [
                 offset 0x0 insert [global: 33],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12055,10 +12023,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12075,14 +12043,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  26 01 00 00 05 00 00 00                          |&.......|,
             relocations: [
                 offset 0x0 insert [global: 35],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12094,10 +12062,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12114,14 +12082,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  f8 02 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 37],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12133,10 +12101,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12153,14 +12121,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  f8 02 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 39],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12172,10 +12140,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12192,14 +12160,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  f8 02 00 00 13 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 41],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12211,10 +12179,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12231,14 +12199,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  f8 02 00 00 13 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 43],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12250,10 +12218,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12270,14 +12238,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  2d 02 00 00 05 00 00 00                          |-.......|,
             relocations: [
                 offset 0x0 insert [global: 45],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12289,10 +12257,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12309,14 +12277,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  2d 02 00 00 05 00 00 00                          |-.......|,
             relocations: [
                 offset 0x0 insert [global: 47],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12328,10 +12296,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12348,14 +12316,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  2d 02 00 00 13 00 00 00                          |-.......|,
             relocations: [
                 offset 0x0 insert [global: 49],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12367,10 +12335,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12387,14 +12355,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  2d 02 00 00 13 00 00 00                          |-.......|,
             relocations: [
                 offset 0x0 insert [global: 51],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12406,10 +12374,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12426,14 +12394,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  f3 02 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 53],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12445,10 +12413,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12465,14 +12433,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  f3 02 00 00 13 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 55],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12484,10 +12452,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12504,14 +12472,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  28 02 00 00 05 00 00 00                          |(.......|,
             relocations: [
                 offset 0x0 insert [global: 57],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12523,10 +12491,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12543,14 +12511,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  28 02 00 00 13 00 00 00                          |(.......|,
             relocations: [
                 offset 0x0 insert [global: 59],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12562,10 +12530,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12582,14 +12550,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  74 02 00 00 05 00 00 00                          |t.......|,
             relocations: [
                 offset 0x0 insert [global: 61],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12601,10 +12569,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12621,14 +12589,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  3f 01 00 00 05 00 00 00                          |?.......|,
             relocations: [
                 offset 0x0 insert [global: 63],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12640,10 +12608,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12660,14 +12628,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  44 01 00 00 05 00 00 00                          |D.......|,
             relocations: [
                 offset 0x0 insert [global: 65],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12679,10 +12647,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12699,14 +12667,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  49 01 00 00 05 00 00 00                          |I.......|,
             relocations: [
                 offset 0x0 insert [global: 67],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12718,10 +12686,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12738,14 +12706,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  3a 01 00 00 05 00 00 00                          |:.......|,
             relocations: [
                 offset 0x0 insert [global: 69],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12757,10 +12725,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12777,14 +12745,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  79 02 00 00 05 00 00 00                          |y.......|,
             relocations: [
                 offset 0x0 insert [global: 71],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12796,10 +12764,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12816,14 +12784,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  79 02 00 00 05 00 00 00                          |y.......|,
             relocations: [
                 offset 0x0 insert [global: 73],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12835,10 +12803,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12855,14 +12823,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  53 01 00 00 05 00 00 00                          |S.......|,
             relocations: [
                 offset 0x0 insert [global: 75],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12874,10 +12842,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12894,14 +12862,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  53 01 00 00 05 00 00 00                          |S.......|,
             relocations: [
                 offset 0x0 insert [global: 77],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12913,10 +12881,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12933,14 +12901,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  58 01 00 00 05 00 00 00                          |X.......|,
             relocations: [
                 offset 0x0 insert [global: 79],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12952,10 +12920,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -12972,14 +12940,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  58 01 00 00 05 00 00 00                          |X.......|,
             relocations: [
                 offset 0x0 insert [global: 81],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -12991,10 +12959,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13011,14 +12979,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  5d 01 00 00 05 00 00 00                          |].......|,
             relocations: [
                 offset 0x0 insert [global: 83],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13030,10 +12998,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13050,14 +13018,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  5d 01 00 00 05 00 00 00                          |].......|,
             relocations: [
                 offset 0x0 insert [global: 85],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13069,10 +13037,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13089,14 +13057,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  4e 01 00 00 05 00 00 00                          |N.......|,
             relocations: [
                 offset 0x0 insert [global: 87],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13108,10 +13076,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13128,14 +13096,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  4e 01 00 00 05 00 00 00                          |N.......|,
             relocations: [
                 offset 0x0 insert [global: 89],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13147,10 +13115,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13167,14 +13135,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  7e 02 00 00 05 00 00 00                          |~.......|,
             relocations: [
                 offset 0x0 insert [global: 91],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13186,10 +13154,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13206,14 +13174,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  67 01 00 00 05 00 00 00                          |g.......|,
             relocations: [
                 offset 0x0 insert [global: 93],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13225,10 +13193,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13245,14 +13213,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  6c 01 00 00 05 00 00 00                          |l.......|,
             relocations: [
                 offset 0x0 insert [global: 95],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13264,10 +13232,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13284,14 +13252,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  71 01 00 00 05 00 00 00                          |q.......|,
             relocations: [
                 offset 0x0 insert [global: 97],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13303,10 +13271,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -13323,14 +13291,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 2b 00 00 00 00 00 00 00  |........+.......|
+              0000  00 00 00 00 00 00 00 00 22 00 00 00 00 00 00 00  |........".......|
               0010  62 01 00 00 05 00 00 00                          |b.......|,
             relocations: [
                 offset 0x0 insert [global: 99],
             ],
         },
         anonymous {
-            size: 44,
+            size: 35,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -13342,10 +13310,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (44 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
-              0010  69 62 5f 63 61 73 65 73 2f 6e 6f 66 5f 6d 61 74  |ib_cases/nof_mat|
-              0020  68 2f 73 6f 75 72 63 65 2e 72 73 00              |h/source.rs.|,
+            data: (35 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  6e 6f 66 5f 6d 61 74 68 2f 73 6f 75 72 63 65 2e  |nof_math/source.|
+              0020  72 73 00                                         |rs.|,
             relocations: [],
         },
     ],

@@ -473,7 +473,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCsioHeeuq8fQz_4core4sync6atomic12atomic_storeOyKb0_ECsQvp3e8KgHi_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffafa9>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffaf99>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -542,7 +542,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCsioHeeuq8fQz_4core4sync6atomic12atomic_storehKb0_ECsQvp3e8KgHi_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb089>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb079>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -611,7 +611,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCsioHeeuq8fQz_4core4sync6atomic12atomic_storejKb0_ECsQvp3e8KgHi_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb169>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb159>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -680,7 +680,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCsioHeeuq8fQz_4core4sync6atomic12atomic_storemKb0_ECsQvp3e8KgHi_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb249>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb239>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -817,7 +817,7 @@ Disassembly of section .text:
 	jg     <_RINvNtNtCsioHeeuq8fQz_4core4sync6atomic12atomic_storeyKb0_ECsQvp3e8KgHi_6source+0xce>
 	add    %al,(%rax)
 	rex.RX add %r8b,(%rax)
-	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb409>
+	add    %cl,0xf000000(%rip)        # <swap_u8+0xeffb3f9>
 	(bad)
 	test   %al,(%rax)
 	add    %al,(%rax)
@@ -2681,7 +2681,7 @@ Disassembly of section .text:
 	add    %al,(%rax)
 	(bad)
 	add    %al,(%rax)
-	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffcf9d>
+	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffcf8d>
 	add    %al,(%rax)
 	...
 
@@ -2741,7 +2741,7 @@ Disassembly of section .text:
 	add    %al,(%rax)
 	(bad)
 	add    %al,(%rax)
-	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffd05d>
+	add    %ah,0x13000000(%rip)        # <swap_u8+0x12ffd04d>
 	add    %al,(%rax)
 	...
 
@@ -3366,6 +3366,13 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax,%rax,1)
+
+<_RNvMs6_NtCsioHeeuq8fQz_4core3numm12wrapping_add>:
+	lea    (%rdi,%rsi,1),%edi
+	mov    %edi,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
 
 <_RNvMsA_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomichE16compare_exchangeCsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -5506,6 +5513,12 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopw   0x0(%rax,%rax,1)
 
+<_RNvNtCsioHeeuq8fQz_4core4hint9spin_loop>:
+	pause
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
 <_RNvNtNtCsioHeeuq8fQz_4core4sync6atomic14compiler_fenceCsQvp3e8KgHi_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -5647,30 +5660,33 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 
+<_RNvXs12_NtNtCsioHeeuq8fQz_4core3cmp5implsyNtB8_10PartialOrd2lt>:
+	mov    (%rdi),%rdi
+	mov    (%rsi),%rsi
+	cmp    %rsi,%rdi
+	setb   %al
+	ret
+	nopl   (%rax)
+
 <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x28,%rsp
+	sub    $0x38,%rsp
 	mov    %rdi,%rbx
 	lea    0x8(%rbx),%rax
-	mov    %rax,%r12
-	mov    (%rbx),%rax
-	mov    (%r12),%r12
-	cmp    %r12,%rax
-	setb   %r12b
-	mov    %r12d,%r13d
-	test   $0x1,%r13b
-	jne    <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source+0x3f>
+	mov    %rbx,%rdi
+	mov    %rax,%rsi
+	call   <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source+0x1b>
+	test   $0x1,%al
+	jne    <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source+0x30>
 	movq   $0x0,-0x40(%rbp)
-	jmp    <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source+0x66>
+	jmp    <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source+0x57>
 	mov    (%rbx),%rax
 	mov    %rax,%rdi
 	mov    $0x1,%esi
 	mov    %rax,-0x30(%rbp)
-	call   <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source+0x53>
+	call   <_RNvXs3_NtNtCsioHeeuq8fQz_4core4iter5rangeINtNtNtB9_3ops5range5RangeyENtB5_17RangeIteratorImpl9spec_nextCsQvp3e8KgHi_6source+0x44>
 	mov    %rax,(%rbx)
 	mov    -0x30(%rbp),%rax
 	mov    %rax,-0x38(%rbp)
@@ -5678,9 +5694,7 @@ Disassembly of section .text:
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
 	mov    %rcx,%rdx
-	add    $0x28,%rsp
-	pop    %r13
-	pop    %r12
+	add    $0x38,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
@@ -5722,26 +5736,18 @@ Disassembly of section .text:
 <add_fetch_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %esi,%ebx
-	mov    %ebx,%esi
+	sub    $0x30,%rsp
+	mov    %esi,-0x2c(%rbp)
 	mov    $0x4,%edx
-	call   <add_fetch_u32+0x1b>
-	mov    %eax,%r12d
-	lea    (%r12,%rbx,1),%r13d
-	mov    %r13d,%ebx
-	mov    %ebx,%eax
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
+	call   <add_fetch_u32+0x15>
+	mov    %eax,%edi
+	mov    -0x2c(%rbp),%esi
+	call   <add_fetch_u32+0x1f>
+	add    $0x30,%rsp
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <bump_slot>:
 	push   %rbp
@@ -6702,15 +6708,15 @@ Disassembly of section .text:
 	mov    $0x2,%edx
 	call   <spin_lock+0x1e>
 	test   $0x1,%al
-	je     <spin_lock+0x2a>
-	pause
+	je     <spin_lock+0x2d>
+	call   <spin_lock+0x2b>
 	jmp    <spin_lock+0xc>
 	add    $0x28,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <spin_unlock>:
 	push   %rbp
