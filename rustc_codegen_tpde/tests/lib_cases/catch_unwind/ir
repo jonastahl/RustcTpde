@@ -1,209 +1,7 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBK_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: sRet,
-                    extension: None,
-                    size: 16,
-                    align: 8,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                Bool,
-                i32,
-                ptr,
-                i32,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 19,
-            allocas: [
-                size: 16, align: 8,
-                size: 16, align: 8,
-                size: 4, align: 4,
-                size: 1, align: 1,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Store> ([const: Bool 0], [alloc: 3], [raw: 1]),
-                    <Invoke> ([func: 6], [raw: 2], [raw: 1], [alloc: 0]),
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 2]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 8], [alloc: 0], [val: 2]),
-                    <Store> ([const: Bool 1], [alloc: 3], [raw: 1]),
-                    <Br> ([raw: 2]),
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 3], [raw: 1]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 4], [raw: 3]),
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
-                    <Store> ([val: 5], [alloc: 2], [raw: 4]),
-                    <Cast> ([alloc: 2]) -> [val: 6],
-                    <Load> ([val: 6], [raw: 4]) -> [val: 7],
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 8],
-                    <Store> ([val: 7], [val: 8], [raw: 8]),
-                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 9],
-                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 10],
-                    <Load> ([val: 10], [raw: 8]) -> [val: 11],
-                    <Store> ([val: 9], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 12],
-                    <Store> ([val: 11], [val: 12], [raw: 8]),
-                    <Cast> ([alloc: 1]) -> [val: 13],
-                    <Load> ([val: 13], [raw: 8]) -> [val: 14],
-                    <GEP> ([val: 13], [raw: 8], [const: i64 1]) -> [val: 15],
-                    <Load> ([val: 15], [raw: 8]) -> [val: 16],
-                    <Store> ([val: 14], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 17],
-                    <Store> ([val: 16], [val: 17], [raw: 8]),
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNtCs72J22aohzRW_3std5panic12catch_unwindNCNvCseeGrevWVrEI_6source8try_call0lEBK_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: sRet,
-                    extension: None,
-                    size: 16,
-                    align: 8,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                Bool,
-                i32,
-                ptr,
-                i32,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 20,
-            allocas: [
-                size: 16, align: 8,
-                size: 16, align: 8,
-                size: 4, align: 4,
-                size: 1, align: 1,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Store> ([const: Bool 0], [alloc: 3], [raw: 1]),
-                    <Invoke> ([func: 7], [raw: 2], [raw: 1], [alloc: 0]),
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 2]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 9], [alloc: 0], [val: 2]),
-                    <Store> ([const: Bool 1], [alloc: 3], [raw: 1]),
-                    <Br> ([raw: 2]),
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 3], [raw: 1]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 4], [raw: 3]),
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
-                    <Store> ([val: 5], [alloc: 2], [raw: 4]),
-                    <Cast> ([alloc: 2]) -> [val: 6],
-                    <Load> ([val: 6], [raw: 4]) -> [val: 7],
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 8],
-                    <Store> ([val: 7], [val: 8], [raw: 8]),
-                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 9],
-                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 10],
-                    <Load> ([val: 10], [raw: 8]) -> [val: 11],
-                    <Store> ([val: 9], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 12],
-                    <Store> ([val: 11], [val: 12], [raw: 8]),
-                    <Cast> ([alloc: 1]) -> [val: 13],
-                    <Load> ([val: 13], [raw: 8]) -> [val: 14],
-                    <GEP> ([val: 13], [raw: 8], [const: i64 1]) -> [val: 15],
-                    <Load> ([val: 15], [raw: 8]) -> [val: 16],
-                    <Store> ([val: 14], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 17],
-                    <Store> ([val: 16], [val: 17], [raw: 8]),
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNtCs94NUNretDkj_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECseeGrevWVrEI_6source",
+            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -265,7 +63,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECseeGrevWVrEI_6source",
+            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCsmsJmAcGTx5_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -306,14 +104,14 @@ ModuleTpde {
                     <Ret> (),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 4], [val: 0]),
+                    <Call> ([func: 2], [val: 0]),
                     <Br> ([raw: 1]),
                 ],
             ],
             callee_infos: [],
         },
         Function {
-            name: "_RINvNtCs94NUNretDkj_4core3ptr9drop_glueINtNtCsgu7ECEkAoBX_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECseeGrevWVrEI_6source",
+            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueINtNtCsmsJmAcGTx5_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -349,7 +147,7 @@ ModuleTpde {
                 dead: false,
             },
             has_personality: true,
-            personality: 23,
+            personality: 21,
             allocas: [
                 size: 16, align: 8,
             ],
@@ -385,7 +183,7 @@ ModuleTpde {
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 11],
                     <AddRet> () -> [val: 12],
-                    <Call> ([func: 24]),
+                    <Call> ([func: 22]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
@@ -409,7 +207,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvNtCs94NUNretDkj_4core3ptr9drop_glueNtCseeGrevWVrEI_6source5GuardEBD_",
+            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueNtCsQvp3e8KgHi_6source5GuardEBD_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -441,7 +239,171 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind7do_callNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBY_",
+            name: "_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 16,
+                    align: 8,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                i32,
+                Bool,
+                i32,
+                i64,
+                ptr,
+                i64,
+                ptr,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                dead: false,
+            },
+            has_personality: true,
+            personality: 23,
+            allocas: [
+                size: 16, align: 8,
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <Store> ([const: Bool 0], [alloc: 1], [raw: 1]),
+                    <Invoke> ([func: 6], [raw: 2], [raw: 1], [alloc: 0]),
+                ],
+                BasicBlock: [
+                    <LandingPad> ([raw: 2]) -> [val: 2],
+                    <AddRet> () -> [val: 3],
+                    <Call> ([func: 8], [alloc: 0], [val: 2]),
+                    <Store> ([const: Bool 1], [alloc: 1], [raw: 1]),
+                    <Br> ([raw: 2]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 1]) -> [val: 4],
+                    <CondBr> ([val: 4], [raw: 4], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
+                    <Store> ([val: 5], [val: 6], [raw: 8]),
+                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
+                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
+                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
+                    <Store> ([val: 7], [val: 0], [raw: 8]),
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
+                    <Store> ([val: 9], [val: 10], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 16,
+                    align: 8,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                i32,
+                Bool,
+                i32,
+                i64,
+                ptr,
+                i64,
+                ptr,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                dead: false,
+            },
+            has_personality: true,
+            personality: 24,
+            allocas: [
+                size: 16, align: 8,
+                size: 1, align: 1,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <Store> ([const: Bool 0], [alloc: 1], [raw: 1]),
+                    <Invoke> ([func: 7], [raw: 2], [raw: 1], [alloc: 0]),
+                ],
+                BasicBlock: [
+                    <LandingPad> ([raw: 2]) -> [val: 2],
+                    <AddRet> () -> [val: 3],
+                    <Call> ([func: 9], [alloc: 0], [val: 2]),
+                    <Store> ([const: Bool 1], [alloc: 1], [raw: 1]),
+                    <Br> ([raw: 2]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 1]) -> [val: 4],
+                    <CondBr> ([val: 4], [raw: 4], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
+                    <Store> ([val: 5], [val: 6], [raw: 8]),
+                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
+                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
+                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
+                    <Store> ([val: 7], [val: 0], [raw: 8]),
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
+                    <Store> ([val: 9], [val: 10], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind7do_callNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBY_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -477,7 +439,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind7do_callNCNvCseeGrevWVrEI_6source8try_call0lEBY_",
+            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind7do_callNCNvCsQvp3e8KgHi_6source8try_call0lEBY_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -513,7 +475,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source16try_call_guarded0lEBZ_",
+            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind8do_catchNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBZ_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -569,7 +531,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNvNtCs72J22aohzRW_3std9panicking12catch_unwind8do_catchNCNvCseeGrevWVrEI_6source8try_call0lEBZ_",
+            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind8do_catchNCNvCsQvp3e8KgHi_6source8try_call0lEBZ_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -625,7 +587,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCseeGrevWVrEI_6source16try_call_guarded0B3_",
+            name: "_RNCNvCsQvp3e8KgHi_6source16try_call_guarded0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -667,7 +629,7 @@ ModuleTpde {
                     <Invoke> ([func: 32], [raw: 3], [raw: 2], [val: 1]) -> [val: 5],
                 ],
                 BasicBlock: [
-                    <Invoke> ([func: 5], [raw: 5], [raw: 4], [alloc: 0]),
+                    <Invoke> ([func: 3], [raw: 5], [raw: 4], [alloc: 0]),
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 0]) -> [val: 2],
@@ -678,13 +640,13 @@ ModuleTpde {
                     <Br> ([raw: 1]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 5], [alloc: 0]),
+                    <Call> ([func: 3], [alloc: 0]),
                     <Ret> ([val: 5]),
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 6],
                     <AddRet> () -> [val: 7],
-                    <Call> ([func: 24]),
+                    <Call> ([func: 22]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
@@ -697,7 +659,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCseeGrevWVrEI_6source8try_call0B3_",
+            name: "_RNCNvCsQvp3e8KgHi_6source8try_call0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -732,7 +694,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNvMNtNtCs94NUNretDkj_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCseeGrevWVrEI_6source",
+            name: "_RNvNvMNtNtCsioHeeuq8fQz_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -793,7 +755,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNvMNtNtCs94NUNretDkj_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCseeGrevWVrEI_6source",
+            name: "_RNvNvMNtNtCsioHeeuq8fQz_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -863,7 +825,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXCseeGrevWVrEI_6sourceNtB2_5GuardNtNtNtCs94NUNretDkj_4core3ops4drop4Drop4drop",
+            name: "_RNvXCsQvp3e8KgHi_6sourceNtB2_5GuardNtNtNtCsioHeeuq8fQz_4core3ops4drop4Drop4drop",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -895,7 +857,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXs1_NtCsgu7ECEkAoBX_5alloc5allocNtB5_6GlobalNtNtCs94NUNretDkj_4core5alloc9Allocator10deallocateCseeGrevWVrEI_6source",
+            name: "_RNvXs1_NtCsmsJmAcGTx5_5alloc5allocNtB5_6GlobalNtNtCsioHeeuq8fQz_4core5alloc9Allocator10deallocateCsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -956,7 +918,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXs8_NtCsgu7ECEkAoBX_5alloc5boxedINtB5_3BoxDNtNtCs94NUNretDkj_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCseeGrevWVrEI_6source",
+            name: "_RNvXsh_NtCsmsJmAcGTx5_5alloc5boxedINtB5_3BoxDNtNtCsioHeeuq8fQz_4core3any3AnyNtNtBL_6marker4SendEL_ENtNtNtBL_3ops4drop4Drop4dropCsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1080,7 +1042,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Call> ([func: 1], [alloc: 2], [alloc: 0]),
+                    <Call> ([func: 5], [alloc: 2], [alloc: 0]),
                     <Load> ([alloc: 2], [raw: 8]) -> [val: 1],
                     <Cast> ([val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
@@ -1099,7 +1061,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 3], [alloc: 2]),
+                    <Call> ([func: 1], [alloc: 2]),
                     <Load> ([alloc: 1], [raw: 4]) -> [val: 8],
                     <Ret> ([val: 8]),
                 ],
@@ -1148,7 +1110,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Call> ([func: 0], [alloc: 2], [alloc: 0]),
+                    <Call> ([func: 4], [alloc: 2], [alloc: 0]),
                     <Load> ([alloc: 2], [raw: 8]) -> [val: 1],
                     <Cast> ([val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
@@ -1167,7 +1129,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 3], [alloc: 2]),
+                    <Call> ([func: 1], [alloc: 2]),
                     <Load> ([alloc: 1], [raw: 4]) -> [val: 8],
                     <Ret> ([val: 8]),
                 ],
@@ -1343,117 +1305,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtCs94NUNretDkj_4core9panicking16panic_in_cleanup",
+            name: "_RNvNtCsioHeeuq8fQz_4core9panicking16panic_in_cleanup",
             has_ret: false,
             args: [],
             slots: [],
@@ -1526,7 +1378,117 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNvNtCs72J22aohzRW_3std9panicking12catch_unwind7cleanup",
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind7cleanup",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1608,7 +1570,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCs94NUNretDkj_4core9panicking19panic_cannot_unwind",
+            name: "_RNvNtCsioHeeuq8fQz_4core9panicking19panic_cannot_unwind",
             has_ret: false,
             args: [],
             slots: [],
@@ -1928,7 +1890,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCs94NUNretDkj_4core9panicking18panic_nounwind_fmt",
+            name: "_RNvNtCsioHeeuq8fQz_4core9panicking18panic_nounwind_fmt",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1994,7 +1956,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvCsjjZ7o4X8YX3_7___rustc14___rust_dealloc",
+            name: "_RNvCs9VHGBS8Gq78_7___rustc14___rust_dealloc",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2183,14 +2145,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3f 00 00 00 00 00 00 00  |........?.......|
+              0000  00 00 00 00 00 00 00 00 81 00 00 00 00 00 00 00  |................|
               0010  a1 00 00 00 12 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 5],
             ],
         },
         anonymous {
-            size: 64,
+            size: 130,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2202,11 +2164,16 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (64 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 6d  |brary/core/src/m|
-              0030  65 6d 2f 61 6c 69 67 6e 6d 65 6e 74 2e 72 73 00  |em/alignment.rs.|,
+            data: (130 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
+              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
+              0070  2f 6d 65 6d 2f 61 6c 69 67 6e 6d 65 6e 74 2e 72  |/mem/alignment.r|
+              0080  73 00                                            |s.|,
             relocations: [],
         },
         anonymous {
@@ -2223,14 +2190,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3e 00 00 00 00 00 00 00  |........>.......|
+              0000  00 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00  |................|
               0010  07 01 00 00 12 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
         },
         anonymous {
-            size: 63,
+            size: 129,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2242,11 +2209,16 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (63 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 61  |brary/core/src/a|
-              0030  6c 6c 6f 63 2f 6c 61 79 6f 75 74 2e 72 73 00     |lloc/layout.rs.|,
+            data: (129 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
+              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63  |library/core/src|
+              0070  2f 61 6c 6c 6f 63 2f 6c 61 79 6f 75 74 2e 72 73  |/alloc/layout.rs|
+              0080  00                                               |.|,
             relocations: [],
         },
     ],

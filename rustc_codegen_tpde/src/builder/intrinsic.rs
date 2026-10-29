@@ -7,12 +7,8 @@ use rustc_codegen_ssa::mir::IntrinsicResult;
 use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
 use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::mir::place::{PlaceRef, PlaceValue};
-use rustc_codegen_ssa::traits::{
-    BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods,
-    MiscCodegenMethods,
-    LayoutTypeCodegenMethods,
-};
-use rustc_middle::{bug, span_bug};
+use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods, MiscCodegenMethods, LayoutTypeCodegenMethods, ReturnSlot};
+use rustc_span::{bug, span_bug};
 use rustc_middle::ty::{self, Instance};
 use rustc_middle::ty::layout::{LayoutOf, TyAndLayout};
 use rustc_span::{Span, sym};
@@ -91,13 +87,8 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let OperandValue::Immediate(input_val) = args[0].val else {
                     todo!()
                 };
-                let result = self.cx.module.borrow_mut().add_instruction_ret_first(
-                    self.basic_block,
-                    InstructionKind::ctpop,
-                    &[input_val]
-                );
 
-                IntrinsicResult::Operand(OperandValue::Immediate(result))
+                IntrinsicResult::Operand(OperandValue::Immediate(self.ctpop(input_val)))
             }
             sym::bswap => {
                 if args[0].layout.size.bytes() == 1 {
@@ -238,7 +229,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 IntrinsicResult::Operand(OperandValue::ZeroSized)
             }
             sym::abort => {
-                self.abort();
+                self.abort_immediate();
                 IntrinsicResult::Operand(OperandValue::ZeroSized)
             }
             sym::ctlz_nonzero
@@ -523,7 +514,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
 
                 let result = if !self.tcx.sess.panic_strategy().unwinds() {
                     // No unwinding, so just try and panic
-                    self.module.borrow_mut().add_call(self.basic_block, try_fn, &try_sig, &[data]);
+                    self.module.borrow_mut().add_call(self.basic_block, try_fn, &try_sig, ReturnSlot::Direct, &[data]);
                     self.const_bool(false)
                 } else {
                     // cur_block:
@@ -555,7 +546,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     self.switch_to_block(catch_bb);
                     let pers = self.eh_personality();
                     let (exn, _) = self.landing_pad(pers, LandingPadKind::CatchAll);
-                    self.module.borrow_mut().add_call(self.basic_block, catch_fn, &catch_sig, &[data, exn]);
+                    self.module.borrow_mut().add_call(self.basic_block, catch_fn, &catch_sig, ReturnSlot::Direct, &[data, exn]);
                     let panicked = self.const_bool(true);
                     self.store(panicked, res, align);
                     self.br(cont_bb);
@@ -574,7 +565,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
-            sym::sqrtf32 | sym::sqrtf64 => {
+            sym::sqrt => {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fSqrt,
@@ -582,32 +573,35 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
-            sym::sinf32 | sym::sinf64 | sym::cosf32 | sym::cosf64
-            | sym::expf32 | sym::expf64 | sym::exp2f32 | sym::exp2f64
-            | sym::logf32 | sym::logf64 | sym::log10f32 | sym::log10f64
-            | sym::log2f32 | sym::log2f64 | sym::powf32 | sym::powf64
-            | sym::ceilf32 | sym::ceilf64 | sym::floorf32 | sym::floorf64
-            | sym::truncf32 | sym::truncf64 | sym::roundf32 | sym::roundf64
-            | sym::round_ties_even_f32 | sym::round_ties_even_f64
-            | sym::fmaf32 | sym::fmaf64 | sym::powif32 | sym::powif64 => {
-                let (lib_name, is_f64) = match name {
-                    sym::sinf32 => ("sinf", false), sym::sinf64 => ("sin", true),
-                    sym::cosf32 => ("cosf", false), sym::cosf64 => ("cos", true),
-                    sym::expf32 => ("expf", false), sym::expf64 => ("exp", true),
-                    sym::exp2f32 => ("exp2f", false), sym::exp2f64 => ("exp2", true),
-                    sym::logf32 => ("logf", false), sym::logf64 => ("log", true),
-                    sym::log10f32 => ("log10f", false), sym::log10f64 => ("log10", true),
-                    sym::log2f32 => ("log2f", false), sym::log2f64 => ("log2", true),
-                    sym::powf32 => ("powf", false), sym::powf64 => ("pow", true),
-                    sym::ceilf32 => ("ceilf", false), sym::ceilf64 => ("ceil", true),
-                    sym::floorf32 => ("floorf", false), sym::floorf64 => ("floor", true),
-                    sym::truncf32 => ("truncf", false), sym::truncf64 => ("trunc", true),
-                    sym::roundf32 => ("roundf", false), sym::roundf64 => ("round", true),
-                    sym::round_ties_even_f32 => ("rintf", false),
-                    sym::round_ties_even_f64 => ("rint", true),
-                    sym::fmaf32 => ("fmaf", false), sym::fmaf64 => ("fma", true),
-                    sym::powif32 => ("__powisf2", false), sym::powif64 => ("__powidf2", true),
-                    _ => unreachable!()
+            sym::sin | sym::cos
+            | sym::exp | sym::exp2
+            | sym::log | sym::log2 | sym::log10
+            | sym::powf | sym::powi
+            | sym::ceil | sym::floor
+            | sym::trunc | sym::round | sym::round_ties_even
+            | sym::fma => {
+                let is_f64 = match args[0].layout.ty.kind() {
+                    ty::Float(ty::FloatTy::F32) => false,
+                    ty::Float(ty::FloatTy::F64) => true,
+                    ty => span_bug!(span, "unsupported float type {:?} for `{}`", ty, name),
+                };
+                let lib_name = match (name, is_f64) {
+                    (sym::sin, false) => "sinf",     (sym::sin, true) => "sin",
+                    (sym::cos, false) => "cosf",     (sym::cos, true) => "cos",
+                    (sym::exp, false) => "expf",     (sym::exp, true) => "exp",
+                    (sym::exp2, false) => "exp2f",   (sym::exp2, true) => "exp2",
+                    (sym::log, false) => "logf",     (sym::log, true) => "log",
+                    (sym::log10, false) => "log10f", (sym::log10, true) => "log10",
+                    (sym::log2, false) => "log2f",   (sym::log2, true) => "log2",
+                    (sym::powf, false) => "powf",    (sym::powf, true) => "pow",
+                    (sym::ceil, false) => "ceilf",   (sym::ceil, true) => "ceil",
+                    (sym::floor, false) => "floorf", (sym::floor, true) => "floor",
+                    (sym::trunc, false) => "truncf", (sym::trunc, true) => "trunc",
+                    (sym::round, false) => "roundf", (sym::round, true) => "round",
+                    (sym::round_ties_even, false) => "rintf", (sym::round_ties_even, true) => "rint",
+                    (sym::fma, false) => "fmaf",     (sym::fma, true) => "fma",
+                    (sym::powi, false) => "__powisf2", (sym::powi, true) => "__powidf2",
+                    _ => unreachable!(),
                 };
                 let func = self.cx.get_lib_fn(LibFunc::Math(lib_name, is_f64, args.len()));
                 let mut ops = vec![func];
@@ -904,7 +898,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
         }
     }
 
-    fn abort(&mut self) {
+    fn abort_immediate(&mut self) {
         self.module.borrow_mut().add_instruction(self.basic_block,
                                                  InstructionKind::Abort,
                                                  &[])
@@ -937,5 +931,13 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
 
     fn retag_reg(&mut self, ptr: Self::Value, info: &RetagInfo<Self::Value>) -> Self::Value {
         todo!()
+    }
+
+    fn ctpop(&mut self, val: Self::Value) -> Self::Value {
+        self.cx.module.borrow_mut().add_instruction_ret_first(
+            self.basic_block,
+            InstructionKind::ctpop,
+            &[val]
+        )
     }
 }

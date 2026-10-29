@@ -1972,7 +1972,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCs94NUNretDkj_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1999,7 +1999,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCs94NUNretDkj_4core9panicking11panic_const24panic_const_mul_overflow",
+            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_mul_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2026,7 +2026,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCs94NUNretDkj_4core9panicking11panic_const24panic_const_sub_overflow",
+            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_sub_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2069,14 +2069,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  a1 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 1],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2088,10 +2088,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2108,14 +2109,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  a2 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 3],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2127,10 +2128,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2147,14 +2149,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  a3 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 5],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2166,10 +2168,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2186,14 +2189,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  ab 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2205,10 +2208,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2225,14 +2229,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  ab 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 9],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2244,10 +2248,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2264,14 +2269,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  ab 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 11],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2283,10 +2288,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2303,14 +2309,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  ab 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 13],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2322,10 +2328,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2342,14 +2349,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  ab 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 15],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2361,10 +2368,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2381,14 +2389,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  ab 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 17],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2400,10 +2408,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2420,14 +2429,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  ab 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 19],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2439,10 +2448,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2459,14 +2469,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  13 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 21],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2478,10 +2488,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2498,14 +2509,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  22 00 00 00 05 00 00 00                          |".......|,
             relocations: [
                 offset 0x0 insert [global: 23],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2517,10 +2528,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2537,14 +2549,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  31 00 00 00 05 00 00 00                          |1.......|,
             relocations: [
                 offset 0x0 insert [global: 25],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2556,10 +2568,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2576,14 +2589,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  04 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 27],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2595,10 +2608,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2615,14 +2629,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  8d 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 29],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2634,10 +2648,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2654,14 +2669,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  8d 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 31],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2673,10 +2688,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2693,14 +2709,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  94 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 33],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2712,10 +2728,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2732,14 +2749,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  94 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 35],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2751,10 +2768,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2771,14 +2789,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  4f 00 00 00 05 00 00 00                          |O.......|,
             relocations: [
                 offset 0x0 insert [global: 37],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2790,10 +2808,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2810,14 +2829,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  5e 00 00 00 05 00 00 00                          |^.......|,
             relocations: [
                 offset 0x0 insert [global: 39],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2829,10 +2848,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2849,14 +2869,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  6d 00 00 00 05 00 00 00                          |m.......|,
             relocations: [
                 offset 0x0 insert [global: 41],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2868,10 +2888,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2888,14 +2909,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  40 00 00 00 05 00 00 00                          |@.......|,
             relocations: [
                 offset 0x0 insert [global: 43],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2907,10 +2928,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2927,14 +2949,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  7c 00 00 00 05 00 00 00                          ||.......|,
             relocations: [
                 offset 0x0 insert [global: 45],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2946,10 +2968,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -2966,14 +2989,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  be 00 00 00 22 00 00 00                          |...."...|,
             relocations: [
                 offset 0x0 insert [global: 47],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2985,10 +3008,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3005,14 +3029,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  be 00 00 00 13 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 49],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3024,10 +3048,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3044,14 +3069,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  9a 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 51],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3063,10 +3088,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3083,14 +3109,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  9a 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 53],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3102,10 +3128,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3122,14 +3149,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  1d 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 55],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3141,10 +3168,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3161,14 +3189,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  2c 00 00 00 05 00 00 00                          |,.......|,
             relocations: [
                 offset 0x0 insert [global: 57],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3180,10 +3208,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3200,14 +3229,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  3b 00 00 00 05 00 00 00                          |;.......|,
             relocations: [
                 offset 0x0 insert [global: 59],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3219,10 +3248,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3239,14 +3269,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  0e 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 61],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3258,10 +3288,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3278,14 +3309,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  86 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 63],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3297,10 +3328,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3317,14 +3349,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  59 00 00 00 05 00 00 00                          |Y.......|,
             relocations: [
                 offset 0x0 insert [global: 65],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3336,10 +3368,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3356,14 +3389,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  68 00 00 00 05 00 00 00                          |h.......|,
             relocations: [
                 offset 0x0 insert [global: 67],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3375,10 +3408,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3395,14 +3429,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  77 00 00 00 05 00 00 00                          |w.......|,
             relocations: [
                 offset 0x0 insert [global: 69],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3414,10 +3448,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3434,14 +3469,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  4a 00 00 00 05 00 00 00                          |J.......|,
             relocations: [
                 offset 0x0 insert [global: 71],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3453,10 +3488,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3473,14 +3509,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  18 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 73],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3492,10 +3528,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3512,14 +3549,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  27 00 00 00 05 00 00 00                          |'.......|,
             relocations: [
                 offset 0x0 insert [global: 75],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3531,10 +3568,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3551,14 +3589,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  36 00 00 00 05 00 00 00                          |6.......|,
             relocations: [
                 offset 0x0 insert [global: 77],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3570,10 +3608,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3590,14 +3629,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  09 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 79],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3609,10 +3648,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3629,14 +3669,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  54 00 00 00 05 00 00 00                          |T.......|,
             relocations: [
                 offset 0x0 insert [global: 81],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3648,10 +3688,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3668,14 +3709,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  63 00 00 00 05 00 00 00                          |c.......|,
             relocations: [
                 offset 0x0 insert [global: 83],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3687,10 +3728,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3707,14 +3749,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  72 00 00 00 05 00 00 00                          |r.......|,
             relocations: [
                 offset 0x0 insert [global: 85],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3726,10 +3768,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3746,14 +3789,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  45 00 00 00 05 00 00 00                          |E.......|,
             relocations: [
                 offset 0x0 insert [global: 87],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3765,10 +3808,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3785,14 +3829,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  81 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 89],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3804,10 +3848,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3824,14 +3869,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  b5 00 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 91],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3843,10 +3888,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
         anonymous {
@@ -3863,14 +3909,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 29 00 00 00 00 00 00 00  |........).......|
+              0000  00 00 00 00 00 00 00 00 32 00 00 00 00 00 00 00  |........2.......|
               0010  b6 00 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 93],
             ],
         },
         anonymous {
-            size: 42,
+            size: 51,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -3882,10 +3928,11 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (42 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  6f 76 65 72 66 6c 6f 77 5f 63 68 65 63 6b 73 2f  |overflow_checks/|
-              0020  73 6f 75 72 63 65 2e 72 73 00                    |source.rs.|,
+            data: (51 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 6f 76 65 72 66 6c 6f  |ib_cases/overflo|
+              0020  77 5f 63 68 65 63 6b 73 2f 73 6f 75 72 63 65 2e  |w_checks/source.|
+              0030  72 73 00                                         |rs.|,
             relocations: [],
         },
     ],

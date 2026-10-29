@@ -5,7 +5,7 @@ use rustc_abi::TargetDataLayout;
 use rustc_codegen_ssa::traits::MiscCodegenMethods;
 use rustc_data_structures::base_n::{ALPHANUMERIC_ONLY, ToBaseN};
 use rustc_data_structures::fx::FxHashMap;
-use rustc_hir::attrs::Linkage;
+use rustc_attr_ir::Linkage;
 use rustc_middle::mono::{CodegenUnit, Visibility};
 use rustc_middle::ty;
 use rustc_middle::ty::layout::HasTyCtxt;

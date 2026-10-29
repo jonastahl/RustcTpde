@@ -12,12 +12,13 @@ use rustc_codegen_ssa::common::{
 };
 use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
 use rustc_codegen_ssa::mir::place::PlaceRef;
-use rustc_codegen_ssa::traits::{BackendTypes, BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, OverflowOp};
+use rustc_codegen_ssa::traits::{BackendTypes, BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, OverflowOp, ReturnSlot};
 use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrs;
 use rustc_middle::ty::layout::TyAndLayout;
 use rustc_middle::ty::{AtomicOrdering, Instance, Ty};
 use rustc_span::Span;
 use std::ops::Deref;
+use rustc_target::callconv::FnAbi;
 use crate::shared::ir;
 
 pub struct Builder<'a, 'tpde, 'tcx> {
@@ -190,18 +191,17 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_switch(bb, val, else_llbb, &cases);
     }
 
-    fn invoke(
-        &mut self,
-        func_sig: Self::FunctionSignature,
-        fn_attrs: Option<&CodegenFnAttrs>,
-        fn_abi: Option<&rustc_target::callconv::FnAbi<'tcx, Ty<'tcx>>>,
-        fn_val: Self::Value,
-        args: &[Self::Value],
-        then: Self::BasicBlock,
-        catch: Self::BasicBlock,
-        funclet: Option<&Self::Funclet>,
-        instance: Option<Instance<'tcx>>,
-    ) -> Self::Value {
+
+    fn invoke(&mut self,
+              func_sig: Self::FunctionSignature,
+              fn_attrs: Option<&CodegenFnAttrs>,
+              fn_abi: Option<&FnAbi<'tcx, Ty<'tcx>>>,
+              fn_val: Self::Value,
+              return_slot: ReturnSlot<Self::Value>,
+              args: &[Self::Value],
+              then: Self::BasicBlock, catch: Self::BasicBlock,
+              funclet: Option<&Self::Funclet>,
+              instance: Option<Instance<'tcx>>) -> Self::Value {
         let func_sig = &self.function_signatures.borrow()[func_sig];
 
         self.module
@@ -1197,8 +1197,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         &mut self,
         func_sig: Self::FunctionSignature,
         caller_attrs: Option<&CodegenFnAttrs>,
-        fn_abi: Option<&rustc_target::callconv::FnAbi<'tcx, Ty<'tcx>>>,
+        fn_abi: Option<&FnAbi<'tcx, Ty<'tcx>>>,
         fn_val: Self::Value,
+        return_slot: ReturnSlot<Self::Value>,
         args: &[Self::Value],
         funclet: Option<&Self::Funclet>,
         callee_instance: Option<Instance<'tcx>>,
@@ -1207,7 +1208,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 
         self.module
             .borrow_mut()
-            .add_call(self.basic_block, fn_val, func_sig, args)
+            .add_call(self.basic_block, fn_val, func_sig, return_slot, args)
             .unwrap_or_else(|| Slot::new_raw(0))
     }
 
@@ -1215,8 +1216,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         &mut self,
         llty: Self::FunctionSignature,
         caller_attrs: Option<&CodegenFnAttrs>,
-        fn_abi: &rustc_target::callconv::FnAbi<'tcx, Ty<'tcx>>,
+        fn_abi: &FnAbi<'tcx, Ty<'tcx>>,
         llfn: Self::Value,
+        return_slot: ReturnSlot<Self::Value>,
         args: &[Self::Value],
         funclet: Option<&Self::Funclet>,
         callee_instance: Option<Instance<'tcx>>,

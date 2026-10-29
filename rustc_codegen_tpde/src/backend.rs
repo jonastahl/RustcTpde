@@ -10,11 +10,11 @@ use rustc_codegen_ssa::traits::{
 use rustc_codegen_ssa::{CompiledModule, CompiledModules, CrateInfo, ModuleCodegen, TargetConfig};
 use rustc_data_structures::profiling::SelfProfilerRef;
 use rustc_data_structures::smallvec::SmallVec;
-use rustc_errors::DiagCtxt;
+use rustc_errors::{DiagCtxt, DiagCtxtHandle};
 use rustc_middle::dep_graph::{WorkProduct, WorkProductMap};
 use rustc_middle::ty::TyCtxt;
 use rustc_session::config::{OptLevel, OutputFilenames, PrintRequest};
-use rustc_session::{IncrCompSession, Session};
+use rustc_session::{BorrowedIncrCompSession, EarlySession, IncrCompSession, Session};
 use rustc_span::Symbol;
 use std::any::Any;
 use std::cell::RefCell;
@@ -52,11 +52,7 @@ impl ExtraBackendMethods for TpdeCodegenBackend {
         module.into_inner()
     }
 
-    fn compile_codegen_unit(
-        &self,
-        tcx: TyCtxt<'_>,
-        cgu_name: Symbol,
-    ) -> (ModuleCodegen<Self::Module>, u64) {
+    fn compile_codegen_unit(&self, tcx: TyCtxt<'_>, cgu_name: Symbol, bitcode_needed: bool) -> (ModuleCodegen<Self::Module>, u64) {
         base::compile_codegen_unit(tcx, cgu_name)
     }
 }
@@ -69,13 +65,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
     type ModuleBuffer = ModuleBuffer;
     type ThinData = ();
 
-    fn target_machine_factory(
-        &self,
-        _sess: &Session,
-        _opt_level: OptLevel,
-        _target_features: &[String],
-    ) -> TargetMachineFactoryFn<Self> {
-        // By now we only support x64 and no optimization anyway
+    fn target_machine_factory(&self, sess: &Session, opt_level: OptLevel) -> TargetMachineFactoryFn<Self> {
         Arc::new(|_, _| ())
     }
 
@@ -91,14 +81,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
         unimplemented!()
     }
 
-    fn run_thin_lto(
-        cgcx: &CodegenContext,
-        prof: &SelfProfilerRef,
-        dcx: rustc_errors::DiagCtxtHandle<'_>,
-        exported_symbols_for_lto: &[String],
-        each_linked_rlib_for_lto: &[PathBuf],
-        modules: Vec<ThinLtoInput<Self>>,
-    ) -> (Vec<ThinModule<Self>>, Vec<WorkProduct>) {
+    fn run_thin_lto(cgcx: &CodegenContext, prof: &SelfProfilerRef, incr_comp_session: Option<&BorrowedIncrCompSession>, dcx: DiagCtxtHandle<'_>, exported_symbols_for_lto: &[String], each_linked_rlib_for_lto: &[PathBuf], modules: Vec<ThinLtoInput<Self>>) -> (Vec<ThinModule<Self>>, Vec<WorkProduct>) {
         unimplemented!()
     }
 
@@ -157,10 +140,6 @@ impl CodegenBackend for TpdeCodegenBackend {
         "TPDE"
     }
 
-    fn init(&self, _sess: &Session) {
-        // TODO init tpde
-    }
-
     fn codegen_crate<'tcx>(&self, tcx: TyCtxt<'tcx>) -> Box<dyn Any> {
         Box::new(rustc_codegen_ssa::base::codegen_crate(
             TpdeCodegenBackend::new(),
@@ -186,7 +165,7 @@ impl CodegenBackend for TpdeCodegenBackend {
         todo!()
     }
 
-    fn target_config(&self, sess: &Session) -> TargetConfig {
+    fn target_config(&self, sess: &EarlySession) -> TargetConfig {
         let internal_target_features = internal_target_features(
             sess,
             |_| SmallVec::<[_; 0]>::new(),
@@ -196,6 +175,7 @@ impl CodegenBackend for TpdeCodegenBackend {
             internal_target_features,
             has_reliable_f16: false,
             has_reliable_f16_math: false,
+            has_reliable_f16b: false,
             has_reliable_f128: false,
             has_reliable_f128_math: false,
         }
@@ -205,9 +185,6 @@ impl CodegenBackend for TpdeCodegenBackend {
         println!("rustc_codegen_tpde version 0.0.2");
     }
 
-    fn thin_lto_supported(&self) -> bool {
-        false
-    }
 
     fn target_cpu(&self, sess: &Session) -> String {
         sess.opts.cg.target_cpu.as_deref().unwrap_or_else(|| &sess.target.cpu).to_string()

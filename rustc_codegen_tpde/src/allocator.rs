@@ -1,9 +1,9 @@
 use crate::context::SimpleCx;
 use crate::shared::ir::{Binding, FullType, InstructionKind, Slot};
 use rustc_ast::expand::allocator::{AllocatorMethod, AllocatorTy, NO_ALLOC_SHIM_IS_UNSTABLE, SpecialAllocatorMethod, default_fn_name, global_fn_name};
-use rustc_codegen_ssa::traits::BaseTypeCodegenMethods;
-use rustc_hir::attrs::Linkage;
-use rustc_middle::bug;
+use rustc_attr_ir::Linkage;
+use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ReturnSlot};
+use rustc_span::bug;
 use rustc_middle::middle::codegen_fn_attrs::{CodegenFnAttrFlags, CodegenFnAttrs};
 use rustc_middle::ty::TyCtxt;
 use rustc_session::config::DebugInfo;
@@ -116,7 +116,7 @@ fn create_wrapper_function(
     let caller = module.add_function(
         from_name,
         &sign,
-        Linkage::Common,
+        Linkage::External,
         Binding::Definition,
     );
 
@@ -126,13 +126,13 @@ fn create_wrapper_function(
         let callee = module.add_function(
             to_name,
             &sign,
-            Linkage::ExternalWeak,
+            Linkage::External,
             Binding::Declaration,
         );
 
         let args = args.iter().enumerate()
             .map(|(i, _)| module.get_slot(caller, i as u32)).collect::<Vec<_>>();
-        let output = module.add_call(bb, Slot::new_func(callee), &sign, &args);
+        let output = module.add_call(bb, Slot::new_func(callee), &sign, ReturnSlot::Direct, &args);
 
         match output {
             Some(slot) => vec![slot],

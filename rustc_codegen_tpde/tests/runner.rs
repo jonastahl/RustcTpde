@@ -243,7 +243,7 @@ fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
 
 fn rustc() -> Command {
     let sysroot = Command::new("rustc")
-        .arg("+nightly-2026-08-19")
+        .arg("+nightly-2026-10-28")
         .arg("--print")
         .arg("sysroot")
         .output()
@@ -251,7 +251,7 @@ fn rustc() -> Command {
     let sysroot = String::from_utf8(sysroot.stdout).expect("Invalid sysroot");
 
     let mut cmd = Command::new("rustc");
-    cmd.arg("+nightly-2026-08-19")
+    cmd.arg("+nightly-2026-10-28")
         .arg(format!("--remap-path-prefix={}=/sysroot", sysroot.trim()));
     cmd
 }

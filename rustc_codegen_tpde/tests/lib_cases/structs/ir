@@ -228,10 +228,10 @@ ModuleTpde {
                     align: 8,
                 },
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 24,
+                    align: 8,
                 },
             ],
             slots: [
@@ -331,7 +331,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCs94NUNretDkj_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -358,7 +358,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCs94NUNretDkj_4core9panicking11panic_const24panic_const_sub_overflow",
+            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_sub_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -421,14 +421,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
+              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
               0010  0e 00 00 00 0e 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 1],
             ],
         },
         anonymous {
-            size: 34,
+            size: 43,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -440,10 +440,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (34 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  73 74 72 75 63 74 73 2f 73 6f 75 72 63 65 2e 72  |structs/source.r|
-              0020  73 00                                            |s.|,
+            data: (43 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 73 74 72 75 63 74 73  |ib_cases/structs|
+              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
             relocations: [],
         },
         anonymous {
@@ -460,14 +460,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
+              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
               0010  0f 00 00 00 11 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 3],
             ],
         },
         anonymous {
-            size: 34,
+            size: 43,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -479,10 +479,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (34 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  73 74 72 75 63 74 73 2f 73 6f 75 72 63 65 2e 72  |structs/source.r|
-              0020  73 00                                            |s.|,
+            data: (43 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 73 74 72 75 63 74 73  |ib_cases/structs|
+              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
             relocations: [],
         },
         anonymous {
@@ -499,14 +499,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
+              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
               0010  10 00 00 00 13 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 5],
             ],
         },
         anonymous {
-            size: 34,
+            size: 43,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -518,10 +518,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (34 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  73 74 72 75 63 74 73 2f 73 6f 75 72 63 65 2e 72  |structs/source.r|
-              0020  73 00                                            |s.|,
+            data: (43 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 73 74 72 75 63 74 73  |ib_cases/structs|
+              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
             relocations: [],
         },
         anonymous {
@@ -538,14 +538,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 21 00 00 00 00 00 00 00  |........!.......|
+              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
               0010  11 00 00 00 11 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
         },
         anonymous {
-            size: 34,
+            size: 43,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -557,10 +557,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (34 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  73 74 72 75 63 74 73 2f 73 6f 75 72 63 65 2e 72  |structs/source.r|
-              0020  73 00                                            |s.|,
+            data: (43 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 73 74 72 75 63 74 73  |ib_cases/structs|
+              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
             relocations: [],
         },
     ],

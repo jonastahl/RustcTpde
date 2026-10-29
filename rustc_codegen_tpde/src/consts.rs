@@ -7,7 +7,7 @@ use rustc_span::def_id::DefId;
 use std::ops::Range;
 use rustc_abi::Size;
 use rustc_ast::Mutability;
-use rustc_hir::attrs::Linkage;
+use rustc_attr_ir::Linkage;
 use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrFlags;
 
 impl<'tcx> StaticBuilderMethods for Builder<'_, '_, 'tcx> {

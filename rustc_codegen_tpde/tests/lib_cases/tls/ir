@@ -1,7 +1,7 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE4withNCNvCseeGrevWVrEI_6source8byte_get0hEB1E_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -66,7 +66,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE4withNCNvCseeGrevWVrEI_6source8byte_set0uEB1E_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -125,7 +125,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE8try_withNCNvCseeGrevWVrEI_6source8byte_get0hEB1I_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -233,7 +233,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellhEE8try_withNCNvCseeGrevWVrEI_6source8byte_set0uEB1I_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -340,7 +340,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellmEE4withNCNvCseeGrevWVrEI_6source11zeroed_bump0mEB1E_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE4withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -405,7 +405,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellmEE8try_withNCNvCseeGrevWVrEI_6source11zeroed_bump0mEB1I_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -513,7 +513,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE4withNCNvCseeGrevWVrEI_6source11counter_add0yEB1E_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -583,7 +583,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE4withNCNvCseeGrevWVrEI_6source11counter_get0yEB1E_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -646,7 +646,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE8try_withNCNvCseeGrevWVrEI_6source11counter_add0yEB1I_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -761,7 +761,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCs72J22aohzRW_3std6thread5localINtB6_8LocalKeyINtNtCs94NUNretDkj_4core4cell4CellyEE8try_withNCNvCseeGrevWVrEI_6source11counter_get0yEB1I_",
+            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -869,7 +869,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RNCNKNvCseeGrevWVrEI_6source4BYTE0s_0B5_",
+            name: "_RNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0B5_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -909,7 +909,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNKNvCseeGrevWVrEI_6source6ZEROED0s_0B5_",
+            name: "_RNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0B5_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -949,7 +949,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNKNvCseeGrevWVrEI_6source7COUNTER0s_0B5_",
+            name: "_RNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0B5_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -989,7 +989,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCseeGrevWVrEI_6source11counter_add0B3_",
+            name: "_RNCNvCsQvp3e8KgHi_6source11counter_add0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1049,7 +1049,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCseeGrevWVrEI_6source11counter_get0B3_",
+            name: "_RNCNvCsQvp3e8KgHi_6source11counter_get0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1082,7 +1082,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCseeGrevWVrEI_6source11zeroed_bump0B3_",
+            name: "_RNCNvCsQvp3e8KgHi_6source11zeroed_bump0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1129,7 +1129,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCseeGrevWVrEI_6source8byte_get0B3_",
+            name: "_RNCNvCsQvp3e8KgHi_6source8byte_get0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1162,7 +1162,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCseeGrevWVrEI_6source8byte_set0B3_",
+            name: "_RNCNvCsQvp3e8KgHi_6source8byte_set0B3_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1203,7 +1203,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCs94NUNretDkj_4core3numy12wrapping_add",
+            name: "_RNvMs7_NtCsioHeeuq8fQz_4core3numy12wrapping_add",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1243,7 +1243,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCs94NUNretDkj_4core4cellINtB5_4CellhE3setCseeGrevWVrEI_6source",
+            name: "_RNvMs7_NtCsioHeeuq8fQz_4core4cellINtB5_4CellhE3setCsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1286,7 +1286,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCs94NUNretDkj_4core4cellINtB5_4CellmE3setCseeGrevWVrEI_6source",
+            name: "_RNvMs7_NtCsioHeeuq8fQz_4core4cellINtB5_4CellmE3setCsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1329,7 +1329,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCs94NUNretDkj_4core4cellINtB5_4CellyE3setCseeGrevWVrEI_6source",
+            name: "_RNvMs7_NtCsioHeeuq8fQz_4core4cellINtB5_4CellyE3setCsQvp3e8KgHi_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1372,7 +1372,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs8_NtCs94NUNretDkj_4core4cellINtB5_4CellhE3getCseeGrevWVrEI_6source",
+            name: "_RNvMs8_NtCsioHeeuq8fQz_4core4cellINtB5_4CellhE3getCsQvp3e8KgHi_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1407,7 +1407,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs8_NtCs94NUNretDkj_4core4cellINtB5_4CellmE3getCseeGrevWVrEI_6source",
+            name: "_RNvMs8_NtCsioHeeuq8fQz_4core4cellINtB5_4CellmE3getCsQvp3e8KgHi_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1442,7 +1442,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs8_NtCs94NUNretDkj_4core4cellINtB5_4CellyE3getCseeGrevWVrEI_6source",
+            name: "_RNvMs8_NtCsioHeeuq8fQz_4core4cellINtB5_4CellyE3getCsQvp3e8KgHi_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1477,7 +1477,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvYNCNKNvCseeGrevWVrEI_6source4BYTE0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBJ_6option6OptionQIB1o_INtNtBJ_4cell4CellhEEEEE9call_onceB8_",
+            name: "_RNvYNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBI_6option6OptionQIB1n_INtNtBI_4cell4CellhEEEEE9call_onceB8_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1525,7 +1525,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvYNCNKNvCseeGrevWVrEI_6source6ZEROED0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellmEEEEE9call_onceB8_",
+            name: "_RNvYNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBK_6option6OptionQIB1p_INtNtBK_4cell4CellmEEEEE9call_onceB8_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1573,7 +1573,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvYNCNKNvCseeGrevWVrEI_6source7COUNTER0s_0INtNtNtCs94NUNretDkj_4core3ops8function6FnOnceTINtNtBM_6option6OptionQIB1r_INtNtBM_4cell4CellyEEEEE9call_onceB8_",
+            name: "_RNvYNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellyEEEEE9call_onceB8_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1767,7 +1767,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCs72J22aohzRW_3std6thread5local18panic_access_error",
+            name: "_RNvNtNtCskTDgy4hF9jW_3std6thread5local18panic_access_error",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2069,7 +2069,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCs94NUNretDkj_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2263,7 +2263,7 @@ ModuleTpde {
     ],
     consts: [],
     globals: [
-        _RNvNCNKNvCseeGrevWVrEI_6source4BYTE0023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCsQvp3e8KgHi_6source4BYTE0023___RUST_STD_INTERNAL_VAL {
             size: 2,
             align: 1,
             read_only: false,
@@ -2280,7 +2280,7 @@ ModuleTpde {
               0000  01 01                                            |..|,
             relocations: [],
         },
-        _RNvNCNKNvCseeGrevWVrEI_6source4BYTE0s_023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCsQvp3e8KgHi_6source4BYTE0s_023___RUST_STD_INTERNAL_VAL {
             size: 1,
             align: 1,
             read_only: false,
@@ -2297,7 +2297,7 @@ ModuleTpde {
               0000  01                                               |.|,
             relocations: [],
         },
-        _RNvNCNKNvCseeGrevWVrEI_6source6ZEROED0023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCsQvp3e8KgHi_6source6ZEROED0023___RUST_STD_INTERNAL_VAL {
             size: 8,
             align: 4,
             read_only: false,
@@ -2314,7 +2314,7 @@ ModuleTpde {
               0000  00 00 00 00 01 00 00 00                          |........|,
             relocations: [],
         },
-        _RNvNCNKNvCseeGrevWVrEI_6source6ZEROED0s_023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_023___RUST_STD_INTERNAL_VAL {
             size: 4,
             align: 4,
             read_only: false,
@@ -2331,7 +2331,7 @@ ModuleTpde {
               0000  00 00 00 00                                      |....|,
             relocations: [],
         },
-        _RNvNCNKNvCseeGrevWVrEI_6source7COUNTER0023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCsQvp3e8KgHi_6source7COUNTER0023___RUST_STD_INTERNAL_VAL {
             size: 16,
             align: 8,
             read_only: false,
@@ -2348,7 +2348,7 @@ ModuleTpde {
               0000  0a 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00  |................|,
             relocations: [],
         },
-        _RNvNCNKNvCseeGrevWVrEI_6source7COUNTER0s_023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_023___RUST_STD_INTERNAL_VAL {
             size: 8,
             align: 8,
             read_only: false,
@@ -2379,14 +2379,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
-              0010  ae 01 00 00 19 00 00 00                          |........|,
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  b4 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
         },
         anonymous {
-            size: 62,
+            size: 128,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2398,11 +2398,15 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (62 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
-              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
+              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
             relocations: [],
         },
         anonymous {
@@ -2419,14 +2423,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
-              0010  ae 01 00 00 19 00 00 00                          |........|,
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  b4 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 9],
             ],
         },
         anonymous {
-            size: 62,
+            size: 128,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2438,11 +2442,15 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (62 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
-              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
+              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
             relocations: [],
         },
         anonymous {
@@ -2459,14 +2467,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
-              0010  ae 01 00 00 19 00 00 00                          |........|,
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  b4 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 11],
             ],
         },
         anonymous {
-            size: 62,
+            size: 128,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2478,11 +2486,15 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (62 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
-              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
+              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
             relocations: [],
         },
         anonymous {
@@ -2499,14 +2511,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
-              0010  ae 01 00 00 19 00 00 00                          |........|,
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  b4 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 13],
             ],
         },
         anonymous {
-            size: 62,
+            size: 128,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2518,11 +2530,15 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (62 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
-              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
+              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
             relocations: [],
         },
         anonymous {
@@ -2539,14 +2555,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3d 00 00 00 00 00 00 00  |........=.......|
-              0010  ae 01 00 00 19 00 00 00                          |........|,
+              0000  00 00 00 00 00 00 00 00 7f 00 00 00 00 00 00 00  |................|
+              0010  b4 01 00 00 19 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 15],
             ],
         },
         anonymous {
-            size: 62,
+            size: 128,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2558,11 +2574,15 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (62 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f 74 68  |brary/std/src/th|
-              0030  72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00        |read/local.rs.|,
+            data: (128 bytes)
+              0000  2f 68 6f 6d 65 2f 73 74 61 68 6c 2f 2e 72 75 73  |/home/stahl/.rus|
+              0010  74 75 70 2f 74 6f 6f 6c 63 68 61 69 6e 73 2f 6e  |tup/toolchains/n|
+              0020  69 67 68 74 6c 79 2d 32 30 32 36 2d 31 30 2d 32  |ightly-2026-10-2|
+              0030  38 2d 78 38 36 5f 36 34 2d 75 6e 6b 6e 6f 77 6e  |8-x86_64-unknown|
+              0040  2d 6c 69 6e 75 78 2d 67 6e 75 2f 6c 69 62 2f 72  |-linux-gnu/lib/r|
+              0050  75 73 74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f  |ustlib/src/rust/|
+              0060  6c 69 62 72 61 72 79 2f 73 74 64 2f 73 72 63 2f  |library/std/src/|
+              0070  74 68 72 65 61 64 2f 6c 6f 63 61 6c 2e 72 73 00  |thread/local.rs.|,
             relocations: [],
         },
         anonymous {
@@ -2579,14 +2599,14 @@ ModuleTpde {
             },
             init: true,
             data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 1d 00 00 00 00 00 00 00  |................|
+              0000  00 00 00 00 00 00 00 00 26 00 00 00 00 00 00 00  |........&.......|
               0010  26 00 00 00 0f 00 00 00                          |&.......|,
             relocations: [
                 offset 0x0 insert [global: 17],
             ],
         },
         anonymous {
-            size: 30,
+            size: 39,
             align: 1,
             read_only: true,
             thread_loc: false,
@@ -2598,9 +2618,10 @@ ModuleTpde {
                 dead: false,
             },
             init: true,
-            data: (30 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  74 6c 73 2f 73 6f 75 72 63 65 2e 72 73 00        |tls/source.rs.|,
+            data: (39 bytes)
+              0000  2f 73 79 73 72 6f 6f 74 2f 74 65 73 74 73 2f 6c  |/sysroot/tests/l|
+              0010  69 62 5f 63 61 73 65 73 2f 74 6c 73 2f 73 6f 75  |ib_cases/tls/sou|
+              0020  72 63 65 2e 72 73 00                             |rce.rs.|,
             relocations: [],
         },
         anonymous {

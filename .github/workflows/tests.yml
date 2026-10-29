@@ -29,7 +29,7 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@nightly
         with:
-          toolchain: nightly-2026-08-19
+          toolchain: nightly-2026-10-28
 
       - name: Set up Rust cache
         uses: Swatinem/rust-cache@v2

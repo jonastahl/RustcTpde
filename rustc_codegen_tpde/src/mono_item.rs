@@ -1,7 +1,7 @@
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, Function, Global};
 use rustc_codegen_ssa::traits::{LayoutTypeCodegenMethods, PreDefineCodegenMethods};
-use rustc_hir::attrs::{InlineAttr, Linkage, OptimizeAttr};
+use rustc_attr_ir::{InlineAttr, Linkage, OptimizeAttr};
 use rustc_middle::mir::Mutability;
 use rustc_middle::mono::Visibility;
 use rustc_middle::ty;

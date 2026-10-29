@@ -3,7 +3,7 @@ use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, FullType, Slot, Type};
 use rustc_abi::Size;
 use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ConstCodegenMethods, MiscCodegenMethods};
-use rustc_hir::attrs::Linkage;
+use rustc_attr_ir::Linkage;
 use rustc_middle::mir::interpret::{CtfeProvenance, GlobalAlloc, Pointer, Scalar};
 use rustc_session::PointerAuthSchema;
 

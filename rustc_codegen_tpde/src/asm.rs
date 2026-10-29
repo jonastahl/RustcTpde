@@ -12,7 +12,7 @@ impl<'tcx> AsmBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
 }
 
 impl<'tcx> AsmCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
-    fn codegen_global_asm(&mut self, template: &[InlineAsmTemplatePiece], operands: &[GlobalAsmOperandRef<'tcx>], options: InlineAsmOptions, line_spans: &[Span]) {
+    fn codegen_global_asm(&mut self, template: &[InlineAsmTemplatePiece], operands: &[GlobalAsmOperandRef<'tcx>], options: InlineAsmOptions, line_spans: &[Span], extra_rust_target_features: &[String]) {
         todo!()
     }
 

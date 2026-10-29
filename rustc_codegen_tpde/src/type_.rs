@@ -7,10 +7,10 @@ use rustc_codegen_ssa::traits::{
     BaseTypeCodegenMethods, DerivedTypeCodegenMethods, LayoutTypeCodegenMethods,
     TypeMembershipCodegenMethods,
 };
-use rustc_middle::bug;
+use rustc_span::bug;
 use rustc_middle::ty::Ty;
 use rustc_middle::ty::layout::TyAndLayout;
-use rustc_target::callconv::{CastTarget, FnAbi, PassMode};
+use rustc_target::callconv::{CastTarget, FnAbi, IndirectMode, PassMode};
 
 impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
     pub fn tpde_direct_type(&self, ty: TyAndLayout<'tcx>) -> FullType {
@@ -122,6 +122,10 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BaseTypeCodegenMethods for GenericCx<'tpde, 
         todo!()
     }
 
+    fn type_f16b(&self) -> Self::Type {
+        todo!()
+    }
+
     fn type_f32(&self) -> Self::Type {
         FullType::Single(Type::f32)
     }
@@ -134,7 +138,7 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BaseTypeCodegenMethods for GenericCx<'tpde, 
         todo!()
     }
 
-    fn type_array(&self, ty: Self::Type, len: u64) -> Self::Type {
+    fn type_ppcf128(&self) -> Self::Type {
         todo!()
     }
 
@@ -230,11 +234,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
         let mut arg_infos: Vec<ArgInfo> = vec![];
 
         match fn_abi.ret.mode {
-            PassMode::Indirect {
-                attrs,
-                meta_attrs,
-                on_stack,
-            } => {
+            PassMode::Indirect { attrs, ..} | PassMode::IndirectUnsized { attrs, .. } => {
                 slots.push(Type::ptr);
                 arg_infos.push(ArgInfo {
                     kind: ArgKind::sRet,
@@ -287,11 +287,9 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                     }
                     PassMode::Indirect {
                         attrs,
-                        meta_attrs,
-                        on_stack: true,
+                        mode: IndirectMode::Pointer,
+                        ..
                     } => {
-                        // They cannot be true at once
-                        assert!(meta_attrs.is_none());
                         slots.push(Type::ptr);
                         arg_infos.push(ArgInfo {
                             kind: ArgKind::ByVal,
@@ -302,13 +300,16 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                     }
                     PassMode::Indirect {
                         attrs,
-                        meta_attrs,
-                        on_stack,
-                    } => {
+                        mode: IndirectMode::OnStack,
+                        ..
+                    } | PassMode::IndirectUnsized { attrs, .. } => {
                         slots.push(Type::ptr);
                         arg_infos.push(ArgInfo::default());
                     },
-                    PassMode::Cast { cast, pad_i32: _ } => {
+                    PassMode::Indirect { attrs: _, address_space: _, mode: IndirectMode::AmdgpuKernelArg } => {
+                        unimplemented!()
+                    },
+                    PassMode::Cast { cast, pad_i32_count: _ } => {
                         match self.cast_backend_type(cast) {
                             FullType::Single(ty) => {
                                 slots.push(ty);
@@ -332,7 +333,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
         }
 
         let ret = match &fn_abi.ret.mode {
-            PassMode::Ignore | PassMode::Indirect { .. } => None,
+            PassMode::Ignore | PassMode::Indirect { .. } | PassMode::IndirectUnsized { .. } => None,
             PassMode::Cast { cast, .. } => Some(self.cast_backend_type(cast)),
             PassMode::Direct(_) | PassMode::Pair(..) => Some(self.tpde_direct_type(fn_abi.ret.layout)),
         };
@@ -362,6 +363,9 @@ impl CodegenCx<'_, '_> {
                 16 => Type::v16i8,
                 _ => panic!("Unsupported vector register size"),
             },
+            RegKind::PpcF128 => {
+                unimplemented!()
+            }
         }
     }
 }

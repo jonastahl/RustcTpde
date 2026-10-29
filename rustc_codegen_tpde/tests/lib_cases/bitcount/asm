@@ -6,17 +6,17 @@ lib.rmeta:     file format elf64-x86-64
 lib.rmeta-link:     file format elf64-x86-64
 
 
-actual_obj.source.a5d34ad7a00a7042-cgu.0.rcgu.o:     file format elf64-x86-64
+actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
 
 
 Disassembly of section .text:
 
-<_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCseeGrevWVrEI_6source>:
+<_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCsQvp3e8KgHi_6source>:
 	test   %rsi,%rsi
-	je     <_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCseeGrevWVrEI_6source+0x15>
+	je     <_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCsQvp3e8KgHi_6source+0x15>
 	bsr    %rsi,%rax
 	xor    $0x3f,%eax
-	jmp    <_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCseeGrevWVrEI_6source+0x24>
+	jmp    <_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCsQvp3e8KgHi_6source+0x24>
 	mov    $0x7f,%eax
 	bsr    %rdi,%rax
 	xor    $0x3f,%eax
@@ -25,11 +25,11 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	xchg   %ax,%ax
 
-<_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCseeGrevWVrEI_6source>:
+<_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCsQvp3e8KgHi_6source>:
 	test   %rdi,%rdi
-	je     <_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCseeGrevWVrEI_6source+0x12>
+	je     <_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCsQvp3e8KgHi_6source+0x12>
 	bsf    %rdi,%rax
-	jmp    <_RNvMs18_NtNtCs94NUNretDkj_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCseeGrevWVrEI_6source+0x1e>
+	jmp    <_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCsQvp3e8KgHi_6source+0x1e>
 	mov    $0x40,%eax
 	bsf    %rsi,%rax
 	add    $0x40,%eax

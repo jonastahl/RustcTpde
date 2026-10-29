@@ -2,7 +2,8 @@ use super::ffi;
 pub use super::ffi::ModuleTpde;
 use crate::shared::ffi::{CalleeInfo, GlobalPtr};
 use core::fmt::{Debug, Formatter};
-use rustc_hir::attrs::Linkage;
+use rustc_attr_ir::Linkage;
+use rustc_codegen_ssa::traits::ReturnSlot;
 use rustc_middle::mir::Mutability;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
@@ -637,6 +638,7 @@ impl Module {
         bb: BasicBlock,
         func_ref: Slot,
         func_sign: &FunctionSignature,
+        return_slot: ReturnSlot<Slot>,
         args: &[Slot]) -> Option<Slot> {
         let mut ops = Vec::with_capacity(1 + args.len());
         ops.push(func_ref);
@@ -648,6 +650,9 @@ impl Module {
                 ops.push(Slot::new_raw(callee_infos.len() as u32 - 1))
             }
             _ => todo!()
+        }
+        if let ReturnSlot::Indirect(sret) = return_slot {
+            ops.push(sret);
         }
         for &arg in args {
             match arg {
