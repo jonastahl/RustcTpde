@@ -193,16 +193,16 @@ namespace tpde_rust {
 
     ValuePart const_vector_part(const ConstVector &vec, u32 part) {
       const Type part_ty = vector_parts(vec.ty).second;
-      const u32 part_bytes = size_of_type(part_ty) / 8;
-      const u8 *src = vec.data.data() + size_t{part} * part_bytes;
-      if (part_bytes == 16) {
+      const u32 data_bytes = size_of_type(part_ty) / 8;
+      const u8 *src = vec.data.data() + size_t{part} * data_bytes;
+      if (data_bytes == 16) {
         u64 *data = new (const_allocator) u64[2];
         std::memcpy(data, src, 16);
         return ValuePart(data, 16, tpde::RegBank{1});
       }
       u64 word = 0;
-      std::memcpy(&word, src, part_bytes);
-      return ValuePart(word, part_bytes, reg_bank_of_type(part_ty));
+      std::memcpy(&word, src, data_bytes);
+      return ValuePart(word, part_size_bytes(part_ty), reg_bank_of_type(part_ty));
     }
 
     ValuePart val_part_ref_special(const ValRefSpecial &vrs, u32 part) {
@@ -234,11 +234,8 @@ namespace tpde_rust {
           return ValuePart(imm.data2, 8, reg_bank);
         }
 
-        // small vectors with less than 64 bits -> every element is handled separately
-        Type elem_ty = vector_info(imm.ty).second;
-        size = size_of_type(elem_ty);
-        reg_bank = reg_bank_of_type(elem_ty);
-        return ValuePart(imm.data2 >> (part * size), size, reg_bank);
+        // small vectors with less than 64 bits occupy the low bits of one XMM part
+        return ValuePart(imm.data2 & ((u64{1} << (size * 8)) - 1), part_size_bytes(imm.ty), reg_bank);
       } {
         u32 loc_id = vrs.data.content() + this->adaptor->starts_index[vrs.data.marker()];
         tpde::ValLocalIdx local_idx{loc_id};
@@ -255,7 +252,9 @@ namespace tpde_rust {
     void prologue_assign_arg(tpde::CCAssigner *cc_assigner,
                              u32 arg_idx,
                              IRValueRef arg) {
-      u32 align = size_of_type(Base::adaptor->type_of_ref(arg)) / 8;
+      const Type ty = Base::adaptor->type_of_ref(arg);
+      // Vectors need to have an alignment of at least 16 bytes
+      u32 align = is_vector(ty) ? std::max(size_of_type(ty) / 8, 16u) : size_of_type(ty) / 8;
       bool allow_split = derived()->arg_allow_split_reg_stack_passing(IR::Operand(arg_idx));
       Base::prologue_assign_arg(cc_assigner, arg_idx, arg, align, allow_split);
     }
@@ -794,6 +793,9 @@ namespace tpde_rust {
         res[unsigned(i16)] = 1;
         res[unsigned(i32)] = 1;
         res[unsigned(i64)] = 2;
+        res[unsigned(v2i8)] = 3;
+        res[unsigned(v4i8)] = 3;
+        res[unsigned(v2i16)] = 4;
         res[unsigned(v8i8)] = 3;
         res[unsigned(v4i16)] = 4;
         res[unsigned(v2i32)] = 5;
@@ -1513,8 +1515,18 @@ namespace tpde_rust {
         derived()->encode_storei128(std::move(ptr_op), op_ref.part(0), op_ref.part(1));
         return true;
       }
-      case f32: {
+      case f32:
+      case v4i8:
+      case v2i16: {
         derived()->encode_storef32(std::move(ptr_op), op_ref.part(0));
+        return true;
+      }
+      case v2i8: {
+        // Only lowest 2 bytes of XMM contain actual data
+        ValuePartRef val = op_ref.part(0);
+        ValuePartRef tmp{this, Config::GP_BANK};
+        derived()->mov(tmp.alloc_reg(), val.load_to_reg(), 4);
+        derived()->encode_storei16(std::move(ptr_op), std::move(tmp));
         return true;
       }
       case f64:
@@ -1670,9 +1682,18 @@ namespace tpde_rust {
         derived()->encode_loadi128(std::move(ptr_op), res.part(0), res.part(1));
         return true;
       }
-      case f32: {
+      case f32:
+      case v4i8:
+      case v2i16: {
         derived()->encode_loadf32(std::move(ptr_op),
                                   this->result_ref(loadi.result()).part(0));
+        return true;
+      }
+      case v2i8: {
+        ValuePartRef tmp{this, Config::GP_BANK};
+        derived()->encode_loadi16_zext(std::move(ptr_op), tmp);
+        ValuePartRef res = this->result_ref(loadi.result()).part(0);
+        derived()->mov(res.alloc_reg(), tmp.has_reg() ? tmp.cur_reg() : tmp.load_to_reg(), 4);
         return true;
       }
       case v8i8:
@@ -1844,6 +1865,9 @@ namespace tpde_rust {
             break;
           }
           default:
+            if (is_vector(ty)) {
+              arg.byval_align = 16;
+            }
             break;
         }
 
@@ -2026,12 +2050,13 @@ namespace tpde_rust {
       for (u32 i = 0; i != dst_part_count; ++i) {
         ValuePartRef res_vpr = res_ref.part(i);
         ValuePartRef src_vpr = src_ref.part(i);
-        assert(src_vpr.part_size() == res_vpr.part_size());
         if (src_vpr.bank() == res_vpr.bank()) {
+          assert(src_vpr.part_size() == res_vpr.part_size());
           res_vpr.set_value(std::move(src_vpr));
         } else {
+          const u32 size = std::max(src_vpr.part_size(), res_vpr.part_size());
           AsmReg src_reg = src_vpr.load_to_reg();
-          derived()->mov(res_vpr.alloc_reg(), src_reg, res_vpr.part_size());
+          derived()->mov(res_vpr.alloc_reg(), src_reg, size);
         }
       }
       return true;
@@ -3055,7 +3080,10 @@ namespace tpde_rust {
       unsigned ty_idx;
       switch (part_ty) {
         using enum Type;
+        case v2i8:
+        case v4i8:
         case v8i8: ty_idx = 0; break;
+        case v2i16:
         case v4i16: ty_idx = 1; break;
         case v2i32: ty_idx = 2; break;
         case v16i8: ty_idx = 3; break;
@@ -3449,7 +3477,10 @@ namespace tpde_rust {
       ValuePartRef part_mask{this, Config::GP_BANK};
       switch (part_ty) {
         using enum Type;
+        case v2i8:
+        case v4i8:
         case v8i8: derived()->encode_trunc_v8i8_1(src_vr.part(i), part_mask); break;
+        case v2i16:
         case v4i16: derived()->encode_trunc_v4i16_1(src_vr.part(i), part_mask); break;
         case v2i32: derived()->encode_trunc_v2i32_1(src_vr.part(i), part_mask); break;
         case v16i8: derived()->encode_trunc_v16i8_1(src_vr.part(i), part_mask); break;

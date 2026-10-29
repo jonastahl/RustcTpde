@@ -287,7 +287,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                     }
                     PassMode::Indirect {
                         attrs,
-                        mode: IndirectMode::Pointer,
+                        mode: IndirectMode::OnStack,
                         ..
                     } => {
                         slots.push(Type::ptr);
@@ -300,7 +300,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                     }
                     PassMode::Indirect {
                         attrs,
-                        mode: IndirectMode::OnStack,
+                        mode: IndirectMode::Pointer,
                         ..
                     } | PassMode::IndirectUnsized { attrs, .. } => {
                         slots.push(Type::ptr);
@@ -421,7 +421,7 @@ impl<'tcx> LayoutTypeCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
     }
 
     fn reg_backend_type(&self, ty: &Reg) -> Self::Type {
-        todo!()
+        FullType::Single(self.reg_to_ir_type(ty))
     }
 
     fn immediate_backend_type(&self, layout: TyAndLayout<'tcx>) -> Self::Type {

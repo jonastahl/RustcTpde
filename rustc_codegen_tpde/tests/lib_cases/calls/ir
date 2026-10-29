@@ -349,10 +349,10 @@ ModuleTpde {
                     align: 0,
                 },
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 24,
+                    align: 8,
                 },
             ],
             slots: [
@@ -389,10 +389,10 @@ ModuleTpde {
                             align: 8,
                         },
                         ArgInfo {
-                            kind: Direct,
+                            kind: ByVal,
                             extension: None,
-                            size: 0,
-                            align: 0,
+                            size: 24,
+                            align: 8,
                         },
                     ],
                 },
@@ -405,10 +405,10 @@ ModuleTpde {
                             align: 8,
                         },
                         ArgInfo {
-                            kind: Direct,
+                            kind: ByVal,
                             extension: None,
-                            size: 0,
-                            align: 0,
+                            size: 24,
+                            align: 8,
                         },
                     ],
                 },
@@ -1105,10 +1105,10 @@ ModuleTpde {
                     align: 8,
                 },
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 24,
+                    align: 8,
                 },
             ],
             slots: [
@@ -1186,7 +1186,7 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Invoke> ([func: 39], [raw: 2], [raw: 1], [val: 0]),
+                    <Invoke> ([func: 39], [raw: 2], [raw: 1], [alloc: 0], [val: 0]),
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 1],
@@ -1336,10 +1336,10 @@ ModuleTpde {
             has_ret: true,
             args: [
                 ArgInfo {
-                    kind: ByVal,
+                    kind: Direct,
                     extension: None,
-                    size: 64,
-                    align: 8,
+                    size: 0,
+                    align: 0,
                 },
                 ArgInfo {
                     kind: Direct,
@@ -1459,10 +1459,10 @@ ModuleTpde {
             has_ret: true,
             args: [
                 ArgInfo {
-                    kind: ByVal,
+                    kind: Direct,
                     extension: None,
-                    size: 64,
-                    align: 8,
+                    size: 0,
+                    align: 0,
                 },
             ],
             slots: [
@@ -2848,10 +2848,10 @@ ModuleTpde {
             has_ret: true,
             args: [
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 24,
+                    align: 8,
                 },
             ],
             slots: [
@@ -3484,10 +3484,10 @@ ModuleTpde {
             has_ret: true,
             args: [
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 24,
+                    align: 8,
                 },
                 ArgInfo {
                     kind: Direct,
@@ -3603,10 +3603,10 @@ ModuleTpde {
             has_ret: true,
             args: [
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 24,
+                    align: 8,
                 },
             ],
             slots: [
@@ -5025,10 +5025,10 @@ ModuleTpde {
             has_ret: true,
             args: [
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 64,
+                    align: 8,
                 },
             ],
             slots: [
@@ -5086,10 +5086,10 @@ ModuleTpde {
             has_ret: true,
             args: [
                 ArgInfo {
-                    kind: Direct,
+                    kind: ByVal,
                     extension: None,
-                    size: 0,
-                    align: 0,
+                    size: 24,
+                    align: 8,
                 },
                 ArgInfo {
                     kind: Direct,

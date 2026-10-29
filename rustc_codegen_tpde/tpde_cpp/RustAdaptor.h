@@ -593,7 +593,7 @@ namespace tpde_rust {
       }
 
       [[nodiscard]] u32 size_bytes(const u32 n) const {
-        return size_of_type(type(n)) / 8;
+        return part_size_bytes(type(n));
       }
 
       [[nodiscard]] tpde::RegBank reg_bank(u32 n) const {

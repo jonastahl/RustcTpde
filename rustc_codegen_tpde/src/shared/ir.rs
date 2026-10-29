@@ -679,6 +679,7 @@ impl Module {
         func_sign: &FunctionSignature,
         then: BasicBlock,
         catch: BasicBlock,
+        return_slot: ReturnSlot<Slot>,
         args: &[Slot]) -> Option<Slot> {
         let mut ops = Vec::with_capacity(3 + args.len());
         ops.push(func_ref);
@@ -692,6 +693,9 @@ impl Module {
                 ops.push(Slot::new_raw(callee_infos.len() as u32 - 1))
             }
             _ => todo!()
+        }
+        if let ReturnSlot::Indirect(sret) = return_slot {
+            ops.push(sret);
         }
         ops.extend_from_slice(args);
         self.add_instruction_raw_internal(

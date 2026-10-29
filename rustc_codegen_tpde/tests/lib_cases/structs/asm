@@ -103,39 +103,39 @@ Disassembly of section .text:
 	push   %r15
 	sub    $0x8,%rsp
 	mov    %rdi,%rbx
-	mov    0x10(%rbp),%r12
-	movzbl 0x22(%rbp),%eax
-	lea    0x1(%rax),%r13d
-	cmp    %al,%r13b
-	jb     <increase_age+0xa2>
-	movzbl 0x23(%rbp),%eax
-	lea    0x2(%rax),%r14d
+	mov    %rsi,%r12
+	mov    (%r12),%r13
+	movzbl 0x12(%r12),%eax
+	lea    0x1(%rax),%r14d
 	cmp    %al,%r14b
-	jb     <increase_age+0x96>
-	movzwl 0x20(%rbp),%eax
+	jb     <increase_age+0xa7>
+	movzbl 0x13(%r12),%eax
+	lea    0x2(%rax),%r15d
+	cmp    %al,%r15b
+	jb     <increase_age+0x9b>
+	movzwl 0x10(%r12),%eax
 	xor    %ecx,%ecx
-	mov    %eax,%r15d
-	sub    $0x14,%r15w
+	sub    $0x14,%ax
 	seto   %cl
-	jo     <increase_age+0x8a>
-	mov    0x18(%rbp),%rax
-	lea    0x2b67(%rax),%rcx
-	cmp    %rax,%rcx
-	jb     <increase_age+0x7e>
-	mov    %r12,(%rbx)
-	mov    %r13b,0x12(%rbx)
-	mov    %r14b,0x13(%rbx)
-	mov    %r15w,0x10(%rbx)
-	mov    %rcx,0x8(%rbx)
-	jmp    <increase_age+0xae>
-	lea    -0x8(%rip),%rdi        # <increase_age+0x7d>
-	call   <increase_age+0x8a>
-	lea    -0x8(%rip),%rdi        # <increase_age+0x89>
-	call   <increase_age+0x96>
-	lea    -0x8(%rip),%rdi        # <increase_age+0x95>
-	call   <increase_age+0xa2>
-	lea    -0x8(%rip),%rdi        # <increase_age+0xa1>
-	call   <increase_age+0xae>
+	jo     <increase_age+0x8f>
+	mov    0x8(%r12),%rcx
+	lea    0x2b67(%rcx),%r12
+	cmp    %rcx,%r12
+	jb     <increase_age+0x83>
+	mov    %r13,(%rbx)
+	mov    %r14b,0x12(%rbx)
+	mov    %r15b,0x13(%rbx)
+	mov    %ax,0x10(%rbx)
+	mov    %r12,0x8(%rbx)
+	jmp    <increase_age+0xb3>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x82>
+	call   <increase_age+0x8f>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x8e>
+	call   <increase_age+0x9b>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x9a>
+	call   <increase_age+0xa7>
+	lea    -0x8(%rip),%rdi        # <increase_age+0xa6>
+	call   <increase_age+0xb3>
 	add    $0x8,%rsp
 	pop    %r15
 	pop    %r14

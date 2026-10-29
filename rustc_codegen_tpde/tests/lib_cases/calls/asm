@@ -1,0 +1,1943 @@
+In archive tests/lib_cases/calls/actual_obj:
+
+lib.rmeta:     file format elf64-x86-64
+
+
+lib.rmeta-link:     file format elf64-x86-64
+
+
+actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+<_RNvMNtNtCsioHeeuq8fQz_4core3ptr9const_ptrPx3addCsQvp3e8KgHi_6source>:
+	lea    (%rdi,%rsi,8),%rdi
+	mov    %rdi,%rax
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<ackermann>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	sub    $0x10,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	test   %rbx,%rbx
+	je     <ackermann+0xb3>
+	test   %r12,%r12
+	je     <ackermann+0x80>
+	mov    %rbx,%r13
+	sub    $0x1,%r13
+	cmp    $0x1,%rbx
+	jb     <ackermann+0x74>
+	mov    %r12,%r14
+	sub    $0x1,%r14
+	cmp    $0x1,%r12
+	jb     <ackermann+0x68>
+	mov    %rbx,%rdi
+	mov    %r14,%rsi
+	call   <ackermann+0x54>
+	mov    %r13,%rdi
+	mov    %rax,%rsi
+	call   <ackermann+0x5f>
+	mov    %rax,-0x30(%rbp)
+	jmp    <ackermann+0xc5>
+	lea    -0x8(%rip),%rdi        # <ackermann+0x67>
+	call   <ackermann+0x74>
+	lea    -0x8(%rip),%rdi        # <ackermann+0x73>
+	call   <ackermann+0x80>
+	mov    %rbx,%r13
+	sub    $0x1,%r13
+	cmp    $0x1,%rbx
+	jb     <ackermann+0xa7>
+	mov    %r13,%rdi
+	mov    $0x1,%esi
+	call   <ackermann+0x9e>
+	mov    %rax,-0x30(%rbp)
+	jmp    <ackermann+0xc5>
+	lea    -0x8(%rip),%rdi        # <ackermann+0xa6>
+	call   <ackermann+0xb3>
+	lea    0x1(%r12),%rbx
+	cmp    %r12,%rbx
+	jb     <ackermann+0xce>
+	mov    %rbx,-0x30(%rbp)
+	mov    -0x30(%rbp),%rax
+	jmp    <ackermann+0xda>
+	lea    -0x8(%rip),%rdi        # <ackermann+0xcd>
+	call   <ackermann+0xda>
+	add    $0x10,%rsp
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<add3>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdx,%rbx
+	xor    %eax,%eax
+	mov    %rdi,%r12
+	add    %rsi,%r12
+	seto   %al
+	jo     <add3+0x46>
+	xor    %eax,%eax
+	mov    %r12,%r13
+	add    %rbx,%r13
+	seto   %al
+	jo     <add3+0x3a>
+	mov    %r13,%rax
+	jmp    <add3+0x52>
+	lea    -0x8(%rip),%rdi        # <add3+0x39>
+	call   <add3+0x46>
+	lea    -0x8(%rip),%rdi        # <add3+0x45>
+	call   <add3+0x52>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<apply_binary>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    %rdx,%rsi
+	call   *-0x30(%rbp)
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<apply_point>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x70,%rsp
+	mov    %rdi,-0x30(%rbp)
+	lea    -0x50(%rbp),%rdi
+	lea    0x10(%rbp),%rax
+	mov    (%rax),%rcx
+	mov    %rcx,(%rsp)
+	mov    0x8(%rax),%rcx
+	mov    %rcx,0x8(%rsp)
+	mov    0x10(%rax),%rcx
+	mov    %rcx,0x10(%rsp)
+	mov    %rsi,-0x58(%rbp)
+	call   *-0x58(%rbp)
+	mov    -0x30(%rbp),%rdi
+	lea    -0x50(%rbp),%rax
+	mov    (%rax),%rcx
+	mov    %rcx,(%rsp)
+	mov    0x8(%rax),%rcx
+	mov    %rcx,0x8(%rsp)
+	mov    0x10(%rax),%rcx
+	mov    %rcx,0x10(%rsp)
+	call   *-0x58(%rbp)
+	add    $0x70,%rsp
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<apply_twice>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x40,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,%rdi
+	mov    %rsi,-0x38(%rbp)
+	mov    %rdx,%rsi
+	mov    %rdx,-0x40(%rbp)
+	call   *-0x30(%rbp)
+	mov    -0x40(%rbp),%rdi
+	mov    -0x38(%rbp),%rsi
+	mov    %rax,-0x38(%rbp)
+	call   *-0x30(%rbp)
+	mov    -0x38(%rbp),%rdi
+	mov    %rax,%rsi
+	call   *-0x30(%rbp)
+	add    $0x40,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<array4_sum>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x30,%rsp
+	mov    %rdi,-0x40(%rbp)
+	mov    %rsi,-0x38(%rbp)
+	xor    %eax,%eax
+	cmp    $0x4,%rax
+	jae    <array4_sum+0x116>
+	mov    -0x40(%rbp),%ebx
+	mov    $0x1,%eax
+	cmp    $0x4,%rax
+	jae    <array4_sum+0xfb>
+	mov    -0x3c(%rbp),%eax
+	xor    %ecx,%ecx
+	mov    %ebx,%r12d
+	add    %eax,%r12d
+	seto   %cl
+	jo     <array4_sum+0xea>
+	mov    $0x2,%eax
+	cmp    $0x4,%rax
+	jae    <array4_sum+0xcf>
+	mov    -0x38(%rbp),%eax
+	xor    %ecx,%ecx
+	mov    %r12d,%ebx
+	add    %eax,%ebx
+	seto   %cl
+	jo     <array4_sum+0xbe>
+	mov    $0x3,%eax
+	cmp    $0x4,%rax
+	jae    <array4_sum+0xa3>
+	mov    -0x34(%rbp),%eax
+	xor    %ecx,%ecx
+	mov    %ebx,%r12d
+	add    %eax,%r12d
+	seto   %cl
+	jo     <array4_sum+0x92>
+	mov    %r12d,%eax
+	jmp    <array4_sum+0x133>
+	lea    -0x8(%rip),%rdi        # <array4_sum+0x91>
+	call   <array4_sum+0x9e>
+	jmp    <array4_sum+0x133>
+	mov    $0x3,%edi
+	mov    $0x4,%esi
+	lea    -0x8(%rip),%rdx        # <array4_sum+0xac>
+	call   <array4_sum+0xb9>
+	jmp    <array4_sum+0x133>
+	lea    -0x8(%rip),%rdi        # <array4_sum+0xbd>
+	call   <array4_sum+0xca>
+	jmp    <array4_sum+0x133>
+	mov    $0x2,%edi
+	mov    $0x4,%esi
+	lea    -0x8(%rip),%rdx        # <array4_sum+0xd8>
+	call   <array4_sum+0xe5>
+	jmp    <array4_sum+0x133>
+	lea    -0x8(%rip),%rdi        # <array4_sum+0xe9>
+	call   <array4_sum+0xf6>
+	jmp    <array4_sum+0x133>
+	mov    $0x1,%edi
+	mov    $0x4,%esi
+	lea    -0x8(%rip),%rdx        # <array4_sum+0x104>
+	call   <array4_sum+0x111>
+	jmp    <array4_sum+0x133>
+	xor    %edi,%edi
+	mov    $0x4,%esi
+	lea    -0x8(%rip),%rdx        # <array4_sum+0x11c>
+	call   <array4_sum+0x129>
+	jmp    <array4_sum+0x133>
+	call   <array4_sum+0x133>
+	add    $0x30,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<big_struct_from_args>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x48,%rsp
+	mov    %rdi,%rbx
+	lea    (%rsi,%rdx,1),%r12
+	cmp    %rsi,%r12
+	jb     <big_struct_from_args+0x1ae>
+	cvttsd2si %xmm0,%rax
+	mov    %rax,%rcx
+	sar    $0x3f,%rcx
+	movapd %xmm0,%xmm1
+	subsd  -0x8(%rip),%xmm1        # <big_struct_from_args+0x31>
+	cvttsd2si %xmm1,%rdx
+	and    %rcx,%rdx
+	or     %rax,%rdx
+	xor    %ecx,%ecx
+	xorpd  %xmm1,%xmm1
+	ucomisd %xmm1,%xmm0
+	cmovae %rdx,%rcx
+	ucomisd -0x8(%rip),%xmm0        # <big_struct_from_args+0x52>
+	mov    $0xffffffffffffffff,%rax
+	cmovbe %rcx,%rax
+	lea    (%r12,%rax,1),%r13
+	cmp    %r12,%r13
+	jb     <big_struct_from_args+0x1a2>
+	lea    0x1(%r13),%r12
+	cmp    %r13,%r12
+	jb     <big_struct_from_args+0x196>
+	lea    0x2(%r13),%r14
+	cmp    %r13,%r14
+	jb     <big_struct_from_args+0x18a>
+	lea    0x3(%r13),%r15
+	cmp    %r13,%r15
+	jb     <big_struct_from_args+0x17e>
+	lea    0x4(%r13),%rax
+	cmp    %r13,%rax
+	jb     <big_struct_from_args+0x172>
+	lea    0x5(%r13),%rcx
+	cmp    %r13,%rcx
+	jb     <big_struct_from_args+0x166>
+	lea    0x6(%r13),%rdx
+	cmp    %r13,%rdx
+	jb     <big_struct_from_args+0x15a>
+	lea    0x7(%r13),%rsi
+	cmp    %r13,%rsi
+	jb     <big_struct_from_args+0x14e>
+	mov    %r13,-0x70(%rbp)
+	mov    %r12,-0x68(%rbp)
+	mov    %r14,-0x60(%rbp)
+	mov    %r15,-0x58(%rbp)
+	mov    %rax,-0x50(%rbp)
+	mov    %rcx,-0x48(%rbp)
+	mov    %rdx,-0x40(%rbp)
+	mov    %rsi,-0x38(%rbp)
+	mov    -0x70(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x68(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x60(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x58(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x50(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x48(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x40(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x38(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    -0x30(%rbp),%rax
+	lea    0x8(%rbx),%rbx
+	jmp    <big_struct_from_args+0x1ba>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x14d>
+	call   <big_struct_from_args+0x15a>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x159>
+	call   <big_struct_from_args+0x166>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x165>
+	call   <big_struct_from_args+0x172>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x171>
+	call   <big_struct_from_args+0x17e>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x17d>
+	call   <big_struct_from_args+0x18a>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x189>
+	call   <big_struct_from_args+0x196>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x195>
+	call   <big_struct_from_args+0x1a2>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x1a1>
+	call   <big_struct_from_args+0x1ae>
+	lea    -0x8(%rip),%rdi        # <big_struct_from_args+0x1ad>
+	call   <big_struct_from_args+0x1ba>
+	add    $0x48,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<big_struct_roundtrip>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x70,%rsp
+	mov    %rdi,-0x30(%rbp)
+	lea    -0x70(%rbp),%rdi
+	mov    -0x30(%rbp),%rsi
+	call   <big_struct_roundtrip+0x19>
+	lea    -0x70(%rbp),%rdi
+	call   <big_struct_roundtrip+0x22>
+	add    $0x70,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<bytes3_bump>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %edi,-0x2c(%rbp)
+	movzbl -0x2c(%rbp),%eax
+	lea    0x1(%rax),%ebx
+	cmp    %al,%bl
+	jb     <bytes3_bump+0x76>
+	movzbl -0x2b(%rbp),%eax
+	lea    0x2(%rax),%r12d
+	cmp    %al,%r12b
+	jb     <bytes3_bump+0x65>
+	movzbl -0x2a(%rbp),%eax
+	lea    0x3(%rax),%r13d
+	cmp    %al,%r13b
+	jb     <bytes3_bump+0x54>
+	mov    %bl,-0x30(%rbp)
+	mov    %r12b,-0x2f(%rbp)
+	mov    %r13b,-0x2e(%rbp)
+	mov    -0x30(%rbp),%eax
+	jmp    <bytes3_bump+0x8c>
+	lea    -0x8(%rip),%rdi        # <bytes3_bump+0x53>
+	call   <bytes3_bump+0x60>
+	jmp    <bytes3_bump+0x8c>
+	lea    -0x8(%rip),%rdi        # <bytes3_bump+0x64>
+	call   <bytes3_bump+0x71>
+	jmp    <bytes3_bump+0x8c>
+	lea    -0x8(%rip),%rdi        # <bytes3_bump+0x75>
+	call   <bytes3_bump+0x82>
+	jmp    <bytes3_bump+0x8c>
+	call   <bytes3_bump+0x8c>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<bytes3_sum>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %edi,-0x2c(%rbp)
+	movzbl -0x2c(%rbp),%eax
+	movzbl %al,%eax
+	movzbl -0x2b(%rbp),%ecx
+	movzbl %cl,%ecx
+	lea    (%rax,%rcx,1),%ebx
+	cmp    %eax,%ebx
+	jb     <bytes3_sum+0x54>
+	movzbl -0x2a(%rbp),%eax
+	movzbl %al,%eax
+	lea    (%rbx,%rax,1),%r12d
+	cmp    %ebx,%r12d
+	jb     <bytes3_sum+0x43>
+	mov    %r12d,%eax
+	jmp    <bytes3_sum+0x6a>
+	lea    -0x8(%rip),%rdi        # <bytes3_sum+0x42>
+	call   <bytes3_sum+0x4f>
+	jmp    <bytes3_sum+0x6a>
+	lea    -0x8(%rip),%rdi        # <bytes3_sum+0x53>
+	call   <bytes3_sum+0x60>
+	jmp    <bytes3_sum+0x6a>
+	call   <bytes3_sum+0x6a>
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<c_abi_point_transformer>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movsd  0x10(%rbp),%xmm0
+	movabs $0x4000000000000000,%rax
+	movq   %rax,%xmm1
+	mulsd  %xmm1,%xmm0
+	movsd  0x18(%rbp),%xmm1
+	movabs $0x4000000000000000,%rax
+	movq   %rax,%xmm2
+	mulsd  %xmm2,%xmm1
+	movsd  0x20(%rbp),%xmm2
+	movabs $0x4000000000000000,%rax
+	movq   %rax,%xmm3
+	mulsd  %xmm3,%xmm2
+	movsd  %xmm0,(%rdi)
+	movsd  %xmm1,0x8(%rdi)
+	movsd  %xmm2,0x10(%rdi)
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<call_external_big>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0xb0,%rsp
+	mov    %rdi,-0x30(%rbp)
+	lea    -0x70(%rbp),%rdi
+	mov    -0x30(%rbp),%rsi
+	call   <call_external_big+0x1c>
+	jmp    <call_external_big+0x26>
+	call   <call_external_big+0x26>
+	lea    -0x70(%rbp),%rax
+	mov    (%rax),%rcx
+	mov    %rcx,(%rsp)
+	mov    0x8(%rax),%rcx
+	mov    %rcx,0x8(%rsp)
+	mov    0x10(%rax),%rcx
+	mov    %rcx,0x10(%rsp)
+	mov    0x18(%rax),%rcx
+	mov    %rcx,0x18(%rsp)
+	mov    0x20(%rax),%rcx
+	mov    %rcx,0x20(%rsp)
+	mov    0x28(%rax),%rcx
+	mov    %rcx,0x28(%rsp)
+	mov    0x30(%rax),%rcx
+	mov    %rcx,0x30(%rsp)
+	mov    0x38(%rax),%rcx
+	mov    %rcx,0x38(%rsp)
+	call   <call_external_big+0x75>
+	add    $0xb0,%rsp
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<call_external_chain>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x70,%rsp
+	lea    -0x50(%rbp),%rdi
+	call   <call_external_chain+0x11>
+	lea    -0x50(%rbp),%rax
+	mov    (%rax),%rcx
+	mov    %rcx,(%rsp)
+	mov    0x8(%rax),%rcx
+	mov    %rcx,0x8(%rsp)
+	mov    0x10(%rax),%rcx
+	mov    %rcx,0x10(%rsp)
+	movabs $0x4000000000000000,%rcx
+	movq   %rcx,%xmm0
+	call   <call_external_chain+0x42>
+	add    $0x70,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<call_external_many_args>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x40,%rsp
+	mov    $0x1,%edi
+	mov    $0x2,%esi
+	mov    $0x3,%edx
+	mov    $0x4,%ecx
+	mov    $0x5,%r8d
+	mov    $0x6,%r9d
+	mov    $0x7,%eax
+	mov    %rax,(%rsp)
+	mov    $0x8,%eax
+	mov    %rax,0x8(%rsp)
+	movabs $0x4022000000000000,%rax
+	movq   %rax,%xmm0
+	movabs $0x4024000000000000,%rax
+	movq   %rax,%xmm1
+	call   <call_external_many_args+0x5e>
+	add    $0x40,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<callback_target>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rsi,%rbx
+	xor    %eax,%eax
+	mov    %rdi,%r12
+	mov    $0xa,%ecx
+	imul   %rcx,%r12
+	seto   %al
+	jo     <callback_target+0x51>
+	xor    %eax,%eax
+	mov    %r12,%r13
+	add    %rbx,%r13
+	seto   %al
+	jo     <callback_target+0x40>
+	mov    %r13,%rax
+	jmp    <callback_target+0x67>
+	lea    -0x8(%rip),%rdi        # <callback_target+0x3f>
+	call   <callback_target+0x4c>
+	jmp    <callback_target+0x67>
+	lea    -0x8(%rip),%rdi        # <callback_target+0x50>
+	call   <callback_target+0x5d>
+	jmp    <callback_target+0x67>
+	call   <callback_target+0x67>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<consume_big_and_args>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x40,%rsp
+	movq   $0x0,-0x30(%rbp)
+	movq   $0x0,-0x38(%rbp)
+	mov    %rsi,-0x40(%rbp)
+	mov    %rdi,-0x48(%rbp)
+	movq   %xmm0,-0x50(%rbp)
+	mov    -0x38(%rbp),%rax
+	cmp    $0x8,%rax
+	jae    <consume_big_and_args+0x79>
+	mov    -0x38(%rbp),%rbx
+	cmp    $0x8,%rbx
+	jae    <consume_big_and_args+0xe1>
+	mov    -0x48(%rbp),%rax
+	mov    (%rax,%rbx,8),%rcx
+	mov    -0x30(%rbp),%rdx
+	lea    (%rdx,%rcx,1),%r12
+	cmp    %rdx,%r12
+	jb     <consume_big_and_args+0xd5>
+	mov    %r12,-0x30(%rbp)
+	mov    -0x38(%rbp),%rcx
+	lea    0x1(%rcx),%r12
+	cmp    %rcx,%r12
+	jb     <consume_big_and_args+0xc9>
+	mov    %r12,-0x38(%rbp)
+	jmp    <consume_big_and_args+0x29>
+	mov    -0x30(%rbp),%rax
+	mov    -0x40(%rbp),%rcx
+	lea    (%rax,%rcx,1),%rcx
+	cmp    %rax,%rcx
+	jb     <consume_big_and_args+0xbd>
+	movq   %rcx,%xmm0
+	punpckldq -0x8(%rip),%xmm0        # <consume_big_and_args+0x93>
+	subpd  -0x8(%rip),%xmm0        # <consume_big_and_args+0x9b>
+	movapd %xmm0,%xmm1
+	unpckhpd %xmm0,%xmm1
+	addsd  %xmm0,%xmm1
+	addsd  -0x50(%rbp),%xmm1
+	movapd %xmm1,%xmm0
+	jmp    <consume_big_and_args+0xf5>
+	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xbc>
+	call   <consume_big_and_args+0xc9>
+	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xc8>
+	call   <consume_big_and_args+0xd5>
+	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xd4>
+	call   <consume_big_and_args+0xe1>
+	mov    %rbx,%rdi
+	mov    $0x8,%esi
+	lea    -0x8(%rip),%rdx        # <consume_big_and_args+0xe8>
+	call   <consume_big_and_args+0xf5>
+	add    $0x40,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<consume_big_struct>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %rdi,%rbx
+	xor    %eax,%eax
+	cmp    $0x8,%rax
+	jae    <consume_big_struct+0x67>
+	mov    (%rbx),%r12
+	mov    $0x7,%eax
+	cmp    $0x8,%rax
+	jae    <consume_big_struct+0x51>
+	mov    0x38(%rbx),%rax
+	lea    (%r12,%rax,1),%rbx
+	cmp    %r12,%rbx
+	jb     <consume_big_struct+0x45>
+	mov    %rbx,%rax
+	jmp    <consume_big_struct+0x7a>
+	lea    -0x8(%rip),%rdi        # <consume_big_struct+0x44>
+	call   <consume_big_struct+0x51>
+	mov    $0x7,%edi
+	mov    $0x8,%esi
+	lea    -0x8(%rip),%rdx        # <consume_big_struct+0x5a>
+	call   <consume_big_struct+0x67>
+	xor    %edi,%edi
+	mov    $0x8,%esi
+	lea    -0x8(%rip),%rdx        # <consume_big_struct+0x6d>
+	call   <consume_big_struct+0x7a>
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<editor>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %esi,%ebx
+	lea    0x1(%rdi),%r12d
+	cmp    %dil,%r12b
+	jb     <editor+0x24>
+	mov    %r12d,%eax
+	mov    %ebx,%edx
+	jmp    <editor+0x30>
+	lea    -0x8(%rip),%rdi        # <editor+0x23>
+	call   <editor+0x30>
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<fib>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	cmp    $0x2,%rbx
+	jbe    <fib+0x89>
+	mov    %rbx,%r12
+	sub    $0x1,%r12
+	cmp    $0x1,%rbx
+	jb     <fib+0x7d>
+	mov    %r12,%rdi
+	call   <fib+0x33>
+	mov    %rax,%r12
+	mov    %rbx,%r13
+	sub    $0x2,%r13
+	cmp    $0x2,%rbx
+	jb     <fib+0x71>
+	mov    %r13,%rdi
+	call   <fib+0x4f>
+	lea    (%r12,%rax,1),%r13
+	cmp    %r12,%r13
+	jb     <fib+0x65>
+	mov    %r13,-0x30(%rbp)
+	jmp    <fib+0x8d>
+	lea    -0x8(%rip),%rdi        # <fib+0x64>
+	call   <fib+0x71>
+	lea    -0x8(%rip),%rdi        # <fib+0x70>
+	call   <fib+0x7d>
+	lea    -0x8(%rip),%rdi        # <fib+0x7c>
+	call   <fib+0x89>
+	mov    %rbx,-0x30(%rbp)
+	mov    -0x30(%rbp),%rax
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<get_callback>:
+	lea    -0x8(%rip),%rax        # <fib+0x9f>
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<i128_mix>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    %rdx,%rax
+	sar    $0x3f,%rax
+	add    %rdx,%rdi
+	adc    %rax,%rsi
+	seto   %al
+	movzbl %al,%eax
+	test   $0x1,%al
+	jne    <i128_mix+0x4e>
+	add    %rcx,%rdi
+	adc    %r8,%rsi
+	seto   %al
+	movzbl %al,%eax
+	test   $0x1,%al
+	jne    <i128_mix+0x42>
+	mov    %rdi,%rax
+	mov    %rsi,%rdx
+	jmp    <i128_mix+0x5a>
+	lea    -0x8(%rip),%rdi        # <i128_mix+0x41>
+	call   <i128_mix+0x4e>
+	lea    -0x8(%rip),%rdi        # <i128_mix+0x4d>
+	call   <i128_mix+0x5a>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+
+<interleaved_args>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %rdx,%rbx
+	mov    %rcx,%r12
+	mov    %r8,%r13
+	mov    %r9,%r14
+	xor    %eax,%eax
+	mov    %rdi,%r15
+	add    %rsi,%r15
+	seto   %al
+	jo     <interleaved_args+0xc5>
+	xor    %eax,%eax
+	add    %rbx,%r15
+	seto   %al
+	jo     <interleaved_args+0xb9>
+	xor    %eax,%eax
+	mov    %r15,%rbx
+	add    %r12,%rbx
+	seto   %al
+	jo     <interleaved_args+0xad>
+	xor    %eax,%eax
+	mov    %rbx,%r12
+	add    %r13,%r12
+	seto   %al
+	jo     <interleaved_args+0xa1>
+	xor    %eax,%eax
+	mov    %r12,%rbx
+	add    %r14,%rbx
+	seto   %al
+	jo     <interleaved_args+0x95>
+	cvtsi2sd %rbx,%xmm6
+	addsd  %xmm0,%xmm6
+	addsd  %xmm1,%xmm6
+	addsd  %xmm2,%xmm6
+	addsd  %xmm3,%xmm6
+	addsd  %xmm4,%xmm6
+	addsd  %xmm5,%xmm6
+	movapd %xmm6,%xmm0
+	jmp    <interleaved_args+0xd1>
+	lea    -0x8(%rip),%rdi        # <interleaved_args+0x94>
+	call   <interleaved_args+0xa1>
+	lea    -0x8(%rip),%rdi        # <interleaved_args+0xa0>
+	call   <interleaved_args+0xad>
+	lea    -0x8(%rip),%rdi        # <interleaved_args+0xac>
+	call   <interleaved_args+0xb9>
+	lea    -0x8(%rip),%rdi        # <interleaved_args+0xb8>
+	call   <interleaved_args+0xc5>
+	lea    -0x8(%rip),%rdi        # <interleaved_args+0xc4>
+	call   <interleaved_args+0xd1>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+
+<is_even>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %rdi,%rbx
+	test   %rbx,%rbx
+	je     <is_even+0x44>
+	mov    %rbx,%r12
+	sub    $0x1,%r12
+	cmp    $0x1,%rbx
+	jb     <is_even+0x38>
+	mov    %r12,%rdi
+	call   <is_even+0x30>
+	mov    %al,-0x29(%rbp)
+	jmp    <is_even+0x48>
+	lea    -0x8(%rip),%rdi        # <is_even+0x37>
+	call   <is_even+0x44>
+	movb   $0x1,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<is_odd>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    %rdi,%rbx
+	test   %rbx,%rbx
+	je     <is_odd+0x44>
+	mov    %rbx,%r12
+	sub    $0x1,%r12
+	cmp    $0x1,%rbx
+	jb     <is_odd+0x38>
+	mov    %r12,%rdi
+	call   <is_odd+0x30>
+	mov    %al,-0x29(%rbp)
+	jmp    <is_odd+0x48>
+	lea    -0x8(%rip),%rdi        # <is_odd+0x37>
+	call   <is_odd+0x44>
+	movb   $0x0,-0x29(%rbp)
+	movzbl -0x29(%rbp),%eax
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<many_args>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %edx,%ebx
+	mov    %rcx,%r12
+	mov    %r8d,%r13d
+	mov    %r9,%r14
+	mov    0x10(%rbp),%r15
+	movsbq %dil,%rdi
+	movswq %si,%rsi
+	xor    %eax,%eax
+	add    %rsi,%rdi
+	seto   %al
+	jo     <many_args+0x155>
+	movslq %ebx,%rbx
+	xor    %eax,%eax
+	add    %rbx,%rdi
+	seto   %al
+	jo     <many_args+0x149>
+	xor    %eax,%eax
+	mov    %rdi,%rbx
+	add    %r12,%rbx
+	seto   %al
+	jo     <many_args+0x13d>
+	cvttss2si %xmm0,%rax
+	ucomiss -0x7(%rip),%xmm0        # <many_args+0x5d>
+	movabs $0x7fffffffffffffff,%rcx
+	cmovbe %rax,%rcx
+	xor    %eax,%eax
+	ucomiss %xmm0,%xmm0
+	cmovnp %rcx,%rax
+	xor    %ecx,%ecx
+	mov    %rbx,%r12
+	add    %rax,%r12
+	seto   %cl
+	jo     <many_args+0x131>
+	cvttsd2si %xmm1,%rax
+	ucomisd -0x8(%rip),%xmm1        # <many_args+0x91>
+	movabs $0x7fffffffffffffff,%rcx
+	cmovbe %rax,%rcx
+	xor    %eax,%eax
+	ucomisd %xmm1,%xmm1
+	cmovnp %rcx,%rax
+	xor    %ecx,%ecx
+	mov    %r12,%rbx
+	add    %rax,%rbx
+	seto   %cl
+	jo     <many_args+0x125>
+	movzbl %r13b,%r13d
+	xor    %eax,%eax
+	mov    %rbx,%r12
+	add    %r13,%r12
+	seto   %al
+	jo     <many_args+0x119>
+	xor    %eax,%eax
+	mov    %r12,%rbx
+	add    %r14,%rbx
+	seto   %al
+	jo     <many_args+0x10d>
+	xor    %eax,%eax
+	mov    %rbx,%r12
+	add    %r15,%r12
+	seto   %al
+	jo     <many_args+0x101>
+	mov    %r12,%rax
+	jmp    <many_args+0x161>
+	lea    -0x8(%rip),%rdi        # <many_args+0x100>
+	call   <many_args+0x10d>
+	lea    -0x8(%rip),%rdi        # <many_args+0x10c>
+	call   <many_args+0x119>
+	lea    -0x8(%rip),%rdi        # <many_args+0x118>
+	call   <many_args+0x125>
+	lea    -0x8(%rip),%rdi        # <many_args+0x124>
+	call   <many_args+0x131>
+	lea    -0x8(%rip),%rdi        # <many_args+0x130>
+	call   <many_args+0x13d>
+	lea    -0x8(%rip),%rdi        # <many_args+0x13c>
+	call   <many_args+0x149>
+	lea    -0x8(%rip),%rdi        # <many_args+0x148>
+	call   <many_args+0x155>
+	lea    -0x8(%rip),%rdi        # <many_args+0x154>
+	call   <many_args+0x161>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+
+<many_floats>:
+	push   %rbp
+	mov    %rsp,%rbp
+	cvtss2sd %xmm0,%xmm0
+	cvtss2sd %xmm1,%xmm1
+	addsd  %xmm1,%xmm0
+	cvtss2sd %xmm2,%xmm2
+	addsd  %xmm2,%xmm0
+	cvtss2sd %xmm3,%xmm3
+	addsd  %xmm3,%xmm0
+	addsd  %xmm4,%xmm0
+	addsd  %xmm5,%xmm0
+	addsd  %xmm6,%xmm0
+	addsd  %xmm7,%xmm0
+	addsd  0x10(%rbp),%xmm0
+	cvtss2sd 0x18(%rbp),%xmm1
+	addsd  %xmm1,%xmm0
+	addsd  0x20(%rbp),%xmm0
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
+
+<min_max>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	cmp    %r12,%rbx
+	jl     <min_max+0x23>
+	mov    %r12,-0x40(%rbp)
+	mov    %rbx,-0x38(%rbp)
+	jmp    <min_max+0x2b>
+	mov    %rbx,-0x40(%rbp)
+	mov    %r12,-0x38(%rbp)
+	mov    -0x40(%rbp),%rax
+	mov    -0x38(%rbp),%rcx
+	mov    %rcx,%rdx
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<min_max_spread>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	call   <min_max_spread+0xe>
+	xor    %ecx,%ecx
+	mov    %rdx,%rbx
+	sub    %rax,%rbx
+	seto   %cl
+	jo     <min_max_spread+0x27>
+	mov    %rbx,%rax
+	jmp    <min_max_spread+0x33>
+	lea    -0x8(%rip),%rdi        # <min_max_spread+0x26>
+	call   <min_max_spread+0x33>
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<narrow_args>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %esi,%ebx
+	mov    %edx,%r12d
+	mov    %ecx,%r13d
+	mov    %r8d,%r14d
+	mov    %r9d,%r15d
+	test   $0x1,%dil
+	jne    <narrow_args+0x36>
+	movq   $0x0,-0x30(%rbp)
+	jmp    <narrow_args+0x3e>
+	movq   $0x1,-0x30(%rbp)
+	movzbl %bl,%ebx
+	mov    -0x30(%rbp),%rax
+	xor    %ecx,%ecx
+	add    %rbx,%rax
+	seto   %cl
+	jo     <narrow_args+0xde>
+	movsbq %r12b,%r12
+	xor    %ecx,%ecx
+	mov    %rax,%rbx
+	add    %r12,%rbx
+	seto   %cl
+	jo     <narrow_args+0xd2>
+	movzwl %r13w,%r13d
+	xor    %eax,%eax
+	mov    %rbx,%r12
+	add    %r13,%r12
+	seto   %al
+	jo     <narrow_args+0xc6>
+	movswq %r14w,%r14
+	xor    %eax,%eax
+	mov    %r12,%rbx
+	add    %r14,%rbx
+	seto   %al
+	jo     <narrow_args+0xba>
+	mov    %r15d,%r15d
+	xor    %eax,%eax
+	mov    %rbx,%r12
+	add    %r15,%r12
+	seto   %al
+	jo     <narrow_args+0xae>
+	mov    %r12,%rax
+	jmp    <narrow_args+0xea>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xad>
+	call   <narrow_args+0xba>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xb9>
+	call   <narrow_args+0xc6>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xc5>
+	call   <narrow_args+0xd2>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xd1>
+	call   <narrow_args+0xde>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xdd>
+	call   <narrow_args+0xea>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<narrow_ret_i16>:
+	and    $0xffff,%rdi
+	mov    %edi,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<narrow_ret_u8>:
+	and    $0xff,%rdi
+	mov    %edi,%eax
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<nested_calls>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x40,%rsp
+	mov    %rdi,-0x30(%rbp)
+	mov    %rsi,-0x38(%rbp)
+	mov    $0x1,%edx
+	call   <nested_calls+0x1a>
+	mov    -0x38(%rbp),%rdi
+	mov    -0x30(%rbp),%rsi
+	mov    $0x2,%edx
+	mov    %rax,-0x38(%rbp)
+	call   <nested_calls+0x30>
+	mov    -0x30(%rbp),%rdi
+	mov    -0x30(%rbp),%rsi
+	mov    $0x3,%edx
+	mov    %rax,-0x30(%rbp)
+	call   <nested_calls+0x46>
+	mov    -0x38(%rbp),%rdi
+	mov    -0x30(%rbp),%rsi
+	mov    %rax,%rdx
+	call   <nested_calls+0x56>
+	add    $0x40,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<nested_struct_build>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	xor    %eax,%eax
+	mov    %r12d,%r13d
+	add    $0x1,%r13d
+	seto   %al
+	jo     <nested_struct_build+0x8b>
+	xor    %eax,%eax
+	mov    %r12d,%r14d
+	add    $0x2,%r14d
+	seto   %al
+	jo     <nested_struct_build+0x7a>
+	xor    %eax,%eax
+	mov    %r12d,%r15d
+	add    $0x3,%r15d
+	seto   %al
+	jo     <nested_struct_build+0x69>
+	mov    %r12d,(%rbx)
+	mov    %r13d,0x4(%rbx)
+	lea    0x8(%rbx),%rax
+	mov    %r14d,(%rax)
+	mov    %r15d,0x4(%rax)
+	movsd  %xmm0,0x10(%rbx)
+	jmp    <nested_struct_build+0xa1>
+	lea    -0x8(%rip),%rdi        # <nested_struct_build+0x68>
+	call   <nested_struct_build+0x75>
+	jmp    <nested_struct_build+0xa1>
+	lea    -0x8(%rip),%rdi        # <nested_struct_build+0x79>
+	call   <nested_struct_build+0x86>
+	jmp    <nested_struct_build+0xa1>
+	lea    -0x8(%rip),%rdi        # <nested_struct_build+0x8a>
+	call   <nested_struct_build+0x97>
+	jmp    <nested_struct_build+0xa1>
+	call   <nested_struct_build+0xa1>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+
+<nested_struct_sum>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    0x10(%rbp),%eax
+	mov    0x14(%rbp),%ecx
+	xor    %edx,%edx
+	mov    %eax,%ebx
+	add    %ecx,%ebx
+	seto   %dl
+	jo     <nested_struct_sum+0x7f>
+	mov    0x18(%rbp),%eax
+	xor    %ecx,%ecx
+	mov    %ebx,%r12d
+	add    %eax,%r12d
+	seto   %cl
+	jo     <nested_struct_sum+0x6e>
+	lea    0x18(%rbp),%rax
+	mov    0x4(%rax),%ecx
+	xor    %eax,%eax
+	mov    %r12d,%ebx
+	add    %ecx,%ebx
+	seto   %al
+	jo     <nested_struct_sum+0x5d>
+	cvtsi2sd %ebx,%xmm0
+	movsd  0x20(%rbp),%xmm1
+	mulsd  %xmm1,%xmm0
+	jmp    <nested_struct_sum+0x95>
+	lea    -0x8(%rip),%rdi        # <nested_struct_sum+0x5c>
+	call   <nested_struct_sum+0x69>
+	jmp    <nested_struct_sum+0x95>
+	lea    -0x8(%rip),%rdi        # <nested_struct_sum+0x6d>
+	call   <nested_struct_sum+0x7a>
+	jmp    <nested_struct_sum+0x95>
+	lea    -0x8(%rip),%rdi        # <nested_struct_sum+0x7e>
+	call   <nested_struct_sum+0x8b>
+	jmp    <nested_struct_sum+0x95>
+	call   <nested_struct_sum+0x95>
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<nested_tuple>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	xor    %eax,%eax
+	mov    %r12,%r13
+	add    $0x1,%r13
+	seto   %al
+	jo     <nested_tuple+0x55>
+	movapd %xmm0,%xmm1
+	movabs $0x3ff0000000000000,%rax
+	movq   %rax,%xmm2
+	addsd  %xmm2,%xmm1
+	mov    %r12,(%rbx)
+	mov    %r13,0x8(%rbx)
+	lea    0x10(%rbx),%rbx
+	movsd  %xmm0,(%rbx)
+	movsd  %xmm1,0x8(%rbx)
+	jmp    <nested_tuple+0x61>
+	lea    -0x8(%rip),%rdi        # <nested_tuple+0x54>
+	call   <nested_tuple+0x61>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<nth_ptr>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x28,%rsp
+	lea    -0x8(%rip),%rdx        # <nth_ptr+0x8>
+	call   <nth_ptr+0x15>
+	mov    %rax,%rbx
+	jmp    <nth_ptr+0x22>
+	call   <nth_ptr+0x22>
+	mov    %rbx,%rax
+	add    $0x28,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<pass_zst>:
+	mov    %rdi,%rax
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<return_big_struct>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x48,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	lea    0x1(%r12),%r13
+	cmp    %r12,%r13
+	jb     <return_big_struct+0x142>
+	lea    0x2(%r12),%r14
+	cmp    %r12,%r14
+	jb     <return_big_struct+0x136>
+	lea    0x3(%r12),%r15
+	cmp    %r12,%r15
+	jb     <return_big_struct+0x12a>
+	lea    0x4(%r12),%rax
+	cmp    %r12,%rax
+	jb     <return_big_struct+0x11e>
+	lea    0x5(%r12),%rcx
+	cmp    %r12,%rcx
+	jb     <return_big_struct+0x112>
+	lea    0x6(%r12),%rdx
+	cmp    %r12,%rdx
+	jb     <return_big_struct+0x106>
+	lea    0x7(%r12),%rsi
+	cmp    %r12,%rsi
+	jb     <return_big_struct+0xfa>
+	mov    %r12,-0x70(%rbp)
+	mov    %r13,-0x68(%rbp)
+	mov    %r14,-0x60(%rbp)
+	mov    %r15,-0x58(%rbp)
+	mov    %rax,-0x50(%rbp)
+	mov    %rcx,-0x48(%rbp)
+	mov    %rdx,-0x40(%rbp)
+	mov    %rsi,-0x38(%rbp)
+	mov    -0x70(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x68(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x60(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x58(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x50(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x48(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x40(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x38(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    -0x30(%rbp),%rax
+	lea    0x8(%rbx),%rbx
+	jmp    <return_big_struct+0x14e>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0xf9>
+	call   <return_big_struct+0x106>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x105>
+	call   <return_big_struct+0x112>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x111>
+	call   <return_big_struct+0x11e>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x11d>
+	call   <return_big_struct+0x12a>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x129>
+	call   <return_big_struct+0x136>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x135>
+	call   <return_big_struct+0x142>
+	lea    -0x8(%rip),%rdi        # <return_big_struct+0x141>
+	call   <return_big_struct+0x14e>
+	add    $0x48,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<returns_unit>:
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+
+<select_bool>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	mov    %esi,%ebx
+	mov    %edx,%r12d
+	test   $0x1,%dil
+	jne    <select_bool+0x1f>
+	mov    %r12d,-0x2c(%rbp)
+	jmp    <select_bool+0x22>
+	mov    %ebx,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<split_registers>:
+	cvtsi2sd %edi,%xmm1
+	addsd  %xmm0,%xmm1
+	movapd %xmm1,%xmm0
+	ret
+	nopl   (%rax)
+
+<struct16_swap>:
+	push   %rbp
+	mov    %rsp,%rbp
+	mov    %rdi,-0x40(%rbp)
+	mov    %rsi,-0x38(%rbp)
+	mov    -0x38(%rbp),%rax
+	mov    -0x40(%rbp),%rcx
+	mov    %rax,-0x50(%rbp)
+	mov    %rcx,-0x48(%rbp)
+	mov    -0x50(%rbp),%rax
+	mov    -0x48(%rbp),%rcx
+	mov    %rcx,%rdx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<struct17_and_args>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	sub    $0x10,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    0x10(%rbp),%rax
+	mov    0x18(%rbp),%rcx
+	lea    (%rax,%rcx,1),%r13
+	cmp    %rax,%r13
+	jb     <struct17_and_args+0xbb>
+	movzbl 0x20(%rbp),%eax
+	movzbl %al,%eax
+	lea    0x0(%r13,%rax,1),%r14
+	cmp    %r13,%r14
+	jb     <struct17_and_args+0xaa>
+	lea    (%r14,%rbx,1),%r13
+	cmp    %r14,%r13
+	jb     <struct17_and_args+0x99>
+	lea    0x0(%r13,%r12,1),%rbx
+	cmp    %r13,%rbx
+	jb     <struct17_and_args+0x88>
+	movq   %rbx,%xmm1
+	punpckldq -0x8(%rip),%xmm1        # <struct17_and_args+0x5f>
+	subpd  -0x8(%rip),%xmm1        # <struct17_and_args+0x67>
+	movapd %xmm1,%xmm2
+	unpckhpd %xmm1,%xmm2
+	addsd  %xmm1,%xmm2
+	addsd  %xmm0,%xmm2
+	movapd %xmm2,%xmm0
+	jmp    <struct17_and_args+0xd1>
+	lea    -0x8(%rip),%rdi        # <struct17_and_args+0x87>
+	call   <struct17_and_args+0x94>
+	jmp    <struct17_and_args+0xd1>
+	lea    -0x8(%rip),%rdi        # <struct17_and_args+0x98>
+	call   <struct17_and_args+0xa5>
+	jmp    <struct17_and_args+0xd1>
+	lea    -0x8(%rip),%rdi        # <struct17_and_args+0xa9>
+	call   <struct17_and_args+0xb6>
+	jmp    <struct17_and_args+0xd1>
+	lea    -0x8(%rip),%rdi        # <struct17_and_args+0xba>
+	call   <struct17_and_args+0xc7>
+	jmp    <struct17_and_args+0xd1>
+	call   <struct17_and_args+0xd1>
+	add    $0x10,%rsp
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<struct17_sum>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	mov    0x10(%rbp),%rax
+	mov    0x18(%rbp),%rcx
+	lea    (%rax,%rcx,1),%rbx
+	cmp    %rax,%rbx
+	jb     <struct17_sum+0x4d>
+	movzbl 0x20(%rbp),%eax
+	movzbl %al,%eax
+	lea    (%rbx,%rax,1),%r12
+	cmp    %rbx,%r12
+	jb     <struct17_sum+0x3c>
+	mov    %r12,%rax
+	jmp    <struct17_sum+0x63>
+	lea    -0x8(%rip),%rdi        # <struct17_sum+0x3b>
+	call   <struct17_sum+0x48>
+	jmp    <struct17_sum+0x63>
+	lea    -0x8(%rip),%rdi        # <struct17_sum+0x4c>
+	call   <struct17_sum+0x59>
+	jmp    <struct17_sum+0x63>
+	call   <struct17_sum+0x63>
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<struct9_sum>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x38,%rsp
+	mov    %rdi,-0x40(%rbp)
+	mov    %rsi,-0x38(%rbp)
+	mov    -0x40(%rbp),%rax
+	movzbl -0x38(%rbp),%ecx
+	movzbl %cl,%ecx
+	lea    (%rax,%rcx,1),%rbx
+	cmp    %rax,%rbx
+	jb     <struct9_sum+0x31>
+	mov    %rbx,%rax
+	jmp    <struct9_sum+0x47>
+	lea    -0x8(%rip),%rdi        # <struct9_sum+0x30>
+	call   <struct9_sum+0x3d>
+	jmp    <struct9_sum+0x47>
+	call   <struct9_sum+0x47>
+	add    $0x38,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<sum_ptr>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x38,%rsp
+	movq   $0x0,-0x30(%rbp)
+	movq   $0x0,-0x38(%rbp)
+	mov    %rsi,-0x40(%rbp)
+	mov    %rdi,-0x48(%rbp)
+	mov    -0x38(%rbp),%rax
+	mov    -0x40(%rbp),%rcx
+	cmp    %rcx,%rax
+	jae    <sum_ptr+0xc4>
+	mov    -0x38(%rbp),%rax
+	mov    -0x48(%rbp),%rdi
+	mov    %rax,%rsi
+	lea    -0x8(%rip),%rdx        # <sum_ptr+0x40>
+	call   <sum_ptr+0x4d>
+	mov    %rax,%rbx
+	mov    %rbx,%rax
+	mov    %rax,%r12
+	mov    $0x8,%eax
+	sub    $0x1,%rax
+	mov    %r12,%rcx
+	and    %rax,%rcx
+	test   %rcx,%rcx
+	jne    <sum_ptr+0x100>
+	mov    %rbx,%rax
+	mov    $0x8,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <sum_ptr+0xf4>
+	mov    (%rbx),%rbx
+	mov    -0x30(%rbp),%rax
+	xor    %ecx,%ecx
+	mov    %rax,%r13
+	add    %rbx,%r13
+	seto   %cl
+	jo     <sum_ptr+0xde>
+	mov    %r13,-0x30(%rbp)
+	mov    -0x38(%rbp),%rax
+	lea    0x1(%rax),%rbx
+	cmp    %rax,%rbx
+	jb     <sum_ptr+0xcd>
+	mov    %rbx,-0x38(%rbp)
+	jmp    <sum_ptr+0x25>
+	mov    -0x30(%rbp),%rax
+	jmp    <sum_ptr+0x114>
+	lea    -0x8(%rip),%rdi        # <sum_ptr+0xcc>
+	call   <sum_ptr+0xd9>
+	jmp    <sum_ptr+0xf4>
+	lea    -0x8(%rip),%rdi        # <sum_ptr+0xdd>
+	call   <sum_ptr+0xea>
+	jmp    <sum_ptr+0xf4>
+	call   <sum_ptr+0xf4>
+	lea    -0x8(%rip),%rdi        # <sum_ptr+0xf3>
+	call   <sum_ptr+0x100>
+	mov    $0x8,%edi
+	mov    %r12,%rsi
+	lea    -0x8(%rip),%rdx        # <sum_ptr+0x107>
+	call   <sum_ptr+0x114>
+	add    $0x38,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nop
+
+<test_c_abi_call>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x70,%rsp
+	movabs $0x3ff8000000000000,%rax
+	movq   %rax,%xmm0
+	movsd  %xmm0,-0x50(%rbp)
+	movabs $0x4004000000000000,%rax
+	movq   %rax,%xmm0
+	movsd  %xmm0,-0x48(%rbp)
+	movabs $0x400c000000000000,%rax
+	movq   %rax,%xmm0
+	movsd  %xmm0,-0x40(%rbp)
+	lea    -0x50(%rbp),%rax
+	mov    (%rax),%rcx
+	mov    %rcx,(%rsp)
+	mov    0x8(%rax),%rcx
+	mov    %rcx,0x8(%rsp)
+	mov    0x10(%rax),%rcx
+	mov    %rcx,0x10(%rsp)
+	movabs $0x4000000000000000,%rcx
+	movq   %rcx,%xmm0
+	call   <test_c_abi_call+0x75>
+	add    $0x70,%rsp
+	pop    %rbp
+	ret
+	nopl   0x0(%rax,%rax,1)
+
+<triple>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	sub    $0x10,%rsp
+	mov    %rdi,%rbx
+	mov    %rdx,%r12
+	xor    %eax,%eax
+	mov    %esi,%r13d
+	add    $0x1,%r13d
+	seto   %al
+	jo     <triple+0x69>
+	movabs $0x4000000000000000,%rax
+	movq   %rax,%xmm1
+	mulsd  %xmm1,%xmm0
+	xor    %eax,%eax
+	mov    %r12,%r14
+	sub    $0x1,%r14
+	seto   %al
+	jo     <triple+0x5d>
+	mov    %r13d,0x8(%rbx)
+	movsd  %xmm0,(%rbx)
+	mov    %r14,0x10(%rbx)
+	jmp    <triple+0x75>
+	lea    -0x8(%rip),%rdi        # <triple+0x5c>
+	call   <triple+0x69>
+	lea    -0x8(%rip),%rdi        # <triple+0x68>
+	call   <triple+0x75>
+	add    $0x10,%rsp
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
+
+<u128_add>:
+	add    %rdx,%rdi
+	adc    %rcx,%rsi
+	mov    %rdi,%rax
+	mov    %rsi,%rdx
+	ret
+	nopl   (%rax)
+
+<u128_late>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x18,%rsp
+	mov    %rdx,%rbx
+	mov    %rcx,%r12
+	mov    %r8,%r13
+	mov    0x10(%rbp),%rax
+	mov    0x18(%rbp),%rcx
+	lea    (%rdi,%rsi,1),%r14
+	cmp    %rdi,%r14
+	jb     <u128_late+0xb3>
+	lea    (%r14,%rbx,1),%r15
+	cmp    %r14,%r15
+	jb     <u128_late+0xa7>
+	lea    (%r15,%r12,1),%rbx
+	cmp    %r15,%rbx
+	jb     <u128_late+0x9b>
+	lea    (%rbx,%r13,1),%r12
+	cmp    %rbx,%r12
+	jb     <u128_late+0x8f>
+	xor    %edx,%edx
+	mov    %r12,%rbx
+	add    %rax,%rbx
+	mov    %rdx,%rax
+	adc    %rcx,%rax
+	mov    %rax,%rcx
+	cmp    %r12,%rbx
+	sbb    %rdx,%rcx
+	jb     <u128_late+0x83>
+	mov    %rax,-0x38(%rbp)
+	mov    %rbx,%rax
+	mov    -0x38(%rbp),%rdx
+	jmp    <u128_late+0xbf>
+	lea    -0x8(%rip),%rdi        # <u128_late+0x82>
+	call   <u128_late+0x8f>
+	lea    -0x8(%rip),%rdi        # <u128_late+0x8e>
+	call   <u128_late+0x9b>
+	lea    -0x8(%rip),%rdi        # <u128_late+0x9a>
+	call   <u128_late+0xa7>
+	lea    -0x8(%rip),%rdi        # <u128_late+0xa6>
+	call   <u128_late+0xb3>
+	lea    -0x8(%rip),%rdi        # <u128_late+0xb2>
+	call   <u128_late+0xbf>
+	add    $0x18,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	xchg   %ax,%ax
+
+<user>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x30,%rsp
+	mov    $0x1,%edi
+	mov    $0x2,%esi
+	call   <user+0x17>
+	add    $0x30,%rsp
+	pop    %rbp
+	ret
+	nopl   (%rax)
+
+<vec2_dot>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movsd  %xmm0,-0x30(%rbp)
+	movsd  %xmm1,-0x38(%rbp)
+	movss  -0x30(%rbp),%xmm0
+	movss  -0x38(%rbp),%xmm1
+	mulss  %xmm1,%xmm0
+	movss  -0x2c(%rbp),%xmm1
+	movss  -0x34(%rbp),%xmm2
+	mulss  %xmm2,%xmm1
+	addss  %xmm1,%xmm0
+	pop    %rbp
+	ret
+
+<vec2_scale>:
+	push   %rbp
+	mov    %rsp,%rbp
+	movsd  %xmm0,-0x30(%rbp)
+	movss  -0x30(%rbp),%xmm0
+	mulss  %xmm1,%xmm0
+	movss  -0x2c(%rbp),%xmm2
+	mulss  %xmm1,%xmm2
+	movss  %xmm0,-0x38(%rbp)
+	movss  %xmm2,-0x34(%rbp)
+	movsd  -0x38(%rbp),%xmm0
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<write_out_params>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	xor    %eax,%eax
+	mov    %r13,%r14
+	mov    $0x2,%ecx
+	imul   %rcx,%r14
+	seto   %al
+	jo     <write_out_params+0x113>
+	mov    %rbx,%rax
+	mov    %rax,%r15
+	mov    $0x8,%eax
+	sub    $0x1,%rax
+	mov    %r15,%rcx
+	and    %rax,%rcx
+	test   %rcx,%rcx
+	jne    <write_out_params+0xff>
+	mov    %rbx,%rax
+	mov    $0x8,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <write_out_params+0xf3>
+	mov    %r14,(%rbx)
+	cvtsi2sd %r13,%xmm0
+	mov    %r12,%rax
+	mov    %rax,%rbx
+	mov    $0x8,%eax
+	sub    $0x1,%rax
+	mov    %rbx,%rcx
+	and    %rax,%rcx
+	test   %rcx,%rcx
+	jne    <write_out_params+0xdf>
+	mov    %r12,%rax
+	mov    $0x8,%ecx
+	test   %rcx,%rcx
+	setne  %cl
+	test   %rax,%rax
+	sete   %al
+	and    %ecx,%eax
+	xor    $0x1,%al
+	test   $0x1,%al
+	je     <write_out_params+0xd3>
+	movabs $0x4000000000000000,%rax
+	movq   %rax,%xmm1
+	divsd  %xmm1,%xmm0
+	movsd  %xmm0,(%r12)
+	jmp    <write_out_params+0x129>
+	lea    -0x8(%rip),%rdi        # <write_out_params+0xd2>
+	call   <write_out_params+0xdf>
+	mov    $0x8,%edi
+	mov    %rbx,%rsi
+	lea    -0x8(%rip),%rdx        # <write_out_params+0xe6>
+	call   <write_out_params+0xf3>
+	lea    -0x8(%rip),%rdi        # <write_out_params+0xf2>
+	call   <write_out_params+0xff>
+	mov    $0x8,%edi
+	mov    %r15,%rsi
+	lea    -0x8(%rip),%rdx        # <write_out_params+0x106>
+	call   <write_out_params+0x113>
+	lea    -0x8(%rip),%rdi        # <write_out_params+0x112>
+	call   <write_out_params+0x11f>
+	jmp    <write_out_params+0x129>
+	call   <write_out_params+0x129>
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret

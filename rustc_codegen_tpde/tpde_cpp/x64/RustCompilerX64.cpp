@@ -8,6 +8,18 @@ namespace tpde_rust::x64 {
     static constexpr bool DEFAULT_VAR_REF_HANDLING = false;
   };
 
+  class CCAssignerRust : public tpde::x64::CCAssignerSysV {
+  public:
+    using CCAssignerSysV::CCAssignerSysV;
+
+    void assign_arg(tpde::CCAssignment &arg) override {
+      if (!arg.byval && arg.bank == tpde::RegBank{1} && arg.align >= 16 && arg.size < 16) {
+        arg.size = 16;
+      }
+      CCAssignerSysV::assign_arg(arg);
+    }
+  };
+
   struct RustCompilerX64 :
     tpde::x64::CompilerX64<
       RustAdaptor,
@@ -38,7 +50,8 @@ namespace tpde_rust::x64 {
 
     std::unique_ptr<RustAdaptor> adaptor;
 
-    std::variant<std::monostate, tpde::x64::CCAssignerSysV> cc_assigners;
+    std::variant<std::monostate, CCAssignerRust> cc_assigners;
+    CCAssignerRust func_cc_assigner;
 
     static constexpr std::array<AsmReg, 2> LANDING_PAD_RES_REGS = {AsmReg::AX,
                                                                    AsmReg::DX};
@@ -53,6 +66,8 @@ namespace tpde_rust::x64 {
       Base::reset();
       EncodeCompiler::reset();
     }
+
+    tpde::CCAssigner *cur_cc_assigner() { return &func_cc_assigner; }
 
     bool arg_allow_split_reg_stack_passing(IRValueRef value) const {
       // All types except i128 can be split across registers/stack.
@@ -549,8 +564,8 @@ namespace tpde_rust::x64 {
 
   std::optional<tpde::x64::CompilerX64<RustAdaptor, RustCompilerX64, RustCompilerBase, CompilerConfig>::CallBuilder>
   RustCompilerX64::create_call_builder(bool vararg) {
-    cc_assigners = tpde::x64::CCAssignerSysV(vararg);
-    return CallBuilder{*this, std::get<tpde::x64::CCAssignerSysV>(cc_assigners)};
+    cc_assigners = CCAssignerRust(vararg);
+    return CallBuilder{*this, std::get<CCAssignerRust>(cc_assigners)};
   }
 
   void RustCompilerX64::load_address_of_var_reference(tpde::x64::AsmReg dst, tpde::AssignmentPartRef ap) {

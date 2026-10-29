@@ -149,11 +149,7 @@ inline constexpr auto type_infos = []() constexpr {
         info.bits = bits;
         info.nelem = nelem;
         info.elem = elem;
-        if (bits < 64) {
-            info.num_parts = nelem;
-            info.part = elem;
-            info.reg_bank = tpde::RegBank{0};
-        } else if (bits <= 128) {
+        if (bits <= 128) {
             info.num_parts = 1;
             info.part = type;
             info.reg_bank = tpde::RegBank{1};
@@ -189,6 +185,12 @@ inline bool is_vector(Type type) {
         TPDE_FATAL("size_of_type: unsupported type");
     }
     return bits;
+}
+
+[[nodiscard]] inline u32 part_size_bytes(Type part) {
+    const u32 bytes = size_of_type(part) / 8;
+    // vectors are always kept in vector registers for easier abi compatibility
+    return is_vector(part) && bytes < 4 ? 4 : bytes;
 }
 
 inline std::pair<u32, Type> vector_parts(Type type) {

@@ -1,10 +1,11 @@
-#![feature(portable_simd)]
+#![feature(portable_simd, simd_ffi)]
 
 use std::simd::cmp::{SimdOrd, SimdPartialEq, SimdPartialOrd};
 use std::simd::num::{SimdFloat, SimdInt, SimdUint};
 use std::simd::{simd_swizzle, Select, f32x4, f64x2, i16x8, i32x4, i64x2, i8x16, u32x4, u8x16, Mask};
 use std::simd::{f32x8, f64x4, i16x16, i32x8, i64x4, i8x32, u32x8, u8x32};
 use std::simd::{f32x16, f64x8, i16x32, i32x16, i64x8, i8x64, u32x16, u8x64};
+use std::simd::{f32x2, i8x4, i8x8};
 
 // Most functions take and return plain arrays so that the test does not
 // depend on how vectors are passed across the Rust ABI; the vector work
@@ -490,6 +491,35 @@ fn by_value_calls(a: i32x4, b: i32x4) -> i32x4 {
     let s = add_i32x4_by_value(a, b);
     add_i32x4_by_value(s, s)
 }
+
+// More than 8 vector arguments: the last two are passed on the stack, where
+// LLVM uses a 16 byte slot even for vectors narrower than 128 bit. Covers both
+// directions, test.rs (compiled by LLVM) calling us and us calling test.rs.
+macro_rules! stack_args {
+    ($v:ident, $callee:ident, $call:ident, $llvm:ident) => {
+        #[no_mangle]
+        fn $callee(a: $v, b: $v, c: $v, d: $v, e: $v, f: $v, g: $v, h: $v, i: $v, j: $v) -> $v {
+            let mut acc = a;
+            for x in [b, c, d, e, f, g, h, i, j] {
+                acc = acc * $v::splat(3 as _) + x;
+            }
+            acc
+        }
+
+        extern "Rust" {
+            fn $llvm(a: $v, b: $v, c: $v, d: $v, e: $v, f: $v, g: $v, h: $v, i: $v, j: $v) -> $v;
+        }
+
+        #[no_mangle]
+        fn $call(a: $v, b: $v) -> $v {
+            unsafe { $llvm(a, b, b, a, a, b, a, a, b, b) }
+        }
+    };
+}
+
+stack_args!(i8x4, stack_args_i8x4, stack_args_call_i8x4, stack_args_llvm_i8x4);
+stack_args!(i8x8, stack_args_i8x8, stack_args_call_i8x8, stack_args_llvm_i8x8);
+stack_args!(f32x2, stack_args_f32x2, stack_args_call_f32x2, stack_args_llvm_f32x2);
 
 // ======== 256-bit and 512-bit vectors ========
 // Same operations as above on wider vectors. Without AVX / AVX-512 enabled

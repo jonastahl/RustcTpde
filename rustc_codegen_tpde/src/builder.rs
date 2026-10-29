@@ -206,7 +206,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 
         self.module
             .borrow_mut()
-            .add_invoke(self.basic_block, fn_val, func_sig, then, catch, args)
+            .add_invoke(self.basic_block, fn_val, func_sig, then, catch, return_slot, args)
             .unwrap_or_else(|| Slot::new_raw(0))
     }
 

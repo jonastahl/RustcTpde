@@ -228,10 +228,10 @@ ModuleTpde {
                     align: 8,
                 },
                 ArgInfo {
-                    kind: ByVal,
+                    kind: Direct,
                     extension: None,
-                    size: 24,
-                    align: 8,
+                    size: 0,
+                    align: 0,
                 },
             ],
             slots: [

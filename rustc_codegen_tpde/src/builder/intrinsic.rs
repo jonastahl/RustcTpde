@@ -541,7 +541,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     let no_panic = self.const_bool(false);
                     self.store(no_panic, res, align);
                     self.module.borrow_mut().add_invoke(
-                        self.basic_block, try_fn, &try_sig, cont_bb, catch_bb, &[data]);
+                        self.basic_block, try_fn, &try_sig, cont_bb, catch_bb, ReturnSlot::Direct, &[data]);
 
                     self.switch_to_block(catch_bb);
                     let pers = self.eh_personality();
@@ -637,7 +637,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 }
                 IntrinsicResult::Operand(OperandValue::Immediate(x))
             }
-            _ => IntrinsicResult::Fallback(instance)
+            _ => IntrinsicResult::Fallback(ty::Instance::new_raw(instance.def_id(), instance.args))
         }
     }
 

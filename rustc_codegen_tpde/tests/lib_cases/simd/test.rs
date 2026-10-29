@@ -6,6 +6,7 @@
 
 use std::fmt::Debug;
 use std::simd::{f32x4, i32x4, u8x16};
+use std::simd::{f32x2, i8x4, i8x8};
 use std::simd::{f32x16, f32x8, f64x4, f64x8, i16x16, i16x32, i32x16, i32x8, i64x4, i64x8, i8x32, i8x64, u8x64};
 
 extern "Rust" {
@@ -336,6 +337,39 @@ extern "Rust" {
 
 /// Collects mismatches instead of asserting so one broken operation does not
 /// hide the rest.
+// Ten vector arguments, the last two go on the stack. `$llvm` is called by
+// source.rs, so that direction is covered as well.
+macro_rules! stack_args_checks {
+  ($f:ident, $v:ident, $t:ty, $n:literal, $step:expr, $callee:ident, $call:ident, $llvm:ident) => {{
+    extern "Rust" {
+      fn $callee(a: $v, b: $v, c: $v, d: $v, e: $v, f: $v, g: $v, h: $v, i: $v, j: $v) -> $v;
+      fn $call(a: $v, b: $v) -> $v;
+    }
+
+    #[no_mangle]
+    fn $llvm(a: $v, b: $v, c: $v, d: $v, e: $v, f: $v, g: $v, h: $v, i: $v, j: $v) -> $v {
+      let mut acc = a;
+      for x in [b, c, d, e, f, g, h, i, j] {
+        acc = acc * $v::splat(3 as $t) + x;
+      }
+      acc
+    }
+
+    let step = $step;
+    let reference = |args: [[$t; $n]; 10]| -> [$t; $n] {
+      std::array::from_fn(|l| args[1..].iter().fold(args[0][l], |acc, x| step(acc, x[l])))
+    };
+    let args: [[$t; $n]; 10] = std::array::from_fn(|k| std::array::from_fn(|l| (k * 7 + l * 3 + 1) as $t));
+    let v = args.map($v::from_array);
+    check($f, stringify!($callee),
+      unsafe { $callee(v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9]) }.to_array(),
+      reference(args));
+    let [a, b] = [args[0], args[1]];
+    check($f, stringify!($call), unsafe { $call(v[0], v[1]) }.to_array(),
+      reference([a, b, b, a, a, b, a, a, b, b]));
+  }};
+}
+
 fn check<T: PartialEq + Debug>(failures: &mut Vec<String>, label: &str, got: T, want: T) {
   if got != want {
     failures.push(format!("{label}: got {got:?}, expected {want:?}"));
@@ -571,6 +605,13 @@ fn main() {
   check(f, "by_value_calls", unsafe { by_value_calls(a, b) }.to_array(), zip(a.to_array(), b.to_array(), |x, y| x.wrapping_add(y).wrapping_mul(2)));
   check_f32(f, "mul_f32x4_by_value", unsafe { mul_f32x4_by_value(f32x4::from_array(fa), f32x4::from_array(fb)) }.to_array(), zip(fa, fb, |x, y| x * y));
   check(f, "add_u8x16_by_value", unsafe { add_u8x16_by_value(u8x16::from_array(ba), u8x16::from_array(bb)) }.to_array(), zip(ba, bb, u8::wrapping_add));
+  // The values stay small enough for the f32 results to be exact.
+  stack_args_checks!(f, i8x4, i8, 4, |acc: i8, x: i8| acc.wrapping_mul(3).wrapping_add(x),
+    stack_args_i8x4, stack_args_call_i8x4, stack_args_llvm_i8x4);
+  stack_args_checks!(f, i8x8, i8, 8, |acc: i8, x: i8| acc.wrapping_mul(3).wrapping_add(x),
+    stack_args_i8x8, stack_args_call_i8x8, stack_args_llvm_i8x8);
+  stack_args_checks!(f, f32x2, f32, 2, |acc: f32, x: f32| acc * 3.0 + x,
+    stack_args_f32x2, stack_args_call_f32x2, stack_args_llvm_f32x2);
 
   // ======== 256-bit and 512-bit vectors ========
   wide_int_checks!(f, i32x8, i32, 8, add_i32x8, sub_i32x8, mul_i32x8, div_i32x8, neg_i32x8,
