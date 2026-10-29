@@ -1293,6 +1293,28 @@ namespace tpde_rust {
     }};
 
     const Type elem_ty = is_vector(ty) ? vector_info(ty).second : ty;
+    if (elem_ty == Type::i128) {
+      if (is_vector(ty)) {
+        return false;
+      }
+      using EncodeFn128Ty = bool (Derived::*)(GenericValuePart &&, GenericValuePart &&, GenericValuePart &&,
+                                              GenericValuePart &&, ValuePart &, ValuePart &);
+      static constexpr std::array<EncodeFn128Ty, 4> encode_fns_128{
+        &Derived::encode_sat_add_u128,
+        &Derived::encode_sat_add_i128,
+        &Derived::encode_sat_sub_u128,
+        &Derived::encode_sat_sub_i128,
+      };
+
+      ValueRef lhs = this->val_ref(inst.op(0));
+      ValueRef rhs = this->val_ref(inst.op(1));
+      ValueRef res = this->result_ref(inst.result());
+      ValuePartRef res_lo = res.part(0);
+      ValuePartRef res_hi = res.part(1);
+      return (derived()->*encode_fns_128[static_cast<u32>(op)])(lhs.part(0), lhs.part(1), rhs.part(0), rhs.part(1),
+                                                               res_lo, res_hi);
+    }
+
     u32 width_idx = 0;
     switch (size_of_type(elem_ty)) {
       case 8: width_idx = 0; break;

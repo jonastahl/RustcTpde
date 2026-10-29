@@ -372,6 +372,10 @@ u64 TARGET_V1 sat_add_u64(u64 a, u64 b) { u64 r; return __builtin_add_overflow(a
 u64 TARGET_V1 sat_sub_u64(u64 a, u64 b) { u64 r; return __builtin_sub_overflow(a, b, &r) ? 0 : r; }
 i64 TARGET_V1 sat_add_i64(i64 a, i64 b) { i64 r; return __builtin_add_overflow(a, b, &r) ? a < 0 ? INT64_MIN : INT64_MAX : r; }
 i64 TARGET_V1 sat_sub_i64(i64 a, i64 b) { i64 r; return __builtin_sub_overflow(a, b, &r) ? a < 0 ? INT64_MIN : INT64_MAX : r; }
+u128 TARGET_V1 sat_add_u128(u128 a, u128 b) { u128 r; return __builtin_add_overflow(a, b, &r) ? ~(u128)0 : r; }
+u128 TARGET_V1 sat_sub_u128(u128 a, u128 b) { u128 r; return __builtin_sub_overflow(a, b, &r) ? 0 : r; }
+i128 TARGET_V1 sat_add_i128(i128 a, i128 b) { i128 r; return __builtin_add_overflow(a, b, &r) ? a < 0 ? (i128)((u128)1 << 127) : (i128)(~(u128)0 >> 1) : r; }
+i128 TARGET_V1 sat_sub_i128(i128 a, i128 b) { i128 r; return __builtin_sub_overflow(a, b, &r) ? a < 0 ? (i128)((u128)1 << 127) : (i128)(~(u128)0 >> 1) : r; }
 
 // --------------------------
 // vector casts
