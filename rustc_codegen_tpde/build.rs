@@ -10,11 +10,14 @@ fn main() {
         .define("TPDE_INCLUDE_TESTS", "OFF")
         .define("TPDE_LOGGING", "ON")
         .define("TPDE_RUST_NO_CACHE", if no_cache { "ON" } else { "OFF" });
+
     // default selection would be -O2 so we need to force him to -O3
     if matches!(std::env::var("OPT_LEVEL").as_deref(), Ok("1" | "2" | "3")) {
         cmake_cfg.profile("Release");
         if std::env::var("DEBUG").as_deref() == Ok("true") {
             cmake_cfg.cflag("-gline-tables-only").cxxflag("-gline-tables-only");
+            cmake_cfg.cflag("-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer").cxxflag("-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer");
+
         }
     }
     let dst = cmake_cfg.build();
