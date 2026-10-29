@@ -1,6 +1,6 @@
+use crate::shared::ffi;
 use crate::shared::ffi::BasicBlock;
 use crate::shared::ir::{ArgKind, Function, InstructionKind, ModuleTpde, Slot};
-use crate::shared::ffi;
 
 /// Upper bound of inlined calls per function, guards against recursive always inline functions
 const MAX_INLINES_PER_FUNCTION: u32 = 1024;
@@ -18,7 +18,8 @@ impl ModuleTpde {
                     .iter()
                     .filter(|i| matches!(i.kind, InstructionKind::Ret))
                     .count()
-                    > 1 {
+                    > 1
+                {
                     return false;
                 };
                 if f.args.iter().any(|arg| arg.kind == ArgKind::ByVal) {
@@ -59,7 +60,9 @@ impl ModuleTpde {
                     }
 
                     // no inlining for indirect calls
-                    let Slot::Func(callee_ref) = Slot::from_ffi(caller.operands[call.ops_start as usize]) else {
+                    let Slot::Func(callee_ref) =
+                        Slot::from_ffi(caller.operands[call.ops_start as usize])
+                    else {
                         continue;
                     };
 
@@ -70,7 +73,9 @@ impl ModuleTpde {
                     if !inline_functions[callee.0] {
                         continue;
                     }
-                    let [caller, callee] = self.functions.get_disjoint_mut([f, callee_ref.0])
+                    let [caller, callee] = self
+                        .functions
+                        .get_disjoint_mut([f, callee_ref.0])
                         .expect("Trying to inline function into itself");
 
                     let call = &mut caller.instructions[insts_start + j];
@@ -145,15 +150,20 @@ impl ModuleTpde {
 
                     {
                         let block_len = caller.basic_blocks.len();
-                        map_blocks(&mut caller.basic_blocks[offsets.basic_blocks as usize..block_len], &offsets)
+                        map_blocks(
+                            &mut caller.basic_blocks[offsets.basic_blocks as usize..block_len],
+                            &offsets,
+                        )
                     }
-
 
                     // start mapping instructions
                     {
-                        caller.operands.push(Slot::new_raw(results_bb as u32).to_ffi());
+                        caller
+                            .operands
+                            .push(Slot::new_raw(results_bb as u32).to_ffi());
                         let results_op = caller.operands.len() - 1;
-                        let (ex_ops, new_ops) = caller.operands.split_at_mut(offsets.operands as usize);
+                        let (ex_ops, new_ops) =
+                            caller.operands.split_at_mut(offsets.operands as usize);
 
                         // mapping table for the arguments of the function
                         let argument_mapping = &ex_ops[args_start..args_end];
@@ -261,16 +271,13 @@ impl ModuleTpde {
     }
 }
 
-fn can_inline_call(
-    caller: &ffi::Function,
-    callee: &ffi::Function,
-    args: &[u32],
-) -> bool {
+fn can_inline_call(caller: &ffi::Function, callee: &ffi::Function, args: &[u32]) -> bool {
     // stop at variadic arguments
     if args.len() != callee.args.len() {
         return false;
     }
-    if callee.has_personality && caller.has_personality && callee.personality != caller.personality {
+    if callee.has_personality && caller.has_personality && callee.personality != caller.personality
+    {
         return false;
     }
     true
@@ -342,7 +349,8 @@ fn map_instructions(
             }
             InstructionKind::Switch => {
                 // [cond, default, targets..., case values...]: map default and targets
-                let targets = instr.ops_start as usize + 1..instr.ops_start as usize + 1 + instr.ops_len as usize / 2;
+                let targets = instr.ops_start as usize + 1
+                    ..instr.ops_start as usize + 1 + instr.ops_len as usize / 2;
                 for op in &mut operands[targets] {
                     *op += inline_offsets.basic_blocks;
                 }
@@ -358,10 +366,19 @@ fn map_instructions(
                 };
 
                 // map the raw callee_info if the original callee is a val
-                if matches!(Slot::from_ffi(callee_operands[instr.ops_start as usize]), Slot::Value(..)) {
-                    if matches!(Slot::from_ffi(operands[instr.ops_start as usize]), Slot::Func(_)) {
+                if matches!(
+                    Slot::from_ffi(callee_operands[instr.ops_start as usize]),
+                    Slot::Value(..)
+                ) {
+                    if matches!(
+                        Slot::from_ffi(operands[instr.ops_start as usize]),
+                        Slot::Func(_)
+                    ) {
                         // The argument made it a direct call, which has no callee info
-                        operands.copy_within(info + 1..instr.ops_start as usize + instr.ops_len as usize, info);
+                        operands.copy_within(
+                            info + 1..instr.ops_start as usize + instr.ops_len as usize,
+                            info,
+                        );
                         instr.ops_len -= 1;
                     } else {
                         operands[info] += inline_offsets.callee_infos;

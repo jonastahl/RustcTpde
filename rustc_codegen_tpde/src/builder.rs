@@ -1,10 +1,13 @@
 mod coverageinfo;
 mod intrinsic;
 
-use core::borrow::Borrow;
-use std::cmp::max;
 use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
-use crate::shared::ir::{convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type, convert_atomic_op};
+use crate::shared::ir;
+use crate::shared::ir::{
+    BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type,
+    convert_atomic_op, convert_atomic_order, size_of_type, vector_info,
+};
+use core::borrow::Borrow;
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::common::{
@@ -12,14 +15,17 @@ use rustc_codegen_ssa::common::{
 };
 use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
 use rustc_codegen_ssa::mir::place::PlaceRef;
-use rustc_codegen_ssa::traits::{BackendTypes, BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, OverflowOp, ReturnSlot};
+use rustc_codegen_ssa::traits::{
+    BackendTypes, BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, OverflowOp,
+    ReturnSlot,
+};
 use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrs;
 use rustc_middle::ty::layout::TyAndLayout;
 use rustc_middle::ty::{AtomicOrdering, Instance, Ty};
 use rustc_span::Span;
-use std::ops::Deref;
 use rustc_target::callconv::FnAbi;
-use crate::shared::ir;
+use std::cmp::max;
+use std::ops::Deref;
 
 pub struct Builder<'a, 'tpde, 'tcx> {
     pub cx: &'a CodegenCx<'tpde, 'tcx>,
@@ -60,14 +66,10 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::LandingPad,
             &[Slot::new_raw(kind.repr as u32)],
-            Type::ptr
+            Type::ptr,
         );
-        let b = module.add_instruction_ret(
-            self.basic_block,
-            InstructionKind::AddRet,
-            &[],
-            Type::i32
-        );
+        let b =
+            module.add_instruction_ret(self.basic_block, InstructionKind::AddRet, &[], Type::i32);
         (a, b)
     }
 
@@ -127,8 +129,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let module = &mut self.module.borrow_mut();
 
         match v.pair_slots(module) {
-            Some((slot_a, slot_b)) =>
-                module.add_instruction(self.basic_block, InstructionKind::Ret, &[slot_a, slot_b]),
+            Some((slot_a, slot_b)) => {
+                module.add_instruction(self.basic_block, InstructionKind::Ret, &[slot_a, slot_b])
+            }
             None => module.add_instruction(self.basic_block, InstructionKind::Ret, &[v]),
         }
     }
@@ -176,7 +179,10 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             return;
         }
         let (bb, val) = if is_i128 {
-            let max = self.module.borrow_mut().add_const(Type::i128, u64::MAX as u128);
+            let max = self
+                .module
+                .borrow_mut()
+                .add_const(Type::i128, u64::MAX as u128);
             let in_range = self.icmp(IntPredicate::IntULE, v, max);
             let trunc_bb = self.append_sibling_block("switch_i128_narrow");
             self.cond_br(in_range, trunc_bb, else_llbb);
@@ -188,30 +194,46 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             (self.basic_block, v)
         };
 
-        self.module.borrow_mut().add_switch(bb, val, else_llbb, &cases);
+        self.module
+            .borrow_mut()
+            .add_switch(bb, val, else_llbb, &cases);
     }
 
-
-    fn invoke(&mut self,
-              func_sig: Self::FunctionSignature,
-              fn_attrs: Option<&CodegenFnAttrs>,
-              fn_abi: Option<&FnAbi<'tcx, Ty<'tcx>>>,
-              fn_val: Self::Value,
-              return_slot: ReturnSlot<Self::Value>,
-              args: &[Self::Value],
-              then: Self::BasicBlock, catch: Self::BasicBlock,
-              funclet: Option<&Self::Funclet>,
-              instance: Option<Instance<'tcx>>) -> Self::Value {
+    fn invoke(
+        &mut self,
+        func_sig: Self::FunctionSignature,
+        fn_attrs: Option<&CodegenFnAttrs>,
+        fn_abi: Option<&FnAbi<'tcx, Ty<'tcx>>>,
+        fn_val: Self::Value,
+        return_slot: ReturnSlot<Self::Value>,
+        args: &[Self::Value],
+        then: Self::BasicBlock,
+        catch: Self::BasicBlock,
+        funclet: Option<&Self::Funclet>,
+        instance: Option<Instance<'tcx>>,
+    ) -> Self::Value {
         let func_sig = &self.function_signatures.borrow()[func_sig];
 
         self.module
             .borrow_mut()
-            .add_invoke(self.basic_block, fn_val, func_sig, then, catch, return_slot, args)
+            .add_invoke(
+                self.basic_block,
+                fn_val,
+                func_sig,
+                then,
+                catch,
+                return_slot,
+                args,
+            )
             .unwrap_or_else(|| Slot::new_raw(0))
     }
 
     fn unreachable(&mut self) {
-        self.module.borrow_mut().add_instruction(self.basic_block, InstructionKind::Unreachable, &[]);
+        self.module.borrow_mut().add_instruction(
+            self.basic_block,
+            InstructionKind::Unreachable,
+            &[],
+        );
     }
 
     fn add(&mut self, lhs: Self::Value, rhs: Self::Value) -> Self::Value {
@@ -290,7 +312,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::uDiv,
-            &[lhs, rhs]
+            &[lhs, rhs],
         )
     }
 
@@ -302,7 +324,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::sDiv,
-            &[lhs, rhs]
+            &[lhs, rhs],
         )
     }
 
@@ -314,7 +336,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::fDiv,
-            &[lhs, rhs]
+            &[lhs, rhs],
         )
     }
 
@@ -330,7 +352,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::uRem,
-            &[lhs, rhs]
+            &[lhs, rhs],
         )
     }
 
@@ -339,7 +361,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::sRem,
             &[lhs, rhs],
-            1
+            1,
         )
     }
 
@@ -348,7 +370,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::fRem,
             &[lhs, rhs],
-            1
+            1,
         )
     }
 
@@ -373,7 +395,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::lShr,
             &[lhs, rhs],
-            1
+            1,
         )
     }
 
@@ -382,7 +404,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::aShr,
             &[lhs, rhs],
-            1
+            1,
         )
     }
 
@@ -445,15 +467,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let width = size.bits();
 
         let res = match oop {
-            OverflowOp::Sub => {
-                self.sub(lhs, rhs)
-            }
-            OverflowOp::Add => {
-                self.add(lhs, rhs)
-            }
-            OverflowOp::Mul => {
-                self.mul(lhs, rhs)
-            }
+            OverflowOp::Sub => self.sub(lhs, rhs),
+            OverflowOp::Add => self.add(lhs, rhs),
+            OverflowOp::Mul => self.mul(lhs, rhs),
         };
 
         if !signed {
@@ -469,11 +485,12 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                 OverflowOp::Mul => {}
             }
         }
-        let of = self.module.borrow_mut()
-            .add_instruction_ret(self.basic_block,
-                                 InstructionKind::OverflowCheck,
-                                 &[Slot::Raw(if signed { 1 } else { 0 })],
-                                 Type::Bool);
+        let of = self.module.borrow_mut().add_instruction_ret(
+            self.basic_block,
+            InstructionKind::OverflowCheck,
+            &[Slot::Raw(if signed { 1 } else { 0 })],
+            Type::Bool,
+        );
         (res, of)
     }
 
@@ -493,7 +510,11 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let size = size.bytes_usize();
         self.module.borrow_mut().add_alloca(
             self.basic_block.function(),
-            if size < 16 { size.next_power_of_two() } else { size.next_multiple_of(8) },
+            if size < 16 {
+                size.next_power_of_two()
+            } else {
+                size.next_multiple_of(8)
+            },
             align.bytes_usize(),
         )
     }
@@ -505,23 +526,11 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     fn load(&mut self, ty: Self::Type, ptr: Self::Value, align: rustc_abi::Align) -> Self::Value {
         match ty {
             FullType::Single(ret_ty) => {
-                self.load_single(
-                    &mut self.module.borrow_mut(),
-                    ptr,
-                    align,
-                    ret_ty
-                )
+                self.load_single(&mut self.module.borrow_mut(), ptr, align, ret_ty)
             }
             FullType::Pair(ty_a, ty_b, offset) => {
                 let module = &mut self.module.borrow_mut();
-                let (slot_a, slot_b) = self.load_pair(
-                    module,
-                    ptr,
-                    offset,
-                    align,
-                    ty_a,
-                    ty_b
-                );
+                let (slot_a, slot_b) = self.load_pair(module, ptr, offset, align, ty_a, ty_b);
                 module.add_pair(slot_a, slot_b, offset)
             }
             FullType::Memory { .. } => unimplemented!(),
@@ -569,7 +578,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                     &mut self.module.borrow_mut(),
                     place.val.llval,
                     place.val.align,
-                    ret_ty
+                    ret_ty,
                 );
                 OperandValue::Immediate(slot)
             }
@@ -580,7 +589,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                     offset,
                     place.val.align,
                     ty_a,
-                    ty_b
+                    ty_b,
                 );
 
                 OperandValue::Pair(slot_a, slot_b)
@@ -626,7 +635,8 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let byte_off = self.mul(i, self.const_usize(elem_size));
         let i8_ty = self.type_i8();
         let addr = self.inbounds_gep(i8_ty, dest.val.llval, &[byte_off]);
-        elem.val.store(self, PlaceRef::new_sized_aligned(addr, elem.layout, align));
+        elem.val
+            .store(self, PlaceRef::new_sized_aligned(addr, elem.layout, align));
         let next = self.add(i, self.const_usize(1));
         self.store(next, counter, rustc_abi::Align::EIGHT);
         self.br(header_bb);
@@ -634,11 +644,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.switch_to_block(next_bb);
     }
 
-    fn range_metadata(&mut self, load: Self::Value, range: rustc_abi::WrappingRange) {
-    }
+    fn range_metadata(&mut self, load: Self::Value, range: rustc_abi::WrappingRange) {}
 
-    fn nonnull_metadata(&mut self, load: Self::Value) {
-    }
+    fn nonnull_metadata(&mut self, load: Self::Value) {}
 
     fn store(
         &mut self,
@@ -655,7 +663,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                 let (val_a, val_b, offset) = module.extract_vals(val);
                 self.store_pair(module, val_a, val_b, ptr, offset, align);
             }
-            _ => todo!()
+            _ => todo!(),
         };
         val
     }
@@ -679,7 +687,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         size: rustc_abi::Size,
     ) {
         let module = &mut self.module.borrow_mut();
-        let FullType::Single(ty) = module.type_of_slot(val) else { todo!() };
+        let FullType::Single(ty) = module.type_of_slot(val) else {
+            todo!()
+        };
 
         module.add_instruction(
             self.basic_block,
@@ -909,12 +919,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Call,
-            &[
-                func,
-                dst,
-                src,
-                size,
-            ],
+            &[func, dst, src, size],
         );
     }
 
@@ -972,12 +977,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Call,
-            &[
-                func,
-                dst,
-                src,
-                size,
-            ],
+            &[func, dst, src, size],
         );
     }
 
@@ -993,12 +993,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Call,
-            &[
-                func,
-                ptr,
-                fill_byte,
-                size,
-            ],
+            &[func, ptr, fill_byte, size],
         );
     }
 
@@ -1016,7 +1011,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::Select,
             &[cond, then_val, else_val],
-            1
+            1,
         )
     }
 
@@ -1025,7 +1020,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn extract_element(&mut self, vec: Self::Value, idx: Self::Value) -> Self::Value {
-        let FullType::Single(vec_ty) = self.val_ty(vec) else { unreachable!() };
+        let FullType::Single(vec_ty) = self.val_ty(vec) else {
+            unreachable!()
+        };
         let (elem, _) = vector_info(vec_ty).expect("extract_element on non-vector");
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
@@ -1036,7 +1033,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn vector_splat(&mut self, num_elts: usize, elt: Self::Value) -> Self::Value {
-        let FullType::Single(elem) = self.val_ty(elt) else { unreachable!() };
+        let FullType::Single(elem) = self.val_ty(elt) else {
+            unreachable!()
+        };
         let FullType::Single(ty) = self.type_vector(FullType::Single(elem), num_elts as u64) else {
             unreachable!()
         };
@@ -1071,7 +1070,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     }
 
     fn set_personality_fn(&mut self, personality: Self::Function) {
-        self.module.borrow_mut().add_personality(self.basic_block.function(), personality);
+        self.module
+            .borrow_mut()
+            .add_personality(self.basic_block.function(), personality);
     }
 
     fn cleanup_landing_pad(&mut self, pers_fn: Self::Function) -> (Self::Value, Self::Value) {
@@ -1086,7 +1087,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction(
             self.basic_block,
             InstructionKind::Resume,
-            &[exn0]
+            &[exn0],
         );
     }
 
@@ -1139,14 +1140,10 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::Atomic_cmpxchg,
             &[dst, cmp, src, Slot::new_raw(merged_order.repr)],
-            2
+            2,
         );
-        let res = module.add_instruction_ret(
-            self.basic_block,
-            InstructionKind::AddRet,
-            &[],
-            Type::Bool
-        );
+        let res =
+            module.add_instruction_ret(self.basic_block, InstructionKind::AddRet, &[], Type::Bool);
         (ret_val, res)
     }
 
@@ -1164,7 +1161,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::Atomic_rmw,
             &[Slot::new_raw(op.repr), dst, src, Slot::new_raw(order.repr)],
-            2
+            2,
         );
 
         ret_val
@@ -1179,19 +1176,16 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                 Slot::new_raw(match scope {
                     SynchronizationScope::SingleThread => 0,
                     SynchronizationScope::CrossThread => 1,
-                } as u32)
+                } as u32),
             ],
         )
     }
 
-    fn set_invariant_load(&mut self, load: Self::Value) {
-    }
+    fn set_invariant_load(&mut self, load: Self::Value) {}
 
-    fn lifetime_start(&mut self, ptr: Self::Value, size: rustc_abi::Size) {
-    }
+    fn lifetime_start(&mut self, ptr: Self::Value, size: rustc_abi::Size) {}
 
-    fn lifetime_end(&mut self, ptr: Self::Value, size: rustc_abi::Size) {
-    }
+    fn lifetime_end(&mut self, ptr: Self::Value, size: rustc_abi::Size) {}
 
     fn call(
         &mut self,
@@ -1226,8 +1220,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         unimplemented!()
     }
 
-    fn apply_attrs_to_cleanup_callsite(&mut self, llret: Self::Value) {
-    }
+    fn apply_attrs_to_cleanup_callsite(&mut self, llret: Self::Value) {}
 }
 
 impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
@@ -1235,7 +1228,8 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
     /// operands (e.g. `IMM8 as u8`) need a constant even when nothing ran const propagation.
     fn fold_const_int_cast(&self, val: Slot, dest_ty: FullType) -> Option<Slot> {
         let mut module = self.module.borrow_mut();
-        let (FullType::Single(src), FullType::Single(dst)) = (module.type_of_slot(val), dest_ty) else {
+        let (FullType::Single(src), FullType::Single(dst)) = (module.type_of_slot(val), dest_ty)
+        else {
             return None;
         };
         let is_int = |t: Type| matches!(t, Type::i8 | Type::i16 | Type::i32 | Type::i64);
@@ -1254,22 +1248,22 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         let FullType::Single(dest_ty) = dest_ty else {
             todo!()
         };
-        self.module.borrow_mut().add_instruction_ret(
-            self.basic_block,
-            instr,
-            &[val],
-            dest_ty,
-        )
+        self.module
+            .borrow_mut()
+            .add_instruction_ret(self.basic_block, instr, &[val], dest_ty)
     }
 
-    fn load_single(&self, module: &mut Module, ptr: Slot, align: rustc_abi::Align, ret_ty: Type) -> Slot {
+    fn load_single(
+        &self,
+        module: &mut Module,
+        ptr: Slot,
+        align: rustc_abi::Align,
+        ret_ty: Type,
+    ) -> Slot {
         module.add_instruction_ret(
             self.basic_block,
             InstructionKind::Load,
-            &[
-                ptr,
-                Slot::new_raw(align.bytes() as u32),
-            ],
+            &[ptr, Slot::new_raw(align.bytes() as u32)],
             ret_ty,
         )
     }
@@ -1282,7 +1276,15 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         )
     }
 
-    fn load_pair(&self, module: &mut Module, ptr: Slot, offset: u32, align: rustc_abi::Align, ty_a: Type, ty_b: Type) -> (Slot, Slot) {
+    fn load_pair(
+        &self,
+        module: &mut Module,
+        ptr: Slot,
+        offset: u32,
+        align: rustc_abi::Align,
+        ty_a: Type,
+        ty_b: Type,
+    ) -> (Slot, Slot) {
         let slot_a = self.load_single(module, ptr, align, ty_a);
         let ind = module.add_const(Type::i64, 1);
         let ptr_b = module.add_instruction_ret(
@@ -1295,7 +1297,15 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         (slot_a, slot_b)
     }
 
-    fn store_pair(&self, module: &mut Module, val_a: Slot, val_b: Slot, ptr: Slot, offset: u32, align: rustc_abi::Align) {
+    fn store_pair(
+        &self,
+        module: &mut Module,
+        val_a: Slot,
+        val_b: Slot,
+        ptr: Slot,
+        offset: u32,
+        align: rustc_abi::Align,
+    ) {
         self.store_single(module, val_a, ptr, align);
         let ind = module.add_const(Type::i64, 1);
         let ptr_b = module.add_instruction_ret(

@@ -24,20 +24,20 @@ extern crate rustc_target;
 use crate::backend::TpdeCodegenBackend;
 use rustc_codegen_ssa::traits::CodegenBackend;
 
-mod backend;
-mod shared;
-mod base;
-mod context;
-mod builder;
-mod asm;
-mod debuginfo;
 mod abi;
-mod consts;
-mod common;
-mod type_;
-mod mono_item;
-pub mod back;
 mod allocator;
+mod asm;
+pub mod back;
+mod backend;
+mod base;
+mod builder;
+mod common;
+mod consts;
+mod context;
+mod debuginfo;
+mod mono_item;
+mod shared;
+mod type_;
 
 #[unsafe(no_mangle)]
 pub fn __rustc_codegen_backend() -> Box<dyn CodegenBackend> {

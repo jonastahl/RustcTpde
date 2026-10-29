@@ -1,20 +1,18 @@
 use crate::context::SimpleCx;
 use crate::shared::ir::{Binding, FullType, InstructionKind, Slot};
-use rustc_ast::expand::allocator::{AllocatorMethod, AllocatorTy, NO_ALLOC_SHIM_IS_UNSTABLE, SpecialAllocatorMethod, default_fn_name, global_fn_name};
+use rustc_ast::expand::allocator::{
+    AllocatorMethod, AllocatorTy, NO_ALLOC_SHIM_IS_UNSTABLE, SpecialAllocatorMethod,
+    default_fn_name, global_fn_name,
+};
 use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ReturnSlot};
-use rustc_span::bug;
 use rustc_middle::middle::codegen_fn_attrs::{CodegenFnAttrFlags, CodegenFnAttrs};
 use rustc_middle::ty::TyCtxt;
 use rustc_session::config::DebugInfo;
+use rustc_span::bug;
 use rustc_symbol_mangling::mangle_internal_symbol;
 
-pub fn codegen(
-    tcx: TyCtxt<'_>,
-    scx: SimpleCx<'_>,
-    module_name: &str,
-    methods: &[AllocatorMethod],
-) {
+pub fn codegen(tcx: TyCtxt<'_>, scx: SimpleCx<'_>, module_name: &str, methods: &[AllocatorMethod]) {
     let usize = match tcx.sess.target.pointer_width {
         16 => scx.type_i16(),
         32 => scx.type_i32(),
@@ -113,25 +111,18 @@ fn create_wrapper_function(
     let module = &mut scx.module.borrow_mut();
 
     let sign = scx.function_signature(args, output);
-    let caller = module.add_function(
-        from_name,
-        &sign,
-        Linkage::External,
-        Binding::Definition,
-    );
+    let caller = module.add_function(from_name, &sign, Linkage::External, Binding::Definition);
 
     let bb = module.add_basic_block(&caller);
 
     let ret = if let Some(to_name) = to_name {
-        let callee = module.add_function(
-            to_name,
-            &sign,
-            Linkage::External,
-            Binding::Declaration,
-        );
+        let callee = module.add_function(to_name, &sign, Linkage::External, Binding::Declaration);
 
-        let args = args.iter().enumerate()
-            .map(|(i, _)| module.get_slot(caller, i as u32)).collect::<Vec<_>>();
+        let args = args
+            .iter()
+            .enumerate()
+            .map(|(i, _)| module.get_slot(caller, i as u32))
+            .collect::<Vec<_>>();
         let output = module.add_call(bb, Slot::new_func(callee), &sign, ReturnSlot::Direct, &args);
 
         match output {

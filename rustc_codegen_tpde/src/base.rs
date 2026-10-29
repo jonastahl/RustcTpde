@@ -34,10 +34,11 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
     fn module_codegen(tcx: TyCtxt<'_>, cgu_name: Symbol) -> ModuleCodegen<Module> {
         let cgu = tcx.codegen_unit(cgu_name);
         let _prof_timer =
-            tcx.prof.generic_activity_with_arg_recorder("codegen_module", |recorder| {
-                recorder.record_arg(cgu_name.to_string());
-                recorder.record_arg(cgu.size_estimate().to_string());
-            });
+            tcx.prof
+                .generic_activity_with_arg_recorder("codegen_module", |recorder| {
+                    recorder.record_arg(cgu_name.to_string());
+                    recorder.record_arg(cgu.size_estimate().to_string());
+                });
 
         let ir = RefCell::new(Module::new());
         {
@@ -59,8 +60,8 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
 
             if let Some(entry) =
                 maybe_create_entry_wrapper::<Builder<'_, '_, '_>>(&cx, cx.codegen_unit)
-            {}
-
+            {
+            }
 
             // LLVM includes sanitization here
 
@@ -85,6 +86,9 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
 fn repeat_ir_gen() -> usize {
     static COUNT: OnceLock<usize> = OnceLock::new();
     *COUNT.get_or_init(|| {
-        std::env::var("REPEAT_IR_GEN").ok().and_then(|s| s.parse().ok()).unwrap_or(1)
+        std::env::var("REPEAT_IR_GEN")
+            .ok()
+            .and_then(|s| s.parse().ok())
+            .unwrap_or(1)
     })
 }

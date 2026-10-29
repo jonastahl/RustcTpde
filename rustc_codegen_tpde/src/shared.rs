@@ -43,7 +43,7 @@ mod ffi {
     pub enum ArgKind {
         Direct,
         ByVal,
-        sRet
+        sRet,
     }
 
     #[derive(Debug, Copy, Clone)]
@@ -90,7 +90,7 @@ mod ffi {
 
     #[derive(Debug, Clone)]
     pub struct CalleeInfo {
-        info: Vec<ArgInfo>
+        info: Vec<ArgInfo>,
     }
 
     #[derive(Debug)]
@@ -363,7 +363,6 @@ mod ffi {
         clmul,
         crc32,
 
-
         Last,
     }
 
@@ -436,7 +435,10 @@ impl Debug for ffi::Function {
         let blocks: Vec<BlockDebug> = self
             .basic_blocks
             .iter()
-            .map(|block| BlockDebug { block, function: self })
+            .map(|block| BlockDebug {
+                block,
+                function: self,
+            })
             .collect();
         f.debug_struct("Function")
             .field("name", &self.name)
@@ -503,7 +505,9 @@ impl Debug for ffi::Value {
             Type::ptr => format!("[ptr: {}]", self.data2),
             Type::f32 => format!("{}", f32::from_bits(self.data2 as u32)),
             Type::f64 => format!("{}", f64::from_bits(self.data2)),
-            ty if ir::vector_info(ty).is_some() => format!("<{:#018x} {:#018x}>", self.data1, self.data2),
+            ty if ir::vector_info(ty).is_some() => {
+                format!("<{:#018x} {:#018x}>", self.data1, self.data2)
+            }
             _ => todo!(),
         };
         write!(
@@ -539,13 +543,21 @@ impl Debug for ffi::Global {
                     write!(f, "\n  {:04x}  ", i * 16)?;
 
                     // Print hex values with padding for incomplete lines
-                    for b in chunk { write!(f, "{:02x} ", b)?; }
-                    for _ in 0..(16 - chunk.len()) { write!(f, "   ")?; }
+                    for b in chunk {
+                        write!(f, "{:02x} ", b)?;
+                    }
+                    for _ in 0..(16 - chunk.len()) {
+                        write!(f, "   ")?;
+                    }
 
                     // Print ASCII representation
                     write!(f, " |")?;
                     for &b in chunk {
-                        let c = if b.is_ascii_graphic() || b == b' ' { b as char } else { '.' };
+                        let c = if b.is_ascii_graphic() || b == b' ' {
+                            b as char
+                        } else {
+                            '.'
+                        };
                         write!(f, "{}", c)?;
                     }
                     write!(f, "|")?;
@@ -554,23 +566,31 @@ impl Debug for ffi::Global {
             }
         }
 
-        f.debug_struct(if self.name.is_empty() { "anonymous" } else { &self.name })
-            .field("size", &self.size)
-            .field("align", &self.align)
-            .field("read_only", &self.read_only)
-            .field("thread_loc", &self.thread_loc)
-            .field("flags", &self.flags)
-            .field("init", &self.init)
-            .field("data", &HexDump(&self.data))
-            .field("relocations", &self.relocations)
-            .finish()
+        f.debug_struct(if self.name.is_empty() {
+            "anonymous"
+        } else {
+            &self.name
+        })
+        .field("size", &self.size)
+        .field("align", &self.align)
+        .field("read_only", &self.read_only)
+        .field("thread_loc", &self.thread_loc)
+        .field("flags", &self.flags)
+        .field("init", &self.init)
+        .field("data", &HexDump(&self.data))
+        .field("relocations", &self.relocations)
+        .finish()
     }
 }
 
 impl Debug for ffi::ConstVector {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
         let Some((elem_ty, _)) = vector_info(self.ty) else {
-            return write!(f, "ConstVector {{ ty: {:?}, data: {:?} }}", self.ty, self.data);
+            return write!(
+                f,
+                "ConstVector {{ ty: {:?}, data: {:?} }}",
+                self.ty, self.data
+            );
         };
         let elem_bytes = size_of_type(elem_ty) as usize;
 
@@ -611,6 +631,11 @@ impl Default for ArgInfo {
 
 impl Debug for Relocation {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
-        write!(f, "offset {:#x} insert {:?}", self.offset, Slot::from_ffi(self.slot))
+        write!(
+            f,
+            "offset {:#x} insert {:?}",
+            self.offset,
+            Slot::from_ffi(self.slot)
+        )
     }
 }

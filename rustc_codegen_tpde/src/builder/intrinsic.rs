@@ -1,18 +1,21 @@
 use crate::builder::Builder;
+use crate::context::LibFunc;
 use crate::shared::ir::{FullType, InstructionKind, LandingPadKind, Slot, Type};
 use rustc_abi::{Align, Size};
+use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::RetagInfo;
 use rustc_codegen_ssa::diagnostics::InvalidMonomorphization;
 use rustc_codegen_ssa::mir::IntrinsicResult;
 use rustc_codegen_ssa::mir::operand::{OperandRef, OperandValue};
-use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::mir::place::{PlaceRef, PlaceValue};
-use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods, MiscCodegenMethods, LayoutTypeCodegenMethods, ReturnSlot};
-use rustc_span::{bug, span_bug};
-use rustc_middle::ty::{self, Instance};
+use rustc_codegen_ssa::traits::{
+    BaseTypeCodegenMethods, BuilderMethods, ConstCodegenMethods, IntrinsicCallBuilderMethods,
+    LayoutTypeCodegenMethods, MiscCodegenMethods, ReturnSlot,
+};
 use rustc_middle::ty::layout::{LayoutOf, TyAndLayout};
+use rustc_middle::ty::{self, Instance};
 use rustc_span::{Span, sym};
-use crate::context::LibFunc;
+use rustc_span::{bug, span_bug};
 
 impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
     fn codegen_intrinsic_call(
@@ -97,19 +100,17 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::bswap,
-                    &[args[0].immediate()]
+                    &[args[0].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
-            sym::saturating_add
-            | sym::saturating_sub => {
+            sym::saturating_add | sym::saturating_sub => {
                 let ty = args[0].layout.ty;
                 if !ty.is_integral() {
-                    let err = self.tcx.dcx().emit_err(InvalidMonomorphization::BasicIntegerType {
-                        span,
-                        name,
-                        ty,
-                    });
+                    let err = self
+                        .tcx
+                        .dcx()
+                        .emit_err(InvalidMonomorphization::BasicIntegerType { span, name, ty });
                     return IntrinsicResult::Err(err);
                 }
                 let (size, signed) = ty.int_size_and_signed(self.tcx);
@@ -121,18 +122,21 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     (true, true) => InstructionKind::sat_sadd,
                     (true, false) => InstructionKind::sat_uadd,
                     (false, true) => InstructionKind::sat_ssub,
-                    (false, false) => InstructionKind::sat_usub
+                    (false, false) => InstructionKind::sat_usub,
                 };
 
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     instruction,
-                    &[lhs, rhs]
+                    &[lhs, rhs],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
             sym::is_val_statically_known => {
-                let result = self.cx.module.borrow_mut()
+                let result = self
+                    .cx
+                    .module
+                    .borrow_mut()
                     .add_const(Type::Bool, false as u128);
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -140,7 +144,10 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let pointee = args[0].layout.ty.builtin_deref(true).unwrap();
                 let size = self.layout_of(pointee).size.bytes();
                 let result = if size == 0 {
-                    self.cx.module.borrow_mut().add_const(Type::Bool, true as u128)
+                    self.cx
+                        .module
+                        .borrow_mut()
+                        .add_const(Type::Bool, true as u128)
                 } else {
                     let len = self.const_usize(size);
                     let func = self.cx.get_lib_fn(LibFunc::MemCmp);
@@ -148,7 +155,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                         self.basic_block,
                         InstructionKind::Call,
                         &[func, args[0].immediate(), args[1].immediate(), len],
-                        Type::i32
+                        Type::i32,
                     );
                     let zero = self.const_i32(0);
                     self.icmp(rustc_codegen_ssa::common::IntPredicate::IntEQ, cmp, zero)
@@ -160,8 +167,13 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let cmp = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::Call,
-                    &[func, args[0].immediate(), args[1].immediate(), args[2].immediate()],
-                    Type::i32
+                    &[
+                        func,
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        args[2].immediate(),
+                    ],
+                    Type::i32,
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(cmp))
             }
@@ -194,18 +206,33 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::volatile_load | sym::unaligned_volatile_load => {
                 let ptr = args[0].immediate();
                 let abi_align = result_layout.align.abi;
-                let ptr_align = if name == sym::volatile_load { abi_align } else { Align::ONE };
+                let ptr_align = if name == sym::volatile_load {
+                    abi_align
+                } else {
+                    Align::ONE
+                };
                 if result_layout.is_zst() {
                     return IntrinsicResult::Operand(OperandValue::ZeroSized);
                 }
                 match self.cx.tpde_direct_type(result_layout) {
                     FullType::Memory { .. } => {
                         let temp = match result_place {
-                            Some(val) => PlaceRef { val, layout: result_layout },
+                            Some(val) => PlaceRef {
+                                val,
+                                layout: result_layout,
+                            },
                             None => PlaceRef::alloca(self, result_layout),
                         };
                         let size = self.const_usize(result_layout.size.bytes());
-                        self.memcpy(temp.val.llval, abi_align, ptr, ptr_align, size, MemFlags::VOLATILE, None);
+                        self.memcpy(
+                            temp.val.llval,
+                            abi_align,
+                            ptr,
+                            ptr_align,
+                            size,
+                            MemFlags::VOLATILE,
+                            None,
+                        );
                         if result_place.is_none() {
                             IntrinsicResult::Operand(self.load_operand(temp).val)
                         } else {
@@ -213,7 +240,10 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                         }
                     }
                     _ => {
-                        let src = PlaceRef { val: PlaceValue::new_sized(ptr, ptr_align), layout: result_layout };
+                        let src = PlaceRef {
+                            val: PlaceValue::new_sized(ptr, ptr_align),
+                            layout: result_layout,
+                        };
                         IntrinsicResult::Operand(self.load_operand(src).val)
                     }
                 }
@@ -232,10 +262,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.abort_immediate();
                 IntrinsicResult::Operand(OperandValue::ZeroSized)
             }
-            sym::ctlz_nonzero
-            | sym::ctlz
-            | sym::cttz_nonzero
-            | sym::cttz => {
+            sym::ctlz_nonzero | sym::ctlz | sym::cttz_nonzero | sym::cttz => {
                 let instr = match name {
                     sym::ctlz_nonzero => InstructionKind::ctlz_nonzero,
                     sym::ctlz => InstructionKind::ctlz,
@@ -247,7 +274,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     self.basic_block,
                     instr,
                     &[args[0].immediate()],
-                    Type::i32
+                    Type::i32,
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -255,7 +282,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::rotl,
-                    &[args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -263,7 +290,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::rotr,
-                    &[args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -271,7 +298,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::funnel_shl,
-                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()]
+                    &[
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        args[2].immediate(),
+                    ],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -279,7 +310,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::funnel_shr,
-                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()]
+                    &[
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        args[2].immediate(),
+                    ],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -294,12 +329,14 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::simd_or => simd_binop!(self, args: Uint, Int => or),
             sym::simd_xor => simd_binop!(self, args: Uint, Int => xor),
             sym::simd_splat => {
-                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
+                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else {
+                    bug!()
+                };
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_splat,
                     &[args[0].immediate()],
-                    ret_ty
+                    ret_ty,
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -310,30 +347,38 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fMin,
-                    &[args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
-            | sym::maximum_number_nsz_f16
+            sym::maximum_number_nsz_f16
             | sym::maximum_number_nsz_f32
             | sym::maximum_number_nsz_f64
             | sym::maximum_number_nsz_f128 => {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fMax,
-                    &[args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
-            sym::simd_neg => simd_unop!(self, args -> result_layout: Uint, Int => Neg, Float => fNeg),
+            sym::simd_neg => {
+                simd_unop!(self, args -> result_layout: Uint, Int => Neg, Float => fNeg)
+            }
             // (a, b, c) -> a * b + c per lane, fused: no vector instruction without FMA3, so call
             // libm fma(f) on each lane.
             sym::simd_fma => {
                 let (lanes, elem) = args[0].layout.ty.simd_size_and_type(self.tcx);
                 let is_f64 = matches!(elem.kind(), ty::Float(rustc_ast::FloatTy::F64));
-                let (lib_name, elem_ty) = if is_f64 { ("fma", Type::f64) } else { ("fmaf", Type::f32) };
+                let (lib_name, elem_ty) = if is_f64 {
+                    ("fma", Type::f64)
+                } else {
+                    ("fmaf", Type::f32)
+                };
                 let func = self.cx.get_lib_fn(LibFunc::Math(lib_name, is_f64, 3));
-                let FullType::Single(vec_ty) = self.val_ty(args[0].immediate()) else { bug!() };
+                let FullType::Single(vec_ty) = self.val_ty(args[0].immediate()) else {
+                    bug!()
+                };
                 let mut res = args[0].immediate();
                 for i in 0..lanes {
                     let idx = self.const_usize(i);
@@ -359,49 +404,97 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::simd_fsqrt => simd_unop!(self, args -> result_layout: Float => fSqrt),
             sym::simd_minimum_number_nsz => simd_binop!(self, args -> result_layout: Float => fMin),
             sym::simd_maximum_number_nsz => simd_binop!(self, args -> result_layout: Float => fMax),
-            sym::simd_saturating_add => simd_binop!(self, args -> result_layout: Int => sat_sadd, Uint => sat_uadd),
-            sym::simd_saturating_sub => simd_binop!(self, args -> result_layout: Int => sat_ssub, Uint => sat_usub),
+            sym::simd_saturating_add => {
+                simd_binop!(self, args -> result_layout: Int => sat_sadd, Uint => sat_uadd)
+            }
+            sym::simd_saturating_sub => {
+                simd_binop!(self, args -> result_layout: Int => sat_ssub, Uint => sat_usub)
+            }
 
-            sym::simd_eq => simd_binop!(self, args -> result_layout: Uint, Int => CMPeq, Float => RealOEQ),
-            sym::simd_ne => simd_binop!(self, args -> result_layout: Uint, Int => CMPne, Float => RealUNE),
-            sym::simd_lt => simd_binop!(self, args -> result_layout: Int => CMPslt, Uint => CMPult, Float => RealOLT),
-            sym::simd_le => simd_binop!(self, args -> result_layout: Int => CMPsle, Uint => CMPule, Float => RealOLE),
-            sym::simd_gt => simd_binop!(self, args -> result_layout: Int => CMPsgt, Uint => CMPugt, Float => RealOGT),
-            sym::simd_ge => simd_binop!(self, args -> result_layout: Int => CMPsge, Uint => CMPuge, Float => RealOGE),
+            sym::simd_eq => {
+                simd_binop!(self, args -> result_layout: Uint, Int => CMPeq, Float => RealOEQ)
+            }
+            sym::simd_ne => {
+                simd_binop!(self, args -> result_layout: Uint, Int => CMPne, Float => RealUNE)
+            }
+            sym::simd_lt => {
+                simd_binop!(self, args -> result_layout: Int => CMPslt, Uint => CMPult, Float => RealOLT)
+            }
+            sym::simd_le => {
+                simd_binop!(self, args -> result_layout: Int => CMPsle, Uint => CMPule, Float => RealOLE)
+            }
+            sym::simd_gt => {
+                simd_binop!(self, args -> result_layout: Int => CMPsgt, Uint => CMPugt, Float => RealOGT)
+            }
+            sym::simd_ge => {
+                simd_binop!(self, args -> result_layout: Int => CMPsge, Uint => CMPuge, Float => RealOGE)
+            }
 
             // Bit i of the result is the top bit of lane i.
             sym::simd_bitmask => simd_unop!(self, args -> result_layout: Uint, Int => simd_bitmask),
 
             // Reductions; the ordered variants take the start value as second operand.
-            sym::simd_reduce_add_ordered => simd_binop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_add_ordered),
-            sym::simd_reduce_mul_ordered => simd_binop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_mul_ordered),
-            sym::simd_reduce_add_unordered => simd_unop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_add_unordered),
-            sym::simd_reduce_mul_unordered => simd_unop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_mul_unordered),
-            sym::simd_reduce_min => simd_unop!(self, args -> result_layout: Int => simd_reduce_smin, Uint => simd_reduce_umin, Float => simd_reduce_fmin),
-            sym::simd_reduce_max => simd_unop!(self, args -> result_layout: Int => simd_reduce_smax, Uint => simd_reduce_umax, Float => simd_reduce_fmax),
-            sym::simd_reduce_and => simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_and),
-            sym::simd_reduce_or => simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_or),
-            sym::simd_reduce_xor => simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_xor),
-            sym::simd_reduce_any => simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_any),
-            sym::simd_reduce_all => simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_all),
+            sym::simd_reduce_add_ordered => {
+                simd_binop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_add_ordered)
+            }
+            sym::simd_reduce_mul_ordered => {
+                simd_binop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_mul_ordered)
+            }
+            sym::simd_reduce_add_unordered => {
+                simd_unop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_add_unordered)
+            }
+            sym::simd_reduce_mul_unordered => {
+                simd_unop!(self, args -> result_layout: Uint, Int, Float => simd_reduce_mul_unordered)
+            }
+            sym::simd_reduce_min => {
+                simd_unop!(self, args -> result_layout: Int => simd_reduce_smin, Uint => simd_reduce_umin, Float => simd_reduce_fmin)
+            }
+            sym::simd_reduce_max => {
+                simd_unop!(self, args -> result_layout: Int => simd_reduce_smax, Uint => simd_reduce_umax, Float => simd_reduce_fmax)
+            }
+            sym::simd_reduce_and => {
+                simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_and)
+            }
+            sym::simd_reduce_or => {
+                simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_or)
+            }
+            sym::simd_reduce_xor => {
+                simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_xor)
+            }
+            sym::simd_reduce_any => {
+                simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_any)
+            }
+            sym::simd_reduce_all => {
+                simd_unop!(self, args -> result_layout: Uint, Int => simd_reduce_all)
+            }
 
             // (vector, index)
-            sym::simd_extract | sym::simd_extract_dyn =>
-                simd_binop!(self, args -> result_layout: Uint, Int, Float => simd_extract),
+            sym::simd_extract | sym::simd_extract_dyn => {
+                simd_binop!(self, args -> result_layout: Uint, Int, Float => simd_extract)
+            }
 
             // (mask vector, then, else) / (integer bitmask, then, else) / (vector, index, element)
-            sym::simd_select | sym::simd_select_bitmask | sym::simd_insert | sym::simd_insert_dyn => {
+            sym::simd_select
+            | sym::simd_select_bitmask
+            | sym::simd_insert
+            | sym::simd_insert_dyn => {
                 let instr = match name {
                     sym::simd_select => InstructionKind::Select,
                     sym::simd_select_bitmask => InstructionKind::simd_select_bitmask,
                     _ => InstructionKind::simd_insert,
                 };
-                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
+                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else {
+                    bug!()
+                };
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     instr,
-                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()],
-                    ret_ty
+                    &[
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        args[2].immediate(),
+                    ],
+                    ret_ty,
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -409,12 +502,18 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             // (a, b, constant index vector): the backend reads the indices from the constant,
             // index i >= len(a) selects lane i - len(a) of b.
             sym::simd_shuffle => {
-                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
+                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else {
+                    bug!()
+                };
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_shuffle,
-                    &[args[0].immediate(), args[1].immediate(), args[2].immediate()],
-                    ret_ty
+                    &[
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        args[2].immediate(),
+                    ],
+                    ret_ty,
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
@@ -442,20 +541,22 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     (ty::Int(_), _) => InstructionKind::sExt,
                     _ => InstructionKind::zExt,
                 };
-                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
+                let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else {
+                    bug!()
+                };
                 let res = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     instr,
                     &[args[0].immediate()],
-                    ret_ty
+                    ret_ty,
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
 
             // Vectors of pointers are vectors of i64, so these do not change the bits.
-            sym::simd_cast_ptr | sym::simd_expose_provenance | sym::simd_with_exposed_provenance => {
-                IntrinsicResult::Operand(args[0].val)
-            }
+            sym::simd_cast_ptr
+            | sym::simd_expose_provenance
+            | sym::simd_with_exposed_provenance => IntrinsicResult::Operand(args[0].val),
             // (pointers, offsets): pointer + offset * size_of::<pointee>()
             sym::simd_arith_offset => {
                 let (lanes, elem) = args[0].layout.ty.simd_size_and_type(self.tcx);
@@ -465,17 +566,31 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let size = self.const_u64(self.layout_of(*pointee).size.bytes());
                 let size = self.vector_splat(lanes as usize, size);
                 let offset = self.mul(args[1].immediate(), size);
-                IntrinsicResult::Operand(OperandValue::Immediate(self.add(args[0].immediate(), offset)))
+                IntrinsicResult::Operand(OperandValue::Immediate(
+                    self.add(args[0].immediate(), offset),
+                ))
             }
 
             // gather: (default, pointers, mask), scatter: (values, pointers, mask),
             // masked_load: (mask, pointer, default), masked_store: (mask, pointer, values).
             // The lane alignment is appended as raw operand.
-            sym::simd_gather | sym::simd_scatter | sym::simd_masked_load | sym::simd_masked_store => {
-                let values = if matches!(name, sym::simd_gather | sym::simd_scatter) { 0 } else { 2 };
+            sym::simd_gather
+            | sym::simd_scatter
+            | sym::simd_masked_load
+            | sym::simd_masked_store => {
+                let values = if matches!(name, sym::simd_gather | sym::simd_scatter) {
+                    0
+                } else {
+                    2
+                };
                 let (_, elem) = args[values].layout.ty.simd_size_and_type(self.tcx);
                 let align = Slot::new_raw(self.layout_of(elem).align.bytes() as u32);
-                let ops = [args[0].immediate(), args[1].immediate(), args[2].immediate(), align];
+                let ops = [
+                    args[0].immediate(),
+                    args[1].immediate(),
+                    args[2].immediate(),
+                    align,
+                ];
                 let mut module = self.cx.module.borrow_mut();
                 match name {
                     sym::simd_gather | sym::simd_masked_load => {
@@ -484,7 +599,9 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                         } else {
                             InstructionKind::simd_masked_load
                         };
-                        let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else { bug!() };
+                        let FullType::Single(ret_ty) = self.cx.backend_type(result_layout) else {
+                            bug!()
+                        };
                         let res = module.add_instruction_ret(self.basic_block, instr, &ops, ret_ty);
                         IntrinsicResult::Operand(OperandValue::Immediate(res))
                     }
@@ -503,18 +620,28 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::copysign,
-                    &[args[0].immediate(), args[1].immediate()]
+                    &[args[0].immediate(), args[1].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
             sym::catch_unwind => {
-                let (try_fn, data, catch_fn) = (args[0].immediate(), args[1].immediate(), args[2].immediate());
+                let (try_fn, data, catch_fn) = (
+                    args[0].immediate(),
+                    args[1].immediate(),
+                    args[2].immediate(),
+                );
                 let ptr_ty = FullType::Single(Type::ptr);
                 let try_sig = self.function_signature(&[ptr_ty], None);
 
                 let result = if !self.tcx.sess.panic_strategy().unwinds() {
                     // No unwinding, so just try and panic
-                    self.module.borrow_mut().add_call(self.basic_block, try_fn, &try_sig, ReturnSlot::Direct, &[data]);
+                    self.module.borrow_mut().add_call(
+                        self.basic_block,
+                        try_fn,
+                        &try_sig,
+                        ReturnSlot::Direct,
+                        &[data],
+                    );
                     self.const_bool(false)
                 } else {
                     // cur_block:
@@ -541,12 +668,25 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     let no_panic = self.const_bool(false);
                     self.store(no_panic, res, align);
                     self.module.borrow_mut().add_invoke(
-                        self.basic_block, try_fn, &try_sig, cont_bb, catch_bb, ReturnSlot::Direct, &[data]);
+                        self.basic_block,
+                        try_fn,
+                        &try_sig,
+                        cont_bb,
+                        catch_bb,
+                        ReturnSlot::Direct,
+                        &[data],
+                    );
 
                     self.switch_to_block(catch_bb);
                     let pers = self.eh_personality();
                     let (exn, _) = self.landing_pad(pers, LandingPadKind::CatchAll);
-                    self.module.borrow_mut().add_call(self.basic_block, catch_fn, &catch_sig, ReturnSlot::Direct, &[data, exn]);
+                    self.module.borrow_mut().add_call(
+                        self.basic_block,
+                        catch_fn,
+                        &catch_sig,
+                        ReturnSlot::Direct,
+                        &[data, exn],
+                    );
                     let panicked = self.const_bool(true);
                     self.store(panicked, res, align);
                     self.br(cont_bb);
@@ -561,7 +701,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fAbs,
-                    &[args[0].immediate()]
+                    &[args[0].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -569,16 +709,24 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fSqrt,
-                    &[args[0].immediate()]
+                    &[args[0].immediate()],
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
-            sym::sin | sym::cos
-            | sym::exp | sym::exp2
-            | sym::log | sym::log2 | sym::log10
-            | sym::powf | sym::powi
-            | sym::ceil | sym::floor
-            | sym::trunc | sym::round | sym::round_ties_even
+            sym::sin
+            | sym::cos
+            | sym::exp
+            | sym::exp2
+            | sym::log
+            | sym::log2
+            | sym::log10
+            | sym::powf
+            | sym::powi
+            | sym::ceil
+            | sym::floor
+            | sym::trunc
+            | sym::round
+            | sym::round_ties_even
             | sym::fma => {
                 let is_f64 = match args[0].layout.ty.kind() {
                     ty::Float(ty::FloatTy::F32) => false,
@@ -586,31 +734,48 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     ty => span_bug!(span, "unsupported float type {:?} for `{}`", ty, name),
                 };
                 let lib_name = match (name, is_f64) {
-                    (sym::sin, false) => "sinf",     (sym::sin, true) => "sin",
-                    (sym::cos, false) => "cosf",     (sym::cos, true) => "cos",
-                    (sym::exp, false) => "expf",     (sym::exp, true) => "exp",
-                    (sym::exp2, false) => "exp2f",   (sym::exp2, true) => "exp2",
-                    (sym::log, false) => "logf",     (sym::log, true) => "log",
-                    (sym::log10, false) => "log10f", (sym::log10, true) => "log10",
-                    (sym::log2, false) => "log2f",   (sym::log2, true) => "log2",
-                    (sym::powf, false) => "powf",    (sym::powf, true) => "pow",
-                    (sym::ceil, false) => "ceilf",   (sym::ceil, true) => "ceil",
-                    (sym::floor, false) => "floorf", (sym::floor, true) => "floor",
-                    (sym::trunc, false) => "truncf", (sym::trunc, true) => "trunc",
-                    (sym::round, false) => "roundf", (sym::round, true) => "round",
-                    (sym::round_ties_even, false) => "rintf", (sym::round_ties_even, true) => "rint",
-                    (sym::fma, false) => "fmaf",     (sym::fma, true) => "fma",
-                    (sym::powi, false) => "__powisf2", (sym::powi, true) => "__powidf2",
+                    (sym::sin, false) => "sinf",
+                    (sym::sin, true) => "sin",
+                    (sym::cos, false) => "cosf",
+                    (sym::cos, true) => "cos",
+                    (sym::exp, false) => "expf",
+                    (sym::exp, true) => "exp",
+                    (sym::exp2, false) => "exp2f",
+                    (sym::exp2, true) => "exp2",
+                    (sym::log, false) => "logf",
+                    (sym::log, true) => "log",
+                    (sym::log10, false) => "log10f",
+                    (sym::log10, true) => "log10",
+                    (sym::log2, false) => "log2f",
+                    (sym::log2, true) => "log2",
+                    (sym::powf, false) => "powf",
+                    (sym::powf, true) => "pow",
+                    (sym::ceil, false) => "ceilf",
+                    (sym::ceil, true) => "ceil",
+                    (sym::floor, false) => "floorf",
+                    (sym::floor, true) => "floor",
+                    (sym::trunc, false) => "truncf",
+                    (sym::trunc, true) => "trunc",
+                    (sym::round, false) => "roundf",
+                    (sym::round, true) => "round",
+                    (sym::round_ties_even, false) => "rintf",
+                    (sym::round_ties_even, true) => "rint",
+                    (sym::fma, false) => "fmaf",
+                    (sym::fma, true) => "fma",
+                    (sym::powi, false) => "__powisf2",
+                    (sym::powi, true) => "__powidf2",
                     _ => unreachable!(),
                 };
-                let func = self.cx.get_lib_fn(LibFunc::Math(lib_name, is_f64, args.len()));
+                let func = self
+                    .cx
+                    .get_lib_fn(LibFunc::Math(lib_name, is_f64, args.len()));
                 let mut ops = vec![func];
                 ops.extend(args.iter().map(|arg| arg.immediate()));
                 let result = self.cx.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::Call,
                     &ops,
-                    if is_f64 { Type::f64 } else { Type::f32 }
+                    if is_f64 { Type::f64 } else { Type::f32 },
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(result))
             }
@@ -622,7 +787,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     x = self.cx.module.borrow_mut().add_instruction_ret_first(
                         self.basic_block,
                         InstructionKind::bswap,
-                        &[x]
+                        &[x],
                     );
                 }
                 for (shift, pattern) in [(4, 0x0F), (2, 0x33), (1, 0x55)] {
@@ -637,7 +802,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 }
                 IntrinsicResult::Operand(OperandValue::Immediate(x))
             }
-            _ => IntrinsicResult::Fallback(ty::Instance::new_raw(instance.def_id(), instance.args))
+            _ => IntrinsicResult::Fallback(ty::Instance::new_raw(instance.def_id(), instance.args)),
         }
     }
 
@@ -650,16 +815,17 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
         let name = self.tcx.item_name(instance.def_id());
 
         match name.as_str() {
-            "pause" => {
-                self.module.borrow_mut()
-                    .add_instruction_ret(self.basic_block,
-                                     InstructionKind::Pause,
-                                     &[],
-                                    Type::Void)
-            }
+            "pause" => self.module.borrow_mut().add_instruction_ret(
+                self.basic_block,
+                InstructionKind::Pause,
+                &[],
+                Type::Void,
+            ),
             "pshufb" | "pshufb128" => {
                 let (a, idx) = (args[0].immediate(), args[1].immediate());
-                let FullType::Single(vec_ty) = self.val_ty(a) else { bug!() };
+                let FullType::Single(vec_ty) = self.val_ty(a) else {
+                    bug!()
+                };
                 let (_, nelem) = crate::shared::ir::vector_info(vec_ty)
                     .map(|(e, n)| (e, n))
                     .expect("pshufb on non-vector");
@@ -684,7 +850,9 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             }
             "psadbw" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
-                let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
+                let FullType::Single(in_ty) = self.val_ty(a) else {
+                    bug!()
+                };
                 // SSE2 / AVX2 / AVX-512 forms: one 64-bit sum per 8 bytes
                 let out_ty = match in_ty {
                     Type::v16i8 => Type::v2i64,
@@ -701,7 +869,9 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             }
             "pmaddwd" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
-                let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
+                let FullType::Single(in_ty) = self.val_ty(a) else {
+                    bug!()
+                };
                 let out_ty = match in_ty {
                     Type::v8i16 => Type::v4i32,
                     Type::v16i16 => Type::v8i32,
@@ -717,7 +887,9 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             }
             "pmaddubsw" | "pmaddubsw128" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
-                let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
+                let FullType::Single(in_ty) = self.val_ty(a) else {
+                    bug!()
+                };
                 let out_ty = match in_ty {
                     Type::v16i8 => Type::v8i16,
                     Type::v32i8 => Type::v16i16,
@@ -732,26 +904,38 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 )
             }
             "psllw" | "pslld" | "psllq" | "psrlw" | "psrld" | "psrlq" | "psraw" | "psrad" => {
-                let op = ["psllw", "pslld", "psllq", "psrlw", "psrld", "psrlq", "psraw", "psrad"]
-                    .iter()
-                    .position(|n| *n == name.as_str())
-                    .unwrap();
+                let op = [
+                    "psllw", "pslld", "psllq", "psrlw", "psrld", "psrlq", "psraw", "psrad",
+                ]
+                .iter()
+                .position(|n| *n == name.as_str())
+                .unwrap();
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_shift,
-                    &[args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
+                    &[
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        Slot::new_raw(op as u32),
+                    ],
                 )
             }
             "minps" | "maxps" | "minpd" | "maxpd" | "minss" | "maxss" | "minsd" | "maxsd"
             | "vminps" | "vmaxps" | "vminpd" | "vmaxpd" => {
-                let op = ["minps", "maxps", "minpd", "maxpd", "minss", "maxss", "minsd", "maxsd"]
-                    .iter()
-                    .position(|n| *n == name.as_str().trim_start_matches('v'))
-                    .unwrap();
+                let op = [
+                    "minps", "maxps", "minpd", "maxpd", "minss", "maxss", "minsd", "maxsd",
+                ]
+                .iter()
+                .position(|n| *n == name.as_str().trim_start_matches('v'))
+                .unwrap();
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_minmax,
-                    &[args[0].immediate(), args[1].immediate(), Slot::new_raw(op as u32)],
+                    &[
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        Slot::new_raw(op as u32),
+                    ],
                 )
             }
             "rcpps" | "rsqrtps" | "rcpss" | "rsqrtss" | "vrcpps" | "vrsqrtps" => {
@@ -774,18 +958,27 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     bug!("{} predicate must be a constant", name);
                 };
                 if pred >= 8 {
-                    bug!("{} predicate {} needs AVX encoding, only 0..8 supported", name, pred);
+                    bug!(
+                        "{} predicate {} needs AVX encoding, only 0..8 supported",
+                        name,
+                        pred
+                    );
                 }
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_cmp,
-                    &[args[0].immediate(), args[1].immediate(),
-                         Slot::new_raw((kind as u32) | ((pred as u32) << 2))],
+                    &[
+                        args[0].immediate(),
+                        args[1].immediate(),
+                        Slot::new_raw((kind as u32) | ((pred as u32) << 2)),
+                    ],
                 )
             }
             "cvtps2dq" | "cvttps2dq" | "vcvtps2dq" | "vcvttps2dq" => {
                 let a = args[0].immediate();
-                let FullType::Single(in_ty) = self.val_ty(a) else { bug!() };
+                let FullType::Single(in_ty) = self.val_ty(a) else {
+                    bug!()
+                };
                 let out_ty = match in_ty {
                     Type::v4f32 => Type::v4i32,
                     Type::v8f32 => Type::v8i32,
@@ -807,7 +1000,9 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 };
                 let sel = (imm & 1) | (((imm >> 4) & 1) << 1);
                 let vec_ty = self.val_ty(a);
-                let FullType::Single(vec_ty) = vec_ty else { bug!() };
+                let FullType::Single(vec_ty) = vec_ty else {
+                    bug!()
+                };
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::clmul,
@@ -823,16 +1018,18 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 )
             }
             "lddqu" | "vlddqu" => {
-                let ty = if name.as_str() == "vlddqu" { Type::v32i8 } else { Type::v16i8 };
+                let ty = if name.as_str() == "vlddqu" {
+                    Type::v32i8
+                } else {
+                    Type::v16i8
+                };
                 self.load(FullType::Single(ty), args[0].immediate(), Align::ONE)
             }
-            "pmulhrsw" | "pmulhrsw128" => {
-                self.module.borrow_mut().add_instruction_ret_first(
-                    self.basic_block,
-                    InstructionKind::pmulhrsw,
-                    &[args[0].immediate(), args[1].immediate()],
-                )
-            }
+            "pmulhrsw" | "pmulhrsw128" => self.module.borrow_mut().add_instruction_ret_first(
+                self.basic_block,
+                InstructionKind::pmulhrsw,
+                &[args[0].immediate(), args[1].immediate()],
+            ),
             "llvm_vcvtps2ph_128" | "llvm_vcvtps2ph_256" => {
                 let op = if name.as_str().ends_with("256") { 3 } else { 2 };
                 let Some(imm) = self.cx.const_to_opt_uint(args[1].immediate()) else {
@@ -841,7 +1038,10 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_cvt,
-                    &[args[0].immediate(), Slot::new_raw(op | ((imm as u32 & 0xFF) << 2))],
+                    &[
+                        args[0].immediate(),
+                        Slot::new_raw(op | ((imm as u32 & 0xFF) << 2)),
+                    ],
                     Type::v8i16,
                 )
             }
@@ -857,7 +1057,8 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let aux = self.load(FullType::Single(Type::i32), aux_ptr, aux_align);
                 self.module.borrow_mut().add_pair(tsc, aux, 8)
             }
-            "llvm_addcarry_u32" | "llvm_addcarry_u64" | "llvm_subborrow_u32" | "llvm_subborrow_u64" => {
+            "llvm_addcarry_u32" | "llvm_addcarry_u64" | "llvm_subborrow_u32"
+            | "llvm_subborrow_u64" => {
                 use rustc_codegen_ssa::common::IntPredicate::{IntNE, IntULT};
                 let is_64 = name.as_str().ends_with("64");
                 let is_add = name.as_str().contains("addcarry");
@@ -882,16 +1083,16 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 let o1 = self.zext(o1, i8_ty);
                 let o2 = self.zext(o2, i8_ty);
                 let carry_out = self.or(o1, o2);
-                self.module.borrow_mut().add_pair(carry_out, res, if is_64 { 8 } else { 4 })
+                self.module
+                    .borrow_mut()
+                    .add_pair(carry_out, res, if is_64 { 8 } else { 4 })
             }
-            "rdtsc" => {
-                self.module.borrow_mut().add_instruction_ret(
-                    self.basic_block,
-                    InstructionKind::rdtsc,
-                    &[],
-                    Type::i64,
-                )
-            }
+            "rdtsc" => self.module.borrow_mut().add_instruction_ret(
+                self.basic_block,
+                InstructionKind::rdtsc,
+                &[],
+                Type::i64,
+            ),
             _ => {
                 todo!("Unimplemented llvm intrinsic: {}", name.as_str());
             }
@@ -899,9 +1100,9 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
     }
 
     fn abort_immediate(&mut self) {
-        self.module.borrow_mut().add_instruction(self.basic_block,
-                                                 InstructionKind::Abort,
-                                                 &[])
+        self.module
+            .borrow_mut()
+            .add_instruction(self.basic_block, InstructionKind::Abort, &[])
     }
 
     fn assume(&mut self, val: Self::Value) {
@@ -937,7 +1138,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
         self.cx.module.borrow_mut().add_instruction_ret_first(
             self.basic_block,
             InstructionKind::ctpop,
-            &[val]
+            &[val],
         )
     }
 }

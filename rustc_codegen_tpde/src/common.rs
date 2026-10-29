@@ -2,8 +2,8 @@ use crate::consts::IsInitOrFini;
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, FullType, Slot, Type};
 use rustc_abi::Size;
-use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ConstCodegenMethods, MiscCodegenMethods};
 use rustc_attr_ir::Linkage;
+use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ConstCodegenMethods, MiscCodegenMethods};
 use rustc_middle::mir::interpret::{CtfeProvenance, GlobalAlloc, Pointer, Scalar};
 use rustc_session::PointerAuthSchema;
 
@@ -132,15 +132,14 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
                     Type::i64 => cv.to_i64().unwrap() as u128,
                     Type::i128 => cv.to_i128().unwrap() as u128,
                     Type::ptr => {
-                        let ptr = cv.to_pointer(&self.tcx.data_layout)
-                            .into_pointer_or_addr();
+                        let ptr = cv.to_pointer(&self.tcx.data_layout).into_pointer_or_addr();
                         return match ptr {
                             Ok(p) => self.ptr_to_backend(p),
                             Err(addr) => {
                                 let addr_val = addr.bytes() as u128;
                                 self.module.borrow_mut().add_const(Type::ptr, addr_val)
                             }
-                        }
+                        };
                     }
                     Type::f32 => cv.to_bits(cv.size()).unwrap(),
                     Type::f64 => cv.to_bits(cv.size()).unwrap(),
@@ -156,7 +155,9 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_ptr_byte_offset(&self, val: Self::Value, offset: Size) -> Self::Value {
-        self.module.borrow_mut().add_to_ptr(val, offset.bytes() as u32)
+        self.module
+            .borrow_mut()
+            .add_to_ptr(val, offset.bytes() as u32)
     }
 }
 
@@ -174,8 +175,14 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             GlobalAlloc::Memory(_) | GlobalAlloc::VTable(..) => {
                 let alloc = match global_alloc {
                     GlobalAlloc::Memory(alloc) => alloc,
-                    GlobalAlloc::VTable(ty, dyn_ty) => self.tcx
-                        .global_alloc(self.tcx.vtable_allocation((ty, dyn_ty.principal().map(|principal| self.tcx.instantiate_bound_regions_with_erased(principal)))))
+                    GlobalAlloc::VTable(ty, dyn_ty) => self
+                        .tcx
+                        .global_alloc(self.tcx.vtable_allocation((
+                            ty,
+                            dyn_ty.principal().map(|principal| {
+                                self.tcx.instantiate_bound_regions_with_erased(principal)
+                            }),
+                        )))
                         .unwrap_memory(),
                     _ => unreachable!(),
                 };
@@ -183,11 +190,12 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 let offset = offset.bytes();
                 let alloc = alloc.inner();
 
-                let g = self.module.borrow_mut()
-                    .add_global("",
-                                Linkage::Internal,
-                                alloc.mutability,
-                                Binding::Definition);
+                let g = self.module.borrow_mut().add_global(
+                    "",
+                    Linkage::Internal,
+                    alloc.mutability,
+                    Binding::Definition,
+                );
                 self.const_alloc_to_tpde(g, &alloc, IsInitOrFini::No);
 
                 // TODO so far we ignore the address space
@@ -198,9 +206,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                     Slot::new_global(g)
                 }
             }
-            GlobalAlloc::Function { instance } => {
-                self.get_fn_addr(instance, None)
-            }
+            GlobalAlloc::Function { instance } => self.get_fn_addr(instance, None),
             GlobalAlloc::TypeId { .. } => self
                 .module
                 .borrow_mut()

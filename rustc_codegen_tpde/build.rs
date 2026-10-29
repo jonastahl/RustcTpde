@@ -1,4 +1,3 @@
-
 fn main() {
     let no_cache = std::env::var_os("CARGO_FEATURE_NO_CACHE").is_some();
 
@@ -15,19 +14,32 @@ fn main() {
     if matches!(std::env::var("OPT_LEVEL").as_deref(), Ok("1" | "2" | "3")) {
         cmake_cfg.profile("Release");
         if std::env::var("DEBUG").as_deref() == Ok("true") {
-            cmake_cfg.cflag("-gline-tables-only").cxxflag("-gline-tables-only");
-            cmake_cfg.cflag("-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer").cxxflag("-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer");
-
+            cmake_cfg
+                .cflag("-gline-tables-only")
+                .cxxflag("-gline-tables-only");
+            cmake_cfg
+                .cflag("-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer")
+                .cxxflag("-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer");
         }
     }
     let dst = cmake_cfg.build();
 
-    println!("cargo:rustc-link-search=native={}", dst.join("lib").display());
-    println!("cargo:rustc-link-search=native={}", dst.join("lib64").display());
+    println!(
+        "cargo:rustc-link-search=native={}",
+        dst.join("lib").display()
+    );
+    println!(
+        "cargo:rustc-link-search=native={}",
+        dst.join("lib64").display()
+    );
     let spdlog_dir = dst.join("build/tpde_build/tpde/deps/spdlog");
     println!("cargo:rustc-link-search=native={}", spdlog_dir.display());
-    
-    let spdlog_lib = if spdlog_dir.join("libspdlogd.a").exists() { "spdlogd" } else { "spdlog" };
+
+    let spdlog_lib = if spdlog_dir.join("libspdlogd.a").exists() {
+        "spdlogd"
+    } else {
+        "spdlog"
+    };
     println!("cargo:rustc-link-lib=static=tpde_cpp");
     println!("cargo:rustc-link-lib=static=tpde");
     println!("cargo:rustc-link-lib=static={spdlog_lib}");

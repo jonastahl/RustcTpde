@@ -1,6 +1,6 @@
 #![feature(exit_status_error)]
 
-use libtest_mimic::{Arguments, Trial, Failed};
+use libtest_mimic::{Arguments, Failed, Trial};
 use pretty_assertions::assert_eq;
 use std::fs;
 use std::fs::File;
@@ -13,8 +13,7 @@ fn main() {
 
     {
         let test_cases_dir = Path::new("tests/lib_cases");
-        for entry in fs::read_dir(test_cases_dir)
-            .expect("Failed to read test cases directory") {
+        for entry in fs::read_dir(test_cases_dir).expect("Failed to read test cases directory") {
             let entry = entry.unwrap();
             let path = entry.path();
 
@@ -27,8 +26,7 @@ fn main() {
     }
     {
         let test_cases_dir = Path::new("tests/exec_cases");
-        for entry in fs::read_dir(test_cases_dir)
-            .expect("Failed to read test cases directory") {
+        for entry in fs::read_dir(test_cases_dir).expect("Failed to read test cases directory") {
             let entry = entry.unwrap();
             let path = entry.path();
 
@@ -40,12 +38,13 @@ fn main() {
         }
     }
 
-
     libtest_mimic::run(&args, tests).exit();
 }
 
 fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
-    let overflow = !path.file_name().map_or_else(|| false, |s| s.to_str().unwrap().starts_with("nof_"));
+    let overflow = !path
+        .file_name()
+        .map_or_else(|| false, |s| s.to_str().unwrap().starts_with("nof_"));
 
     // 1. Resolve paths
     let source_path = path.join("source.rs");
@@ -59,8 +58,7 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     let test_runner = path.join("test_runner");
 
     // 2. Read files (if expected output files don't exist yet, default to empty string)
-    fs::exists(&source_path)
-        .map_err(|_| Failed::from("Could not find source"))?;
+    fs::exists(&source_path).map_err(|_| Failed::from("Could not find source"))?;
 
     // 3. Compile the files
     rustc()
@@ -69,7 +67,10 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .arg("-Z")
         .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
         .arg("-C")
-        .arg(format!("overflow-checks={}", if overflow { "yes" } else { "no" }))
+        .arg(format!(
+            "overflow-checks={}",
+            if overflow { "yes" } else { "no" }
+        ))
         .arg(&source_path)
         .arg("-o")
         .arg(&actual_ir_path)
@@ -83,15 +84,17 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .arg("-Z")
         .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
         .arg("-C")
-        .arg(format!("overflow-checks={}", if overflow { "yes" } else { "no" }))
+        .arg(format!(
+            "overflow-checks={}",
+            if overflow { "yes" } else { "no" }
+        ))
         .arg(&source_path)
         .arg("-o")
         .arg(&actual_obj_path)
         .output() // Executes the command and captures stdout/stderr
         .map_err(|e| format!("Failed to execute rustc command: {}", e))?;
 
-    let asm_file = File::create(&actual_asm_path)
-        .expect("Failed to create assembly output file");
+    let asm_file = File::create(&actual_asm_path).expect("Failed to create assembly output file");
     // Raw bytes and addresses are left out, as their layout (line wrapping, symbol
     // annotations) differs between binutils versions and shifts with every size change.
     Command::new("objdump")
@@ -112,13 +115,17 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     }
 
     let expected_ir = fs::read_to_string(&expected_ir_path)
-        .map_err(|_| eprintln!("Could not find expected ir")).unwrap_or_default();
+        .map_err(|_| eprintln!("Could not find expected ir"))
+        .unwrap_or_default();
     let expected_result = fs::read_to_string(&expected_asm_path)
-        .map_err(|_| eprintln!("Could not find expected asm")).unwrap_or_default();
+        .map_err(|_| eprintln!("Could not find expected asm"))
+        .unwrap_or_default();
     let actual_ir = fs::read_to_string(&actual_ir_path)
-        .map_err(|_| eprintln!("Could not find generated ir")).unwrap_or_default();
+        .map_err(|_| eprintln!("Could not find generated ir"))
+        .unwrap_or_default();
     let actual_result = fs::read_to_string(&actual_asm_path)
-        .map_err(|_| eprintln!("Could not find generated asm")).unwrap_or_default();
+        .map_err(|_| eprintln!("Could not find generated asm"))
+        .unwrap_or_default();
 
     let expected_result = normalize_asm(&expected_result);
     let actual_result = normalize_asm(&actual_result);
@@ -130,11 +137,15 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     // 4. Compare the outputs
     if actual_ir.trim() != expected_ir.trim() {
         return Err(Failed::from(format!(
-            "IR mismatch in {:?}\n{}", path, reduced_diff(expected_ir.trim(), actual_ir.trim())
+            "IR mismatch in {:?}\n{}",
+            path,
+            reduced_diff(expected_ir.trim(), actual_ir.trim())
         )));
     } else if actual_result != expected_result {
         return Err(Failed::from(format!(
-            "Result mismatch in {:?}\n{}", path, reduced_diff(&expected_result, &actual_result)
+            "Result mismatch in {:?}\n{}",
+            path,
+            reduced_diff(&expected_result, &actual_result)
         )));
     }
 
@@ -156,19 +167,23 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
             .exit_ok()
             .expect("Test runner failed");
         fs::remove_file(&test_runner)
-            .map_err(|_| eprintln!("Could not find test runner")).unwrap_or_default();
+            .map_err(|_| eprintln!("Could not find test runner"))
+            .unwrap_or_default();
     } else {
         panic!("Test runner not found")
     }
 
     fs::remove_file(&actual_obj_path)
-        .map_err(|_| eprintln!("Deleting obj failed")).unwrap_or_default();
+        .map_err(|_| eprintln!("Deleting obj failed"))
+        .unwrap_or_default();
 
     Ok(())
 }
 
 fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
-    let overflow = !path.file_name().map_or_else(|| false, |s| s.to_str().unwrap().starts_with("nof_"));
+    let overflow = !path
+        .file_name()
+        .map_or_else(|| false, |s| s.to_str().unwrap().starts_with("nof_"));
 
     let source_path = path.join("source.rs");
     let actual_bin_path = path.join("test_bin");
@@ -187,7 +202,10 @@ fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .arg("-Z")
         .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
         .arg("-C")
-        .arg(format!("overflow-checks={}", if overflow { "yes" } else { "no" }))
+        .arg(format!(
+            "overflow-checks={}",
+            if overflow { "yes" } else { "no" }
+        ))
         .arg(&source_path)
         .arg("-o")
         .arg(&actual_bin_path)
@@ -206,14 +224,15 @@ fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         cmd.stdin(Stdio::from(input_file));
     }
 
-    let execution_output = cmd
-        .output()
-        .expect("Failed to run the compiled binary");
+    let execution_output = cmd.output().expect("Failed to run the compiled binary");
 
     // Fail if the executable crashed or panicked, printing stderr for debugging
     execution_output.status.exit_ok().map_err(|_| {
         let stderr = String::from_utf8_lossy(&execution_output.stderr);
-        Failed::from(format!("Executable returned a non-zero exit code. Stderr:\n{}", stderr))
+        Failed::from(format!(
+            "Executable returned a non-zero exit code. Stderr:\n{}",
+            stderr
+        ))
     })?;
 
     // 4. Compare output if output.txt is provided
@@ -229,14 +248,16 @@ fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
             assert_eq!(
                 expected_output.trim(),
                 actual_output.trim(),
-                "Output mismatch in {:?}", path
+                "Output mismatch in {:?}",
+                path
             );
         }
     }
 
     // 5. Cleanup
     fs::remove_file(&actual_bin_path)
-        .map_err(|_| eprintln!("Deleting executable failed")).unwrap_or_default();
+        .map_err(|_| eprintln!("Deleting executable failed"))
+        .unwrap_or_default();
 
     Ok(())
 }
@@ -259,7 +280,8 @@ fn rustc() -> Command {
 /// Newer binutils print implicit segment registers of string instructions
 /// (e.g. `insl (%dx),%es:(%rdi)`), older ones don't.
 fn normalize_asm(asm: &str) -> String {
-    asm.replace("%es:(%rdi)", "(%rdi)").replace("%ds:(%rsi)", "(%rsi)")
+    asm.replace("%es:(%rdi)", "(%rdi)")
+        .replace("%ds:(%rsi)", "(%rsi)")
 }
 
 /// Unified diff that only shows the changed hunks with a few lines of context.

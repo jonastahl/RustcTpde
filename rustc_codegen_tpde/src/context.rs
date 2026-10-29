@@ -1,11 +1,13 @@
 use crate::builder::Builder;
-use crate::shared::ir::{ArgInfo, Binding, FullType, Function, FunctionSignature, Global, Module, Slot, Type};
+use crate::shared::ir::{
+    ArgInfo, Binding, FullType, Function, FunctionSignature, Global, Module, Slot, Type,
+};
 use core::borrow::Borrow;
 use rustc_abi::TargetDataLayout;
+use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::MiscCodegenMethods;
 use rustc_data_structures::base_n::{ALPHANUMERIC_ONLY, ToBaseN};
 use rustc_data_structures::fx::FxHashMap;
-use rustc_attr_ir::Linkage;
 use rustc_middle::mono::{CodegenUnit, Visibility};
 use rustc_middle::ty;
 use rustc_middle::ty::layout::HasTyCtxt;
@@ -85,9 +87,7 @@ impl<'tpde, 'tcx> SCx<'tpde> {
 }
 
 impl<'tpde> SimpleCx<'tpde> {
-    pub fn new(
-        module: &'tpde RefCell<Module>,
-    ) -> Self {
+    pub fn new(module: &'tpde RefCell<Module>) -> Self {
         GenericCx(SCx::new(module), PhantomData)
     }
 }
@@ -143,24 +143,27 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             LibFunc::MemCpy => ("memcpy", vec![ArgInfo::default(); 3], None),
             LibFunc::MemMove => ("memmove", vec![ArgInfo::default(); 3], None),
             LibFunc::MemSet => ("memset", vec![ArgInfo::default(); 3], None),
-            LibFunc::MemCmp => ("memcmp", vec![ArgInfo::default(); 3], Some(FullType::Single(Type::i32))),
+            LibFunc::MemCmp => (
+                "memcmp",
+                vec![ArgInfo::default(); 3],
+                Some(FullType::Single(Type::i32)),
+            ),
             LibFunc::Math(name, is_f64, nargs) => {
                 let ty = FullType::Single(if is_f64 { Type::f64 } else { Type::f32 });
                 (name, vec![ArgInfo::default(); nargs], Some(ty))
             }
         };
 
-        let func = self.module.borrow_mut()
-            .add_function(
-                name,
-                &FunctionSignature {
-                    slots: vec![],
-                    arg_infos,
-                    ret,
-                },
-                Linkage::External,
-                Binding::Declaration
-            );
+        let func = self.module.borrow_mut().add_function(
+            name,
+            &FunctionSignature {
+                slots: vec![],
+                arg_infos,
+                ret,
+            },
+            Linkage::External,
+            Binding::Declaration,
+        );
         self.libfuncs.borrow_mut().insert(libfunc, func);
         Slot::new_func(func)
     }
@@ -209,7 +212,11 @@ impl<'tcx> MiscCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
                 }
                 let f = module.add_function(
                     "rust_eh_personality",
-                    &FunctionSignature { slots: vec![], arg_infos: vec![], ret: None },
+                    &FunctionSignature {
+                        slots: vec![],
+                        arg_infos: vec![],
+                        ret: None,
+                    },
                     Linkage::External,
                     Binding::Declaration,
                 );

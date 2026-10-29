@@ -1,7 +1,7 @@
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, Function, Global};
-use rustc_codegen_ssa::traits::{LayoutTypeCodegenMethods, PreDefineCodegenMethods};
 use rustc_attr_ir::{InlineAttr, Linkage, OptimizeAttr};
+use rustc_codegen_ssa::traits::{LayoutTypeCodegenMethods, PreDefineCodegenMethods};
 use rustc_middle::mir::Mutability;
 use rustc_middle::mono::Visibility;
 use rustc_middle::ty;
@@ -19,8 +19,10 @@ impl CodegenCx<'_, '_> {
         binding: Binding,
         symbol_name: &str,
     ) -> Global {
-        let global = self.module.borrow_mut()
-            .add_global(symbol_name, linkage, Mutability::Mut, binding);
+        let global =
+            self.module
+                .borrow_mut()
+                .add_global(symbol_name, linkage, Mutability::Mut, binding);
         self.globals.borrow_mut().insert(def_id, global);
         global
     }
@@ -46,7 +48,11 @@ impl CodegenCx<'_, '_> {
             }
         };
 
-        *self.globals.borrow().get(&def_id).expect("Global was not declared before")
+        *self
+            .globals
+            .borrow()
+            .get(&def_id)
+            .expect("Global was not declared before")
     }
 }
 
@@ -58,7 +64,13 @@ impl<'tcx> PreDefineCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         visibility: Visibility,
         symbol_name: &str,
     ) {
-        self.declare_static(def_id, linkage, visibility, Binding::Definition, symbol_name);
+        self.declare_static(
+            def_id,
+            linkage,
+            visibility,
+            Binding::Definition,
+            symbol_name,
+        );
     }
 
     fn predefine_fn(
@@ -68,12 +80,25 @@ impl<'tcx> PreDefineCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         visibility: Visibility,
         symbol_name: &str,
     ) {
-        let func = self.declare_fn(instance, symbol_name, linkage, visibility, Binding::Definition);
+        let func = self.declare_fn(
+            instance,
+            symbol_name,
+            linkage,
+            visibility,
+            Binding::Definition,
+        );
 
         let mir = self.tcx.instance_mir(instance.def);
         let blocks = mir.basic_blocks.len();
-        let size = blocks + mir.basic_blocks.iter().map(|bb| bb.statements.len()).sum::<usize>();
-        self.module.borrow_mut().reserve_function(func, blocks, size * 2, size * 3 / 2, size * 4);
+        let size = blocks
+            + mir
+                .basic_blocks
+                .iter()
+                .map(|bb| bb.statements.len())
+                .sum::<usize>();
+        self.module
+            .borrow_mut()
+            .reserve_function(func, blocks, size * 2, size * 3 / 2, size * 4);
 
         // Same rule as rustc_codegen_llvm uses for `alwaysinline`, `#[optimize(none)]` wins.
         let attrs = self.tcx.codegen_instance_attrs(instance.def);
@@ -100,8 +125,12 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             println!("Module is already borrowed")
         }
         let sig = self.fn_decl_backend_type(fn_abi);
-        let func = self.module.borrow_mut()
-            .add_function(symbol_name, &self.function_signatures.borrow()[sig], linkage, binding);
+        let func = self.module.borrow_mut().add_function(
+            symbol_name,
+            &self.function_signatures.borrow()[sig],
+            linkage,
+            binding,
+        );
         self.functions.borrow_mut().insert(instance, func);
         func
     }

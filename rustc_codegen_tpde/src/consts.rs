@@ -1,14 +1,16 @@
 use crate::builder::Builder;
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, Global, InstructionKind, Module, Slot, Type};
-use rustc_codegen_ssa::traits::{MiscCodegenMethods, StaticBuilderMethods, StaticCodegenMethods};
-use rustc_middle::mir::interpret::{read_target_uint, Allocation, ConstAllocation, InitChunk, Pointer};
-use rustc_span::def_id::DefId;
-use std::ops::Range;
 use rustc_abi::Size;
 use rustc_ast::Mutability;
 use rustc_attr_ir::Linkage;
+use rustc_codegen_ssa::traits::{MiscCodegenMethods, StaticBuilderMethods, StaticCodegenMethods};
 use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrFlags;
+use rustc_middle::mir::interpret::{
+    Allocation, ConstAllocation, InitChunk, Pointer, read_target_uint,
+};
+use rustc_span::def_id::DefId;
+use std::ops::Range;
 
 impl<'tcx> StaticBuilderMethods for Builder<'_, '_, 'tcx> {
     fn get_static(&mut self, def_id: DefId) -> Self::Value {
@@ -31,12 +33,7 @@ pub enum IsInitOrFini {
     No,
 }
 impl<'tcx> CodegenCx<'_, 'tcx> {
-    pub fn const_alloc_to_tpde(
-        &self,
-        g: Global,
-        alloc: &Allocation,
-        is_init_fini: IsInitOrFini,
-    ) {
+    pub fn const_alloc_to_tpde(&self, g: Global, alloc: &Allocation, is_init_fini: IsInitOrFini) {
         let mut module = self.module.borrow_mut();
         let dl = &self.tcx.data_layout;
         let pointer_size = dl.pointer_size().bytes() as usize;
@@ -48,7 +45,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             module: &mut Module,
             global: Global,
             alloc: &Allocation,
-            range: Range<usize>
+            range: Range<usize>,
         ) {
             let chunks = alloc.init_mask().range_as_init_chunks(range.clone().into());
 
@@ -59,10 +56,12 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 for chunk in chunks {
                     match chunk {
                         InitChunk::Init(range) => {
-                            let range = (range.start.bytes() as usize)..(range.end.bytes() as usize);
-                            let bytes = alloc.inspect_with_uninit_and_ptr_outside_interpreter(range);
+                            let range =
+                                (range.start.bytes() as usize)..(range.end.bytes() as usize);
+                            let bytes =
+                                alloc.inspect_with_uninit_and_ptr_outside_interpreter(range);
                             module.global_add_init_chunk(global, bytes);
-                        },
+                        }
                         InitChunk::Uninit(range) => {
                             let len = range.end.bytes() - range.start.bytes();
                             module.global_add_unit_chunk(global, len as usize);
@@ -88,7 +87,8 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 alloc.inspect_with_uninit_and_ptr_outside_interpreter(
                     offset..(offset + pointer_size),
                 ),
-            ).expect("could not read relocation pointer") as u64;
+            )
+            .expect("could not read relocation pointer") as u64;
 
             {
                 let address_space = self.tcx.global_alloc(prov.alloc_id()).address_space(self);
@@ -126,11 +126,15 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
 impl<'tcx> StaticCodegenMethods for CodegenCx<'_, 'tcx> {
     fn static_addr_of(&self, alloc: ConstAllocation<'_>, kind: Option<&str>) -> Self::Value {
         let global_name = self.generate_local_symbol_name(kind.unwrap_or("global"));
-        let g = self.module.borrow_mut()
-            .add_global(&global_name, Linkage::Internal, Mutability::Mut, Binding::Definition);
+        let g = self.module.borrow_mut().add_global(
+            &global_name,
+            Linkage::Internal,
+            Mutability::Mut,
+            Binding::Definition,
+        );
 
         self.const_alloc_to_tpde(g, alloc.inner(), IsInitOrFini::No);
-        
+
         Slot::new_global(g)
     }
 
@@ -141,9 +145,13 @@ impl<'tcx> StaticCodegenMethods for CodegenCx<'_, 'tcx> {
 
         let alloc = match self.tcx.eval_static_initializer(def_id) {
             Ok(alloc) => alloc,
-            Err(_) => // Error has already been reported
-                return,
-        }.inner();
+            Err(_) =>
+            // Error has already been reported
+            {
+                return;
+            }
+        }
+        .inner();
 
         // some weird renaming that we possibly don't need
 

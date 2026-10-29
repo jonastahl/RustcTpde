@@ -1,5 +1,7 @@
 use crate::context::{CodegenCx, GenericCx, SCx};
-use crate::shared::ir::{ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type, vector_info, vector_type};
+use crate::shared::ir::{
+    ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type, vector_info, vector_type,
+};
 use core::borrow::Borrow;
 use rustc_abi::{AddressSpace, BackendRepr, Primitive, Reg, RegKind, Scalar};
 use rustc_codegen_ssa::common::TypeKind;
@@ -7,9 +9,9 @@ use rustc_codegen_ssa::traits::{
     BaseTypeCodegenMethods, DerivedTypeCodegenMethods, LayoutTypeCodegenMethods,
     TypeMembershipCodegenMethods,
 };
-use rustc_span::bug;
 use rustc_middle::ty::Ty;
 use rustc_middle::ty::layout::TyAndLayout;
+use rustc_span::bug;
 use rustc_target::callconv::{CastTarget, FnAbi, IndirectMode, PassMode};
 
 impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
@@ -26,7 +28,10 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
 
                 FullType::Pair(a, b, b_offset.bytes_usize() as u32)
             }
-            BackendRepr::Memory { sized } => FullType::Memory { sized, size: ty.size.bytes() as u32 },
+            BackendRepr::Memory { sized } => FullType::Memory {
+                sized,
+                size: ty.size.bytes() as u32,
+            },
             BackendRepr::SimdVector { element, count } => {
                 let FullType::Single(elem) = self.tpde_scalar_type(element) else {
                     unreachable!()
@@ -50,7 +55,6 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
 }
 
 impl<'tpde, CX: Borrow<SCx<'tpde>>> GenericCx<'tpde, CX> {
-
     pub fn type_vector(&self, elem: FullType, count: u64) -> FullType {
         let FullType::Single(elem) = elem else {
             bug!("vector element must be a scalar type: {:?}", elem)
@@ -63,7 +67,11 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> GenericCx<'tpde, CX> {
         }
     }
 
-    pub fn function_signature(&self, args: &[FullType], ret: Option<FullType>) -> FunctionSignature {
+    pub fn function_signature(
+        &self,
+        args: &[FullType],
+        ret: Option<FullType>,
+    ) -> FunctionSignature {
         let mut slots: Vec<Type> = vec![];
         let mut arg_infos: Vec<ArgInfo> = vec![];
 
@@ -84,11 +92,17 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> GenericCx<'tpde, CX> {
                     slots.push(*b);
                     arg_infos.push(ArgInfo::default());
                 }
-                FullType::Memory { .. } => { todo!() }
+                FullType::Memory { .. } => {
+                    todo!()
+                }
             }
         }
 
-        FunctionSignature { slots, arg_infos, ret }
+        FunctionSignature {
+            slots,
+            arg_infos,
+            ret,
+        }
     }
 }
 
@@ -234,7 +248,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
         let mut arg_infos: Vec<ArgInfo> = vec![];
 
         match fn_abi.ret.mode {
-            PassMode::Indirect { attrs, ..} | PassMode::IndirectUnsized { attrs, .. } => {
+            PassMode::Indirect { attrs, .. } | PassMode::IndirectUnsized { attrs, .. } => {
                 slots.push(Type::ptr);
                 arg_infos.push(ArgInfo {
                     kind: ArgKind::sRet,
@@ -251,94 +265,107 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 &fn_abi.args[..fn_abi.fixed_count as usize]
             } else {
                 &fn_abi.args
-            }.iter()
-                .for_each(|arg| match &arg.mode {
-                    PassMode::Ignore => { },
-                    PassMode::Direct(attrs) => {
-                        let FullType::Single(ty) = self.tpde_direct_type(arg.layout) else {
-                            unreachable!()
-                        };
+            }
+            .iter()
+            .for_each(|arg| match &arg.mode {
+                PassMode::Ignore => {}
+                PassMode::Direct(attrs) => {
+                    let FullType::Single(ty) = self.tpde_direct_type(arg.layout) else {
+                        unreachable!()
+                    };
+                    slots.push(ty);
+                    arg_infos.push(ArgInfo {
+                        kind: ArgKind::Direct,
+                        extension: map_arg_extension(attrs.arg_ext),
+                        size: 0,
+                        align: 0,
+                    })
+                }
+                PassMode::Pair(attrs_a, attrs_b) => {
+                    let FullType::Pair(a, b, _) = self.tpde_direct_type(arg.layout) else {
+                        unreachable!()
+                    };
+                    slots.push(a);
+                    arg_infos.push(ArgInfo {
+                        kind: ArgKind::Direct,
+                        extension: map_arg_extension(attrs_a.arg_ext),
+                        size: 0,
+                        align: 0,
+                    });
+                    slots.push(b);
+                    arg_infos.push(ArgInfo {
+                        kind: ArgKind::Direct,
+                        extension: map_arg_extension(attrs_b.arg_ext),
+                        size: 0,
+                        align: 0,
+                    });
+                }
+                PassMode::Indirect {
+                    attrs,
+                    mode: IndirectMode::OnStack,
+                    ..
+                } => {
+                    slots.push(Type::ptr);
+                    arg_infos.push(ArgInfo {
+                        kind: ArgKind::ByVal,
+                        extension: ArgExtension::None,
+                        size: attrs.pointee_size.bytes() as u32,
+                        align: attrs.pointee_align.map_or_else(|| 1, |a| a.bytes() as u32),
+                    });
+                }
+                PassMode::Indirect {
+                    attrs,
+                    mode: IndirectMode::Pointer,
+                    ..
+                }
+                | PassMode::IndirectUnsized { attrs, .. } => {
+                    slots.push(Type::ptr);
+                    arg_infos.push(ArgInfo::default());
+                }
+                PassMode::Indirect {
+                    attrs: _,
+                    address_space: _,
+                    mode: IndirectMode::AmdgpuKernelArg,
+                } => {
+                    unimplemented!()
+                }
+                PassMode::Cast {
+                    cast,
+                    pad_i32_count: _,
+                } => match self.cast_backend_type(cast) {
+                    FullType::Single(ty) => {
                         slots.push(ty);
                         arg_infos.push(ArgInfo {
                             kind: ArgKind::Direct,
-                            extension: map_arg_extension(attrs.arg_ext),
+                            extension: ArgExtension::None,
                             size: 0,
                             align: 0,
                         })
                     }
-                    PassMode::Pair(attrs_a, attrs_b) => {
-                        let FullType::Pair(a, b, _) = self.tpde_direct_type(arg.layout) else {
-                            unreachable!()
-                        };
+                    FullType::Pair(a, b, offset_b) => {
                         slots.push(a);
-                        arg_infos.push(ArgInfo {
-                            kind: ArgKind::Direct,
-                            extension: map_arg_extension(attrs_a.arg_ext),
-                            size: 0,
-                            align: 0,
-                        });
-                        slots.push(b);
-                        arg_infos.push(ArgInfo {
-                            kind: ArgKind::Direct,
-                            extension: map_arg_extension(attrs_b.arg_ext),
-                            size: 0,
-                            align: 0,
-                        });
-                    }
-                    PassMode::Indirect {
-                        attrs,
-                        mode: IndirectMode::OnStack,
-                        ..
-                    } => {
-                        slots.push(Type::ptr);
-                        arg_infos.push(ArgInfo {
-                            kind: ArgKind::ByVal,
-                            extension: ArgExtension::None,
-                            size: attrs.pointee_size.bytes() as u32,
-                            align: attrs.pointee_align.map_or_else(|| 1, |a| a.bytes() as u32),
-                        });
-                    }
-                    PassMode::Indirect {
-                        attrs,
-                        mode: IndirectMode::Pointer,
-                        ..
-                    } | PassMode::IndirectUnsized { attrs, .. } => {
-                        slots.push(Type::ptr);
                         arg_infos.push(ArgInfo::default());
-                    },
-                    PassMode::Indirect { attrs: _, address_space: _, mode: IndirectMode::AmdgpuKernelArg } => {
-                        unimplemented!()
-                    },
-                    PassMode::Cast { cast, pad_i32_count: _ } => {
-                        match self.cast_backend_type(cast) {
-                            FullType::Single(ty) => {
-                                slots.push(ty);
-                                arg_infos.push(ArgInfo {
-                                    kind: ArgKind::Direct,
-                                    extension: ArgExtension::None,
-                                    size: 0,
-                                    align: 0,
-                                })
-                            }
-                            FullType::Pair(a, b, offset_b) => {
-                                slots.push(a);
-                                arg_infos.push(ArgInfo::default());
-                                slots.push(b);
-                                arg_infos.push(ArgInfo::default());
-                            }
-                            _ => unreachable!()
-                        }
-                    },
-                });
+                        slots.push(b);
+                        arg_infos.push(ArgInfo::default());
+                    }
+                    _ => unreachable!(),
+                },
+            });
         }
 
         let ret = match &fn_abi.ret.mode {
             PassMode::Ignore | PassMode::Indirect { .. } | PassMode::IndirectUnsized { .. } => None,
             PassMode::Cast { cast, .. } => Some(self.cast_backend_type(cast)),
-            PassMode::Direct(_) | PassMode::Pair(..) => Some(self.tpde_direct_type(fn_abi.ret.layout)),
+            PassMode::Direct(_) | PassMode::Pair(..) => {
+                Some(self.tpde_direct_type(fn_abi.ret.layout))
+            }
         };
 
-        FunctionSignature { slots, arg_infos, ret }
+        FunctionSignature {
+            slots,
+            arg_infos,
+            ret,
+        }
     }
 }
 
@@ -358,7 +385,9 @@ impl CodegenCx<'_, '_> {
                 8 => Type::f64,
                 _ => panic!("Unsupported float register size"),
             },
-            RegKind::Vector { hint_vector_elem: _ } => match reg.size.bytes() {
+            RegKind::Vector {
+                hint_vector_elem: _,
+            } => match reg.size.bytes() {
                 8 => Type::v8i8,
                 16 => Type::v16i8,
                 _ => panic!("Unsupported vector register size"),
@@ -398,7 +427,11 @@ impl<'tcx> LayoutTypeCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         if registers.len() == 1 {
             FullType::Single(registers[0].clone())
         } else if registers.len() == 2 {
-            FullType::Pair(registers[0].clone(), registers[1].clone(), offsets[1] as u32)
+            FullType::Pair(
+                registers[0].clone(),
+                registers[1].clone(),
+                offsets[1] as u32,
+            )
         } else {
             unimplemented!()
         }
