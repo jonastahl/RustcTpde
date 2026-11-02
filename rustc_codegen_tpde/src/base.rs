@@ -23,6 +23,14 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
     );
     let time_to_codegen = start_time.elapsed();
 
+    if tcx.prof.enabled() {
+        tcx.prof.artifact_size(
+            "tpde_ir_bytes",
+            cgu_name.as_str(),
+            ir.module_llvm.byte_size() as u64,
+        );
+    }
+
     // We assume that the cost to run TPDE on a CGU is proportional to
     // the time we needed for codegenning it.
     let cost = time_to_codegen.as_nanos() as u64;

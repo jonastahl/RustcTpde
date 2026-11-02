@@ -222,6 +222,47 @@ impl Module {
         &mut self.tpde
     }
 
+    // Approximates the size of the IR
+    pub fn byte_size(&self) -> usize {
+        fn bytes<T>(v: &Vec<T>) -> usize {
+            v.capacity() * size_of::<T>()
+        }
+
+        let tpde = &self.tpde;
+        let functions: usize = tpde
+            .functions
+            .iter()
+            .map(|f| {
+                f.name.capacity()
+                    + bytes(&f.args)
+                    + bytes(&f.slots)
+                    + bytes(&f.operands)
+                    + bytes(&f.instructions)
+                    + bytes(&f.allocas)
+                    + bytes(&f.basic_blocks)
+                    + bytes(&f.callee_infos)
+                    + f.callee_infos.iter().map(|c| bytes(&c.info)).sum::<usize>()
+            })
+            .sum();
+        let globals: usize = tpde
+            .globals
+            .iter()
+            .map(|g| g.name.capacity() + g.data.capacity() + bytes(&g.relocations))
+            .sum();
+        let const_vectors: usize = tpde.const_vectors.iter().map(|c| c.data.capacity()).sum();
+
+        size_of::<Self>()
+            + bytes(&tpde.functions)
+            + bytes(&tpde.consts)
+            + bytes(&tpde.globals)
+            + bytes(&tpde.global_ptrs)
+            + bytes(&tpde.const_vectors)
+            + bytes(&self.pairs)
+            + functions
+            + globals
+            + const_vectors
+    }
+
     pub fn add_function<'tpde, 'tcx>(
         &mut self,
         name: &str,
