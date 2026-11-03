@@ -17,14 +17,6 @@ Disassembly of section .text:
 	ret
 	nopl   0x0(%rax,%rax,1)
 
-<_RNvMs8_NtCsioHeeuq8fQz_4core3numo12wrapping_add>:
-	add    %rdx,%rdi
-	adc    %rcx,%rsi
-	mov    %rdi,%rax
-	mov    %rsi,%rdx
-	ret
-	nopl   (%rax)
-
 <ackermann>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -1076,22 +1068,38 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
+	push   %r12
+	push   %r13
 	sub    $0x28,%rsp
-	call   <min_max_spread+0xe>
-	xor    %ecx,%ecx
-	mov    %rdx,%rbx
-	sub    %rax,%rbx
-	seto   %cl
-	jo     <min_max_spread+0x27>
-	mov    %rbx,%rax
-	jmp    <min_max_spread+0x33>
-	lea    -0x8(%rip),%rdi        # <min_max_spread+0x26>
-	call   <min_max_spread+0x33>
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	cmp    %r12,%rbx
+	jl     <min_max_spread+0x29>
+	mov    %r12,-0x40(%rbp)
+	mov    %rbx,-0x38(%rbp)
+	jmp    <min_max_spread+0x31>
+	mov    %rbx,-0x40(%rbp)
+	mov    %r12,-0x38(%rbp)
+	mov    -0x40(%rbp),%rbx
+	mov    -0x38(%rbp),%r12
+	mov    %rbx,%r13
+	mov    %r12,%rbx
+	xor    %eax,%eax
+	mov    %rbx,%r12
+	sub    %r13,%r12
+	seto   %al
+	jo     <min_max_spread+0x58>
+	mov    %r12,%rax
+	jmp    <min_max_spread+0x64>
+	lea    -0x8(%rip),%rdi        # <min_max_spread+0x57>
+	call   <min_max_spread+0x64>
 	add    $0x28,%rsp
+	pop    %r13
+	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nop
 
 <narrow_args>:
 	push   %rbp
@@ -1756,15 +1764,12 @@ Disassembly of section .text:
 	nopl   0x0(%rax,%rax,1)
 
 <u128_add>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <u128_add+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
+	add    %rdx,%rdi
+	adc    %rcx,%rsi
+	mov    %rdi,%rax
+	mov    %rsi,%rdx
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nopl   (%rax)
 
 <u128_late>:
 	push   %rbp

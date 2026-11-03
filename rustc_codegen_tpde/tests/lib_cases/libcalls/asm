@@ -293,11 +293,6 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nop
 
-<_RNvNtCsioHeeuq8fQz_4core10intrinsics9cold_pathCsQvp3e8KgHi_6source>:
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopw   0x0(%rax,%rax,1)
-
 <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source>:
 	push   %rbp
 	mov    %rsp,%rbp

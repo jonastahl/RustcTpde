@@ -102,10 +102,18 @@ impl<'tcx> PreDefineCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
 
         // Same rule as rustc_codegen_llvm uses for `alwaysinline`, `#[optimize(none)]` wins.
         let attrs = self.tcx.codegen_instance_attrs(instance.def);
-        if matches!(attrs.inline, InlineAttr::Always | InlineAttr::Force { .. })
-            && !matches!(attrs.optimize, OptimizeAttr::DoNotOptimize)
-        {
-            self.module.borrow_mut().set_always_inline(func);
+
+        if !matches!(attrs.optimize, OptimizeAttr::DoNotOptimize) {
+            match attrs.inline {
+                InlineAttr::Always | InlineAttr::Force { .. } => {
+                    self.module.borrow_mut().set_always_inline(func);
+                }
+                InlineAttr::Never => {
+                    self.module.borrow_mut().set_never_inline(func);
+                }
+                InlineAttr::None => {}
+                InlineAttr::Hint => {}
+            }
         }
     }
 }

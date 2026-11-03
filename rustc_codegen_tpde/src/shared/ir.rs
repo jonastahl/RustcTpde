@@ -241,6 +241,7 @@ impl Module {
                     + bytes(&f.allocas)
                     + bytes(&f.basic_blocks)
                     + bytes(&f.callee_infos)
+                    + bytes(&f.called_by)
                     + f.callee_infos.iter().map(|c| bytes(&c.info)).sum::<usize>()
             })
             .sum();
@@ -282,6 +283,9 @@ impl Module {
             has_personality: false,
             personality: 0,
             slots: slots.iter().map(|ty| ffi::Slot { ty: *ty }).collect(),
+            calling: 0,
+            called_by: vec![],
+            cost: 0,
             flags: Self::create_flags(linkage, ty),
             operands: vec![],
             instructions: vec![],
@@ -312,6 +316,10 @@ impl Module {
         self.tpde.functions[func.0].flags.always_inline = true;
     }
 
+    pub fn set_never_inline(&mut self, func: Function) {
+        self.tpde.functions[func.0].flags.never_delete = true;
+    }
+
     pub fn return_value(&mut self, func: Function) -> Option<Slot> {
         if self.tpde.functions[func.0].has_ret {
             Some(Slot::new_val(func, 0))
@@ -323,6 +331,7 @@ impl Module {
     pub fn add_personality(&mut self, func: Function, personality: Function) {
         self.tpde.functions[func.0].has_personality = true;
         self.tpde.functions[func.0].personality = personality.0 as u32;
+        self.tpde.functions[personality.0].flags.never_delete = true;
     }
 
     pub fn add_global(
@@ -394,6 +403,10 @@ impl Module {
         }
         Module::global_add_unit_intern(global, pointer_size);
 
+        if let Slot::Func(func) = slot {
+            self.tpde.functions[func.0].flags.never_delete = true;
+        }
+
         global.relocations.push(ffi::Relocation {
             offset,
             slot: slot.to_ffi(),
@@ -431,6 +444,7 @@ impl Module {
                 || linkage == Linkage::WeakAny
                 || linkage == Linkage::ExternalWeak,
             always_inline: false,
+            never_delete: false,
             dead: false,
         }
     }
@@ -625,7 +639,33 @@ impl Module {
             }
         };
 
+        // Do not inline a function that's mentioned in any argument other than
+        // the call site of a call (not invoke)
+        let mut references = ops;
+        if instr == InstructionKind::Call
+            && let [Slot::Func(callee), args @ ..] = ops
+        {
+            references = args;
+            let caller = &mut self.tpde.functions[bb.function().0];
+            caller.calling += 1;
+            let instr = caller.basic_blocks[bb.index()].insts_len;
+            self.tpde.functions[callee.0]
+                .called_by
+                .push(ffi::InstructionReference {
+                    func: bb.function().0 as u32,
+                    block: bb.index() as u32,
+                    instr,
+                });
+        }
+        for op in references {
+            if let Slot::Func(func) = op {
+                self.tpde.functions[func.0].flags.never_delete = true;
+            }
+        }
+
         let function = &mut self.tpde.functions[bb.function().0];
+        function.cost += 1;
+
         let block = &mut function.basic_blocks[bb.index()];
 
         // In the default case we write each basic_block in on go

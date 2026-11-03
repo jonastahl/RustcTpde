@@ -26,6 +26,14 @@ mod ffi {
         args: Vec<ArgInfo>,
         slots: Vec<Slot>,
 
+        // tracks how many other functions this functions calls to determine leave functions
+        // ignores invokes as they cannot be inlined anyway
+        calling: u32,
+        // points to the call instruction where this function is called for fast inlining
+        called_by: Vec<InstructionReference>,
+        // tracks const of the function to evaluate inlining of not always inline functions
+        cost: u32,
+
         flags: Flags,
 
         has_personality: bool,
@@ -37,6 +45,12 @@ mod ffi {
         basic_blocks: Vec<BasicBlock>,
 
         callee_infos: Vec<CalleeInfo>,
+    }
+
+    pub struct InstructionReference {
+        func: u32,
+        block: u32,
+        instr: u32,
     }
 
     #[derive(Debug)]
@@ -99,6 +113,10 @@ mod ffi {
         only_local: bool,
         weak_link: bool,
         always_inline: bool,
+        // tracks when a function may not be deleted after inlining it
+        // triggered by #[inline(never)] or referencing it ouside the call argument of call
+        // e.g. in a global, invoke or other arguments
+        never_delete: bool,
         dead: bool,
     }
 

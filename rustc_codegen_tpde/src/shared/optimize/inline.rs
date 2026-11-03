@@ -1,277 +1,244 @@
+use std::env;
+use std::sync::LazyLock;
 use crate::shared::ffi;
-use crate::shared::ffi::BasicBlock;
-use crate::shared::ir::{ArgKind, Function, InstructionKind, ModuleTpde, Slot};
+use crate::shared::ffi::{BasicBlock, InstructionReference};
+use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot};
 
-/// Upper bound of inlined calls per function, guards against recursive always inline functions
-const MAX_INLINES_PER_FUNCTION: u32 = 1024;
+// Highest cost a function without `#[inline(always)]` is inlined
+static INLINE_COST: LazyLock<u32> = LazyLock::new(|| {
+    match env::var("TPDE_INLINE_COST") {
+        Ok(val) => val
+            .parse::<u32>()
+            .expect("TPDE_INLINE_COST has to be a number"),
+        Err(_) => 32,
+    }
+});
 
 impl ModuleTpde {
     pub fn inline_functions(&mut self) {
-        let inline_functions: Vec<bool> = self
-            .functions
-            .iter()
-            .map(|f| {
-                if !f.flags.always_inline {
-                    return false;
-                }
-                if f.instructions
-                    .iter()
-                    .filter(|i| matches!(i.kind, InstructionKind::Ret))
-                    .count()
-                    > 1
-                {
-                    return false;
-                };
-                if f.args.iter().any(|arg| arg.kind == ArgKind::ByVal) {
-                    return false;
-                }
-                true
-            })
-            .collect();
+        // Inline functions bottom up
+        // Inlinable functions:
+        // - are leave functions -> call no other functions
+        // - are marked always inlined or cheaper than the maximum specified cost
+        // - has no byval arguments
+        // - has maximum of one return value
 
-        // Fast path if there is no function to inline
-        if !inline_functions.contains(&true) {
-            return;
-        }
+        // info1 is not used during generation
+        // we abuse it to store the follower of a block if it has to split up
+        // after the inlining the value has no meaning and could be set back to the default
+        // assumes that info1 is set to 0 in the beginning, maybe use this if we use it also in
+        // further optimizations
+        // for func in &mut self.functions {
+        //     for bb in &mut func.basic_blocks {
+        //         bb.info1 = 0;
+        //     }
+        // }
 
-        let mut return_slots: Vec<u32> = vec![];
-
-        for f in 0..self.functions.len() {
-            let caller = &self.functions[f];
-            if caller.flags.always_inline || caller.flags.extern_link {
-                continue;
-            }
-
-            let mut inline_budget = MAX_INLINES_PER_FUNCTION;
-
-            let mut i = 0;
-            while i < self.functions[f].basic_blocks.len() {
-                let bb = &self.functions[f].basic_blocks[i];
-                let (insts_start, insts_len) = (bb.insts_start as usize, bb.insts_len as usize);
-                i += 1;
-
-                for j in 0..insts_len {
-                    let caller = &mut self.functions[f];
-                    let call = &mut caller.instructions[insts_start + j];
-
-                    // We only support inlining calls, no invokes
-                    if call.kind != InstructionKind::Call {
-                        continue;
-                    }
-
-                    // no inlining for indirect calls
-                    let Slot::Func(callee_ref) =
-                        Slot::from_ffi(caller.operands[call.ops_start as usize])
-                    else {
-                        continue;
-                    };
-
-                    let callee = Slot::from_ffi(caller.operands[call.ops_start as usize]);
-                    let Slot::Func(callee) = callee else {
-                        continue;
-                    };
-                    if !inline_functions[callee.0] {
-                        continue;
-                    }
-                    let [caller, callee] = self
-                        .functions
-                        .get_disjoint_mut([f, callee_ref.0])
-                        .expect("Trying to inline function into itself");
-
-                    let call = &mut caller.instructions[insts_start + j];
-                    let args_start = call.ops_start as usize + 1;
-                    let args_end = args_start + call.ops_len as usize - 1;
-                    if !can_inline_call(caller, callee, &caller.operands[args_start..args_end])
-                        || inline_budget == 0
-                    {
-                        continue;
-                    }
-                    inline_budget -= 1;
-
-                    // landing pads of the callee need its personality
-                    if callee.has_personality && !caller.has_personality {
-                        caller.has_personality = true;
-                        caller.personality = callee.personality;
-                    }
-
-                    return_slots.clear();
-
-                    // split up the block after the call
-                    let cur = &mut caller.basic_blocks[i - 1];
-                    cur.insts_len = (insts_start + j + 1 - cur.insts_start as usize) as u32;
-
-                    let cont_bb = Slot::new_raw(caller.basic_blocks.len() as u32);
-                    caller.basic_blocks.push(BasicBlock {
-                        insts_start: (insts_start + j + 1) as u32,
-                        insts_len: (insts_len - j - 1) as u32,
-                        info1: 0,
-                        info2: 0,
-                    });
-                    let results_bb = caller.basic_blocks.len();
-                    caller.basic_blocks.push(BasicBlock {
-                        insts_start: 0,
-                        insts_len: 0,
-                        info1: 0,
-                        info2: 0,
-                    });
-
-                    // switch to a br instruction jumping to the first basic block of the inlined function
-                    let call = &mut caller.instructions[insts_start + j];
-                    call.kind = InstructionKind::Br;
-                    call.ops_len = 1;
-                    caller.operands[call.ops_start as usize] =
-                        Slot::new_raw(caller.basic_blocks.len() as u32).to_ffi();
-
-                    let expected_slots: &[u32] = if call.has_result {
-                        let result = call.result;
-                        call.has_result = false;
-                        let next = &mut caller.instructions[insts_start + j + 1];
-                        if next.kind == InstructionKind::AddRet {
-                            next.has_result = false;
-                            &[result, next.result]
-                        } else {
-                            &[result]
-                        }
-                    } else {
-                        &[]
-                    };
-
-                    let offsets = InlineOffsets {
-                        allocas: caller.allocas.len() as u32,
-                        callee_infos: caller.callee_infos.len() as u32,
-                        slots: caller.slots.len() as u32,
-                        basic_blocks: caller.basic_blocks.len() as u32,
-                        instructions: caller.instructions.len() as u32,
-                        operands: caller.operands.len() as u32,
-                    };
-
-                    // let's start copying the function
-                    copy_inline_function(caller, callee);
-
-                    {
-                        let block_len = caller.basic_blocks.len();
-                        map_blocks(
-                            &mut caller.basic_blocks[offsets.basic_blocks as usize..block_len],
-                            &offsets,
-                        )
-                    }
-
-                    // start mapping instructions
-                    {
-                        caller
-                            .operands
-                            .push(Slot::new_raw(results_bb as u32).to_ffi());
-                        let results_op = caller.operands.len() - 1;
-                        let (ex_ops, new_ops) =
-                            caller.operands.split_at_mut(offsets.operands as usize);
-
-                        // mapping table for the arguments of the function
-                        let argument_mapping = &ex_ops[args_start..args_end];
-
-                        // start remapping all operands, before the instructions so that the
-                        // return values are already mapped
-                        map_operands(new_ops, argument_mapping, &offsets);
-
-                        let instr_len = caller.instructions.len();
-                        map_instructions(
-                            &mut caller.instructions[offsets.instructions as usize..instr_len],
-                            new_ops,
-                            &callee.operands,
-                            &offsets,
-                            results_op as u32 - offsets.operands,
-                            &mut return_slots,
-                        );
-                    }
-
-                    let bb = &mut caller.basic_blocks[results_bb];
-                    bb.insts_start = caller.instructions.len() as u32;
-
-                    // Map every return slot to the expected slot
-                    // TODO replace this with phi nodes for multiple ret per inlined function
-                    for (from, to) in return_slots.iter().zip(expected_slots) {
-                        caller.instructions.push(ffi::Instruction {
-                            kind: InstructionKind::Cast,
-                            ops_start: caller.operands.len() as u32,
-                            ops_len: 1,
-                            has_result: true,
-                            result: *to,
-                        });
-                        caller.operands.push(*from);
-                    }
-                    caller.instructions.push(ffi::Instruction {
-                        kind: InstructionKind::Br,
-                        ops_start: caller.operands.len() as u32,
-                        ops_len: 1,
-                        has_result: false,
-                        result: 0,
-                    });
-                    caller.operands.push(cont_bb.to_ffi());
-
-                    bb.insts_len = caller.instructions.len() as u32 - bb.insts_start;
-
-                    // This block was split up so we can continue with the next one
-                    break;
-                }
-            }
-        }
-
-        self.mark_dead_functions(&inline_functions);
-    }
-
-    /// Local inlined functions are dead unless they are still referenced by a global (e.g. a vtable) or by any
-    /// operand of a live function (a call that could not be inlined, an invoke or a function pointer) or are its
-    /// personality
-    fn mark_dead_functions(&mut self, inline_functions: &[bool]) {
-        for (func, &inlined) in self.functions.iter_mut().zip(inline_functions) {
-            func.flags.dead = inlined && func.flags.only_local;
-        }
-
-        let mut worklist: Vec<Function> = self
+        let mut leaves: Vec<usize> = self
             .functions
             .iter()
             .enumerate()
-            .filter(|(_, f)| !f.flags.dead && !f.flags.extern_link)
-            .map(|(i, _)| Function(i))
+            .filter(|(_, f)| is_inlinable(f))
+            .map(|(i, _)| i)
             .collect();
-        let mut referenced: Vec<Function> = vec![];
+        let mut return_slots: Vec<u32> = vec![];
 
-        for global in &self.globals {
-            for reloc in &global.relocations {
-                if let Slot::Func(callee) = Slot::from_ffi(reloc.slot) {
-                    referenced.push(callee);
+        while let Some(f) = leaves.pop() {
+            let mut all_inlined = true;
+
+            for site in std::mem::take(&mut self.functions[f].called_by) {
+                let [caller, callee] = self
+                    .functions
+                    .get_disjoint_mut([site.func as usize, f])
+                    .expect("Trying to inline function into itself");
+
+                all_inlined &= inline_call(caller, callee, &site, &mut return_slots);
+
+                caller.calling -= 1;
+                if is_inlinable(caller) {
+                    leaves.push(site.func as usize);
                 }
             }
-        }
 
-        loop {
-            for callee in referenced.drain(..) {
-                let callee_func = &mut self.functions[callee.0];
-                if callee_func.flags.dead {
-                    callee_func.flags.dead = false;
-                    worklist.push(callee);
-                }
-            }
-
-            let Some(f) = worklist.pop() else {
-                break;
-            };
-            let func = &self.functions[f.0];
-            if func.has_personality {
-                referenced.push(Function(func.personality as usize));
-            }
-            for instr in &func.instructions {
-                let ops = instr.ops_start as usize..(instr.ops_start + instr.ops_len) as usize;
-                for op in &func.operands[ops] {
-                    if let Slot::Func(callee) = Slot::from_ffi(*op) {
-                        referenced.push(callee);
-                    }
-                }
-            }
+            let func = &mut self.functions[f];
+            func.flags.dead = all_inlined && func.flags.only_local && !func.flags.never_delete;
         }
     }
 }
 
+// Inline this call, returns if it could be inlined or not
+fn inline_call(
+    caller: &mut ffi::Function,
+    callee: &ffi::Function,
+    site: &InstructionReference,
+    return_slots: &mut Vec<u32>,
+) -> bool {
+    let (block, offset) = {
+        let (mut block, mut offset) = (site.block as usize, site.instr);
+        while offset >= caller.basic_blocks[block].insts_len {
+            offset -= caller.basic_blocks[block].insts_len;
+            block = caller.basic_blocks[block].info1 as usize;
+        }
+        (block, offset)
+    };
+    let (insts_start, insts_len) = (
+        caller.basic_blocks[block].insts_start,
+        caller.basic_blocks[block].insts_len,
+    );
+    let call_idx = (insts_start + offset) as usize;
+
+    let call = &caller.instructions[call_idx];
+    let args_start = call.ops_start as usize + 1;
+    let args_end = args_start + call.ops_len as usize - 1;
+    if !can_inline_call(caller, callee, &caller.operands[args_start..args_end]) {
+        return false;
+    }
+
+    // landing pads of the callee need its personality
+    if callee.has_personality && !caller.has_personality {
+        caller.has_personality = true;
+        caller.personality = callee.personality;
+    }
+    caller.cost += callee.cost;
+
+    return_slots.clear();
+
+    // split up the block after the call
+    let cont_idx = caller.basic_blocks.len() as u32;
+    let cur = &mut caller.basic_blocks[block];
+    cur.insts_len = offset + 1;
+    let prev_cont = cur.info1;
+    cur.info1 = cont_idx;
+
+    let cont_bb = Slot::new_raw(cont_idx);
+    caller.basic_blocks.push(BasicBlock {
+        insts_start: call_idx as u32 + 1,
+        insts_len: insts_len - offset - 1,
+        info1: prev_cont,
+        info2: 0,
+    });
+    let results_bb = caller.basic_blocks.len();
+    caller.basic_blocks.push(BasicBlock {
+        insts_start: 0,
+        insts_len: 0,
+        info1: 0,
+        info2: 0,
+    });
+
+    // switch to a br instruction jumping to the first basic block of the inlined function
+    let call = &mut caller.instructions[call_idx];
+    call.kind = InstructionKind::Br;
+    call.ops_len = 1;
+    caller.operands[call.ops_start as usize] =
+        Slot::new_raw(caller.basic_blocks.len() as u32).to_ffi();
+
+    let expected_slots: &[u32] = if call.has_result {
+        let result = call.result;
+        call.has_result = false;
+        let next = &mut caller.instructions[call_idx + 1];
+        if next.kind == InstructionKind::AddRet {
+            next.has_result = false;
+            &[result, next.result]
+        } else {
+            &[result]
+        }
+    } else {
+        &[]
+    };
+
+    let offsets = InlineOffsets {
+        allocas: caller.allocas.len() as u32,
+        callee_infos: caller.callee_infos.len() as u32,
+        slots: caller.slots.len() as u32,
+        basic_blocks: caller.basic_blocks.len() as u32,
+        instructions: caller.instructions.len() as u32,
+        operands: caller.operands.len() as u32,
+    };
+
+    // let's start copying the function
+    copy_inline_function(caller, callee);
+
+    {
+        let block_len = caller.basic_blocks.len();
+        map_blocks(
+            &mut caller.basic_blocks[offsets.basic_blocks as usize..block_len],
+            &offsets,
+        )
+    }
+
+    // start mapping instructions
+    {
+        caller
+            .operands
+            .push(Slot::new_raw(results_bb as u32).to_ffi());
+        let results_op = caller.operands.len() - 1;
+        let (ex_ops, new_ops) = caller.operands.split_at_mut(offsets.operands as usize);
+
+        // mapping table for the arguments of the function
+        let argument_mapping = &ex_ops[args_start..args_end];
+
+        // start remapping all operands, before the instructions so that the
+        // return values are already mapped
+        map_operands(new_ops, argument_mapping, &offsets);
+
+        let instr_len = caller.instructions.len();
+        map_instructions(
+            &mut caller.instructions[offsets.instructions as usize..instr_len],
+            new_ops,
+            &callee.operands,
+            &offsets,
+            results_op as u32 - offsets.operands,
+            return_slots,
+        );
+    }
+
+    let bb = &mut caller.basic_blocks[results_bb];
+    bb.insts_start = caller.instructions.len() as u32;
+
+    // Map every return slot to the expected slot
+    // TODO replace this with phi nodes for multiple ret per inlined function
+    for (from, to) in return_slots.iter().zip(expected_slots) {
+        caller.instructions.push(ffi::Instruction {
+            kind: InstructionKind::Cast,
+            ops_start: caller.operands.len() as u32,
+            ops_len: 1,
+            has_result: true,
+            result: *to,
+        });
+        caller.operands.push(*from);
+    }
+    caller.instructions.push(ffi::Instruction {
+        kind: InstructionKind::Br,
+        ops_start: caller.operands.len() as u32,
+        ops_len: 1,
+        has_result: false,
+        result: 0,
+    });
+    caller.operands.push(cont_bb.to_ffi());
+
+    bb.insts_len = caller.instructions.len() as u32 - bb.insts_start;
+
+    true
+}
+
+fn is_inlinable(f: &ffi::Function) -> bool {
+    let wanted = f.calling == 0 &&
+        (f.flags.always_inline || (cfg!(feature = "inline-cost") && f.cost <= *INLINE_COST));
+
+    wanted
+        && !f.basic_blocks.is_empty()
+        && !f.args.iter().any(|arg| arg.kind == ArgKind::ByVal)
+        && f.instructions
+        .iter()
+        .filter(|i| matches!(i.kind, InstructionKind::Ret))
+        .count()
+        <= 1
+}
+
 fn can_inline_call(caller: &ffi::Function, callee: &ffi::Function, args: &[u32]) -> bool {
+    if callee.flags.extern_link {
+        return false;
+    }
     // stop at variadic arguments
     if args.len() != callee.args.len() {
         return false;
