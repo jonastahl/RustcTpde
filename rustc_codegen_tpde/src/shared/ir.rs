@@ -646,16 +646,19 @@ impl Module {
             && let [Slot::Func(callee), args @ ..] = ops
         {
             references = args;
-            let caller = &mut self.tpde.functions[bb.function().0];
-            caller.calling += 1;
-            let instr = caller.basic_blocks[bb.index()].insts_len;
-            self.tpde.functions[callee.0]
-                .called_by
-                .push(ffi::InstructionReference {
-                    func: bb.function().0 as u32,
-                    block: bb.index() as u32,
-                    instr,
-                });
+            // Extern functions can never be inlined, so they should not block their callers
+            if !self.tpde.functions[callee.0].flags.extern_link {
+                let caller = &mut self.tpde.functions[bb.function().0];
+                caller.calling += 1;
+                let instr = caller.basic_blocks[bb.index()].insts_len;
+                self.tpde.functions[callee.0]
+                    .called_by
+                    .push(ffi::InstructionReference {
+                        func: bb.function().0 as u32,
+                        block: bb.index() as u32,
+                        instr,
+                    });
+            }
         }
         for op in references {
             if let Slot::Func(func) = op {

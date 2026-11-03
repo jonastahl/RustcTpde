@@ -27,7 +27,7 @@ mod ffi {
         slots: Vec<Slot>,
 
         // tracks how many other functions this functions calls to determine leave functions
-        // ignores invokes as they cannot be inlined anyway
+        // ignores invokes and extern functions as they cannot be inlined anyway
         calling: u32,
         // points to the call instruction where this function is called for fast inlining
         called_by: Vec<InstructionReference>,

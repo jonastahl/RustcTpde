@@ -2,7 +2,9 @@ use std::env;
 use std::sync::LazyLock;
 use crate::shared::ffi;
 use crate::shared::ffi::{BasicBlock, InstructionReference};
-use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot};
+use crate::shared::ir::{
+    ArgKind, INLINE_CONST_END, INLINE_CONST_LIMIT, InstructionKind, ModuleTpde, Slot,
+};
 
 // Highest cost a function without `#[inline(always)]` is inlined
 static INLINE_COST: LazyLock<u32> = LazyLock::new(|| {
@@ -236,9 +238,6 @@ fn is_inlinable(f: &ffi::Function) -> bool {
 }
 
 fn can_inline_call(caller: &ffi::Function, callee: &ffi::Function, args: &[u32]) -> bool {
-    if callee.flags.extern_link {
-        return false;
-    }
     // stop at variadic arguments
     if args.len() != callee.args.len() {
         return false;
@@ -311,8 +310,19 @@ fn map_instructions(
             InstructionKind::CondBr => {
                 // Invoke: map op 1 and 2 (then and catch bb)
                 // CondBr: map op 1 and 2 raw bb
-                operands[instr.ops_start as usize + 1] += inline_offsets.basic_blocks;
-                operands[instr.ops_start as usize + 2] += inline_offsets.basic_blocks;
+                let ops = instr.ops_start as usize;
+                operands[ops + 1] += inline_offsets.basic_blocks;
+                operands[ops + 2] += inline_offsets.basic_blocks;
+
+                // A constant condition only has one successor, TPDE skips the unreachable block
+                if let Slot::Const(cond) = Slot::from_ffi(operands[ops])
+                    && cond < INLINE_CONST_END
+                {
+                    let taken = cond & (INLINE_CONST_LIMIT as u32 - 1) != 0;
+                    operands[ops] = operands[if taken { ops + 1 } else { ops + 2 }];
+                    instr.kind = InstructionKind::Br;
+                    instr.ops_len = 1;
+                }
             }
             InstructionKind::Switch => {
                 // [cond, default, targets..., case values...]: map default and targets
