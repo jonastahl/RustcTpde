@@ -1,0 +1,75 @@
+In archive tests/lib_cases/inline_fold/actual_obj:
+
+lib.rmeta:     file format elf64-x86-64
+
+
+lib.rmeta-link:     file format elf64-x86-64
+
+
+actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+<no_overflow>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	mov    $0xfffffffc,%ebx
+	mov    $0xfffd,%r12d
+	xor    %r12d,%ebx
+	mov    %ebx,%eax
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopl   0x0(%rax)
+
+<outer>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %edi,%ebx
+	cmp    $0x3e8,%ebx
+	je     <outer+0x9b>
+	mov    $0x17,%r12d
+	cmp    %r12d,%ebx
+	ja     <outer+0x4e>
+	mov    %r12d,%r13d
+	sub    %ebx,%r13d
+	cmp    %ebx,%r12d
+	jb     <outer+0x42>
+	mov    %r13d,-0x30(%rbp)
+	jmp    <outer+0x61>
+	lea    -0x8(%rip),%rdi        # <outer+0x41>
+	call   <outer+0x4e>
+	mov    %ebx,%r13d
+	sub    %r12d,%r13d
+	cmp    %r12d,%ebx
+	jb     <outer+0x8f>
+	mov    %r13d,-0x30(%rbp)
+	mov    -0x30(%rbp),%ebx
+	mov    %ebx,%r12d
+	mov    %r12d,%ebx
+	mov    %ebx,%r12d
+	lea    0x64(%r12),%ebx
+	cmp    %r12d,%ebx
+	jb     <outer+0x83>
+	mov    %ebx,-0x2c(%rbp)
+	jmp    <outer+0xa2>
+	lea    -0x8(%rip),%rdi        # <outer+0x82>
+	call   <outer+0x8f>
+	lea    -0x8(%rip),%rdi        # <outer+0x8e>
+	call   <outer+0x9b>
+	movl   $0x7,-0x2c(%rbp)
+	mov    -0x2c(%rbp),%eax
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret

@@ -161,7 +161,15 @@ impl ModuleTpde {
                 func.instructions[write] = instr;
                 write += 1;
             }
-            self.functions[function as usize].basic_blocks[block].insts_len = (write - start) as u32;
+
+            // Mark everything stale as unreachable to avoid confusion of later inlinings
+            let func = &mut self.functions[function as usize];
+            for stale in &mut func.instructions[write..end] {
+                stale.kind = InstructionKind::Unreachable;
+                stale.ops_len = 0;
+                stale.has_result = false;
+            }
+            func.basic_blocks[block].insts_len = (write - start) as u32;
         }
     }
 
@@ -173,6 +181,7 @@ impl ModuleTpde {
         let (tya, lhs) = self.const_value(lhs);
         let (_, rhs) = self.const_value(rhs);
         let bits = size_of_type(tya) * 8;
+        let (lhs, rhs) = (lhs & mask(bits), rhs & mask(bits));
 
         use InstructionKind as I;
         let (slhs, srhs) = (sign_extend(lhs, bits), sign_extend(rhs, bits));
@@ -202,6 +211,7 @@ impl ModuleTpde {
         let (tya, lhs) = self.const_value(lhs);
         let (_, rhs) = self.const_value(rhs);
         let bits = size_of_type(tya) * 8;
+        let (lhs, rhs) = (lhs & mask(bits), rhs & mask(bits));
 
         use InstructionKind as I;
         if signed {
@@ -393,8 +403,7 @@ fn inline_call(
 }
 
 fn is_inlinable(f: &ffi::Function) -> bool {
-    let wanted = f.calling == 0 &&
-        (f.flags.always_inline || (cfg!(feature = "inline-cost") && f.cost <= *INLINE_COST));
+    let wanted = f.calling == 0 && (f.flags.always_inline || f.cost <= *INLINE_COST);
 
     wanted
         && !f.basic_blocks.is_empty()
