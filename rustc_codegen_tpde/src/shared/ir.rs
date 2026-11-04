@@ -27,6 +27,7 @@ pub enum Slot {
     Func(Function),
     Global(Global),
     GlobalPtr(u32),
+    Phi(Function, u32),
 }
 
 #[derive(Copy, Clone, PartialEq, Debug)]
@@ -236,6 +237,7 @@ impl Module {
                 f.name.capacity()
                     + bytes(&f.args)
                     + bytes(&f.slots)
+                    + bytes(&f.phis)
                     + bytes(&f.operands)
                     + bytes(&f.instructions)
                     + bytes(&f.allocas)
@@ -283,6 +285,7 @@ impl Module {
             has_personality: false,
             personality: 0,
             slots: slots.iter().map(|ty| ffi::Slot { ty: *ty }).collect(),
+            phis: vec![],
             calling: 0,
             called_by: vec![],
             cost: 0,
@@ -471,6 +474,9 @@ impl Module {
             }
             Slot::ConstVector(ind) => FullType::Single(self.tpde.const_vectors[ind as usize].ty),
             Slot::Raw(_) => unreachable!(),
+            Slot::Phi(func, ind) => {
+                FullType::Single(self.tpde.functions[func.0].phis[ind as usize].ty)
+            }
             Slot::Alloc(_) | Slot::Func(_) | Slot::Global(_) | Slot::GlobalPtr(..) => {
                 FullType::Single(Type::ptr)
             }
@@ -496,6 +502,8 @@ impl Module {
         function.basic_blocks.push(ffi::BasicBlock {
             insts_start: 0,
             insts_len: 0,
+            phi_start: 0,
+            phi_len: 0,
             info1: 0,
             info2: 0,
         });
@@ -559,6 +567,10 @@ impl Module {
             Slot::Value(f, v) => {
                 assert_eq!(bb.function(), f);
                 func.slots.get(v as usize).unwrap().ty
+            }
+            Slot::Phi(f, p) => {
+                assert_eq!(bb.function(), f);
+                func.phis[p as usize].ty
             }
             Slot::Const(v) => self.const_value(v).0,
             _ => panic!("First operand of return instruction must be a value slot"),
@@ -723,7 +735,7 @@ impl Module {
         ops.push(func_ref);
         match func_ref {
             Slot::Func(_) => {}
-            Slot::Value(..) => {
+            Slot::Value(..) | Slot::Phi(..) => {
                 let callee_infos = &mut self.tpde.functions[bb.function.0].callee_infos;
                 callee_infos.push(CalleeInfo {
                     info: func_sign.arg_infos.clone(),
@@ -764,7 +776,7 @@ impl Module {
         ops.push(Slot::new_raw(catch.index as u32));
         match func_ref {
             Slot::Func(_) => {}
-            Slot::Value(..) => {
+            Slot::Value(..) | Slot::Phi(..) => {
                 let callee_infos = &mut self.tpde.functions[bb.function.0].callee_infos;
                 callee_infos.push(CalleeInfo {
                     info: func_sign.arg_infos.clone(),
@@ -862,6 +874,44 @@ impl Module {
         let slots = &mut self.tpde.functions[func.0].slots;
         slots.push(ffi::Slot { ty });
         Slot::new_val(func, slots.len() as u32 - 1)
+    }
+
+    /// Reserve space for all the phis, later call set_phi_incoming to set the incoming values
+    /// All phis of a basic block have to be added at once (or we need more movement later)
+    pub fn add_phi(&mut self, bb: BasicBlock, ty: Type, incoming_len: u32) -> Slot {
+        let function = &mut self.tpde.functions[bb.function().0];
+        let phi_index = function.phis.len() as u32;
+
+        let block = &mut function.basic_blocks[bb.index()];
+        if block.phi_len == 0 {
+            block.phi_start = phi_index;
+        }
+        assert_eq!(block.phi_start + block.phi_len, phi_index);
+        block.phi_len += 1;
+
+        let incoming_start = function.operands.len() as u32;
+        function.operands.extend(std::iter::repeat_n(
+            Slot::new_raw(0).to_ffi(),
+            incoming_len as usize * 2,
+        ));
+        function.phis.push(ffi::Phi {
+            ty,
+            incoming_start,
+            incoming_len,
+        });
+        Slot::Phi(bb.function(), phi_index)
+    }
+
+    pub fn set_phi_incoming(&mut self, phi: Slot, slot: u32, from: BasicBlock, value: Slot) {
+        let Slot::Phi(func, index) = phi else {
+            panic!("Not a phi: {:?}", phi)
+        };
+        let function = &mut self.tpde.functions[func.0];
+        let phi = function.phis[index as usize];
+        assert!(slot < phi.incoming_len);
+        let start = (phi.incoming_start + slot * 2) as usize;
+        function.operands[start] = Slot::new_raw(from.index() as u32).to_ffi();
+        function.operands[start + 1] = value.to_ffi();
     }
 
     pub fn add_br(&mut self, bb: BasicBlock, to: BasicBlock) {
@@ -963,6 +1013,7 @@ pub const MARKER_ALLOC: Marker = 3_u32 << (u32::BITS - 3);
 pub const MARKER_FUNC: Marker = 4_u32 << (u32::BITS - 3);
 pub const MARKER_GLOBAL: Marker = 5_u32 << (u32::BITS - 3);
 pub const MARKER_CONST_VECTOR: Marker = 6_u32 << (u32::BITS - 3);
+pub const MARKER_PHI: Marker = 7_u32 << (u32::BITS - 3);
 
 // With the marker set it has an offset saved in global_ptrs,
 // otherwise it points directly to the global
@@ -988,6 +1039,10 @@ impl Slot {
         Self::Raw(u)
     }
 
+    pub fn new_phi(index: u32) -> Self {
+        Self::Phi(Function(0), index)
+    }
+
     pub fn new_func(func: Function) -> Self {
         Self::Func(func)
     }
@@ -1005,6 +1060,7 @@ impl Slot {
             Self::Func(f) => (f.0 as u32) | MARKER_FUNC,
             Self::Global(g) => g.0 as u32 | MARKER_GLOBAL,
             Self::GlobalPtr(p) => *p | MARKER_GLOBAL | GLOBAL_PTR_BIT,
+            Self::Phi(_, p) => *p | MARKER_PHI,
             Self::ConstVector(v) => *v | MARKER_CONST_VECTOR,
             Self::Pair(..) => unreachable!("Only used for tracking during generation"),
         }
@@ -1040,6 +1096,9 @@ impl Slot {
             }
             return Self::Global(Global(g as usize));
         }
+        if let Some(p) = Self::is(ffi, MARKER_PHI) {
+            return Self::Phi(Function(0), p);
+        }
         if let Some(v) = Self::is(ffi, MARKER_CONST_VECTOR) {
             return Self::ConstVector(v);
         }
@@ -1054,7 +1113,7 @@ impl Slot {
 
     pub fn get_func(&self) -> Option<Function> {
         match self {
-            Slot::Value(func, _) => Some(*func),
+            Slot::Value(func, _) | Slot::Phi(func, _) => Some(*func),
             _ => None,
         }
     }
@@ -1082,6 +1141,7 @@ impl Debug for Slot {
             }
             Self::Const(c) => write!(f, "[const pool: {}]", c - INLINE_CONST_END),
             Self::GlobalPtr(p) => write!(f, "[globalptr: {}]", p),
+            Self::Phi(_, p) => write!(f, "[phi: {}]", p),
             Self::Pair(..) => unreachable!("Only used for tracking during generation"),
         }
     }

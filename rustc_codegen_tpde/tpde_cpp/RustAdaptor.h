@@ -26,6 +26,7 @@ namespace IR {
   inline constexpr uint32_t MARKER_FUNC = size_t{4} << (std::numeric_limits<std::uint32_t>::digits - 3);
   inline constexpr uint32_t MARKER_GLOBAL = size_t{5} << (std::numeric_limits<std::uint32_t>::digits - 3);
   inline constexpr uint32_t MARKER_CONST_VECTOR = size_t{6} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_PHI = size_t{7} << (std::numeric_limits<std::uint32_t>::digits - 3);
 
   // Under MARKER_GLOBAL: set for an index into global_ptrs, clear for a global at offset 0.
   inline constexpr uint32_t GLOBAL_PTR_BIT = uint32_t{1} << (std::numeric_limits<std::uint32_t>::digits - 4);
@@ -76,6 +77,10 @@ namespace IR {
 
     [[nodiscard]] constexpr bool is_any_global() const {
       return is(MARKER_GLOBAL);
+    }
+
+    [[nodiscard]] constexpr bool is_phi() const {
+      return is(MARKER_PHI);
     }
 
     [[nodiscard]] constexpr bool is_const_vector() const {
@@ -190,6 +195,7 @@ namespace tpde_rust {
     struct FuncData {
       std::span<ArgInfo> args;
       std::span<Slot> slots;
+      std::span<Phi> phis;
       std::span<const u32> operands;
       std::span<Instruction> instructions;
       std::span<Alloca> allocas;
@@ -205,6 +211,7 @@ namespace tpde_rust {
 
     [[nodiscard]] std::span<ArgInfo> get_args() const { return cur_data.args; }
     [[nodiscard]] std::span<Slot> get_slots() const { return cur_data.slots; }
+    [[nodiscard]] std::span<Phi> get_phis() const { return cur_data.phis; }
     [[nodiscard]] std::span<const u32> get_operands() const { return cur_data.operands; }
     [[nodiscard]] std::span<Instruction> get_instructions() const { return cur_data.instructions; }
     [[nodiscard]] std::span<Alloca> get_allocas() const { return cur_data.allocas; }
@@ -220,6 +227,7 @@ namespace tpde_rust {
 
     [[nodiscard]] std::span<ArgInfo> get_args() const { return view(cur_func->args); }
     [[nodiscard]] std::span<Slot> get_slots() const { return view(cur_func->slots); }
+    [[nodiscard]] std::span<Phi> get_phis() const { return view(cur_func->phis); }
     [[nodiscard]] std::span<const u32> get_operands() const { return view(cur_func->operands); }
     [[nodiscard]] std::span<Instruction> get_instructions() const { return view(cur_func->instructions); }
     [[nodiscard]] std::span<Alloca> get_allocas() const { return view(cur_func->allocas); }
@@ -243,6 +251,8 @@ namespace tpde_rust {
     [[nodiscard]] Type type_of_ref(const IRValueRef value) const {
       if (value.is_val())
         return get_slots()[value.content()].ty;
+      if (value.is_phi())
+        return get_phis()[value.content()].ty;
       if (value.is_const())
         return const_value(value).ty;
       if (value.is_const_vector())
@@ -315,7 +325,7 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] u32 cur_highest_val_idx() const {
-      return get_slots().size() + get_allocas().size() + get_globals().size() + get_global_ptrs().size()
+      return get_slots().size() + get_phis().size() + get_allocas().size() + get_globals().size() + get_global_ptrs().size()
              + get_functions().size();
     }
 
@@ -408,9 +418,10 @@ namespace tpde_rust {
       return std::ranges::views::iota(block.insts_start, block.insts_start + block.insts_len);
     }
 
-    [[nodiscard]] static auto block_phis(const IRBlockRef bb) {
-      // TODO
-      return std::views::empty<IRValueRef>;
+    [[nodiscard]] auto block_phis(const IRBlockRef bb) const {
+      const BasicBlock &block = get_basic_block(bb);
+      return std::views::iota(block.phi_start, block.phi_start + block.phi_len)
+        | std::views::transform([](const u32 idx) { return IR::Operand(IR::MARKER_PHI | idx); });
     }
 
     [[nodiscard]] u32 block_info(const IRBlockRef bb) {
@@ -434,39 +445,47 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] tpde::ValLocalIdx val_local_idx(IRValueRef ir_value) {
-      assert(ir_value.is_val() || ir_value.is_alloc());
+      assert(ir_value.is_val() || ir_value.is_phi() || ir_value.is_alloc());
       return static_cast<tpde::ValLocalIdx>(ir_value.content() + starts_index[ir_value.marker()]);
     }
 
     [[nodiscard]] static bool val_ignore_in_liveness_analysis(const IRValueRef value) {
-      return !value.is_val();
+      return !value.is_val() && !value.is_phi();
     }
 
     [[nodiscard]] bool val_is_phi(const IRValueRef value) const {
-      // TODO needed when phis nodes are added
-      return false;
+      return value.is_phi();
     }
 
     [[nodiscard]] auto val_as_phi(const IRValueRef value) const {
       struct PHIRef {
+        std::span<const u32> incoming;
+
         [[nodiscard]] u32 incoming_count() const {
-          return 0;
+          return incoming.size() / 2;
         }
 
         [[nodiscard]] IRValueRef incoming_val_for_slot(const u32 slot) const {
-          TPDE_FATAL("not implemented");
+          return IR::Operand(incoming[slot * 2 + 1]);
         }
 
         [[nodiscard]] IRBlockRef incoming_block_for_slot(const u32 slot) const {
-          TPDE_FATAL("not implemented");
+          return IR::Operand(incoming[slot * 2]).content();
         }
 
         [[nodiscard]] IRValueRef incoming_val_for_block(const IRBlockRef block) const {
-          TPDE_FATAL("not implemented");
+          for (u32 slot = 0; slot < incoming_count(); ++slot) {
+            if (incoming_block_for_slot(slot) == block) {
+              return incoming_val_for_slot(slot);
+            }
+          }
+          TPDE_FATAL("phi has no incoming value for the block");
         }
       };
 
-      return PHIRef{};
+      assert(value.is_phi());
+      const Phi &phi = get_phis()[value.content()];
+      return PHIRef{get_operands().subspan(phi.incoming_start, size_t{phi.incoming_len} * 2)};
     }
 
     [[nodiscard]] u32 val_alloca_size(IRValueRef val) const {
@@ -538,6 +557,7 @@ namespace tpde_rust {
       cur_data = FuncData{
         .args = view(func->args),
         .slots = view(func->slots),
+        .phis = view(func->phis),
         .operands = view(func->operands),
         .instructions = view(func->instructions),
         .allocas = view(func->allocas),
@@ -547,7 +567,8 @@ namespace tpde_rust {
 #endif
 
       starts_index = {0};
-      starts_index[IR::MARKER_ALLOC >> 29] = get_slots().size();
+      starts_index[IR::MARKER_PHI >> 29] = get_slots().size();
+      starts_index[IR::MARKER_ALLOC >> 29] = starts_index[IR::MARKER_PHI >> 29] + get_phis().size();
       starts_index[IR::MARKER_GLOBAL >> 29] = starts_index[IR::MARKER_ALLOC >> 29] + get_allocas().size();
       globals_count = get_globals().size();
       starts_index[IR::MARKER_FUNC >> 29] = starts_index[IR::MARKER_GLOBAL >> 29] + globals_count + get_global_ptrs().size();

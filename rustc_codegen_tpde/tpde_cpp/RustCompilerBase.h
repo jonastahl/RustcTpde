@@ -1835,7 +1835,7 @@ namespace tpde_rust {
     bool is_dynamic_function;
     if (func.is_func()) {
       is_dynamic_function = false;
-    } else if (func.is_val()) {
+    } else if (func.is_val() || func.is_phi()) {
       is_dynamic_function = true;
     } else {
       assert(false);
@@ -1901,7 +1901,7 @@ namespace tpde_rust {
       if (!is_dynamic_function) {
         SymRef sym = this->ir_func_syms[func.content()];
         cb->call(sym);
-      } else if (func.is_val()) {
+      } else {
         auto [_, tgt_vp] = this->val_ref_single(func);
         cb->call(std::move(tgt_vp));
       }
@@ -1962,7 +1962,7 @@ namespace tpde_rust {
   // build the eh table
     IRBlockRef normal_block_ref = inst.op(1).content();
     IRBlockRef unwind_block_ref = inst.op(2).content();
-    auto unwind_block_has_phi = false; // TODO
+    const bool unwind_block_has_phi = this->adaptor->get_basic_block(unwind_block_ref).phi_len != 0;
 
   const BasicBlock& normal_block = this->adaptor->get_basic_block(normal_block_ref);
   auto unwind_label =

@@ -615,10 +615,8 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         }
         let align = dest.val.align.restrict_for_offset(elem.layout.size);
 
-        // The IR has no phi nodes, so the loop counter lives in a stack slot.
-        let counter = self.alloca(rustc_abi::Size::from_bytes(8), rustc_abi::Align::EIGHT);
         let zero = self.const_usize(0);
-        self.store(zero, counter, rustc_abi::Align::EIGHT);
+        let preheader_bb = self.basic_block;
 
         let header_bb = self.append_sibling_block("repeat_header");
         let body_bb = self.append_sibling_block("repeat_body");
@@ -626,7 +624,15 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.br(header_bb);
 
         self.switch_to_block(header_bb);
-        let i = self.load(self.type_isize(), counter, rustc_abi::Align::EIGHT);
+        let i = {
+            let mut module = self.module.borrow_mut();
+            let FullType::Single(counter_ty) = module.type_of_slot(zero) else {
+                unreachable!()
+            };
+            let i = module.add_phi(header_bb, counter_ty, 2);
+            module.set_phi_incoming(i, 0, preheader_bb, zero);
+            i
+        };
         let count_val = self.const_usize(count);
         let done = self.icmp(IntPredicate::IntULT, i, count_val);
         self.cond_br(done, body_bb, next_bb);
@@ -638,7 +644,9 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         elem.val
             .store(self, PlaceRef::new_sized_aligned(addr, elem.layout, align));
         let next = self.add(i, self.const_usize(1));
-        self.store(next, counter, rustc_abi::Align::EIGHT);
+        self.module
+            .borrow_mut()
+            .set_phi_incoming(i, 1, self.basic_block, next);
         self.br(header_bb);
 
         self.switch_to_block(next_bb);

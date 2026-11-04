@@ -25,6 +25,7 @@ mod ffi {
         has_ret: bool,
         args: Vec<ArgInfo>,
         slots: Vec<Slot>,
+        phis: Vec<Phi>,
 
         // tracks how many other functions this functions calls to determine leave functions
         // ignores invokes and extern functions as they cannot be inlined anyway
@@ -124,7 +125,8 @@ mod ffi {
     pub struct BasicBlock {
         insts_start: u32,
         insts_len: u32,
-        // TODO add phis and similar
+        phi_start: u32,
+        phi_len: u32,
         info1: u32,
         info2: u32,
     }
@@ -138,6 +140,13 @@ mod ffi {
     #[derive(Copy, Clone)]
     pub struct Slot {
         ty: Type,
+    }
+
+    #[derive(Copy, Clone)]
+    pub struct Phi {
+        ty: Type,
+        incoming_start: u32,
+        incoming_len: u32,
     }
 
     #[derive(Debug, Copy, Clone)]
@@ -448,6 +457,12 @@ struct InstructionDebug<'a> {
     operands: &'a [u32],
 }
 
+struct PhiDebug<'a> {
+    index: u32,
+    phi: &'a ffi::Phi,
+    operands: &'a [u32],
+}
+
 impl Debug for ffi::Function {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
         let blocks: Vec<BlockDebug> = self
@@ -478,12 +493,34 @@ impl Debug for BlockDebug<'_> {
         write!(f, "BasicBlock: ",)?;
         let start = self.block.insts_start as usize;
         let insts = &self.function.instructions[start..start + self.block.insts_len as usize];
+        let phi_start = self.block.phi_start;
+        let phis = &self.function.phis[phi_start as usize..(phi_start + self.block.phi_len) as usize];
         f.debug_list()
+            .entries(phis.iter().zip(phi_start..).map(|(phi, index)| PhiDebug {
+                index,
+                phi,
+                operands: &self.function.operands,
+            }))
             .entries(insts.iter().map(|inst| InstructionDebug {
                 inst,
                 operands: &self.function.operands,
             }))
             .finish()
+    }
+}
+
+impl Debug for PhiDebug<'_> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
+        let start = self.phi.incoming_start as usize;
+        let incoming = &self.operands[start..start + self.phi.incoming_len as usize * 2];
+        write!(f, "<Phi> (")?;
+        for (i, &op) in incoming.iter().enumerate() {
+            if i != 0 {
+                write!(f, ", ")?;
+            }
+            write!(f, "{:?}", Slot::from_ffi(op))?;
+        }
+        write!(f, ") -> {:?} {:?}", Slot::new_phi(self.index), self.phi.ty)
     }
 }
 
