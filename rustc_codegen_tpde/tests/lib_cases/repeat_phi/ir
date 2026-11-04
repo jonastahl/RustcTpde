@@ -1,0 +1,2235 @@
+ModuleTpde {
+    functions: [
+        Function {
+            name: "_RNvCsQvp3e8KgHi_6source12sum_repeated",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i32,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: true,
+                never_delete: false,
+                dead: true,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 16, align: 4,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 20]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 18], [const: i64 0], [raw: 2], [val: 5]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 4]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 2], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 4]) -> [val: 3],
+                    <GEP> ([alloc: 0], [raw: 1], [val: 3]) -> [val: 4],
+                    <Store> ([val: 1], [val: 4], [raw: 4]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 5],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 0]) -> [val: 7],
+                    <Load> ([val: 7], [raw: 4]) -> [val: 8],
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 0], [const: i64 4], [global: 0]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 10],
+                    <Load> ([val: 10], [raw: 4]) -> [val: 11],
+                    <Add> ([val: 8], [val: 11]) -> [val: 12],
+                    <CMPult> ([val: 12], [val: 8]) -> [val: 13],
+                    <CondBr> ([val: 13], [raw: 9], [raw: 8]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 1], [const: i64 4], [global: 2]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 10]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 4]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 2]) -> [val: 15],
+                    <Load> ([val: 15], [raw: 4]) -> [val: 16],
+                    <Add> ([val: 12], [val: 16]) -> [val: 17],
+                    <CMPult> ([val: 17], [val: 12]) -> [val: 18],
+                    <CondBr> ([val: 18], [raw: 13], [raw: 12]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 2], [const: i64 4], [global: 6]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 14]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 8]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 3]) -> [val: 20],
+                    <Load> ([val: 20], [raw: 4]) -> [val: 21],
+                    <Add> ([val: 17], [val: 21]) -> [val: 22],
+                    <CMPult> ([val: 22], [val: 17]) -> [val: 23],
+                    <CondBr> ([val: 23], [raw: 17], [raw: 16]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 3], [const: i64 4], [global: 10]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Ret> ([val: 22]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 12]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 25]) -> [val: 1],
+                    <Br> ([raw: 18]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 23]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 19]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 28]) -> [val: 25],
+                    <Br> ([raw: 21]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 0], [const: i32 3]) -> [val: 28],
+                    <Br> ([raw: 22]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvCsQvp3e8KgHi_6source3big",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 32,
+                    align: 8,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i64,
+                i64,
+                Bool,
+                i64,
+                Bool,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: true,
+                never_delete: false,
+                dead: true,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                BasicBlock: [
+                    <Add> ([val: 1], [const: i64 1]) -> [val: 2],
+                    <CMPult> ([val: 2], [val: 1]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 1], [const: i64 2]) -> [val: 4],
+                    <CMPult> ([val: 4], [val: 1]) -> [val: 5],
+                    <CondBr> ([val: 5], [raw: 4], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 14]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Trunc> ([val: 1]) -> [val: 6],
+                    <Add> ([val: 6], [const: i32 3]) -> [val: 7],
+                    <CMPult> ([val: 7], [val: 6]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 6], [raw: 5]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 16]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Store> ([val: 1], [val: 0], [raw: 8]),
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 9],
+                    <Store> ([val: 2], [val: 9], [raw: 8]),
+                    <GEP> ([val: 0], [raw: 1], [const: i64 16]) -> [val: 10],
+                    <Store> ([val: 4], [val: 10], [raw: 8]),
+                    <GEP> ([val: 0], [raw: 1], [const: i64 24]) -> [val: 11],
+                    <Store> ([val: 7], [val: 11], [raw: 8]),
+                    <Ret> (),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 18]),
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvCsQvp3e8KgHi_6source6helper",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: true,
+                never_delete: false,
+                dead: true,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Ret> ([val: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 4]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 0], [const: i32 3]) -> [val: 4],
+                    <Br> ([raw: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvMs6_NtCsioHeeuq8fQz_4core3numm12wrapping_mul",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: true,
+                never_delete: false,
+                dead: true,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                BasicBlock: [
+                    <Mul> ([val: 0], [val: 1]) -> [val: 2],
+                    <Ret> ([val: 2]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "inlined_loops",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i32,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i32,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 16, align: 4,
+                size: 16, align: 4,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
+                    <Ret> ([val: 4]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 20]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 31]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 28]) -> [val: 2],
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 25]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 23], [const: i64 0], [raw: 7], [val: 11]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 4]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 7], [raw: 8]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 4]) -> [val: 9],
+                    <GEP> ([alloc: 0], [raw: 1], [val: 9]) -> [val: 10],
+                    <Store> ([val: 7], [val: 10], [raw: 4]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 11],
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 9]),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 0]) -> [val: 13],
+                    <Load> ([val: 13], [raw: 4]) -> [val: 14],
+                    <Br> ([raw: 11]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 0], [const: i64 4], [global: 0]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 16],
+                    <Load> ([val: 16], [raw: 4]) -> [val: 17],
+                    <Add> ([val: 14], [val: 17]) -> [val: 18],
+                    <CMPult> ([val: 18], [val: 14]) -> [val: 19],
+                    <CondBr> ([val: 19], [raw: 14], [raw: 13]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 1], [const: i64 4], [global: 2]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 15]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 4]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 2]) -> [val: 21],
+                    <Load> ([val: 21], [raw: 4]) -> [val: 22],
+                    <Add> ([val: 18], [val: 22]) -> [val: 23],
+                    <CMPult> ([val: 23], [val: 18]) -> [val: 24],
+                    <CondBr> ([val: 24], [raw: 18], [raw: 17]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 2], [const: i64 4], [global: 6]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 19]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 8]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 3]) -> [val: 26],
+                    <Load> ([val: 26], [raw: 4]) -> [val: 27],
+                    <Add> ([val: 23], [val: 27]) -> [val: 28],
+                    <CMPult> ([val: 28], [val: 23]) -> [val: 29],
+                    <CondBr> ([val: 29], [raw: 22], [raw: 21]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 3], [const: i64 4], [global: 10]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 12]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 31]) -> [val: 7],
+                    <Br> ([raw: 23]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 28]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 24]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 34]) -> [val: 31],
+                    <Br> ([raw: 26]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 0], [const: i32 3]) -> [val: 34],
+                    <Br> ([raw: 27]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 2], [val: 3]) -> [val: 4],
+                    <CMPult> ([val: 4], [val: 2]) -> [val: 5],
+                    <CondBr> ([val: 5], [raw: 2], [raw: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 57]) -> [val: 3],
+                    <Br> ([raw: 29]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 51]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 49], [const: i64 0], [raw: 33], [val: 40]) -> [phi: 1] i64,
+                    <CMPult> ([phi: 1], [const: i64 4]) -> [val: 37],
+                    <CondBr> ([val: 37], [raw: 33], [raw: 34]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 1], [const: i64 4]) -> [val: 38],
+                    <GEP> ([alloc: 1], [raw: 1], [val: 38]) -> [val: 39],
+                    <Store> ([val: 36], [val: 39], [raw: 4]),
+                    <Add> ([phi: 1], [const: i64 1]) -> [val: 40],
+                    <Br> ([raw: 32]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 35]),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 1], [raw: 4], [const: i64 0]) -> [val: 42],
+                    <Load> ([val: 42], [raw: 4]) -> [val: 43],
+                    <Br> ([raw: 37]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 0], [const: i64 4], [global: 0]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 1], [raw: 4], [const: i64 1]) -> [val: 45],
+                    <Load> ([val: 45], [raw: 4]) -> [val: 46],
+                    <Add> ([val: 43], [val: 46]) -> [val: 47],
+                    <CMPult> ([val: 47], [val: 43]) -> [val: 48],
+                    <CondBr> ([val: 48], [raw: 40], [raw: 39]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 1], [const: i64 4], [global: 2]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 41]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 4]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 1], [raw: 4], [const: i64 2]) -> [val: 50],
+                    <Load> ([val: 50], [raw: 4]) -> [val: 51],
+                    <Add> ([val: 47], [val: 51]) -> [val: 52],
+                    <CMPult> ([val: 52], [val: 47]) -> [val: 53],
+                    <CondBr> ([val: 53], [raw: 44], [raw: 43]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 2], [const: i64 4], [global: 6]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 45]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 8]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 1], [raw: 4], [const: i64 3]) -> [val: 55],
+                    <Load> ([val: 55], [raw: 4]) -> [val: 56],
+                    <Add> ([val: 52], [val: 56]) -> [val: 57],
+                    <CMPult> ([val: 57], [val: 52]) -> [val: 58],
+                    <CondBr> ([val: 58], [raw: 48], [raw: 47]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 3], [const: i64 4], [global: 10]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 30]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 12]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 32]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 60]) -> [val: 36],
+                    <Br> ([raw: 49]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 54]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 50]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 63]) -> [val: 60],
+                    <Br> ([raw: 52]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 1], [const: i32 3]) -> [val: 63],
+                    <Br> ([raw: 53]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "repeat_after_call",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 20,
+                    align: 4,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 4], [const: i64 0], [raw: 2], [val: 6]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 5]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 4]) -> [val: 4],
+                    <GEP> ([val: 0], [raw: 1], [val: 4]) -> [val: 5],
+                    <Store> ([val: 2], [val: 5], [raw: 4]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 6],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 8]) -> [val: 2],
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 9]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 11]) -> [val: 8],
+                    <Br> ([raw: 7]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 1], [const: i32 3]) -> [val: 11],
+                    <Br> ([raw: 8]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "repeat_between_calls",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 32, align: 4,
+                size: 16, align: 4,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 17]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 15], [const: i64 0], [raw: 2], [val: 5]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 7]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 2], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 4]) -> [val: 3],
+                    <GEP> ([alloc: 0], [raw: 1], [val: 3]) -> [val: 4],
+                    <Store> ([val: 1], [val: 4], [raw: 4]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 5],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 4], [const: i64 6]) -> [val: 7],
+                    <Load> ([val: 7], [raw: 4]) -> [val: 8],
+                    <Br> ([raw: 23]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 6], [const: i64 7], [global: 22]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 21], [const: i64 0], [raw: 7], [val: 13]) -> [phi: 1] i64,
+                    <CMPult> ([phi: 1], [const: i64 3]) -> [val: 10],
+                    <CondBr> ([val: 10], [raw: 7], [raw: 8]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 1], [const: i64 4]) -> [val: 11],
+                    <GEP> ([alloc: 1], [raw: 1], [val: 11]) -> [val: 12],
+                    <Store> ([val: 9], [val: 12], [raw: 21]),
+                    <Add> ([phi: 1], [const: i64 1]) -> [val: 13],
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 9]),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 21], [const: i64 0]) -> [val: 15],
+                    <Load> ([val: 15], [raw: 4]) -> [val: 16],
+                    <Br> ([raw: 29]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 0], [const: i64 7], [global: 24]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 1], [raw: 4], [const: i64 2]) -> [val: 19],
+                    <Load> ([val: 19], [raw: 4]) -> [val: 20],
+                    <Add> ([val: 17], [val: 20]) -> [val: 21],
+                    <CMPult> ([val: 21], [val: 17]) -> [val: 22],
+                    <CondBr> ([val: 22], [raw: 14], [raw: 13]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 2], [const: i64 3], [global: 26]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Ret> ([val: 21]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 28]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 24]) -> [val: 1],
+                    <Br> ([raw: 15]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 20]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 16]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 27]) -> [val: 24],
+                    <Br> ([raw: 18]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 0], [const: i32 3]) -> [val: 27],
+                    <Br> ([raw: 19]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 29]) -> [val: 9],
+                    <Br> ([raw: 21]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 26]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 22]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 32]) -> [val: 29],
+                    <Br> ([raw: 24]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 8], [const: i32 3]) -> [val: 32],
+                    <Br> ([raw: 25]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 11]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 34]) -> [val: 17],
+                    <Br> ([raw: 27]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 32]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 28]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 37]) -> [val: 34],
+                    <Br> ([raw: 30]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 16], [const: i32 3]) -> [val: 37],
+                    <Br> ([raw: 31]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "repeat_big",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 96,
+                    align: 8,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                ptr,
+                i64,
+                i64,
+                Bool,
+                i64,
+                Bool,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 32, align: 8,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 4], [const: i64 0], [raw: 2], [val: 17]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 3]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 2], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 32]) -> [val: 3],
+                    <GEP> ([val: 0], [raw: 1], [val: 3]) -> [val: 4],
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
+                    <Store> ([val: 5], [val: 4], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 8], [const: i8 1]) -> [val: 6],
+                    <GEP> ([val: 4], [raw: 8], [const: i8 1]) -> [val: 7],
+                    <Load> ([val: 6], [raw: 8]) -> [val: 8],
+                    <Store> ([val: 8], [val: 7], [raw: 8]),
+                    <GEP> ([val: 6], [raw: 8], [const: i8 1]) -> [val: 9],
+                    <GEP> ([val: 7], [raw: 8], [const: i8 1]) -> [val: 10],
+                    <Load> ([val: 9], [raw: 8]) -> [val: 11],
+                    <Store> ([val: 11], [val: 10], [raw: 8]),
+                    <GEP> ([val: 9], [raw: 8], [const: i8 1]) -> [val: 12],
+                    <GEP> ([val: 10], [raw: 8], [const: i8 1]) -> [val: 13],
+                    <Load> ([val: 12], [raw: 8]) -> [val: 14],
+                    <Store> ([val: 14], [val: 13], [raw: 8]),
+                    <GEP> ([val: 12], [raw: 8], [const: i8 1]) -> [val: 15],
+                    <GEP> ([val: 13], [raw: 8], [const: i8 1]) -> [val: 16],
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 17],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 1], [const: i64 1]) -> [val: 20],
+                    <CMPult> ([val: 20], [val: 1]) -> [val: 21],
+                    <CondBr> ([val: 21], [raw: 8], [raw: 7]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 1], [const: i64 2]) -> [val: 22],
+                    <CMPult> ([val: 22], [val: 1]) -> [val: 23],
+                    <CondBr> ([val: 23], [raw: 10], [raw: 9]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 14]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Trunc> ([val: 1]) -> [val: 24],
+                    <Add> ([val: 24], [const: i32 3]) -> [val: 25],
+                    <CMPult> ([val: 25], [val: 24]) -> [val: 26],
+                    <CondBr> ([val: 26], [raw: 12], [raw: 11]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 16]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 27],
+                    <Store> ([val: 20], [val: 27], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 16]) -> [val: 28],
+                    <Store> ([val: 22], [val: 28], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 24]) -> [val: 29],
+                    <Store> ([val: 25], [val: 29], [raw: 8]),
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 18]),
+                    <Unreachable> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "repeat_f64",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 48,
+                    align: 8,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                f64,
+                Bool,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 0], [const: i64 0], [raw: 2], [val: 5]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 6]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 2], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 8]) -> [val: 3],
+                    <GEP> ([val: 0], [raw: 1], [val: 3]) -> [val: 4],
+                    <Store> ([val: 1], [val: 4], [raw: 8]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 5],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "repeat_in_loop",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i32,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                i32,
+                i32,
+                i32,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [
+                size: 4, align: 4,
+                size: 4, align: 4,
+                size: 16, align: 4,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Store> ([const: i32 0], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 0], [alloc: 1], [raw: 4]),
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 1],
+                    <CMPult> ([val: 1], [val: 0]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 3], [raw: 2]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
+                    <Ret> ([val: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 4],
+                    <Br> ([raw: 15]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 13], [const: i64 0], [raw: 5], [val: 9]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 3]) -> [val: 6],
+                    <CondBr> ([val: 6], [raw: 5], [raw: 6]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 4]) -> [val: 7],
+                    <GEP> ([alloc: 2], [raw: 1], [val: 7]) -> [val: 8],
+                    <Store> ([val: 5], [val: 8], [raw: 4]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 9],
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 7]),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 2], [raw: 4], [const: i64 2]) -> [val: 11],
+                    <Load> ([val: 11], [raw: 4]) -> [val: 12],
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 13],
+                    <Add> ([val: 13], [val: 12]) -> [val: 14],
+                    <CMPult> ([val: 14], [val: 13]) -> [val: 15],
+                    <CondBr> ([val: 15], [raw: 10], [raw: 9]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 12], [const: i64 2], [const: i64 3], [global: 30]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Store> ([val: 14], [alloc: 0], [raw: 4]),
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 16],
+                    <Add> ([val: 16], [const: i32 1]) -> [val: 17],
+                    <CMPult> ([val: 17], [val: 16]) -> [val: 18],
+                    <CondBr> ([val: 18], [raw: 12], [raw: 11]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 32]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Store> ([val: 17], [alloc: 1], [raw: 4]),
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 34]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 20]) -> [val: 5],
+                    <Br> ([raw: 13]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 18]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 14]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 23]) -> [val: 20],
+                    <Br> ([raw: 16]),
+                ],
+                BasicBlock: [
+                    <Mul> ([val: 4], [const: i32 3]) -> [val: 23],
+                    <Br> ([raw: 17]),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "repeat_pair",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 64,
+                    align: 8,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 0], [const: i64 0], [raw: 2], [val: 7]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 4]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 16]) -> [val: 4],
+                    <GEP> ([val: 0], [raw: 1], [val: 4]) -> [val: 5],
+                    <Store> ([val: 1], [val: 5], [raw: 8]),
+                    <GEP> ([val: 5], [raw: 1], [const: i64 8]) -> [val: 6],
+                    <Store> ([val: 2], [val: 6], [raw: 8]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 7],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "repeat_u128",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 48,
+                    align: 16,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+                i128,
+                Bool,
+                i64,
+                i64,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [
+                BasicBlock: [
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 0], [const: i64 0], [raw: 2], [val: 5]) -> [phi: 0] i64,
+                    <CMPult> ([phi: 0], [const: i64 3]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 2], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Mul> ([phi: 0], [const: i64 16]) -> [val: 3],
+                    <GEP> ([val: 0], [raw: 1], [val: 3]) -> [val: 4],
+                    <Store> ([val: 1], [val: 4], [raw: 16]),
+                    <Add> ([phi: 0], [const: i64 1]) -> [val: 5],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvNtCsioHeeuq8fQz_4core9panicking18panic_bounds_check",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                i64,
+                i64,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                },
+            ],
+            slots: [
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+    ],
+    consts: [],
+    globals: [
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  39 00 00 00 05 00 00 00                          |9.......|,
+            relocations: [
+                offset 0x0 insert [global: 1],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  39 00 00 00 0e 00 00 00                          |9.......|,
+            relocations: [
+                offset 0x0 insert [global: 3],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  39 00 00 00 05 00 00 00                          |9.......|,
+            relocations: [
+                offset 0x0 insert [global: 5],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  39 00 00 00 17 00 00 00                          |9.......|,
+            relocations: [
+                offset 0x0 insert [global: 7],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  39 00 00 00 05 00 00 00                          |9.......|,
+            relocations: [
+                offset 0x0 insert [global: 9],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  39 00 00 00 20 00 00 00                          |9... ...|,
+            relocations: [
+                offset 0x0 insert [global: 11],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  39 00 00 00 05 00 00 00                          |9.......|,
+            relocations: [
+                offset 0x0 insert [global: 13],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  08 00 00 00 28 00 00 00                          |....(...|,
+            relocations: [
+                offset 0x0 insert [global: 15],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  08 00 00 00 32 00 00 00                          |....2...|,
+            relocations: [
+                offset 0x0 insert [global: 17],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  08 00 00 00 3c 00 00 00                          |....<...|,
+            relocations: [
+                offset 0x0 insert [global: 19],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  3f 00 00 00 05 00 00 00                          |?.......|,
+            relocations: [
+                offset 0x0 insert [global: 21],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  17 00 00 00 14 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 23],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  19 00 00 00 0c 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 25],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  19 00 00 00 16 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 27],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  19 00 00 00 05 00 00 00                          |........|,
+            relocations: [
+                offset 0x0 insert [global: 29],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  4a 00 00 00 10 00 00 00                          |J.......|,
+            relocations: [
+                offset 0x0 insert [global: 31],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  4a 00 00 00 09 00 00 00                          |J.......|,
+            relocations: [
+                offset 0x0 insert [global: 33],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 24 00 00 00 00 00 00 00  |........$.......|
+              0010  4b 00 00 00 09 00 00 00                          |K.......|,
+            relocations: [
+                offset 0x0 insert [global: 35],
+            ],
+        },
+        anonymous {
+            size: 37,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (37 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  72 65 70 65 61 74 5f 70 68 69 2f 73 6f 75 72 63  |repeat_phi/sourc|
+              0020  65 2e 72 73 00                                   |e.rs.|,
+            relocations: [],
+        },
+    ],
+    global_ptrs: [],
+    const_vectors: [],
+}

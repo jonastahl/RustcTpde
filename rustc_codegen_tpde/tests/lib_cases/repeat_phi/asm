@@ -1,0 +1,376 @@
+In archive tests/lib_cases/repeat_phi/actual_obj:
+
+lib.rmeta:     file format elf64-x86-64
+
+
+lib.rmeta-link:     file format elf64-x86-64
+
+
+actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+<inlined_loops>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x60,%rsp
+	mov    $0x3,%eax
+	imul   %eax,%edi
+	mov    %esi,-0x54(%rbp)
+	mov    %edi,-0x58(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x30(%rbp)
+	cmpq   $0x4,-0x30(%rbp)
+	jae    <inlined_loops+0x48>
+	mov    -0x30(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x4,%edx
+	imul   %rdx,%rcx
+	mov    -0x58(%rbp),%edx
+	mov    %edx,-0x40(%rbp,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x30(%rbp)
+	jmp    <inlined_loops+0x1c>
+	mov    -0x40(%rbp),%eax
+	mov    -0x3c(%rbp),%ecx
+	lea    (%rax,%rcx,1),%ecx
+	cmp    %eax,%ecx
+	jb     <inlined_loops+0x142>
+	mov    -0x38(%rbp),%eax
+	lea    (%rcx,%rax,1),%eax
+	cmp    %ecx,%eax
+	jb     <inlined_loops+0x136>
+	mov    -0x34(%rbp),%ecx
+	lea    (%rax,%rcx,1),%ecx
+	cmp    %eax,%ecx
+	jb     <inlined_loops+0x12a>
+	mov    -0x54(%rbp),%eax
+	mov    $0x3,%edx
+	imul   %edx,%eax
+	mov    %eax,-0x54(%rbp)
+	mov    %ecx,-0x58(%rbp)
+	xor    %edx,%edx
+	mov    %rdx,-0x30(%rbp)
+	cmpq   $0x4,-0x30(%rbp)
+	jae    <inlined_loops+0xb8>
+	mov    -0x30(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x4,%edx
+	imul   %rdx,%rcx
+	mov    -0x54(%rbp),%edx
+	mov    %edx,-0x50(%rbp,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x30(%rbp)
+	jmp    <inlined_loops+0x8c>
+	mov    -0x50(%rbp),%eax
+	mov    -0x4c(%rbp),%ecx
+	lea    (%rax,%rcx,1),%ecx
+	cmp    %eax,%ecx
+	jb     <inlined_loops+0x11e>
+	mov    -0x48(%rbp),%eax
+	lea    (%rcx,%rax,1),%eax
+	cmp    %ecx,%eax
+	jb     <inlined_loops+0x112>
+	mov    -0x44(%rbp),%ecx
+	lea    (%rax,%rcx,1),%ecx
+	cmp    %eax,%ecx
+	jb     <inlined_loops+0x106>
+	mov    -0x58(%rbp),%eax
+	lea    (%rax,%rcx,1),%ecx
+	cmp    %eax,%ecx
+	jb     <inlined_loops+0xfa>
+	mov    %ecx,%eax
+	jmp    <inlined_loops+0x14e>
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0xf9>
+	call   <inlined_loops+0x106>
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x105>
+	call   <inlined_loops+0x112>
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x111>
+	call   <inlined_loops+0x11e>
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x11d>
+	call   <inlined_loops+0x12a>
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x129>
+	call   <inlined_loops+0x136>
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x135>
+	call   <inlined_loops+0x142>
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x141>
+	call   <inlined_loops+0x14e>
+	add    $0x60,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<repeat_after_call>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	mov    %rdi,%rbx
+	mov    $0x3,%eax
+	imul   %eax,%esi
+	mov    %esi,-0x2c(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x38(%rbp)
+	cmpq   $0x5,-0x38(%rbp)
+	jae    <repeat_after_call+0x44>
+	mov    -0x38(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x4,%edx
+	imul   %rdx,%rcx
+	mov    -0x2c(%rbp),%edx
+	mov    %edx,(%rbx,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x38(%rbp)
+	jmp    <repeat_after_call+0x19>
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<repeat_between_calls>:
+	push   %rbp
+	mov    %rsp,%rbp
+	sub    $0x70,%rsp
+	mov    $0x3,%eax
+	imul   %eax,%edi
+	mov    %edi,-0x64(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x30(%rbp)
+	cmpq   $0x7,-0x30(%rbp)
+	jae    <repeat_between_calls+0x45>
+	mov    -0x30(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x4,%edx
+	imul   %rdx,%rcx
+	mov    -0x64(%rbp),%edx
+	mov    %edx,-0x50(%rbp,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x30(%rbp)
+	jmp    <repeat_between_calls+0x19>
+	mov    -0x38(%rbp),%eax
+	mov    $0x3,%ecx
+	imul   %ecx,%eax
+	mov    %eax,-0x64(%rbp)
+	xor    %ecx,%ecx
+	mov    %rcx,-0x30(%rbp)
+	cmpq   $0x3,-0x30(%rbp)
+	jae    <repeat_between_calls+0x85>
+	mov    -0x30(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x4,%edx
+	imul   %rdx,%rcx
+	mov    -0x64(%rbp),%edx
+	mov    %edx,-0x60(%rbp,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x30(%rbp)
+	jmp    <repeat_between_calls+0x59>
+	mov    -0x50(%rbp),%eax
+	mov    $0x3,%ecx
+	imul   %ecx,%eax
+	mov    -0x58(%rbp),%ecx
+	lea    (%rax,%rcx,1),%ecx
+	cmp    %eax,%ecx
+	jb     <repeat_between_calls+0xa5>
+	mov    %ecx,%eax
+	jmp    <repeat_between_calls+0xb1>
+	lea    -0x8(%rip),%rdi        # <repeat_between_calls+0xa4>
+	call   <repeat_between_calls+0xb1>
+	add    $0x70,%rsp
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<repeat_big>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	sub    $0x58,%rsp
+	lea    0x1(%rsi),%rax
+	cmp    %rsi,%rax
+	jb     <repeat_big+0xc4>
+	lea    0x2(%rsi),%rcx
+	cmp    %rsi,%rcx
+	jb     <repeat_big+0xb8>
+	mov    %rsi,%rdx
+	lea    0x3(%rdx),%ebx
+	cmp    %edx,%ebx
+	jb     <repeat_big+0xac>
+	mov    %rsi,-0x50(%rbp)
+	mov    %rax,-0x48(%rbp)
+	mov    %rcx,-0x40(%rbp)
+	mov    %ebx,-0x38(%rbp)
+	mov    %rdi,-0x30(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x58(%rbp)
+	cmpq   $0x3,-0x58(%rbp)
+	jae    <repeat_big+0xa7>
+	mov    -0x58(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x20,%edx
+	imul   %rdx,%rcx
+	mov    -0x30(%rbp),%rdx
+	lea    (%rdx,%rcx,1),%rcx
+	mov    -0x50(%rbp),%rbx
+	mov    %rbx,(%rcx)
+	lea    0x8(%rcx),%rcx
+	mov    -0x48(%rbp),%rbx
+	mov    %rbx,(%rcx)
+	lea    0x8(%rcx),%rcx
+	mov    -0x40(%rbp),%rbx
+	mov    %rbx,(%rcx)
+	lea    0x8(%rcx),%rcx
+	mov    -0x38(%rbp),%rbx
+	mov    %rbx,(%rcx)
+	lea    -0x30(%rbp),%rbx
+	lea    0x8(%rcx),%rcx
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x58(%rbp)
+	jmp    <repeat_big+0x4a>
+	jmp    <repeat_big+0xd0>
+	lea    -0x8(%rip),%rdi        # <repeat_big+0xab>
+	call   <repeat_big+0xb8>
+	lea    -0x8(%rip),%rdi        # <repeat_big+0xb7>
+	call   <repeat_big+0xc4>
+	lea    -0x8(%rip),%rdi        # <repeat_big+0xc3>
+	call   <repeat_big+0xd0>
+	add    $0x58,%rsp
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<repeat_f64>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	mov    %rdi,%rbx
+	movq   %xmm0,-0x30(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x38(%rbp)
+	cmpq   $0x6,-0x38(%rbp)
+	jae    <repeat_f64+0x44>
+	mov    -0x38(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x8,%edx
+	imul   %rdx,%rcx
+	movq   -0x30(%rbp),%xmm0
+	movsd  %xmm0,(%rbx,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x38(%rbp)
+	jmp    <repeat_f64+0x14>
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+
+<repeat_in_loop>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	push   %r12
+	sub    $0x40,%rsp
+	movl   $0x0,-0x2c(%rbp)
+	movl   $0x0,-0x30(%rbp)
+	mov    %edi,-0x44(%rbp)
+	mov    -0x30(%rbp),%eax
+	mov    -0x44(%rbp),%ecx
+	cmp    %ecx,%eax
+	jae    <repeat_in_loop+0x8b>
+	mov    -0x30(%rbp),%ebx
+	mov    $0x3,%eax
+	imul   %eax,%ebx
+	mov    %ebx,%r12d
+	mov    %r12d,-0x48(%rbp)
+	xor    %ebx,%ebx
+	cmp    $0x3,%rbx
+	jae    <repeat_in_loop+0x64>
+	mov    %rbx,%rax
+	mov    $0x4,%ecx
+	imul   %rcx,%rax
+	mov    -0x48(%rbp),%ecx
+	mov    %ecx,-0x40(%rbp,%rax,1)
+	lea    0x1(%rbx),%rax
+	mov    %rax,%rbx
+	jmp    <repeat_in_loop+0x3e>
+	mov    -0x38(%rbp),%eax
+	mov    -0x2c(%rbp),%ecx
+	lea    (%rcx,%rax,1),%ebx
+	cmp    %ecx,%ebx
+	jb     <repeat_in_loop+0x9f>
+	mov    %ebx,-0x2c(%rbp)
+	mov    -0x30(%rbp),%eax
+	lea    0x1(%rax),%ebx
+	cmp    %eax,%ebx
+	jb     <repeat_in_loop+0x93>
+	mov    %ebx,-0x30(%rbp)
+	jmp    <repeat_in_loop+0x1c>
+	mov    -0x2c(%rbp),%eax
+	jmp    <repeat_in_loop+0xab>
+	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0x92>
+	call   <repeat_in_loop+0x9f>
+	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0x9e>
+	call   <repeat_in_loop+0xab>
+	add    $0x40,%rsp
+	pop    %r12
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
+
+<repeat_pair>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	mov    %rdx,-0x30(%rbp)
+	mov    %rsi,-0x38(%rbp)
+	mov    %rdi,-0x40(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x48(%rbp)
+	cmpq   $0x4,-0x48(%rbp)
+	jae    <repeat_pair+0x53>
+	mov    -0x48(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x10,%edx
+	imul   %rdx,%rcx
+	mov    -0x40(%rbp),%rdx
+	lea    (%rdx,%rcx,1),%rcx
+	mov    -0x38(%rbp),%rbx
+	mov    %rbx,(%rcx)
+	mov    -0x30(%rbp),%rsi
+	mov    %rsi,0x8(%rcx)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x48(%rbp)
+	jmp    <repeat_pair+0x17>
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nop
+
+<repeat_u128>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	mov    %rdi,%rbx
+	mov    %rdx,-0x38(%rbp)
+	mov    %rsi,-0x40(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x30(%rbp)
+	cmpq   $0x3,-0x30(%rbp)
+	jae    <repeat_u128+0x4c>
+	mov    -0x30(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x10,%edx
+	imul   %rdx,%rcx
+	mov    -0x38(%rbp),%rdx
+	mov    %rdx,0x8(%rbx,%rcx,1)
+	mov    -0x40(%rbp),%rsi
+	mov    %rsi,(%rbx,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x30(%rbp)
+	jmp    <repeat_u128+0x16>
+	pop    %rbx
+	pop    %rbp
+	ret

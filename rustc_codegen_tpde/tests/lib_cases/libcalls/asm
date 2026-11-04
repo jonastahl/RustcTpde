@@ -739,33 +739,34 @@ Disassembly of section .text:
 	mov    %rsp,%rbp
 	push   %rbx
 	sub    $0x238,%rsp
-	movq   $0x0,-0x30(%rbp)
-	mov    %rsi,-0x238(%rbp)
-	mov    %rdi,-0x240(%rbp)
-	mov    -0x30(%rbp),%rbx
-	cmp    $0x20,%rbx
-	jae    <fill_big+0x55>
-	mov    %rbx,%rax
-	mov    $0x8,%ecx
-	imul   %rcx,%rax
-	mov    -0x238(%rbp),%rcx
-	mov    %rcx,-0x230(%rbp,%rax,1)
-	lea    0x1(%rbx),%rbx
-	mov    %rbx,-0x30(%rbp)
-	jmp    <fill_big+0x22>
+	mov    %rdi,%rbx
+	mov    %rsi,-0x30(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x238(%rbp)
+	cmpq   $0x20,-0x238(%rbp)
+	jae    <fill_big+0x56>
+	mov    -0x238(%rbp),%rax
+	mov    %rax,%rcx
+	mov    $0x8,%edx
+	imul   %rdx,%rcx
+	mov    -0x30(%rbp),%rdx
+	mov    %rdx,-0x230(%rbp,%rcx,1)
+	lea    0x1(%rax),%rcx
+	mov    %rcx,-0x238(%rbp)
+	jmp    <fill_big+0x1c>
 	lea    -0x130(%rbp),%rdi
 	lea    -0x230(%rbp),%rsi
 	mov    $0x100,%edx
-	call   <fill_big+0x6d>
-	mov    -0x240(%rbp),%rax
+	call   <fill_big+0x6e>
+	mov    %rbx,%rax
 	mov    $0x8,%ecx
 	sub    $0x1,%rcx
 	mov    %rax,%rdx
 	and    %rcx,%rdx
 	test   %rdx,%rdx
-	mov    %rax,-0x238(%rbp)
-	jne    <fill_big+0xe2>
-	mov    -0x240(%rbp),%rcx
+	mov    %rax,-0x30(%rbp)
+	jne    <fill_big+0xd4>
+	mov    %rbx,%rcx
 	mov    $0x100,%edx
 	test   %rdx,%rdx
 	setne  %dl
@@ -774,24 +775,24 @@ Disassembly of section .text:
 	and    %edx,%ecx
 	xor    $0x1,%cl
 	test   $0x1,%cl
-	je     <fill_big+0xd6>
-	mov    -0x240(%rbp),%rdi
+	je     <fill_big+0xc8>
+	mov    %rbx,%rdi
 	lea    -0x130(%rbp),%rsi
 	mov    $0x100,%edx
-	call   <fill_big+0xd1>
-	jmp    <fill_big+0xfa>
-	lea    -0x8(%rip),%rdi        # <fill_big+0xd5>
-	call   <fill_big+0xe2>
+	call   <fill_big+0xc3>
+	jmp    <fill_big+0xe9>
+	lea    -0x8(%rip),%rdi        # <fill_big+0xc7>
+	call   <fill_big+0xd4>
 	mov    $0x8,%edi
-	mov    -0x238(%rbp),%rsi
-	lea    -0x8(%rip),%rdx        # <fill_big+0xed>
-	call   <fill_big+0xfa>
+	mov    -0x30(%rbp),%rsi
+	lea    -0x8(%rip),%rdx        # <fill_big+0xdc>
+	call   <fill_big+0xe9>
 	add    $0x238,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopl   0x0(%rax)
 
 <memcpy_const_100>:
 	push   %rbp

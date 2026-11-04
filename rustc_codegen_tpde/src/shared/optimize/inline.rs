@@ -1,18 +1,17 @@
 use crate::shared::ffi;
-use crate::shared::ffi::{BasicBlock, InstructionReference};
+use crate::shared::ffi::{BasicBlock, Instruction, InstructionReference, Phi};
 use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot, size_of_type};
 use std::collections::BTreeSet;
 use std::env;
+use std::ops::Range;
 use std::sync::LazyLock;
 
 // Highest cost a function without `#[inline(always)]` is inlined
-static INLINE_COST: LazyLock<u32> = LazyLock::new(|| {
-    match env::var("TPDE_INLINE_COST") {
-        Ok(val) => val
-            .parse::<u32>()
-            .expect("TPDE_INLINE_COST has to be a number"),
-        Err(_) => 32,
-    }
+static INLINE_COST: LazyLock<u32> = LazyLock::new(|| match env::var("TPDE_INLINE_COST") {
+    Ok(val) => val
+        .parse::<u32>()
+        .expect("TPDE_INLINE_COST has to be a number"),
+    Err(_) => 32,
 });
 
 impl ModuleTpde {
@@ -22,7 +21,6 @@ impl ModuleTpde {
         // - are leave functions -> call no other functions
         // - are marked always inlined or cheaper than the maximum specified cost
         // - has no byval arguments
-        // - has maximum of one return value
 
         // info1 and info2 are not used during generation
         // we use info1 to store the follower of a block if it has to split up
@@ -42,7 +40,7 @@ impl ModuleTpde {
             .filter(|(_, f)| is_inlinable(f))
             .map(|(i, _)| i)
             .collect();
-        let mut return_slots: Vec<u32> = vec![];
+        let mut returns: Vec<ReturnSite> = vec![];
 
         // Used over hash set for determinism
         let mut to_optimize: BTreeSet<u32> = BTreeSet::new();
@@ -56,7 +54,7 @@ impl ModuleTpde {
                     .get_disjoint_mut([site.func as usize, f])
                     .expect("Trying to inline function into itself");
 
-                all_inlined &= inline_call(caller, callee, &site, &mut return_slots);
+                all_inlined &= inline_call(caller, callee, &site, &mut returns);
 
                 caller.calling -= 1;
                 if is_inlinable(caller) {
@@ -90,7 +88,7 @@ impl ModuleTpde {
 
         while let Some(block) = stack.pop() {
             let func = &self.functions[function as usize];
-            // We can use this hack as long as we don't have phis which would cause cycles
+            // Phis never become known, so a value is always known before its uses are visited
             if std::mem::replace(&mut seen[block], true) {
                 continue;
             }
@@ -107,7 +105,8 @@ impl ModuleTpde {
 
                 for op in &mut func.operands[ops..ops_end] {
                     if let Slot::Value(_, v) = Slot::from_ffi(*op)
-                        && let Some(c) = known[v as usize] {
+                        && let Some(c) = known[v as usize]
+                    {
                         *op = c;
                     }
                 }
@@ -121,7 +120,8 @@ impl ModuleTpde {
 
                     // An overflow check is only defined by the arithmetic before it, so both have to go
                     let func = &mut self.functions[function as usize];
-                    if read < end && func.instructions[read].kind == InstructionKind::OverflowCheck {
+                    if read < end && func.instructions[read].kind == InstructionKind::OverflowCheck
+                    {
                         let check = func.instructions[read];
                         read += 1;
                         let signed = matches!(
@@ -129,7 +129,9 @@ impl ModuleTpde {
                             Slot::Raw(1)
                         );
                         let func = &self.functions[function as usize];
-                        let overflow = self.overflows(instr.kind, &func.operands[ops..ops_end], signed) as u128;
+                        let overflow =
+                            self.overflows(instr.kind, &func.operands[ops..ops_end], signed)
+                                as u128;
                         known[check.result as usize] =
                             Some(self.add_const(ffi::Type::Bool, overflow).to_ffi());
                     }
@@ -140,18 +142,14 @@ impl ModuleTpde {
                     && let Slot::Const(cond) = Slot::from_ffi(func.operands[ops])
                 {
                     let taken = self.const_value(cond).1 & 1 != 0;
-                    self.functions[function as usize].operands[ops] = func.operands[if taken { ops + 1 } else { ops + 2 }];
+                    self.functions[function as usize].operands[ops] =
+                        func.operands[if taken { ops + 1 } else { ops + 2 }];
                     instr.kind = InstructionKind::Br;
                     instr.ops_len = 1;
                 }
 
                 let func = &mut self.functions[function as usize];
-                let successors = match instr.kind {
-                    InstructionKind::Br => ops..ops + 1,
-                    InstructionKind::CondBr | InstructionKind::Invoke => ops + 1..ops + 3,
-                    InstructionKind::Switch => ops + 1..ops + 1 + instr.ops_len as usize / 2,
-                    _ => 0..0,
-                };
+                let successors = successor_ops(&instr);
                 for op in &func.operands[successors] {
                     if let Slot::Raw(target) = Slot::from_ffi(*op) {
                         stack.push(target as usize);
@@ -171,11 +169,26 @@ impl ModuleTpde {
             }
             func.basic_blocks[block].insts_len = (write - start) as u32;
         }
+
+        // The incoming values of a phi can be defined after it, so these are mapped last
+        let func = &mut self.functions[function as usize];
+        for phi in &func.phis {
+            let start = phi.incoming_start as usize;
+            let incoming = &mut func.operands[start..start + phi.incoming_len as usize * 2];
+            for value in incoming.iter_mut().skip(1).step_by(2) {
+                if let Slot::Value(_, v) = Slot::from_ffi(*value)
+                    && let Some(c) = known[v as usize]
+                {
+                    *value = c;
+                }
+            }
+        }
     }
 
     fn eval_const(&self, kind: InstructionKind, ops: &[u32]) -> Option<u128> {
         let &[lhs, rhs] = ops else { return None };
-        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs)) else {
+        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs))
+        else {
             unreachable!()
         };
         let (tya, lhs) = self.const_value(lhs);
@@ -205,7 +218,8 @@ impl ModuleTpde {
 
     fn overflows(&self, kind: InstructionKind, ops: &[u32], signed: bool) -> bool {
         let &[lhs, rhs] = ops else { unreachable!() };
-        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs)) else {
+        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs))
+        else {
             unreachable!()
         };
         let (tya, lhs) = self.const_value(lhs);
@@ -220,7 +234,7 @@ impl ModuleTpde {
                 I::Add => slhs.checked_add(shrs),
                 I::Sub => slhs.checked_sub(shrs),
                 I::Mul => slhs.checked_mul(shrs),
-                _ => unreachable!()
+                _ => unreachable!(),
             };
             result.is_none_or(|r| sign_extend(r as u128 & mask(bits), bits) != r)
         } else {
@@ -228,15 +242,56 @@ impl ModuleTpde {
                 I::Add => lhs.checked_add(rhs),
                 I::Sub => lhs.checked_sub(rhs),
                 I::Mul => lhs.checked_mul(rhs),
-                _ => unreachable!()
+                _ => unreachable!(),
             };
             result.is_none_or(|r| r > mask(bits))
         }
     }
 }
 
+fn replace_phi_predecessor(func: &mut ffi::Function, from: u32, to: u32) {
+    if func.phis.is_empty() {
+        return;
+    }
+    let new_block = &func.basic_blocks[to as usize];
+    if new_block.insts_len == 0 {
+        return;
+    }
+    let terminator = func.instructions[(new_block.insts_start + new_block.insts_len - 1) as usize];
+    let (from, to) = (Slot::new_raw(from).to_ffi(), Slot::new_raw(to).to_ffi());
+
+    for op in successor_ops(&terminator) {
+        let Slot::Raw(target) = Slot::from_ffi(func.operands[op]) else {
+            continue;
+        };
+        let target = &func.basic_blocks[target as usize];
+        for phi in
+            &func.phis[target.phi_start as usize..(target.phi_start + target.phi_len) as usize]
+        {
+            let incoming = &mut func.operands
+                [phi.incoming_start as usize..(phi.incoming_start + phi.incoming_len) as usize * 2];
+            for block in incoming.iter_mut().step_by(2) {
+                if *block == from {
+                    *block = to;
+                }
+            }
+        }
+    }
+}
+
+fn successor_ops(instr: &Instruction) -> Range<usize> {
+    let ops = instr.ops_start as usize;
+    match instr.kind {
+        InstructionKind::Br => ops..ops + 1,
+        InstructionKind::CondBr | InstructionKind::Invoke => ops + 1..ops + 3,
+        InstructionKind::Switch => ops + 1..ops + 1 + instr.ops_len as usize / 2,
+        _ => 0..0,
+    }
+}
+
 fn all_const(ops: &[u32]) -> bool {
-    ops.iter().all(|op| matches!(Slot::from_ffi(*op), Slot::Const(_)))
+    ops.iter()
+        .all(|op| matches!(Slot::from_ffi(*op), Slot::Const(_)))
 }
 
 fn mask(bits: u32) -> u128 {
@@ -252,7 +307,7 @@ fn inline_call(
     caller: &mut ffi::Function,
     callee: &ffi::Function,
     site: &InstructionReference,
-    return_slots: &mut Vec<u32>,
+    returns: &mut Vec<ReturnSite>,
 ) -> bool {
     let (block, offset) = {
         let (mut block, mut offset) = (site.block as usize, site.instr);
@@ -282,8 +337,6 @@ fn inline_call(
     }
     caller.cost += callee.cost;
 
-    return_slots.clear();
-
     // split up the block after the call
     let cont_idx = caller.basic_blocks.len() as u32;
     let cur = &mut caller.basic_blocks[block];
@@ -295,13 +348,19 @@ fn inline_call(
     caller.basic_blocks.push(BasicBlock {
         insts_start: call_idx as u32 + 1,
         insts_len: insts_len - offset - 1,
+        phi_start: 0,
+        phi_len: 0,
         info1: prev_cont,
         info2: 0,
     });
+    replace_phi_predecessor(caller, block as u32, cont_idx);
+
     let results_bb = caller.basic_blocks.len();
     caller.basic_blocks.push(BasicBlock {
         insts_start: 0,
         insts_len: 0,
+        phi_start: 0,
+        phi_len: 0,
         info1: 0,
         info2: 0,
     });
@@ -331,54 +390,61 @@ fn inline_call(
         allocas: caller.allocas.len() as u32,
         callee_infos: caller.callee_infos.len() as u32,
         slots: caller.slots.len() as u32,
+        phis: caller.phis.len() as u32,
         basic_blocks: caller.basic_blocks.len() as u32,
         instructions: caller.instructions.len() as u32,
         operands: caller.operands.len() as u32,
     };
 
+    returns.clear();
+
     // let's start copying the function
     copy_inline_function(caller, callee);
 
-    {
-        let block_len = caller.basic_blocks.len();
-        map_blocks(
-            &mut caller.basic_blocks[offsets.basic_blocks as usize..block_len],
-            &offsets,
-        )
-    }
-
-    // start mapping instructions
-    {
-        caller
-            .operands
-            .push(Slot::new_raw(results_bb as u32).to_ffi());
-        let results_op = caller.operands.len() - 1;
-        let (ex_ops, new_ops) = caller.operands.split_at_mut(offsets.operands as usize);
-
-        // mapping table for the arguments of the function
-        let argument_mapping = &ex_ops[args_start..args_end];
-
-        // start remapping all operands, before the instructions so that the
-        // return values are already mapped
-        map_operands(new_ops, argument_mapping, &offsets);
-
-        let instr_len = caller.instructions.len();
-        map_instructions(
-            &mut caller.instructions[offsets.instructions as usize..instr_len],
+    let ops_len = caller.operands.len() as u32;
+    let mut additional_ops: Vec<u32> = vec![];
+    let (ex_ops, new_ops) = caller.operands.split_at_mut(offsets.operands as usize);
+    let argument_mapping = &ex_ops[args_start..args_end];
+    for i in offsets.basic_blocks as usize..caller.basic_blocks.len() {
+        map_block(
+            &mut caller.basic_blocks[i],
+            i as u32,
+            &mut caller.instructions,
             new_ops,
+            &mut caller.phis,
             &callee.operands,
+            argument_mapping,
+            &mut additional_ops,
+            ops_len,
             &offsets,
-            results_op as u32 - offsets.operands,
-            return_slots,
+            returns,
+            results_bb as u32
         );
     }
+    caller.operands.extend_from_slice(additional_ops.as_slice());
 
     let bb = &mut caller.basic_blocks[results_bb];
     bb.insts_start = caller.instructions.len() as u32;
+    bb.phi_start = caller.phis.len() as u32;
 
-    // Map every return slot to the expected slot
-    // TODO replace this with phi nodes for multiple ret per inlined function
-    for (from, to) in return_slots.iter().zip(expected_slots) {
+    for (i, to) in expected_slots.iter().enumerate() {
+        let from = if let [ret] = returns.as_slice() {
+            caller.operands[ret.ops_start as usize + i]
+        } else {
+            let incoming_start = caller.operands.len() as u32;
+            for ret in returns.iter() {
+                let value = caller.operands[ret.ops_start as usize + i];
+                caller.operands.push(Slot::new_raw(ret.block).to_ffi());
+                caller.operands.push(value);
+            }
+            caller.phis.push(ffi::Phi {
+                ty: caller.slots[*to as usize].ty,
+                incoming_start,
+                incoming_len: returns.len() as u32,
+            });
+            bb.phi_len += 1;
+            Slot::new_phi(caller.phis.len() as u32 - 1).to_ffi()
+        };
         caller.instructions.push(ffi::Instruction {
             kind: InstructionKind::Cast,
             ops_start: caller.operands.len() as u32,
@@ -386,7 +452,7 @@ fn inline_call(
             has_result: true,
             result: *to,
         });
-        caller.operands.push(*from);
+        caller.operands.push(from);
     }
     caller.instructions.push(ffi::Instruction {
         kind: InstructionKind::Br,
@@ -405,14 +471,7 @@ fn inline_call(
 fn is_inlinable(f: &ffi::Function) -> bool {
     let wanted = f.calling == 0 && (f.flags.always_inline || f.cost <= *INLINE_COST);
 
-    wanted
-        && !f.basic_blocks.is_empty()
-        && !f.args.iter().any(|arg| arg.kind == ArgKind::ByVal)
-        && f.instructions
-        .iter()
-        .filter(|i| matches!(i.kind, InstructionKind::Ret))
-        .count()
-        <= 1
+    wanted && !f.basic_blocks.is_empty() && !f.args.iter().any(|arg| arg.kind == ArgKind::ByVal)
 }
 
 fn can_inline_call(caller: &ffi::Function, callee: &ffi::Function, args: &[u32]) -> bool {
@@ -427,10 +486,17 @@ fn can_inline_call(caller: &ffi::Function, callee: &ffi::Function, args: &[u32])
     true
 }
 
+struct ReturnSite {
+    block: u32,
+    ops_start: u32,
+    ops_len: u32,
+}
+
 struct InlineOffsets {
     allocas: u32,
     callee_infos: u32,
     slots: u32,
+    phis: u32,
     basic_blocks: u32,
     instructions: u32,
     operands: u32,
@@ -445,106 +511,173 @@ fn copy_inline_function(caller: &mut ffi::Function, callee: &ffi::Function) {
     caller.instructions.extend_from_slice(&callee.instructions);
     caller.operands.extend_from_slice(&callee.operands);
     caller.slots.extend_from_slice(&callee.slots);
+    caller.phis.extend_from_slice(&callee.phis);
 }
 
-fn map_blocks(basic_blocks: &mut [BasicBlock], inline_offsets: &InlineOffsets) {
-    for bb in basic_blocks {
-        bb.insts_start += inline_offsets.instructions;
+// TODO reduce the amount of arguments
+fn map_block(
+    bb: &mut BasicBlock,
+    block_index: u32,
+    instructions: &mut [Instruction],
+    operands: &mut [u32],
+    phis: &mut [Phi],
+    callee_operands: &[u32],
+    argument_mapping: &[u32],
+    adding_ops: &mut Vec<u32>,
+    ops_len: u32,
+    inline_offsets: &InlineOffsets,
+    returns: &mut Vec<ReturnSite>,
+    return_bb: u32
+) {
+    bb.insts_start += inline_offsets.instructions;
+    bb.phi_start += inline_offsets.phis;
+
+    {
+        let start = bb.insts_start as usize;
+        let end = start + bb.insts_len as usize;
+        for instr in &mut instructions[start..end] {
+            map_instruction(
+                instr,
+                block_index,
+                operands,
+                callee_operands,
+                argument_mapping,
+                adding_ops,
+                ops_len,
+                inline_offsets,
+                returns,
+                return_bb
+            )
+        }
+    }
+
+    {
+        let start = bb.phi_start as usize;
+        let end = start + bb.phi_len as usize;
+        for phi in &mut phis[start..end] {
+            map_phi(phi, operands, argument_mapping, inline_offsets)
+        }
     }
 }
 
-fn map_operands(operands: &mut [u32], argument_mapping: &[u32], inline_offsets: &InlineOffsets) {
-    // map: val, alloca
-    for operand in operands {
-        match Slot::from_ffi(*operand) {
-            Slot::Value(f, v) => {
-                *operand = if v < argument_mapping.len() as u32 {
-                    argument_mapping[v as usize]
-                } else {
-                    Slot::Value(f, v + inline_offsets.slots).to_ffi()
-                };
-            }
-            Slot::Alloc(a) => *operand = Slot::Alloc(a + inline_offsets.allocas).to_ffi(),
-            _ => {}
-        };
-    }
-}
-
-fn map_instructions(
-    instructions: &mut [ffi::Instruction],
+fn map_instruction(
+    instr: &mut Instruction,
+    block_index: u32,
     operands: &mut [u32],
     callee_operands: &[u32],
+    argument_mapping: &[u32],
+    adding_ops: &mut Vec<u32>,
+    ops_len: u32,
     inline_offsets: &InlineOffsets,
-    return_op: u32,
-    return_slots: &mut Vec<u32>,
+    returns: &mut Vec<ReturnSite>,
+    return_bb: u32,
 ) {
-    for instr in instructions {
-        // map: br, condbr, switch, funcs (callee info), invoke
-        match instr.kind {
-            InstructionKind::Br => {
-                // map op 0 raw bb
-                operands[instr.ops_start as usize] += inline_offsets.basic_blocks;
-            }
-            InstructionKind::CondBr => {
-                // Invoke: map op 1 and 2 (then and catch bb)
-                // CondBr: map op 1 and 2 raw bb
-                let ops = instr.ops_start as usize;
-                operands[ops + 1] += inline_offsets.basic_blocks;
-                operands[ops + 2] += inline_offsets.basic_blocks;
-            }
-            InstructionKind::Switch => {
-                // [cond, default, targets..., case values...]: map default and targets
-                let targets = instr.ops_start as usize + 1
-                    ..instr.ops_start as usize + 1 + instr.ops_len as usize / 2;
-                for op in &mut operands[targets] {
-                    *op += inline_offsets.basic_blocks;
-                }
-            }
-            InstructionKind::Call | InstructionKind::Invoke => {
-                let info = if instr.kind == InstructionKind::Invoke {
-                    // map op 1 and 2 (then and catch bb)
-                    operands[instr.ops_start as usize + 1] += inline_offsets.basic_blocks;
-                    operands[instr.ops_start as usize + 2] += inline_offsets.basic_blocks;
-                    instr.ops_start as usize + 3
-                } else {
-                    instr.ops_start as usize + 1
-                };
+    {
+        let start = instr.ops_start as usize;
+        let end = start + instr.ops_len as usize;
+        for op in &mut operands[start..end] {
+            map_operands(op, argument_mapping, inline_offsets);
+        }
+    }
 
-                // map the raw callee_info if the original callee is a val
-                if matches!(
+    // map: br, condbr, switch, funcs (callee info), invoke
+    match instr.kind {
+        InstructionKind::Br => {
+            // map op 0 raw bb
+            operands[instr.ops_start as usize] += inline_offsets.basic_blocks;
+        }
+        InstructionKind::CondBr => {
+            // Invoke: map op 1 and 2 (then and catch bb)
+            // CondBr: map op 1 and 2 raw bb
+            let ops = instr.ops_start as usize;
+            operands[ops + 1] += inline_offsets.basic_blocks;
+            operands[ops + 2] += inline_offsets.basic_blocks;
+        }
+        InstructionKind::Switch => {
+            // [cond, default, targets..., case values...]: map default and targets
+            let targets = instr.ops_start as usize + 1
+                ..instr.ops_start as usize + 1 + instr.ops_len as usize / 2;
+            for op in &mut operands[targets] {
+                *op += inline_offsets.basic_blocks;
+            }
+        }
+        InstructionKind::Call | InstructionKind::Invoke => {
+            let info = if instr.kind == InstructionKind::Invoke {
+                // map op 1 and 2 (then and catch bb)
+                operands[instr.ops_start as usize + 1] += inline_offsets.basic_blocks;
+                operands[instr.ops_start as usize + 2] += inline_offsets.basic_blocks;
+                instr.ops_start as usize + 3
+            } else {
+                instr.ops_start as usize + 1
+            };
+
+            // map the raw callee_info if the original callee is a val
+            if matches!(
                     Slot::from_ffi(callee_operands[instr.ops_start as usize]),
-                    Slot::Value(..)
+                    Slot::Value(..) | Slot::Phi(..)
                 ) {
-                    if matches!(
+                if matches!(
                         Slot::from_ffi(operands[instr.ops_start as usize]),
                         Slot::Func(_)
                     ) {
-                        // The argument made it a direct call, which has no callee info
-                        operands.copy_within(
-                            info + 1..instr.ops_start as usize + instr.ops_len as usize,
-                            info,
-                        );
-                        instr.ops_len -= 1;
-                    } else {
-                        operands[info] += inline_offsets.callee_infos;
-                    }
+                    // The argument made it a direct call, which has no callee info
+                    operands.copy_within(
+                        info + 1..instr.ops_start as usize + instr.ops_len as usize,
+                        info,
+                    );
+                    instr.ops_len -= 1;
+                } else {
+                    operands[info] += inline_offsets.callee_infos;
                 }
             }
-            InstructionKind::Ret => {
-                instr.kind = InstructionKind::Br;
-                for i in 0..instr.ops_len {
-                    return_slots.push(operands[(instr.ops_start + i) as usize]);
-                }
-                instr.ops_start = return_op;
-                instr.ops_len = 1;
-            }
-            _ => {}
         }
+        InstructionKind::Ret => {
+            returns.push(ReturnSite {
+                block: block_index,
+                ops_start: instr.ops_start + inline_offsets.operands,
+                ops_len: instr.ops_len,
+            });
 
-        // map the start ops of the operands
-        instr.ops_start += inline_offsets.operands;
-        if instr.has_result {
-            instr.result += inline_offsets.slots;
+            instr.kind = InstructionKind::Br;
+            instr.ops_start = ops_len + adding_ops.len() as u32;
+            instr.ops_len = 1;
+            adding_ops.push(Slot::new_raw(return_bb).to_ffi());
+            return;
         }
+        _ => {}
     }
+
+    // map the start ops of the operands
+    instr.ops_start += inline_offsets.operands;
+    if instr.has_result {
+        instr.result += inline_offsets.slots;
+    }
+}
+
+fn map_operands(operand: &mut u32, argument_mapping: &[u32], inline_offsets: &InlineOffsets) {
+    // map: val, alloca
+    match Slot::from_ffi(*operand) {
+        Slot::Value(f, v) => {
+            *operand = if v < argument_mapping.len() as u32 {
+                argument_mapping[v as usize]
+            } else {
+                Slot::Value(f, v + inline_offsets.slots).to_ffi()
+            };
+        }
+        Slot::Alloc(a) => *operand = Slot::Alloc(a + inline_offsets.allocas).to_ffi(),
+        Slot::Phi(f, p) => *operand = Slot::Phi(f, p + inline_offsets.phis).to_ffi(),
+        _ => {}
+    };
+}
+
+fn map_phi(phi: &mut Phi, operands: &mut [u32], argument_mapping: &[u32], inline_offsets: &InlineOffsets) {
+    let start = phi.incoming_start as usize;
+    let incoming = &mut operands[start..start + phi.incoming_len as usize * 2];
+    for block in incoming.iter_mut().step_by(2) {
+        *block += inline_offsets.basic_blocks;
+    }
+    for val in incoming {
+        map_operands(val, argument_mapping, inline_offsets);
+    }
+    phi.incoming_start += inline_offsets.operands;
 }
