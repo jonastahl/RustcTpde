@@ -25,8 +25,10 @@ namespace IR {
   inline constexpr uint32_t MARKER_ALLOC = size_t{3} << (std::numeric_limits<std::uint32_t>::digits - 3);
   inline constexpr uint32_t MARKER_FUNC = size_t{4} << (std::numeric_limits<std::uint32_t>::digits - 3);
   inline constexpr uint32_t MARKER_GLOBAL = size_t{5} << (std::numeric_limits<std::uint32_t>::digits - 3);
-  inline constexpr uint32_t MARKER_GLOBAL_PTR = size_t{6} << (std::numeric_limits<std::uint32_t>::digits - 3);
-  inline constexpr uint32_t MARKER_CONST_VECTOR = size_t{7} << (std::numeric_limits<std::uint32_t>::digits - 3);
+  inline constexpr uint32_t MARKER_CONST_VECTOR = size_t{6} << (std::numeric_limits<std::uint32_t>::digits - 3);
+
+  // Under MARKER_GLOBAL: set for an index into global_ptrs, clear for a global at offset 0.
+  inline constexpr uint32_t GLOBAL_PTR_BIT = uint32_t{1} << (std::numeric_limits<std::uint32_t>::digits - 4);
 
   inline constexpr uint32_t INLINE_CONST_BITS = 6;
   inline constexpr uint32_t INLINE_CONST_MASK = (uint32_t{1} << INLINE_CONST_BITS) - 1;
@@ -65,11 +67,15 @@ namespace IR {
     }
 
     [[nodiscard]] constexpr bool is_global() const {
-      return is(MARKER_GLOBAL);
+      return is_any_global() && !(value & GLOBAL_PTR_BIT);
     }
 
     [[nodiscard]] constexpr bool is_global_ptr() const {
-      return is(MARKER_GLOBAL_PTR);
+      return is_any_global() && (value & GLOBAL_PTR_BIT);
+    }
+
+    [[nodiscard]] constexpr bool is_any_global() const {
+      return is(MARKER_GLOBAL);
     }
 
     [[nodiscard]] constexpr bool is_const_vector() const {
@@ -78,6 +84,10 @@ namespace IR {
 
     [[nodiscard]] constexpr uint32_t content() const {
       return value & ~MARKER_BLOCK;
+    }
+
+    [[nodiscard]] constexpr uint32_t global_ptr_idx() const {
+      return value & ~(MARKER_BLOCK | GLOBAL_PTR_BIT);
     }
 
     [[nodiscard]] bool operator==(const Operand &other) const {
@@ -159,6 +169,7 @@ namespace tpde_rust {
     Function *cur_func = nullptr;
 
     std::array<u32, 8> starts_index;
+    u32 globals_count;
 
     template<typename T>
     [[nodiscard]] static std::span<T> view(rust::Vec<T> &vec) {
@@ -236,7 +247,7 @@ namespace tpde_rust {
         return const_value(value).ty;
       if (value.is_const_vector())
         return get_const_vectors()[value.content()].ty;
-      if (value.is_alloc() || value.is_global() || value.is_global_ptr()
+      if (value.is_alloc() || value.is_any_global()
           || value.is_func())
         return Type::ptr;
       assert(false && "invalid value ref");
@@ -538,8 +549,8 @@ namespace tpde_rust {
       starts_index = {0};
       starts_index[IR::MARKER_ALLOC >> 29] = get_slots().size();
       starts_index[IR::MARKER_GLOBAL >> 29] = starts_index[IR::MARKER_ALLOC >> 29] + get_allocas().size();
-      starts_index[IR::MARKER_GLOBAL_PTR >> 29] = starts_index[IR::MARKER_GLOBAL >> 29] + get_globals().size();
-      starts_index[IR::MARKER_FUNC >> 29] = starts_index[IR::MARKER_GLOBAL_PTR >> 29] + get_global_ptrs().size();
+      globals_count = get_globals().size();
+      starts_index[IR::MARKER_FUNC >> 29] = starts_index[IR::MARKER_GLOBAL >> 29] + globals_count + get_global_ptrs().size();
       return true;
     }
 

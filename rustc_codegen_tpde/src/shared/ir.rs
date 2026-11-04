@@ -962,8 +962,11 @@ pub const MARKER_RAW: Marker = 2_u32 << (u32::BITS - 3);
 pub const MARKER_ALLOC: Marker = 3_u32 << (u32::BITS - 3);
 pub const MARKER_FUNC: Marker = 4_u32 << (u32::BITS - 3);
 pub const MARKER_GLOBAL: Marker = 5_u32 << (u32::BITS - 3);
-pub const MARKER_GLOBAL_PTR: Marker = 6_u32 << (u32::BITS - 3);
-pub const MARKER_CONST_VECTOR: Marker = 7_u32 << (u32::BITS - 3);
+pub const MARKER_CONST_VECTOR: Marker = 6_u32 << (u32::BITS - 3);
+
+// With the marker set it has an offset saved in global_ptrs,
+// otherwise it points directly to the global
+pub const GLOBAL_PTR_BIT: u32 = 1_u32 << (u32::BITS - 4);
 impl Slot {
     fn new_val(func: Function, index: u32) -> Self {
         Self::Value(func, index)
@@ -1001,7 +1004,7 @@ impl Slot {
             Self::Raw(r) => *r | MARKER_RAW,
             Self::Func(f) => (f.0 as u32) | MARKER_FUNC,
             Self::Global(g) => g.0 as u32 | MARKER_GLOBAL,
-            Self::GlobalPtr(p) => *p | MARKER_GLOBAL_PTR,
+            Self::GlobalPtr(p) => *p | MARKER_GLOBAL | GLOBAL_PTR_BIT,
             Self::ConstVector(v) => *v | MARKER_CONST_VECTOR,
             Self::Pair(..) => unreachable!("Only used for tracking during generation"),
         }
@@ -1032,10 +1035,10 @@ impl Slot {
             return Self::Func(Function(f as usize));
         }
         if let Some(g) = Self::is(ffi, MARKER_GLOBAL) {
+            if g & GLOBAL_PTR_BIT != 0 {
+                return Self::GlobalPtr(g & !GLOBAL_PTR_BIT);
+            }
             return Self::Global(Global(g as usize));
-        }
-        if let Some(p) = Self::is(ffi, MARKER_GLOBAL_PTR) {
-            return Self::GlobalPtr(p);
         }
         if let Some(v) = Self::is(ffi, MARKER_CONST_VECTOR) {
             return Self::ConstVector(v);

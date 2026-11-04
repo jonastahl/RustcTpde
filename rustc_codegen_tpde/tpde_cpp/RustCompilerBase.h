@@ -184,8 +184,7 @@ namespace tpde_rust {
 
     std::optional<ValRefSpecial> val_ref_special(IRValueRef value) {
       if (value.is_const() || value.is_const_vector()
-          || value.is_global()
-          || value.is_global_ptr() || value.is_func()) {
+          || value.is_any_global() || value.is_func()) {
         return ValRefSpecial::make_const(value);
       }
       return std::nullopt;
@@ -237,7 +236,9 @@ namespace tpde_rust {
         // small vectors with less than 64 bits occupy the low bits of one XMM part
         return ValuePart(imm.data2 & ((u64{1} << (size * 8)) - 1), part_size_bytes(imm.ty), reg_bank);
       } {
-        u32 loc_id = vrs.data.content() + this->adaptor->starts_index[vrs.data.marker()];
+        u32 loc_id = vrs.data.is_global_ptr()
+                       ? this->adaptor->starts_index[IR::MARKER_GLOBAL >> 29] + this->adaptor->globals_count + vrs.data.global_ptr_idx()
+                       : vrs.data.content() + this->adaptor->starts_index[vrs.data.marker()];
         tpde::ValLocalIdx local_idx{loc_id};
 
         auto *assignment = this->val_assignment(local_idx);
@@ -4213,7 +4214,7 @@ namespace tpde_rust {
             SymRef target = this->ir_func_syms[IR::Operand(reloc.slot).content()];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, 0);
           } else if (IR::Operand(reloc.slot).is_global_ptr()) {
-            const auto &gp = this->adaptor->get_global_ptrs()[IR::Operand(reloc.slot).content()];
+            const auto &gp = this->adaptor->get_global_ptrs()[IR::Operand(reloc.slot).global_ptr_idx()];
             SymRef &target = global_symbols[gp.global];
             this->assembler.reloc_abs(sec, target, off + reloc.offset, gp.offset);
           } else {
