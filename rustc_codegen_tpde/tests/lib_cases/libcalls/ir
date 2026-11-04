@@ -31,6 +31,22 @@ ModuleTpde {
                 Bool,
                 Bool,
                 i64,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                i32,
+                Bool,
+                i64,
+                Bool,
+                Bool,
+                ptr,
+                i32,
+                i64,
+                i64,
+                i64,
+                ptr,
             ],
             flags: Flags {
                 extern_link: false,
@@ -40,8 +56,8 @@ ModuleTpde {
                 never_delete: true,
                 dead: false,
             },
-            has_personality: false,
-            personality: 0,
+            has_personality: true,
+            personality: 37,
             allocas: [
                 size: 1, align: 1,
             ],
@@ -60,8 +76,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 5],
-                    <Call> ([func: 9], [val: 3], [const: i64 1], [val: 5], [global: 0]),
-                    <Br> ([raw: 4]),
+                    <Br> ([raw: 8]),
                 ],
                 BasicBlock: [
                     <Mul> ([const: i64 1], [val: 2]) -> [val: 6],
@@ -70,6 +85,52 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Invoke> ([func: 7], [raw: 10], [raw: 9], [val: 3], [const: i64 1]) -> [val: 13],
+                ],
+                BasicBlock: [
+                    <LandingPad> ([raw: 1]) -> [val: 11],
+                    <AddRet> () -> [val: 12],
+                    <Call> ([func: 38]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <CondBr> ([val: 13], [raw: 12], [raw: 11]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 13]),
+                ],
+                BasicBlock: [
+                    <CondBr> ([val: 5], [raw: 15], [raw: 14]),
+                ],
+                BasicBlock: [
+                    <Cast> ([global: 16]) -> [val: 17],
+                    <And> ([const: i32 1], [const: i32 63]) -> [val: 18],
+                    <zExt> ([val: 18]) -> [val: 19],
+                    <Shl> ([const pool: 1], [val: 19]) -> [val: 20],
+                    <Or> ([val: 20], [const: i64 1]) -> [val: 21],
+                    <Cast> ([val: 21]) -> [val: 22],
+                    <Call> ([func: 39], [val: 17], [val: 22], [const: Bool 0], [global: 0]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 3]) -> [val: 14],
+                    <CMPeq> ([val: 14], [const: i64 0]) -> [val: 15],
+                    <Not> ([val: 15]) -> [val: 16],
+                    <CondBr> ([val: 16], [raw: 16], [raw: 13]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 16]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 7]),
                 ],
             ],
             callee_infos: [],
@@ -105,6 +166,22 @@ ModuleTpde {
                 Bool,
                 Bool,
                 i64,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                i32,
+                Bool,
+                i64,
+                Bool,
+                Bool,
+                ptr,
+                i32,
+                i64,
+                i64,
+                i64,
+                ptr,
             ],
             flags: Flags {
                 extern_link: false,
@@ -114,8 +191,8 @@ ModuleTpde {
                 never_delete: true,
                 dead: false,
             },
-            has_personality: false,
-            personality: 0,
+            has_personality: true,
+            personality: 37,
             allocas: [
                 size: 1, align: 1,
             ],
@@ -134,8 +211,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 5],
-                    <Call> ([func: 9], [val: 3], [const: i64 2], [val: 5], [global: 2]),
-                    <Br> ([raw: 4]),
+                    <Br> ([raw: 8]),
                 ],
                 BasicBlock: [
                     <Mul> ([const: i64 2], [val: 2]) -> [val: 6],
@@ -144,6 +220,52 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Invoke> ([func: 7], [raw: 10], [raw: 9], [val: 3], [const: i64 2]) -> [val: 13],
+                ],
+                BasicBlock: [
+                    <LandingPad> ([raw: 1]) -> [val: 11],
+                    <AddRet> () -> [val: 12],
+                    <Call> ([func: 38]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <CondBr> ([val: 13], [raw: 12], [raw: 11]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 13]),
+                ],
+                BasicBlock: [
+                    <CondBr> ([val: 5], [raw: 15], [raw: 14]),
+                ],
+                BasicBlock: [
+                    <Cast> ([global: 16]) -> [val: 17],
+                    <And> ([const: i32 1], [const: i32 63]) -> [val: 18],
+                    <zExt> ([val: 18]) -> [val: 19],
+                    <Shl> ([const pool: 1], [val: 19]) -> [val: 20],
+                    <Or> ([val: 20], [const: i64 1]) -> [val: 21],
+                    <Cast> ([val: 21]) -> [val: 22],
+                    <Call> ([func: 39], [val: 17], [val: 22], [const: Bool 0], [global: 2]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 3]) -> [val: 14],
+                    <CMPeq> ([val: 14], [const: i64 0]) -> [val: 15],
+                    <Not> ([val: 15]) -> [val: 16],
+                    <CondBr> ([val: 16], [raw: 16], [raw: 13]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 16]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 7]),
                 ],
             ],
             callee_infos: [],
@@ -616,7 +738,7 @@ ModuleTpde {
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 37,

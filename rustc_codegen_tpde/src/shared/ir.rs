@@ -788,32 +788,16 @@ impl Module {
     }
 
     pub fn add_const(&mut self, ty: Type, data: u128) -> Slot {
-        if data < INLINE_CONST_LIMIT {
-            return Slot::new_const((ty.repr as u32) << INLINE_CONST_BITS | data as u32);
-        }
-        let consts = &mut self.tpde.consts;
-        consts.push(ffi::Value::new(ty, data));
-        Slot::new_const(INLINE_CONST_END + (consts.len() - 1) as u32)
+        self.tpde.add_const(ty, data)
     }
 
     /// Wrapper to also convert back inlined constants
     fn const_value(&self, c: u32) -> (Type, u128) {
-        if c < INLINE_CONST_END {
-            let ty = Type {
-                repr: (c >> INLINE_CONST_BITS) as _,
-            };
-            (ty, (c & (INLINE_CONST_LIMIT as u32 - 1)) as u128)
-        } else {
-            let value = &self.tpde.consts[(c - INLINE_CONST_END) as usize];
-            (value.ty, value.data())
-        }
+        self.tpde.const_value(c)
     }
 
     pub fn const_data(&self, slot: Slot) -> Option<u128> {
-        match slot {
-            Slot::Const(c) => Some(self.const_value(c).1),
-            _ => None,
-        }
+        self.tpde.const_data(slot)
     }
 
     pub fn add_const_vector(&mut self, elems: &[Slot]) -> Slot {
@@ -936,6 +920,36 @@ impl Module {
                 Slot::new_raw(elsebb.index as u32),
             ],
         );
+    }
+}
+
+impl ModuleTpde {
+    pub(super) fn const_value(&self, c: u32) -> (Type, u128) {
+        if c < INLINE_CONST_END {
+            let ty = Type {
+                repr: (c >> INLINE_CONST_BITS) as _,
+            };
+            (ty, (c & (INLINE_CONST_LIMIT as u32 - 1)) as u128)
+        } else {
+            let value = &self.consts[(c - INLINE_CONST_END) as usize];
+            (value.ty, value.data())
+        }
+    }
+
+    pub fn const_data(&self, slot: Slot) -> Option<u128> {
+        match slot {
+            Slot::Const(c) => Some(self.const_value(c).1),
+            _ => None,
+        }
+    }
+
+    pub fn add_const(&mut self, ty: Type, data: u128) -> Slot {
+        if data < INLINE_CONST_LIMIT {
+            return Slot::new_const((ty.repr as u32) << INLINE_CONST_BITS | data as u32);
+        }
+        let consts = &mut self.consts;
+        consts.push(ffi::Value::new(ty, data));
+        Slot::new_const(INLINE_CONST_END + (consts.len() - 1) as u32)
     }
 }
 

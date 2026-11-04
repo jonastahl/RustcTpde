@@ -1,10 +1,9 @@
-use std::env;
-use std::sync::LazyLock;
 use crate::shared::ffi;
 use crate::shared::ffi::{BasicBlock, InstructionReference};
-use crate::shared::ir::{
-    ArgKind, INLINE_CONST_END, INLINE_CONST_LIMIT, InstructionKind, ModuleTpde, Slot,
-};
+use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot, size_of_type};
+use std::collections::BTreeSet;
+use std::env;
+use std::sync::LazyLock;
 
 // Highest cost a function without `#[inline(always)]` is inlined
 static INLINE_COST: LazyLock<u32> = LazyLock::new(|| {
@@ -25,8 +24,8 @@ impl ModuleTpde {
         // - has no byval arguments
         // - has maximum of one return value
 
-        // info1 is not used during generation
-        // we abuse it to store the follower of a block if it has to split up
+        // info1 and info2 are not used during generation
+        // we use info1 to store the follower of a block if it has to split up
         // after the inlining the value has no meaning and could be set back to the default
         // assumes that info1 is set to 0 in the beginning, maybe use this if we use it also in
         // further optimizations
@@ -45,6 +44,9 @@ impl ModuleTpde {
             .collect();
         let mut return_slots: Vec<u32> = vec![];
 
+        // Used over hash set for determinism
+        let mut to_optimize: BTreeSet<u32> = BTreeSet::new();
+
         while let Some(f) = leaves.pop() {
             let mut all_inlined = true;
 
@@ -58,14 +60,181 @@ impl ModuleTpde {
 
                 caller.calling -= 1;
                 if is_inlinable(caller) {
+                    to_optimize.remove(&site.func);
+                    self.fold_constants(site.func);
+
                     leaves.push(site.func as usize);
+                } else {
+                    to_optimize.insert(site.func);
                 }
             }
 
             let func = &mut self.functions[f];
             func.flags.dead = all_inlined && func.flags.only_local && !func.flags.never_delete;
         }
+
+        for f in to_optimize {
+            self.fold_constants(f);
+        }
     }
+
+    /// Propagates constants that might have shown up after inlining, replaces if applicable:
+    /// - condbr to br
+    /// - gets rid of overflow checks
+    fn fold_constants(&mut self, function: u32) {
+        let mut stack = vec![0];
+
+        let func = &self.functions[function as usize];
+        let mut known: Vec<Option<u32>> = vec![None; func.slots.len()];
+        let mut seen = vec![false; func.basic_blocks.len()];
+
+        while let Some(block) = stack.pop() {
+            let func = &self.functions[function as usize];
+            // We can use this hack as long as we don't have phis which would cause cycles
+            if std::mem::replace(&mut seen[block], true) {
+                continue;
+            }
+            let start = func.basic_blocks[block].insts_start as usize;
+            let end = start + func.basic_blocks[block].insts_len as usize;
+            let (mut read, mut write) = (start, start);
+
+            while read < end {
+                let func = &mut self.functions[function as usize];
+                let mut instr = func.instructions[read];
+                read += 1;
+                let ops = instr.ops_start as usize;
+                let ops_end = ops + instr.ops_len as usize;
+
+                for op in &mut func.operands[ops..ops_end] {
+                    if let Slot::Value(_, v) = Slot::from_ffi(*op)
+                        && let Some(c) = known[v as usize] {
+                        *op = c;
+                    }
+                }
+
+                let func = &self.functions[function as usize];
+                if instr.has_result & all_const(&func.operands[ops..ops_end])
+                    && let Some(value) = self.eval_const(instr.kind, &func.operands[ops..ops_end])
+                {
+                    let ty = func.slots[instr.result as usize].ty;
+                    known[instr.result as usize] = Some(self.add_const(ty, value).to_ffi());
+
+                    // An overflow check is only defined by the arithmetic before it, so both have to go
+                    let func = &mut self.functions[function as usize];
+                    if read < end && func.instructions[read].kind == InstructionKind::OverflowCheck {
+                        let check = func.instructions[read];
+                        read += 1;
+                        let signed = matches!(
+                            Slot::from_ffi(func.operands[check.ops_start as usize]),
+                            Slot::Raw(1)
+                        );
+                        let func = &self.functions[function as usize];
+                        let overflow = self.overflows(instr.kind, &func.operands[ops..ops_end], signed) as u128;
+                        known[check.result as usize] =
+                            Some(self.add_const(ffi::Type::Bool, overflow).to_ffi());
+                    }
+                    continue; // skip write so delete instruction
+                }
+
+                if instr.kind == InstructionKind::CondBr
+                    && let Slot::Const(cond) = Slot::from_ffi(func.operands[ops])
+                {
+                    let taken = self.const_value(cond).1 & 1 != 0;
+                    self.functions[function as usize].operands[ops] = func.operands[if taken { ops + 1 } else { ops + 2 }];
+                    instr.kind = InstructionKind::Br;
+                    instr.ops_len = 1;
+                }
+
+                let func = &mut self.functions[function as usize];
+                let successors = match instr.kind {
+                    InstructionKind::Br => ops..ops + 1,
+                    InstructionKind::CondBr | InstructionKind::Invoke => ops + 1..ops + 3,
+                    InstructionKind::Switch => ops + 1..ops + 1 + instr.ops_len as usize / 2,
+                    _ => 0..0,
+                };
+                for op in &func.operands[successors] {
+                    if let Slot::Raw(target) = Slot::from_ffi(*op) {
+                        stack.push(target as usize);
+                    }
+                }
+
+                func.instructions[write] = instr;
+                write += 1;
+            }
+            self.functions[function as usize].basic_blocks[block].insts_len = (write - start) as u32;
+        }
+    }
+
+    fn eval_const(&self, kind: InstructionKind, ops: &[u32]) -> Option<u128> {
+        let &[lhs, rhs] = ops else { return None };
+        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs)) else {
+            unreachable!()
+        };
+        let (tya, lhs) = self.const_value(lhs);
+        let (_, rhs) = self.const_value(rhs);
+        let bits = size_of_type(tya) * 8;
+
+        use InstructionKind as I;
+        let (slhs, srhs) = (sign_extend(lhs, bits), sign_extend(rhs, bits));
+        Some(match kind {
+            I::Add => lhs.wrapping_add(rhs) & mask(bits),
+            I::Sub => lhs.wrapping_sub(rhs) & mask(bits),
+            I::Mul => lhs.wrapping_mul(rhs) & mask(bits),
+            I::CMPeq => (lhs == rhs) as u128,
+            I::CMPne => (lhs != rhs) as u128,
+            I::CMPugt => (lhs > rhs) as u128,
+            I::CMPuge => (lhs >= rhs) as u128,
+            I::CMPult => (lhs < rhs) as u128,
+            I::CMPule => (lhs <= rhs) as u128,
+            I::CMPsgt => (slhs > srhs) as u128,
+            I::CMPsge => (slhs >= srhs) as u128,
+            I::CMPslt => (slhs < srhs) as u128,
+            I::CMPsle => (slhs <= srhs) as u128,
+            _ => return None,
+        })
+    }
+
+    fn overflows(&self, kind: InstructionKind, ops: &[u32], signed: bool) -> bool {
+        let &[lhs, rhs] = ops else { unreachable!() };
+        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs)) else {
+            unreachable!()
+        };
+        let (tya, lhs) = self.const_value(lhs);
+        let (_, rhs) = self.const_value(rhs);
+        let bits = size_of_type(tya) * 8;
+
+        use InstructionKind as I;
+        if signed {
+            let (slhs, shrs) = (sign_extend(lhs, bits), sign_extend(rhs, bits));
+            let result = match kind {
+                I::Add => slhs.checked_add(shrs),
+                I::Sub => slhs.checked_sub(shrs),
+                I::Mul => slhs.checked_mul(shrs),
+                _ => unreachable!()
+            };
+            result.is_none_or(|r| sign_extend(r as u128 & mask(bits), bits) != r)
+        } else {
+            let result = match kind {
+                I::Add => lhs.checked_add(rhs),
+                I::Sub => lhs.checked_sub(rhs),
+                I::Mul => lhs.checked_mul(rhs),
+                _ => unreachable!()
+            };
+            result.is_none_or(|r| r > mask(bits))
+        }
+    }
+}
+
+fn all_const(ops: &[u32]) -> bool {
+    ops.iter().all(|op| matches!(Slot::from_ffi(*op), Slot::Const(_)))
+}
+
+fn mask(bits: u32) -> u128 {
+    u128::MAX >> (128 - bits)
+}
+
+fn sign_extend(value: u128, bits: u32) -> i128 {
+    ((value << (128 - bits)) as i128) >> (128 - bits)
 }
 
 // Inline this call, returns if it could be inlined or not
@@ -313,16 +482,6 @@ fn map_instructions(
                 let ops = instr.ops_start as usize;
                 operands[ops + 1] += inline_offsets.basic_blocks;
                 operands[ops + 2] += inline_offsets.basic_blocks;
-
-                // A constant condition only has one successor, TPDE skips the unreachable block
-                if let Slot::Const(cond) = Slot::from_ffi(operands[ops])
-                    && cond < INLINE_CONST_END
-                {
-                    let taken = cond & (INLINE_CONST_LIMIT as u32 - 1) != 0;
-                    operands[ops] = operands[if taken { ops + 1 } else { ops + 2 }];
-                    instr.kind = InstructionKind::Br;
-                    instr.ops_len = 1;
-                }
             }
             InstructionKind::Switch => {
                 // [cond, default, targets..., case values...]: map default and targets

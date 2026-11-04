@@ -487,7 +487,7 @@ ModuleTpde {
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: false,
             personality: 0,
@@ -3964,6 +3964,8 @@ ModuleTpde {
             slots: [
                 f32,
                 f32,
+                f32,
+                f32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3978,8 +3980,18 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 9], [val: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
                     <Ret> ([val: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 3]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 132], [val: 0]) -> [val: 3],
+                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],

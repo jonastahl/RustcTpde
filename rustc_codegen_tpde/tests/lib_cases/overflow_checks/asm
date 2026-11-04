@@ -263,15 +263,33 @@ Disassembly of section .text:
 <add_twice_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	mov    %esi,-0x2c(%rbp)
-	call   <add_twice_u32+0x10>
-	mov    %eax,%edi
-	mov    -0x2c(%rbp),%esi
-	call   <add_twice_u32+0x1a>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %edi,%ebx
+	mov    %esi,%r12d
+	lea    (%rbx,%r12,1),%r13d
+	cmp    %ebx,%r13d
+	jb     <add_twice_u32+0x45>
+	mov    %r13d,%ebx
+	lea    (%rbx,%r12,1),%r13d
+	cmp    %ebx,%r13d
+	jb     <add_twice_u32+0x39>
+	mov    %r13d,%ebx
+	mov    %ebx,%eax
+	jmp    <add_twice_u32+0x51>
+	lea    -0x8(%rip),%rdi        # <add_twice_u32+0x38>
+	call   <add_twice_u32+0x45>
+	lea    -0x8(%rip),%rdi        # <add_twice_u32+0x44>
+	call   <add_twice_u32+0x51>
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
+	nopl   0x0(%rax)
 
 <add_u16>:
 	push   %rbp

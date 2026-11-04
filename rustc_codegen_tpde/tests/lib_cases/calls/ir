@@ -905,6 +905,15 @@ ModuleTpde {
             slots: [
                 i64,
                 i64,
+                ptr,
+                Bool,
+                i64,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -922,8 +931,44 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Call> ([func: 39], [alloc: 0], [val: 0]),
-                    <Call> ([func: 18], [alloc: 0]) -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
                     <Ret> ([val: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 9]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 8], [const: i64 0]) -> [val: 4],
+                    <Load> ([val: 4], [raw: 8]) -> [val: 5],
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 59], [const: i64 0], [const: i64 8], [global: 66]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 8], [const: i64 7]) -> [val: 7],
+                    <Load> ([val: 7], [raw: 8]) -> [val: 8],
+                    <Add> ([val: 5], [val: 8]) -> [val: 9],
+                    <CMPult> ([val: 9], [val: 5]) -> [val: 10],
+                    <CondBr> ([val: 10], [raw: 9], [raw: 8]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 59], [const: i64 7], [const: i64 8], [global: 68]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 2]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 70]),
+                    <Unreachable> (),
                 ],
             ],
             callee_infos: [],
@@ -2794,6 +2839,34 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
+                i64,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                Bool,
+                i64,
+                i64,
+                i64,
+                i64,
+                Bool,
+                i64,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -2808,11 +2881,119 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 3], [val: 0], [val: 1], [const: i64 1]) -> [val: 2],
-                    <Call> ([func: 3], [val: 1], [val: 0], [const: i64 2]) -> [val: 3],
-                    <Call> ([func: 3], [val: 0], [val: 0], [const: i64 3]) -> [val: 4],
-                    <Call> ([func: 3], [val: 2], [val: 3], [val: 4]) -> [val: 5],
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 10]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 11]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 0], [val: 1]) -> [val: 9],
+                    <OverflowCheck> ([raw: 1]) -> [val: 10],
+                    <CondBr> ([val: 10], [raw: 5], [raw: 4]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 9], [const: i64 1]) -> [val: 11],
+                    <OverflowCheck> ([raw: 1]) -> [val: 12],
+                    <CondBr> ([val: 12], [raw: 7], [raw: 6]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 8]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 2]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 10]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 17]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 18]) -> [val: 3],
+                    <Br> ([raw: 8]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 1], [val: 0]) -> [val: 16],
+                    <OverflowCheck> ([raw: 1]) -> [val: 17],
+                    <CondBr> ([val: 17], [raw: 12], [raw: 11]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 16], [const: i64 2]) -> [val: 18],
+                    <OverflowCheck> ([raw: 1]) -> [val: 19],
+                    <CondBr> ([val: 19], [raw: 14], [raw: 13]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 8]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 9]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 10]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 24]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 25]) -> [val: 4],
+                    <Br> ([raw: 15]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 0], [val: 0]) -> [val: 23],
+                    <OverflowCheck> ([raw: 1]) -> [val: 24],
+                    <CondBr> ([val: 24], [raw: 19], [raw: 18]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 23], [const: i64 3]) -> [val: 25],
+                    <OverflowCheck> ([raw: 1]) -> [val: 26],
+                    <CondBr> ([val: 26], [raw: 21], [raw: 20]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 8]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 16]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 10]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
                     <Ret> ([val: 5]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 32]) -> [val: 5],
+                    <Br> ([raw: 22]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 2], [val: 3]) -> [val: 30],
+                    <OverflowCheck> ([raw: 1]) -> [val: 31],
+                    <CondBr> ([val: 31], [raw: 26], [raw: 25]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 30], [val: 4]) -> [val: 32],
+                    <OverflowCheck> ([raw: 1]) -> [val: 33],
+                    <CondBr> ([val: 33], [raw: 28], [raw: 27]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 8]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 23]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 10]),
+                    <Unreachable> (),
                 ],
             ],
             callee_infos: [],
@@ -4275,6 +4456,10 @@ ModuleTpde {
             slots: [
                 i8,
                 i8,
+                i8,
+                i8,
+                i8,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -4289,9 +4474,26 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 19], [const: i8 1], [const: i8 2]) -> [val: 0],
-                    <AddRet> () -> [val: 1],
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <AddRet> (),
                     <Ret> ([val: 0], [val: 1]),
+                ],
+                BasicBlock: [
+                    <Cast> ([const: i8 2]) -> [val: 0],
+                    <Cast> ([const: i8 2]) -> [val: 1],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 2]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 57], [global: 72]),
+                    <Unreachable> (),
                 ],
             ],
             callee_infos: [],

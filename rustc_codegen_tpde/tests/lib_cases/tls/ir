@@ -200,7 +200,6 @@ ModuleTpde {
                 BasicBlock: [
                     <Store> ([const: ptr 0], [alloc: 3], [raw: 8]),
                     <Store> ([const: ptr 0], [alloc: 2], [raw: 8]),
-                    <CMPeq> ([const: i64 1], [const: i64 1]) -> [val: 10],
                     <Store> ([const: Bool 1], [alloc: 0], [raw: 1]),
                     <Br> ([raw: 5]),
                 ],
@@ -340,7 +339,6 @@ ModuleTpde {
                 BasicBlock: [
                     <Store> ([const: ptr 0], [alloc: 3], [raw: 8]),
                     <Store> ([const: ptr 0], [alloc: 2], [raw: 8]),
-                    <CMPeq> ([const: i64 1], [const: i64 1]) -> [val: 9],
                     <Store> ([const: Bool 1], [alloc: 0], [raw: 1]),
                     <Br> ([raw: 5]),
                 ],
@@ -489,6 +487,21 @@ ModuleTpde {
                 i32,
                 i64,
                 i32,
+                ptr,
+                i32,
+                i32,
+                Bool,
+                i32,
+                ptr,
+                ptr,
+                i32,
+                ptr,
+                ptr,
+                i32,
+                ptr,
+                i32,
+                ptr,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -527,13 +540,11 @@ ModuleTpde {
                     <Store> ([val: 6], [alloc: 1], [raw: 8]),
                     <Load> ([alloc: 1], [raw: 8]) -> [val: 7],
                     <Store> ([const: Bool 0], [alloc: 4], [raw: 1]),
-                    <Call> ([func: 15], [val: 7]) -> [val: 8],
-                    <Br> ([raw: 4]),
+                    <Br> ([raw: 11]),
                 ],
                 BasicBlock: [
                     <Store> ([const: ptr 0], [alloc: 3], [raw: 8]),
                     <Store> ([const: ptr 0], [alloc: 2], [raw: 8]),
-                    <CMPeq> ([const: i64 1], [const: i64 1]) -> [val: 10],
                     <Store> ([const: i32 1], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
@@ -557,6 +568,61 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 18]) -> [val: 8],
+                    <Br> ([raw: 9]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 16]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 22]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 39], [global: 16]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 15], [const: i32 1]) -> [val: 16],
+                    <CMPult> ([val: 16], [val: 15]) -> [val: 17],
+                    <CondBr> ([val: 17], [raw: 13], [raw: 12]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 21]) -> [val: 15],
+                    <Br> ([raw: 14]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 7]) -> [val: 20],
+                    <Load> ([val: 20], [raw: 4]) -> [val: 21],
+                    <Br> ([raw: 15]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 10]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 24]) -> [val: 18],
+                    <Br> ([raw: 17]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 7]) -> [val: 23],
+                    <Load> ([val: 23], [raw: 4]) -> [val: 24],
+                    <Br> ([raw: 18]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 19]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 20]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 7]) -> [val: 27],
+                    <Load> ([val: 27], [raw: 4]) -> [val: 28],
+                    <Store> ([val: 16], [val: 27], [raw: 4]),
+                    <Br> ([raw: 21]),
                 ],
             ],
             callee_infos: [
@@ -802,7 +868,6 @@ ModuleTpde {
                 BasicBlock: [
                     <Store> ([const: ptr 0], [alloc: 3], [raw: 8]),
                     <Store> ([const: ptr 0], [alloc: 2], [raw: 8]),
-                    <CMPeq> ([const: i64 1], [const: i64 1]) -> [val: 11],
                     <Store> ([const: i64 1], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 5]),
                 ],
@@ -973,7 +1038,6 @@ ModuleTpde {
                 BasicBlock: [
                     <Store> ([const: ptr 0], [alloc: 3], [raw: 8]),
                     <Store> ([const: ptr 0], [alloc: 2], [raw: 8]),
-                    <CMPeq> ([const: i64 1], [const: i64 1]) -> [val: 10],
                     <Store> ([const: i64 1], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 5]),
                 ],
@@ -1343,7 +1407,7 @@ ModuleTpde {
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: false,
             personality: 0,

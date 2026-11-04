@@ -18,7 +18,8 @@ Disassembly of section .text:
 	push   %r12
 	push   %r13
 	push   %r14
-	sub    $0x10,%rsp
+	push   %r15
+	sub    $0x18,%rsp
 	mov    %rdi,%rbx
 	mov    %esi,%r12d
 	mov    %rdx,%r13
@@ -26,19 +27,47 @@ Disassembly of section .text:
 	test   %r13,%r13
 	sete   %al
 	mov    %al,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	movzbl -0x29(%rbp),%r15d
 	mov    %r14,%rdi
 	mov    $0x1,%esi
-	movzbl %al,%edx
-	lea    -0x8(%rip),%rcx        # <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x32>
-	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x3f>
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x38>
+	mov    %al,-0x2a(%rbp)
+	jmp    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x45>
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x45>
+	movzbl -0x2a(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x56>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x70>
+	test   $0x1,%r15b
+	jne    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0xab>
+	test   %r14,%r14
+	sete   %al
+	xor    $0x1,%al
+	test   $0x1,%al
+	jne    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0xab>
+	lea    -0x8(%rip),%rax        # <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x6f>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x38(%rbp)
+	mov    $0xe4,%edx
+	mov    -0x38(%rbp),%rsi
+	mov    %esi,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	xor    %edx,%edx
+	lea    -0x8(%rip),%rcx        # <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x9e>
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0xab>
 	mov    $0x1,%eax
 	imul   %rax,%r13
 	mov    %rbx,%rdi
 	mov    %r12d,%esi
 	mov    %r13,%rdx
-	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0x56>
-	add    $0x10,%rsp
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_byteshECsQvp3e8KgHi_6source+0xc2>
+	add    $0x18,%rsp
+	pop    %r15
 	pop    %r14
 	pop    %r13
 	pop    %r12
@@ -46,7 +75,7 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -55,7 +84,8 @@ Disassembly of section .text:
 	push   %r12
 	push   %r13
 	push   %r14
-	sub    $0x10,%rsp
+	push   %r15
+	sub    $0x18,%rsp
 	mov    %rdi,%rbx
 	mov    %esi,%r12d
 	mov    %rdx,%r13
@@ -63,19 +93,47 @@ Disassembly of section .text:
 	test   %r13,%r13
 	sete   %al
 	mov    %al,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	movzbl -0x29(%rbp),%r15d
 	mov    %r14,%rdi
 	mov    $0x2,%esi
-	movzbl %al,%edx
-	lea    -0x8(%rip),%rcx        # <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x32>
-	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x3f>
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x38>
+	mov    %al,-0x2a(%rbp)
+	jmp    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x45>
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x45>
+	movzbl -0x2a(%rbp),%eax
+	test   $0x1,%al
+	jne    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x56>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x70>
+	test   $0x1,%r15b
+	jne    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0xab>
+	test   %r14,%r14
+	sete   %al
+	xor    $0x1,%al
+	test   $0x1,%al
+	jne    <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0xab>
+	lea    -0x8(%rip),%rax        # <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x6f>
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x38(%rbp)
+	mov    $0xe4,%edx
+	mov    -0x38(%rbp),%rsi
+	mov    %esi,%ecx
+	shl    %cl,%rdx
+	or     $0x1,%rdx
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	xor    %edx,%edx
+	lea    -0x8(%rip),%rcx        # <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x9e>
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0xab>
 	mov    $0x2,%eax
 	imul   %rax,%r13
 	mov    %rbx,%rdi
 	mov    %r12d,%esi
 	mov    %r13,%rdx
-	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0x56>
-	add    $0x10,%rsp
+	call   <_RINvNtCsioHeeuq8fQz_4core3ptr11write_bytestECsQvp3e8KgHi_6source+0xc2>
+	add    $0x18,%rsp
+	pop    %r15
 	pop    %r14
 	pop    %r13
 	pop    %r12
@@ -83,7 +141,7 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <_RINvNtCsioHeeuq8fQz_4core3ptr19copy_nonoverlappinghECsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -292,56 +350,6 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nop
-
-<_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	push   %r14
-	sub    $0x10,%rsp
-	mov    %rdi,%rbx
-	mov    %edx,%r12d
-	mov    %rcx,%r13
-	mov    %rbx,%rdi
-	call   <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x20>
-	mov    %eax,%r14d
-	jmp    <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x2d>
-	call   <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x2d>
-	test   $0x1,%r14b
-	jne    <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x3c>
-	jmp    <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x56>
-	test   $0x1,%r12b
-	jne    <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x8d>
-	test   %rbx,%rbx
-	sete   %al
-	xor    $0x1,%al
-	test   $0x1,%al
-	jne    <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x8d>
-	lea    -0x8(%rip),%rax        # <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x55>
-	mov    $0x1,%ecx
-	and    $0x3f,%ecx
-	mov    %ecx,%ecx
-	mov    %rcx,-0x30(%rbp)
-	mov    $0xe4,%edx
-	mov    -0x30(%rbp),%rbx
-	mov    %ebx,%ecx
-	shl    %cl,%rdx
-	or     $0x1,%rdx
-	mov    %rax,%rdi
-	mov    %rdx,%rsi
-	xor    %edx,%edx
-	mov    %r13,%rcx
-	call   <_RNvNvNtCsioHeeuq8fQz_4core3ptr11write_bytes18precondition_checkCsQvp3e8KgHi_6source+0x8d>
-	add    $0x10,%rsp
-	pop    %r14
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
 
 <_RNvNvNtCsioHeeuq8fQz_4core3ptr19copy_nonoverlapping18precondition_checkCsQvp3e8KgHi_6source>:
 	push   %rbp

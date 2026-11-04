@@ -602,6 +602,14 @@ ModuleTpde {
                 i32,
                 i32,
                 i32,
+                i32,
+                i32,
+                i32,
+                Bool,
+                i32,
+                i32,
+                i32,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -616,9 +624,45 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 10], [val: 0], [val: 1]) -> [val: 2],
-                    <Call> ([func: 10], [val: 2], [val: 1]) -> [val: 3],
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 8]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 6]) -> [val: 2],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 0], [val: 1]) -> [val: 6],
+                    <CMPult> ([val: 6], [val: 0]) -> [val: 7],
+                    <CondBr> ([val: 7], [raw: 5], [raw: 4]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 2]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 35], [global: 38]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
                     <Ret> ([val: 3]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 10]) -> [val: 3],
+                    <Br> ([raw: 6]),
+                ],
+                BasicBlock: [
+                    <Add> ([val: 2], [val: 1]) -> [val: 10],
+                    <CMPult> ([val: 10], [val: 2]) -> [val: 11],
+                    <CondBr> ([val: 11], [raw: 10], [raw: 9]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 7]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 35], [global: 38]),
+                    <Unreachable> (),
                 ],
             ],
             callee_infos: [],

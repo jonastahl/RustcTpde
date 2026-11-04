@@ -107,17 +107,6 @@ Disassembly of section .text:
 	ret
 	nopw   0x0(%rax,%rax,1)
 
-<_RNvMNtCskTDgy4hF9jW_3std3f32f4log2CsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <_RNvMNtCskTDgy4hF9jW_3std3f32f4log2CsQvp3e8KgHi_6source+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
 <_RNvXNvNtNtCsioHeeuq8fQz_4core10intrinsics4log2s_1__fNtB4_8Dispatch8dispatchCsQvp3e8KgHi_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
