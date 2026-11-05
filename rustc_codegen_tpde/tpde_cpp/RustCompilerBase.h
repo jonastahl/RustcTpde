@@ -556,6 +556,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::Not, &Derived::compile_not);
 
       set_fn(InstructionKind::Ret, &Derived::compile_ret);
+      set_fn(InstructionKind::Unreachable, &Derived::compile_unreachable);
 
       // Int cmp
       set_fn(InstructionKind::CMPeq, &Derived::compile_cmp);

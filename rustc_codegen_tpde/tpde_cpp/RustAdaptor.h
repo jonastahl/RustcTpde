@@ -526,7 +526,6 @@ namespace tpde_rust {
       switch (cur.kind()) {
         case InstructionKind::AddRet:
         case InstructionKind::OverflowCheck:
-        case InstructionKind::Unreachable:
           return true;
         default:
       }
