@@ -11,7 +11,7 @@ static INLINE_COST: LazyLock<u32> = LazyLock::new(|| match env::var("TPDE_INLINE
     Ok(val) => val
         .parse::<u32>()
         .expect("TPDE_INLINE_COST has to be a number"),
-    Err(_) => 32,
+    Err(_) => 50,
 });
 
 impl ModuleTpde {
