@@ -1,6 +1,9 @@
 use crate::shared::ffi;
-use crate::shared::ffi::{BasicBlock, Instruction, InstructionReference, Phi};
-use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot, size_of_type};
+use crate::shared::ffi::{AccessInfoState, BasicBlock, Instruction, InstructionReference, Phi};
+use crate::shared::ir::{
+    ArgKind, InstructionKind, ModuleTpde, Slot, access_info_intern, merge_access_states,
+    size_of_type, written_to_a, written_to_b,
+};
 use std::collections::BTreeSet;
 use std::env;
 use std::ops::Range;
@@ -330,6 +333,34 @@ fn inline_call(
         return false;
     }
 
+    // decrement forwarding for all arguments
+    #[cfg(feature = "promote")]
+    for i in 0..call.ops_len as usize {
+        let arg = Slot::from_ffi(caller.operands[args_start + i]);
+        if let Some(call_info) = access_info_intern(caller, &arg) {
+            let callee_info = &callee.args[i].access_info;
+
+            call_info.call_forwards += callee_info.call_forwards - 1;
+
+            if written_to_a(callee_info.state) {
+                if !written_to_a(call_info.state) {
+                    call_info.size_a = callee_info.size_a;
+                } else if call_info.size_a != callee_info.size_a {
+                    call_info.state = AccessInfoState::Complex
+                }
+            }
+            if written_to_b(callee_info.state) {
+                if !written_to_b(call_info.state) {
+                    call_info.size_b = callee_info.size_b;
+                    call_info.offset_b = callee_info.offset_b;
+                } else if call_info.size_b != callee_info.size_b || call_info.offset_b != callee_info.offset_b {
+                    call_info.state = AccessInfoState::Complex
+                }
+            }
+            call_info.state = merge_access_states(call_info.state, callee_info.state)
+        }
+    }
+
     // landing pads of the callee need its personality
     if callee.has_personality && !caller.has_personality {
         caller.has_personality = true;
@@ -418,7 +449,7 @@ fn inline_call(
             ops_len,
             &offsets,
             returns,
-            results_bb as u32
+            results_bb as u32,
         );
     }
     caller.operands.extend_from_slice(additional_ops.as_slice());
@@ -527,7 +558,7 @@ fn map_block(
     ops_len: u32,
     inline_offsets: &InlineOffsets,
     returns: &mut Vec<ReturnSite>,
-    return_bb: u32
+    return_bb: u32,
 ) {
     bb.insts_start += inline_offsets.instructions;
     bb.phi_start += inline_offsets.phis;
@@ -546,7 +577,7 @@ fn map_block(
                 ops_len,
                 inline_offsets,
                 returns,
-                return_bb
+                return_bb,
             )
         }
     }
@@ -613,13 +644,13 @@ fn map_instruction(
 
             // map the raw callee_info if the original callee is a val
             if matches!(
-                    Slot::from_ffi(callee_operands[instr.ops_start as usize]),
-                    Slot::Value(..) | Slot::Phi(..)
-                ) {
+                Slot::from_ffi(callee_operands[instr.ops_start as usize]),
+                Slot::Value(..) | Slot::Phi(..)
+            ) {
                 if matches!(
-                        Slot::from_ffi(operands[instr.ops_start as usize]),
-                        Slot::Func(_)
-                    ) {
+                    Slot::from_ffi(operands[instr.ops_start as usize]),
+                    Slot::Func(_)
+                ) {
                     // The argument made it a direct call, which has no callee info
                     operands.copy_within(
                         info + 1..instr.ops_start as usize + instr.ops_len as usize,
@@ -670,7 +701,12 @@ fn map_operands(operand: &mut u32, argument_mapping: &[u32], inline_offsets: &In
     };
 }
 
-fn map_phi(phi: &mut Phi, operands: &mut [u32], argument_mapping: &[u32], inline_offsets: &InlineOffsets) {
+fn map_phi(
+    phi: &mut Phi,
+    operands: &mut [u32],
+    argument_mapping: &[u32],
+    inline_offsets: &InlineOffsets,
+) {
     let start = phi.incoming_start as usize;
     let incoming = &mut operands[start..start + phi.incoming_len as usize * 2];
     for block in incoming.iter_mut().step_by(2) {

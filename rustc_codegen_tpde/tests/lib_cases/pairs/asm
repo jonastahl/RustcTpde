@@ -62,9 +62,10 @@ Disassembly of section .text:
 	jb     <increase_age+0x26>
 	mov    %rbx,%rax
 	mov    %r12d,%edx
-	jmp    <increase_age+0x32>
+	jmp    <increase_age+0x34>
 	lea    -0x8(%rip),%rdi        # <increase_age+0x25>
 	call   <increase_age+0x32>
+	ud2
 	add    $0x20,%rsp
 	pop    %r12
 	pop    %rbx

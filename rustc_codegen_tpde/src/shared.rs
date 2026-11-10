@@ -1,5 +1,5 @@
-use crate::shared::ffi::{ArgExtension, ArgKind, GlobalPtr, Relocation, Type};
-use crate::shared::ir::{ArgInfo, Slot, size_of_type, vector_info};
+use crate::shared::ffi::{GlobalPtr, Relocation, Type};
+use crate::shared::ir::{Slot, size_of_type, vector_info};
 use core::fmt::{Debug, Formatter};
 #[allow(unused_imports)]
 pub use ffi::compile_to_file;
@@ -54,15 +54,17 @@ mod ffi {
         instr: u32,
     }
 
-    #[derive(Debug)]
+    #[derive(Debug, Default)]
     pub enum ArgKind {
+        #[default]
         Direct,
         ByVal,
         sRet,
     }
 
-    #[derive(Debug, Copy, Clone)]
+    #[derive(Debug, Copy, Clone, Default)]
     pub enum ArgExtension {
+        #[default]
         None,
         zExt,
         sExt,
@@ -95,12 +97,13 @@ mod ffi {
         LAST = 5,
     }
 
-    #[derive(Debug, Copy, Clone)]
+    #[derive(Debug, Copy, Clone, Default)]
     pub struct ArgInfo {
         kind: ArgKind,
         extension: ArgExtension,
         size: u32,
         align: u32,
+        access_info: AccessInfo,
     }
 
     #[derive(Debug, Clone)]
@@ -282,6 +285,7 @@ mod ffi {
         Store,
         Load,
         GEP,
+        PairGEP,
 
         Select,
 
@@ -406,6 +410,30 @@ mod ffi {
     pub struct Alloca {
         size: usize,
         align: usize,
+        access_info: AccessInfo,
+    }
+
+    #[derive(Default, Debug, Clone, Copy)]
+    pub struct AccessInfo {
+        state: AccessInfoState,
+        /// Tracks to how many calls this value was passed, is decremented by inlining
+        call_forwards: u16,
+        size_a: u8,
+        size_b: u8,
+        offset_b: u8,
+    }
+
+    #[derive(Default, Debug, Clone, Copy)]
+    pub enum AccessInfoState {
+        #[default]
+        Unused,
+        OnceWrittenA,
+        WrittenA,
+        OnceWrittenB,
+        WrittenB,
+        OnceWritten,
+        Written,
+        Complex,
     }
 
     pub struct ConstVector {
@@ -494,7 +522,8 @@ impl Debug for BlockDebug<'_> {
         let start = self.block.insts_start as usize;
         let insts = &self.function.instructions[start..start + self.block.insts_len as usize];
         let phi_start = self.block.phi_start;
-        let phis = &self.function.phis[phi_start as usize..(phi_start + self.block.phi_len) as usize];
+        let phis =
+            &self.function.phis[phi_start as usize..(phi_start + self.block.phi_len) as usize];
         f.debug_list()
             .entries(phis.iter().zip(phi_start..).map(|(phi, index)| PhiDebug {
                 index,
@@ -581,7 +610,17 @@ impl Debug for ffi::Slot {
 
 impl Debug for ffi::Alloca {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
-        write!(f, "size: {:?}, align: {:?}", self.size, self.align)
+        write!(f, "size: {:?}, align: {:?}", self.size, self.align)?;
+        #[cfg(feature = "promote")]
+        write!(
+            f,
+            ", state: {:?}, size_a: {:?}, offset_b: {:?}, size_b: {:?}, call_forwards: {:?}",
+            self.access_info.state,
+            self.access_info.size_a,
+            self.access_info.offset_b,
+            self.access_info.size_b,
+            self.access_info.call_forwards
+        )
     }
 }
 
@@ -670,17 +709,6 @@ impl Debug for ffi::ConstVector {
 impl Debug for GlobalPtr {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
         write!(f, "[{:?}] + {:?}", self.global, self.offset)
-    }
-}
-
-impl Default for ArgInfo {
-    fn default() -> Self {
-        Self {
-            kind: ArgKind::Direct,
-            extension: ArgExtension::None,
-            size: 0,
-            align: 0,
-        }
     }
 }
 

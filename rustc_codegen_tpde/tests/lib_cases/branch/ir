@@ -9,12 +9,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -34,7 +48,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -65,12 +79,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -90,7 +118,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -121,12 +149,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -146,7 +188,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -177,12 +219,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -202,7 +258,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -233,12 +289,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -258,7 +328,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -289,12 +359,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -314,7 +398,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -345,12 +429,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -370,7 +468,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -401,12 +499,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -426,7 +538,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -457,12 +569,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -482,7 +608,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -513,12 +639,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -538,7 +678,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -569,12 +709,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -594,7 +748,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -625,12 +779,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -650,7 +818,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -681,12 +849,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -706,7 +888,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -737,12 +919,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -762,7 +958,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -793,12 +989,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -818,7 +1028,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -849,12 +1059,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -874,7 +1098,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -905,12 +1129,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -930,7 +1168,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -961,12 +1199,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -986,7 +1238,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1017,12 +1269,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1042,7 +1308,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1073,12 +1339,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1098,7 +1378,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1129,12 +1409,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1154,7 +1448,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1185,12 +1479,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1210,7 +1518,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1241,12 +1549,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1266,7 +1588,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1297,12 +1619,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1322,7 +1658,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1353,6 +1689,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1371,7 +1714,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1402,6 +1745,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1420,7 +1770,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1451,6 +1801,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1469,7 +1826,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1500,6 +1857,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1518,7 +1882,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1549,6 +1913,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1567,7 +1938,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1598,6 +1969,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1616,7 +1994,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1647,6 +2025,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1665,7 +2050,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1696,6 +2081,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1714,7 +2106,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1745,12 +2137,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1770,7 +2176,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1801,12 +2207,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1826,7 +2246,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1857,12 +2277,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1882,7 +2316,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1913,12 +2347,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1938,7 +2386,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1969,12 +2417,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -1994,7 +2456,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2025,12 +2487,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2050,7 +2526,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2081,12 +2557,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2106,7 +2596,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2137,12 +2627,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2162,7 +2666,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2193,12 +2697,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2218,7 +2736,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2249,12 +2767,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2274,7 +2806,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2305,12 +2837,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2330,7 +2876,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2361,12 +2907,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2386,7 +2946,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2417,12 +2977,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2442,7 +3016,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2473,12 +3047,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2498,7 +3086,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2529,12 +3117,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2554,7 +3156,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2585,12 +3187,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2610,7 +3226,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2641,12 +3257,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2666,7 +3296,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2697,12 +3327,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2722,7 +3366,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2753,12 +3397,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2778,7 +3436,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2809,12 +3467,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2834,7 +3506,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2865,12 +3537,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2890,7 +3576,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2921,12 +3607,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -2946,7 +3646,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2977,12 +3677,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -3002,7 +3716,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -3033,12 +3747,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -3058,7 +3786,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -3089,12 +3817,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -3117,7 +3859,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -3172,6 +3914,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -3190,7 +3939,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4,
+                size: 4, align: 4, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [

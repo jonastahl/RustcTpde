@@ -35,22 +35,23 @@ Disassembly of section .text:
 	sub    $0x18,%rsp
 	mov    %edi,%ebx
 	cmp    $0x3e8,%ebx
-	je     <outer+0x9b>
+	je     <outer+0xa1>
 	mov    $0x17,%r12d
 	cmp    %r12d,%ebx
-	ja     <outer+0x4e>
+	ja     <outer+0x50>
 	mov    %r12d,%r13d
 	sub    %ebx,%r13d
 	cmp    %ebx,%r12d
 	jb     <outer+0x42>
 	mov    %r13d,-0x30(%rbp)
-	jmp    <outer+0x61>
+	jmp    <outer+0x63>
 	lea    -0x8(%rip),%rdi        # <outer+0x41>
 	call   <outer+0x4e>
+	ud2
 	mov    %ebx,%r13d
 	sub    %r12d,%r13d
 	cmp    %r12d,%ebx
-	jb     <outer+0x8f>
+	jb     <outer+0x93>
 	mov    %r13d,-0x30(%rbp)
 	mov    -0x30(%rbp),%ebx
 	mov    %ebx,%r12d
@@ -58,13 +59,15 @@ Disassembly of section .text:
 	mov    %ebx,%r12d
 	lea    0x64(%r12),%ebx
 	cmp    %r12d,%ebx
-	jb     <outer+0x83>
+	jb     <outer+0x85>
 	mov    %ebx,-0x2c(%rbp)
-	jmp    <outer+0xa2>
-	lea    -0x8(%rip),%rdi        # <outer+0x82>
-	call   <outer+0x8f>
-	lea    -0x8(%rip),%rdi        # <outer+0x8e>
-	call   <outer+0x9b>
+	jmp    <outer+0xa8>
+	lea    -0x8(%rip),%rdi        # <outer+0x84>
+	call   <outer+0x91>
+	ud2
+	lea    -0x8(%rip),%rdi        # <outer+0x92>
+	call   <outer+0x9f>
+	ud2
 	movl   $0x7,-0x2c(%rbp)
 	mov    -0x2c(%rbp),%eax
 	add    $0x18,%rsp

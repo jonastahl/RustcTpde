@@ -9,12 +9,26 @@ ModuleTpde {
                     extension: None,
                     size: 24,
                     align: 8,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 16,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -68,9 +82,9 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 24, align: 8,
-                size: 24, align: 8,
-                size: 24, align: 8,
+                size: 24, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 24, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 24, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -152,12 +166,26 @@ ModuleTpde {
                     extension: None,
                     size: 24,
                     align: 8,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 16,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -228,12 +256,26 @@ ModuleTpde {
                     extension: None,
                     size: 24,
                     align: 8,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 16,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -342,6 +384,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Unused,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -370,6 +419,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Unused,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [

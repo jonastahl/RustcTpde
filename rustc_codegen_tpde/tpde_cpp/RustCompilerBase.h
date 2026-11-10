@@ -587,6 +587,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::RealUNE, &Derived::compile_fcmp, FloatCmpOp::UNE);
 
       set_fn(InstructionKind::GEP, &Derived::compile_gep);
+      set_fn(InstructionKind::PairGEP, &Derived::compile_gep);
       set_fn(InstructionKind::Store, &Derived::compile_store);
       set_fn(InstructionKind::Load, &Derived::compile_load);
       set_fn(InstructionKind::Call, &Derived::compile_call);

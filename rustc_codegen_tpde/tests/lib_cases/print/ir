@@ -9,12 +9,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -113,12 +127,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Unused,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Unused,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [

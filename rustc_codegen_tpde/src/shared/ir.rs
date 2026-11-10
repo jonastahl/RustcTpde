@@ -1,6 +1,8 @@
 use super::ffi;
 pub use super::ffi::ModuleTpde;
 use crate::shared::ffi::{CalleeInfo, GlobalPtr};
+#[cfg(feature = "promote")]
+use crate::shared::ffi::AccessInfoState;
 use core::fmt::{Debug, Formatter};
 use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::ReturnSlot;
@@ -177,7 +179,7 @@ pub fn vector_type(elem: Type, count: u64) -> Option<Type> {
 
 pub use super::ffi::{
     ArgExtension, ArgInfo, ArgKind, AtomicOrdering, AtomicRmwBinOp, InstructionKind,
-    LandingPadKind, Type,
+    LandingPadKind, Type, AccessInfo
 };
 
 pub struct Module {
@@ -720,7 +722,34 @@ impl Module {
             block.insts_len += 1;
         }
 
+        #[cfg(feature = "promote")]
+        {
+            match instr {
+                InstructionKind::Load | InstructionKind::Store | InstructionKind::PairGEP => {}
+                InstructionKind::Call => {
+                    for op in ops {
+                        if let Some(info) = access_info_intern(function, op) {
+                            info.call_forwards += 1;
+                        }
+                    }
+                }
+                _ => {
+                    for op in ops {
+                        if let Some(info) = access_info_intern(function, op) {
+                            info.state = AccessInfoState::Complex;
+                        }
+                    }
+                }
+            }
+        }
+
         ret.result()
+    }
+
+    #[cfg(feature = "promote")]
+    pub fn access_info(&mut self, f: Function, ptr: &Slot) -> Option<&mut AccessInfo> {
+        let func = self.get_function_mut(&f);
+        access_info_intern(func, ptr)
     }
 
     pub fn add_call(
@@ -795,7 +824,11 @@ impl Module {
     pub fn add_alloca(&mut self, func: Function, size: usize, align: usize) -> Slot {
         let func = self.get_function_mut(&func);
 
-        func.allocas.push(ffi::Alloca { size, align });
+        func.allocas.push(ffi::Alloca {
+            size,
+            align,
+            access_info: AccessInfo::default(),
+        });
         Slot::new_alloc((func.allocas.len() - 1) as u32)
     }
 
@@ -970,6 +1003,17 @@ impl Module {
                 Slot::new_raw(elsebb.index as u32),
             ],
         );
+    }
+}
+
+#[cfg(feature = "promote")]
+pub(super) fn access_info_intern<'a>(func: &'a mut ffi::Function, ptr: &Slot) -> Option<&'a mut AccessInfo> {
+    match ptr {
+        Slot::Alloc(a) => Some(&mut func.allocas[*a as usize].access_info),
+        Slot::Value(f, v) if *v < (func.args.len() as u32) => {
+            Some(&mut func.args[*v as usize].access_info)
+        }
+        _ => None,
     }
 }
 
@@ -1209,4 +1253,117 @@ pub fn convert_atomic_order(order: rustc_middle::ty::AtomicOrdering) -> AtomicOr
         rustc_middle::ty::AtomicOrdering::AcqRel => AtomicOrdering::AcquireRelease,
         rustc_middle::ty::AtomicOrdering::SeqCst => AtomicOrdering::SequentiallyConsistent,
     }
+}
+
+#[cfg(feature = "promote")]
+pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32) {
+    assert_eq!(size, size as u8 as u32);
+    assert_eq!(offset, offset as u8 as u32);
+    let size = size as u8;
+    let offset = offset as u8;
+
+    enum Match {
+        A,
+        B,
+        None,
+    }
+    let m = if offset == 0 {
+        if size == access_info.size_a {
+            Match::A
+        } else {
+            match access_info.state {
+                AccessInfoState::Unused => Match::A,
+                AccessInfoState::OnceWrittenB | AccessInfoState::WrittenB
+                    if size <= access_info.offset_b =>
+                {
+                    Match::A
+                }
+                _ => Match::None,
+            }
+        }
+    } else if offset > 0 {
+        if offset == access_info.offset_b && size == access_info.size_b {
+            Match::B
+        } else {
+            match access_info.state {
+                AccessInfoState::Unused => Match::B,
+                AccessInfoState::OnceWrittenA | AccessInfoState::WrittenA
+                    if offset >= access_info.size_a =>
+                {
+                    Match::B
+                }
+                _ => Match::None,
+            }
+        }
+    } else {
+        Match::None
+    };
+    match m {
+        Match::A => {
+            access_info.size_a = size;
+        }
+        Match::B => {
+            access_info.size_b = size;
+            access_info.offset_b = offset;
+        }
+        _ => {}
+    }
+
+    access_info.state = match (access_info.state, m) {
+        (AccessInfoState::Unused, Match::A) => AccessInfoState::OnceWrittenA,
+        (AccessInfoState::Unused, Match::B) => AccessInfoState::OnceWrittenB,
+
+        (AccessInfoState::OnceWrittenA, Match::A) => AccessInfoState::WrittenA,
+        (AccessInfoState::OnceWrittenA, Match::B) => AccessInfoState::Written,
+        (AccessInfoState::OnceWrittenB, Match::A) => AccessInfoState::Written,
+        (AccessInfoState::OnceWrittenB, Match::B) => AccessInfoState::WrittenB,
+
+        (AccessInfoState::WrittenA, Match::A) => AccessInfoState::WrittenA,
+        (AccessInfoState::WrittenA, Match::B) => AccessInfoState::Written,
+        (AccessInfoState::WrittenB, Match::A) => AccessInfoState::Written,
+        (AccessInfoState::WrittenB, Match::B) => AccessInfoState::WrittenB,
+
+        (AccessInfoState::Written, Match::A) => AccessInfoState::Written,
+        (AccessInfoState::Written, Match::B) => AccessInfoState::Written,
+
+        _ => AccessInfoState::Complex,
+    }
+}
+
+pub fn merge_access_states(a: AccessInfoState, b: AccessInfoState) -> AccessInfoState {
+    match (a, b) {
+        (AccessInfoState::Unused, _) => b,
+        (_, AccessInfoState::Unused) => a,
+        (AccessInfoState::Complex, _) => AccessInfoState::Complex,
+        (_, AccessInfoState::Complex) => AccessInfoState::Complex,
+
+        // Unused and Complex no longer possible as result
+
+        (AccessInfoState::OnceWrittenA, AccessInfoState::OnceWrittenB) => AccessInfoState::OnceWritten,
+        (AccessInfoState::OnceWrittenB, AccessInfoState::OnceWrittenA) => AccessInfoState::OnceWritten,
+
+        // Once writtens are no longer possible
+
+        (AccessInfoState::OnceWrittenA, AccessInfoState::OnceWrittenA) => AccessInfoState::WrittenA,
+        (AccessInfoState::WrittenA, AccessInfoState::OnceWrittenA) => AccessInfoState::WrittenA,
+        (AccessInfoState::OnceWrittenA, AccessInfoState::WrittenA) => AccessInfoState::WrittenA,
+
+        (AccessInfoState::OnceWrittenB, AccessInfoState::OnceWrittenB) => AccessInfoState::WrittenB,
+        (AccessInfoState::WrittenB, AccessInfoState::OnceWrittenB) => AccessInfoState::WrittenB,
+        (AccessInfoState::OnceWrittenB, AccessInfoState::WrittenB) => AccessInfoState::WrittenB,
+
+        // Written A and B no longer possible, only Written left
+
+        _ => AccessInfoState::Written
+    }
+}
+
+pub fn written_to_a(state: AccessInfoState) -> bool {
+    matches!(state, AccessInfoState::OnceWrittenA | AccessInfoState::OnceWritten
+        | AccessInfoState::WrittenA | AccessInfoState::Written)
+}
+
+pub fn written_to_b(state: AccessInfoState) -> bool {
+    matches!(state, AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten
+        | AccessInfoState::WrittenB | AccessInfoState::Written)
 }

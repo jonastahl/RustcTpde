@@ -3,10 +3,9 @@ mod intrinsic;
 
 use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
 use crate::shared::ir;
-use crate::shared::ir::{
-    BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type,
-    convert_atomic_op, convert_atomic_order, size_of_type, vector_info,
-};
+use crate::shared::ir::{BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type, convert_atomic_op, convert_atomic_order, size_of_type, vector_info};
+#[cfg(feature = "promote")]
+use crate::shared::ir::update_access_info;
 use core::borrow::Borrow;
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
@@ -1281,7 +1280,13 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::Store,
             &[val, ptr, Slot::new_raw(align.bytes_usize() as u32)],
-        )
+        );
+        #[cfg(feature = "promote")]
+        {
+            if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
+                update_access_info(info, size_of_val(&val) as u32, 0)
+            }
+        }
     }
 
     fn load_pair(
@@ -1297,7 +1302,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         let ind = module.add_const(Type::i64, 1);
         let ptr_b = module.add_instruction_ret(
             self.basic_block,
-            InstructionKind::GEP,
+            InstructionKind::PairGEP,
             &[ptr, Slot::new_raw(offset), ind],
             Type::i64,
         );
@@ -1318,10 +1323,17 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         let ind = module.add_const(Type::i64, 1);
         let ptr_b = module.add_instruction_ret(
             self.basic_block,
-            InstructionKind::GEP,
+            InstructionKind::PairGEP,
             &[ptr, Slot::new_raw(offset), ind],
             Type::i64,
         );
         self.store_single(module, val_b, ptr_b, align);
+
+        #[cfg(feature = "promote")]
+        {
+            if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
+                update_access_info(info, size_of_val(&val_b) as u32, offset)
+            }
+        }
     }
 }

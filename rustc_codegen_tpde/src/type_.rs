@@ -1,7 +1,5 @@
 use crate::context::{CodegenCx, GenericCx, SCx};
-use crate::shared::ir::{
-    ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type, vector_info, vector_type,
-};
+use crate::shared::ir::{vector_info, vector_type, ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type, AccessInfo};
 use core::borrow::Borrow;
 use rustc_abi::{AddressSpace, BackendRepr, Primitive, Reg, RegKind, Scalar};
 use rustc_codegen_ssa::common::TypeKind;
@@ -255,6 +253,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                     extension: ArgExtension::None,
                     size: attrs.pointee_size.bytes() as u32,
                     align: attrs.pointee_align.map_or_else(|| 1, |a| a.bytes() as u32),
+                    access_info: AccessInfo::default(),
                 })
             }
             _ => (),
@@ -279,6 +278,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                         extension: map_arg_extension(attrs.arg_ext),
                         size: 0,
                         align: 0,
+                        access_info: AccessInfo::default(),
                     })
                 }
                 PassMode::Pair(attrs_a, attrs_b) => {
@@ -291,6 +291,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                         extension: map_arg_extension(attrs_a.arg_ext),
                         size: 0,
                         align: 0,
+                        access_info: AccessInfo::default(),
                     });
                     slots.push(b);
                     arg_infos.push(ArgInfo {
@@ -298,6 +299,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                         extension: map_arg_extension(attrs_b.arg_ext),
                         size: 0,
                         align: 0,
+                        access_info: AccessInfo::default(),
                     });
                 }
                 PassMode::Indirect {
@@ -311,6 +313,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                         extension: ArgExtension::None,
                         size: attrs.pointee_size.bytes() as u32,
                         align: attrs.pointee_align.map_or_else(|| 1, |a| a.bytes() as u32),
+                        access_info: AccessInfo::default(),
                     });
                 }
                 PassMode::Indirect {
@@ -335,12 +338,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 } => match self.cast_backend_type(cast) {
                     FullType::Single(ty) => {
                         slots.push(ty);
-                        arg_infos.push(ArgInfo {
-                            kind: ArgKind::Direct,
-                            extension: ArgExtension::None,
-                            size: 0,
-                            align: 0,
-                        })
+                        arg_infos.push(ArgInfo::default())
                     }
                     FullType::Pair(a, b, offset_b) => {
                         slots.push(a);

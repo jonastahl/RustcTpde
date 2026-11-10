@@ -36,15 +36,15 @@ Disassembly of section .text:
 	mov    -0x3c(%rbp),%ecx
 	lea    (%rax,%rcx,1),%ecx
 	cmp    %eax,%ecx
-	jb     <inlined_loops+0x142>
+	jb     <inlined_loops+0x14e>
 	mov    -0x38(%rbp),%eax
 	lea    (%rcx,%rax,1),%eax
 	cmp    %ecx,%eax
-	jb     <inlined_loops+0x136>
+	jb     <inlined_loops+0x140>
 	mov    -0x34(%rbp),%ecx
 	lea    (%rax,%rcx,1),%ecx
 	cmp    %eax,%ecx
-	jb     <inlined_loops+0x12a>
+	jb     <inlined_loops+0x132>
 	mov    -0x54(%rbp),%eax
 	mov    $0x3,%edx
 	imul   %edx,%eax
@@ -67,40 +67,47 @@ Disassembly of section .text:
 	mov    -0x4c(%rbp),%ecx
 	lea    (%rax,%rcx,1),%ecx
 	cmp    %eax,%ecx
-	jb     <inlined_loops+0x11e>
+	jb     <inlined_loops+0x124>
 	mov    -0x48(%rbp),%eax
 	lea    (%rcx,%rax,1),%eax
 	cmp    %ecx,%eax
-	jb     <inlined_loops+0x112>
+	jb     <inlined_loops+0x116>
 	mov    -0x44(%rbp),%ecx
 	lea    (%rax,%rcx,1),%ecx
 	cmp    %eax,%ecx
-	jb     <inlined_loops+0x106>
+	jb     <inlined_loops+0x108>
 	mov    -0x58(%rbp),%eax
 	lea    (%rax,%rcx,1),%ecx
 	cmp    %eax,%ecx
 	jb     <inlined_loops+0xfa>
 	mov    %ecx,%eax
-	jmp    <inlined_loops+0x14e>
+	jmp    <inlined_loops+0x15c>
 	lea    -0x8(%rip),%rdi        # <inlined_loops+0xf9>
 	call   <inlined_loops+0x106>
-	lea    -0x8(%rip),%rdi        # <inlined_loops+0x105>
-	call   <inlined_loops+0x112>
-	lea    -0x8(%rip),%rdi        # <inlined_loops+0x111>
-	call   <inlined_loops+0x11e>
-	lea    -0x8(%rip),%rdi        # <inlined_loops+0x11d>
-	call   <inlined_loops+0x12a>
-	lea    -0x8(%rip),%rdi        # <inlined_loops+0x129>
-	call   <inlined_loops+0x136>
-	lea    -0x8(%rip),%rdi        # <inlined_loops+0x135>
-	call   <inlined_loops+0x142>
-	lea    -0x8(%rip),%rdi        # <inlined_loops+0x141>
-	call   <inlined_loops+0x14e>
+	ud2
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x107>
+	call   <inlined_loops+0x114>
+	ud2
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x115>
+	call   <inlined_loops+0x122>
+	ud2
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x123>
+	call   <inlined_loops+0x130>
+	ud2
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x131>
+	call   <inlined_loops+0x13e>
+	ud2
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x13f>
+	call   <inlined_loops+0x14c>
+	ud2
+	lea    -0x8(%rip),%rdi        # <inlined_loops+0x14d>
+	call   <inlined_loops+0x15a>
+	ud2
 	add    $0x60,%rsp
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopl   0x0(%rax,%rax,1)
 
 <repeat_after_call>:
 	push   %rbp
@@ -173,13 +180,14 @@ Disassembly of section .text:
 	cmp    %eax,%ecx
 	jb     <repeat_between_calls+0xa5>
 	mov    %ecx,%eax
-	jmp    <repeat_between_calls+0xb1>
+	jmp    <repeat_between_calls+0xb3>
 	lea    -0x8(%rip),%rdi        # <repeat_between_calls+0xa4>
 	call   <repeat_between_calls+0xb1>
+	ud2
 	add    $0x70,%rsp
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <repeat_big>:
 	push   %rbp
@@ -188,10 +196,10 @@ Disassembly of section .text:
 	sub    $0x58,%rsp
 	lea    0x1(%rsi),%rax
 	cmp    %rsi,%rax
-	jb     <repeat_big+0xc4>
+	jb     <repeat_big+0xc8>
 	lea    0x2(%rsi),%rcx
 	cmp    %rsi,%rcx
-	jb     <repeat_big+0xb8>
+	jb     <repeat_big+0xba>
 	mov    %rsi,%rdx
 	lea    0x3(%rdx),%ebx
 	cmp    %edx,%ebx
@@ -227,18 +235,21 @@ Disassembly of section .text:
 	lea    0x1(%rax),%rcx
 	mov    %rcx,-0x58(%rbp)
 	jmp    <repeat_big+0x4a>
-	jmp    <repeat_big+0xd0>
+	jmp    <repeat_big+0xd6>
 	lea    -0x8(%rip),%rdi        # <repeat_big+0xab>
 	call   <repeat_big+0xb8>
-	lea    -0x8(%rip),%rdi        # <repeat_big+0xb7>
-	call   <repeat_big+0xc4>
-	lea    -0x8(%rip),%rdi        # <repeat_big+0xc3>
-	call   <repeat_big+0xd0>
+	ud2
+	lea    -0x8(%rip),%rdi        # <repeat_big+0xb9>
+	call   <repeat_big+0xc6>
+	ud2
+	lea    -0x8(%rip),%rdi        # <repeat_big+0xc7>
+	call   <repeat_big+0xd4>
+	ud2
 	add    $0x58,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <repeat_f64>:
 	push   %rbp
@@ -297,7 +308,7 @@ Disassembly of section .text:
 	mov    -0x2c(%rbp),%ecx
 	lea    (%rcx,%rax,1),%ebx
 	cmp    %ecx,%ebx
-	jb     <repeat_in_loop+0x9f>
+	jb     <repeat_in_loop+0xa1>
 	mov    %ebx,-0x2c(%rbp)
 	mov    -0x30(%rbp),%eax
 	lea    0x1(%rax),%ebx
@@ -306,18 +317,19 @@ Disassembly of section .text:
 	mov    %ebx,-0x30(%rbp)
 	jmp    <repeat_in_loop+0x1c>
 	mov    -0x2c(%rbp),%eax
-	jmp    <repeat_in_loop+0xab>
+	jmp    <repeat_in_loop+0xaf>
 	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0x92>
 	call   <repeat_in_loop+0x9f>
-	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0x9e>
-	call   <repeat_in_loop+0xab>
+	ud2
+	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0xa0>
+	call   <repeat_in_loop+0xad>
+	ud2
 	add    $0x40,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopl   0x0(%rax,%rax,1)
 
 <repeat_pair>:
 	push   %rbp

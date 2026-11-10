@@ -20,36 +20,40 @@ Disassembly of section .text:
 	movb   $0x1,-0x29(%rbp)
 	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x14>
 	mov    %rax,%rbx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x21>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x23>
 	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x21>
+	ud2
 	movabs $0x8000000000000000,%rdi
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x30>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x32>
 	mov    %rax,%r12
 	movb   $0x0,-0x29(%rbp)
 	mov    %rbx,%rdi
 	mov    %r12,%rsi
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x42>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x44>
 	mov    %rax,%rbx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x62>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x64>
 	mov    %rax,-0x40(%rbp)
 	mov    %edx,-0x38(%rbp)
 	movzbl -0x29(%rbp),%eax
 	test   $0x1,%al
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x7c>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x7c>
+	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x7e>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x7e>
 	mov    %rbx,%rdi
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x6a>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x6c>
 	movq   %xmm0,-0x48(%rbp)
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x81>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x85>
 	mov    %rax,-0x40(%rbp)
 	mov    %edx,-0x38(%rbp)
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x81>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsdECsQvp3e8KgHi_6source+0x83>
+	ud2
 	movq   -0x48(%rbp),%xmm0
 	add    $0x40,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -60,38 +64,39 @@ Disassembly of section .text:
 	movb   $0x1,-0x29(%rbp)
 	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x14>
 	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x20>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x22>
 	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x20>
+	ud2
 	mov    $0x80000000,%edi
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x2a>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x2c>
 	mov    %eax,%r12d
 	movb   $0x0,-0x29(%rbp)
 	mov    %ebx,%edi
 	mov    %r12d,%esi
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x3b>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x3d>
 	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x5a>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x5c>
 	mov    %rax,-0x40(%rbp)
 	mov    %edx,-0x38(%rbp)
 	movzbl -0x29(%rbp),%eax
 	test   $0x1,%al
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x72>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x72>
+	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x74>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x74>
 	mov    %ebx,%edi
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x61>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x63>
 	movd   %xmm0,-0x30(%rbp)
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x77>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x7b>
 	mov    %rax,-0x40(%rbp)
 	mov    %edx,-0x38(%rbp)
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x77>
+	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4fabsfECsQvp3e8KgHi_6source+0x79>
+	ud2
 	movd   -0x30(%rbp),%xmm0
 	add    $0x30,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax)
 
 <_RINvNtCsioHeeuq8fQz_4core10intrinsics4log2fECsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -99,13 +104,14 @@ Disassembly of section .text:
 	sub    $0x30,%rsp
 	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4log2fECsQvp3e8KgHi_6source+0xd>
 	movd   %xmm0,-0x2c(%rbp)
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4log2fECsQvp3e8KgHi_6source+0x1c>
+	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics4log2fECsQvp3e8KgHi_6source+0x1e>
 	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics4log2fECsQvp3e8KgHi_6source+0x1c>
+	ud2
 	movd   -0x2c(%rbp),%xmm0
 	add    $0x30,%rsp
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <_RNvXNvNtNtCsioHeeuq8fQz_4core10intrinsics4log2s_1__fNtB4_8Dispatch8dispatchCsQvp3e8KgHi_6source>:
 	push   %rbp

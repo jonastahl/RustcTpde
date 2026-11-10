@@ -57,7 +57,7 @@ Disassembly of section .text:
 	mov    $0x3e8,%ecx
 	imul   %ecx,%r13d
 	seto   %al
-	jo     <nested_twice+0x147>
+	jo     <nested_twice+0x149>
 	test   %r12b,%r12b
 	jne    <nested_twice+0xc5>
 	movl   $0x64,-0x34(%rbp)
@@ -93,11 +93,13 @@ Disassembly of section .text:
 	seto   %al
 	jo     <nested_twice+0x13b>
 	mov    %r12d,%eax
-	jmp    <nested_twice+0x153>
+	jmp    <nested_twice+0x157>
 	lea    -0x8(%rip),%rdi        # <nested_twice+0x13a>
 	call   <nested_twice+0x147>
-	lea    -0x8(%rip),%rdi        # <nested_twice+0x146>
-	call   <nested_twice+0x153>
+	ud2
+	lea    -0x8(%rip),%rdi        # <nested_twice+0x148>
+	call   <nested_twice+0x155>
+	ud2
 	add    $0x18,%rsp
 	pop    %r15
 	pop    %r14
@@ -107,7 +109,7 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
+	nop
 
 <ordered_diff>:
 	push   %rbp
@@ -141,9 +143,10 @@ Disassembly of section .text:
 	cmp    %rbx,%r12
 	jb     <ordered_diff+0x6c>
 	mov    %r13,%rax
-	jmp    <ordered_diff+0x78>
+	jmp    <ordered_diff+0x7a>
 	lea    -0x8(%rip),%rdi        # <ordered_diff+0x6b>
 	call   <ordered_diff+0x78>
+	ud2
 	add    $0x20,%rsp
 	pop    %r14
 	pop    %r13
@@ -152,7 +155,6 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
 
 <pick_const>:
 	push   %rbp
@@ -265,15 +267,18 @@ Disassembly of section .text:
 	cmp    %r12d,%ebx
 	jb     <pick_ignored+0x49>
 	mov    %ebx,%eax
-	jmp    <pick_ignored+0x55>
+	jmp    <pick_ignored+0x57>
 	lea    -0x8(%rip),%rdi        # <pick_ignored+0x48>
 	call   <pick_ignored+0x55>
+	ud2
 	add    $0x18,%rsp
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
 <pick_u128>:
 	push   %rbp
@@ -373,7 +378,7 @@ Disassembly of section .text:
 	mov    %eax,%ebx
 	add    %r12d,%ebx
 	seto   %cl
-	jo     <sum_signs+0xbf>
+	jo     <sum_signs+0xc1>
 	mov    %ebx,-0x2c(%rbp)
 	movzbl -0x2d(%rbp),%eax
 	lea    0x1(%rax),%ebx
@@ -382,18 +387,19 @@ Disassembly of section .text:
 	mov    %bl,-0x2d(%rbp)
 	jmp    <sum_signs+0x1a>
 	mov    -0x2c(%rbp),%eax
-	jmp    <sum_signs+0xcb>
+	jmp    <sum_signs+0xcf>
 	lea    -0x8(%rip),%rdi        # <sum_signs+0xb2>
 	call   <sum_signs+0xbf>
-	lea    -0x8(%rip),%rdi        # <sum_signs+0xbe>
-	call   <sum_signs+0xcb>
+	ud2
+	lea    -0x8(%rip),%rdi        # <sum_signs+0xc0>
+	call   <sum_signs+0xcd>
+	ud2
 	add    $0x30,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopl   0x0(%rax,%rax,1)
 
 <two_sites>:
 	push   %rbp
@@ -428,7 +434,7 @@ Disassembly of section .text:
 	mov    $0xa,%ecx
 	imul   %ecx,%ebx
 	seto   %al
-	jo     <two_sites+0xf3>
+	jo     <two_sites+0xf5>
 	movzbl %r12b,%r12d
 	cmp    $0x0,%r12d
 	je     <two_sites+0xac>
@@ -454,11 +460,13 @@ Disassembly of section .text:
 	seto   %al
 	jo     <two_sites+0xe7>
 	mov    %r12d,%eax
-	jmp    <two_sites+0xff>
+	jmp    <two_sites+0x103>
 	lea    -0x8(%rip),%rdi        # <two_sites+0xe6>
 	call   <two_sites+0xf3>
-	lea    -0x8(%rip),%rdi        # <two_sites+0xf2>
-	call   <two_sites+0xff>
+	ud2
+	lea    -0x8(%rip),%rdi        # <two_sites+0xf4>
+	call   <two_sites+0x101>
+	ud2
 	add    $0x18,%rsp
 	pop    %r13
 	pop    %r12

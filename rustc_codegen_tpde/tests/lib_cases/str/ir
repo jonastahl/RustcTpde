@@ -23,7 +23,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Load> ([global: 0], [raw: 8]) -> [val: 0],
-                    <GEP> ([global: 0], [raw: 8], [const: i64 1]) -> [val: 1],
+                    <PairGEP> ([global: 0], [raw: 8], [const: i64 1]) -> [val: 1],
                     <Load> ([val: 1], [raw: 8]) -> [val: 2],
                     <Ret> ([val: 0], [val: 2]),
                 ],

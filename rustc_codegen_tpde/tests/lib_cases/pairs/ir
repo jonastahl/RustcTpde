@@ -9,6 +9,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -31,7 +38,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 16, align: 8,
+                size: 16, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -52,7 +59,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
-                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
+                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 8]) -> [val: 6],
                     <Ret> ([val: 4], [val: 6]),
                 ],
@@ -68,6 +75,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -88,7 +102,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 16, align: 8,
+                size: 16, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -105,7 +119,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 2],
-                    <GEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
+                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
                     <Load> ([val: 3], [raw: 8]) -> [val: 4],
                     <Ret> ([val: 2], [val: 4]),
                 ],
@@ -121,12 +135,26 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
                 ArgInfo {
                     kind: Direct,
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
@@ -171,6 +199,13 @@ ModuleTpde {
                     extension: None,
                     size: 0,
                     align: 0,
+                    access_info: AccessInfo {
+                        state: Unused,
+                        call_forwards: 0,
+                        size_a: 0,
+                        size_b: 0,
+                        offset_b: 0,
+                    },
                 },
             ],
             slots: [
