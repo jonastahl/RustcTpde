@@ -1,9 +1,10 @@
 use crate::shared::ffi;
-use crate::shared::ffi::{AccessInfoState, BasicBlock, Instruction, InstructionReference, Phi};
-use crate::shared::ir::{
-    ArgKind, InstructionKind, ModuleTpde, Slot, access_info_intern, merge_access_states,
-    size_of_type, written_to_a, written_to_b,
-};
+use crate::shared::ffi::{BasicBlock, Instruction, InstructionReference, Phi};
+use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot, size_of_type};
+#[cfg(feature = "promote")]
+use crate::shared::ir::{access_info_intern, alloc_used_a, alloc_used_b, merge_access_states};
+#[cfg(feature = "promote")]
+use crate::shared::ffi::AccessInfoState;
 use std::collections::BTreeSet;
 use std::env;
 use std::ops::Range;
@@ -335,22 +336,23 @@ fn inline_call(
 
     // decrement forwarding for all arguments
     #[cfg(feature = "promote")]
-    for i in 0..call.ops_len as usize {
+    for i in 0..call.ops_len as usize - 1 {
         let arg = Slot::from_ffi(caller.operands[args_start + i]);
         if let Some(call_info) = access_info_intern(caller, &arg) {
             let callee_info = &callee.args[i].access_info;
 
-            call_info.call_forwards += callee_info.call_forwards - 1;
+            call_info.call_forwards -= 1;
+            call_info.call_forwards += callee_info.call_forwards;
 
-            if written_to_a(callee_info.state) {
-                if !written_to_a(call_info.state) {
+            if alloc_used_a(callee_info) {
+                if !alloc_used_a(call_info) {
                     call_info.size_a = callee_info.size_a;
                 } else if call_info.size_a != callee_info.size_a {
                     call_info.state = AccessInfoState::Complex
                 }
             }
-            if written_to_b(callee_info.state) {
-                if !written_to_b(call_info.state) {
+            if alloc_used_b(callee_info) {
+                if !alloc_used_b(call_info) {
                     call_info.size_b = callee_info.size_b;
                     call_info.offset_b = callee_info.offset_b;
                 } else if call_info.size_b != callee_info.size_b || call_info.offset_b != callee_info.offset_b {

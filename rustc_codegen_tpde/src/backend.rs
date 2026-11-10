@@ -113,10 +113,13 @@ impl WriteBackendMethods for TpdeCodegenBackend {
     ) {
         let _timer = prof.generic_activity_with_arg("TPDE_module_optimize", &*module.name);
 
-        if cfg!(feature = "inline") {
-            // Do simple inlining for all always inline functions
-            module.module_llvm.tpde_mut().inline_functions();
-        }
+        // Do simple inlining for all always inline functions
+        #[cfg(feature = "inline")]
+        module.module_llvm.tpde_mut().inline_functions();
+
+        // Promote all allocas into slots if possible
+        #[cfg(feature = "promote")]
+        module.module_llvm.tpde_mut().promote_allocas();
     }
 
     fn optimize_and_codegen_thin(

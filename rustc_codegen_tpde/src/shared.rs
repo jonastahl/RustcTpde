@@ -610,11 +610,11 @@ impl Debug for ffi::Slot {
 
 impl Debug for ffi::Alloca {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
-        write!(f, "size: {:?}, align: {:?}", self.size, self.align)?;
-        #[cfg(feature = "promote")]
         write!(
             f,
-            ", state: {:?}, size_a: {:?}, offset_b: {:?}, size_b: {:?}, call_forwards: {:?}",
+            "size: {:?}, align: {:?}, state: {:?}, size_a: {:?}, offset_b: {:?}, size_b: {:?}, call_forwards: {:?}",
+            self.size,
+            self.align,
             self.access_info.state,
             self.access_info.size_a,
             self.access_info.offset_b,

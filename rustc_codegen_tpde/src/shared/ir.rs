@@ -1,8 +1,6 @@
 use super::ffi;
 pub use super::ffi::ModuleTpde;
 use crate::shared::ffi::{CalleeInfo, GlobalPtr};
-#[cfg(feature = "promote")]
-use crate::shared::ffi::AccessInfoState;
 use core::fmt::{Debug, Formatter};
 use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::ReturnSlot;
@@ -179,7 +177,7 @@ pub fn vector_type(elem: Type, count: u64) -> Option<Type> {
 
 pub use super::ffi::{
     ArgExtension, ArgInfo, ArgKind, AtomicOrdering, AtomicRmwBinOp, InstructionKind,
-    LandingPadKind, Type, AccessInfo
+    LandingPadKind, Type, AccessInfo, AccessInfoState
 };
 
 pub struct Module {
@@ -1256,7 +1254,7 @@ pub fn convert_atomic_order(order: rustc_middle::ty::AtomicOrdering) -> AtomicOr
 }
 
 #[cfg(feature = "promote")]
-pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32) {
+pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, written: bool) {
     assert_eq!(size, size as u8 as u32);
     assert_eq!(offset, offset as u8 as u32);
     let size = size as u8;
@@ -1271,62 +1269,49 @@ pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32) 
         if size == access_info.size_a {
             Match::A
         } else {
-            match access_info.state {
-                AccessInfoState::Unused => Match::A,
-                AccessInfoState::OnceWrittenB | AccessInfoState::WrittenB
-                    if size <= access_info.offset_b =>
-                {
-                    Match::A
-                }
-                _ => Match::None,
+            if access_info.size_a == 0 && size <= access_info.offset_b {
+                access_info.size_a = size;
+                Match::A
+            } else {
+                Match::None
             }
         }
     } else if offset > 0 {
         if offset == access_info.offset_b && size == access_info.size_b {
             Match::B
         } else {
-            match access_info.state {
-                AccessInfoState::Unused => Match::B,
-                AccessInfoState::OnceWrittenA | AccessInfoState::WrittenA
-                    if offset >= access_info.size_a =>
-                {
-                    Match::B
-                }
-                _ => Match::None,
+            if access_info.size_b == 0 && offset >= access_info.size_a {
+                access_info.size_b = size;
+                access_info.offset_b = offset;
+                Match::B
+            } else {
+                Match::None
             }
         }
     } else {
         Match::None
     };
-    match m {
-        Match::A => {
-            access_info.size_a = size;
+
+    if written {
+        access_info.state = match (access_info.state, m) {
+            (AccessInfoState::Unused, Match::A) => AccessInfoState::OnceWrittenA,
+            (AccessInfoState::Unused, Match::B) => AccessInfoState::OnceWrittenB,
+
+            (AccessInfoState::OnceWrittenA, Match::A) => AccessInfoState::WrittenA,
+            (AccessInfoState::OnceWrittenA, Match::B) => AccessInfoState::Written,
+            (AccessInfoState::OnceWrittenB, Match::A) => AccessInfoState::Written,
+            (AccessInfoState::OnceWrittenB, Match::B) => AccessInfoState::WrittenB,
+
+            (AccessInfoState::WrittenA, Match::A) => AccessInfoState::WrittenA,
+            (AccessInfoState::WrittenA, Match::B) => AccessInfoState::Written,
+            (AccessInfoState::WrittenB, Match::A) => AccessInfoState::Written,
+            (AccessInfoState::WrittenB, Match::B) => AccessInfoState::WrittenB,
+
+            (AccessInfoState::Written, Match::A) => AccessInfoState::Written,
+            (AccessInfoState::Written, Match::B) => AccessInfoState::Written,
+
+            _ => AccessInfoState::Complex,
         }
-        Match::B => {
-            access_info.size_b = size;
-            access_info.offset_b = offset;
-        }
-        _ => {}
-    }
-
-    access_info.state = match (access_info.state, m) {
-        (AccessInfoState::Unused, Match::A) => AccessInfoState::OnceWrittenA,
-        (AccessInfoState::Unused, Match::B) => AccessInfoState::OnceWrittenB,
-
-        (AccessInfoState::OnceWrittenA, Match::A) => AccessInfoState::WrittenA,
-        (AccessInfoState::OnceWrittenA, Match::B) => AccessInfoState::Written,
-        (AccessInfoState::OnceWrittenB, Match::A) => AccessInfoState::Written,
-        (AccessInfoState::OnceWrittenB, Match::B) => AccessInfoState::WrittenB,
-
-        (AccessInfoState::WrittenA, Match::A) => AccessInfoState::WrittenA,
-        (AccessInfoState::WrittenA, Match::B) => AccessInfoState::Written,
-        (AccessInfoState::WrittenB, Match::A) => AccessInfoState::Written,
-        (AccessInfoState::WrittenB, Match::B) => AccessInfoState::WrittenB,
-
-        (AccessInfoState::Written, Match::A) => AccessInfoState::Written,
-        (AccessInfoState::Written, Match::B) => AccessInfoState::Written,
-
-        _ => AccessInfoState::Complex,
     }
 }
 
@@ -1358,12 +1343,14 @@ pub fn merge_access_states(a: AccessInfoState, b: AccessInfoState) -> AccessInfo
     }
 }
 
-pub fn written_to_a(state: AccessInfoState) -> bool {
-    matches!(state, AccessInfoState::OnceWrittenA | AccessInfoState::OnceWritten
-        | AccessInfoState::WrittenA | AccessInfoState::Written)
+pub fn alloc_used_a(info: &AccessInfo) -> bool {
+    info.size_a != 0
 }
 
-pub fn written_to_b(state: AccessInfoState) -> bool {
-    matches!(state, AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten
-        | AccessInfoState::WrittenB | AccessInfoState::Written)
+pub fn alloc_used_b(info: &AccessInfo) -> bool {
+    info.size_b != 0
+}
+
+pub fn written_once(state: AccessInfoState) -> bool {
+    matches!(state, AccessInfoState::OnceWrittenA | AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten)
 }

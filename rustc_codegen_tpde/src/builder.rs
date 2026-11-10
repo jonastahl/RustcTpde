@@ -3,9 +3,9 @@ mod intrinsic;
 
 use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
 use crate::shared::ir;
-use crate::shared::ir::{BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type, convert_atomic_op, convert_atomic_order, size_of_type, vector_info};
+use crate::shared::ir::{convert_atomic_op, convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type};
 #[cfg(feature = "promote")]
-use crate::shared::ir::update_access_info;
+use crate::shared::ir::{AccessInfoState, update_access_info};
 use core::borrow::Borrow;
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
@@ -22,6 +22,8 @@ use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrs;
 use rustc_middle::ty::layout::TyAndLayout;
 use rustc_middle::ty::{AtomicOrdering, Instance, Ty};
 use rustc_span::Span;
+#[cfg(feature = "promote")]
+use rustc_span::bug;
 use rustc_target::callconv::FnAbi;
 use std::cmp::max;
 use std::ops::Deref;
@@ -941,7 +943,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     ) {
         // Avoid having memcpy calls for small constant sizes
         match self.const_to_opt_uint(size) {
-            Some(i) if i <= 64 && flags == MemFlags::VOLATILE => {
+            Some(i) if i <= 64 && flags != MemFlags::VOLATILE => {
                 let mut i = i;
                 let mut src = src;
                 let mut dst = dst;
@@ -1267,6 +1269,13 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         align: rustc_abi::Align,
         ret_ty: Type,
     ) -> Slot {
+        #[cfg(feature = "promote")]
+        {
+            if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
+                update_access_info(info, size_of_type(ret_ty), 0, false)
+            }
+        }
+
         module.add_instruction_ret(
             self.basic_block,
             InstructionKind::Load,
@@ -1283,8 +1292,12 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         );
         #[cfg(feature = "promote")]
         {
+            let FullType::Single(ty) = module.type_of_slot(val) else { bug!() };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
-                update_access_info(info, size_of_val(&val) as u32, 0)
+                update_access_info(info, size_of_type(ty), 0, true)
+            }
+            if let Some(info) = module.access_info(self.basic_block.function(), &val) {
+                info.state = AccessInfoState::Complex;
             }
         }
     }
@@ -1307,6 +1320,14 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
             Type::i64,
         );
         let slot_b = self.load_single(module, ptr_b, align, ty_b);
+
+        #[cfg(feature = "promote")]
+        {
+            if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
+                update_access_info(info, size_of_type(ty_b), offset, false)
+            }
+        }
+
         (slot_a, slot_b)
     }
 
@@ -1331,8 +1352,9 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
 
         #[cfg(feature = "promote")]
         {
+            let FullType::Single(ty) = module.type_of_slot(val_b) else { bug!() };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
-                update_access_info(info, size_of_val(&val_b) as u32, offset)
+                update_access_info(info, size_of_type(ty), offset, true)
             }
         }
     }
