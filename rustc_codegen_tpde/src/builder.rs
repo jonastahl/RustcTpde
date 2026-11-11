@@ -943,7 +943,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
     ) {
         // Avoid having memcpy calls for small constant sizes
         match self.const_to_opt_uint(size) {
-            Some(i) if i <= 64 && flags != MemFlags::VOLATILE => {
+            Some(i) if i <= 64 && !flags.contains(MemFlags::VOLATILE) => {
                 let mut i = i;
                 let mut src = src;
                 let mut dst = dst;
