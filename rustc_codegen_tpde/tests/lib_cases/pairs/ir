@@ -89,6 +89,8 @@ ModuleTpde {
                 Bool,
                 i64,
                 i64,
+                i64,
+                i64,
                 i8,
             ],
             flags: Flags {
@@ -102,7 +104,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 16, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 1, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -111,17 +113,21 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Store> ([const pool: 6], [alloc: 0], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 2],
+                    <Store> ([const pool: 7], [val: 2], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 7], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 8], [alloc: 0], [raw: 8]),
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 3],
+                    <Store> ([const pool: 9], [val: 3], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 2],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
-                    <Load> ([val: 3], [raw: 8]) -> [val: 4],
-                    <Ret> ([val: 2], [val: 4]),
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
+                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
+                    <Load> ([val: 5], [raw: 8]) -> [val: 6],
+                    <Ret> ([val: 4], [val: 6]),
                 ],
             ],
             callee_infos: [],
@@ -233,8 +239,10 @@ ModuleTpde {
         [i64] (18446744073709551615 17361641481138401520) -> -1085102592571150096,
         [i8] (18446744073709551615 18446744073709551601) -> -15,
         [i32] (0 100) -> 100,
-        [i128] (242 1085102592571150095) -> 4465197168430282641167,
-        [i128] (241 17361641481138401520) -> 4463026963245140340976,
+        [i64] (0 1085102592571150095) -> 1085102592571150095,
+        [i8] (18446744073709551615 18446744073709551602) -> -14,
+        [i64] (18446744073709551615 17361641481138401520) -> -1085102592571150096,
+        [i8] (18446744073709551615 18446744073709551601) -> -15,
     ],
     globals: [
         anonymous {

@@ -804,11 +804,11 @@ Disassembly of section .text:
 	cmp    %r12d,%ebx
 	jg     <cmp_nested_i32+0x2a>
 	movl   $0x5,-0x2c(%rbp)
-	jmp    <cmp_nested_i32+0x66>
+	jmp    <cmp_nested_i32+0x46>
 	test   %r12d,%r12d
 	jl     <cmp_nested_i32+0x3f>
 	movl   $0x4,-0x2c(%rbp)
-	jmp    <cmp_nested_i32+0x66>
+	jmp    <cmp_nested_i32+0x46>
 	movl   $0x3,-0x2c(%rbp)
 	jmp    <cmp_nested_i32+0x66>
 	test   %ebx,%ebx

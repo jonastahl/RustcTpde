@@ -3872,7 +3872,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <CMPslt> ([val: 0], [const: i32 0]) -> [val: 5],
-                    <CondBr> ([val: 5], [raw: 9], [raw: 8]),
+                    <CondBr> ([val: 5], [raw: 11], [raw: 10]),
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 5], [alloc: 0], [raw: 4]),
@@ -3883,24 +3883,33 @@ ModuleTpde {
                     <CondBr> ([val: 4], [raw: 7], [raw: 6]),
                 ],
                 BasicBlock: [
+                    <Br> ([raw: 9]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 4], [alloc: 0], [raw: 4]),
+                    <Br> ([raw: 8]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 3], [alloc: 0], [raw: 4]),
+                    <Br> ([raw: 8]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 5]),
+                ],
+                BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
                 BasicBlock: [
-                    <Store> ([const: i32 4], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 3], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
                     <Store> ([const: i32 2], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
+                    <Br> ([raw: 12]),
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 1], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
+                    <Br> ([raw: 12]),
+                ],
+                BasicBlock: [
+                    <Br> ([raw: 9]),
                 ],
             ],
             callee_infos: [],

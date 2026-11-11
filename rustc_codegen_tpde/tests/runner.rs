@@ -61,16 +61,9 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     fs::exists(&source_path).map_err(|_| Failed::from("Could not find source"))?;
 
     // 3. Compile the files
-    rustc()
+    tpde_rustc(overflow)
         .arg("--crate-type")
         .arg("lib")
-        .arg("-Z")
-        .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
-        .arg("-C")
-        .arg(format!(
-            "overflow-checks={}",
-            if overflow { "yes" } else { "no" }
-        ))
         .arg(&source_path)
         .arg("-o")
         .arg(&actual_ir_path)
@@ -78,16 +71,9 @@ fn run_lib_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
         .arg("llvm-ir")
         .output() // Executes the command and captures stdout/stderr
         .map_err(|e| format!("Failed to execute rustc command: {}", e))?;
-    rustc()
+    tpde_rustc(overflow)
         .arg("--crate-type")
         .arg("lib")
-        .arg("-Z")
-        .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
-        .arg("-C")
-        .arg(format!(
-            "overflow-checks={}",
-            if overflow { "yes" } else { "no" }
-        ))
         .arg(&source_path)
         .arg("-o")
         .arg(&actual_obj_path)
@@ -196,16 +182,9 @@ fn run_exec_case(path: &Path) -> Result<(), libtest_mimic::Failed> {
     }
 
     // 2. Compile the binary using the custom codegen backend
-    rustc()
+    tpde_rustc(overflow)
         .arg("--crate-type")
         .arg("bin")
-        .arg("-Z")
-        .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
-        .arg("-C")
-        .arg(format!(
-            "overflow-checks={}",
-            if overflow { "yes" } else { "no" }
-        ))
         .arg(&source_path)
         .arg("-o")
         .arg(&actual_bin_path)
@@ -274,6 +253,22 @@ fn rustc() -> Command {
     let mut cmd = Command::new("rustc");
     cmd.arg("+nightly-2026-10-28")
         .arg(format!("--remap-path-prefix={}=/sysroot", sysroot.trim()));
+    cmd
+}
+
+fn tpde_rustc(overflow: bool) -> Command {
+    let mut cmd = rustc();
+    cmd.arg("-Z")
+        .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
+        .arg("-C")
+        .arg("opt-level=2")
+        .arg("-C")
+        .arg("codegen-units=1")
+        .arg("-C")
+        .arg(format!(
+            "overflow-checks={}",
+            if overflow { "yes" } else { "no" }
+        ));
     cmd
 }
 

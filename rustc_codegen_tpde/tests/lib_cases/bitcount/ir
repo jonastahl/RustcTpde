@@ -1,420 +1,6 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCsQvp3e8KgHi_6source",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Cast> ([val: 0]) -> [val: 1],
-                    <ctlz_nonzero> ([val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs1m_NtNtCsioHeeuq8fQz_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCsQvp3e8KgHi_6source",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Cast> ([val: 0]) -> [val: 1],
-                    <cttz_nonzero> ([val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs4_NtCsioHeeuq8fQz_4core3numh13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs4_NtCsioHeeuq8fQz_4core3numh14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs6_NtCsioHeeuq8fQz_4core3numm13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs6_NtCsioHeeuq8fQz_4core3numm14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs7_NtCsioHeeuq8fQz_4core3numy13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs7_NtCsioHeeuq8fQz_4core3numy14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs8_NtCsioHeeuq8fQz_4core3numo13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs8_NtCsioHeeuq8fQz_4core3numo14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
             name: "lz_nz_u128",
             has_ret: true,
             args: [
@@ -434,8 +20,8 @@ ModuleTpde {
             ],
             slots: [
                 i128,
-                i32,
                 i128,
+                Bool,
                 i128,
                 i32,
             ],
@@ -452,19 +38,11 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 4]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
+                    <Sub> ([val: 0], [const: i128 1]) -> [val: 1],
+                    <CMPule> ([val: 1], [const pool: 0]) -> [val: 2],
                     <Cast> ([val: 0]) -> [val: 3],
                     <ctlz_nonzero> ([val: 3]) -> [val: 4],
-                    <Br> ([raw: 2]),
+                    <Ret> ([val: 4]),
                 ],
             ],
             callee_infos: [],
@@ -490,8 +68,6 @@ ModuleTpde {
             slots: [
                 i128,
                 i32,
-                i128,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -506,18 +82,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <ctlz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -543,8 +109,6 @@ ModuleTpde {
             slots: [
                 i32,
                 i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -559,18 +123,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <ctlz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -596,8 +150,6 @@ ModuleTpde {
             slots: [
                 i64,
                 i32,
-                i64,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -612,18 +164,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <ctlz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -649,8 +191,6 @@ ModuleTpde {
             slots: [
                 i8,
                 i32,
-                i8,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -665,18 +205,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <ctlz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -701,8 +231,8 @@ ModuleTpde {
             ],
             slots: [
                 i128,
-                i32,
                 i128,
+                Bool,
                 i128,
                 i32,
             ],
@@ -719,19 +249,11 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 4]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
+                    <Sub> ([val: 0], [const: i128 1]) -> [val: 1],
+                    <CMPule> ([val: 1], [const pool: 1]) -> [val: 2],
                     <Cast> ([val: 0]) -> [val: 3],
                     <cttz_nonzero> ([val: 3]) -> [val: 4],
-                    <Br> ([raw: 2]),
+                    <Ret> ([val: 4]),
                 ],
             ],
             callee_infos: [],
@@ -757,8 +279,6 @@ ModuleTpde {
             slots: [
                 i128,
                 i32,
-                i128,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -773,18 +293,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <cttz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -810,8 +320,6 @@ ModuleTpde {
             slots: [
                 i32,
                 i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -826,18 +334,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <cttz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -863,8 +361,6 @@ ModuleTpde {
             slots: [
                 i64,
                 i32,
-                i64,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -879,18 +375,8 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <cttz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
@@ -916,8 +402,6 @@ ModuleTpde {
             slots: [
                 i8,
                 i32,
-                i8,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -932,24 +416,17 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
+                    <cttz> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
                 ],
             ],
             callee_infos: [],
         },
     ],
-    consts: [],
+    consts: [
+        [i128] (18446744073709551615 18446744073709551614) -> -2,
+        [i128] (18446744073709551615 18446744073709551614) -> -2,
+    ],
     globals: [],
     global_ptrs: [],
     const_vectors: [],

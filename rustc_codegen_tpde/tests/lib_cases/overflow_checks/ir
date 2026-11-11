@@ -62,8 +62,8 @@ ModuleTpde {
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 2],
-                    <Add> ([val: 2], [val: 1]) -> [val: 3],
-                    <CMPult> ([val: 3], [val: 2]) -> [val: 4],
+                    <Add> ([val: 1], [val: 2]) -> [val: 3],
+                    <CMPult> ([val: 3], [val: 1]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
@@ -251,8 +251,8 @@ ModuleTpde {
                     <CondBr> ([val: 9], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 8], [val: 2]) -> [val: 10],
-                    <CMPult> ([val: 10], [val: 8]) -> [val: 11],
+                    <Add> ([val: 2], [val: 8]) -> [val: 10],
+                    <CMPult> ([val: 10], [val: 2]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 4], [raw: 3]),
                 ],
                 BasicBlock: [
@@ -260,8 +260,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 10], [val: 3]) -> [val: 12],
-                    <CMPult> ([val: 12], [val: 10]) -> [val: 13],
+                    <Add> ([val: 3], [val: 10]) -> [val: 12],
+                    <CMPult> ([val: 12], [val: 3]) -> [val: 13],
                     <CondBr> ([val: 13], [raw: 6], [raw: 5]),
                 ],
                 BasicBlock: [
@@ -269,8 +269,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 12], [val: 4]) -> [val: 14],
-                    <CMPult> ([val: 14], [val: 12]) -> [val: 15],
+                    <Add> ([val: 4], [val: 12]) -> [val: 14],
+                    <CMPult> ([val: 14], [val: 4]) -> [val: 15],
                     <CondBr> ([val: 15], [raw: 8], [raw: 7]),
                 ],
                 BasicBlock: [
@@ -278,8 +278,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 14], [val: 5]) -> [val: 16],
-                    <CMPult> ([val: 16], [val: 14]) -> [val: 17],
+                    <Add> ([val: 5], [val: 14]) -> [val: 16],
+                    <CMPult> ([val: 16], [val: 5]) -> [val: 17],
                     <CondBr> ([val: 17], [raw: 10], [raw: 9]),
                 ],
                 BasicBlock: [
@@ -287,8 +287,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 16], [val: 6]) -> [val: 18],
-                    <CMPult> ([val: 18], [val: 16]) -> [val: 19],
+                    <Add> ([val: 6], [val: 16]) -> [val: 18],
+                    <CMPult> ([val: 18], [val: 6]) -> [val: 19],
                     <CondBr> ([val: 19], [raw: 12], [raw: 11]),
                 ],
                 BasicBlock: [
@@ -296,8 +296,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 18], [val: 7]) -> [val: 20],
-                    <CMPult> ([val: 20], [val: 18]) -> [val: 21],
+                    <Add> ([val: 7], [val: 18]) -> [val: 20],
+                    <CMPult> ([val: 20], [val: 7]) -> [val: 21],
                     <CondBr> ([val: 21], [raw: 14], [raw: 13]),
                 ],
                 BasicBlock: [
@@ -1344,7 +1344,7 @@ ModuleTpde {
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 3], [val: 2]) -> [val: 5],
+                    <Add> ([val: 2], [val: 3]) -> [val: 5],
                     <OverflowCheck> ([raw: 1]) -> [val: 6],
                     <CondBr> ([val: 6], [raw: 4], [raw: 3]),
                 ],

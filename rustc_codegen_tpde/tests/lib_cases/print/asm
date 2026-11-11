@@ -15,26 +15,25 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	lea    -0x8(%rip),%rbx        # <print+0xc>
-	mov    $0x1,%eax
-	and    $0x3f,%eax
-	mov    %eax,%eax
+	sub    $0x28,%rsp
+	lea    -0x8(%rip),%rax        # <print+0x8>
+	test   %rax,%rax
+	setne  %cl
+	mov    $0x1,%ecx
+	and    $0x3f,%ecx
+	mov    %ecx,%ecx
+	mov    %rcx,-0x30(%rbp)
 	mov    $0xe,%edx
-	mov    %eax,%ecx
+	mov    -0x30(%rbp),%rbx
+	mov    %ebx,%ecx
 	shl    %cl,%rdx
 	or     $0x1,%rdx
-	mov    %rdx,%r12
-	mov    %rbx,%r13
-	mov    %r12,%rbx
-	mov    %r13,%rdi
-	mov    %rbx,%rsi
-	call   <print+0x40>
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
+	test   %rdx,%rdx
+	setne  %cl
+	mov    %rax,%rdi
+	mov    %rdx,%rsi
+	call   <print+0x47>
+	add    $0x28,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret

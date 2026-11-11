@@ -1,25 +1,14 @@
 use crate::shared::ffi;
 use crate::shared::ffi::{BasicBlock, Instruction, InstructionReference, Phi};
-use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot, size_of_type};
-#[cfg(feature = "promote")]
-use crate::shared::ir::{access_info_intern, alloc_used_a, alloc_used_b, merge_access_states};
-#[cfg(feature = "promote")]
+use super::OptConfig;
 use crate::shared::ffi::AccessInfoState;
+use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot, size_of_type};
+use crate::shared::ir::{access_info_intern, alloc_used_a, alloc_used_b, merge_access_states};
 use std::collections::BTreeSet;
-use std::env;
 use std::ops::Range;
-use std::sync::LazyLock;
-
-// Highest cost a function without `#[inline(always)]` is inlined
-static INLINE_COST: LazyLock<u32> = LazyLock::new(|| match env::var("TPDE_INLINE_COST") {
-    Ok(val) => val
-        .parse::<u32>()
-        .expect("TPDE_INLINE_COST has to be a number"),
-    Err(_) => 50,
-});
 
 impl ModuleTpde {
-    pub fn inline_functions(&mut self) {
+    pub fn inline_functions(&mut self, config: OptConfig) {
         // Inline functions bottom up
         // Inlinable functions:
         // - are leave functions -> call no other functions
@@ -41,7 +30,7 @@ impl ModuleTpde {
             .functions
             .iter()
             .enumerate()
-            .filter(|(_, f)| is_inlinable(f))
+            .filter(|(_, f)| is_inlinable(f, config.inline_cost))
             .map(|(i, _)| i)
             .collect();
         let mut returns: Vec<ReturnSite> = vec![];
@@ -58,10 +47,10 @@ impl ModuleTpde {
                     .get_disjoint_mut([site.func as usize, f])
                     .expect("Trying to inline function into itself");
 
-                all_inlined &= inline_call(caller, callee, &site, &mut returns);
+                all_inlined &= inline_call(caller, callee, &site, &mut returns, config.promote);
 
                 caller.calling -= 1;
-                if is_inlinable(caller) {
+                if is_inlinable(caller, config.inline_cost) {
                     to_optimize.remove(&site.func);
                     self.fold_constants(site.func);
 
@@ -312,6 +301,7 @@ fn inline_call(
     callee: &ffi::Function,
     site: &InstructionReference,
     returns: &mut Vec<ReturnSite>,
+    track_access: bool,
 ) -> bool {
     let (block, offset) = {
         let (mut block, mut offset) = (site.block as usize, site.instr);
@@ -335,31 +325,32 @@ fn inline_call(
     }
 
     // decrement forwarding for all arguments
-    #[cfg(feature = "promote")]
-    for i in 0..call.ops_len as usize - 1 {
-        let arg = Slot::from_ffi(caller.operands[args_start + i]);
-        if let Some(call_info) = access_info_intern(caller, &arg) {
-            let callee_info = &callee.args[i].access_info;
+    if track_access {
+        for i in 0..call.ops_len as usize - 1 {
+            let arg = Slot::from_ffi(caller.operands[args_start + i]);
+            if let Some(call_info) = access_info_intern(caller, &arg) {
+                let callee_info = &callee.args[i].access_info;
 
-            call_info.call_forwards -= 1;
-            call_info.call_forwards += callee_info.call_forwards;
+                call_info.call_forwards -= 1;
+                call_info.call_forwards += callee_info.call_forwards;
 
-            if alloc_used_a(callee_info) {
-                if !alloc_used_a(call_info) {
-                    call_info.size_a = callee_info.size_a;
-                } else if call_info.size_a != callee_info.size_a {
-                    call_info.state = AccessInfoState::Complex
+                if alloc_used_a(callee_info) {
+                    if !alloc_used_a(call_info) {
+                        call_info.size_a = callee_info.size_a;
+                    } else if call_info.size_a != callee_info.size_a {
+                        call_info.state = AccessInfoState::Complex
+                    }
                 }
-            }
-            if alloc_used_b(callee_info) {
-                if !alloc_used_b(call_info) {
-                    call_info.size_b = callee_info.size_b;
-                    call_info.offset_b = callee_info.offset_b;
-                } else if call_info.size_b != callee_info.size_b || call_info.offset_b != callee_info.offset_b {
-                    call_info.state = AccessInfoState::Complex
+                if alloc_used_b(callee_info) {
+                    if !alloc_used_b(call_info) {
+                        call_info.size_b = callee_info.size_b;
+                        call_info.offset_b = callee_info.offset_b;
+                    } else if call_info.size_b != callee_info.size_b || call_info.offset_b != callee_info.offset_b {
+                        call_info.state = AccessInfoState::Complex
+                    }
                 }
+                call_info.state = merge_access_states(call_info.state, callee_info.state)
             }
-            call_info.state = merge_access_states(call_info.state, callee_info.state)
         }
     }
 
@@ -501,8 +492,9 @@ fn inline_call(
     true
 }
 
-fn is_inlinable(f: &ffi::Function) -> bool {
-    let wanted = f.calling == 0 && (f.flags.always_inline || f.cost <= *INLINE_COST);
+fn is_inlinable(f: &ffi::Function, max_cost: Option<u32>) -> bool {
+    let cheap = max_cost.is_some_and(|max| f.cost <= max);
+    let wanted = f.calling == 0 && (f.flags.always_inline || cheap);
 
     wanted && !f.basic_blocks.is_empty() && !f.args.iter().any(|arg| arg.kind == ArgKind::ByVal)
 }

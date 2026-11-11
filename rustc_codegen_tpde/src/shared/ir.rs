@@ -1,6 +1,7 @@
 use super::ffi;
 pub use super::ffi::ModuleTpde;
 use crate::shared::ffi::{CalleeInfo, GlobalPtr};
+use crate::shared::optimize::OptConfig;
 use core::fmt::{Debug, Formatter};
 use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::ReturnSlot;
@@ -184,6 +185,7 @@ pub struct Module {
     tpde: ModuleTpde,
 
     pairs: Vec<PairRef>,
+    opt: OptConfig,
 }
 
 /// We inline smaller constants to avoid overusing the constant pool with small values.
@@ -205,7 +207,7 @@ pub struct PairRef {
 }
 
 impl Module {
-    pub fn new() -> Self {
+    pub fn new(opt: OptConfig) -> Self {
         Self {
             tpde: ModuleTpde {
                 functions: vec![],
@@ -216,11 +218,25 @@ impl Module {
                 const_vectors: vec![],
             },
             pairs: vec![],
+            opt,
         }
     }
 
     pub fn tpde_mut(&mut self) -> &mut ModuleTpde {
         &mut self.tpde
+    }
+
+    /// Runs the optimizations selected by the optimization level
+    pub fn optimize(&mut self) {
+        self.tpde.inline_functions(self.opt);
+        if self.opt.promote {
+            self.tpde.promote_allocas();
+        }
+    }
+
+    /// Whether the access infos needed by the promotion have to be collected
+    pub fn tracks_access(&self) -> bool {
+        self.opt.promote
     }
 
     // Approximates the size of the IR
@@ -720,8 +736,7 @@ impl Module {
             block.insts_len += 1;
         }
 
-        #[cfg(feature = "promote")]
-        {
+        if self.opt.promote {
             match instr {
                 InstructionKind::Load | InstructionKind::Store | InstructionKind::PairGEP => {}
                 InstructionKind::Call => {
@@ -744,7 +759,6 @@ impl Module {
         ret.result()
     }
 
-    #[cfg(feature = "promote")]
     pub fn access_info(&mut self, f: Function, ptr: &Slot) -> Option<&mut AccessInfo> {
         let func = self.get_function_mut(&f);
         access_info_intern(func, ptr)
@@ -944,11 +958,10 @@ impl Module {
         function.operands[start] = Slot::new_raw(from.index() as u32).to_ffi();
         function.operands[start + 1] = value.to_ffi();
 
-        #[cfg(feature = "promote")]
+        if self.opt.promote
+            && let Some(info) = access_info_intern(function, &value)
         {
-            if let Some(info) = access_info_intern(function, &value) {
-                info.state = AccessInfoState::Complex;
-            }
+            info.state = AccessInfoState::Complex;
         }
     }
 
@@ -1011,7 +1024,6 @@ impl Module {
     }
 }
 
-#[cfg(feature = "promote")]
 pub(super) fn access_info_intern<'a>(func: &'a mut ffi::Function, ptr: &Slot) -> Option<&'a mut AccessInfo> {
     match ptr {
         Slot::Alloc(a) => Some(&mut func.allocas[*a as usize].access_info),
@@ -1264,7 +1276,6 @@ pub fn convert_atomic_order(order: rustc_middle::ty::AtomicOrdering) -> AtomicOr
     }
 }
 
-#[cfg(feature = "promote")]
 pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, written: bool) {
     // We only care about small values as we don't promote larger structs/vecs
     if size > u8::MAX as u32 || offset > u8::MAX as u32 {

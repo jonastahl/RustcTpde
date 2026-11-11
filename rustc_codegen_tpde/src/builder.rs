@@ -4,7 +4,6 @@ mod intrinsic;
 use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
 use crate::shared::ir;
 use crate::shared::ir::{convert_atomic_op, convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type};
-#[cfg(feature = "promote")]
 use crate::shared::ir::{AccessInfoState, update_access_info};
 use core::borrow::Borrow;
 use rustc_ast::expand::typetree::FncTree;
@@ -22,7 +21,6 @@ use rustc_middle::middle::codegen_fn_attrs::CodegenFnAttrs;
 use rustc_middle::ty::layout::TyAndLayout;
 use rustc_middle::ty::{AtomicOrdering, Instance, Ty};
 use rustc_span::Span;
-#[cfg(feature = "promote")]
 use rustc_span::bug;
 use rustc_target::callconv::FnAbi;
 use std::cmp::max;
@@ -1269,11 +1267,10 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         align: rustc_abi::Align,
         ret_ty: Type,
     ) -> Slot {
-        #[cfg(feature = "promote")]
+        if module.tracks_access()
+            && let Some(info) = module.access_info(self.basic_block.function(), &ptr)
         {
-            if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
-                update_access_info(info, size_of_type(ret_ty), 0, false)
-            }
+            update_access_info(info, size_of_type(ret_ty), 0, false)
         }
 
         module.add_instruction_ret(
@@ -1290,8 +1287,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
             InstructionKind::Store,
             &[val, ptr, Slot::new_raw(align.bytes_usize() as u32)],
         );
-        #[cfg(feature = "promote")]
-        {
+        if module.tracks_access() {
             let FullType::Single(ty) = module.type_of_slot(val) else { bug!() };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
                 update_access_info(info, size_of_type(ty), 0, true)
@@ -1321,11 +1317,10 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         );
         let slot_b = self.load_single(module, ptr_b, align, ty_b);
 
-        #[cfg(feature = "promote")]
+        if module.tracks_access()
+            && let Some(info) = module.access_info(self.basic_block.function(), &ptr)
         {
-            if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
-                update_access_info(info, size_of_type(ty_b), offset, false)
-            }
+            update_access_info(info, size_of_type(ty_b), offset, false)
         }
 
         (slot_a, slot_b)
@@ -1350,8 +1345,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         );
         self.store_single(module, val_b, ptr_b, align);
 
-        #[cfg(feature = "promote")]
-        {
+        if module.tracks_access() {
             let FullType::Single(ty) = module.type_of_slot(val_b) else { bug!() };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
                 update_access_info(info, size_of_type(ty), offset, true)

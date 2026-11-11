@@ -1,6 +1,7 @@
 use crate::builder::Builder;
 use crate::context::CodegenCx;
 use crate::shared::ir::Module;
+use crate::shared::optimize::OptConfig;
 use rustc_codegen_ssa::ModuleCodegen;
 use rustc_codegen_ssa::base::maybe_create_entry_wrapper;
 use rustc_codegen_ssa::mono_item::MonoItemExt;
@@ -48,7 +49,7 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
                     recorder.record_arg(cgu.size_estimate().to_string());
                 });
 
-        let ir = RefCell::new(Module::new());
+        let ir = RefCell::new(Module::new(OptConfig::new(tcx.sess.opts.optimize)));
         {
             let mut cx = CodegenCx::new(tcx, cgu, &ir);
 

@@ -35,20 +35,21 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	cmp    $0x64,%edi
-	ja     <find_user_by_age+0x28>
-	movq   $0xf2,-0x38(%rbp)
+	ja     <find_user_by_age+0x24>
 	movabs $0xf0f0f0f0f0f0f0f,%rax
 	mov    %rax,-0x40(%rbp)
-	jmp    <find_user_by_age+0x3e>
-	movq   $0xf1,-0x38(%rbp)
+	movb   $0xf2,-0x38(%rbp)
+	jmp    <find_user_by_age+0x36>
 	movabs $0xf0f0f0f0f0f0f0f0,%rax
 	mov    %rax,-0x40(%rbp)
+	movb   $0xf1,-0x38(%rbp)
 	mov    -0x40(%rbp),%rax
 	movzbl -0x38(%rbp),%ecx
 	mov    %ecx,%edx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
 <increase_age>:
 	push   %rbp

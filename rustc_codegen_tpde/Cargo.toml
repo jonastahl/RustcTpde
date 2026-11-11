@@ -5,8 +5,6 @@ edition.workspace = true
 
 [features]
 no-cache = []
-inline = []
-promote = []
 
 [dependencies]
 cxx = "^1.0.197"

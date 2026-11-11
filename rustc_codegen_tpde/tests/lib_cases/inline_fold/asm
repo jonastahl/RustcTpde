@@ -12,66 +12,53 @@ actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 <no_overflow>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	mov    $0xfffffffc,%ebx
-	mov    $0xfffd,%r12d
-	xor    %r12d,%ebx
-	mov    %ebx,%eax
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
+	mov    $0x1,%eax
 	ret
-	nopl   0x0(%rax)
+	nopw   0x0(%rax,%rax,1)
+	nop
 
 <outer>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
+	sub    $0x20,%rsp
 	mov    %edi,%ebx
 	cmp    $0x3e8,%ebx
-	je     <outer+0xa1>
-	mov    $0x17,%r12d
-	cmp    %r12d,%ebx
-	ja     <outer+0x50>
-	mov    %r12d,%r13d
-	sub    %ebx,%r13d
-	cmp    %ebx,%r12d
-	jb     <outer+0x42>
-	mov    %r13d,-0x30(%rbp)
-	jmp    <outer+0x63>
-	lea    -0x8(%rip),%rdi        # <outer+0x41>
-	call   <outer+0x4e>
-	ud2
-	mov    %ebx,%r13d
-	sub    %r12d,%r13d
-	cmp    %r12d,%ebx
-	jb     <outer+0x93>
-	mov    %r13d,-0x30(%rbp)
-	mov    -0x30(%rbp),%ebx
-	mov    %ebx,%r12d
-	mov    %r12d,%ebx
-	mov    %ebx,%r12d
-	lea    0x64(%r12),%ebx
-	cmp    %r12d,%ebx
-	jb     <outer+0x85>
-	mov    %ebx,-0x2c(%rbp)
-	jmp    <outer+0xa8>
-	lea    -0x8(%rip),%rdi        # <outer+0x84>
-	call   <outer+0x91>
-	ud2
-	lea    -0x8(%rip),%rdi        # <outer+0x92>
-	call   <outer+0x9f>
-	ud2
+	jne    <outer+0x25>
 	movl   $0x7,-0x2c(%rbp)
+	jmp    <outer+0x7e>
+	cmp    $0x17,%ebx
+	ja     <outer+0x59>
+	mov    $0x17,%eax
+	mov    %eax,%r12d
+	sub    %ebx,%r12d
+	cmp    $0x17,%ebx
+	ja     <outer+0x4b>
+	mov    %r12d,-0x30(%rbp)
+	jmp    <outer+0x6d>
+	lea    -0x8(%rip),%rdi        # <outer+0x4a>
+	call   <outer+0x57>
+	ud2
+	mov    %ebx,%r12d
+	sub    $0x17,%r12d
+	cmp    $0x17,%ebx
+	jb     <outer+0x94>
+	mov    %r12d,-0x30(%rbp)
+	mov    -0x30(%rbp),%eax
+	lea    0x64(%rax),%ebx
+	cmp    %eax,%ebx
+	jb     <outer+0x86>
+	mov    %ebx,-0x2c(%rbp)
 	mov    -0x2c(%rbp),%eax
-	add    $0x18,%rsp
-	pop    %r13
+	jmp    <outer+0xa2>
+	lea    -0x8(%rip),%rdi        # <outer+0x85>
+	call   <outer+0x92>
+	ud2
+	lea    -0x8(%rip),%rdi        # <outer+0x93>
+	call   <outer+0xa0>
+	ud2
+	add    $0x20,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp

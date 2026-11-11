@@ -15,56 +15,28 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x88,%rsp
 	mov    %rdi,%rbx
 	cmp    $0x64,%esi
-	ja     <find_user+0x73>
+	ja     <find_user+0x3f>
 	movabs $0xf0f0f0f0f0f0f0f,%rax
-	mov    %rax,-0x90(%rbp)
-	movb   $0x1f,-0x7e(%rbp)
-	movb   $0x2f,-0x7d(%rbp)
-	movw   $0x3f3f,-0x80(%rbp)
+	mov    %rax,(%rbx)
+	movb   $0x1f,0x12(%rbx)
+	movb   $0x2f,0x13(%rbx)
+	movw   $0x3f3f,0x10(%rbx)
 	movabs $0x3f3f3f3f3f3f3f3f,%rax
-	mov    %rax,-0x88(%rbp)
-	mov    -0x90(%rbp),%rax
-	mov    %rax,-0x50(%rbp)
-	mov    -0x88(%rbp),%rax
-	mov    %rax,-0x48(%rbp)
-	mov    -0x80(%rbp),%rax
-	mov    %rax,-0x40(%rbp)
-	lea    -0x78(%rbp),%rax
-	lea    -0x38(%rbp),%rax
-	jmp    <find_user+0xbd>
+	mov    %rax,0x8(%rbx)
+	jmp    <find_user+0x68>
 	movabs $0xf0f0f0f0f0f0f0f0,%rax
-	mov    %rax,-0x70(%rbp)
-	movb   $0xf1,-0x5e(%rbp)
-	movb   $0xf2,-0x5d(%rbp)
-	movw   $0x73f3,-0x60(%rbp)
+	mov    %rax,(%rbx)
+	movb   $0xf1,0x12(%rbx)
+	movb   $0xf2,0x13(%rbx)
+	movw   $0x73f3,0x10(%rbx)
 	movabs $0xf3f3f3f3f3f3f3f3,%rax
-	mov    %rax,-0x68(%rbp)
-	mov    -0x70(%rbp),%rax
-	mov    %rax,-0x50(%rbp)
-	mov    -0x68(%rbp),%rax
-	mov    %rax,-0x48(%rbp)
-	mov    -0x60(%rbp),%rax
-	mov    %rax,-0x40(%rbp)
-	lea    -0x58(%rbp),%rax
-	lea    -0x38(%rbp),%rax
-	mov    -0x50(%rbp),%rax
-	mov    %rax,(%rbx)
-	lea    0x8(%rbx),%rbx
-	mov    -0x48(%rbp),%rax
-	mov    %rax,(%rbx)
-	lea    0x8(%rbx),%rbx
-	mov    -0x40(%rbp),%rax
-	mov    %rax,(%rbx)
-	lea    -0x38(%rbp),%rax
-	lea    0x8(%rbx),%rbx
-	add    $0x88,%rsp
+	mov    %rax,0x8(%rbx)
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax)
+	nopl   0x0(%rax,%rax,1)
 
 <find_user_by_age>:
 	push   %rbp

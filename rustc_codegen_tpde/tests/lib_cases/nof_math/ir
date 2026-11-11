@@ -43,11 +43,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 193,
@@ -121,11 +121,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 196,
@@ -199,11 +199,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 198,
@@ -277,11 +277,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 200,
@@ -355,11 +355,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 202,
@@ -433,11 +433,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 204,
@@ -511,11 +511,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 206,
@@ -589,11 +589,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 208,
@@ -678,11 +678,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 210,
@@ -757,11 +757,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 212,
@@ -836,11 +836,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 214,
@@ -915,11 +915,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 216,
@@ -1008,11 +1008,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 218,
@@ -1101,11 +1101,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 220,
@@ -1194,11 +1194,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 222,
@@ -1287,11 +1287,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 224,
@@ -1380,11 +1380,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 226,
@@ -1473,11 +1473,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 228,
@@ -1566,11 +1566,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 230,
@@ -1659,11 +1659,11 @@ ModuleTpde {
             ],
             flags: Flags {
                 extern_link: false,
-                only_local: false,
+                only_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
-                dead: false,
+                dead: true,
             },
             has_personality: true,
             personality: 232,
@@ -1685,7 +1685,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsb_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source",
+            name: "_RNvXsb_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_13DisjointBitOr14disjoint_bitor",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1744,7 +1744,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsc_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source",
+            name: "_RNvXsc_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_13DisjointBitOr14disjoint_bitor",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1803,7 +1803,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsd_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source",
+            name: "_RNvXsd_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_13DisjointBitOr14disjoint_bitor",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1862,7 +1862,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXse_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source",
+            name: "_RNvXse_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_13DisjointBitOr14disjoint_bitor",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1921,7 +1921,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source",
+            name: "_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shl",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2019,7 +2019,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source",
+            name: "_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shr",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2117,7 +2117,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source",
+            name: "_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shl",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2215,7 +2215,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source",
+            name: "_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shr",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2313,7 +2313,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source",
+            name: "_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shl",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2407,7 +2407,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source",
+            name: "_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shr",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2501,7 +2501,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source",
+            name: "_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shl",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2599,7 +2599,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source",
+            name: "_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shr",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2761,7 +2761,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 3],
-                    <Add> ([val: 3], [val: 2]) -> [val: 4],
+                    <Add> ([val: 2], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
             ],
@@ -2832,7 +2832,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 3],
-                    <Add> ([val: 3], [val: 2]) -> [val: 4],
+                    <Add> ([val: 2], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
             ],
@@ -2918,8 +2918,8 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 4],
-                    <Add> ([val: 4], [val: 2]) -> [val: 5],
-                    <Add> ([val: 5], [val: 3]) -> [val: 6],
+                    <Add> ([val: 2], [val: 4]) -> [val: 5],
+                    <Add> ([val: 3], [val: 5]) -> [val: 6],
                     <Ret> ([val: 6]),
                 ],
             ],
@@ -3065,12 +3065,12 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Add> ([val: 0], [val: 1]) -> [val: 8],
-                    <Add> ([val: 8], [val: 2]) -> [val: 9],
-                    <Add> ([val: 9], [val: 3]) -> [val: 10],
-                    <Add> ([val: 10], [val: 4]) -> [val: 11],
-                    <Add> ([val: 11], [val: 5]) -> [val: 12],
-                    <Add> ([val: 12], [val: 6]) -> [val: 13],
-                    <Add> ([val: 13], [val: 7]) -> [val: 14],
+                    <Add> ([val: 2], [val: 8]) -> [val: 9],
+                    <Add> ([val: 3], [val: 9]) -> [val: 10],
+                    <Add> ([val: 4], [val: 10]) -> [val: 11],
+                    <Add> ([val: 5], [val: 11]) -> [val: 12],
+                    <Add> ([val: 6], [val: 12]) -> [val: 13],
+                    <Add> ([val: 7], [val: 13]) -> [val: 14],
                     <Ret> ([val: 14]),
                 ],
             ],
@@ -4767,10 +4767,6 @@ ModuleTpde {
                 Bool,
                 i128,
                 i128,
-                Bool,
-                Bool,
-                Bool,
-                Bool,
                 i128,
                 i128,
             ],
@@ -4802,28 +4798,24 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
-                    <Mul> ([val: 6], [val: 1]) -> [val: 7],
-                    <CMPeq> ([val: 1], [const: i128 0]) -> [val: 8],
-                    <CondBr> ([val: 8], [raw: 6], [raw: 5]),
+                    <Mul> ([val: 1], [val: 6]) -> [val: 7],
+                    <CondBr> ([val: 2], [raw: 6], [raw: 5]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 234], [global: 38]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 16]) -> [val: 9],
-                    <CMPeq> ([val: 0], [const pool: 17]) -> [val: 10],
-                    <And> ([val: 9], [val: 10]) -> [val: 11],
-                    <CondBr> ([val: 11], [raw: 8], [raw: 7]),
+                    <CondBr> ([val: 5], [raw: 8], [raw: 7]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 192], [global: 40]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <sRem> ([val: 0], [val: 1]) -> [val: 12],
-                    <Add> ([val: 7], [val: 12]) -> [val: 13],
-                    <Ret> ([val: 13]),
+                    <sRem> ([val: 0], [val: 1]) -> [val: 8],
+                    <Add> ([val: 7], [val: 8]) -> [val: 9],
+                    <Ret> ([val: 9]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 235], [global: 42]),
@@ -4872,10 +4864,6 @@ ModuleTpde {
                 Bool,
                 i32,
                 i32,
-                Bool,
-                Bool,
-                Bool,
-                Bool,
                 i32,
                 i32,
             ],
@@ -4896,8 +4884,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 18]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 19]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 16]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 17]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4907,28 +4895,24 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <sDiv> ([val: 0], [val: 1]) -> [val: 6],
-                    <Mul> ([val: 6], [val: 1]) -> [val: 7],
-                    <CMPeq> ([val: 1], [const: i32 0]) -> [val: 8],
-                    <CondBr> ([val: 8], [raw: 6], [raw: 5]),
+                    <Mul> ([val: 1], [val: 6]) -> [val: 7],
+                    <CondBr> ([val: 2], [raw: 6], [raw: 5]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 234], [global: 46]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 20]) -> [val: 9],
-                    <CMPeq> ([val: 0], [const pool: 21]) -> [val: 10],
-                    <And> ([val: 9], [val: 10]) -> [val: 11],
-                    <CondBr> ([val: 11], [raw: 8], [raw: 7]),
+                    <CondBr> ([val: 5], [raw: 8], [raw: 7]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 192], [global: 48]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <sRem> ([val: 0], [val: 1]) -> [val: 12],
-                    <Add> ([val: 7], [val: 12]) -> [val: 13],
-                    <Ret> ([val: 13]),
+                    <sRem> ([val: 0], [val: 1]) -> [val: 8],
+                    <Add> ([val: 7], [val: 8]) -> [val: 9],
+                    <Ret> ([val: 9]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 235], [global: 50]),
@@ -4974,7 +4958,6 @@ ModuleTpde {
                 Bool,
                 i128,
                 i128,
-                Bool,
                 i128,
                 i128,
             ],
@@ -4996,18 +4979,17 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
-                    <Mul> ([val: 3], [val: 1]) -> [val: 4],
-                    <CMPeq> ([val: 1], [const: i128 0]) -> [val: 5],
-                    <CondBr> ([val: 5], [raw: 4], [raw: 3]),
+                    <Mul> ([val: 1], [val: 3]) -> [val: 4],
+                    <CondBr> ([val: 2], [raw: 4], [raw: 3]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 233], [global: 52]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <uRem> ([val: 0], [val: 1]) -> [val: 6],
-                    <Add> ([val: 4], [val: 6]) -> [val: 7],
-                    <Ret> ([val: 7]),
+                    <uRem> ([val: 0], [val: 1]) -> [val: 5],
+                    <Add> ([val: 4], [val: 5]) -> [val: 6],
+                    <Ret> ([val: 6]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 192], [global: 54]),
@@ -5053,7 +5035,6 @@ ModuleTpde {
                 Bool,
                 i32,
                 i32,
-                Bool,
                 i32,
                 i32,
             ],
@@ -5075,18 +5056,17 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <uDiv> ([val: 0], [val: 1]) -> [val: 3],
-                    <Mul> ([val: 3], [val: 1]) -> [val: 4],
-                    <CMPeq> ([val: 1], [const: i32 0]) -> [val: 5],
-                    <CondBr> ([val: 5], [raw: 4], [raw: 3]),
+                    <Mul> ([val: 1], [val: 3]) -> [val: 4],
+                    <CondBr> ([val: 2], [raw: 4], [raw: 3]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 233], [global: 56]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <uRem> ([val: 0], [val: 1]) -> [val: 6],
-                    <Add> ([val: 4], [val: 6]) -> [val: 7],
-                    <Ret> ([val: 7]),
+                    <uRem> ([val: 0], [val: 1]) -> [val: 5],
+                    <Add> ([val: 4], [val: 5]) -> [val: 6],
+                    <Ret> ([val: 6]),
                 ],
                 BasicBlock: [
                     <Call> ([func: 192], [global: 58]),
@@ -6110,10 +6090,10 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <zExt> ([val: 0]) -> [val: 4],
-                    <Add> ([val: 4], [val: 1]) -> [val: 5],
+                    <Add> ([val: 1], [val: 4]) -> [val: 5],
                     <zExt> ([val: 2]) -> [val: 6],
                     <Add> ([val: 5], [val: 6]) -> [val: 7],
-                    <Add> ([val: 7], [val: 3]) -> [val: 8],
+                    <Add> ([val: 3], [val: 7]) -> [val: 8],
                     <Ret> ([val: 8]),
                 ],
             ],
@@ -6184,7 +6164,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 3],
-                    <Add> ([val: 3], [val: 2]) -> [val: 4],
+                    <Add> ([val: 2], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
             ],
@@ -6255,7 +6235,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 3],
-                    <Add> ([val: 3], [val: 2]) -> [val: 4],
+                    <Add> ([val: 2], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
             ],
@@ -6326,7 +6306,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Mul> ([val: 0], [val: 1]) -> [val: 3],
-                    <Add> ([val: 3], [val: 2]) -> [val: 4],
+                    <Add> ([val: 2], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
                 ],
             ],
@@ -7956,8 +7936,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 22]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 23]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 18]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 19]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8033,8 +8013,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 24]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 25]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 20]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 21]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8110,8 +8090,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 26]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 27]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 22]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 23]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8187,8 +8167,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 28]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 29]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 24]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 25]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8264,8 +8244,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 30]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 31]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 26]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 27]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -9122,7 +9102,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const: i32 3], [const pool: 32]) -> [val: 1],
+                    <And> ([const: i32 3], [const pool: 28]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -9210,7 +9190,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const pool: 33], [const pool: 34]) -> [val: 1],
+                    <And> ([const pool: 29], [const pool: 30]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -9268,7 +9248,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 35]) -> [val: 2],
+                    <And> ([val: 1], [const pool: 31]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -9618,7 +9598,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 36]) -> [val: 2],
+                    <And> ([val: 1], [const pool: 32]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -9890,7 +9870,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const pool: 37], [const pool: 38]) -> [val: 1],
+                    <And> ([const pool: 33], [const pool: 34]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -10021,7 +10001,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const pool: 39], [const pool: 40]) -> [val: 1],
+                    <And> ([const pool: 35], [const pool: 36]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -10079,7 +10059,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 41]) -> [val: 2],
+                    <And> ([val: 1], [const pool: 37]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -10366,9 +10346,9 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 42]) -> [val: 2],
+                    <And> ([val: 1], [const pool: 38]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
-                    <And> ([val: 1], [const pool: 43]) -> [val: 4],
+                    <And> ([val: 1], [const pool: 39]) -> [val: 4],
                     <Shl> ([val: 3], [val: 4]) -> [val: 5],
                     <Ret> ([val: 5]),
                 ],
@@ -10486,7 +10466,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 44]) -> [val: 2],
+                    <And> ([val: 1], [const pool: 40]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -11679,7 +11659,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Xor> ([val: 0], [val: 1]) -> [val: 2],
-                    <Xor> ([val: 2], [val: 1]) -> [val: 3],
+                    <Xor> ([val: 1], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
             ],
@@ -15818,10 +15798,6 @@ ModuleTpde {
         [i8] (18446744073709551615 18446744073709551488) -> -128,
         [i128] (18446744073709551615 18446744073709551615) -> -1,
         [i128] (9223372036854775808 0) -> -170141183460469231731687303715884105728,
-        [i128] (18446744073709551615 18446744073709551615) -> -1,
-        [i128] (9223372036854775808 0) -> -170141183460469231731687303715884105728,
-        [i32] (18446744073709551615 18446744073709551615) -> -1,
-        [i32] (18446744073709551615 18446744071562067968) -> -2147483648,
         [i32] (18446744073709551615 18446744073709551615) -> -1,
         [i32] (18446744073709551615 18446744071562067968) -> -2147483648,
         [i128] (18446744073709551615 18446744073709551615) -> -1,

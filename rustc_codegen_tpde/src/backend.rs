@@ -1,5 +1,6 @@
 use crate::context::SimpleCx;
 use crate::shared::ir::*;
+use crate::shared::optimize::OptConfig;
 use crate::{allocator, back, base};
 use rustc_codegen_ssa::back::lto::ThinModule;
 use rustc_codegen_ssa::back::write::{
@@ -48,7 +49,7 @@ impl ExtraBackendMethods for TpdeCodegenBackend {
         module_name: &str,
         methods: &[rustc_ast::expand::allocator::AllocatorMethod],
     ) -> Self::Module {
-        let mut module = RefCell::new(Module::new());
+        let mut module = RefCell::new(Module::new(OptConfig::new(tcx.sess.opts.optimize)));
         let scx = SimpleCx::new(&mut module);
         allocator::codegen(tcx, scx, module_name, methods);
         module.into_inner()
@@ -113,13 +114,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
     ) {
         let _timer = prof.generic_activity_with_arg("TPDE_module_optimize", &*module.name);
 
-        // Do simple inlining for all always inline functions
-        #[cfg(feature = "inline")]
-        module.module_llvm.tpde_mut().inline_functions();
-
-        // Promote all allocas into slots if possible
-        #[cfg(feature = "promote")]
-        module.module_llvm.tpde_mut().promote_allocas();
+        module.module_llvm.optimize();
     }
 
     fn optimize_and_codegen_thin(

@@ -1,573 +1,6 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickRmEB2_",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: zExt,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                Bool,
-                ptr,
-                ptr,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 8, align: 8, state: WrittenA, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 2], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 3],
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
-                    <Ret> ([val: 4]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickdEB2_",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: zExt,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                Bool,
-                f64,
-                f64,
-                f64,
-                f64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 8, align: 8, state: WrittenA, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 2], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 3],
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
-                    <Ret> ([val: 4]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickmEB2_",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: zExt,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                Bool,
-                i32,
-                i32,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 2], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 4],
-                    <Ret> ([val: 4]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickoEB2_",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: zExt,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                Bool,
-                i128,
-                i128,
-                i128,
-                i128,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 16, align: 16, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 2], [alloc: 0], [raw: 16]),
-                    <Load> ([alloc: 0], [raw: 16]) -> [val: 3],
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 16]),
-                    <Load> ([alloc: 0], [raw: 16]) -> [val: 4],
-                    <Ret> ([val: 4]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvCsQvp3e8KgHi_6source6nested",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-                i32,
-                i32,
-                i8,
-                i32,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [const: i8 0]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 1], [raw: 2]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 0], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 4], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 5],
-                    <Ret> ([val: 5]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 6], [val: 9], [raw: 7], [val: 7], [raw: 8], [val: 8]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 4],
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Switch> ([val: 1], [raw: 6], [raw: 7], [raw: 8], [const: i8 0], [const: i8 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 9],
-                    <Br> ([raw: 4]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 0], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 7],
-                    <Br> ([raw: 4]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 1], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 8],
-                    <Br> ([raw: 4]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvCsQvp3e8KgHi_6source7ordered",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 0], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 3],
-                    <Store> ([val: 1], [val: 3], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
-                    <Load> ([val: 5], [raw: 8]) -> [val: 6],
-                    <Ret> ([val: 4], [val: 6]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 7],
-                    <Store> ([val: 0], [val: 7], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 8],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 9],
-                    <Load> ([val: 9], [raw: 8]) -> [val: 10],
-                    <Ret> ([val: 8], [val: 10]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvCsQvp3e8KgHi_6source7sign_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        size_b: 0,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i32,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Switch> ([val: 0], [raw: 1], [raw: 2], [raw: 3], [const: i8 0], [const: i8 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 0], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
             name: "nested_twice",
             has_ret: true,
             args: [
@@ -601,32 +34,33 @@ ModuleTpde {
             slots: [
                 i8,
                 i8,
+                Bool,
                 i32,
+                i32,
+                Bool,
+                i64,
+                i64,
+                Bool,
                 i32,
                 Bool,
                 i32,
                 i32,
                 Bool,
-                i8,
-                i8,
+                i64,
+                i64,
                 Bool,
                 i32,
                 i32,
                 i32,
-                i8,
-                i32,
-                i32,
-                i32,
-                i8,
-                i8,
+                Bool,
+                i64,
+                i64,
                 Bool,
                 i32,
                 i32,
                 i32,
-                i8,
                 i32,
-                i32,
-                i32,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -640,127 +74,121 @@ ModuleTpde {
             personality: 0,
             allocas: [
                 size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 4, state: Complex, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
                 size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
                 size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 7]),
+                    <CMPeq> ([val: 0], [const: i8 0]) -> [val: 2],
+                    <CondBr> ([val: 2], [raw: 1], [raw: 2]),
                 ],
                 BasicBlock: [
+                    <Store> ([const pool: 0], [alloc: 2], [raw: 4]),
+                    <Load> ([alloc: 2], [raw: 4]) -> [val: 3],
+                    <Mul> ([val: 3], [const pool: 1]) -> [val: 4],
+                    <OverflowCheck> ([raw: 1]) -> [val: 5],
+                    <Store> ([val: 4], [alloc: 1], [raw: 4]),
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 4]) -> [val: 6],
+                    <Store> ([val: 5], [val: 6], [raw: 4]),
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 4]) -> [val: 7],
+                    <Load> ([val: 7], [raw: 4]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 4], [raw: 3]),
+                ],
+                BasicBlock: [
+                    <Switch> ([val: 1], [raw: 7], [raw: 8], [raw: 9], [const: i8 0], [const: i8 1]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 9],
+                    <Store> ([val: 9], [alloc: 0], [raw: 4]),
+                    <CMPeq> ([val: 1], [const: i8 0]) -> [val: 10],
+                    <CondBr> ([val: 10], [raw: 5], [raw: 6]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 11], [global: 2]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Store> ([const pool: 3], [alloc: 3], [raw: 4]),
+                    <Br> ([raw: 12]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 0], [alloc: 3], [raw: 4]),
                     <Br> ([raw: 18]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 18], [global: 2]),
-                    <Unreachable> (),
+                    <Store> ([const pool: 4], [alloc: 2], [raw: 4]),
+                    <Br> ([raw: 13]),
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 6]),
+                    <Store> ([const: i32 0], [alloc: 2], [raw: 4]),
+                    <Load> ([alloc: 2], [raw: 4]) -> [val: 11],
+                    <Mul> ([val: 11], [const pool: 2]) -> [val: 12],
+                    <OverflowCheck> ([raw: 1]) -> [val: 13],
+                    <Store> ([val: 12], [alloc: 1], [raw: 4]),
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 4]) -> [val: 14],
+                    <Store> ([val: 13], [val: 14], [raw: 4]),
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 4]) -> [val: 15],
+                    <Load> ([val: 15], [raw: 4]) -> [val: 16],
+                    <CondBr> ([val: 16], [raw: 11], [raw: 10]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 19], [global: 4]),
-                    <Unreachable> (),
+                    <Store> ([const: i32 1], [alloc: 2], [raw: 4]),
+                    <Br> ([raw: 13]),
                 ],
                 BasicBlock: [
-                    <Mul> ([val: 2], [const pool: 2]) -> [val: 3],
-                    <OverflowCheck> ([raw: 1]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 8], [val: 11], [raw: 10], [val: 13]) -> [phi: 1] i32,
-                    <Cast> ([phi: 1]) -> [val: 2],
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 17],
+                    <Store> ([val: 17], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 5]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 0], [const: i8 0]) -> [val: 10],
-                    <CondBr> ([val: 10], [raw: 8], [raw: 9]),
+                    <Call> ([func: 11], [global: 4]),
+                    <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 0], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 11],
-                    <Br> ([raw: 6]),
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 25],
+                    <Load> ([alloc: 3], [raw: 4]) -> [val: 26],
+                    <Add> ([val: 25], [val: 26]) -> [val: 27],
+                    <OverflowCheck> ([raw: 1]) -> [val: 28],
+                    <CondBr> ([val: 28], [raw: 20], [raw: 19]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 2], [raw: 4]) -> [val: 18],
+                    <Mul> ([val: 18], [const pool: 5]) -> [val: 19],
+                    <OverflowCheck> ([raw: 1]) -> [val: 20],
+                    <Store> ([val: 19], [alloc: 1], [raw: 4]),
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 4]) -> [val: 21],
+                    <Store> ([val: 20], [val: 21], [raw: 4]),
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 4]) -> [val: 22],
+                    <Load> ([val: 22], [raw: 4]) -> [val: 23],
+                    <CondBr> ([val: 23], [raw: 15], [raw: 14]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 24],
+                    <Store> ([val: 24], [alloc: 0], [raw: 4]),
+                    <Switch> ([val: 0], [raw: 16], [raw: 6], [raw: 17], [const: i8 0], [const: i8 1]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 11], [global: 6]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Store> ([const pool: 6], [alloc: 3], [raw: 4]),
+                    <Br> ([raw: 18]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 1], [alloc: 3], [raw: 4]),
+                    <Br> ([raw: 18]),
                 ],
                 BasicBlock: [
                     <Br> ([raw: 12]),
                 ],
                 BasicBlock: [
-                    <Store> ([val: 12], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 13],
-                    <Br> ([raw: 6]),
+                    <Ret> ([val: 27]),
                 ],
                 BasicBlock: [
-                    <Phi> ([raw: 13], [val: 17], [raw: 14], [val: 15], [raw: 15], [val: 16]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 12],
-                    <Br> ([raw: 10]),
-                ],
-                BasicBlock: [
-                    <Switch> ([val: 1], [raw: 13], [raw: 14], [raw: 15], [const: i8 0], [const: i8 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 17],
-                    <Br> ([raw: 11]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 0], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 15],
-                    <Br> ([raw: 11]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 1], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 16],
-                    <Br> ([raw: 11]),
-                ],
-                BasicBlock: [
-                    <Add> ([val: 3], [val: 5]) -> [val: 6],
-                    <OverflowCheck> ([raw: 1]) -> [val: 7],
-                    <CondBr> ([val: 7], [raw: 4], [raw: 3]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 19], [val: 21], [raw: 21], [val: 23]) -> [phi: 3] i32,
-                    <Cast> ([phi: 3]) -> [val: 5],
-                    <Br> ([raw: 16]),
-                ],
-                BasicBlock: [
-                    <CMPeq> ([val: 1], [const: i8 0]) -> [val: 20],
-                    <CondBr> ([val: 20], [raw: 19], [raw: 20]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 0], [alloc: 2], [raw: 4]),
-                    <Load> ([alloc: 2], [raw: 4]) -> [val: 21],
-                    <Br> ([raw: 17]),
-                ],
-                BasicBlock: [
-                    <Br> ([raw: 23]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 22], [alloc: 2], [raw: 4]),
-                    <Load> ([alloc: 2], [raw: 4]) -> [val: 23],
-                    <Br> ([raw: 17]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 24], [val: 27], [raw: 25], [val: 25], [raw: 26], [val: 26]) -> [phi: 2] i32,
-                    <Cast> ([phi: 2]) -> [val: 22],
-                    <Br> ([raw: 21]),
-                ],
-                BasicBlock: [
-                    <Switch> ([val: 0], [raw: 24], [raw: 25], [raw: 26], [const: i8 0], [const: i8 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 3], [raw: 4]),
-                    <Load> ([alloc: 3], [raw: 4]) -> [val: 27],
-                    <Br> ([raw: 22]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 0], [alloc: 3], [raw: 4]),
-                    <Load> ([alloc: 3], [raw: 4]) -> [val: 25],
-                    <Br> ([raw: 22]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 1], [alloc: 3], [raw: 4]),
-                    <Load> ([alloc: 3], [raw: 4]) -> [val: 26],
-                    <Br> ([raw: 22]),
+                    <Call> ([func: 12], [global: 8]),
+                    <Unreachable> (),
                 ],
             ],
             callee_infos: [],
@@ -800,20 +228,12 @@ ModuleTpde {
                 i64,
                 i64,
                 i64,
-                i64,
-                i64,
-                Bool,
-                i64,
-                i64,
                 Bool,
                 i64,
                 i64,
                 i64,
                 i64,
-                i64,
-                i64,
-                i64,
-                i64,
+                Bool,
             ],
             flags: Flags {
                 extern_link: false,
@@ -826,53 +246,39 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 0,
+                size: 8, align: 8, state: WrittenA, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: WrittenA, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 5]),
+                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 2],
+                    <CMPugt> ([val: 0], [val: 2]) -> [val: 3],
+                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 4]),
-                ],
-                BasicBlock: [
-                    <Call> ([func: 20], [global: 6]),
-                    <Unreachable> (),
-                ],
-                BasicBlock: [
-                    <AddRet> (),
-                    <Sub> ([val: 3], [val: 2]) -> [val: 4],
-                    <CMPult> ([val: 3], [val: 2]) -> [val: 5],
-                    <CondBr> ([val: 5], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 6], [val: 10], [raw: 7], [val: 14]) -> [phi: 0] i64,
-                    <Phi> ([raw: 6], [val: 12], [raw: 7], [val: 16]) -> [phi: 1] i64,
-                    <Cast> ([phi: 0]) -> [val: 2],
-                    <Cast> ([phi: 1]) -> [val: 3],
+                    <Store> ([val: 0], [alloc: 1], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 1]) -> [val: 8],
-                    <CondBr> ([val: 8], [raw: 7], [raw: 6]),
-                ],
-                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
+                    <Store> ([val: 4], [alloc: 1], [raw: 8]),
                     <Store> ([val: 0], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 9],
-                    <Store> ([val: 1], [val: 9], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 10],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 11],
-                    <Load> ([val: 11], [raw: 8]) -> [val: 12],
-                    <Br> ([raw: 4]),
+                    <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 13],
-                    <Store> ([val: 0], [val: 13], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 14],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 15],
-                    <Load> ([val: 15], [raw: 8]) -> [val: 16],
-                    <Br> ([raw: 4]),
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 6],
+                    <Sub> ([val: 5], [val: 6]) -> [val: 7],
+                    <CMPult> ([val: 5], [val: 6]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 5], [raw: 4]),
+                ],
+                BasicBlock: [
+                    <Ret> ([val: 7]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 13], [global: 10]),
+                    <Unreachable> (),
                 ],
             ],
             callee_infos: [],
@@ -898,11 +304,6 @@ ModuleTpde {
             slots: [
                 Bool,
                 i32,
-                Bool,
-                i32,
-                i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -919,28 +320,19 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 1]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 4], [val: 5], [raw: 5], [val: 6]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 5], [raw: 4]),
+                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 9], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 5],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 7], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 6],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 1],
+                    <Ret> ([val: 1]),
                 ],
             ],
             callee_infos: [],
@@ -994,11 +386,6 @@ ModuleTpde {
                 f64,
                 f64,
                 f64,
-                Bool,
-                f64,
-                f64,
-                f64,
-                f64,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1015,28 +402,19 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 4], [val: 7], [raw: 5], [val: 8]) -> [phi: 0] f64,
-                    <Cast> ([phi: 0]) -> [val: 3],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 5], [raw: 4]),
+                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
                     <Store> ([val: 2], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 8],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 3],
+                    <Ret> ([val: 3]),
                 ],
             ],
             callee_infos: [],
@@ -1051,7 +429,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Complex,
+                        state: Unused,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -1075,15 +453,6 @@ ModuleTpde {
             slots: [
                 i32,
                 i32,
-                i32,
-                Bool,
-                Bool,
-                i32,
-                Bool,
-                i32,
-                i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1095,40 +464,10 @@ ModuleTpde {
             },
             has_personality: false,
             personality: 0,
-            allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
+            allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Call> ([func: 19], [global: 8]),
-                    <Unreachable> (),
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 5]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 6], [val: 9], [raw: 7], [val: 10]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 5],
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Br> ([raw: 6]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 9],
-                    <Br> ([raw: 4]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 10],
-                    <Br> ([raw: 4]),
+                    <Ret> ([val: 1]),
                 ],
             ],
             callee_infos: [],
@@ -1155,11 +494,6 @@ ModuleTpde {
                 Bool,
                 ptr,
                 i32,
-                Bool,
-                ptr,
-                ptr,
-                ptr,
-                ptr,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1176,29 +510,20 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Load> ([val: 1], [raw: 4]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 4], [val: 6], [raw: 5], [val: 7]) -> [phi: 0] ptr,
-                    <Cast> ([phi: 0]) -> [val: 1],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 5], [raw: 4]),
+                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
                     <Store> ([global: 1], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 6],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
                     <Store> ([global: 0], [alloc: 0], [raw: 8]),
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 1],
+                    <Load> ([val: 1], [raw: 4]) -> [val: 2],
+                    <Ret> ([val: 2]),
                 ],
             ],
             callee_infos: [],
@@ -1213,7 +538,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Complex,
+                        state: Unused,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -1252,13 +577,7 @@ ModuleTpde {
                 i32,
                 i32,
                 i32,
-                i32,
                 Bool,
-                Bool,
-                i32,
-                i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1270,42 +589,19 @@ ModuleTpde {
             },
             has_personality: false,
             personality: 0,
-            allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
+            allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 5]),
+                    <Add> ([val: 1], [val: 2]) -> [val: 3],
+                    <CMPult> ([val: 3], [val: 1]) -> [val: 4],
+                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 4]),
+                    <Ret> ([val: 3]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 19], [global: 10]),
+                    <Call> ([func: 12], [global: 12]),
                     <Unreachable> (),
-                ],
-                BasicBlock: [
-                    <Add> ([val: 1], [val: 2]) -> [val: 4],
-                    <CMPult> ([val: 4], [val: 1]) -> [val: 5],
-                    <CondBr> ([val: 5], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 6], [val: 9], [raw: 7], [val: 10]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 3],
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 7], [raw: 6]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 2], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 9],
-                    <Br> ([raw: 4]),
-                ],
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 10],
-                    <Br> ([raw: 4]),
                 ],
             ],
             callee_infos: [],
@@ -1359,11 +655,6 @@ ModuleTpde {
                 i128,
                 i128,
                 i128,
-                Bool,
-                i128,
-                i128,
-                i128,
-                i128,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1380,28 +671,19 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 4], [val: 7], [raw: 5], [val: 8]) -> [phi: 0] i128,
-                    <Cast> ([phi: 0]) -> [val: 3],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 5], [raw: 4]),
+                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
                     <Store> ([val: 2], [alloc: 0], [raw: 16]),
-                    <Load> ([alloc: 0], [raw: 16]) -> [val: 7],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 16]),
-                    <Load> ([alloc: 0], [raw: 16]) -> [val: 8],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 16]) -> [val: 3],
+                    <Ret> ([val: 3]),
                 ],
             ],
             callee_infos: [],
@@ -1455,11 +737,6 @@ ModuleTpde {
                 i32,
                 i32,
                 i32,
-                Bool,
-                i32,
-                i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1476,28 +753,19 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 4], [val: 7], [raw: 5], [val: 8]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 3],
-                    <Br> ([raw: 1]),
-                ],
-                BasicBlock: [
-                    <CondBr> ([val: 0], [raw: 5], [raw: 4]),
+                    <CondBr> ([val: 0], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
                     <Store> ([val: 2], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 7],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 8],
-                    <Br> ([raw: 2]),
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
+                    <Ret> ([val: 3]),
                 ],
             ],
             callee_infos: [],
@@ -1533,10 +801,6 @@ ModuleTpde {
                 i8,
                 i8,
                 Bool,
-                i8,
-                i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1570,17 +834,36 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 1], [raw: 1]) -> [val: 4],
-                    <Br> ([raw: 10]),
+                    <Switch> ([val: 4], [raw: 4], [raw: 5], [raw: 6], [const: i8 0], [const: i8 1]),
+                ],
+                BasicBlock: [
+                    <Store> ([const pool: 7], [alloc: 2], [raw: 4]),
+                    <Br> ([raw: 7]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 0], [alloc: 2], [raw: 4]),
+                    <Br> ([raw: 7]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 1], [alloc: 2], [raw: 4]),
+                    <Br> ([raw: 7]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 5],
+                    <Load> ([alloc: 2], [raw: 4]) -> [val: 6],
+                    <Add> ([val: 5], [val: 6]) -> [val: 7],
+                    <OverflowCheck> ([raw: 1]) -> [val: 8],
+                    <CondBr> ([val: 8], [raw: 9], [raw: 8]),
                 ],
                 BasicBlock: [
                     <Store> ([val: 7], [alloc: 0], [raw: 4]),
                     <Load> ([alloc: 1], [raw: 1]) -> [val: 9],
                     <Add> ([val: 9], [const: i8 1]) -> [val: 10],
                     <CMPult> ([val: 10], [val: 9]) -> [val: 11],
-                    <CondBr> ([val: 11], [raw: 7], [raw: 6]),
+                    <CondBr> ([val: 11], [raw: 11], [raw: 10]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 19], [global: 12]),
+                    <Call> ([func: 12], [global: 14]),
                     <Unreachable> (),
                 ],
                 BasicBlock: [
@@ -1588,37 +871,8 @@ ModuleTpde {
                     <Br> ([raw: 1]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 19], [global: 14]),
+                    <Call> ([func: 12], [global: 16]),
                     <Unreachable> (),
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 6],
-                    <Add> ([val: 6], [val: 5]) -> [val: 7],
-                    <OverflowCheck> ([raw: 1]) -> [val: 8],
-                    <CondBr> ([val: 8], [raw: 5], [raw: 4]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 11], [val: 15], [raw: 12], [val: 13], [raw: 13], [val: 14]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 5],
-                    <Br> ([raw: 8]),
-                ],
-                BasicBlock: [
-                    <Switch> ([val: 4], [raw: 11], [raw: 12], [raw: 13], [const: i8 0], [const: i8 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 2], [raw: 4]),
-                    <Load> ([alloc: 2], [raw: 4]) -> [val: 15],
-                    <Br> ([raw: 9]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 0], [alloc: 2], [raw: 4]),
-                    <Load> ([alloc: 2], [raw: 4]) -> [val: 13],
-                    <Br> ([raw: 9]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 1], [alloc: 2], [raw: 4]),
-                    <Load> ([alloc: 2], [raw: 4]) -> [val: 14],
-                    <Br> ([raw: 9]),
                 ],
             ],
             callee_infos: [],
@@ -1663,14 +917,6 @@ ModuleTpde {
                 i32,
                 i32,
                 Bool,
-                i8,
-                i32,
-                i32,
-                i32,
-                i8,
-                i32,
-                i32,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -1688,77 +934,57 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 7]),
+                    <Switch> ([val: 0], [raw: 1], [raw: 2], [raw: 3], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 13]),
+                    <Store> ([const pool: 8], [alloc: 0], [raw: 4]),
+                    <Br> ([raw: 4]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 18], [global: 16]),
+                    <Store> ([const: i32 0], [alloc: 0], [raw: 4]),
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 1], [alloc: 0], [raw: 4]),
+                    <Br> ([raw: 4]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
+                    <Mul> ([val: 2], [const: i32 10]) -> [val: 3],
+                    <OverflowCheck> ([raw: 1]) -> [val: 4],
+                    <CondBr> ([val: 4], [raw: 6], [raw: 5]),
+                ],
+                BasicBlock: [
+                    <Switch> ([val: 1], [raw: 7], [raw: 8], [raw: 9], [const: i8 0], [const: i8 1]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 11], [global: 18]),
                     <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <Store> ([const pool: 9], [alloc: 1], [raw: 4]),
+                    <Br> ([raw: 10]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 0], [alloc: 1], [raw: 4]),
+                    <Br> ([raw: 10]),
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 1], [alloc: 1], [raw: 4]),
+                    <Br> ([raw: 10]),
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 5],
+                    <Add> ([val: 3], [val: 5]) -> [val: 6],
+                    <OverflowCheck> ([raw: 1]) -> [val: 7],
+                    <CondBr> ([val: 7], [raw: 12], [raw: 11]),
                 ],
                 BasicBlock: [
                     <Ret> ([val: 6]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 19], [global: 18]),
+                    <Call> ([func: 12], [global: 20]),
                     <Unreachable> (),
-                ],
-                BasicBlock: [
-                    <Mul> ([val: 2], [const: i32 10]) -> [val: 3],
-                    <OverflowCheck> ([raw: 1]) -> [val: 4],
-                    <CondBr> ([val: 4], [raw: 2], [raw: 1]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 8], [val: 11], [raw: 9], [val: 9], [raw: 10], [val: 10]) -> [phi: 0] i32,
-                    <Cast> ([phi: 0]) -> [val: 2],
-                    <Br> ([raw: 5]),
-                ],
-                BasicBlock: [
-                    <Switch> ([val: 0], [raw: 8], [raw: 9], [raw: 10], [const: i8 0], [const: i8 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 11],
-                    <Br> ([raw: 6]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 0], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 9],
-                    <Br> ([raw: 6]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 1], [alloc: 0], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 10],
-                    <Br> ([raw: 6]),
-                ],
-                BasicBlock: [
-                    <Add> ([val: 3], [val: 5]) -> [val: 6],
-                    <OverflowCheck> ([raw: 1]) -> [val: 7],
-                    <CondBr> ([val: 7], [raw: 4], [raw: 3]),
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 14], [val: 15], [raw: 15], [val: 13], [raw: 16], [val: 14]) -> [phi: 1] i32,
-                    <Cast> ([phi: 1]) -> [val: 5],
-                    <Br> ([raw: 11]),
-                ],
-                BasicBlock: [
-                    <Switch> ([val: 1], [raw: 14], [raw: 15], [raw: 16], [const: i8 0], [const: i8 1]),
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 15],
-                    <Br> ([raw: 12]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 0], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 13],
-                    <Br> ([raw: 12]),
-                ],
-                BasicBlock: [
-                    <Store> ([const: i32 1], [alloc: 1], [raw: 4]),
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 14],
-                    <Br> ([raw: 12]),
                 ],
             ],
             callee_infos: [],
@@ -1871,8 +1097,15 @@ ModuleTpde {
     ],
     consts: [
         [i32] (0 100) -> 100,
+        [i32] (0 1000) -> 1000,
+        [i32] (0 1000) -> 1000,
+        [i32] (0 100) -> 100,
         [i32] (18446744073709551615 18446744073709551615) -> -1,
         [i32] (0 1000) -> 1000,
+        [i32] (18446744073709551615 18446744073709551615) -> -1,
+        [i32] (18446744073709551615 18446744073709551615) -> -1,
+        [i32] (18446744073709551615 18446744073709551615) -> -1,
+        [i32] (18446744073709551615 18446744073709551615) -> -1,
     ],
     globals: [
         _RNvCsQvp3e8KgHi_6source8GLOBAL_A {
@@ -2009,7 +1242,7 @@ ModuleTpde {
             init: true,
             data: (24 bytes)
               0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
-              0010  8d 00 00 00 05 00 00 00                          |........|,
+              0010  ae 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 7],
             ],
@@ -2050,7 +1283,7 @@ ModuleTpde {
             init: true,
             data: (24 bytes)
               0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
-              0010  4f 00 00 00 0a 00 00 00                          |O.......|,
+              0010  ae 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 9],
             ],
@@ -2091,7 +1324,7 @@ ModuleTpde {
             init: true,
             data: (24 bytes)
               0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
-              0010  6e 00 00 00 05 00 00 00                          |n.......|,
+              0010  8d 00 00 00 05 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 11],
             ],
@@ -2132,7 +1365,7 @@ ModuleTpde {
             init: true,
             data: (24 bytes)
               0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
-              0010  b8 00 00 00 09 00 00 00                          |........|,
+              0010  6e 00 00 00 05 00 00 00                          |n.......|,
             relocations: [
                 offset 0x0 insert [global: 13],
             ],
@@ -2173,7 +1406,7 @@ ModuleTpde {
             init: true,
             data: (24 bytes)
               0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
-              0010  b9 00 00 00 09 00 00 00                          |........|,
+              0010  b8 00 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 15],
             ],
@@ -2214,7 +1447,7 @@ ModuleTpde {
             init: true,
             data: (24 bytes)
               0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
-              0010  25 00 00 00 05 00 00 00                          |%.......|,
+              0010  b9 00 00 00 09 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 17],
             ],
@@ -2258,6 +1491,47 @@ ModuleTpde {
               0010  25 00 00 00 05 00 00 00                          |%.......|,
             relocations: [
                 offset 0x0 insert [global: 19],
+            ],
+        },
+        anonymous {
+            size: 43,
+            align: 1,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (43 bytes)
+              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+              0010  69 6e 6c 69 6e 65 5f 6d 75 6c 74 69 5f 72 65 74  |inline_multi_ret|
+              0020  2f 73 6f 75 72 63 65 2e 72 73 00                 |/source.rs.|,
+            relocations: [],
+        },
+        anonymous {
+            size: 24,
+            align: 8,
+            read_only: true,
+            thread_loc: false,
+            flags: Flags {
+                extern_link: false,
+                only_local: true,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            init: true,
+            data: (24 bytes)
+              0000  00 00 00 00 00 00 00 00 2a 00 00 00 00 00 00 00  |........*.......|
+              0010  25 00 00 00 05 00 00 00                          |%.......|,
+            relocations: [
+                offset 0x0 insert [global: 21],
             ],
         },
         anonymous {

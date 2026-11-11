@@ -11,556 +11,7 @@ actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
 
 Disassembly of section .text:
 
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefthECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %edi,%ebx
-	mov    %esi,%r12d
-	mov    $0x1,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefthECsQvp3e8KgHi_6source+0x4d>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %ebx,%eax
-	shl    $0x8,%eax
-	lea    (%rax,%rbx,1),%esi
-	mov    %edx,%ecx
-	and    $0x7,%cl
-	shl    %cl,%esi
-	shr    $0x8,%esi
-	mov    %esi,%eax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefthECsQvp3e8KgHi_6source+0x67>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefthECsQvp3e8KgHi_6source+0x4c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefthECsQvp3e8KgHi_6source+0x59>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefthECsQvp3e8KgHi_6source+0x65>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefthECsQvp3e8KgHi_6source+0x63>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftmECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %edi,%ebx
-	mov    %esi,%r12d
-	mov    $0x4,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftmECsQvp3e8KgHi_6source+0x4d>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %ebx,%eax
-	mov    %edx,%ecx
-	shl    %cl,%eax
-	mov    %ebx,%esi
-	shr    $1,%esi
-	mov    %edx,%ecx
-	not    %cl
-	shr    %cl,%esi
-	or     %eax,%esi
-	mov    %esi,%eax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftmECsQvp3e8KgHi_6source+0x67>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftmECsQvp3e8KgHi_6source+0x4c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftmECsQvp3e8KgHi_6source+0x59>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftmECsQvp3e8KgHi_6source+0x65>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftmECsQvp3e8KgHi_6source+0x63>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefttECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %edi,%ebx
-	mov    %esi,%r12d
-	mov    $0x2,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefttECsQvp3e8KgHi_6source+0x4d>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %ebx,%eax
-	shl    $0x10,%eax
-	lea    (%rax,%rbx,1),%esi
-	mov    %edx,%ecx
-	and    $0xf,%cl
-	shl    %cl,%esi
-	shr    $0x10,%esi
-	mov    %esi,%eax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefttECsQvp3e8KgHi_6source+0x67>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefttECsQvp3e8KgHi_6source+0x4c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefttECsQvp3e8KgHi_6source+0x59>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefttECsQvp3e8KgHi_6source+0x65>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_lefttECsQvp3e8KgHi_6source+0x63>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftyECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %rdi,%rbx
-	mov    %esi,%r12d
-	mov    $0x8,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftyECsQvp3e8KgHi_6source+0x55>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %rbx,%rax
-	mov    %edx,%ecx
-	shl    %cl,%rax
-	mov    %rbx,%rsi
-	shr    $1,%rsi
-	mov    %edx,%ecx
-	not    %cl
-	shr    %cl,%rsi
-	or     %rax,%rsi
-	mov    %rsi,%rax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftyECsQvp3e8KgHi_6source+0x6f>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftyECsQvp3e8KgHi_6source+0x54>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftyECsQvp3e8KgHi_6source+0x61>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftyECsQvp3e8KgHi_6source+0x6d>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics11rotate_leftyECsQvp3e8KgHi_6source+0x6b>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righthECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %edi,%ebx
-	mov    %esi,%r12d
-	mov    $0x1,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righthECsQvp3e8KgHi_6source+0x4a>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %ebx,%eax
-	shl    $0x8,%eax
-	lea    (%rax,%rbx,1),%esi
-	mov    %edx,%ecx
-	and    $0x7,%cl
-	shr    %cl,%esi
-	mov    %esi,%eax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righthECsQvp3e8KgHi_6source+0x64>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righthECsQvp3e8KgHi_6source+0x49>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righthECsQvp3e8KgHi_6source+0x56>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righthECsQvp3e8KgHi_6source+0x62>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righthECsQvp3e8KgHi_6source+0x60>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nop
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightmECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %edi,%ebx
-	mov    %esi,%r12d
-	mov    $0x4,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightmECsQvp3e8KgHi_6source+0x4c>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %ebx,%eax
-	mov    %edx,%ecx
-	shr    %cl,%eax
-	lea    (%rbx,%rbx,1),%esi
-	mov    %edx,%ecx
-	not    %cl
-	shl    %cl,%esi
-	or     %eax,%esi
-	mov    %esi,%eax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightmECsQvp3e8KgHi_6source+0x66>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightmECsQvp3e8KgHi_6source+0x4b>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightmECsQvp3e8KgHi_6source+0x58>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightmECsQvp3e8KgHi_6source+0x64>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightmECsQvp3e8KgHi_6source+0x62>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopw   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righttECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %edi,%ebx
-	mov    %esi,%r12d
-	mov    $0x2,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righttECsQvp3e8KgHi_6source+0x4a>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %ebx,%eax
-	shl    $0x10,%eax
-	lea    (%rax,%rbx,1),%esi
-	mov    %edx,%ecx
-	and    $0xf,%cl
-	shr    %cl,%esi
-	mov    %esi,%eax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righttECsQvp3e8KgHi_6source+0x64>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righttECsQvp3e8KgHi_6source+0x49>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righttECsQvp3e8KgHi_6source+0x56>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righttECsQvp3e8KgHi_6source+0x62>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_righttECsQvp3e8KgHi_6source+0x60>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nop
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightyECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	mov    %rdi,%rbx
-	mov    %esi,%r12d
-	mov    $0x8,%eax
-	mov    %eax,%r13d
-	mov    $0x8,%ecx
-	imul   %ecx,%r13d
-	test   %r13d,%r13d
-	je     <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightyECsQvp3e8KgHi_6source+0x53>
-	xor    %edx,%edx
-	mov    %r12d,%eax
-	div    %r13d
-	mov    %rbx,%rax
-	mov    %edx,%ecx
-	shr    %cl,%rax
-	lea    (%rbx,%rbx,1),%rsi
-	mov    %edx,%ecx
-	not    %cl
-	shl    %cl,%rsi
-	or     %rax,%rsi
-	mov    %rsi,%rax
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightyECsQvp3e8KgHi_6source+0x6d>
-	lea    -0x8(%rip),%rdi        # <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightyECsQvp3e8KgHi_6source+0x52>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightyECsQvp3e8KgHi_6source+0x5f>
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightyECsQvp3e8KgHi_6source+0x6b>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics12rotate_rightyECsQvp3e8KgHi_6source+0x69>
-	ud2
-	ud2
-	add    $0x18,%rsp
-	pop    %r13
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopl   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitorhECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitorhECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitorhECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitorhECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitormECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitormECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitormECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitormECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitortECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitortECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitortECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitortECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitoryECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitoryECsQvp3e8KgHi_6source+0xe>
-	mov    %rax,%rbx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitoryECsQvp3e8KgHi_6source+0x1d>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics14disjoint_bitoryECsQvp3e8KgHi_6source+0x1b>
-	ud2
-	mov    %rbx,%rax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlhECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlhECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlhECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlhECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlmECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlmECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlmECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlmECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shltECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shltECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shltECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shltECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlyECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlyECsQvp3e8KgHi_6source+0xe>
-	mov    %rax,%rbx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlyECsQvp3e8KgHi_6source+0x1d>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shlyECsQvp3e8KgHi_6source+0x1b>
-	ud2
-	mov    %rbx,%rax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrhECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrhECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrhECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrhECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrmECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrmECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrmECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrmECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrtECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrtECsQvp3e8KgHi_6source+0xe>
-	mov    %eax,%ebx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrtECsQvp3e8KgHi_6source+0x1c>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shrtECsQvp3e8KgHi_6source+0x1a>
-	ud2
-	mov    %ebx,%eax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
-
-<_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shryECsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	sub    $0x28,%rsp
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shryECsQvp3e8KgHi_6source+0xe>
-	mov    %rax,%rbx
-	jmp    <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shryECsQvp3e8KgHi_6source+0x1d>
-	call   <_RINvNtCsioHeeuq8fQz_4core10intrinsics20unchecked_funnel_shryECsQvp3e8KgHi_6source+0x1b>
-	ud2
-	mov    %rbx,%rax
-	add    $0x28,%rsp
-	pop    %rbx
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-
-<_RNvXsb_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source>:
+<_RNvXsb_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_13DisjointBitOr14disjoint_bitor>:
 	mov    %edi,%eax
 	and    %esi,%eax
 	test   %al,%al
@@ -570,7 +21,7 @@ Disassembly of section .text:
 	ret
 	xchg   %ax,%ax
 
-<_RNvXsc_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source>:
+<_RNvXsc_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_13DisjointBitOr14disjoint_bitor>:
 	mov    %edi,%eax
 	and    %esi,%eax
 	test   %ax,%ax
@@ -580,7 +31,7 @@ Disassembly of section .text:
 	ret
 	nop
 
-<_RNvXsd_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source>:
+<_RNvXsd_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_13DisjointBitOr14disjoint_bitor>:
 	mov    %edi,%eax
 	and    %esi,%eax
 	test   %eax,%eax
@@ -590,7 +41,7 @@ Disassembly of section .text:
 	ret
 	xchg   %ax,%ax
 
-<_RNvXse_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_13DisjointBitOr14disjoint_bitorCsQvp3e8KgHi_6source>:
+<_RNvXse_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_13DisjointBitOr14disjoint_bitor>:
 	mov    %rdi,%rax
 	and    %rsi,%rax
 	test   %rax,%rax
@@ -601,7 +52,7 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax)
 
-<_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source>:
+<_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shl>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -613,9 +64,9 @@ Disassembly of section .text:
 	cmp    $0x8,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x29>
+	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shl+0x29>
 	mov    %bl,-0x29(%rbp)
-	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x47>
+	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shl+0x47>
 	mov    %r13d,%eax
 	mov    %eax,%ecx
 	shl    %cl,%ebx
@@ -635,7 +86,7 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax,%rax,1)
 
-<_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
+<_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shr>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -647,9 +98,9 @@ Disassembly of section .text:
 	cmp    $0x8,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2a>
+	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shr+0x2a>
 	mov    %r12b,-0x29(%rbp)
-	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x46>
+	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shr+0x46>
 	mov    $0x8,%eax
 	sub    %r13d,%eax
 	mov    %eax,%ecx
@@ -668,7 +119,7 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopw   0x0(%rax,%rax,1)
 
-<_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source>:
+<_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shl>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -680,9 +131,9 @@ Disassembly of section .text:
 	cmp    $0x10,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2a>
+	jne    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shl+0x2a>
 	mov    %bx,-0x2a(%rbp)
-	jmp    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x49>
+	jmp    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shl+0x49>
 	mov    %r13d,%eax
 	mov    %eax,%ecx
 	shl    %cl,%ebx
@@ -702,7 +153,7 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   (%rax)
 
-<_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
+<_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shr>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -714,9 +165,9 @@ Disassembly of section .text:
 	cmp    $0x10,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2b>
+	jne    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shr+0x2b>
 	mov    %r12w,-0x2a(%rbp)
-	jmp    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x48>
+	jmp    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shr+0x48>
 	mov    $0x10,%eax
 	sub    %r13d,%eax
 	mov    %eax,%ecx
@@ -735,7 +186,7 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax)
 
-<_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source>:
+<_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shl>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -747,9 +198,9 @@ Disassembly of section .text:
 	cmp    $0x20,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x29>
+	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shl+0x29>
 	mov    %ebx,-0x2c(%rbp)
-	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x41>
+	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shl+0x41>
 	mov    %r13d,%ecx
 	shl    %cl,%ebx
 	mov    $0x20,%eax
@@ -766,7 +217,7 @@ Disassembly of section .text:
 	ret
 	nopl   0x0(%rax,%rax,1)
 
-<_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
+<_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shr>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -778,9 +229,9 @@ Disassembly of section .text:
 	cmp    $0x20,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2a>
+	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shr+0x2a>
 	mov    %r12d,-0x2c(%rbp)
-	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x42>
+	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shr+0x42>
 	mov    $0x20,%eax
 	sub    %r13d,%eax
 	mov    %eax,%ecx
@@ -797,7 +248,7 @@ Disassembly of section .text:
 	ret
 	nopl   0x0(%rax)
 
-<_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source>:
+<_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shl>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -809,9 +260,9 @@ Disassembly of section .text:
 	cmp    $0x40,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2b>
+	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shl+0x2b>
 	mov    %rbx,-0x30(%rbp)
-	jmp    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x49>
+	jmp    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shl+0x49>
 	mov    %r13d,%eax
 	mov    %eax,%ecx
 	shl    %cl,%rbx
@@ -831,7 +282,7 @@ Disassembly of section .text:
 	nopw   0x0(%rax,%rax,1)
 	nopl   (%rax)
 
-<_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
+<_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shr>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
@@ -843,9 +294,9 @@ Disassembly of section .text:
 	cmp    $0x40,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2b>
+	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shr+0x2b>
 	mov    %r12,-0x30(%rbp)
-	jmp    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x4a>
+	jmp    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shr+0x4a>
 	mov    $0x40,%eax
 	sub    %r13d,%eax
 	mov    %eax,%eax
@@ -868,18 +319,18 @@ Disassembly of section .text:
 <add3_u128>:
 	add    %rdx,%rdi
 	adc    %rcx,%rsi
-	add    %r8,%rdi
-	adc    %r9,%rsi
-	mov    %rdi,%rax
-	mov    %rsi,%rdx
+	add    %rdi,%r8
+	adc    %rsi,%r9
+	mov    %r8,%rax
+	mov    %r9,%rdx
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nopl   0x0(%rax)
 
 <add3_u32>:
 	lea    (%rdi,%rsi,1),%edi
-	lea    (%rdi,%rdx,1),%edi
-	mov    %edi,%eax
+	lea    (%rdx,%rdi,1),%edx
+	mov    %edx,%eax
 	ret
 	nopl   0x0(%rax)
 
@@ -891,34 +342,34 @@ Disassembly of section .text:
 	mov    0x18(%rbp),%rbx
 	add    %rdx,%rdi
 	adc    %rcx,%rsi
-	add    %r8,%rdi
-	adc    %r9,%rsi
-	add    %rax,%rdi
-	adc    %rbx,%rsi
-	mov    %rdi,%rax
-	mov    %rsi,%rdx
+	add    %rdi,%r8
+	adc    %rsi,%r9
+	add    %r8,%rax
+	adc    %r9,%rbx
+	mov    %rbx,%rdx
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <add8_args_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
 	lea    (%rdi,%rsi,1),%edi
-	lea    (%rdi,%rdx,1),%edi
-	lea    (%rdi,%rcx,1),%edi
-	lea    (%rdi,%r8,1),%edi
-	lea    (%rdi,%r9,1),%edi
+	lea    (%rdx,%rdi,1),%edx
+	lea    (%rcx,%rdx,1),%ecx
+	lea    (%r8,%rcx,1),%r8d
+	lea    (%r9,%r8,1),%r9d
 	mov    0x10(%rbp),%eax
-	lea    (%rdi,%rax,1),%edi
-	mov    0x18(%rbp),%eax
-	lea    (%rdi,%rax,1),%edi
-	mov    %edi,%eax
+	lea    (%rax,%r9,1),%eax
+	mov    0x18(%rbp),%ecx
+	lea    (%rcx,%rax,1),%ecx
+	mov    %ecx,%eax
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nop
 
 <add_i128>:
 	add    %rdx,%rdi
@@ -1306,7 +757,8 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x58,%rsp
+	push   %r12
+	sub    $0x50,%rsp
 	mov    %rcx,%rax
 	xor    %ebx,%ebx
 	xor    %r8d,%r8d
@@ -1314,77 +766,55 @@ Disassembly of section .text:
 	xor    %rbx,%r9
 	xor    %r8,%rax
 	or     %rax,%r9
-	je     <div_rem_i128+0x17a>
-	mov    %rcx,%rax
-	mov    $0xffffffffffffffff,%rbx
-	mov    $0xffffffffffffffff,%r8
-	mov    %rdx,%r9
-	xor    %rbx,%r9
-	xor    %r8,%rax
-	or     %rax,%r9
-	sete   %al
-	mov    %rsi,%rbx
-	xor    %r8d,%r8d
-	movabs $0x8000000000000000,%r9
-	mov    %rdi,%r10
-	xor    %r8,%r10
-	xor    %r9,%rbx
-	or     %rbx,%r10
 	sete   %bl
-	and    %ebx,%eax
-	test   $0x1,%al
-	jne    <div_rem_i128+0x16c>
+	je     <div_rem_i128+0x12f>
+	mov    %rcx,%rax
+	mov    $0xffffffffffffffff,%r8
+	mov    $0xffffffffffffffff,%r9
+	mov    %rdx,%r10
+	xor    %r8,%r10
+	xor    %r9,%rax
+	or     %rax,%r10
+	sete   %al
+	mov    %rsi,%r8
+	xor    %r9d,%r9d
+	movabs $0x8000000000000000,%r10
+	mov    %rdi,%r11
+	xor    %r9,%r11
+	xor    %r10,%r8
+	or     %r8,%r11
+	sete   %r8b
+	mov    %eax,%r12d
+	and    %r8d,%r12d
+	test   $0x1,%r12b
+	jne    <div_rem_i128+0x121>
 	mov    %rdi,-0x40(%rbp)
 	mov    %rsi,-0x38(%rbp)
 	mov    %rdx,-0x50(%rbp)
 	mov    %rcx,-0x48(%rbp)
-	call   <div_rem_i128+0x81>
+	call   <div_rem_i128+0x8d>
 	mov    %rax,-0x60(%rbp)
 	mov    %rdx,-0x58(%rbp)
-	mov    -0x58(%rbp),%rcx
-	imul   -0x50(%rbp),%rcx
-	mov    -0x50(%rbp),%rbx
-	mov    %rbx,%rax
-	mulq   -0x60(%rbp)
-	add    %rcx,%rdx
-	mov    -0x48(%rbp),%rsi
-	mov    %rsi,%rdi
-	imul   -0x60(%rbp),%rdi
+	mov    -0x48(%rbp),%rcx
+	mov    %rcx,%rsi
+	imul   -0x60(%rbp),%rsi
+	mov    -0x60(%rbp),%rdi
+	mov    %rdi,%rax
+	mulq   -0x50(%rbp)
+	add    %rsi,%rdx
+	mov    -0x58(%rbp),%rdi
+	imul   -0x50(%rbp),%rdi
 	add    %rdi,%rdx
-	mov    %rsi,%rcx
-	xor    %edi,%edi
-	xor    %r8d,%r8d
-	mov    %rbx,%r9
-	xor    %rdi,%r9
-	xor    %r8,%rcx
-	or     %rcx,%r9
-	je     <div_rem_i128+0x15e>
-	mov    %rsi,%rcx
-	mov    $0xffffffffffffffff,%rdi
-	mov    $0xffffffffffffffff,%r8
-	mov    %rbx,%r9
-	xor    %rdi,%r9
-	xor    %r8,%rcx
-	or     %rcx,%r9
-	sete   %cl
-	mov    -0x38(%rbp),%rdi
-	xor    %r8d,%r8d
-	movabs $0x8000000000000000,%r9
-	mov    -0x40(%rbp),%r10
-	xor    %r8,%r10
-	xor    %r9,%rdi
-	or     %rdi,%r10
-	sete   %dil
-	and    %edi,%ecx
-	test   $0x1,%cl
-	jne    <div_rem_i128+0x150>
+	test   $0x1,%bl
+	jne    <div_rem_i128+0x113>
+	test   $0x1,%r12b
+	jne    <div_rem_i128+0x105>
 	mov    -0x40(%rbp),%rdi
 	mov    -0x38(%rbp),%rsi
 	mov    %rdx,-0x38(%rbp)
-	mov    %rbx,%rdx
-	mov    -0x48(%rbp),%rcx
+	mov    -0x50(%rbp),%rdx
 	mov    %rax,-0x40(%rbp)
-	call   <div_rem_i128+0x132>
+	call   <div_rem_i128+0xe7>
 	mov    -0x40(%rbp),%rcx
 	add    %rax,%rcx
 	mov    -0x38(%rbp),%rax
@@ -1392,23 +822,25 @@ Disassembly of section .text:
 	mov    %rax,-0x38(%rbp)
 	mov    %rcx,%rax
 	mov    -0x38(%rbp),%rdx
-	jmp    <div_rem_i128+0x188>
-	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x14f>
-	call   <div_rem_i128+0x15c>
+	jmp    <div_rem_i128+0x13d>
+	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x104>
+	call   <div_rem_i128+0x111>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x15d>
-	call   <div_rem_i128+0x16a>
+	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x112>
+	call   <div_rem_i128+0x11f>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x16b>
-	call   <div_rem_i128+0x178>
+	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x120>
+	call   <div_rem_i128+0x12d>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x179>
-	call   <div_rem_i128+0x186>
+	lea    -0x8(%rip),%rdi        # <div_rem_i128+0x12e>
+	call   <div_rem_i128+0x13b>
 	ud2
-	add    $0x58,%rsp
+	add    $0x50,%rsp
+	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
+	nopw   0x0(%rax,%rax,1)
 	nop
 
 <div_rem_i32>:
@@ -1417,57 +849,58 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
-	sub    $0x18,%rsp
+	push   %r14
+	push   %r15
+	sub    $0x8,%rsp
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	test   %r12d,%r12d
-	je     <div_rem_i32+0xa2>
+	sete   %r13b
+	je     <div_rem_i32+0xa0>
 	cmp    $0xffffffff,%r12d
 	sete   %al
 	cmp    $0x80000000,%ebx
 	sete   %cl
-	and    %ecx,%eax
-	test   $0x1,%al
-	jne    <div_rem_i32+0x94>
+	mov    %eax,%r14d
+	and    %ecx,%r14d
+	test   $0x1,%r14b
+	jne    <div_rem_i32+0x92>
 	mov    %ebx,%eax
 	cltd
 	idiv   %r12d
-	mov    %eax,%r13d
-	imul   %r12d,%r13d
-	test   %r12d,%r12d
-	je     <div_rem_i32+0x86>
-	cmp    $0xffffffff,%r12d
-	sete   %al
-	cmp    $0x80000000,%ebx
-	sete   %cl
-	and    %ecx,%eax
-	test   $0x1,%al
-	jne    <div_rem_i32+0x78>
+	mov    %r12d,%r15d
+	imul   %eax,%r15d
+	test   $0x1,%r13b
+	jne    <div_rem_i32+0x84>
+	test   $0x1,%r14b
+	jne    <div_rem_i32+0x76>
 	mov    %ebx,%eax
 	cltd
 	idiv   %r12d
-	lea    0x0(%r13,%rdx,1),%r13d
-	mov    %r13d,%eax
-	jmp    <div_rem_i32+0xb0>
-	lea    -0x8(%rip),%rdi        # <div_rem_i32+0x77>
-	call   <div_rem_i32+0x84>
+	lea    (%r15,%rdx,1),%r15d
+	mov    %r15d,%eax
+	jmp    <div_rem_i32+0xae>
+	lea    -0x8(%rip),%rdi        # <div_rem_i32+0x75>
+	call   <div_rem_i32+0x82>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_i32+0x85>
-	call   <div_rem_i32+0x92>
+	lea    -0x8(%rip),%rdi        # <div_rem_i32+0x83>
+	call   <div_rem_i32+0x90>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_i32+0x93>
-	call   <div_rem_i32+0xa0>
+	lea    -0x8(%rip),%rdi        # <div_rem_i32+0x91>
+	call   <div_rem_i32+0x9e>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_i32+0xa1>
-	call   <div_rem_i32+0xae>
+	lea    -0x8(%rip),%rdi        # <div_rem_i32+0x9f>
+	call   <div_rem_i32+0xac>
 	ud2
-	add    $0x18,%rsp
+	add    $0x8,%rsp
+	pop    %r15
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <div_rem_u128>:
 	push   %rbp
@@ -1481,39 +914,33 @@ Disassembly of section .text:
 	xor    %rbx,%r9
 	xor    %r8,%rax
 	or     %rax,%r9
-	je     <div_rem_u128+0xc8>
+	sete   %bl
+	je     <div_rem_u128+0xb7>
 	mov    %rdi,-0x40(%rbp)
 	mov    %rsi,-0x38(%rbp)
 	mov    %rdx,-0x50(%rbp)
 	mov    %rcx,-0x48(%rbp)
-	call   <div_rem_u128+0x38>
+	call   <div_rem_u128+0x3b>
 	mov    %rax,-0x60(%rbp)
 	mov    %rdx,-0x58(%rbp)
-	mov    -0x58(%rbp),%rcx
-	imul   -0x50(%rbp),%rcx
-	mov    -0x50(%rbp),%rbx
-	mov    %rbx,%rax
-	mulq   -0x60(%rbp)
-	add    %rcx,%rdx
-	mov    -0x48(%rbp),%rsi
-	mov    %rsi,%rdi
-	imul   -0x60(%rbp),%rdi
+	mov    -0x48(%rbp),%rcx
+	mov    %rcx,%rsi
+	imul   -0x60(%rbp),%rsi
+	mov    -0x60(%rbp),%rdi
+	mov    %rdi,%rax
+	mulq   -0x50(%rbp)
+	add    %rsi,%rdx
+	mov    -0x58(%rbp),%rdi
+	imul   -0x50(%rbp),%rdi
 	add    %rdi,%rdx
-	mov    %rsi,%rcx
-	xor    %edi,%edi
-	xor    %r8d,%r8d
-	mov    %rbx,%r9
-	xor    %rdi,%r9
-	xor    %r8,%rcx
-	or     %rcx,%r9
-	je     <div_rem_u128+0xba>
+	test   $0x1,%bl
+	jne    <div_rem_u128+0xa9>
 	mov    -0x40(%rbp),%rdi
 	mov    -0x38(%rbp),%rsi
 	mov    %rdx,-0x38(%rbp)
-	mov    %rbx,%rdx
-	mov    -0x48(%rbp),%rcx
+	mov    -0x50(%rbp),%rdx
 	mov    %rax,-0x40(%rbp)
-	call   <div_rem_u128+0x9c>
+	call   <div_rem_u128+0x8b>
 	mov    -0x40(%rbp),%rcx
 	add    %rax,%rcx
 	mov    -0x38(%rbp),%rax
@@ -1521,18 +948,18 @@ Disassembly of section .text:
 	mov    %rax,-0x38(%rbp)
 	mov    %rcx,%rax
 	mov    -0x38(%rbp),%rdx
-	jmp    <div_rem_u128+0xd6>
-	lea    -0x8(%rip),%rdi        # <div_rem_u128+0xb9>
-	call   <div_rem_u128+0xc6>
+	jmp    <div_rem_u128+0xc5>
+	lea    -0x8(%rip),%rdi        # <div_rem_u128+0xa8>
+	call   <div_rem_u128+0xb5>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_u128+0xc7>
-	call   <div_rem_u128+0xd4>
+	lea    -0x8(%rip),%rdi        # <div_rem_u128+0xb6>
+	call   <div_rem_u128+0xc3>
 	ud2
 	add    $0x58,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   (%rax)
+	nopl   0x0(%rax)
 
 <div_rem_u32>:
 	push   %rbp
@@ -1540,37 +967,41 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
-	sub    $0x18,%rsp
+	push   %r14
+	sub    $0x10,%rsp
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	test   %r12d,%r12d
-	je     <div_rem_u32+0x54>
+	sete   %r13b
+	je     <div_rem_u32+0x5a>
 	xor    %edx,%edx
 	mov    %ebx,%eax
 	div    %r12d
-	mov    %eax,%r13d
-	imul   %r12d,%r13d
-	test   %r12d,%r12d
-	je     <div_rem_u32+0x46>
+	mov    %r12d,%r14d
+	imul   %eax,%r14d
+	test   $0x1,%r13b
+	jne    <div_rem_u32+0x4c>
 	xor    %edx,%edx
 	mov    %ebx,%eax
 	div    %r12d
-	lea    0x0(%r13,%rdx,1),%r13d
-	mov    %r13d,%eax
-	jmp    <div_rem_u32+0x62>
-	lea    -0x8(%rip),%rdi        # <div_rem_u32+0x45>
-	call   <div_rem_u32+0x52>
+	lea    (%r14,%rdx,1),%r14d
+	mov    %r14d,%eax
+	jmp    <div_rem_u32+0x68>
+	lea    -0x8(%rip),%rdi        # <div_rem_u32+0x4b>
+	call   <div_rem_u32+0x58>
 	ud2
-	lea    -0x8(%rip),%rdi        # <div_rem_u32+0x53>
-	call   <div_rem_u32+0x60>
+	lea    -0x8(%rip),%rdi        # <div_rem_u32+0x59>
+	call   <div_rem_u32+0x66>
 	ud2
-	add    $0x18,%rsp
+	add    $0x10,%rsp
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <div_u128>:
 	push   %rbp
@@ -1805,23 +1236,19 @@ Disassembly of section .text:
 	nopl   (%rax)
 
 <mixed_width_u128>:
-	push   %rbp
-	mov    %rsp,%rbp
 	mov    %edi,%edi
 	xor    %eax,%eax
-	add    %rsi,%rdi
-	adc    %rdx,%rax
-	xor    %edx,%edx
-	add    %rcx,%rdi
-	adc    %rdx,%rax
-	add    %r8,%rdi
-	adc    %r9,%rax
-	mov    %rax,-0x38(%rbp)
-	mov    %rdi,%rax
-	mov    -0x38(%rbp),%rdx
-	pop    %rbp
+	add    %rdi,%rsi
+	adc    %rax,%rdx
+	xor    %eax,%eax
+	add    %rcx,%rsi
+	adc    %rax,%rdx
+	add    %rsi,%r8
+	adc    %rdx,%r9
+	mov    %r8,%rax
+	mov    %r9,%rdx
 	ret
-	nopl   0x0(%rax)
+	nop
 
 <mul_add_u128>:
 	push   %rbp
@@ -1835,24 +1262,27 @@ Disassembly of section .text:
 	add    %rsi,%rdx
 	imul   %rdi,%rcx
 	add    %rcx,%rdx
-	add    %r8,%rax
-	adc    %r9,%rdx
+	add    %rax,%r8
+	adc    %rdx,%r9
+	mov    %r8,%rax
+	mov    %r9,%rdx
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
 
 <mul_add_u32>:
 	imul   %esi,%edi
-	lea    (%rdi,%rdx,1),%edi
-	mov    %edi,%eax
+	lea    (%rdx,%rdi,1),%edx
+	mov    %edx,%eax
 	ret
 	nopl   0x0(%rax)
 
 <mul_add_u8>:
 	imul   %esi,%edi
-	lea    (%rdi,%rdx,1),%edi
-	mov    %edi,%eax
+	lea    (%rdx,%rdi,1),%edx
+	mov    %edx,%eax
 	ret
 	nopl   0x0(%rax)
 
@@ -3093,8 +2523,8 @@ Disassembly of section .text:
 
 <xor_roundtrip_u8>:
 	xor    %esi,%edi
-	xor    %esi,%edi
-	mov    %edi,%eax
+	xor    %edi,%esi
+	mov    %esi,%eax
 	ret
 	nopw   0x0(%rax,%rax,1)
 
