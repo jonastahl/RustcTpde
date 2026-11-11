@@ -943,6 +943,13 @@ impl Module {
         let start = (phi.incoming_start + slot * 2) as usize;
         function.operands[start] = Slot::new_raw(from.index() as u32).to_ffi();
         function.operands[start + 1] = value.to_ffi();
+
+        #[cfg(feature = "promote")]
+        {
+            if let Some(info) = access_info_intern(function, &value) {
+                info.state = AccessInfoState::Complex;
+            }
+        }
     }
 
     pub fn add_br(&mut self, bb: BasicBlock, to: BasicBlock) {
@@ -1015,17 +1022,21 @@ pub(super) fn access_info_intern<'a>(func: &'a mut ffi::Function, ptr: &Slot) ->
     }
 }
 
+pub(super) fn decode_const(consts: &[ffi::Value], c: u32) -> (Type, u128) {
+    if c < INLINE_CONST_END {
+        let ty = Type {
+            repr: (c >> INLINE_CONST_BITS) as _,
+        };
+        (ty, (c & (INLINE_CONST_LIMIT as u32 - 1)) as u128)
+    } else {
+        let value = &consts[(c - INLINE_CONST_END) as usize];
+        (value.ty, value.data())
+    }
+}
+
 impl ModuleTpde {
     pub(super) fn const_value(&self, c: u32) -> (Type, u128) {
-        if c < INLINE_CONST_END {
-            let ty = Type {
-                repr: (c >> INLINE_CONST_BITS) as _,
-            };
-            (ty, (c & (INLINE_CONST_LIMIT as u32 - 1)) as u128)
-        } else {
-            let value = &self.consts[(c - INLINE_CONST_END) as usize];
-            (value.ty, value.data())
-        }
+        decode_const(&self.consts, c)
     }
 
     pub fn const_data(&self, slot: Slot) -> Option<u128> {
@@ -1272,7 +1283,9 @@ pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, 
         if size == access_info.size_a {
             Match::A
         } else {
-            if access_info.size_a == 0 && size <= access_info.offset_b {
+            if access_info.size_a == 0
+                && (access_info.size_b == 0 || size <= access_info.offset_b)
+            {
                 access_info.size_a = size;
                 Match::A
             } else {
@@ -1295,15 +1308,22 @@ pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, 
         Match::None
     };
 
+    if let Match::None = m {
+        access_info.state = AccessInfoState::Complex;
+        return;
+    }
+
     if written {
         access_info.state = match (access_info.state, m) {
             (AccessInfoState::Unused, Match::A) => AccessInfoState::OnceWrittenA,
             (AccessInfoState::Unused, Match::B) => AccessInfoState::OnceWrittenB,
 
             (AccessInfoState::OnceWrittenA, Match::A) => AccessInfoState::WrittenA,
-            (AccessInfoState::OnceWrittenA, Match::B) => AccessInfoState::Written,
-            (AccessInfoState::OnceWrittenB, Match::A) => AccessInfoState::Written,
+            (AccessInfoState::OnceWrittenA, Match::B) => AccessInfoState::OnceWritten,
+            (AccessInfoState::OnceWrittenB, Match::A) => AccessInfoState::OnceWritten,
             (AccessInfoState::OnceWrittenB, Match::B) => AccessInfoState::WrittenB,
+
+            (AccessInfoState::OnceWritten, _) => AccessInfoState::Written,
 
             (AccessInfoState::WrittenA, Match::A) => AccessInfoState::WrittenA,
             (AccessInfoState::WrittenA, Match::B) => AccessInfoState::Written,
@@ -1354,6 +1374,10 @@ pub fn alloc_used_b(info: &AccessInfo) -> bool {
     info.size_b != 0
 }
 
-pub fn written_once(state: AccessInfoState) -> bool {
-    matches!(state, AccessInfoState::OnceWrittenA | AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten)
+pub fn written_once_a(state: AccessInfoState) -> bool {
+    matches!(state, AccessInfoState::OnceWrittenA | AccessInfoState::OnceWritten)
+}
+
+pub fn written_once_b(state: AccessInfoState) -> bool {
+    matches!(state, AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten)
 }

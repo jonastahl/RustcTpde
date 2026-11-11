@@ -1989,7 +1989,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: WrittenA, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2087,7 +2087,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: WrittenA, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2185,7 +2185,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 2, align: 2, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 2, align: 2, state: WrittenA, size_a: 2, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2283,7 +2283,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 2, align: 2, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 2, align: 2, state: WrittenA, size_a: 2, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2379,7 +2379,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2473,7 +2473,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2569,7 +2569,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: WrittenA, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2667,7 +2667,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: WrittenA, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [

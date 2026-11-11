@@ -3536,12 +3536,12 @@ Disassembly of section .text:
 	mov    $0x4,%ecx
 	mov    $0x4,%r8d
 	call   <cas_succeeded_u32+0x1b>
-	mov    %eax,-0x30(%rbp)
-	mov    %edx,-0x2c(%rbp)
-	mov    -0x30(%rbp),%eax
-	mov    -0x2c(%rbp),%ecx
-	mov    %eax,%eax
-	test   %rax,%rax
+	mov    %eax,%ebx
+	lea    -0x2c(%rbp),%rax
+	mov    %edx,%r12d
+	lea    -0x2c(%rbp),%rax
+	mov    %ebx,%ebx
+	test   %rbx,%rbx
 	sete   %bl
 	mov    %ebx,%r12d
 	mov    %r12d,%eax
@@ -3550,7 +3550,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nop
 
 <cas_u16>:
 	push   %rbp
