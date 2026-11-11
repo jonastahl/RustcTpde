@@ -424,7 +424,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -479,7 +479,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -532,7 +532,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -585,7 +585,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -638,7 +638,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -691,7 +691,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -746,7 +746,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -799,7 +799,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -852,7 +852,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -905,7 +905,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,

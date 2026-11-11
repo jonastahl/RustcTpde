@@ -61,12 +61,12 @@ ModuleTpde {
             has_personality: true,
             personality: 34,
             allocas: [
-                size: 2, align: 1, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 2, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 2, align: 1, state: Complex, size_a: 1, offset_b: 1, size_b: 1, call_forwards: 0,
+                size: 2, align: 1, state: Complex, size_a: 0, offset_b: 1, size_b: 1, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -260,12 +260,12 @@ ModuleTpde {
             has_personality: true,
             personality: 35,
             allocas: [
-                size: 1, align: 1, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -429,11 +429,11 @@ ModuleTpde {
             has_personality: true,
             personality: 34,
             allocas: [
-                size: 2, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 2, align: 1, state: Complex, size_a: 0, offset_b: 1, size_b: 1, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -589,11 +589,11 @@ ModuleTpde {
             has_personality: true,
             personality: 35,
             allocas: [
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -725,7 +725,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 8, align: 4, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 4, state: Complex, size_a: 4, offset_b: 4, size_b: 4, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -816,11 +816,11 @@ ModuleTpde {
             has_personality: true,
             personality: 36,
             allocas: [
-                size: 8, align: 4, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 4, state: Complex, size_a: 0, offset_b: 4, size_b: 4, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1036,12 +1036,12 @@ ModuleTpde {
             has_personality: true,
             personality: 37,
             allocas: [
-                size: 16, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 0,
+                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 8, size_b: 8, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1262,12 +1262,12 @@ ModuleTpde {
             has_personality: true,
             personality: 38,
             allocas: [
-                size: 16, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 0,
+                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 8, size_b: 8, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1470,11 +1470,11 @@ ModuleTpde {
             has_personality: true,
             personality: 37,
             allocas: [
-                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 8, size_b: 8, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1654,11 +1654,11 @@ ModuleTpde {
             has_personality: true,
             personality: 38,
             allocas: [
-                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 16, align: 8, state: Complex, size_a: 0, offset_b: 8, size_b: 8, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -1940,7 +1940,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2045,7 +2045,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2100,7 +2100,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2198,7 +2198,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2266,7 +2266,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2392,7 +2392,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2450,7 +2450,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2508,7 +2508,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2682,7 +2682,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2710,7 +2710,7 @@ ModuleTpde {
             personality: 40,
             allocas: [
                 size: 1, align: 1, state: Unused, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2751,7 +2751,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2779,7 +2779,7 @@ ModuleTpde {
             personality: 41,
             allocas: [
                 size: 1, align: 1, state: Unused, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2820,7 +2820,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2848,7 +2848,7 @@ ModuleTpde {
             personality: 42,
             allocas: [
                 size: 1, align: 1, state: Unused, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -2915,7 +2915,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -2961,13 +2961,13 @@ ModuleTpde {
             has_personality: true,
             personality: 35,
             allocas: [
-                size: 1, align: 1, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 8, align: 8, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 1, align: 1, state: WrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -3101,7 +3101,7 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Complex,
                         call_forwards: 0,
                         size_a: 0,
                         size_b: 0,
@@ -3124,7 +3124,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 8, align: 8, state: OnceWrittenA, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 1,
+                size: 8, align: 8, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 1,
             ],
             basic_blocks: [
                 BasicBlock: [
