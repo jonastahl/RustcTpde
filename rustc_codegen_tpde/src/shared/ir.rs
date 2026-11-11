@@ -1255,8 +1255,11 @@ pub fn convert_atomic_order(order: rustc_middle::ty::AtomicOrdering) -> AtomicOr
 
 #[cfg(feature = "promote")]
 pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, written: bool) {
-    assert_eq!(size, size as u8 as u32);
-    assert_eq!(offset, offset as u8 as u32);
+    // We only care about small values as we don't promote larger structs/vecs
+    if size > u8::MAX as u32 || offset > u8::MAX as u32 {
+        access_info.state = AccessInfoState::Complex;
+        return;
+    }
     let size = size as u8;
     let offset = offset as u8;
 
