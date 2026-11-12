@@ -1,5 +1,8 @@
 use crate::context::{CodegenCx, GenericCx, SCx};
-use crate::shared::ir::{vector_info, vector_type, ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type, AccessInfo};
+use crate::shared::ir::{
+    AccessInfo, ArgExtension, ArgInfo, ArgKind, FullType, FunctionSignature, Type, vector_info,
+    vector_type,
+};
 use core::borrow::Borrow;
 use rustc_abi::{AddressSpace, BackendRepr, Primitive, Reg, RegKind, Scalar};
 use rustc_codegen_ssa::common::TypeKind;

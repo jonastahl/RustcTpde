@@ -3,8 +3,11 @@ mod intrinsic;
 
 use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
 use crate::shared::ir;
-use crate::shared::ir::{convert_atomic_op, convert_atomic_order, size_of_type, vector_info, BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type};
 use crate::shared::ir::{AccessInfoState, update_access_info};
+use crate::shared::ir::{
+    BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type,
+    convert_atomic_op, convert_atomic_order, size_of_type, vector_info,
+};
 use core::borrow::Borrow;
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
@@ -1288,7 +1291,9 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
             &[val, ptr, Slot::new_raw(align.bytes_usize() as u32)],
         );
         if module.tracks_access() {
-            let FullType::Single(ty) = module.type_of_slot(val) else { bug!() };
+            let FullType::Single(ty) = module.type_of_slot(val) else {
+                bug!()
+            };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
                 update_access_info(info, size_of_type(ty), 0, true)
             }
@@ -1346,7 +1351,9 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         self.store_single(module, val_b, ptr_b, align);
 
         if module.tracks_access() {
-            let FullType::Single(ty) = module.type_of_slot(val_b) else { bug!() };
+            let FullType::Single(ty) = module.type_of_slot(val_b) else {
+                bug!()
+            };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
                 update_access_info(info, size_of_type(ty), offset, true)
             }

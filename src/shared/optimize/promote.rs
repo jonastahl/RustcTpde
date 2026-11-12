@@ -1,7 +1,6 @@
 use crate::shared::ffi;
 use crate::shared::ir::{
-    Function, InstructionKind, ModuleTpde, Slot, Type, decode_const, written_once_a,
-    written_once_b,
+    Function, InstructionKind, ModuleTpde, Slot, Type, decode_const, written_once_a, written_once_b,
 };
 use rustc_span::bug;
 
@@ -19,14 +18,15 @@ impl ModuleTpde {
                 let info = alloc.access_info;
                 // A call could read or write the alloca behind our back
                 let promotable = info.call_forwards == 0;
-                let slot_a = (promotable && written_once_a(info.state)).then(|| new_slot(&mut func.slots));
-                let slot_b = (promotable && written_once_b(info.state)).then(|| new_slot(&mut func.slots));
+                let slot_a =
+                    (promotable && written_once_a(info.state)).then(|| new_slot(&mut func.slots));
+                let slot_b =
+                    (promotable && written_once_b(info.state)).then(|| new_slot(&mut func.slots));
                 promoted.push((slot_a, slot_b));
             }
             if promoted.iter().all(|parts| *parts == (None, None)) {
                 continue;
             }
-
 
             for bb in &func.basic_blocks {
                 let insts_start = bb.insts_start as usize;
@@ -53,7 +53,13 @@ impl ModuleTpde {
                             instr.has_result = true;
 
                             // Save the type of the stored value
-                            let ty = value_type(&func.slots, &func.phis, &self.consts, &self.const_vectors, ops[0]);
+                            let ty = value_type(
+                                &func.slots,
+                                &func.phis,
+                                &self.consts,
+                                &self.const_vectors,
+                                ops[0],
+                            );
                             func.slots[slot_a as usize].ty = ty;
 
                             instr.result = Slot::Value(Function(0), slot_a).to_ffi();
@@ -78,7 +84,13 @@ impl ModuleTpde {
                                     instr.has_result = true;
 
                                     // Save the type of the stored value
-                                    let ty = value_type(&func.slots, &func.phis, &self.consts, &self.const_vectors, ops[0]);
+                                    let ty = value_type(
+                                        &func.slots,
+                                        &func.phis,
+                                        &self.consts,
+                                        &self.const_vectors,
+                                        ops[0],
+                                    );
                                     func.slots[slot_b as usize].ty = ty;
 
                                     instr.result = Slot::Value(Function(0), slot_b).to_ffi();

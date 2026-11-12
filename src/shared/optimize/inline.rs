@@ -1,7 +1,7 @@
-use crate::shared::ffi;
-use crate::shared::ffi::{BasicBlock, Instruction, InstructionReference, Phi};
 use super::OptConfig;
+use crate::shared::ffi;
 use crate::shared::ffi::AccessInfoState;
+use crate::shared::ffi::{BasicBlock, Instruction, InstructionReference, Phi};
 use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot, size_of_type};
 use crate::shared::ir::{access_info_intern, alloc_used_a, alloc_used_b, merge_access_states};
 use std::collections::BTreeSet;
@@ -345,7 +345,9 @@ fn inline_call(
                     if !alloc_used_b(call_info) {
                         call_info.size_b = callee_info.size_b;
                         call_info.offset_b = callee_info.offset_b;
-                    } else if call_info.size_b != callee_info.size_b || call_info.offset_b != callee_info.offset_b {
+                    } else if call_info.size_b != callee_info.size_b
+                        || call_info.offset_b != callee_info.offset_b
+                    {
                         call_info.state = AccessInfoState::Complex
                     }
                 }

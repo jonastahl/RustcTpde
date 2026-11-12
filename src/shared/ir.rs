@@ -177,8 +177,8 @@ pub fn vector_type(elem: Type, count: u64) -> Option<Type> {
 }
 
 pub use super::ffi::{
-    ArgExtension, ArgInfo, ArgKind, AtomicOrdering, AtomicRmwBinOp, InstructionKind,
-    LandingPadKind, Type, AccessInfo, AccessInfoState
+    AccessInfo, AccessInfoState, ArgExtension, ArgInfo, ArgKind, AtomicOrdering, AtomicRmwBinOp,
+    InstructionKind, LandingPadKind, Type,
 };
 
 pub struct Module {
@@ -1024,7 +1024,10 @@ impl Module {
     }
 }
 
-pub(super) fn access_info_intern<'a>(func: &'a mut ffi::Function, ptr: &Slot) -> Option<&'a mut AccessInfo> {
+pub(super) fn access_info_intern<'a>(
+    func: &'a mut ffi::Function,
+    ptr: &Slot,
+) -> Option<&'a mut AccessInfo> {
     match ptr {
         Slot::Alloc(a) => Some(&mut func.allocas[*a as usize].access_info),
         Slot::Value(f, v) if *v < (func.args.len() as u32) => {
@@ -1294,8 +1297,7 @@ pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, 
         if size == access_info.size_a {
             Match::A
         } else {
-            if access_info.size_a == 0
-                && (access_info.size_b == 0 || size <= access_info.offset_b)
+            if access_info.size_a == 0 && (access_info.size_b == 0 || size <= access_info.offset_b)
             {
                 access_info.size_a = size;
                 Match::A
@@ -1357,12 +1359,14 @@ pub fn merge_access_states(a: AccessInfoState, b: AccessInfoState) -> AccessInfo
         (_, AccessInfoState::Complex) => AccessInfoState::Complex,
 
         // Unused and Complex no longer possible as result
-
-        (AccessInfoState::OnceWrittenA, AccessInfoState::OnceWrittenB) => AccessInfoState::OnceWritten,
-        (AccessInfoState::OnceWrittenB, AccessInfoState::OnceWrittenA) => AccessInfoState::OnceWritten,
+        (AccessInfoState::OnceWrittenA, AccessInfoState::OnceWrittenB) => {
+            AccessInfoState::OnceWritten
+        }
+        (AccessInfoState::OnceWrittenB, AccessInfoState::OnceWrittenA) => {
+            AccessInfoState::OnceWritten
+        }
 
         // Once writtens are no longer possible
-
         (AccessInfoState::OnceWrittenA, AccessInfoState::OnceWrittenA) => AccessInfoState::WrittenA,
         (AccessInfoState::WrittenA, AccessInfoState::OnceWrittenA) => AccessInfoState::WrittenA,
         (AccessInfoState::OnceWrittenA, AccessInfoState::WrittenA) => AccessInfoState::WrittenA,
@@ -1372,8 +1376,7 @@ pub fn merge_access_states(a: AccessInfoState, b: AccessInfoState) -> AccessInfo
         (AccessInfoState::OnceWrittenB, AccessInfoState::WrittenB) => AccessInfoState::WrittenB,
 
         // Written A and B no longer possible, only Written left
-
-        _ => AccessInfoState::Written
+        _ => AccessInfoState::Written,
     }
 }
 
@@ -1386,9 +1389,15 @@ pub fn alloc_used_b(info: &AccessInfo) -> bool {
 }
 
 pub fn written_once_a(state: AccessInfoState) -> bool {
-    matches!(state, AccessInfoState::OnceWrittenA | AccessInfoState::OnceWritten)
+    matches!(
+        state,
+        AccessInfoState::OnceWrittenA | AccessInfoState::OnceWritten
+    )
 }
 
 pub fn written_once_b(state: AccessInfoState) -> bool {
-    matches!(state, AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten)
+    matches!(
+        state,
+        AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten
+    )
 }
