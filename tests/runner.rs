@@ -259,7 +259,7 @@ fn rustc() -> Command {
 fn tpde_rustc(overflow: bool) -> Command {
     let mut cmd = rustc();
     cmd.arg("-Z")
-        .arg("codegen-backend=../target/debug/librustc_codegen_tpde.so")
+        .arg("codegen-backend=target/debug/librustc_codegen_tpde.so")
         .arg("-C")
         .arg("opt-level=2")
         .arg("-C")

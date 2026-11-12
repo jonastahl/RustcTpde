@@ -54,7 +54,7 @@ fn main() {
     }
     bridge
         .include(".")
-        .include("../deps/tpde/tpde/include")
+        .include("deps/tpde/tpde/include")
         .flag_if_supported("-std=c++23")
         .flag_if_supported("-fno-exceptions")
         // silence warning in generated cxx code

@@ -3,7 +3,7 @@
 
 #include "RustAdaptor.h"
 #include "RustCompiler.h"
-#include "../deps/tpde/tpde/include/tpde/CompilerBase.hpp"
+#include "deps/tpde/tpde/include/tpde/CompilerBase.hpp"
 
 namespace tpde_rust {
   enum class LibFunc {

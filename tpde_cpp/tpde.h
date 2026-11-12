@@ -6,7 +6,7 @@
 #include <limits>
 #include <span>
 
-#include "../deps/tpde/tpde-llvm/src/base.hpp"
+#include "deps/tpde/tpde-llvm/src/base.hpp"
 #include "rustc_codegen_tpde/src/shared.rs.h"
 #include "tpde/RegisterFile.hpp"
 
