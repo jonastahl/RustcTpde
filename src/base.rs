@@ -11,6 +11,7 @@ use rustc_span::Symbol;
 use std::cell::RefCell;
 use std::sync::OnceLock;
 use std::time::Instant;
+use rustc_middle::mono::{MonoItem, MonoItemData};
 
 pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen<Module>, u64) {
     let start_time = Instant::now();
@@ -53,24 +54,74 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
         {
             let mut cx = CodegenCx::new(tcx, cgu, &ir);
 
-            let mono_items = cgu.items_in_deterministic_order(tcx);
-            for &(mono_item, data) in &mono_items {
-                mono_item.predefine::<Builder<'_, '_, '_>>(
-                    &mut cx,
-                    cgu_name.as_str(),
-                    data.linkage,
-                    data.visibility,
-                );
-            }
+            let mono_items = {
+                let _prof_determ_order =
+                    tcx.prof
+                        .generic_activity_with_arg_recorder("items_in_deterministic_order", |recorder| {
+                            recorder.record_arg(cgu_name.to_string());
+                            recorder.record_arg(cgu.size_estimate().to_string());
+                        });
+                cgu.items_in_deterministic_order(tcx)
+            };
 
-            for &(mono_item, item_data) in &mono_items {
-                mono_item.define::<Builder<'_, '_, '_>>(&mut cx, cgu_name.as_str(), item_data);
-            }
 
-            if let Some(entry) =
-                maybe_create_entry_wrapper::<Builder<'_, '_, '_>>(&cx, cx.codegen_unit)
             {
+                let _prof_predefine =
+                    tcx.prof
+                        .generic_activity_with_arg_recorder("mono_item::predefine", |recorder| {
+                            recorder.record_arg(cgu_name.to_string());
+                            recorder.record_arg(cgu.size_estimate().to_string());
+                        });
+                for &(mono_item, data) in &mono_items {
+                    let _prof_predefine_item =
+                        tcx.prof
+                            .generic_activity_with_arg_recorder("mono_item::predefine_item", |recorder| {
+                                recorder.record_arg(cgu_name.to_string());
+                                recorder.record_arg(cgu.size_estimate().to_string());
+                            });
+                    mono_item.predefine::<Builder<'_, '_, '_>>(
+                        &mut cx,
+                        cgu_name.as_str(),
+                        data.linkage,
+                        data.visibility,
+                    );
+                }
             }
+
+
+            {
+                let _prof_define =
+                    tcx.prof
+                        .generic_activity_with_arg_recorder("mono_item::define", |recorder| {
+                            recorder.record_arg(cgu_name.to_string());
+                            recorder.record_arg(cgu.size_estimate().to_string());
+                        });
+                for &(mono_item, item_data) in &mono_items {
+                    let item = match mono_item {
+                        MonoItem::Static(..) => "define_static",
+                        MonoItem::Fn(..) => "define_fn",
+                        MonoItem::GlobalAsm(..) => "define_asm"
+                    };
+                    let _prof_define_item =
+                        tcx.prof
+                            .generic_activity_with_arg_recorder(item, |recorder| {
+                                recorder.record_arg(cgu_name.to_string());
+                                recorder.record_arg(cgu.size_estimate().to_string());
+                                recorder.record_arg(item.to_string());
+                            });
+                    mono_item.define::<Builder<'_, '_, '_>>(&mut cx, cgu_name.as_str(), item_data);
+                }
+            }
+
+            {
+                let _ =
+                    tcx.prof
+                        .generic_activity_with_arg_recorder("maybe_create_entry_wrapper", |recorder| {
+                            recorder.record_arg(cgu_name.to_string());
+                            recorder.record_arg(cgu.size_estimate().to_string());
+                        });
+                maybe_create_entry_wrapper::<Builder<'_, '_, '_>>(&cx, cx.codegen_unit);
+            };
 
             // LLVM includes sanitization here
 
