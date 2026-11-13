@@ -56,6 +56,10 @@ namespace tpde_rust::x64 {
     static constexpr std::array<AsmReg, 2> LANDING_PAD_RES_REGS = {AsmReg::AX,
                                                                    AsmReg::DX};
 
+    // Right now i128 mul needs 10 scratch registers,
+    // which runs out of scratch registers with 5 fixed registers
+    static constexpr u32 NUM_FIXED_ASSIGNMENTS[CompilerConfig::NUM_BANKS] = {4, 6};
+
     explicit RustCompilerX64(std::unique_ptr<RustAdaptor> &&adaptor)
       : Base{adaptor.get()},
         adaptor(std::move(adaptor)) {
