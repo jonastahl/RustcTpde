@@ -17,7 +17,9 @@ use rustc_errors::{DiagCtxt, DiagCtxtHandle};
 use rustc_middle::dep_graph::{WorkProduct, WorkProductMap};
 use rustc_middle::ty::TyCtxt;
 use rustc_session::config::{OptLevel, OutputFilenames, PrintRequest};
-use rustc_session::{BorrowedIncrCompSession, EarlySession, IncrCompSession, Session};
+use rustc_session::{
+    BorrowedIncrCompSession, CodegenBackendInit, EarlySession, IncrCompSession, Session,
+};
 use rustc_span::Symbol;
 use std::any::Any;
 use std::cell::RefCell;
@@ -154,6 +156,13 @@ impl ModuleBufferMethods for ModuleBuffer {
 impl CodegenBackend for TpdeCodegenBackend {
     fn name(&self) -> &'static str {
         "TPDE"
+    }
+
+    fn init(&mut self, _sess: &EarlySession) -> CodegenBackendInit {
+        CodegenBackendInit {
+            thin_lto_supported: false,
+            ..Default::default()
+        }
     }
 
     fn codegen_crate<'tcx>(&self, tcx: TyCtxt<'tcx>) -> Box<dyn Any> {
