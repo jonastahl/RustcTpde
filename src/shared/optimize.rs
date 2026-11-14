@@ -1,7 +1,7 @@
 mod inline;
 mod promote;
 
-use rustc_session::config::OptLevel;
+use rustc_session::Session;
 use std::env;
 use std::sync::LazyLock;
 
@@ -13,7 +13,8 @@ static INLINE_COST: LazyLock<u32> = LazyLock::new(|| match env::var("TPDE_INLINE
     Err(_) => 50,
 });
 
-/// The optimizations that run on a module, selected by the optimization level
+/// The optimizations that run on a module, enabled through `-Cllvm-args`:
+/// `-Cllvm-args=inline=yes` and `-Cllvm-args=promote=yes`
 #[derive(Debug, Copy, Clone)]
 pub struct OptConfig {
     /// Highest cost a function is inlined at, `None` only inlines `#[inline(always)]` functions
@@ -23,20 +24,30 @@ pub struct OptConfig {
 }
 
 impl OptConfig {
-    pub fn new(level: OptLevel) -> Self {
-        match level {
-            OptLevel::No => Self {
-                inline_cost: None,
-                promote: false,
-            },
-            OptLevel::Less => Self {
-                inline_cost: Some(*INLINE_COST),
-                promote: false,
-            },
-            OptLevel::More | OptLevel::Aggressive | OptLevel::Size | OptLevel::SizeMin => Self {
-                inline_cost: Some(*INLINE_COST),
-                promote: true,
-            },
+    pub fn new(sess: &Session) -> Self {
+        let mut config = Self {
+            inline_cost: None,
+            promote: false,
+        };
+        for arg in &sess.opts.cg.llvm_args {
+            let Some((key, value)) = arg.split_once('=') else {
+                sess.dcx().fatal(format!(
+                    "invalid backend option `{arg}`, expected `key=value`"
+                ));
+            };
+            let enabled = match value {
+                "yes" | "y" | "on" | "true" => true,
+                "no" | "n" | "off" | "false" => false,
+                _ => sess.dcx().fatal(format!(
+                    "invalid value `{value}` for backend option `{key}`, expected yes/no"
+                )),
+            };
+            match key {
+                "inline" => config.inline_cost = enabled.then(|| *INLINE_COST),
+                "promote" => config.promote = enabled,
+                _ => sess.dcx().fatal(format!("unknown backend option `{key}`")),
+            }
         }
+        config
     }
 }

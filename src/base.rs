@@ -6,12 +6,12 @@ use rustc_codegen_ssa::ModuleCodegen;
 use rustc_codegen_ssa::base::maybe_create_entry_wrapper;
 use rustc_codegen_ssa::mono_item::MonoItemExt;
 use rustc_middle::dep_graph;
+use rustc_middle::mono::{MonoItem, MonoItemData};
 use rustc_middle::ty::TyCtxt;
 use rustc_span::Symbol;
 use std::cell::RefCell;
 use std::sync::OnceLock;
 use std::time::Instant;
-use rustc_middle::mono::{MonoItem, MonoItemData};
 
 pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen<Module>, u64) {
     let start_time = Instant::now();
@@ -50,35 +50,37 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
                     recorder.record_arg(cgu.size_estimate().to_string());
                 });
 
-        let ir = RefCell::new(Module::new(OptConfig::new(tcx.sess.opts.optimize)));
+        let ir = RefCell::new(Module::new(OptConfig::new(tcx.sess)));
         {
             let mut cx = CodegenCx::new(tcx, cgu, &ir);
 
             let mono_items = {
-                let _prof_determ_order =
-                    tcx.prof
-                        .generic_activity_with_arg_recorder("items_in_deterministic_order", |recorder| {
-                            recorder.record_arg(cgu_name.to_string());
-                            recorder.record_arg(cgu.size_estimate().to_string());
-                        });
+                let _prof_determ_order = tcx.prof.generic_activity_with_arg_recorder(
+                    "items_in_deterministic_order",
+                    |recorder| {
+                        recorder.record_arg(cgu_name.to_string());
+                        recorder.record_arg(cgu.size_estimate().to_string());
+                    },
+                );
                 cgu.items_in_deterministic_order(tcx)
             };
 
-
             {
-                let _prof_predefine =
-                    tcx.prof
-                        .generic_activity_with_arg_recorder("mono_item::predefine", |recorder| {
+                let _prof_predefine = tcx.prof.generic_activity_with_arg_recorder(
+                    "mono_item::predefine",
+                    |recorder| {
+                        recorder.record_arg(cgu_name.to_string());
+                        recorder.record_arg(cgu.size_estimate().to_string());
+                    },
+                );
+                for &(mono_item, data) in &mono_items {
+                    let _prof_predefine_item = tcx.prof.generic_activity_with_arg_recorder(
+                        "mono_item::predefine_item",
+                        |recorder| {
                             recorder.record_arg(cgu_name.to_string());
                             recorder.record_arg(cgu.size_estimate().to_string());
-                        });
-                for &(mono_item, data) in &mono_items {
-                    let _prof_predefine_item =
-                        tcx.prof
-                            .generic_activity_with_arg_recorder("mono_item::predefine_item", |recorder| {
-                                recorder.record_arg(cgu_name.to_string());
-                                recorder.record_arg(cgu.size_estimate().to_string());
-                            });
+                        },
+                    );
                     mono_item.predefine::<Builder<'_, '_, '_>>(
                         &mut cx,
                         cgu_name.as_str(),
@@ -87,7 +89,6 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
                     );
                 }
             }
-
 
             {
                 let _prof_define =
@@ -100,7 +101,7 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
                     let item = match mono_item {
                         MonoItem::Static(..) => "define_static",
                         MonoItem::Fn(..) => "define_fn",
-                        MonoItem::GlobalAsm(..) => "define_asm"
+                        MonoItem::GlobalAsm(..) => "define_asm",
                     };
                     let _prof_define_item =
                         tcx.prof
@@ -114,12 +115,13 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
             }
 
             {
-                let _ =
-                    tcx.prof
-                        .generic_activity_with_arg_recorder("maybe_create_entry_wrapper", |recorder| {
-                            recorder.record_arg(cgu_name.to_string());
-                            recorder.record_arg(cgu.size_estimate().to_string());
-                        });
+                let _ = tcx.prof.generic_activity_with_arg_recorder(
+                    "maybe_create_entry_wrapper",
+                    |recorder| {
+                        recorder.record_arg(cgu_name.to_string());
+                        recorder.record_arg(cgu.size_estimate().to_string());
+                    },
+                );
                 maybe_create_entry_wrapper::<Builder<'_, '_, '_>>(&cx, cx.codegen_unit);
             };
 

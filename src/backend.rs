@@ -51,7 +51,7 @@ impl ExtraBackendMethods for TpdeCodegenBackend {
         module_name: &str,
         methods: &[rustc_ast::expand::allocator::AllocatorMethod],
     ) -> Self::Module {
-        let mut module = RefCell::new(Module::new(OptConfig::new(tcx.sess.opts.optimize)));
+        let mut module = RefCell::new(Module::new(OptConfig::new(tcx.sess)));
         let scx = SimpleCx::new(&mut module);
         allocator::codegen(tcx, scx, module_name, methods);
         module.into_inner()
