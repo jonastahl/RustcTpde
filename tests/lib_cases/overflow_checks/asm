@@ -18,9 +18,9 @@ Disassembly of section .text:
 	sub    $0x28,%rsp
 	mov    %dil,-0x29(%rbp)
 	movzbl -0x29(%rbp),%eax
-	lea    (%rsi,%rax,1),%ebx
-	cmp    %sil,%bl
-	jb     <accumulate_u8+0x7d>
+	lea    (%rax,%rsi,1),%ebx
+	cmp    %al,%bl
+	jb     <accumulate_u8+0x7c>
 	mov    %bl,-0x29(%rbp)
 	movzbl -0x29(%rbp),%eax
 	mov    %al,-0x2a(%rbp)
@@ -31,31 +31,31 @@ Disassembly of section .text:
 	mul    %dl
 	seto   %cl
 	mov    %eax,%ebx
-	jo     <accumulate_u8+0x6f>
+	jo     <accumulate_u8+0x6e>
 	mov    %bl,-0x29(%rbp)
 	movzbl -0x29(%rbp),%eax
 	mov    %eax,%ebx
 	sub    $0x1,%ebx
 	cmp    $0x1,%al
-	jb     <accumulate_u8+0x61>
+	jb     <accumulate_u8+0x60>
 	mov    %bl,-0x29(%rbp)
 	movzbl -0x29(%rbp),%eax
-	jmp    <accumulate_u8+0x8b>
-	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x60>
-	call   <accumulate_u8+0x6d>
+	jmp    <accumulate_u8+0x8a>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x5f>
+	call   <accumulate_u8+0x6c>
 	ud2
-	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x6e>
-	call   <accumulate_u8+0x7b>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x6d>
+	call   <accumulate_u8+0x7a>
 	ud2
-	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x7c>
-	call   <accumulate_u8+0x89>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x7b>
+	call   <accumulate_u8+0x88>
 	ud2
 	add    $0x28,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
 
 <add8_args_u32>:
 	push   %rbp
@@ -70,30 +70,30 @@ Disassembly of section .text:
 	mov    %ecx,%r12d
 	mov    %r8d,%r13d
 	mov    %r9d,%r14d
-	mov    0x10(%rbp),%r15d
 	lea    (%rdi,%rsi,1),%esi
 	cmp    %edi,%esi
 	jb     <add8_args_u32+0xd5>
-	lea    (%rbx,%rsi,1),%esi
-	cmp    %ebx,%esi
+	lea    (%rsi,%rbx,1),%ebx
+	cmp    %esi,%ebx
 	jb     <add8_args_u32+0xc7>
-	lea    (%r12,%rsi,1),%ebx
-	cmp    %r12d,%ebx
+	lea    (%rbx,%r12,1),%r15d
+	cmp    %ebx,%r15d
 	jb     <add8_args_u32+0xb9>
-	lea    0x0(%r13,%rbx,1),%r12d
-	cmp    %r13d,%r12d
+	lea    (%r15,%r13,1),%ebx
+	cmp    %r15d,%ebx
 	jb     <add8_args_u32+0xab>
-	lea    (%r14,%r12,1),%ebx
-	cmp    %r14d,%ebx
+	lea    (%rbx,%r14,1),%r12d
+	cmp    %ebx,%r12d
 	jb     <add8_args_u32+0x9d>
-	lea    (%r15,%rbx,1),%r12d
-	cmp    %r15d,%r12d
+	mov    0x10(%rbp),%eax
+	lea    (%r12,%rax,1),%ebx
+	cmp    %r12d,%ebx
 	jb     <add8_args_u32+0x8f>
 	mov    0x18(%rbp),%eax
-	lea    (%rax,%r12,1),%ebx
-	cmp    %eax,%ebx
+	lea    (%rbx,%rax,1),%r12d
+	cmp    %ebx,%r12d
 	jb     <add8_args_u32+0x81>
-	mov    %ebx,%eax
+	mov    %r12d,%eax
 	jmp    <add8_args_u32+0xe3>
 	lea    -0x8(%rip),%rdi        # <add8_args_u32+0x80>
 	call   <add8_args_u32+0x8d>
@@ -460,8 +460,8 @@ Disassembly of section .text:
 	seto   %al
 	jo     <mul_add_i32+0x48>
 	xor    %eax,%eax
-	mov    %ebx,%r13d
-	add    %r12d,%r13d
+	mov    %r12d,%r13d
+	add    %ebx,%r13d
 	seto   %al
 	jo     <mul_add_i32+0x3a>
 	mov    %r13d,%eax

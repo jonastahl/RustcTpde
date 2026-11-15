@@ -6,7 +6,7 @@ use rustc_codegen_ssa::ModuleCodegen;
 use rustc_codegen_ssa::base::maybe_create_entry_wrapper;
 use rustc_codegen_ssa::mono_item::MonoItemExt;
 use rustc_middle::dep_graph;
-use rustc_middle::mono::{MonoItem, MonoItemData};
+use rustc_middle::mono::MonoItem;
 use rustc_middle::ty::TyCtxt;
 use rustc_span::Symbol;
 use std::cell::RefCell;

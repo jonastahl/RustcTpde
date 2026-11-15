@@ -262,7 +262,7 @@ fn replace_phi_predecessor(func: &mut ffi::Function, from: u32, to: u32) {
             &func.phis[target.phi_start as usize..(target.phi_start + target.phi_len) as usize]
         {
             let incoming = &mut func.operands
-                [phi.incoming_start as usize..(phi.incoming_start + phi.incoming_len) as usize * 2];
+                [phi.incoming_start as usize..(phi.incoming_start + phi.incoming_len * 2) as usize];
             for block in incoming.iter_mut().step_by(2) {
                 if *block == from {
                     *block = to;

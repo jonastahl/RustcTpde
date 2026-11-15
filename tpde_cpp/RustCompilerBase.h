@@ -3235,7 +3235,7 @@ namespace tpde_rust {
     ValuePartRef acc{this, bank};
 
     if (has_start_elem) {
-      acc.set_value(this->val_ref(inst.op(1)).part(0));
+      acc.set_value(this->val_ref(inst.op(1)).part(0).into_scratch());
     } else {
       derived()->extract_element(src_ref_disowned, 0, elem_ty, acc);
     }
@@ -3489,7 +3489,8 @@ namespace tpde_rust {
     }
 
     ValueRef src_vr = this->val_ref(inst.op(0));
-    ValuePartRef acc{this, u64{0}, 8, Config::GP_BANK};
+    ValuePartRef acc{this, Config::GP_BANK};
+    acc.set_value(ValuePartRef{this, u64{0}, 8, Config::GP_BANK}.into_scratch());
 
     auto parts = this->adaptor->val_parts(src_ty);
     u32 lane = 0;

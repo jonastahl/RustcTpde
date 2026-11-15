@@ -15,28 +15,56 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
+	sub    $0x88,%rsp
 	mov    %rdi,%rbx
 	cmp    $0x64,%esi
-	ja     <find_user+0x3f>
+	ja     <find_user+0x73>
 	movabs $0xf0f0f0f0f0f0f0f,%rax
-	mov    %rax,(%rbx)
-	movb   $0x1f,0x12(%rbx)
-	movb   $0x2f,0x13(%rbx)
-	movw   $0x3f3f,0x10(%rbx)
+	mov    %rax,-0x90(%rbp)
+	movb   $0x1f,-0x7e(%rbp)
+	movb   $0x2f,-0x7d(%rbp)
+	movw   $0x3f3f,-0x80(%rbp)
 	movabs $0x3f3f3f3f3f3f3f3f,%rax
-	mov    %rax,0x8(%rbx)
-	jmp    <find_user+0x68>
+	mov    %rax,-0x88(%rbp)
+	mov    -0x90(%rbp),%rax
+	mov    %rax,-0x50(%rbp)
+	mov    -0x88(%rbp),%rax
+	mov    %rax,-0x48(%rbp)
+	mov    -0x80(%rbp),%rax
+	mov    %rax,-0x40(%rbp)
+	lea    -0x78(%rbp),%rax
+	lea    -0x38(%rbp),%rax
+	jmp    <find_user+0xbd>
 	movabs $0xf0f0f0f0f0f0f0f0,%rax
-	mov    %rax,(%rbx)
-	movb   $0xf1,0x12(%rbx)
-	movb   $0xf2,0x13(%rbx)
-	movw   $0x73f3,0x10(%rbx)
+	mov    %rax,-0x70(%rbp)
+	movb   $0xf1,-0x5e(%rbp)
+	movb   $0xf2,-0x5d(%rbp)
+	movw   $0x73f3,-0x60(%rbp)
 	movabs $0xf3f3f3f3f3f3f3f3,%rax
-	mov    %rax,0x8(%rbx)
+	mov    %rax,-0x68(%rbp)
+	mov    -0x70(%rbp),%rax
+	mov    %rax,-0x50(%rbp)
+	mov    -0x68(%rbp),%rax
+	mov    %rax,-0x48(%rbp)
+	mov    -0x60(%rbp),%rax
+	mov    %rax,-0x40(%rbp)
+	lea    -0x58(%rbp),%rax
+	lea    -0x38(%rbp),%rax
+	mov    -0x50(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x48(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    0x8(%rbx),%rbx
+	mov    -0x40(%rbp),%rax
+	mov    %rax,(%rbx)
+	lea    -0x38(%rbp),%rax
+	lea    0x8(%rbx),%rbx
+	add    $0x88,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <find_user_by_age>:
 	push   %rbp
@@ -72,48 +100,46 @@ Disassembly of section .text:
 	push   %r12
 	push   %r13
 	push   %r14
-	push   %r15
-	sub    $0x8,%rsp
+	sub    $0x10,%rsp
 	mov    %rdi,%rbx
 	mov    %rsi,%r12
 	mov    (%r12),%r13
 	movzbl 0x12(%r12),%eax
 	lea    0x1(%rax),%r14d
 	cmp    %al,%r14b
-	jb     <increase_age+0xad>
+	jb     <increase_age+0xa8>
 	movzbl 0x13(%r12),%eax
-	lea    0x2(%rax),%r15d
-	cmp    %al,%r15b
-	jb     <increase_age+0x9f>
+	lea    0x2(%rax),%ecx
+	cmp    %al,%cl
+	jb     <increase_age+0x9a>
 	movzwl 0x10(%r12),%eax
-	xor    %ecx,%ecx
+	xor    %edx,%edx
 	sub    $0x14,%ax
-	seto   %cl
-	jo     <increase_age+0x91>
-	mov    0x8(%r12),%rcx
-	lea    0x2b67(%rcx),%r12
-	cmp    %rcx,%r12
-	jb     <increase_age+0x83>
+	seto   %dl
+	jo     <increase_age+0x8c>
+	mov    0x8(%r12),%rdx
+	lea    0x2b67(%rdx),%r12
+	cmp    %rdx,%r12
+	jb     <increase_age+0x7e>
 	mov    %r13,(%rbx)
 	mov    %r14b,0x12(%rbx)
-	mov    %r15b,0x13(%rbx)
+	mov    %cl,0x13(%rbx)
 	mov    %ax,0x10(%rbx)
 	mov    %r12,0x8(%rbx)
-	jmp    <increase_age+0xbb>
-	lea    -0x8(%rip),%rdi        # <increase_age+0x82>
-	call   <increase_age+0x8f>
+	jmp    <increase_age+0xb6>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x7d>
+	call   <increase_age+0x8a>
 	ud2
-	lea    -0x8(%rip),%rdi        # <increase_age+0x90>
-	call   <increase_age+0x9d>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x8b>
+	call   <increase_age+0x98>
 	ud2
-	lea    -0x8(%rip),%rdi        # <increase_age+0x9e>
-	call   <increase_age+0xab>
+	lea    -0x8(%rip),%rdi        # <increase_age+0x99>
+	call   <increase_age+0xa6>
 	ud2
-	lea    -0x8(%rip),%rdi        # <increase_age+0xac>
-	call   <increase_age+0xb9>
+	lea    -0x8(%rip),%rdi        # <increase_age+0xa7>
+	call   <increase_age+0xb4>
 	ud2
-	add    $0x8,%rsp
-	pop    %r15
+	add    $0x10,%rsp
 	pop    %r14
 	pop    %r13
 	pop    %r12
