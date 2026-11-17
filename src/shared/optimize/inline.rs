@@ -30,7 +30,7 @@ impl ModuleTpde {
             .functions
             .iter()
             .enumerate()
-            .filter(|(_, f)| is_inlinable(f, config.inline_cost))
+            .filter(|(_, f)| f.calling == 0)
             .map(|(i, _)| i)
             .collect();
         let mut returns: Vec<ReturnSite> = vec![];
@@ -39,6 +39,11 @@ impl ModuleTpde {
         let mut to_optimize: BTreeSet<u32> = BTreeSet::new();
 
         while let Some(f) = leaves.pop() {
+            if to_optimize.remove(&(f as u32)) {
+                self.fold_constants(f as u32);
+            }
+
+            let inline = is_inlinable(&self.functions[f], config.inline_cost);
             let mut all_inlined = true;
 
             for site in std::mem::take(&mut self.functions[f].called_by) {
@@ -47,21 +52,22 @@ impl ModuleTpde {
                     .get_disjoint_mut([site.func as usize, f])
                     .expect("Trying to inline function into itself");
 
-                all_inlined &= inline_call(caller, callee, &site, &mut returns, config.promote);
+                if inline {
+                    all_inlined &=
+                        inline_call(caller, callee, &site, &mut returns, config.promote);
+                    to_optimize.insert(site.func);
+                }
 
                 caller.calling -= 1;
-                if is_inlinable(caller, config.inline_cost) {
-                    to_optimize.remove(&site.func);
-                    self.fold_constants(site.func);
-
+                if caller.calling == 0 {
                     leaves.push(site.func as usize);
-                } else {
-                    to_optimize.insert(site.func);
                 }
             }
 
-            let func = &mut self.functions[f];
-            func.flags.dead = all_inlined && func.flags.only_local && !func.flags.never_delete;
+            if inline {
+                let func = &mut self.functions[f];
+                func.flags.dead = all_inlined && func.flags.only_local && !func.flags.never_delete;
+            }
         }
 
         for f in to_optimize {

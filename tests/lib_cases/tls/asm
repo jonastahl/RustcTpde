@@ -661,9 +661,26 @@ Disassembly of section .text:
 <zeroed_bump>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	lea    -0x8(%rip),%rdi        # <zeroed_bump+0x7>
-	call   <zeroed_bump+0x14>
-	add    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	sub    $0x20,%rsp
+	lea    -0x8(%rip),%rdi        # <zeroed_bump+0xa>
+	call   <zeroed_bump+0x17>
+	mov    %eax,-0x30(%rbp)
+	mov    %edx,-0x2c(%rbp)
+	mov    -0x30(%rbp),%eax
+	mov    -0x2c(%rbp),%ecx
+	mov    %eax,%eax
+	test   $0x1,%al
+	je     <zeroed_bump+0x3b>
+	lea    -0x8(%rip),%rdi        # <zeroed_bump+0x2c>
+	call   <zeroed_bump+0x39>
+	ud2
+	mov    -0x2c(%rbp),%ebx
+	mov    %ebx,%r12d
+	mov    %r12d,%eax
+	add    $0x20,%rsp
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret

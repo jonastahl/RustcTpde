@@ -2765,38 +2765,6 @@ Disassembly of section .text:
 	ret
 	xchg   %ax,%ax
 
-<_RNvMs2_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicbE16compare_exchangeCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	mov    %rdi,%rax
-	call   <_RNvMs2_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicbE16compare_exchangeCsQvp3e8KgHi_6source+0x10>
-	mov    %al,-0x2c(%rbp)
-	mov    %dl,-0x2b(%rbp)
-	movzbl -0x2c(%rbp),%eax
-	movzbl -0x2b(%rbp),%ecx
-	movzbl %al,%eax
-	test   $0x1,%al
-	je     <_RNvMs2_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicbE16compare_exchangeCsQvp3e8KgHi_6source+0x3e>
-	movzbl -0x2b(%rbp),%eax
-	test   %al,%al
-	setne  %al
-	mov    %al,-0x29(%rbp)
-	movb   $0x1,-0x2a(%rbp)
-	jmp    <_RNvMs2_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicbE16compare_exchangeCsQvp3e8KgHi_6source+0x4e>
-	movzbl -0x2b(%rbp),%eax
-	test   %al,%al
-	setne  %al
-	mov    %al,-0x29(%rbp)
-	movb   $0x0,-0x2a(%rbp)
-	movzbl -0x2a(%rbp),%eax
-	movzbl -0x29(%rbp),%ecx
-	mov    %ecx,%edx
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	xchg   %ax,%ax
-
 <_RNvMs3_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicOyE16compare_exchangeCsQvp3e8KgHi_6source>:
 	push   %rbp
 	mov    %rsp,%rbp
@@ -3012,72 +2980,6 @@ Disassembly of section .text:
 	test   %al,(%rax)
 	add    %al,(%rax)
 	...
-
-<_RNvMsA_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomichE16compare_exchangeCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <_RNvMsA_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomichE16compare_exchangeCsQvp3e8KgHi_6source+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvMsI_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomictE16compare_exchangeCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <_RNvMsI_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomictE16compare_exchangeCsQvp3e8KgHi_6source+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvMsM_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomiclE16compare_exchangeCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <_RNvMsM_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomiclE16compare_exchangeCsQvp3e8KgHi_6source+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvMsQ_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicmE16compare_exchangeCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <_RNvMsQ_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicmE16compare_exchangeCsQvp3e8KgHi_6source+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvMsY_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicyE16compare_exchangeCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <_RNvMsY_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicyE16compare_exchangeCsQvp3e8KgHi_6source+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
-
-<_RNvMsY_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicyE21compare_exchange_weakCsQvp3e8KgHi_6source>:
-	push   %rbp
-	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	call   <_RNvMsY_NtNtCsioHeeuq8fQz_4core4sync6atomicINtB5_6AtomicyE21compare_exchange_weakCsQvp3e8KgHi_6source+0xd>
-	add    $0x30,%rsp
-	pop    %rbp
-	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
 
 <_RNvXNtNtNtCsioHeeuq8fQz_4core4iter6traits7collectINtNtNtB8_3ops5range5RangeyENtB2_12IntoIterator9into_iterCsQvp3e8KgHi_6source>:
 	mov    %rdi,%rax
@@ -3348,36 +3250,89 @@ Disassembly of section .text:
 <cas_bool>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
-	movzbl %sil,%esi
-	movzbl %dl,%edx
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %edx,%r13d
+	mov    %rbx,%rax
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13d,%edx
 	mov    $0x4,%ecx
 	mov    $0x4,%r8d
-	call   <cas_bool+0x1f>
-	add    $0x30,%rsp
+	call   <cas_bool+0x32>
+	mov    %al,-0x2c(%rbp)
+	mov    %dl,-0x2b(%rbp)
+	movzbl -0x2c(%rbp),%eax
+	movzbl -0x2b(%rbp),%ecx
+	movzbl %al,%eax
+	test   $0x1,%al
+	je     <cas_bool+0x60>
+	movzbl -0x2b(%rbp),%eax
+	test   %al,%al
+	setne  %al
+	mov    %al,-0x29(%rbp)
+	movb   $0x1,-0x2a(%rbp)
+	jmp    <cas_bool+0x70>
+	movzbl -0x2b(%rbp),%eax
+	test   %al,%al
+	setne  %al
+	mov    %al,-0x29(%rbp)
+	movb   $0x0,-0x2a(%rbp)
+	movzbl -0x2a(%rbp),%ebx
+	movzbl -0x29(%rbp),%r12d
+	mov    %ebx,%r13d
+	mov    %r12d,%ebx
+	mov    %r13d,%eax
+	mov    %ebx,%edx
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nop
 
 <cas_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %edx,%r13d
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13d,%edx
 	mov    $0x2,%ecx
 	mov    $0x2,%r8d
-	call   <cas_i32+0x18>
-	add    $0x30,%rsp
+	call   <cas_i32+0x2f>
+	mov    %eax,%ebx
+	mov    %edx,%r12d
+	mov    %ebx,%r13d
+	mov    %r12d,%ebx
+	mov    %r13d,%eax
+	mov    %ebx,%edx
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nopw   0x0(%rax,%rax,1)
 
 <cas_increment>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
-	sub    $0x70,%rsp
+	push   %r13
+	sub    $0x68,%rsp
 	xor    %eax,%eax
 	mov    %rax,-0x40(%rbp)
 	mov    %rsi,-0x38(%rbp)
@@ -3388,13 +3343,13 @@ Disassembly of section .text:
 	cmp    %rax,%rcx
 	setb   %al
 	test   $0x1,%al
-	jne    <cas_increment+0x3f>
+	jne    <cas_increment+0x41>
 	movq   $0x0,-0x60(%rbp)
-	jmp    <cas_increment+0x64>
+	jmp    <cas_increment+0x66>
 	mov    -0x40(%rbp),%rax
 	lea    0x1(%rax),%rcx
 	cmp    %rax,%rcx
-	jb     <cas_increment+0x1a7>
+	jb     <cas_increment+0x1b8>
 	lea    0x1(%rax),%rcx
 	mov    %rcx,-0x40(%rbp)
 	mov    %rax,-0x58(%rbp)
@@ -3402,25 +3357,25 @@ Disassembly of section .text:
 	mov    -0x60(%rbp),%rax
 	mov    -0x58(%rbp),%rcx
 	test   $0x1,%al
-	je     <cas_increment+0x1a2>
+	je     <cas_increment+0x1b3>
 	mov    -0x70(%rbp),%rax
 	xor    %ecx,%ecx
 	mov    %rax,-0x78(%rbp)
 	cmp    $0x4,%rcx
-	ja     <cas_increment+0x9a>
-	lea    0x161(%rip),%rdx        # <cas_increment+0x1f0>
+	ja     <cas_increment+0x9c>
+	lea    0x16f(%rip),%rdx        # <cas_increment+0x200>
 	mov    (%rdx,%rcx,4),%ecx
 	sub    %rcx,%rdx
 	jmp    *%rdx
 	nopl   (%rax)
-	jmp    <cas_increment+0x11c>
+	jmp    <cas_increment+0x12d>
 	mov    (%rax),%rcx
 	mov    %rcx,-0x68(%rbp)
-	jmp    <cas_increment+0xc6>
+	jmp    <cas_increment+0xc8>
 	mov    -0x78(%rbp),%rax
 	mov    (%rax),%rcx
 	mov    %rcx,-0x68(%rbp)
-	jmp    <cas_increment+0xc6>
+	jmp    <cas_increment+0xc8>
 	mov    -0x78(%rbp),%rax
 	mov    (%rax),%rax
 	mov    %rax,-0x68(%rbp)
@@ -3430,24 +3385,29 @@ Disassembly of section .text:
 	mov    -0x30(%rbp),%rax
 	lea    0x1(%rax),%r12
 	cmp    %rax,%r12
-	jb     <cas_increment+0x194>
-	mov    -0x70(%rbp),%rdi
+	jb     <cas_increment+0x1a5>
+	mov    -0x70(%rbp),%rax
+	mov    %rax,%rdi
 	mov    %rbx,%rsi
 	mov    %r12,%rdx
 	mov    $0x3,%ecx
 	xor    %r8d,%r8d
-	call   <cas_increment+0xfa>
-	mov    %rax,-0x50(%rbp)
-	mov    %rdx,-0x48(%rbp)
+	call   <cas_increment+0xff>
+	mov    %rax,%rbx
+	mov    %rdx,%r12
+	mov    %rbx,%r13
+	mov    %r12,%rbx
+	mov    %r13,-0x50(%rbp)
+	mov    %rbx,-0x48(%rbp)
 	mov    -0x50(%rbp),%rax
 	mov    -0x48(%rbp),%rcx
 	test   $0x1,%al
-	je     <cas_increment+0x19>
+	je     <cas_increment+0x1b>
 	mov    -0x48(%rbp),%rax
 	mov    %rax,-0x30(%rbp)
-	jmp    <cas_increment+0xce>
+	jmp    <cas_increment+0xd0>
 	ud2
-	lea    -0x8(%rip),%rax        # <cas_increment+0x11d>
+	lea    -0x8(%rip),%rax        # <cas_increment+0x12e>
 	mov    $0x1,%ecx
 	and    $0x3f,%ecx
 	mov    %ecx,%ecx
@@ -3459,10 +3419,10 @@ Disassembly of section .text:
 	or     $0x1,%rdx
 	mov    %rax,%rdi
 	mov    %rdx,%rsi
-	lea    -0x8(%rip),%rdx        # <cas_increment+0x14a>
-	call   <cas_increment+0x157>
+	lea    -0x8(%rip),%rdx        # <cas_increment+0x15b>
+	call   <cas_increment+0x168>
 	ud2
-	lea    -0x8(%rip),%rax        # <cas_increment+0x158>
+	lea    -0x8(%rip),%rax        # <cas_increment+0x169>
 	mov    $0x1,%ecx
 	and    $0x3f,%ecx
 	mov    %ecx,%ecx
@@ -3474,14 +3434,14 @@ Disassembly of section .text:
 	or     $0x1,%rdx
 	mov    %rax,%rdi
 	mov    %rdx,%rsi
-	lea    -0x8(%rip),%rdx        # <cas_increment+0x185>
-	call   <cas_increment+0x192>
+	lea    -0x8(%rip),%rdx        # <cas_increment+0x196>
+	call   <cas_increment+0x1a3>
 	ud2
-	lea    -0x8(%rip),%rdi        # <cas_increment+0x193>
-	call   <cas_increment+0x1a0>
+	lea    -0x8(%rip),%rdi        # <cas_increment+0x1a4>
+	call   <cas_increment+0x1b1>
 	ud2
-	jmp    <cas_increment+0x1e4>
-	lea    -0x8(%rip),%rax        # <cas_increment+0x1a6>
+	jmp    <cas_increment+0x1f5>
+	lea    -0x8(%rip),%rax        # <cas_increment+0x1b7>
 	mov    $0x1,%ecx
 	and    $0x3f,%ecx
 	mov    %ecx,%ecx
@@ -3494,149 +3454,265 @@ Disassembly of section .text:
 	mov    %rax,%rdi
 	mov    %rdx,%rsi
 	xor    %edx,%edx
-	lea    -0x8(%rip),%rcx        # <cas_increment+0x1d5>
-	call   <cas_increment+0x1e2>
+	lea    -0x8(%rip),%rcx        # <cas_increment+0x1e6>
+	call   <cas_increment+0x1f3>
 	ud2
-	add    $0x70,%rsp
+	add    $0x68,%rsp
+	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   (%rax)
-	push   %rcx
+	pop    %rdi
 	add    %eax,(%rax)
-	add    %dl,%dl
+	add    %dl,%cl
 	add    %al,(%rax)
-	add    %al,0x1(%rbp)
+	add    %dl,0x1(%rbx)
 	add    %al,(%rax)
-	xchg   %eax,%edi
+	xchg   %eax,%esi
 	add    %al,(%rax)
-	add    %dh,0x66000001(%rip)        # <swap_u8+0x65ffb876>
-	nopl   0x0(%rax,%rax,1)
+	add    %al,0x1(%rbx)
+	add    %al,(%rax)
+	nopw   0x0(%rax,%rax,1)
 	nopl   (%rax)
 
 <cas_ptr>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %rbx,%rdi
+	mov    %r12,%rsi
+	mov    %r13,%rdx
 	mov    $0x3,%ecx
 	mov    $0x2,%r8d
-	call   <cas_ptr+0x18>
-	add    $0x30,%rsp
+	call   <cas_ptr+0x2f>
+	mov    %rax,%rbx
+	mov    %rdx,%r12
+	mov    %rbx,%r13
+	mov    %r12,%rbx
+	mov    %r13,%rax
+	mov    %rbx,%rdx
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nopl   0x0(%rax)
 
 <cas_succeeded_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
-	sub    $0x20,%rsp
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %edx,%r13d
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13d,%edx
 	mov    $0x4,%ecx
 	mov    $0x4,%r8d
-	call   <cas_succeeded_u32+0x1b>
+	call   <cas_succeeded_u32+0x2f>
 	mov    %eax,%ebx
-	lea    -0x2c(%rbp),%rax
 	mov    %edx,%r12d
+	mov    %ebx,%r13d
+	mov    %r12d,%ebx
+	mov    %r13d,%r12d
 	lea    -0x2c(%rbp),%rax
-	mov    %ebx,%ebx
-	test   %rbx,%rbx
+	mov    %ebx,%r13d
+	lea    -0x2c(%rbp),%rax
+	mov    %r12d,%r12d
+	test   %r12,%r12
 	sete   %bl
 	mov    %ebx,%r12d
 	mov    %r12d,%eax
-	add    $0x20,%rsp
+	add    $0x18,%rsp
+	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nop
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
 <cas_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %edx,%r13d
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13d,%edx
 	mov    $0x3,%ecx
 	mov    $0x2,%r8d
-	call   <cas_u16+0x18>
-	add    $0x30,%rsp
+	call   <cas_u16+0x2f>
+	mov    %eax,%ebx
+	mov    %edx,%r12d
+	mov    %ebx,%r13d
+	mov    %r12d,%ebx
+	mov    %r13d,%eax
+	mov    %ebx,%edx
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nopw   0x0(%rax,%rax,1)
 
 <cas_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %edx,%r13d
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13d,%edx
 	mov    $0x1,%ecx
 	xor    %r8d,%r8d
-	call   <cas_u32+0x15>
-	add    $0x30,%rsp
+	call   <cas_u32+0x2c>
+	mov    %eax,%ebx
+	mov    %edx,%r12d
+	mov    %ebx,%r13d
+	mov    %r12d,%ebx
+	mov    %r13d,%eax
+	mov    %ebx,%edx
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
 
 <cas_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %rsi,%r12
+	mov    %rdx,%r13
+	mov    %rbx,%rdi
+	mov    %r12,%rsi
+	mov    %r13,%rdx
 	mov    $0x4,%ecx
 	xor    %r8d,%r8d
-	call   <cas_u64+0x15>
-	add    $0x30,%rsp
+	call   <cas_u64+0x2c>
+	mov    %rax,%rbx
+	mov    %rdx,%r12
+	mov    %rbx,%r13
+	mov    %r12,%rbx
+	mov    %r13,%rax
+	mov    %rbx,%rdx
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <cas_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x30,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x18,%rsp
+	mov    %rdi,%rbx
+	mov    %esi,%r12d
+	mov    %edx,%r13d
+	mov    %rbx,%rdi
+	mov    %r12d,%esi
+	mov    %r13d,%edx
 	mov    $0x4,%ecx
 	mov    $0x4,%r8d
-	call   <cas_u8+0x18>
-	add    $0x30,%rsp
+	call   <cas_u8+0x2f>
+	mov    %eax,%ebx
+	mov    %edx,%r12d
+	mov    %ebx,%r13d
+	mov    %r12d,%ebx
+	mov    %r13d,%eax
+	mov    %ebx,%edx
+	add    $0x18,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nopw   0x0(%rax,%rax,1)
 
 <cas_weak_loop_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x60,%rsp
+	push   %rbx
+	push   %r12
+	push   %r13
+	sub    $0x48,%rsp
 	mov    %rdx,-0x30(%rbp)
 	mov    %rsi,-0x58(%rbp)
 	mov    %rdi,-0x60(%rbp)
-	mov    -0x60(%rbp),%rdi
+	mov    -0x60(%rbp),%rax
+	mov    %rax,%rdi
 	mov    -0x58(%rbp),%rsi
 	mov    -0x30(%rbp),%rdx
 	mov    $0x4,%ecx
 	xor    %r8d,%r8d
-	call   <cas_weak_loop_u64+0x2d>
-	mov    %rax,-0x50(%rbp)
-	mov    %rdx,-0x48(%rbp)
+	call   <cas_weak_loop_u64+0x35>
+	mov    %rax,%rbx
+	mov    %rdx,%r12
+	mov    %rbx,%r13
+	mov    %r12,%rbx
+	mov    %r13,-0x50(%rbp)
+	mov    %rbx,-0x48(%rbp)
 	mov    -0x50(%rbp),%rax
 	mov    -0x48(%rbp),%rcx
 	test   $0x1,%al
-	je     <cas_weak_loop_u64+0x67>
+	je     <cas_weak_loop_u64+0x7b>
 	mov    -0x48(%rbp),%rax
 	mov    -0x58(%rbp),%rcx
 	cmp    %rcx,%rax
-	je     <cas_weak_loop_u64+0x14>
+	je     <cas_weak_loop_u64+0x19>
 	mov    -0x48(%rbp),%rax
 	mov    %rax,-0x38(%rbp)
 	movq   $0x1,-0x40(%rbp)
-	jmp    <cas_weak_loop_u64+0x77>
+	jmp    <cas_weak_loop_u64+0x8b>
 	mov    -0x48(%rbp),%rax
 	mov    %rax,-0x38(%rbp)
 	movq   $0x0,-0x40(%rbp)
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
 	mov    %rcx,%rdx
-	add    $0x60,%rsp
+	add    $0x48,%rsp
+	pop    %r13
+	pop    %r12
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
 
 <compiler_fence_seqcst>:
 	push   %rbp

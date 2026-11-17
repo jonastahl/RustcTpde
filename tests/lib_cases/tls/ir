@@ -3183,6 +3183,17 @@ ModuleTpde {
             args: [],
             slots: [
                 i32,
+                ptr,
+                i32,
+                i32,
+                i64,
+                i32,
+                i64,
+                i32,
+                i64,
+                Bool,
+                i64,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3194,11 +3205,44 @@ ModuleTpde {
             },
             has_personality: false,
             personality: 0,
-            allocas: [],
+            allocas: [
+                size: 8, align: 4, state: Complex, size_a: 4, offset_b: 4, size_b: 4, call_forwards: 0,
+            ],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 4], [global: 22]) -> [val: 0],
+                    <Br> ([raw: 3]),
+                ],
+                BasicBlock: [
                     <Ret> ([val: 0]),
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 11]) -> [val: 0],
+                    <Br> ([raw: 1]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 5], [global: 22]) -> [val: 2],
+                    <AddRet> () -> [val: 3],
+                    <Store> ([val: 2], [alloc: 0], [raw: 4]),
+                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 4],
+                    <Store> ([val: 3], [val: 4], [raw: 4]),
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 5],
+                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 6],
+                    <Load> ([val: 6], [raw: 4]) -> [val: 7],
+                    <zExt> ([val: 5]) -> [val: 8],
+                    <Trunc> ([val: 8]) -> [val: 9],
+                    <CondBr> ([val: 9], [raw: 4], [raw: 5]),
+                ],
+                BasicBlock: [
+                    <Call> ([func: 33], [global: 10]),
+                    <Unreachable> (),
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 0], [raw: 1], [const: i64 4]) -> [val: 10],
+                    <Load> ([val: 10], [raw: 4]) -> [val: 11],
+                    <Br> ([raw: 2]),
+                ],
+                BasicBlock: [
+                    <Unreachable> (),
                 ],
             ],
             callee_infos: [],
