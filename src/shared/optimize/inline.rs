@@ -275,7 +275,7 @@ fn inline_call(
                 incoming_len: returns.len() as u32,
             });
             bb.phi_len += 1;
-            Slot::new_phi(caller.phis.len() as u32 - 1).to_ffi()
+            Slot::new_phi(results_bb as u32, bb.phi_len - 1).to_ffi()
         };
         caller.instructions.push(ffi::Instruction {
             kind: InstructionKind::Mov,
@@ -477,7 +477,9 @@ fn map_operands(operand: &mut u32, argument_mapping: &[u32], inline_offsets: &In
             };
         }
         Slot::Alloc(a) => *operand = Slot::Alloc(a + inline_offsets.allocas).to_ffi(),
-        Slot::Phi(f, p) => *operand = Slot::Phi(f, p + inline_offsets.phis).to_ffi(),
+        Slot::Phi(f, block, ind) => {
+            *operand = Slot::Phi(f, block + inline_offsets.basic_blocks, ind).to_ffi()
+        }
         _ => {}
     };
 }

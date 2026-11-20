@@ -1,5 +1,5 @@
-use super::ffi;
 pub use super::ffi::ModuleTpde;
+use super::{ffi, ir};
 use crate::shared::ffi::{CalleeInfo, GlobalPtr};
 use crate::shared::optimize::OptConfig;
 use core::fmt::{Debug, Formatter};
@@ -29,7 +29,7 @@ pub enum Slot {
     Func(Function),
     Global(Global),
     GlobalPtr(u32),
-    Phi(Function, u32),
+    Phi(Function, u32, u32),
 }
 
 #[derive(Copy, Clone, PartialEq, Debug)]
@@ -497,9 +497,7 @@ impl Module {
             }
             Slot::ConstVector(ind) => FullType::Single(self.tpde.const_vectors[ind as usize].ty),
             Slot::Raw(_) => unreachable!(),
-            Slot::Phi(func, ind) => {
-                FullType::Single(self.tpde.functions[func.0].phis[ind as usize].ty)
-            }
+            phi @ Slot::Phi(..) => FullType::Single(self.phi(phi).ty),
             Slot::Alloc(_) | Slot::Func(_) | Slot::Global(_) | Slot::GlobalPtr(..) => {
                 FullType::Single(Type::ptr)
             }
@@ -593,9 +591,9 @@ impl Module {
                 assert_eq!(bb.function(), f);
                 func.slots.get(v as usize).unwrap().ty
             }
-            Slot::Phi(f, p) => {
+            phi @ Slot::Phi(f, ..) => {
                 assert_eq!(bb.function(), f);
-                func.phis[p as usize].ty
+                self.phi(phi).ty
             }
             Slot::Const(v) => self.const_value(v).0,
             _ => panic!("First operand of return instruction must be a value slot"),
@@ -942,43 +940,29 @@ impl Module {
         Slot::new_val(func, slots.len() as u32 - 1)
     }
 
+    #[inline(always)]
+    fn phi(&self, phi: Slot) -> &ffi::Phi {
+        let Slot::Phi(func, block, ind) = phi else {
+            panic!("Not a phi: {:?}", phi)
+        };
+        let func = &self.tpde.functions[func.0];
+        func.phi(block, ind)
+    }
+
     /// Reserve space for all the phis, later call set_phi_incoming to set the incoming values
     /// All phis of a basic block have to be added at once (or we need more movement later)
     pub fn add_phi(&mut self, bb: BasicBlock, ty: Type, incoming_len: u32) -> Slot {
         let function = &mut self.tpde.functions[bb.function().0];
-        let phi_index = function.phis.len() as u32;
-
-        let block = &mut function.basic_blocks[bb.index()];
-        if block.phi_len == 0 {
-            block.phi_start = phi_index;
-        }
-        assert_eq!(block.phi_start + block.phi_len, phi_index);
-        block.phi_len += 1;
-
-        let incoming_start = function.operands.len() as u32;
-        function.operands.extend(std::iter::repeat_n(
-            Slot::new_raw(0).to_ffi(),
-            incoming_len as usize * 2,
-        ));
-        function.phis.push(ffi::Phi {
-            ty,
-            incoming_start,
-            incoming_len,
-        });
-        Slot::Phi(bb.function(), phi_index)
+        function.add_phi(bb, ty, incoming_len)
     }
 
     pub fn set_phi_incoming(&mut self, phi: Slot, slot: u32, from: BasicBlock, value: Slot) {
-        let Slot::Phi(func, index) = phi else {
+        let Slot::Phi(func, ..) = phi else {
             panic!("Not a phi: {:?}", phi)
         };
         let function = &mut self.tpde.functions[func.0];
-        let phi = function.phis[index as usize];
-        assert!(slot < phi.incoming_len);
-        let start = (phi.incoming_start + slot * 2) as usize;
-        function.operands[start] = Slot::new_raw(from.index() as u32).to_ffi();
-        function.operands[start + 1] = value.to_ffi();
 
+        function.set_phi_incoming(phi, slot, from, value.to_ffi());
         if self.opt.promote
             && let Some(info) = access_info_intern(function, &value)
         {
@@ -1034,6 +1018,75 @@ impl Module {
     }
 }
 
+impl ffi::Function {
+    pub(super) fn add_phi(&mut self, bb: BasicBlock, ty: Type, incoming_len: u32) -> Slot {
+        assert!(
+            bb.index() < 1 << PHI_BLOCK_BITS,
+            "Too many blocks a single phi"
+        );
+        let block = &mut self.basic_blocks[bb.index()];
+        assert!(
+            block.phi_len < 1 << PHI_POS_BITS,
+            "Too many phis in a block"
+        );
+
+        {
+            // Make sure there's enough space for the new phi
+            let phi_end = self.phis.len() as u32;
+            if block.phi_len == 0 {
+                block.phi_start = phi_end;
+            } else if block.phi_start + block.phi_len != phi_end {
+                // move phis to the end if there's not enough space at the current spot
+                let start = block.phi_start as usize;
+                block.phi_start = phi_end;
+                let len = block.phi_len as usize;
+                self.phis.extend_from_within(start..start + len);
+            }
+        }
+
+        // Insert the new phi
+        let index = block.phi_len;
+        block.phi_len += 1;
+
+        let incoming_start = self.operands.len() as u32;
+        self.operands.extend(std::iter::repeat_n(
+            Slot::new_raw(0).to_ffi(),
+            incoming_len as usize * 2,
+        ));
+        self.phis.push(ffi::Phi {
+            ty,
+            incoming_start,
+            incoming_len,
+        });
+        Slot::Phi(bb.function(), bb.index() as u32, index)
+    }
+
+    fn phi(&self, block: u32, ind: u32) -> &ffi::Phi {
+        let start = self.basic_blocks[block as usize].phi_start;
+        &self.phis[(start + ind) as usize]
+    }
+
+    pub(super) fn set_phi_incoming(&mut self, phi: Slot, slot: u32, from: BasicBlock, value: u32) {
+        let Slot::Phi(func, block, index) = phi else {
+            panic!("Not a phi: {:?}", phi)
+        };
+        let phi = self.phi(block, index);
+        assert!(slot < phi.incoming_len);
+        let start = (phi.incoming_start + slot * 2) as usize;
+        self.operands[start] = Slot::new_raw(from.index() as u32).to_ffi();
+        self.operands[start + 1] = value;
+    }
+}
+
+impl BasicBlock {
+    pub(super) fn dummy(index: usize) -> Self {
+        BasicBlock {
+            function: ir::Function(0),
+            index,
+        }
+    }
+}
+
 pub(super) fn access_info_intern<'a>(
     func: &'a mut ffi::Function,
     ptr: &Slot,
@@ -1080,13 +1133,11 @@ impl ModuleTpde {
 
     pub fn add_const(&mut self, ty: Type, data: u128) -> Slot {
         if data < INLINE_CONST_LIMIT {
-            return Slot::new_const(
-                INLINE_CONST_BIT | (ty.repr as u32) << INLINE_CONST_VAL_BITS_COUNT | data as u32,
-            );
+            return Slot::new_inline_const(ty, data as u32);
         }
         let consts = &mut self.consts;
         consts.push(ffi::Value::new(ty, data));
-        Slot::new_const((consts.len() - 1) as u32)
+        Slot::new_pool_const((consts.len() - 1) as u32)
     }
 }
 
@@ -1102,6 +1153,10 @@ pub const MARKER_GLOBAL: Marker = 5_u32 << (u32::BITS - 3);
 pub const MARKER_CONST_VECTOR: Marker = 6_u32 << (u32::BITS - 3);
 pub const MARKER_PHI: Marker = 7_u32 << (u32::BITS - 3);
 
+pub const PHI_POS_BITS: u32 = 9;
+pub const PHI_BLOCK_BITS: u32 = u32::BITS - 3 - PHI_POS_BITS;
+pub const PHI_POS_MASK: u32 = (1 << PHI_POS_BITS) - 1;
+
 // With the marker set it has an offset saved in global_ptrs,
 // otherwise it points directly to the global
 pub const GLOBAL_PTR_BIT: u32 = 1_u32 << (u32::BITS - 4);
@@ -1114,7 +1169,11 @@ impl Slot {
         Self::Pair(index)
     }
 
-    fn new_const(index: u32) -> Self {
+    pub(super) fn new_inline_const(ty: Type, val: u32) -> Self {
+        Self::Const(INLINE_CONST_BIT | (ty.repr as u32) << INLINE_CONST_VAL_BITS_COUNT | val)
+    }
+
+    fn new_pool_const(index: u32) -> Self {
         Self::Const(index)
     }
 
@@ -1126,8 +1185,8 @@ impl Slot {
         Self::Raw(u)
     }
 
-    pub fn new_phi(index: u32) -> Self {
-        Self::Phi(Function(0), index)
+    pub fn new_phi(block: u32, index: u32) -> Self {
+        Self::Phi(Function(0), block, index)
     }
 
     pub fn new_func(func: Function) -> Self {
@@ -1147,7 +1206,7 @@ impl Slot {
             Self::Func(f) => (f.0 as u32) | MARKER_FUNC,
             Self::Global(g) => g.0 as u32 | MARKER_GLOBAL,
             Self::GlobalPtr(p) => *p | MARKER_GLOBAL | GLOBAL_PTR_BIT,
-            Self::Phi(_, p) => *p | MARKER_PHI,
+            Self::Phi(_, block, index) => MARKER_PHI | block << PHI_POS_BITS | index,
             Self::ConstVector(v) => *v | MARKER_CONST_VECTOR,
             Self::Pair(..) => unreachable!("Only used for tracking during generation"),
         }
@@ -1184,7 +1243,7 @@ impl Slot {
             return Self::Global(Global(g as usize));
         }
         if let Some(p) = Self::is(ffi, MARKER_PHI) {
-            return Self::Phi(Function(0), p);
+            return Self::Phi(Function(0), p >> PHI_POS_BITS, p & PHI_POS_MASK);
         }
         if let Some(v) = Self::is(ffi, MARKER_CONST_VECTOR) {
             return Self::ConstVector(v);
@@ -1200,7 +1259,7 @@ impl Slot {
 
     pub fn get_func(&self) -> Option<Function> {
         match self {
-            Slot::Value(func, _) | Slot::Phi(func, _) => Some(*func),
+            Slot::Value(func, _) | Slot::Phi(func, ..) => Some(*func),
             _ => None,
         }
     }
@@ -1222,7 +1281,7 @@ impl Debug for Slot {
                 None => write!(f, "[const pool: {}]", c),
             },
             Self::GlobalPtr(p) => write!(f, "[globalptr: {}]", p),
-            Self::Phi(_, p) => write!(f, "[phi: {}]", p),
+            Self::Phi(_, block, ind) => write!(f, "[phi: {block}, {ind}]"),
             Self::Pair(..) => unreachable!("Only used for tracking during generation"),
         }
     }
@@ -1298,7 +1357,13 @@ pub fn convert_atomic_order(order: rustc_middle::ty::AtomicOrdering) -> AtomicOr
     }
 }
 
-pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, written: bool) {
+pub fn update_access_info(
+    access_info: &mut AccessInfo,
+    ty: Type,
+    size: u32,
+    offset: u32,
+    written: bool,
+) {
     // We only care about small values as we don't promote larger structs/vecs
     if size > u8::MAX as u32 || offset > u8::MAX as u32 {
         access_info.state = AccessInfoState::Complex;
@@ -1307,95 +1372,35 @@ pub fn update_access_info(access_info: &mut AccessInfo, size: u32, offset: u32, 
     let size = size as u8;
     let offset = offset as u8;
 
-    enum Match {
-        A,
-        B,
-        None,
-    }
-    let m = if offset == 0 {
-        if size == access_info.size_a {
-            Match::A
-        } else {
-            if access_info.size_a == 0 && (access_info.size_b == 0 || size <= access_info.offset_b)
-            {
-                access_info.size_a = size;
-                Match::A
-            } else {
-                Match::None
-            }
+    if offset == 0 {
+        if size == access_info.size_a && ty == access_info.ty_a {
+            return;
+        }
+        if access_info.size_a == 0 && (access_info.size_b == 0 || size <= access_info.offset_b) {
+            access_info.ty_a = ty;
+            access_info.size_a = size;
+            return;
         }
     } else if offset > 0 {
-        if offset == access_info.offset_b && size == access_info.size_b {
-            Match::B
-        } else {
-            if access_info.size_b == 0 && offset >= access_info.size_a {
-                access_info.size_b = size;
-                access_info.offset_b = offset;
-                Match::B
-            } else {
-                Match::None
-            }
+        if ty == access_info.ty_b && offset == access_info.offset_b && size == access_info.size_b {
+            return;
         }
-    } else {
-        Match::None
-    };
-
-    if let Match::None = m {
-        access_info.state = AccessInfoState::Complex;
-        return;
-    }
-
-    if written {
-        access_info.state = match (access_info.state, m) {
-            (AccessInfoState::Unused, Match::A) => AccessInfoState::OnceWrittenA,
-            (AccessInfoState::Unused, Match::B) => AccessInfoState::OnceWrittenB,
-
-            (AccessInfoState::OnceWrittenA, Match::A) => AccessInfoState::WrittenA,
-            (AccessInfoState::OnceWrittenA, Match::B) => AccessInfoState::OnceWritten,
-            (AccessInfoState::OnceWrittenB, Match::A) => AccessInfoState::OnceWritten,
-            (AccessInfoState::OnceWrittenB, Match::B) => AccessInfoState::WrittenB,
-
-            (AccessInfoState::OnceWritten, _) => AccessInfoState::Written,
-
-            (AccessInfoState::WrittenA, Match::A) => AccessInfoState::WrittenA,
-            (AccessInfoState::WrittenA, Match::B) => AccessInfoState::Written,
-            (AccessInfoState::WrittenB, Match::A) => AccessInfoState::Written,
-            (AccessInfoState::WrittenB, Match::B) => AccessInfoState::WrittenB,
-
-            (AccessInfoState::Written, Match::A) => AccessInfoState::Written,
-            (AccessInfoState::Written, Match::B) => AccessInfoState::Written,
-
-            _ => AccessInfoState::Complex,
+        if access_info.size_b == 0 && offset >= access_info.size_a {
+            access_info.ty_b = ty;
+            access_info.size_b = size;
+            access_info.offset_b = offset;
+            return;
         }
     }
+
+    access_info.state = AccessInfoState::Complex;
 }
 
 pub fn merge_access_states(a: AccessInfoState, b: AccessInfoState) -> AccessInfoState {
     match (a, b) {
-        (AccessInfoState::Unused, _) => b,
-        (_, AccessInfoState::Unused) => a,
         (AccessInfoState::Complex, _) => AccessInfoState::Complex,
         (_, AccessInfoState::Complex) => AccessInfoState::Complex,
-
-        // Unused and Complex no longer possible as result
-        (AccessInfoState::OnceWrittenA, AccessInfoState::OnceWrittenB) => {
-            AccessInfoState::OnceWritten
-        }
-        (AccessInfoState::OnceWrittenB, AccessInfoState::OnceWrittenA) => {
-            AccessInfoState::OnceWritten
-        }
-
-        // Once writtens are no longer possible
-        (AccessInfoState::OnceWrittenA, AccessInfoState::OnceWrittenA) => AccessInfoState::WrittenA,
-        (AccessInfoState::WrittenA, AccessInfoState::OnceWrittenA) => AccessInfoState::WrittenA,
-        (AccessInfoState::OnceWrittenA, AccessInfoState::WrittenA) => AccessInfoState::WrittenA,
-
-        (AccessInfoState::OnceWrittenB, AccessInfoState::OnceWrittenB) => AccessInfoState::WrittenB,
-        (AccessInfoState::WrittenB, AccessInfoState::OnceWrittenB) => AccessInfoState::WrittenB,
-        (AccessInfoState::OnceWrittenB, AccessInfoState::WrittenB) => AccessInfoState::WrittenB,
-
-        // Written A and B no longer possible, only Written left
-        _ => AccessInfoState::Written,
+        _ => AccessInfoState::Promotable,
     }
 }
 
@@ -1405,18 +1410,4 @@ pub fn alloc_used_a(info: &AccessInfo) -> bool {
 
 pub fn alloc_used_b(info: &AccessInfo) -> bool {
     info.size_b != 0
-}
-
-pub fn written_once_a(state: AccessInfoState) -> bool {
-    matches!(
-        state,
-        AccessInfoState::OnceWrittenA | AccessInfoState::OnceWritten
-    )
-}
-
-pub fn written_once_b(state: AccessInfoState) -> bool {
-    matches!(
-        state,
-        AccessInfoState::OnceWrittenB | AccessInfoState::OnceWritten
-    )
 }

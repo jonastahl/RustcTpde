@@ -15,47 +15,39 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x28,%rsp
-	mov    %dil,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
-	lea    (%rax,%rsi,1),%ebx
-	cmp    %al,%bl
-	jb     <accumulate_u8+0x7c>
-	mov    %bl,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
-	mov    %al,-0x2a(%rbp)
+	push   %r12
+	sub    $0x20,%rsp
+	lea    (%rdi,%rsi,1),%ebx
+	cmp    %dil,%bl
+	jb     <accumulate_u8+0x61>
 	xor    %ecx,%ecx
 	mov    $0x2,%edx
-	movzbl -0x2a(%rbp),%esi
-	mov    %esi,%eax
+	mov    %ebx,%eax
 	mul    %dl
 	seto   %cl
-	mov    %eax,%ebx
-	jo     <accumulate_u8+0x6e>
-	mov    %bl,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
-	mov    %eax,%ebx
+	mov    %eax,%r12d
+	jo     <accumulate_u8+0x53>
+	mov    %r12d,%ebx
 	sub    $0x1,%ebx
-	cmp    $0x1,%al
-	jb     <accumulate_u8+0x60>
-	mov    %bl,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
-	jmp    <accumulate_u8+0x8a>
-	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x5f>
-	call   <accumulate_u8+0x6c>
+	cmp    $0x1,%r12b
+	jb     <accumulate_u8+0x45>
+	mov    %ebx,%eax
+	jmp    <accumulate_u8+0x6f>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x44>
+	call   <accumulate_u8+0x51>
 	ud2
-	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x6d>
-	call   <accumulate_u8+0x7a>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x52>
+	call   <accumulate_u8+0x5f>
 	ud2
-	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x7b>
-	call   <accumulate_u8+0x88>
+	lea    -0x8(%rip),%rdi        # <accumulate_u8+0x60>
+	call   <accumulate_u8+0x6d>
 	ud2
-	add    $0x28,%rsp
+	add    $0x20,%rsp
+	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
 <add8_args_u32>:
 	push   %rbp
@@ -411,39 +403,41 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
-	sub    $0x18,%rsp
+	push   %r14
+	sub    $0x10,%rsp
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	test   $0x1,%dl
-	jne    <branchy_i32+0x43>
+	jne    <branchy_i32+0x44>
 	xor    %eax,%eax
 	mov    %ebx,%r13d
 	sub    %r12d,%r13d
 	seto   %al
-	jo     <branchy_i32+0x35>
-	mov    %r13d,-0x2c(%rbp)
+	jo     <branchy_i32+0x36>
+	mov    %r13d,%r14d
 	jmp    <branchy_i32+0x59>
-	lea    -0x8(%rip),%rdi        # <branchy_i32+0x34>
-	call   <branchy_i32+0x41>
+	lea    -0x8(%rip),%rdi        # <branchy_i32+0x35>
+	call   <branchy_i32+0x42>
 	ud2
 	xor    %eax,%eax
 	mov    %ebx,%r13d
 	imul   %r12d,%r13d
 	seto   %al
 	jo     <branchy_i32+0x61>
-	mov    %r13d,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	mov    %r13d,%r14d
+	mov    %r14d,%eax
 	jmp    <branchy_i32+0x6f>
 	lea    -0x8(%rip),%rdi        # <branchy_i32+0x60>
 	call   <branchy_i32+0x6d>
 	ud2
-	add    $0x18,%rsp
+	add    $0x10,%rsp
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <mul_add_i32>:
 	push   %rbp
@@ -873,35 +867,37 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x28,%rsp
-	movb   $0x0,-0x29(%rbp)
-	movb   $0x1,-0x2a(%rbp)
+	push   %r12
+	sub    $0x20,%rsp
 	mov    %dil,-0x2b(%rbp)
-	movzbl -0x2a(%rbp),%eax
+	mov    $0x1,%eax
+	mov    %al,-0x2c(%rbp)
+	xor    %eax,%eax
+	mov    %al,-0x2d(%rbp)
+	movzbl -0x2c(%rbp),%eax
 	movzbl -0x2b(%rbp),%ecx
 	cmp    %cl,%al
-	ja     <sum_to_u8+0x4f>
-	movzbl -0x2a(%rbp),%eax
-	movzbl -0x29(%rbp),%edx
+	ja     <sum_to_u8+0x51>
+	movzbl -0x2d(%rbp),%edx
 	lea    (%rdx,%rax,1),%ebx
 	cmp    %dl,%bl
-	jb     <sum_to_u8+0x66>
-	mov    %bl,-0x29(%rbp)
-	movzbl -0x2a(%rbp),%eax
-	lea    0x1(%rax),%ebx
-	cmp    %al,%bl
-	jb     <sum_to_u8+0x58>
-	mov    %bl,-0x2a(%rbp)
-	jmp    <sum_to_u8+0x15>
-	movzbl -0x29(%rbp),%eax
-	jmp    <sum_to_u8+0x74>
-	lea    -0x8(%rip),%rdi        # <sum_to_u8+0x57>
-	call   <sum_to_u8+0x64>
+	jb     <sum_to_u8+0x68>
+	lea    0x1(%rax),%r12d
+	cmp    %al,%r12b
+	jb     <sum_to_u8+0x5a>
+	mov    %r12b,-0x2c(%rbp)
+	mov    %bl,-0x2d(%rbp)
+	jmp    <sum_to_u8+0x1c>
+	movzbl -0x2d(%rbp),%eax
+	jmp    <sum_to_u8+0x76>
+	lea    -0x8(%rip),%rdi        # <sum_to_u8+0x59>
+	call   <sum_to_u8+0x66>
 	ud2
-	lea    -0x8(%rip),%rdi        # <sum_to_u8+0x65>
-	call   <sum_to_u8+0x72>
+	lea    -0x8(%rip),%rdi        # <sum_to_u8+0x67>
+	call   <sum_to_u8+0x74>
 	ud2
-	add    $0x28,%rsp
+	add    $0x20,%rsp
+	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret

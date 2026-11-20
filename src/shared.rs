@@ -156,8 +156,9 @@ mod ffi {
         incoming_len: u32,
     }
 
-    #[derive(Debug, Copy, Clone)]
+    #[derive(Debug, Copy, Clone, Default)]
     pub enum Type {
+        #[default]
         Void,
         Bool,
         i8,
@@ -399,6 +400,7 @@ mod ffi {
         crc32,
 
         Mov,
+        Noop,
 
         Last,
     }
@@ -425,20 +427,16 @@ mod ffi {
         /// Tracks to how many calls this value was passed, is decremented by inlining
         call_forwards: u16,
         size_a: u8,
+        ty_a: Type,
         size_b: u8,
+        ty_b: Type,
         offset_b: u8,
     }
 
     #[derive(Default, Debug, Clone, Copy)]
     pub enum AccessInfoState {
         #[default]
-        Unused,
-        OnceWrittenA,
-        WrittenA,
-        OnceWrittenB,
-        WrittenB,
-        OnceWritten,
-        Written,
+        Promotable,
         Complex,
     }
 
@@ -482,6 +480,7 @@ mod ffi {
 }
 
 struct BlockDebug<'a> {
+    index: u32,
     block: &'a ffi::BasicBlock,
     function: &'a ffi::Function,
 }
@@ -492,6 +491,7 @@ struct InstructionDebug<'a> {
 }
 
 struct PhiDebug<'a> {
+    block: u32,
     index: u32,
     phi: &'a ffi::Phi,
     operands: &'a [u32],
@@ -502,7 +502,9 @@ impl Debug for ffi::Function {
         let blocks: Vec<BlockDebug> = self
             .basic_blocks
             .iter()
-            .map(|block| BlockDebug {
+            .enumerate()
+            .map(|(index, block)| BlockDebug {
+                index: index as u32,
                 block,
                 function: self,
             })
@@ -531,7 +533,8 @@ impl Debug for BlockDebug<'_> {
         let phis =
             &self.function.phis[phi_start as usize..(phi_start + self.block.phi_len) as usize];
         f.debug_list()
-            .entries(phis.iter().zip(phi_start..).map(|(phi, index)| PhiDebug {
+            .entries(phis.iter().zip(0..).map(|(phi, index)| PhiDebug {
+                block: self.index,
                 index,
                 phi,
                 operands: &self.function.operands,
@@ -566,7 +569,12 @@ impl Debug for PhiDebug<'_> {
             }
             write!(f, "{:?}", Slot::from_ffi(op))?;
         }
-        write!(f, ") -> {:?} {:?}", Slot::new_phi(self.index), self.phi.ty)
+        write!(
+            f,
+            ") -> {:?} {:?}",
+            Slot::new_phi(self.block, self.index),
+            self.phi.ty
+        )
     }
 }
 

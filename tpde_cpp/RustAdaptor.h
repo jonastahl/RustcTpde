@@ -28,6 +28,9 @@ namespace IR {
   inline constexpr uint32_t MARKER_CONST_VECTOR = size_t{6} << (std::numeric_limits<std::uint32_t>::digits - 3);
   inline constexpr uint32_t MARKER_PHI = size_t{7} << (std::numeric_limits<std::uint32_t>::digits - 3);
 
+  inline constexpr uint32_t PHI_POS_BITS = 9;
+  inline constexpr uint32_t PHI_POS_MASK = (uint32_t{1} << PHI_POS_BITS) - 1;
+
   // Under MARKER_GLOBAL: set for an index into global_ptrs, clear for a global at offset 0.
   inline constexpr uint32_t GLOBAL_PTR_BIT = uint32_t{1} << (std::numeric_limits<std::uint32_t>::digits - 4);
 
@@ -94,6 +97,14 @@ namespace IR {
 
     [[nodiscard]] constexpr uint32_t content() const {
       return value & ~MARKER_BLOCK;
+    }
+
+    [[nodiscard]] constexpr uint32_t phi_block() const {
+      return content() >> PHI_POS_BITS;
+    }
+
+    [[nodiscard]] constexpr uint32_t phi_pos() const {
+      return content() & PHI_POS_MASK;
     }
 
     [[nodiscard]] constexpr uint32_t global_ptr_idx() const {
@@ -260,7 +271,7 @@ namespace tpde_rust {
       if (value.is_val())
         return get_slots()[value.content()].ty;
       if (value.is_phi())
-        return get_phis()[value.content()].ty;
+        return get_phis()[phi_index(value)].ty;
       if (value.is_const())
         return const_value(value).ty;
       if (value.is_const_vector())
@@ -381,8 +392,13 @@ namespace tpde_rust {
 
     [[nodiscard]] auto block_phis(const IRBlockRef bb) const {
       const BasicBlock &block = get_basic_block(bb);
-      return std::views::iota(block.phi_start, block.phi_start + block.phi_len)
-        | std::views::transform([](const u32 idx) { return IR::Operand(IR::MARKER_PHI | idx); });
+      return std::views::iota(u32{0}, block.phi_len)
+        | std::views::transform([bb](const u32 idx) { return IR::Operand(IR::MARKER_PHI | bb << IR::PHI_POS_BITS | idx); });
+    }
+
+    [[nodiscard]] u32 phi_index(const IRValueRef value) const {
+      assert(value.is_phi());
+      return get_basic_block(value.phi_block()).phi_start + value.phi_pos();
     }
 
     [[nodiscard]] u32 block_info(const IRBlockRef bb) {
@@ -407,7 +423,8 @@ namespace tpde_rust {
 
     [[nodiscard]] tpde::ValLocalIdx val_local_idx(IRValueRef ir_value) {
       assert(ir_value.is_val() || ir_value.is_phi() || ir_value.is_alloc());
-      return static_cast<tpde::ValLocalIdx>(ir_value.content() + starts_index[ir_value.marker()]);
+      const u32 index = ir_value.is_phi() ? phi_index(ir_value) : ir_value.content();
+      return static_cast<tpde::ValLocalIdx>(index + starts_index[ir_value.marker()]);
     }
 
     [[nodiscard]] static bool val_ignore_in_liveness_analysis(const IRValueRef value) {
@@ -444,8 +461,7 @@ namespace tpde_rust {
         }
       };
 
-      assert(value.is_phi());
-      const Phi &phi = get_phis()[value.content()];
+      const Phi &phi = get_phis()[phi_index(value)];
       return PHIRef{get_operands().subspan(phi.incoming_start, size_t{phi.incoming_len} * 2)};
     }
 

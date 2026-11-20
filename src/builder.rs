@@ -1273,7 +1273,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         if module.tracks_access()
             && let Some(info) = module.access_info(self.basic_block.function(), &ptr)
         {
-            update_access_info(info, size_of_type(ret_ty), 0, false)
+            update_access_info(info, ret_ty, size_of_type(ret_ty), 0, false)
         }
 
         module.add_instruction_ret(
@@ -1295,7 +1295,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
                 bug!()
             };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
-                update_access_info(info, size_of_type(ty), 0, true)
+                update_access_info(info, ty, size_of_type(ty), 0, true)
             }
             if let Some(info) = module.access_info(self.basic_block.function(), &val) {
                 info.state = AccessInfoState::Complex;
@@ -1325,7 +1325,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         if module.tracks_access()
             && let Some(info) = module.access_info(self.basic_block.function(), &ptr)
         {
-            update_access_info(info, size_of_type(ty_b), offset, false)
+            update_access_info(info, ty_b, size_of_type(ty_b), offset, false)
         }
 
         (slot_a, slot_b)
@@ -1355,7 +1355,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
                 bug!()
             };
             if let Some(info) = module.access_info(self.basic_block.function(), &ptr) {
-                update_access_info(info, size_of_type(ty), offset, true)
+                update_access_info(info, ty, size_of_type(ty), offset, true)
             }
         }
     }

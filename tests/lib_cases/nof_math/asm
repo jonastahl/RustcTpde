@@ -607,15 +607,16 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	mov    %edx,%r13d
 	cmp    $0x8,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x29>
-	mov    %bl,-0x29(%rbp)
-	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x47>
+	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2b>
+	mov    %ebx,%r14d
+	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x49>
 	mov    %r13d,%eax
 	mov    %eax,%ecx
 	shl    %cl,%ebx
@@ -625,15 +626,16 @@ Disassembly of section .text:
 	mov    %eax,%ecx
 	shr    %cl,%r12d
 	or     %r12d,%ebx
-	mov    %bl,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	mov    %ebx,%r14d
+	mov    %r14d,%eax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -641,15 +643,16 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	mov    %edx,%r13d
 	cmp    $0x8,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2a>
-	mov    %r12b,-0x29(%rbp)
-	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x46>
+	jne    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2b>
+	mov    %r12d,%r14d
+	jmp    <_RNvXsn_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackhNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x47>
 	mov    $0x8,%eax
 	sub    %r13d,%eax
 	mov    %eax,%ecx
@@ -658,15 +661,16 @@ Disassembly of section .text:
 	mov    %r13d,%ecx
 	shr    %cl,%r12d
 	or     %r12d,%ebx
-	mov    %bl,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	mov    %ebx,%r14d
+	mov    %r14d,%eax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -674,14 +678,15 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	mov    %edx,%r13d
 	cmp    $0x10,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2a>
-	mov    %bx,-0x2a(%rbp)
+	jne    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2b>
+	mov    %ebx,%r14d
 	jmp    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x49>
 	mov    %r13d,%eax
 	mov    %eax,%ecx
@@ -692,15 +697,16 @@ Disassembly of section .text:
 	mov    %eax,%ecx
 	shr    %cl,%r12d
 	or     %r12d,%ebx
-	mov    %bx,-0x2a(%rbp)
-	movzwl -0x2a(%rbp),%eax
+	mov    %ebx,%r14d
+	mov    %r14d,%eax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	xchg   %ax,%ax
 
 <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -708,6 +714,7 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	mov    %edx,%r13d
@@ -715,8 +722,8 @@ Disassembly of section .text:
 	setb   %al
 	test   %r13d,%r13d
 	jne    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2b>
-	mov    %r12w,-0x2a(%rbp)
-	jmp    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x48>
+	mov    %r12d,%r14d
+	jmp    <_RNvXso_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbacktNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x47>
 	mov    $0x10,%eax
 	sub    %r13d,%eax
 	mov    %eax,%ecx
@@ -725,8 +732,9 @@ Disassembly of section .text:
 	mov    %r13d,%ecx
 	shr    %cl,%r12d
 	or     %r12d,%ebx
-	mov    %bx,-0x2a(%rbp)
-	movzwl -0x2a(%rbp),%eax
+	mov    %ebx,%r14d
+	mov    %r14d,%eax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
@@ -741,15 +749,16 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	mov    %edx,%r13d
 	cmp    $0x20,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x29>
-	mov    %ebx,-0x2c(%rbp)
-	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x41>
+	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2b>
+	mov    %ebx,%r14d
+	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x43>
 	mov    %r13d,%ecx
 	shl    %cl,%ebx
 	mov    $0x20,%eax
@@ -757,14 +766,15 @@ Disassembly of section .text:
 	mov    %eax,%ecx
 	shr    %cl,%r12d
 	or     %r12d,%ebx
-	mov    %ebx,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	mov    %ebx,%r14d
+	mov    %r14d,%eax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nop
 
 <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -772,15 +782,16 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	mov    %edx,%r13d
 	cmp    $0x20,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2a>
-	mov    %r12d,-0x2c(%rbp)
-	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x42>
+	jne    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2b>
+	mov    %r12d,%r14d
+	jmp    <_RNvXsp_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackmNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x43>
 	mov    $0x20,%eax
 	sub    %r13d,%eax
 	mov    %eax,%ecx
@@ -788,14 +799,15 @@ Disassembly of section .text:
 	mov    %r13d,%ecx
 	shr    %cl,%r12d
 	or     %r12d,%ebx
-	mov    %ebx,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	mov    %ebx,%r14d
+	mov    %r14d,%eax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax)
+	nop
 
 <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -803,14 +815,15 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %rdi,%rbx
 	mov    %rsi,%r12
 	mov    %edx,%r13d
 	cmp    $0x40,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2b>
-	mov    %rbx,-0x30(%rbp)
+	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x2c>
+	mov    %rbx,%r14
 	jmp    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shlCsQvp3e8KgHi_6source+0x49>
 	mov    %r13d,%eax
 	mov    %eax,%ecx
@@ -821,15 +834,16 @@ Disassembly of section .text:
 	mov    %eax,%ecx
 	shr    %cl,%r12
 	or     %r12,%rbx
-	mov    %rbx,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
+	mov    %rbx,%r14
+	mov    %r14,%rax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	xchg   %ax,%ax
 
 <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source>:
 	push   %rbp
@@ -837,14 +851,15 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
+	push   %r14
 	mov    %rdi,%rbx
 	mov    %rsi,%r12
 	mov    %edx,%r13d
 	cmp    $0x40,%r13d
 	setb   %al
 	test   %r13d,%r13d
-	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2b>
-	mov    %r12,-0x30(%rbp)
+	jne    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x2c>
+	mov    %r12,%r14
 	jmp    <_RNvXsq_NtNtCsioHeeuq8fQz_4core10intrinsics8fallbackyNtB5_11FunnelShift20unchecked_funnel_shrCsQvp3e8KgHi_6source+0x4a>
 	mov    $0x40,%eax
 	sub    %r13d,%eax
@@ -855,15 +870,16 @@ Disassembly of section .text:
 	mov    %r13d,%ecx
 	shr    %cl,%r12
 	or     %r12,%rbx
-	mov    %rbx,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
+	mov    %rbx,%r14
+	mov    %r14,%rax
+	pop    %r14
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nop
 
 <add3_u128>:
 	add    %rdx,%rdi

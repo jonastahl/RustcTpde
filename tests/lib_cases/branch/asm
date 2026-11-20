@@ -14,376 +14,431 @@ Disassembly of section .text:
 <cmp_eq_i16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	je     <cmp_eq_i16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_i16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_i16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_i16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_eq_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	je     <cmp_eq_i32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_i32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_i32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_i32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_eq_i64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	je     <cmp_eq_i64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_i64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_i64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_i64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_eq_i8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	je     <cmp_eq_i8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_i8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_i8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_i8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_eq_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	je     <cmp_eq_u16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_u16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_u16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_u16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_eq_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	je     <cmp_eq_u32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_u32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_u32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_u32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_eq_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	je     <cmp_eq_u64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_u64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_u64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_u64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_eq_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	je     <cmp_eq_u8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_eq_u8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	je     <cmp_eq_u8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_eq_u8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ge_i16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jge    <cmp_ge_i16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_i16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jge    <cmp_ge_i16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_i16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ge_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jge    <cmp_ge_i32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_i32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jge    <cmp_ge_i32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_i32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_ge_i64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jge    <cmp_ge_i64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_i64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jge    <cmp_ge_i64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_i64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ge_i8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jge    <cmp_ge_i8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_i8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jge    <cmp_ge_i8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_i8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ge_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jae    <cmp_ge_u16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_u16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jae    <cmp_ge_u16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_u16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ge_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jae    <cmp_ge_u32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_u32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jae    <cmp_ge_u32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_u32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_ge_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jae    <cmp_ge_u64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_u64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jae    <cmp_ge_u64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_u64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ge_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jae    <cmp_ge_u8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ge_u8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jae    <cmp_ge_u8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ge_u8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_gt_i16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jg     <cmp_gt_i16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_i16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jg     <cmp_gt_i16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_i16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_gt_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jg     <cmp_gt_i32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_i32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jg     <cmp_gt_i32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_i32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_gt_i64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jg     <cmp_gt_i64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_i64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jg     <cmp_gt_i64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_i64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_gt_i8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jg     <cmp_gt_i8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_i8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jg     <cmp_gt_i8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_i8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_gt_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	ja     <cmp_gt_u16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_u16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	ja     <cmp_gt_u16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_u16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_gt_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	ja     <cmp_gt_u32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_u32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	ja     <cmp_gt_u32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_u32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_gt_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	ja     <cmp_gt_u64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_u64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	ja     <cmp_gt_u64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_u64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_gt_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	ja     <cmp_gt_u8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_gt_u8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	ja     <cmp_gt_u8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_gt_u8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_imm_i64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    $0xffffffffffffffff,%rdi
-	jl     <cmp_imm_i64+0x1a>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_i64+0x21>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jl     <cmp_imm_i64+0x19>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_i64+0x1e>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
+	pop    %rbp
+	ret
+	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
+
+<cmp_imm_i64_fits>:
+	push   %rbp
+	mov    %rsp,%rbp
+	push   %rbx
+	cmp    $0x7fffffff,%rdi
+	jge    <cmp_imm_i64_fits+0x1c>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_i64_fits+0x21>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
 	nop
 
-<cmp_imm_i64_fits>:
-	push   %rbp
-	mov    %rsp,%rbp
-	cmp    $0x7fffffff,%rdi
-	jge    <cmp_imm_i64_fits+0x1d>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_i64_fits+0x24>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
-	pop    %rbp
-	ret
-	nopl   0x0(%rax)
-
 <cmp_imm_i64_wide>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	mov    $0x80000000,%eax
 	cmp    %rax,%rdi
-	jge    <cmp_imm_i64_wide+0x1e>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_i64_wide+0x25>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jge    <cmp_imm_i64_wide+0x1d>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_i64_wide+0x22>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
@@ -391,446 +446,510 @@ Disassembly of section .text:
 <cmp_imm_i8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    $0xff,%dil
-	jg     <cmp_imm_i8+0x1a>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_i8+0x21>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jg     <cmp_imm_i8+0x19>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_i8+0x1e>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nop
+	nopl   0x0(%rax)
 
 <cmp_imm_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    $0x8000,%di
-	jae    <cmp_imm_u16+0x1b>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_u16+0x22>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jae    <cmp_imm_u16+0x1a>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_u16+0x1f>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <cmp_imm_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    $0x80000000,%edi
-	jae    <cmp_imm_u32+0x1c>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_u32+0x23>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jae    <cmp_imm_u32+0x1b>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_u32+0x20>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <cmp_imm_u64_wide>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	movabs $0x8000000000000000,%rax
 	cmp    %rax,%rdi
-	jae    <cmp_imm_u64_wide+0x23>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_u64_wide+0x2a>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jae    <cmp_imm_u64_wide+0x22>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_u64_wide+0x27>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
-	nop
+	nopl   0x0(%rax)
 
 <cmp_imm_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    $0x80,%dil
-	ja     <cmp_imm_u8+0x1a>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_imm_u8+0x21>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	ja     <cmp_imm_u8+0x19>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_imm_u8+0x1e>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nop
+	nopl   0x0(%rax)
 
 <cmp_le_i16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jle    <cmp_le_i16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_i16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jle    <cmp_le_i16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_i16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_le_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jle    <cmp_le_i32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_i32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jle    <cmp_le_i32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_i32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_le_i64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jle    <cmp_le_i64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_i64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jle    <cmp_le_i64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_i64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_le_i8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jle    <cmp_le_i8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_i8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jle    <cmp_le_i8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_i8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_le_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jbe    <cmp_le_u16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_u16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jbe    <cmp_le_u16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_u16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_le_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jbe    <cmp_le_u32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_u32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jbe    <cmp_le_u32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_u32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_le_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jbe    <cmp_le_u64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_u64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jbe    <cmp_le_u64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_u64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_le_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jbe    <cmp_le_u8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_le_u8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jbe    <cmp_le_u8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_le_u8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_lt_i16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jl     <cmp_lt_i16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_i16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jl     <cmp_lt_i16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_i16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_lt_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jl     <cmp_lt_i32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_i32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jl     <cmp_lt_i32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_i32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_lt_i64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jl     <cmp_lt_i64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_i64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jl     <cmp_lt_i64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_i64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_lt_i8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jl     <cmp_lt_i8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_i8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jl     <cmp_lt_i8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_i8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_lt_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jb     <cmp_lt_u16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_u16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jb     <cmp_lt_u16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_u16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_lt_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jb     <cmp_lt_u32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_u32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jb     <cmp_lt_u32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_u32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_lt_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jb     <cmp_lt_u64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_u64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jb     <cmp_lt_u64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_u64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_lt_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jb     <cmp_lt_u8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_lt_u8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jb     <cmp_lt_u8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_lt_u8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ne_i16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jne    <cmp_ne_i16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_i16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_i16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_i16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ne_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jne    <cmp_ne_i32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_i32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_i32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_i32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_ne_i64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jne    <cmp_ne_i64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_i64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_i64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_i64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ne_i8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jne    <cmp_ne_i8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_i8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_i8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_i8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ne_u16>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %si,%di
-	jne    <cmp_ne_u16+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_u16+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_u16+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_u16+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ne_u32>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %esi,%edi
-	jne    <cmp_ne_u32+0x18>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_u32+0x1f>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_u32+0x17>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_u32+0x1c>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
 
 <cmp_ne_u64>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %rsi,%rdi
-	jne    <cmp_ne_u64+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_u64+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_u64+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_u64+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_ne_u8>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    %sil,%dil
-	jne    <cmp_ne_u8+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <cmp_ne_u8+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <cmp_ne_u8+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <cmp_ne_u8+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	xchg   %ax,%ax
+	nopl   0x0(%rax,%rax,1)
 
 <cmp_nested_i32>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
+	push   %r13
 	mov    %edi,%ebx
 	mov    %esi,%r12d
 	cmp    %r12d,%ebx
-	jl     <cmp_nested_i32+0x4b>
+	jl     <cmp_nested_i32+0x4a>
 	cmp    %r12d,%ebx
-	jg     <cmp_nested_i32+0x2a>
-	movl   $0x5,-0x2c(%rbp)
-	jmp    <cmp_nested_i32+0x66>
+	jg     <cmp_nested_i32+0x2b>
+	mov    $0x5,%r13d
+	jmp    <cmp_nested_i32+0x63>
 	test   %r12d,%r12d
 	jl     <cmp_nested_i32+0x3f>
-	movl   $0x4,-0x2c(%rbp)
-	jmp    <cmp_nested_i32+0x66>
-	movl   $0x3,-0x2c(%rbp)
-	jmp    <cmp_nested_i32+0x66>
+	mov    $0x4,%r13d
+	jmp    <cmp_nested_i32+0x63>
+	mov    $0x3,%r13d
+	jmp    <cmp_nested_i32+0x63>
 	test   %ebx,%ebx
-	jl     <cmp_nested_i32+0x5f>
-	movl   $0x2,-0x2c(%rbp)
-	jmp    <cmp_nested_i32+0x66>
-	movl   $0x1,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jl     <cmp_nested_i32+0x5d>
+	mov    $0x2,%r13d
+	jmp    <cmp_nested_i32+0x63>
+	mov    $0x1,%r13d
+	mov    %r13d,%eax
+	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nopl   (%rax)
 
 <simplebranch>:
 	push   %rbp
 	mov    %rsp,%rbp
+	push   %rbx
 	cmp    $0x64,%edi
-	ja     <simplebranch+0x19>
-	movl   $0xf0f0f0f,-0x2c(%rbp)
-	jmp    <simplebranch+0x20>
-	movl   $0xf0f0f0f0,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	ja     <simplebranch+0x18>
+	mov    $0xf0f0f0f,%ebx
+	jmp    <simplebranch+0x1d>
+	mov    $0xf0f0f0f0,%ebx
+	mov    %ebx,%eax
+	pop    %rbx
 	pop    %rbp
 	ret

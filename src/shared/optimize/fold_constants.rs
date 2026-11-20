@@ -57,6 +57,9 @@ impl ModuleTpde {
                     known[instr.result as usize] = Some(func.operands[ops]);
                     continue;
                 }
+                if instr.kind == InstructionKind::Noop {
+                    continue;
+                }
 
                 if instr.has_result & all_const(&func.operands[ops..ops_end])
                     && let Some(value) = self.eval_const(instr.kind, &func.operands[ops..ops_end])

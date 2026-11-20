@@ -13,7 +13,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -48,7 +50,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -56,7 +58,7 @@ ModuleTpde {
                     successors: [3],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 16]),
+                    <Ret> ([phi: 14, 0]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -105,7 +107,6 @@ ModuleTpde {
                     successors: [16, 15],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 12], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [14],
                 ],
@@ -115,12 +116,11 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 16],
+                    <Phi> ([raw: 12], [val: 12], [raw: 15], [val: 14]) -> [phi: 14, 0] i32,
                     <Br> (),
                     successors: [8],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 14], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [14],
                 ],
@@ -145,7 +145,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -158,7 +160,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -184,7 +188,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -205,7 +209,6 @@ ModuleTpde {
                     successors: [7, 6],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 3], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [5],
                 ],
@@ -215,12 +218,11 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 7],
-                    <Ret> ([val: 7]),
+                    <Phi> ([raw: 3], [val: 3], [raw: 6], [val: 5]) -> [phi: 5, 0] i32,
+                    <Ret> ([phi: 5, 0]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 5], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [5],
                 ],
@@ -245,7 +247,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -258,7 +262,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -291,7 +297,7 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -312,7 +318,7 @@ ModuleTpde {
                     successors: [2],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 14]),
+                    <Ret> ([phi: 11, 0]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -337,7 +343,6 @@ ModuleTpde {
                     successors: [13, 12],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 10], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [11],
                 ],
@@ -347,12 +352,11 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 14],
+                    <Phi> ([raw: 9], [val: 10], [raw: 12], [val: 12]) -> [phi: 11, 0] i32,
                     <Br> (),
                     successors: [5],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 12], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [11],
                 ],
@@ -377,7 +381,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -417,7 +423,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -430,7 +438,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -539,7 +549,9 @@ ModuleTpde {
                         state: Complex,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -580,8 +592,8 @@ ModuleTpde {
             has_personality: false,
             personality: 0,
             allocas: [
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 4, align: 4, state: WrittenA, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
@@ -594,12 +606,10 @@ ModuleTpde {
                     successors: [8],
                 ],
                 BasicBlock: [
-                    <Store> ([const: i32 7], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [5],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 3], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [5],
                 ],
@@ -609,13 +619,13 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 5],
-                    <Ret> ([val: 5]),
+                    <Phi> ([raw: 2], [const: i32 7], [raw: 3], [val: 3]) -> [phi: 5, 0] i32,
+                    <Ret> ([phi: 5, 0]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 22], [const: i32 100]) -> [val: 3],
-                    <CMPult> ([val: 3], [val: 22]) -> [val: 4],
+                    <Add> ([phi: 22, 0], [const: i32 100]) -> [val: 3],
+                    <CMPult> ([val: 3], [phi: 22, 0]) -> [val: 4],
                     <CondBr> ([val: 4]),
                     successors: [4, 3],
                 ],
@@ -677,7 +687,6 @@ ModuleTpde {
                     successors: [24, 23],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 18], [alloc: 1], [raw: 4]),
                     <Br> (),
                     successors: [22],
                 ],
@@ -687,12 +696,11 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 1], [raw: 4]) -> [val: 22],
+                    <Phi> ([raw: 20], [val: 18], [raw: 23], [val: 20]) -> [phi: 22, 0] i32,
                     <Br> (),
                     successors: [16],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 20], [alloc: 1], [raw: 4]),
                     <Br> (),
                     successors: [22],
                 ],
@@ -714,10 +722,12 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Promotable,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },
@@ -749,10 +759,12 @@ ModuleTpde {
                     size: 0,
                     align: 0,
                     access_info: AccessInfo {
-                        state: Unused,
+                        state: Promotable,
                         call_forwards: 0,
                         size_a: 0,
+                        ty_a: Void,
                         size_b: 0,
+                        ty_b: Void,
                         offset_b: 0,
                     },
                 },

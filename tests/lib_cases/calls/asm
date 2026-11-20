@@ -28,51 +28,51 @@ Disassembly of section .text:
 	mov    %rdi,%rbx
 	mov    %rsi,%r12
 	test   %rbx,%rbx
-	je     <ackermann+0xb9>
+	je     <ackermann+0xb7>
 	test   %r12,%r12
-	je     <ackermann+0x84>
+	je     <ackermann+0x83>
 	mov    %rbx,%r13
 	sub    $0x1,%r13
 	cmp    $0x1,%rbx
-	jb     <ackermann+0x76>
+	jb     <ackermann+0x75>
 	mov    %r12,%r14
 	sub    $0x1,%r14
 	cmp    $0x1,%r12
-	jb     <ackermann+0x68>
+	jb     <ackermann+0x67>
 	mov    %rbx,%rdi
 	mov    %r14,%rsi
 	call   <ackermann+0x54>
 	mov    %r13,%rdi
 	mov    %rax,%rsi
 	call   <ackermann+0x5f>
-	mov    %rax,-0x30(%rbp)
-	jmp    <ackermann+0xcb>
-	lea    -0x8(%rip),%rdi        # <ackermann+0x67>
-	call   <ackermann+0x74>
+	mov    %rax,%r13
+	jmp    <ackermann+0xc8>
+	lea    -0x8(%rip),%rdi        # <ackermann+0x66>
+	call   <ackermann+0x73>
 	ud2
-	lea    -0x8(%rip),%rdi        # <ackermann+0x75>
-	call   <ackermann+0x82>
+	lea    -0x8(%rip),%rdi        # <ackermann+0x74>
+	call   <ackermann+0x81>
 	ud2
-	mov    %rbx,%r13
-	sub    $0x1,%r13
+	mov    %rbx,%r14
+	sub    $0x1,%r14
 	cmp    $0x1,%rbx
-	jb     <ackermann+0xab>
-	mov    %r13,%rdi
+	jb     <ackermann+0xa9>
+	mov    %r14,%rdi
 	mov    $0x1,%esi
-	call   <ackermann+0xa2>
-	mov    %rax,-0x30(%rbp)
-	jmp    <ackermann+0xcb>
-	lea    -0x8(%rip),%rdi        # <ackermann+0xaa>
-	call   <ackermann+0xb7>
+	call   <ackermann+0xa1>
+	mov    %rax,%r13
+	jmp    <ackermann+0xc8>
+	lea    -0x8(%rip),%rdi        # <ackermann+0xa8>
+	call   <ackermann+0xb5>
 	ud2
 	lea    0x1(%r12),%rbx
 	cmp    %r12,%rbx
-	jb     <ackermann+0xd4>
-	mov    %rbx,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
-	jmp    <ackermann+0xe2>
-	lea    -0x8(%rip),%rdi        # <ackermann+0xd3>
-	call   <ackermann+0xe0>
+	jb     <ackermann+0xd0>
+	mov    %rbx,%r13
+	mov    %r13,%rax
+	jmp    <ackermann+0xde>
+	lea    -0x8(%rip),%rdi        # <ackermann+0xcf>
+	call   <ackermann+0xdc>
 	ud2
 	add    $0x10,%rsp
 	pop    %r14
@@ -81,7 +81,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	nop
+	nopl   0x0(%rax,%rax,1)
 
 <add3>:
 	push   %rbp
@@ -635,66 +635,65 @@ Disassembly of section .text:
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
-	sub    $0x40,%rsp
-	movq   $0x0,-0x30(%rbp)
-	movq   $0x0,-0x38(%rbp)
+	sub    $0x50,%rsp
 	mov    %rsi,-0x40(%rbp)
 	mov    %rdi,-0x48(%rbp)
 	movq   %xmm0,-0x50(%rbp)
-	mov    -0x38(%rbp),%rax
-	cmp    $0x8,%rax
-	jae    <consume_big_and_args+0x79>
-	mov    -0x38(%rbp),%rbx
-	cmp    $0x8,%rbx
-	jae    <consume_big_and_args+0xe7>
+	xor    %eax,%eax
+	mov    %rax,-0x58(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x60(%rbp)
+	cmpq   $0x8,-0x58(%rbp)
+	jae    <consume_big_and_args+0x6f>
+	cmpq   $0x8,-0x58(%rbp)
+	jae    <consume_big_and_args+0xdd>
 	mov    -0x48(%rbp),%rax
-	mov    (%rax,%rbx,8),%rcx
-	mov    -0x30(%rbp),%rdx
-	lea    (%rdx,%rcx,1),%r12
-	cmp    %rdx,%r12
-	jb     <consume_big_and_args+0xd9>
-	mov    %r12,-0x30(%rbp)
-	mov    -0x38(%rbp),%rcx
+	mov    -0x58(%rbp),%rcx
+	mov    (%rax,%rcx,8),%rdx
+	mov    -0x60(%rbp),%rsi
+	lea    (%rsi,%rdx,1),%rbx
+	cmp    %rsi,%rbx
+	jb     <consume_big_and_args+0xcf>
 	lea    0x1(%rcx),%r12
 	cmp    %rcx,%r12
-	jb     <consume_big_and_args+0xcb>
-	mov    %r12,-0x38(%rbp)
-	jmp    <consume_big_and_args+0x29>
-	mov    -0x30(%rbp),%rax
+	jb     <consume_big_and_args+0xc1>
+	mov    %r12,-0x58(%rbp)
+	mov    %rbx,-0x60(%rbp)
+	jmp    <consume_big_and_args+0x25>
+	mov    -0x60(%rbp),%rax
 	mov    -0x40(%rbp),%rcx
 	lea    (%rax,%rcx,1),%rcx
 	cmp    %rax,%rcx
-	jb     <consume_big_and_args+0xbd>
+	jb     <consume_big_and_args+0xb3>
 	movq   %rcx,%xmm0
-	punpckldq -0x8(%rip),%xmm0        # <consume_big_and_args+0x93>
-	subpd  -0x8(%rip),%xmm0        # <consume_big_and_args+0x9b>
+	punpckldq -0x8(%rip),%xmm0        # <consume_big_and_args+0x89>
+	subpd  -0x8(%rip),%xmm0        # <consume_big_and_args+0x91>
 	movapd %xmm0,%xmm1
 	unpckhpd %xmm0,%xmm1
 	addsd  %xmm0,%xmm1
 	addsd  -0x50(%rbp),%xmm1
 	movapd %xmm1,%xmm0
-	jmp    <consume_big_and_args+0xfd>
-	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xbc>
-	call   <consume_big_and_args+0xc9>
+	jmp    <consume_big_and_args+0xf4>
+	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xb2>
+	call   <consume_big_and_args+0xbf>
 	ud2
-	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xca>
-	call   <consume_big_and_args+0xd7>
+	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xc0>
+	call   <consume_big_and_args+0xcd>
 	ud2
-	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xd8>
-	call   <consume_big_and_args+0xe5>
+	lea    -0x8(%rip),%rdi        # <consume_big_and_args+0xce>
+	call   <consume_big_and_args+0xdb>
 	ud2
-	mov    %rbx,%rdi
+	mov    -0x58(%rbp),%rdi
 	mov    $0x8,%esi
-	lea    -0x8(%rip),%rdx        # <consume_big_and_args+0xee>
-	call   <consume_big_and_args+0xfb>
+	lea    -0x8(%rip),%rdx        # <consume_big_and_args+0xe5>
+	call   <consume_big_and_args+0xf2>
 	ud2
-	add    $0x40,%rsp
+	add    $0x50,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
+	nopl   (%rax)
 
 <consume_big_struct>:
 	push   %rbp
@@ -768,47 +767,46 @@ Disassembly of section .text:
 	sub    $0x18,%rsp
 	mov    %rdi,%rbx
 	cmp    $0x2,%rbx
-	jbe    <fib+0x8f>
+	jbe    <fib+0x8e>
 	mov    %rbx,%r12
 	sub    $0x1,%r12
 	cmp    $0x1,%rbx
-	jb     <fib+0x81>
+	jb     <fib+0x80>
 	mov    %r12,%rdi
 	call   <fib+0x33>
 	mov    %rax,%r12
 	mov    %rbx,%r13
 	sub    $0x2,%r13
 	cmp    $0x2,%rbx
-	jb     <fib+0x73>
+	jb     <fib+0x72>
 	mov    %r13,%rdi
 	call   <fib+0x4f>
 	lea    (%r12,%rax,1),%r13
 	cmp    %r12,%r13
-	jb     <fib+0x65>
-	mov    %r13,-0x30(%rbp)
-	jmp    <fib+0x93>
-	lea    -0x8(%rip),%rdi        # <fib+0x64>
-	call   <fib+0x71>
+	jb     <fib+0x64>
+	mov    %r13,%r12
+	jmp    <fib+0x91>
+	lea    -0x8(%rip),%rdi        # <fib+0x63>
+	call   <fib+0x70>
 	ud2
-	lea    -0x8(%rip),%rdi        # <fib+0x72>
-	call   <fib+0x7f>
+	lea    -0x8(%rip),%rdi        # <fib+0x71>
+	call   <fib+0x7e>
 	ud2
-	lea    -0x8(%rip),%rdi        # <fib+0x80>
-	call   <fib+0x8d>
+	lea    -0x8(%rip),%rdi        # <fib+0x7f>
+	call   <fib+0x8c>
 	ud2
-	mov    %rbx,-0x30(%rbp)
-	mov    -0x30(%rbp),%rax
+	mov    %rbx,%r12
+	mov    %r12,%rax
 	add    $0x18,%rsp
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
+	nop
 
 <get_callback>:
-	lea    -0x8(%rip),%rax        # <fib+0xaf>
+	lea    -0x8(%rip),%rax        # <fib+0x9f>
 	ret
 	nopl   0x0(%rax,%rax,1)
 
@@ -922,26 +920,27 @@ Disassembly of section .text:
 	sub    $0x20,%rsp
 	mov    %rdi,%rbx
 	test   %rbx,%rbx
-	je     <is_even+0x46>
+	je     <is_even+0x45>
 	mov    %rbx,%r12
 	sub    $0x1,%r12
 	cmp    $0x1,%rbx
-	jb     <is_even+0x38>
+	jb     <is_even+0x37>
 	mov    %r12,%rdi
 	call   <is_even+0x30>
-	mov    %al,-0x29(%rbp)
+	mov    %eax,%ebx
 	jmp    <is_even+0x4a>
-	lea    -0x8(%rip),%rdi        # <is_even+0x37>
-	call   <is_even+0x44>
+	lea    -0x8(%rip),%rdi        # <is_even+0x36>
+	call   <is_even+0x43>
 	ud2
-	movb   $0x1,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	mov    $0x1,%ebx
+	mov    %ebx,%eax
 	add    $0x20,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <is_odd>:
 	push   %rbp
@@ -951,26 +950,27 @@ Disassembly of section .text:
 	sub    $0x20,%rsp
 	mov    %rdi,%rbx
 	test   %rbx,%rbx
-	je     <is_odd+0x46>
+	je     <is_odd+0x45>
 	mov    %rbx,%r12
 	sub    $0x1,%r12
 	cmp    $0x1,%rbx
-	jb     <is_odd+0x38>
+	jb     <is_odd+0x37>
 	mov    %r12,%rdi
 	call   <is_odd+0x30>
-	mov    %al,-0x29(%rbp)
-	jmp    <is_odd+0x4a>
-	lea    -0x8(%rip),%rdi        # <is_odd+0x37>
-	call   <is_odd+0x44>
+	mov    %eax,%ebx
+	jmp    <is_odd+0x47>
+	lea    -0x8(%rip),%rdi        # <is_odd+0x36>
+	call   <is_odd+0x43>
 	ud2
-	movb   $0x0,-0x29(%rbp)
-	movzbl -0x29(%rbp),%eax
+	xor    %ebx,%ebx
+	mov    %ebx,%eax
 	add    $0x20,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
 <many_args>:
 	push   %rbp
@@ -1174,58 +1174,60 @@ Disassembly of section .text:
 	mov    %r8d,%r14d
 	test   $0x1,%dil
 	mov    %r9d,-0x34(%rbp)
-	jne    <narrow_args+0x37>
-	movq   $0x0,-0x30(%rbp)
-	jmp    <narrow_args+0x3f>
-	movq   $0x1,-0x30(%rbp)
+	jne    <narrow_args+0x35>
+	xor    %eax,%eax
+	mov    %rax,-0x40(%rbp)
+	jmp    <narrow_args+0x3e>
+	mov    $0x1,%eax
+	mov    %rax,-0x40(%rbp)
 	movzbl %bl,%ebx
-	mov    -0x30(%rbp),%rax
-	xor    %ecx,%ecx
-	mov    %rax,%r15
+	xor    %eax,%eax
+	mov    -0x40(%rbp),%rcx
+	mov    %rcx,%r15
 	add    %rbx,%r15
-	seto   %cl
-	jo     <narrow_args+0xec>
+	seto   %al
+	jo     <narrow_args+0xeb>
 	movsbq %r12b,%r12
 	xor    %eax,%eax
 	mov    %r15,%rbx
 	add    %r12,%rbx
 	seto   %al
-	jo     <narrow_args+0xde>
+	jo     <narrow_args+0xdd>
 	movzwl %r13w,%r13d
 	xor    %eax,%eax
 	mov    %rbx,%r12
 	add    %r13,%r12
 	seto   %al
-	jo     <narrow_args+0xd0>
+	jo     <narrow_args+0xcf>
 	movswq %r14w,%r14
 	xor    %eax,%eax
 	mov    %r12,%rbx
 	add    %r14,%rbx
 	seto   %al
-	jo     <narrow_args+0xc2>
+	jo     <narrow_args+0xc1>
 	mov    -0x34(%rbp),%eax
 	mov    %eax,%eax
 	xor    %ecx,%ecx
 	mov    %rbx,%r12
 	add    %rax,%r12
 	seto   %cl
-	jo     <narrow_args+0xb4>
+	jo     <narrow_args+0xb3>
 	mov    %r12,%rax
-	jmp    <narrow_args+0xfa>
-	lea    -0x8(%rip),%rdi        # <narrow_args+0xb3>
-	call   <narrow_args+0xc0>
+	jmp    <narrow_args+0xf9>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xb2>
+	call   <narrow_args+0xbf>
 	ud2
-	lea    -0x8(%rip),%rdi        # <narrow_args+0xc1>
-	call   <narrow_args+0xce>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xc0>
+	call   <narrow_args+0xcd>
 	ud2
-	lea    -0x8(%rip),%rdi        # <narrow_args+0xcf>
-	call   <narrow_args+0xdc>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xce>
+	call   <narrow_args+0xdb>
 	ud2
-	lea    -0x8(%rip),%rdi        # <narrow_args+0xdd>
-	call   <narrow_args+0xea>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xdc>
+	call   <narrow_args+0xe9>
 	ud2
-	lea    -0x8(%rip),%rdi        # <narrow_args+0xeb>
-	call   <narrow_args+0xf8>
+	lea    -0x8(%rip),%rdi        # <narrow_args+0xea>
+	call   <narrow_args+0xf7>
 	ud2
 	add    $0x18,%rsp
 	pop    %r15
@@ -1235,7 +1237,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax)
+	nopl   0x0(%rax,%rax,1)
 
 <narrow_ret_i16>:
 	and    $0xffff,%rdi
@@ -1602,19 +1604,21 @@ Disassembly of section .text:
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
+	push   %r13
 	mov    %esi,%ebx
 	mov    %edx,%r12d
 	test   $0x1,%dil
-	jne    <select_bool+0x1f>
-	mov    %r12d,-0x2c(%rbp)
-	jmp    <select_bool+0x22>
-	mov    %ebx,-0x2c(%rbp)
-	mov    -0x2c(%rbp),%eax
+	jne    <select_bool+0x20>
+	mov    %r12d,%r13d
+	jmp    <select_bool+0x23>
+	mov    %ebx,%r13d
+	mov    %r13d,%eax
+	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <split_registers>:
 	cvtsi2sd %edi,%xmm1
@@ -1766,79 +1770,75 @@ Disassembly of section .text:
 	push   %rbx
 	push   %r12
 	push   %r13
-	sub    $0x38,%rsp
-	movq   $0x0,-0x30(%rbp)
-	movq   $0x0,-0x38(%rbp)
+	sub    $0x48,%rsp
 	mov    %rsi,-0x40(%rbp)
 	mov    %rdi,-0x48(%rbp)
-	mov    -0x38(%rbp),%rax
+	xor    %eax,%eax
+	mov    %rax,-0x50(%rbp)
+	xor    %eax,%eax
+	mov    %rax,-0x58(%rbp)
+	mov    -0x50(%rbp),%rax
 	mov    -0x40(%rbp),%rcx
 	cmp    %rcx,%rax
-	jae    <sum_ptr+0xc4>
-	mov    -0x38(%rbp),%rax
+	jae    <sum_ptr+0xaa>
 	mov    -0x48(%rbp),%rdi
 	mov    %rax,%rsi
-	lea    -0x8(%rip),%rdx        # <sum_ptr+0x40>
-	call   <sum_ptr+0x4d>
+	lea    -0x8(%rip),%rdx        # <sum_ptr+0x38>
+	call   <sum_ptr+0x45>
 	mov    %rax,%rbx
 	mov    %rbx,%rax
 	mov    %rax,%r12
-	mov    $0x8,%eax
-	sub    $0x1,%rax
-	mov    %r12,%rcx
-	and    %rax,%rcx
-	test   %rcx,%rcx
-	jne    <sum_ptr+0x106>
+	mov    %r12,%rax
+	and    $0x7,%rax
+	test   %rax,%rax
+	jne    <sum_ptr+0xec>
 	mov    %rbx,%rax
-	mov    $0x8,%ecx
-	test   %rcx,%rcx
-	setne  %cl
 	test   %rax,%rax
 	sete   %al
-	and    %ecx,%eax
+	and    $0x1,%eax
 	xor    $0x1,%al
 	test   $0x1,%al
-	je     <sum_ptr+0xf8>
+	je     <sum_ptr+0xde>
 	mov    (%rbx),%rbx
-	mov    -0x30(%rbp),%rax
-	xor    %ecx,%ecx
-	mov    %rax,%r13
+	xor    %eax,%eax
+	mov    -0x58(%rbp),%rcx
+	mov    %rcx,%r13
 	add    %rbx,%r13
-	seto   %cl
-	jo     <sum_ptr+0xde>
-	mov    %r13,-0x30(%rbp)
-	mov    -0x38(%rbp),%rax
+	seto   %al
+	jo     <sum_ptr+0xc4>
+	mov    -0x50(%rbp),%rax
 	lea    0x1(%rax),%rbx
 	cmp    %rax,%rbx
-	jb     <sum_ptr+0xcd>
-	mov    %rbx,-0x38(%rbp)
-	jmp    <sum_ptr+0x25>
-	mov    -0x30(%rbp),%rax
-	jmp    <sum_ptr+0x11c>
-	lea    -0x8(%rip),%rdi        # <sum_ptr+0xcc>
-	call   <sum_ptr+0xd9>
-	jmp    <sum_ptr+0xf6>
+	jb     <sum_ptr+0xb3>
+	mov    %rbx,-0x50(%rbp)
+	mov    %r13,-0x58(%rbp)
+	jmp    <sum_ptr+0x21>
+	mov    -0x58(%rbp),%rax
+	jmp    <sum_ptr+0x102>
+	lea    -0x8(%rip),%rdi        # <sum_ptr+0xb2>
+	call   <sum_ptr+0xbf>
+	jmp    <sum_ptr+0xdc>
+	lea    -0x8(%rip),%rdi        # <sum_ptr+0xc3>
+	call   <sum_ptr+0xd0>
+	jmp    <sum_ptr+0xdc>
+	call   <sum_ptr+0xda>
+	ud2
+	ud2
 	lea    -0x8(%rip),%rdi        # <sum_ptr+0xdd>
 	call   <sum_ptr+0xea>
-	jmp    <sum_ptr+0xf6>
-	call   <sum_ptr+0xf4>
-	ud2
-	ud2
-	lea    -0x8(%rip),%rdi        # <sum_ptr+0xf7>
-	call   <sum_ptr+0x104>
 	ud2
 	mov    $0x8,%edi
 	mov    %r12,%rsi
-	lea    -0x8(%rip),%rdx        # <sum_ptr+0x10d>
-	call   <sum_ptr+0x11a>
+	lea    -0x8(%rip),%rdx        # <sum_ptr+0xf3>
+	call   <sum_ptr+0x100>
 	ud2
-	add    $0x38,%rsp
+	add    $0x48,%rsp
 	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <test_c_abi_call>:
 	push   %rbp

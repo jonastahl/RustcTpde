@@ -132,67 +132,67 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x48,%rsp
+	push   %r12
+	sub    $0x40,%rsp
 	mov    %rdi,%rbx
 	mov    %rsi,-0x40(%rbp)
-	movb   $0x0,-0x41(%rbp)
 	lea    -0x40(%rbp),%rdi
-	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x1d>
-	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x32>
+	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x1b>
+	xor    %r12d,%r12d
+	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x35>
 	lea    -0x40(%rbp),%rdi
 	mov    %rax,%rsi
-	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x2e>
-	movb   $0x1,-0x41(%rbp)
-	movzbl -0x41(%rbp),%eax
-	test   $0x1,%al
-	jne    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x50>
+	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x2f>
+	mov    $0x1,%r12d
+	test   $0x1,%r12b
+	jne    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x51>
 	mov    -0x40(%rbp),%eax
 	mov    %eax,0x8(%rbx)
 	movq   $0x0,(%rbx)
-	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x5f>
+	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_+0x60>
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
 	mov    %rax,(%rbx)
 	mov    %rcx,0x8(%rbx)
-	add    $0x48,%rsp
+	add    $0x40,%rsp
+	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
+	nopl   0x0(%rax)
 
 <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	sub    $0x48,%rsp
+	push   %r12
+	sub    $0x40,%rsp
 	mov    %rdi,%rbx
 	mov    %rsi,-0x40(%rbp)
-	movb   $0x0,-0x41(%rbp)
 	lea    -0x40(%rbp),%rdi
-	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x1d>
-	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x32>
+	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x1b>
+	xor    %r12d,%r12d
+	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x35>
 	lea    -0x40(%rbp),%rdi
 	mov    %rax,%rsi
-	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x2e>
-	movb   $0x1,-0x41(%rbp)
-	movzbl -0x41(%rbp),%eax
-	test   $0x1,%al
-	jne    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x50>
+	call   <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x2f>
+	mov    $0x1,%r12d
+	test   $0x1,%r12b
+	jne    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x51>
 	mov    -0x40(%rbp),%eax
 	mov    %eax,0x8(%rbx)
 	movq   $0x0,(%rbx)
-	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x5f>
+	jmp    <_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_+0x60>
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
 	mov    %rax,(%rbx)
 	mov    %rcx,0x8(%rbx)
-	add    $0x48,%rsp
+	add    $0x40,%rsp
+	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nop
+	nopl   0x0(%rax)
 
 <_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind7do_callNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBY_>:
 	push   %rbp
@@ -410,11 +410,13 @@ Disassembly of section .text:
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
+	push   %r13
+	push   %r14
 	sub    $0x40,%rsp
 	mov    %edi,-0x2c(%rbp)
 	lea    -0x40(%rbp),%rdi
 	lea    -0x2c(%rbp),%rsi
-	call   <try_call+0x1b>
+	call   <try_call+0x1f>
 	mov    -0x40(%rbp),%rax
 	test   %rax,%rax
 	sete   %al
@@ -423,11 +425,11 @@ Disassembly of section .text:
 	mov    $0x1,%ecx
 	cmove  %rcx,%rax
 	test   $0x1,%al
-	je     <try_call+0x49>
-	movl   $0xffffffff,-0x30(%rbp)
-	jmp    <try_call+0x4f>
+	je     <try_call+0x4b>
+	mov    $0xffffffff,%ebx
+	jmp    <try_call+0x50>
 	mov    -0x38(%rbp),%eax
-	mov    %eax,-0x30(%rbp)
+	mov    %eax,%ebx
 	mov    -0x40(%rbp),%rax
 	test   %rax,%rax
 	sete   %al
@@ -436,49 +438,59 @@ Disassembly of section .text:
 	mov    $0x1,%ecx
 	cmove  %rcx,%rax
 	test   %rax,%rax
-	je     <try_call+0xca>
+	jne    <try_call+0x7b>
+	mov    %ebx,%r12d
+	jmp    <try_call+0xe2>
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
-	mov    %rax,%rbx
-	mov    (%rcx),%r12
-	test   %r12,%r12
-	je     <try_call+0xc1>
-	mov    %rbx,%rdi
-	call   *%r12
-	jmp    <try_call+0xc1>
+	mov    %rax,%r13
+	mov    (%rcx),%r14
+	test   %r14,%r14
+	jne    <try_call+0x9a>
+	mov    %ebx,-0x54(%rbp)
+	jmp    <try_call+0xd5>
+	mov    %r13,%rdi
+	call   *%r14
+	mov    %ebx,-0x54(%rbp)
+	jmp    <try_call+0xd5>
 	mov    %rax,-0x50(%rbp)
 	mov    %edx,-0x48(%rbp)
 	lea    -0x40(%rbp),%rdi
-	call   <try_call+0xa4>
-	jmp    <try_call+0xb0>
-	call   <try_call+0xae>
+	call   <try_call+0xb8>
+	jmp    <try_call+0xc4>
+	call   <try_call+0xc2>
 	ud2
 	mov    -0x50(%rbp),%rax
 	mov    -0x48(%rbp),%ecx
 	mov    %rax,%rdi
-	call   <try_call+0xbf>
+	call   <try_call+0xd3>
 	ud2
 	lea    -0x40(%rbp),%rdi
-	call   <try_call+0xca>
-	mov    -0x30(%rbp),%eax
+	call   <try_call+0xde>
+	mov    -0x54(%rbp),%r12d
+	mov    %r12d,%eax
 	add    $0x40,%rsp
+	pop    %r14
+	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nop
+	nopl   0x0(%rax,%rax,1)
 
 <try_call_guarded>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
+	push   %r13
+	push   %r14
 	sub    $0x40,%rsp
 	mov    %edi,-0x2c(%rbp)
 	lea    -0x40(%rbp),%rdi
 	lea    -0x2c(%rbp),%rsi
-	call   <try_call_guarded+0x1b>
+	call   <try_call_guarded+0x1f>
 	mov    -0x40(%rbp),%rax
 	test   %rax,%rax
 	sete   %al
@@ -487,11 +499,11 @@ Disassembly of section .text:
 	mov    $0x1,%ecx
 	cmove  %rcx,%rax
 	test   $0x1,%al
-	je     <try_call_guarded+0x49>
-	movl   $0xffffffff,-0x30(%rbp)
-	jmp    <try_call_guarded+0x4f>
+	je     <try_call_guarded+0x4b>
+	mov    $0xffffffff,%ebx
+	jmp    <try_call_guarded+0x50>
 	mov    -0x38(%rbp),%eax
-	mov    %eax,-0x30(%rbp)
+	mov    %eax,%ebx
 	mov    -0x40(%rbp),%rax
 	test   %rax,%rax
 	sete   %al
@@ -500,32 +512,40 @@ Disassembly of section .text:
 	mov    $0x1,%ecx
 	cmove  %rcx,%rax
 	test   %rax,%rax
-	je     <try_call_guarded+0xca>
+	jne    <try_call_guarded+0x7b>
+	mov    %ebx,%r12d
+	jmp    <try_call_guarded+0xe2>
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
-	mov    %rax,%rbx
-	mov    (%rcx),%r12
-	test   %r12,%r12
-	je     <try_call_guarded+0xc1>
-	mov    %rbx,%rdi
-	call   *%r12
-	jmp    <try_call_guarded+0xc1>
+	mov    %rax,%r13
+	mov    (%rcx),%r14
+	test   %r14,%r14
+	jne    <try_call_guarded+0x9a>
+	mov    %ebx,-0x54(%rbp)
+	jmp    <try_call_guarded+0xd5>
+	mov    %r13,%rdi
+	call   *%r14
+	mov    %ebx,-0x54(%rbp)
+	jmp    <try_call_guarded+0xd5>
 	mov    %rax,-0x50(%rbp)
 	mov    %edx,-0x48(%rbp)
 	lea    -0x40(%rbp),%rdi
-	call   <try_call_guarded+0xa4>
-	jmp    <try_call_guarded+0xb0>
-	call   <try_call_guarded+0xae>
+	call   <try_call_guarded+0xb8>
+	jmp    <try_call_guarded+0xc4>
+	call   <try_call_guarded+0xc2>
 	ud2
 	mov    -0x50(%rbp),%rax
 	mov    -0x48(%rbp),%ecx
 	mov    %rax,%rdi
-	call   <try_call_guarded+0xbf>
+	call   <try_call_guarded+0xd3>
 	ud2
 	lea    -0x40(%rbp),%rdi
-	call   <try_call_guarded+0xca>
-	mov    -0x30(%rbp),%eax
+	call   <try_call_guarded+0xde>
+	mov    -0x54(%rbp),%r12d
+	mov    %r12d,%eax
 	add    $0x40,%rsp
+	pop    %r14
+	pop    %r13
 	pop    %r12
 	pop    %rbx
 	pop    %rbp

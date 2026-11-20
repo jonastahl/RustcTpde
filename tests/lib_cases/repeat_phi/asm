@@ -278,55 +278,62 @@ Disassembly of section .text:
 <repeat_in_loop>:
 	push   %rbp
 	mov    %rsp,%rbp
-	sub    $0x50,%rsp
-	movl   $0x0,-0x2c(%rbp)
-	movl   $0x0,-0x30(%rbp)
+	push   %rbx
+	sub    $0x58,%rsp
 	mov    %edi,-0x44(%rbp)
-	mov    -0x30(%rbp),%eax
+	xor    %eax,%eax
+	mov    %eax,-0x48(%rbp)
+	xor    %eax,%eax
+	mov    %eax,-0x4c(%rbp)
+	mov    -0x48(%rbp),%eax
 	mov    -0x44(%rbp),%ecx
 	cmp    %ecx,%eax
-	jae    <repeat_in_loop+0x8e>
-	mov    -0x30(%rbp),%eax
-	mov    $0x3,%edx
-	imul   %edx,%eax
-	mov    %eax,-0x48(%rbp)
-	xor    %edx,%edx
-	mov    %rdx,-0x50(%rbp)
-	cmpq   $0x3,-0x50(%rbp)
-	jae    <repeat_in_loop+0x67>
-	mov    -0x50(%rbp),%rax
+	jae    <repeat_in_loop+0x93>
+	mov    %eax,%edx
+	mov    $0x3,%ebx
+	imul   %ebx,%edx
+	mov    %edx,-0x50(%rbp)
+	xor    %ebx,%ebx
+	mov    %rbx,-0x58(%rbp)
+	mov    -0x4c(%rbp),%ebx
+	mov    %ebx,-0x5c(%rbp)
+	mov    %eax,-0x60(%rbp)
+	cmpq   $0x3,-0x58(%rbp)
+	jae    <repeat_in_loop+0x6c>
+	mov    -0x58(%rbp),%rax
 	mov    %rax,%rcx
 	mov    $0x4,%edx
 	imul   %rdx,%rcx
-	mov    -0x48(%rbp),%edx
+	mov    -0x50(%rbp),%edx
 	mov    %edx,-0x40(%rbp,%rcx,1)
 	lea    0x1(%rax),%rcx
-	mov    %rcx,-0x50(%rbp)
-	jmp    <repeat_in_loop+0x3b>
+	mov    %rcx,-0x58(%rbp)
+	jmp    <repeat_in_loop+0x40>
 	mov    -0x38(%rbp),%eax
-	mov    -0x2c(%rbp),%ecx
+	mov    -0x5c(%rbp),%ecx
 	lea    (%rcx,%rax,1),%eax
 	cmp    %ecx,%eax
-	jb     <repeat_in_loop+0xa4>
-	mov    %eax,-0x2c(%rbp)
-	mov    -0x30(%rbp),%eax
-	lea    0x1(%rax),%ecx
-	cmp    %eax,%ecx
-	jb     <repeat_in_loop+0x96>
-	mov    %ecx,-0x30(%rbp)
-	jmp    <repeat_in_loop+0x19>
-	mov    -0x2c(%rbp),%eax
-	jmp    <repeat_in_loop+0xb2>
-	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0x95>
-	call   <repeat_in_loop+0xa2>
+	jb     <repeat_in_loop+0xa9>
+	mov    -0x60(%rbp),%ecx
+	lea    0x1(%rcx),%edx
+	cmp    %ecx,%edx
+	jb     <repeat_in_loop+0x9b>
+	mov    %edx,-0x48(%rbp)
+	mov    %eax,-0x4c(%rbp)
+	jmp    <repeat_in_loop+0x16>
+	mov    -0x4c(%rbp),%eax
+	jmp    <repeat_in_loop+0xb7>
+	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0x9a>
+	call   <repeat_in_loop+0xa7>
 	ud2
-	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0xa3>
-	call   <repeat_in_loop+0xb0>
+	lea    -0x8(%rip),%rdi        # <repeat_in_loop+0xa8>
+	call   <repeat_in_loop+0xb5>
 	ud2
-	add    $0x50,%rsp
+	add    $0x58,%rsp
+	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <repeat_pair>:
 	push   %rbp
