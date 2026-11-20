@@ -1,3 +1,4 @@
+mod fold_constants;
 mod inline;
 mod promote;
 
