@@ -398,6 +398,8 @@ mod ffi {
         clmul,
         crc32,
 
+        Mov,
+
         Last,
     }
 

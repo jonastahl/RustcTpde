@@ -278,7 +278,7 @@ fn inline_call(
             Slot::new_phi(caller.phis.len() as u32 - 1).to_ffi()
         };
         caller.instructions.push(ffi::Instruction {
-            kind: InstructionKind::Cast,
+            kind: InstructionKind::Mov,
             ops_start: caller.operands.len() as u32,
             ops_len: 1,
             has_result: true,

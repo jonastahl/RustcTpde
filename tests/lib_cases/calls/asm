@@ -396,20 +396,17 @@ Disassembly of section .text:
 	mov    -0x38(%rbp),%rax
 	lea    (%rbx,%rax,1),%r12
 	cmp    %rbx,%r12
-	jb     <big_struct_roundtrip+0x3c>
-	mov    %r12,%rbx
-	mov    %rbx,%rax
-	jmp    <big_struct_roundtrip+0x4a>
-	lea    -0x8(%rip),%rdi        # <big_struct_roundtrip+0x3b>
-	call   <big_struct_roundtrip+0x48>
+	jb     <big_struct_roundtrip+0x39>
+	mov    %r12,%rax
+	jmp    <big_struct_roundtrip+0x47>
+	lea    -0x8(%rip),%rdi        # <big_struct_roundtrip+0x38>
+	call   <big_struct_roundtrip+0x45>
 	ud2
 	add    $0x60,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax)
 
 <bytes3_bump>:
 	push   %rbp
@@ -1144,17 +1141,15 @@ Disassembly of section .text:
 	mov    %r12,-0x38(%rbp)
 	mov    -0x40(%rbp),%rbx
 	mov    -0x38(%rbp),%r12
-	mov    %rbx,%r13
-	mov    %r12,%rbx
 	xor    %eax,%eax
-	mov    %rbx,%r12
-	sub    %r13,%r12
+	mov    %r12,%r13
+	sub    %rbx,%r13
 	seto   %al
-	jo     <min_max_spread+0x58>
-	mov    %r12,%rax
-	jmp    <min_max_spread+0x66>
-	lea    -0x8(%rip),%rdi        # <min_max_spread+0x57>
-	call   <min_max_spread+0x64>
+	jo     <min_max_spread+0x52>
+	mov    %r13,%rax
+	jmp    <min_max_spread+0x60>
+	lea    -0x8(%rip),%rdi        # <min_max_spread+0x51>
+	call   <min_max_spread+0x5e>
 	ud2
 	add    $0x28,%rsp
 	pop    %r13
@@ -1162,8 +1157,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
-	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax,%rax,1)
 
 <narrow_args>:
 	push   %rbp
@@ -1269,71 +1263,67 @@ Disassembly of section .text:
 	mov    %rbx,%r13
 	add    %r12,%r13
 	seto   %al
-	jo     <nested_calls+0x116>
+	jo     <nested_calls+0x10a>
 	xor    %eax,%eax
 	mov    %r13,%r14
 	add    $0x1,%r14
 	seto   %al
-	jo     <nested_calls+0x108>
-	mov    %r14,%r13
+	jo     <nested_calls+0xfc>
 	xor    %eax,%eax
-	mov    %r12,%r14
-	add    %rbx,%r14
+	mov    %r12,%r13
+	add    %rbx,%r13
 	seto   %al
-	jo     <nested_calls+0xfa>
+	jo     <nested_calls+0xee>
 	xor    %eax,%eax
-	mov    %r14,%r12
+	mov    %r13,%r12
 	add    $0x2,%r12
 	seto   %al
-	jo     <nested_calls+0xec>
-	mov    %r12,%r14
-	xor    %eax,%eax
-	mov    %rbx,%r12
-	add    %rbx,%r12
-	seto   %al
-	jo     <nested_calls+0xde>
-	xor    %eax,%eax
-	mov    %r12,%rbx
-	add    $0x3,%rbx
-	seto   %al
-	jo     <nested_calls+0xd0>
-	mov    %rbx,%r12
-	xor    %eax,%eax
-	mov    %r13,%rbx
-	add    %r14,%rbx
-	seto   %al
-	jo     <nested_calls+0xc2>
+	jo     <nested_calls+0xe0>
 	xor    %eax,%eax
 	mov    %rbx,%r13
+	add    %rbx,%r13
+	seto   %al
+	jo     <nested_calls+0xd2>
+	xor    %eax,%eax
+	mov    %r13,%rbx
+	add    $0x3,%rbx
+	seto   %al
+	jo     <nested_calls+0xc4>
+	xor    %eax,%eax
+	mov    %r14,%r13
 	add    %r12,%r13
 	seto   %al
-	jo     <nested_calls+0xb4>
-	mov    %r13,%rbx
-	mov    %rbx,%rax
-	jmp    <nested_calls+0x124>
-	lea    -0x8(%rip),%rdi        # <nested_calls+0xb3>
-	call   <nested_calls+0xc0>
+	jo     <nested_calls+0xb6>
+	xor    %eax,%eax
+	mov    %r13,%r12
+	add    %rbx,%r12
+	seto   %al
+	jo     <nested_calls+0xa8>
+	mov    %r12,%rax
+	jmp    <nested_calls+0x118>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0xa7>
+	call   <nested_calls+0xb4>
 	ud2
-	lea    -0x8(%rip),%rdi        # <nested_calls+0xc1>
-	call   <nested_calls+0xce>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0xb5>
+	call   <nested_calls+0xc2>
 	ud2
-	lea    -0x8(%rip),%rdi        # <nested_calls+0xcf>
-	call   <nested_calls+0xdc>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0xc3>
+	call   <nested_calls+0xd0>
 	ud2
-	lea    -0x8(%rip),%rdi        # <nested_calls+0xdd>
-	call   <nested_calls+0xea>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0xd1>
+	call   <nested_calls+0xde>
 	ud2
-	lea    -0x8(%rip),%rdi        # <nested_calls+0xeb>
-	call   <nested_calls+0xf8>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0xdf>
+	call   <nested_calls+0xec>
 	ud2
-	lea    -0x8(%rip),%rdi        # <nested_calls+0xf9>
-	call   <nested_calls+0x106>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0xed>
+	call   <nested_calls+0xfa>
 	ud2
-	lea    -0x8(%rip),%rdi        # <nested_calls+0x107>
-	call   <nested_calls+0x114>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0xfb>
+	call   <nested_calls+0x108>
 	ud2
-	lea    -0x8(%rip),%rdi        # <nested_calls+0x115>
-	call   <nested_calls+0x122>
+	lea    -0x8(%rip),%rdi        # <nested_calls+0x109>
+	call   <nested_calls+0x116>
 	ud2
 	add    $0x10,%rsp
 	pop    %r14
@@ -1343,7 +1333,7 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <nested_struct_build>:
 	push   %rbp
@@ -1993,19 +1983,10 @@ Disassembly of section .text:
 	nopl   (%rax)
 
 <user>:
-	push   %rbp
-	mov    %rsp,%rbp
-	push   %rbx
-	push   %r12
-	mov    $0x2,%ebx
-	mov    $0x2,%r12d
-	mov    %ebx,%eax
-	mov    %r12d,%edx
-	pop    %r12
-	pop    %rbx
-	pop    %rbp
+	mov    $0x2,%eax
+	mov    $0x2,%edx
 	ret
-	nopl   0x0(%rax)
+	nopl   0x0(%rax,%rax,1)
 
 <vec2_dot>:
 	push   %rbp

@@ -91,9 +91,9 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <AddRet> (),
-                    <Store> ([val: 1], [alloc: 0], [raw: 1]),
+                    <Store> ([val: 22], [alloc: 0], [raw: 1]),
                     <PairGEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 3],
-                    <Store> ([val: 2], [val: 3], [raw: 1]),
+                    <Store> ([val: 24], [val: 3], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 4],
                     <PairGEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 1]) -> [val: 6],
@@ -103,8 +103,6 @@ ModuleTpde {
                     successors: [1, 2],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 22]) -> [val: 1],
-                    <Cast> ([val: 24]) -> [val: 2],
                     <Br> (),
                     successors: [4],
                 ],
@@ -141,7 +139,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 1]) -> [val: 20],
-                    <Store> ([val: 19], [val: 20], [raw: 1]),
+                    <Store> ([val: 29], [val: 20], [raw: 1]),
                     <Store> ([const: Bool 0], [alloc: 1], [raw: 1]),
                     <Br> (),
                     successors: [11],
@@ -170,7 +168,6 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 26]) -> [val: 19],
                     <Br> (),
                     successors: [15],
                 ],
@@ -183,7 +180,6 @@ ModuleTpde {
                     successors: [16],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 29]) -> [val: 26],
                     <Br> (),
                     successors: [18],
                 ],
@@ -310,7 +306,7 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 2]) -> [val: 24],
+                    <Cast> ([val: 16]) -> [val: 24],
                     <Cast> ([val: 24]) -> [val: 3],
                     <zExt> ([val: 3]) -> [val: 4],
                     <Trunc> ([val: 4]) -> [val: 5],
@@ -318,7 +314,6 @@ ModuleTpde {
                     successors: [1, 2],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 16]) -> [val: 2],
                     <Br> (),
                     successors: [4],
                 ],
@@ -515,7 +510,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 9],
-                    <Store> ([val: 8], [val: 9], [raw: 1]),
+                    <Store> ([val: 18], [val: 9], [raw: 1]),
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
                     <Br> (),
                     successors: [5],
@@ -544,7 +539,6 @@ ModuleTpde {
                     successors: [4],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 15]) -> [val: 8],
                     <Br> (),
                     successors: [9],
                 ],
@@ -557,7 +551,6 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 18]) -> [val: 15],
                     <Br> (),
                     successors: [12],
                 ],
@@ -938,7 +931,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 4]) -> [val: 9],
-                    <Store> ([val: 8], [val: 9], [raw: 4]),
+                    <Store> ([val: 24], [val: 9], [raw: 4]),
                     <Store> ([const: i32 0], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [5],
@@ -967,7 +960,6 @@ ModuleTpde {
                     successors: [4],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 18]) -> [val: 8],
                     <Br> (),
                     successors: [9],
                 ],
@@ -985,13 +977,12 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 15], [const: i32 1]) -> [val: 16],
-                    <CMPult> ([val: 16], [val: 15]) -> [val: 17],
+                    <Add> ([val: 21], [const: i32 1]) -> [val: 16],
+                    <CMPult> ([val: 16], [val: 21]) -> [val: 17],
                     <CondBr> ([val: 17]),
                     successors: [13, 12],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 21]) -> [val: 15],
                     <Br> (),
                     successors: [14],
                 ],
@@ -1006,7 +997,6 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 24]) -> [val: 18],
                     <Br> (),
                     successors: [17],
                 ],
@@ -1171,9 +1161,9 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <AddRet> (),
-                    <Store> ([val: 2], [alloc: 0], [raw: 8]),
+                    <Store> ([val: 23], [alloc: 0], [raw: 8]),
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 4],
-                    <Store> ([val: 3], [val: 4], [raw: 8]),
+                    <Store> ([val: 25], [val: 4], [raw: 8]),
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 6],
                     <Load> ([val: 6], [raw: 8]) -> [val: 7],
@@ -1182,8 +1172,6 @@ ModuleTpde {
                     successors: [1, 2],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 23]) -> [val: 2],
-                    <Cast> ([val: 25]) -> [val: 3],
                     <Br> (),
                     successors: [4],
                 ],
@@ -1220,7 +1208,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 21],
-                    <Store> ([val: 20], [val: 21], [raw: 8]),
+                    <Store> ([val: 37], [val: 21], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 1], [raw: 8]),
                     <Br> (),
                     successors: [11],
@@ -1249,7 +1237,6 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 31]) -> [val: 20],
                     <Br> (),
                     successors: [15],
                 ],
@@ -1263,7 +1250,6 @@ ModuleTpde {
                     successors: [29],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 34]) -> [val: 28],
                     <Br> (),
                     successors: [18],
                 ],
@@ -1278,7 +1264,6 @@ ModuleTpde {
                     successors: [16],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 37]) -> [val: 31],
                     <Br> (),
                     successors: [21],
                 ],
@@ -1299,7 +1284,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 19]) -> [val: 40],
                     <Load> ([val: 40], [raw: 8]) -> [val: 41],
-                    <Store> ([val: 30], [val: 40], [raw: 8]),
+                    <Store> ([val: 44], [val: 40], [raw: 8]),
                     <Br> (),
                     successors: [25],
                 ],
@@ -1308,12 +1293,11 @@ ModuleTpde {
                     successors: [26],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 44]) -> [val: 30],
                     <Br> (),
                     successors: [27],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 28], [val: 29]) -> [val: 44],
+                    <Add> ([val: 34], [val: 29]) -> [val: 44],
                     <Br> (),
                     successors: [28],
                 ],
@@ -1428,9 +1412,9 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <AddRet> (),
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <Store> ([val: 21], [alloc: 0], [raw: 8]),
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
-                    <Store> ([val: 2], [val: 3], [raw: 8]),
+                    <Store> ([val: 23], [val: 3], [raw: 8]),
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 8]) -> [val: 6],
@@ -1439,8 +1423,6 @@ ModuleTpde {
                     successors: [1, 2],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 21]) -> [val: 1],
-                    <Cast> ([val: 23]) -> [val: 2],
                     <Br> (),
                     successors: [4],
                 ],
@@ -1477,7 +1459,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 19],
-                    <Store> ([val: 18], [val: 19], [raw: 8]),
+                    <Store> ([val: 28], [val: 19], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 1], [raw: 8]),
                     <Br> (),
                     successors: [11],
@@ -1506,7 +1488,6 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 25]) -> [val: 18],
                     <Br> (),
                     successors: [15],
                 ],
@@ -1519,7 +1500,6 @@ ModuleTpde {
                     successors: [16],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 28]) -> [val: 25],
                     <Br> (),
                     successors: [18],
                 ],
@@ -1669,7 +1649,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Store> ([val: 9], [val: 10], [raw: 8]),
+                    <Store> ([val: 26], [val: 10], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 0], [raw: 8]),
                     <Br> (),
                     successors: [5],
@@ -1698,7 +1678,6 @@ ModuleTpde {
                     successors: [4],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 20]) -> [val: 9],
                     <Br> (),
                     successors: [9],
                 ],
@@ -1712,7 +1691,6 @@ ModuleTpde {
                     successors: [23],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 23]) -> [val: 17],
                     <Br> (),
                     successors: [12],
                 ],
@@ -1727,7 +1705,6 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 26]) -> [val: 20],
                     <Br> (),
                     successors: [15],
                 ],
@@ -1748,7 +1725,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 8]) -> [val: 29],
                     <Load> ([val: 29], [raw: 8]) -> [val: 30],
-                    <Store> ([val: 19], [val: 29], [raw: 8]),
+                    <Store> ([val: 33], [val: 29], [raw: 8]),
                     <Br> (),
                     successors: [19],
                 ],
@@ -1757,12 +1734,11 @@ ModuleTpde {
                     successors: [20],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 33]) -> [val: 19],
                     <Br> (),
                     successors: [21],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 17], [val: 18]) -> [val: 33],
+                    <Add> ([val: 23], [val: 18]) -> [val: 33],
                     <Br> (),
                     successors: [22],
                 ],
@@ -1878,7 +1854,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 9],
-                    <Store> ([val: 8], [val: 9], [raw: 8]),
+                    <Store> ([val: 18], [val: 9], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 0], [raw: 8]),
                     <Br> (),
                     successors: [5],
@@ -1907,7 +1883,6 @@ ModuleTpde {
                     successors: [4],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 15]) -> [val: 8],
                     <Br> (),
                     successors: [9],
                 ],
@@ -1920,7 +1895,6 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 18]) -> [val: 15],
                     <Br> (),
                     successors: [12],
                 ],
@@ -2193,7 +2167,6 @@ ModuleTpde {
                     successors: [12],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 8]) -> [val: 2],
                     <Br> (),
                     successors: [1],
                 ],
@@ -2204,11 +2177,10 @@ ModuleTpde {
                     successors: [2],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 5]),
+                    <Ret> ([val: 11]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 11]) -> [val: 5],
                     <Br> (),
                     successors: [4],
                 ],
@@ -2229,7 +2201,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 1]) -> [val: 14],
                     <Load> ([val: 14], [raw: 8]) -> [val: 15],
-                    <Store> ([val: 4], [val: 14], [raw: 8]),
+                    <Store> ([val: 18], [val: 14], [raw: 8]),
                     <Br> (),
                     successors: [8],
                 ],
@@ -2238,12 +2210,11 @@ ModuleTpde {
                     successors: [9],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 18]) -> [val: 4],
                     <Br> (),
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 2], [val: 3]) -> [val: 18],
+                    <Add> ([val: 8], [val: 3]) -> [val: 18],
                     <Br> (),
                     successors: [11],
                 ],
@@ -2292,11 +2263,10 @@ ModuleTpde {
                     successors: [3],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 1]),
+                    <Ret> ([val: 4]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 4]) -> [val: 1],
                     <Br> (),
                     successors: [1],
                 ],
@@ -2370,13 +2340,12 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 1], [const: i32 1]) -> [val: 2],
-                    <CMPult> ([val: 2], [val: 1]) -> [val: 3],
+                    <Add> ([val: 7], [const: i32 1]) -> [val: 2],
+                    <CMPult> ([val: 2], [val: 7]) -> [val: 3],
                     <CondBr> ([val: 3]),
                     successors: [2, 1],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 7]) -> [val: 1],
                     <Br> (),
                     successors: [3],
                 ],
@@ -2387,11 +2356,10 @@ ModuleTpde {
                     successors: [4],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 4]),
+                    <Ret> ([val: 10]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 10]) -> [val: 4],
                     <Br> (),
                     successors: [6],
                 ],
@@ -2461,11 +2429,10 @@ ModuleTpde {
                     successors: [3],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 1]),
+                    <Ret> ([val: 4]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 4]) -> [val: 1],
                     <Br> (),
                     successors: [1],
                 ],
@@ -2967,7 +2934,7 @@ ModuleTpde {
                     successors: [6],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 2]),
+                    <Ret> ([val: 5]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -2983,7 +2950,6 @@ ModuleTpde {
                     successors: [1],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 5]) -> [val: 2],
                     <Br> (),
                     successors: [4],
                 ],
@@ -3044,7 +3010,7 @@ ModuleTpde {
                     successors: [6],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 2]),
+                    <Ret> ([val: 5]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -3060,7 +3026,6 @@ ModuleTpde {
                     successors: [1],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 5]) -> [val: 2],
                     <Br> (),
                     successors: [4],
                 ],
@@ -3121,7 +3086,7 @@ ModuleTpde {
                     successors: [6],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 2]),
+                    <Ret> ([val: 5]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -3137,7 +3102,6 @@ ModuleTpde {
                     successors: [1],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 5]) -> [val: 2],
                     <Br> (),
                     successors: [4],
                 ],
@@ -3275,7 +3239,7 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 26],
+                    <Cast> ([val: 17]) -> [val: 26],
                     <Cast> ([val: 26]) -> [val: 4],
                     <zExt> ([val: 4]) -> [val: 5],
                     <Trunc> ([val: 5]) -> [val: 6],
@@ -3283,7 +3247,6 @@ ModuleTpde {
                     successors: [4, 5],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 17]) -> [val: 3],
                     <Br> (),
                     successors: [7],
                 ],
@@ -3498,11 +3461,10 @@ ModuleTpde {
                     successors: [3],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 0]),
+                    <Ret> ([val: 11]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 11]) -> [val: 0],
                     <Br> (),
                     successors: [1],
                 ],

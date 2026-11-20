@@ -16,8 +16,7 @@ Disassembly of section .text:
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
-	push   %r13
-	sub    $0x38,%rsp
+	sub    $0x40,%rsp
 	mov    %rdi,%rbx
 	movb   $0x1,-0x49(%rbp)
 	mov    (%rbx),%rbx
@@ -26,7 +25,7 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	mov    %rbx,%rax
 	test   %rax,%rax
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x58>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x50>
 	mov    %rbx,-0x48(%rbp)
 	mov    -0x48(%rbp),%rax
 	mov    %rax,-0x40(%rbp)
@@ -34,31 +33,26 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	movb   $0x0,-0x49(%rbp)
 	movzbl (%rbx),%r12d
-	mov    %r12d,%ebx
-	mov    %ebx,%r12d
 	mov    %r12b,-0x2b(%rbp)
 	movb   $0x0,-0x2c(%rbp)
-	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x6c>
+	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x64>
 	movq   $0x0,-0x48(%rbp)
 	movq   $0x0,-0x40(%rbp)
 	movb   $0x1,-0x2c(%rbp)
 	movzbl -0x2c(%rbp),%ebx
 	movzbl -0x2b(%rbp),%r12d
-	mov    %ebx,%r13d
-	mov    %r12d,%ebx
-	mov    %r13b,-0x2a(%rbp)
-	mov    %bl,-0x29(%rbp)
+	mov    %bl,-0x2a(%rbp)
+	mov    %r12b,-0x29(%rbp)
 	movzbl -0x2a(%rbp),%eax
 	movzbl -0x29(%rbp),%ecx
 	movzbl %al,%eax
 	test   $0x1,%al
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0xa3>
-	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x94>
-	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0xa1>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x95>
+	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x86>
+	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_+0x93>
 	ud2
 	movzbl -0x29(%rbp),%eax
-	add    $0x38,%rsp
-	pop    %r13
+	add    $0x40,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
@@ -98,12 +92,11 @@ Disassembly of section .text:
 	movq   $0x0,-0x40(%rbp)
 	movb   $0x1,-0x2a(%rbp)
 	movzbl -0x2a(%rbp),%ebx
-	mov    %ebx,%r12d
-	movzbl %r12b,%r12d
-	test   $0x1,%r12b
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_+0x8f>
-	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_+0x80>
-	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_+0x8d>
+	movzbl %bl,%ebx
+	test   $0x1,%bl
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_+0x8a>
+	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_+0x7b>
+	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_+0x88>
 	ud2
 	add    $0x38,%rsp
 	pop    %r13
@@ -112,6 +105,7 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
+	xchg   %ax,%ax
 
 <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1I_>:
 	push   %rbp
@@ -127,7 +121,7 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	mov    %rbx,%rax
 	test   %rax,%rax
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1I_+0x58>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1I_+0x52>
 	mov    %rbx,-0x48(%rbp)
 	mov    -0x48(%rbp),%rax
 	mov    %rax,-0x40(%rbp)
@@ -135,11 +129,9 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	movb   $0x0,-0x49(%rbp)
 	movzbl (%rbx),%r12d
-	mov    %r12d,%ebx
-	mov    %ebx,%r12d
 	mov    %r12b,-0x29(%rbp)
 	movb   $0x0,-0x2a(%rbp)
-	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1I_+0x6c>
+	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1I_+0x66>
 	movq   $0x0,-0x48(%rbp)
 	movq   $0x0,-0x40(%rbp)
 	movb   $0x1,-0x2a(%rbp)
@@ -151,7 +143,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	nop
+	nopl   0x0(%rax)
 
 <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1I_>:
 	push   %rbp
@@ -229,7 +221,7 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	mov    %rbx,%rax
 	test   %rax,%rax
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x88>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x80>
 	mov    %rbx,-0x48(%rbp)
 	mov    -0x48(%rbp),%rax
 	mov    %rax,-0x40(%rbp)
@@ -238,21 +230,18 @@ Disassembly of section .text:
 	movb   $0x0,-0x49(%rbp)
 	mov    %rbx,%rax
 	mov    (%rax),%r12d
-	mov    %r12d,%r13d
-	lea    0x1(%r13),%r12d
-	cmp    %r13d,%r12d
-	jb     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x7a>
+	lea    0x1(%r12),%r13d
+	cmp    %r12d,%r13d
+	jb     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x72>
 	mov    %rbx,%rax
 	mov    (%rax),%ecx
-	mov    %r12d,(%rax)
+	mov    %r13d,(%rax)
 	mov    (%rbx),%r12d
-	mov    %r12d,%ebx
-	mov    %ebx,%r12d
 	mov    %r12d,-0x2c(%rbp)
 	movl   $0x0,-0x30(%rbp)
-	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x9f>
-	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x79>
-	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x86>
+	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x97>
+	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x71>
+	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_+0x7e>
 	ud2
 	movq   $0x0,-0x48(%rbp)
 	movq   $0x0,-0x40(%rbp)
@@ -267,7 +256,6 @@ Disassembly of section .text:
 	pop    %rbp
 	ret
 	nopw   0x0(%rax,%rax,1)
-	nopl   0x0(%rax,%rax,1)
 
 <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_>:
 	push   %rbp
@@ -286,7 +274,7 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	mov    %rbx,%rax
 	test   %rax,%rax
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0x7d>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0x72>
 	mov    %rbx,-0x60(%rbp)
 	mov    -0x60(%rbp),%rax
 	mov    %rax,-0x58(%rbp)
@@ -295,34 +283,28 @@ Disassembly of section .text:
 	movb   $0x0,-0x61(%rbp)
 	mov    %rbx,%rax
 	mov    (%rax),%r13
-	mov    %r13,%r14
-	mov    (%r12),%r13
-	lea    (%r14,%r13,1),%r12
-	mov    %r12,%r13
+	mov    (%r12),%r14
+	lea    0x0(%r13,%r14,1),%r12
 	mov    %rbx,%rax
 	mov    (%rax),%rcx
-	mov    %r13,(%rax)
+	mov    %r12,(%rax)
 	mov    (%rbx),%r12
-	mov    %r12,%rbx
-	mov    %rbx,%r12
 	mov    %r12,-0x48(%rbp)
 	movq   $0x0,-0x50(%rbp)
-	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0x95>
+	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0x8a>
 	movq   $0x0,-0x60(%rbp)
 	movq   $0x0,-0x58(%rbp)
 	movq   $0x1,-0x50(%rbp)
 	mov    -0x50(%rbp),%rbx
 	mov    -0x48(%rbp),%r12
-	mov    %rbx,%r13
-	mov    %r12,%rbx
-	mov    %r13,-0x40(%rbp)
-	mov    %rbx,-0x38(%rbp)
+	mov    %rbx,-0x40(%rbp)
+	mov    %r12,-0x38(%rbp)
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
 	test   $0x1,%al
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0xc9>
-	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0xba>
-	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0xc7>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0xb8>
+	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0xa9>
+	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_+0xb6>
 	ud2
 	mov    -0x38(%rbp),%rax
 	add    $0x50,%rsp
@@ -332,15 +314,14 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopw   0x0(%rax,%rax,1)
+	nopl   0x0(%rax)
 
 <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
-	push   %r13
-	sub    $0x58,%rsp
+	sub    $0x60,%rsp
 	mov    %rdi,%rbx
 	movb   $0x1,-0x61(%rbp)
 	mov    (%rbx),%rbx
@@ -349,7 +330,7 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	mov    %rbx,%rax
 	test   %rax,%rax
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x5b>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x53>
 	mov    %rbx,-0x60(%rbp)
 	mov    -0x60(%rbp),%rax
 	mov    %rax,-0x58(%rbp)
@@ -357,30 +338,25 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	movb   $0x0,-0x61(%rbp)
 	mov    (%rbx),%r12
-	mov    %r12,%rbx
-	mov    %rbx,%r12
 	mov    %r12,-0x48(%rbp)
 	movq   $0x0,-0x50(%rbp)
-	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x73>
+	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x6b>
 	movq   $0x0,-0x60(%rbp)
 	movq   $0x0,-0x58(%rbp)
 	movq   $0x1,-0x50(%rbp)
 	mov    -0x50(%rbp),%rbx
 	mov    -0x48(%rbp),%r12
-	mov    %rbx,%r13
-	mov    %r12,%rbx
-	mov    %r13,-0x40(%rbp)
-	mov    %rbx,-0x38(%rbp)
+	mov    %rbx,-0x40(%rbp)
+	mov    %r12,-0x38(%rbp)
 	mov    -0x40(%rbp),%rax
 	mov    -0x38(%rbp),%rcx
 	test   $0x1,%al
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0xa7>
-	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x98>
-	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0xa5>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x99>
+	lea    -0x8(%rip),%rdi        # <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x8a>
+	call   <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_+0x97>
 	ud2
 	mov    -0x38(%rbp),%rax
-	add    $0x58,%rsp
-	pop    %r13
+	add    $0x60,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp
@@ -405,7 +381,7 @@ Disassembly of section .text:
 	mov    %rax,%r12
 	mov    %r12,%rax
 	test   %rax,%rax
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1I_+0x7f>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1I_+0x74>
 	mov    %r12,-0x50(%rbp)
 	mov    -0x50(%rbp),%rax
 	mov    %rax,-0x48(%rbp)
@@ -414,19 +390,15 @@ Disassembly of section .text:
 	movb   $0x0,-0x51(%rbp)
 	mov    %r12,%rax
 	mov    (%rax),%r13
-	mov    %r13,%r14
-	mov    (%rbx),%r13
-	lea    (%r14,%r13,1),%rbx
-	mov    %rbx,%r13
+	mov    (%rbx),%r14
+	lea    0x0(%r13,%r14,1),%rbx
 	mov    %r12,%rax
 	mov    (%rax),%rcx
-	mov    %r13,(%rax)
+	mov    %rbx,(%rax)
 	mov    (%r12),%rbx
-	mov    %rbx,%r12
-	mov    %r12,%rbx
 	mov    %rbx,-0x38(%rbp)
 	movq   $0x0,-0x40(%rbp)
-	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1I_+0x97>
+	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1I_+0x8c>
 	movq   $0x0,-0x50(%rbp)
 	movq   $0x0,-0x48(%rbp)
 	movq   $0x1,-0x40(%rbp)
@@ -440,7 +412,8 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	nop
+	nopw   0x0(%rax,%rax,1)
+	nopl   (%rax)
 
 <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1I_>:
 	push   %rbp
@@ -456,7 +429,7 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	mov    %rbx,%rax
 	test   %rax,%rax
-	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1I_+0x5b>
+	je     <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1I_+0x55>
 	mov    %rbx,-0x50(%rbp)
 	mov    -0x50(%rbp),%rax
 	mov    %rax,-0x48(%rbp)
@@ -464,11 +437,9 @@ Disassembly of section .text:
 	mov    %rax,%rbx
 	movb   $0x0,-0x51(%rbp)
 	mov    (%rbx),%r12
-	mov    %r12,%rbx
-	mov    %rbx,%r12
 	mov    %r12,-0x38(%rbp)
 	movq   $0x0,-0x40(%rbp)
-	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1I_+0x73>
+	jmp    <_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1I_+0x6d>
 	movq   $0x0,-0x50(%rbp)
 	movq   $0x0,-0x48(%rbp)
 	movq   $0x1,-0x40(%rbp)
@@ -480,6 +451,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
+	nopw   0x0(%rax,%rax,1)
 	nopw   0x0(%rax,%rax,1)
 
 <_RNvMs7_NtCsioHeeuq8fQz_4core4cellINtB5_4CellhE3setCsQvp3e8KgHi_6source>:
@@ -525,55 +497,49 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	push   %r12
-	sub    $0x30,%rsp
-	data16 lea -0x7(%rip),%rdi        # <_RNvYNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBI_6option6OptionQIB1n_INtNtBI_4cell4CellhEEEEE9call_onceB8_+0xc>
-	data16 data16 rex.W call <_RNvYNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBI_6option6OptionQIB1n_INtNtBI_4cell4CellhEEEEE9call_onceB8_+0x1b>
+	sub    $0x38,%rsp
+	data16 lea -0x7(%rip),%rdi        # <_RNvYNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBI_6option6OptionQIB1n_INtNtBI_4cell4CellhEEEEE9call_onceB8_+0xa>
+	data16 data16 rex.W call <_RNvYNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBI_6option6OptionQIB1n_INtNtBI_4cell4CellhEEEEE9call_onceB8_+0x19>
 	mov    %rax,%rbx
-	mov    %rbx,%r12
-	mov    %r12,%rax
-	add    $0x30,%rsp
-	pop    %r12
+	mov    %rbx,%rax
+	add    $0x38,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
+	nop
 
 <_RNvYNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBK_6option6OptionQIB1p_INtNtBK_4cell4CellmEEEEE9call_onceB8_>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	push   %r12
-	sub    $0x30,%rsp
-	data16 lea -0x7(%rip),%rdi        # <_RNvYNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBK_6option6OptionQIB1p_INtNtBK_4cell4CellmEEEEE9call_onceB8_+0xc>
-	data16 data16 rex.W call <_RNvYNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBK_6option6OptionQIB1p_INtNtBK_4cell4CellmEEEEE9call_onceB8_+0x1b>
+	sub    $0x38,%rsp
+	data16 lea -0x7(%rip),%rdi        # <_RNvYNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBK_6option6OptionQIB1p_INtNtBK_4cell4CellmEEEEE9call_onceB8_+0xa>
+	data16 data16 rex.W call <_RNvYNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBK_6option6OptionQIB1p_INtNtBK_4cell4CellmEEEEE9call_onceB8_+0x19>
 	mov    %rax,%rbx
-	mov    %rbx,%r12
-	mov    %r12,%rax
-	add    $0x30,%rsp
-	pop    %r12
+	mov    %rbx,%rax
+	add    $0x38,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
+	nop
 
 <_RNvYNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellyEEEEE9call_onceB8_>:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	push   %r12
-	sub    $0x30,%rsp
-	data16 lea -0x7(%rip),%rdi        # <_RNvYNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellyEEEEE9call_onceB8_+0xc>
-	data16 data16 rex.W call <_RNvYNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellyEEEEE9call_onceB8_+0x1b>
+	sub    $0x38,%rsp
+	data16 lea -0x7(%rip),%rdi        # <_RNvYNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellyEEEEE9call_onceB8_+0xa>
+	data16 data16 rex.W call <_RNvYNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellyEEEEE9call_onceB8_+0x19>
 	mov    %rax,%rbx
-	mov    %rbx,%r12
-	mov    %r12,%rax
-	add    $0x30,%rsp
-	pop    %r12
+	mov    %rbx,%rax
+	add    $0x38,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret
-	nopl   (%rax)
+	nopw   0x0(%rax,%rax,1)
+	nop
 
 <byte_get>:
 	push   %rbp
@@ -618,12 +584,11 @@ Disassembly of section .text:
 	movq   $0x0,-0x40(%rbp)
 	movb   $0x1,-0x2b(%rbp)
 	movzbl -0x2b(%rbp),%ebx
-	mov    %ebx,%r12d
-	movzbl %r12b,%r12d
-	test   $0x1,%r12b
-	je     <byte_set+0x93>
-	lea    -0x8(%rip),%rdi        # <byte_set+0x84>
-	call   <byte_set+0x91>
+	movzbl %bl,%ebx
+	test   $0x1,%bl
+	je     <byte_set+0x8e>
+	lea    -0x8(%rip),%rdi        # <byte_set+0x7f>
+	call   <byte_set+0x8c>
 	ud2
 	add    $0x38,%rsp
 	pop    %r13
@@ -631,7 +596,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
-	xchg   %ax,%ax
+	nopl   0x0(%rax)
 
 <counter_add>:
 	push   %rbp
@@ -662,25 +627,22 @@ Disassembly of section .text:
 	push   %rbp
 	mov    %rsp,%rbp
 	push   %rbx
-	push   %r12
-	sub    $0x20,%rsp
-	lea    -0x8(%rip),%rdi        # <zeroed_bump+0xa>
-	call   <zeroed_bump+0x17>
+	sub    $0x28,%rsp
+	lea    -0x8(%rip),%rdi        # <zeroed_bump+0x8>
+	call   <zeroed_bump+0x15>
 	mov    %eax,-0x30(%rbp)
 	mov    %edx,-0x2c(%rbp)
 	mov    -0x30(%rbp),%eax
 	mov    -0x2c(%rbp),%ecx
 	mov    %eax,%eax
 	test   $0x1,%al
-	je     <zeroed_bump+0x3b>
-	lea    -0x8(%rip),%rdi        # <zeroed_bump+0x2c>
-	call   <zeroed_bump+0x39>
+	je     <zeroed_bump+0x39>
+	lea    -0x8(%rip),%rdi        # <zeroed_bump+0x2a>
+	call   <zeroed_bump+0x37>
 	ud2
 	mov    -0x2c(%rbp),%ebx
-	mov    %ebx,%r12d
-	mov    %r12d,%eax
-	add    $0x20,%rsp
-	pop    %r12
+	mov    %ebx,%eax
+	add    $0x28,%rsp
 	pop    %rbx
 	pop    %rbp
 	ret

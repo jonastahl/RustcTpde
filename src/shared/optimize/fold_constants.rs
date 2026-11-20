@@ -19,6 +19,7 @@ impl ModuleTpde {
     /// Propagates constants that might have shown up after inlining, replaces if applicable:
     /// - condbr to br
     /// - gets rid of overflow checks
+    /// - replaces results of mov
     pub(crate) fn fold_constants(&mut self, function: u32) {
         let mut stack = vec![0];
 
@@ -52,6 +53,11 @@ impl ModuleTpde {
                 }
 
                 let func = &self.functions[function as usize];
+                if instr.kind == InstructionKind::Mov {
+                    known[instr.result as usize] = Some(func.operands[ops]);
+                    continue;
+                }
+
                 if instr.has_result & all_const(&func.operands[ops..ops_end])
                     && let Some(value) = self.eval_const(instr.kind, &func.operands[ops..ops_end])
                 {
@@ -59,7 +65,7 @@ impl ModuleTpde {
                     known[instr.result as usize] = Some(self.add_const(ty, value).to_ffi());
 
                     // An overflow check is only defined by the arithmetic before it, so both have to go
-                    let func = &mut self.functions[function as usize];
+                    let func = &self.functions[function as usize];
                     if read < end && func.instructions[read].kind == InstructionKind::OverflowCheck
                     {
                         let check = func.instructions[read];

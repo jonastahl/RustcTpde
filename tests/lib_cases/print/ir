@@ -100,13 +100,11 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <AddRet> (),
-                    <Call> ([func: 2], [val: 0], [val: 1]),
+                    <Call> ([func: 2], [val: 4], [val: 9]),
                     <Ret> (),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 4]) -> [val: 0],
-                    <Cast> ([val: 9]) -> [val: 1],
                     <Br> (),
                     successors: [1],
                 ],

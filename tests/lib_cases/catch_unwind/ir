@@ -671,12 +671,11 @@ ModuleTpde {
                     successors: [3],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 2], [val: 0], [raw: 8]),
+                    <Store> ([val: 8], [val: 0], [raw: 8]),
                     <Ret> (),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 8]) -> [val: 2],
                     <Br> (),
                     successors: [1],
                 ],
@@ -788,12 +787,11 @@ ModuleTpde {
                     successors: [3],
                 ],
                 BasicBlock: [
-                    <Store> ([val: 2], [val: 0], [raw: 8]),
+                    <Store> ([val: 5], [val: 0], [raw: 8]),
                     <Ret> (),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 5]) -> [val: 2],
                     <Br> (),
                     successors: [1],
                 ],

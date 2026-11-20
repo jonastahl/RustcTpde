@@ -16,9 +16,8 @@ Disassembly of section .text:
 	mov    %rsp,%rbp
 	push   %rbx
 	push   %r12
-	push   %r13
-	sub    $0x18,%rsp
-	lea    -0x8(%rip),%rbx        # <print+0xc>
+	sub    $0x20,%rsp
+	lea    -0x8(%rip),%rbx        # <print+0xa>
 	mov    $0x1,%eax
 	and    $0x3f,%eax
 	mov    %eax,%eax
@@ -27,13 +26,10 @@ Disassembly of section .text:
 	shl    %cl,%rdx
 	or     $0x1,%rdx
 	mov    %rdx,%r12
-	mov    %rbx,%r13
-	mov    %r12,%rbx
-	mov    %r13,%rdi
-	mov    %rbx,%rsi
-	call   <print+0x40>
-	add    $0x18,%rsp
-	pop    %r13
+	mov    %rbx,%rdi
+	mov    %r12,%rsi
+	call   <print+0x38>
+	add    $0x20,%rsp
 	pop    %r12
 	pop    %rbx
 	pop    %rbp

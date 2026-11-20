@@ -287,19 +287,17 @@ Disassembly of section .text:
 	mov    %esi,%r12d
 	lea    (%rbx,%r12,1),%r13d
 	cmp    %ebx,%r13d
-	jb     <add_twice_u32+0x47>
-	mov    %r13d,%ebx
-	lea    (%rbx,%r12,1),%r13d
-	cmp    %ebx,%r13d
-	jb     <add_twice_u32+0x39>
-	mov    %r13d,%ebx
+	jb     <add_twice_u32+0x42>
+	lea    0x0(%r13,%r12,1),%ebx
+	cmp    %r13d,%ebx
+	jb     <add_twice_u32+0x34>
 	mov    %ebx,%eax
-	jmp    <add_twice_u32+0x55>
-	lea    -0x8(%rip),%rdi        # <add_twice_u32+0x38>
-	call   <add_twice_u32+0x45>
+	jmp    <add_twice_u32+0x50>
+	lea    -0x8(%rip),%rdi        # <add_twice_u32+0x33>
+	call   <add_twice_u32+0x40>
 	ud2
-	lea    -0x8(%rip),%rdi        # <add_twice_u32+0x46>
-	call   <add_twice_u32+0x53>
+	lea    -0x8(%rip),%rdi        # <add_twice_u32+0x41>
+	call   <add_twice_u32+0x4e>
 	ud2
 	add    $0x18,%rsp
 	pop    %r13
@@ -307,6 +305,7 @@ Disassembly of section .text:
 	pop    %rbx
 	pop    %rbp
 	ret
+	nopl   0x0(%rax,%rax,1)
 
 <add_u16>:
 	push   %rbp

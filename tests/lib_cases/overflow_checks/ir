@@ -858,7 +858,6 @@ ModuleTpde {
                     successors: [8],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 6]) -> [val: 2],
                     <Br> (),
                     successors: [1],
                 ],
@@ -878,17 +877,16 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 3]),
+                    <Ret> ([val: 10]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 10]) -> [val: 3],
                     <Br> (),
                     successors: [6],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 2], [val: 1]) -> [val: 10],
-                    <CMPult> ([val: 10], [val: 2]) -> [val: 11],
+                    <Add> ([val: 6], [val: 1]) -> [val: 10],
+                    <CMPult> ([val: 10], [val: 6]) -> [val: 11],
                     <CondBr> ([val: 11]),
                     successors: [10, 9],
                 ],

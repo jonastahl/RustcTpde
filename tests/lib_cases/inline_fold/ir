@@ -56,11 +56,10 @@ ModuleTpde {
                     successors: [3],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 1]),
+                    <Ret> ([val: 16]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 5]) -> [val: 1],
                     <Br> (),
                     successors: [1],
                 ],
@@ -73,7 +72,6 @@ ModuleTpde {
                     successors: [9],
                 ],
                 BasicBlock: [
-                    <Cast> ([const: i32 23]) -> [val: 4],
                     <Br> (),
                     successors: [4],
                 ],
@@ -86,24 +84,23 @@ ModuleTpde {
                     successors: [2],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 16]) -> [val: 5],
                     <Br> (),
                     successors: [7],
                 ],
                 BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 4]) -> [val: 11],
+                    <CMPugt> ([val: 0], [const: i32 23]) -> [val: 11],
                     <CondBr> ([val: 11]),
                     successors: [11, 10],
                 ],
                 BasicBlock: [
-                    <Sub> ([val: 4], [val: 0]) -> [val: 12],
-                    <CMPult> ([val: 4], [val: 0]) -> [val: 13],
+                    <Sub> ([const: i32 23], [val: 0]) -> [val: 12],
+                    <CMPult> ([const: i32 23], [val: 0]) -> [val: 13],
                     <CondBr> ([val: 13]),
                     successors: [13, 12],
                 ],
                 BasicBlock: [
-                    <Sub> ([val: 0], [val: 4]) -> [val: 14],
-                    <CMPult> ([val: 0], [val: 4]) -> [val: 15],
+                    <Sub> ([val: 0], [const: i32 23]) -> [val: 14],
+                    <CMPult> ([val: 0], [const: i32 23]) -> [val: 15],
                     <CondBr> ([val: 15]),
                     successors: [16, 15],
                 ],
@@ -306,7 +303,6 @@ ModuleTpde {
                     successors: [6],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 6]) -> [val: 2],
                     <Br> (),
                     successors: [1],
                 ],
@@ -316,28 +312,27 @@ ModuleTpde {
                     successors: [2],
                 ],
                 BasicBlock: [
-                    <Ret> ([val: 3]),
+                    <Ret> ([val: 14]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 14]) -> [val: 3],
                     <Br> (),
                     successors: [4],
                 ],
                 BasicBlock: [
-                    <CMPugt> ([val: 1], [val: 2]) -> [val: 9],
+                    <CMPugt> ([val: 1], [val: 6]) -> [val: 9],
                     <CondBr> ([val: 9]),
                     successors: [8, 7],
                 ],
                 BasicBlock: [
-                    <Sub> ([val: 2], [val: 1]) -> [val: 10],
-                    <CMPult> ([val: 2], [val: 1]) -> [val: 11],
+                    <Sub> ([val: 6], [val: 1]) -> [val: 10],
+                    <CMPult> ([val: 6], [val: 1]) -> [val: 11],
                     <CondBr> ([val: 11]),
                     successors: [10, 9],
                 ],
                 BasicBlock: [
-                    <Sub> ([val: 1], [val: 2]) -> [val: 12],
-                    <CMPult> ([val: 1], [val: 2]) -> [val: 13],
+                    <Sub> ([val: 1], [val: 6]) -> [val: 12],
+                    <CMPult> ([val: 1], [val: 6]) -> [val: 13],
                     <CondBr> ([val: 13]),
                     successors: [13, 12],
                 ],
@@ -508,7 +503,6 @@ ModuleTpde {
                     successors: [1],
                 ],
                 BasicBlock: [
-                    <Cast> ([const pool: 0]) -> [val: 0],
                     <Br> (),
                     successors: [3],
                 ],
@@ -517,12 +511,11 @@ ModuleTpde {
                     successors: [4],
                 ],
                 BasicBlock: [
-                    <Xor> ([val: 0], [val: 3]) -> [val: 4],
+                    <Xor> ([const pool: 0], [const: i16 65533]) -> [val: 4],
                     <Ret> ([val: 4]),
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Cast> ([const: i16 65533]) -> [val: 3],
                     <Br> (),
                     successors: [6],
                 ],
@@ -621,13 +614,12 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 2], [const: i32 100]) -> [val: 3],
-                    <CMPult> ([val: 3], [val: 2]) -> [val: 4],
+                    <Add> ([val: 22], [const: i32 100]) -> [val: 3],
+                    <CMPult> ([val: 3], [val: 22]) -> [val: 4],
                     <CondBr> ([val: 4]),
                     successors: [4, 3],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 7]) -> [val: 2],
                     <Br> (),
                     successors: [6],
                 ],
@@ -640,7 +632,6 @@ ModuleTpde {
                     successors: [7],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 11]) -> [val: 7],
                     <Br> (),
                     successors: [9],
                 ],
@@ -653,7 +644,6 @@ ModuleTpde {
                     successors: [17],
                 ],
                 BasicBlock: [
-                    <Cast> ([const: i32 23]) -> [val: 10],
                     <Br> (),
                     successors: [12],
                 ],
@@ -666,24 +656,23 @@ ModuleTpde {
                     successors: [10],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 22]) -> [val: 11],
                     <Br> (),
                     successors: [15],
                 ],
                 BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 10]) -> [val: 17],
+                    <CMPugt> ([val: 0], [const: i32 23]) -> [val: 17],
                     <CondBr> ([val: 17]),
                     successors: [19, 18],
                 ],
                 BasicBlock: [
-                    <Sub> ([val: 10], [val: 0]) -> [val: 18],
-                    <CMPult> ([val: 10], [val: 0]) -> [val: 19],
+                    <Sub> ([const: i32 23], [val: 0]) -> [val: 18],
+                    <CMPult> ([const: i32 23], [val: 0]) -> [val: 19],
                     <CondBr> ([val: 19]),
                     successors: [21, 20],
                 ],
                 BasicBlock: [
-                    <Sub> ([val: 0], [val: 10]) -> [val: 20],
-                    <CMPult> ([val: 0], [val: 10]) -> [val: 21],
+                    <Sub> ([val: 0], [const: i32 23]) -> [val: 20],
+                    <CMPult> ([val: 0], [const: i32 23]) -> [val: 21],
                     <CondBr> ([val: 21]),
                     successors: [24, 23],
                 ],
