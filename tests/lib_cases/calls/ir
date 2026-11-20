@@ -1490,13 +1490,13 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Load> ([val: 1], [raw: 8]) -> [val: 2],
-                    <fMul> ([val: 2], [const pool: 1]) -> [val: 3],
+                    <fMul> ([val: 2], [const pool: 0]) -> [val: 3],
                     <GEP> ([val: 1], [raw: 1], [const: i64 8]) -> [val: 4],
                     <Load> ([val: 4], [raw: 8]) -> [val: 5],
-                    <fMul> ([val: 5], [const pool: 2]) -> [val: 6],
+                    <fMul> ([val: 5], [const pool: 1]) -> [val: 6],
                     <GEP> ([val: 1], [raw: 1], [const: i64 16]) -> [val: 7],
                     <Load> ([val: 7], [raw: 8]) -> [val: 8],
-                    <fMul> ([val: 8], [const pool: 3]) -> [val: 9],
+                    <fMul> ([val: 8], [const pool: 2]) -> [val: 9],
                     <Store> ([val: 3], [val: 0], [raw: 8]),
                     <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
                     <Store> ([val: 6], [val: 10], [raw: 8]),
@@ -1599,7 +1599,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Call> ([func: 69], [alloc: 0], [val: 0]),
-                    <Call> ([func: 70], [alloc: 0], [const pool: 4]) -> [val: 1],
+                    <Call> ([func: 70], [alloc: 0], [const pool: 3]) -> [val: 1],
                     <Ret> ([val: 1]),
                 ],
             ],
@@ -1625,7 +1625,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 71], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4], [const: i64 5], [const: i64 6], [const: i64 7], [const: i64 8], [const pool: 5], [const pool: 6]) -> [val: 0],
+                    <Call> ([func: 71], [const: i64 1], [const: i64 2], [const: i64 3], [const: i64 4], [const: i64 5], [const: i64 6], [const: i64 7], [const: i64 8], [const pool: 4], [const pool: 5]) -> [val: 0],
                     <Ret> ([val: 0]),
                 ],
             ],
@@ -3479,7 +3479,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 0], [const pool: 7]) -> [val: 1],
+                    <And> ([val: 0], [const: i64 65535]) -> [val: 1],
                     <Trunc> ([val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -3522,7 +3522,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 0], [const pool: 8]) -> [val: 1],
+                    <And> ([val: 0], [const: i64 255]) -> [val: 1],
                     <Trunc> ([val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
@@ -4024,7 +4024,7 @@ ModuleTpde {
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <fAdd> ([val: 2], [const pool: 9]) -> [val: 5],
+                    <fAdd> ([val: 2], [const pool: 6]) -> [val: 5],
                     <Store> ([val: 1], [val: 0], [raw: 8]),
                     <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
                     <Store> ([val: 3], [val: 6], [raw: 8]),
@@ -5107,12 +5107,12 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Store> ([const pool: 11], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 7], [alloc: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 0],
-                    <Store> ([const pool: 12], [val: 0], [raw: 8]),
+                    <Store> ([const pool: 8], [val: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 16]) -> [val: 1],
-                    <Store> ([const pool: 13], [val: 1], [raw: 8]),
-                    <Call> ([func: 70], [alloc: 0], [const pool: 14]) -> [val: 2],
+                    <Store> ([const pool: 9], [val: 1], [raw: 8]),
+                    <Call> ([func: 70], [alloc: 0], [const pool: 10]) -> [val: 2],
                     <Ret> ([val: 2]),
                 ],
             ],
@@ -5206,7 +5206,7 @@ ModuleTpde {
                     <CondBr> ([val: 5], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <fMul> ([val: 2], [const pool: 15]) -> [val: 6],
+                    <fMul> ([val: 2], [const pool: 11]) -> [val: 6],
                     <Sub> ([val: 3], [const: i64 1]) -> [val: 7],
                     <OverflowCheck> ([raw: 1]) -> [val: 8],
                     <CondBr> ([val: 8], [raw: 4], [raw: 3]),
@@ -5817,7 +5817,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <fDiv> ([val: 18], [const pool: 16]) -> [val: 30],
+                    <fDiv> ([val: 18], [const pool: 12]) -> [val: 30],
                     <Store> ([val: 30], [val: 1], [raw: 8]),
                     <Ret> (),
                 ],
@@ -8775,17 +8775,13 @@ ModuleTpde {
         },
     ],
     consts: [
-        [i64] (0 64) -> 64,
         [f64] (0 4611686018427387904) -> 2,
         [f64] (0 4611686018427387904) -> 2,
         [f64] (0 4611686018427387904) -> 2,
         [f64] (0 4611686018427387904) -> 2,
         [f64] (0 4621256167635550208) -> 9,
         [f64] (0 4621819117588971520) -> 10,
-        [i64] (0 65535) -> 65535,
-        [i64] (0 255) -> 255,
         [f64] (0 4607182418800017408) -> 1,
-        [i64] (0 64) -> 64,
         [f64] (0 4609434218613702656) -> 1.5,
         [f64] (0 4612811918334230528) -> 2.5,
         [f64] (0 4615063718147915776) -> 3.5,

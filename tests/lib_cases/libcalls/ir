@@ -136,7 +136,7 @@ ModuleTpde {
                     <Cast> ([global: 16]) -> [val: 17],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 18],
                     <zExt> ([val: 18]) -> [val: 19],
-                    <Shl> ([const pool: 1], [val: 19]) -> [val: 20],
+                    <Shl> ([const: i64 228], [val: 19]) -> [val: 20],
                     <Or> ([val: 20], [const: i64 1]) -> [val: 21],
                     <Cast> ([val: 21]) -> [val: 22],
                     <Call> ([func: 39], [val: 17], [val: 22], [const: Bool 0], [global: 0]),
@@ -293,7 +293,7 @@ ModuleTpde {
                     <Cast> ([global: 16]) -> [val: 17],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 18],
                     <zExt> ([val: 18]) -> [val: 19],
-                    <Shl> ([const pool: 1], [val: 19]) -> [val: 20],
+                    <Shl> ([const: i64 228], [val: 19]) -> [val: 20],
                     <Or> ([val: 20], [const: i64 1]) -> [val: 21],
                     <Cast> ([val: 21]) -> [val: 22],
                     <Call> ([func: 39], [val: 17], [val: 22], [const: Bool 0], [global: 2]),
@@ -506,7 +506,7 @@ ModuleTpde {
                     <Cast> ([global: 18]) -> [val: 28],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 29],
                     <zExt> ([val: 29]) -> [val: 30],
-                    <Shl> ([const pool: 3], [val: 30]) -> [val: 31],
+                    <Shl> ([const: i64 283], [val: 30]) -> [val: 31],
                     <Or> ([val: 31], [const: i64 1]) -> [val: 32],
                     <Cast> ([val: 32]) -> [val: 33],
                     <Call> ([func: 39], [val: 28], [val: 33], [const: Bool 0], [global: 4]),
@@ -713,7 +713,7 @@ ModuleTpde {
                     <Cast> ([global: 18]) -> [val: 28],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 29],
                     <zExt> ([val: 29]) -> [val: 30],
-                    <Shl> ([const pool: 3], [val: 30]) -> [val: 31],
+                    <Shl> ([const: i64 283], [val: 30]) -> [val: 31],
                     <Or> ([val: 31], [const: i64 1]) -> [val: 32],
                     <Cast> ([val: 32]) -> [val: 33],
                     <Call> ([func: 39], [val: 28], [val: 33], [const: Bool 0], [global: 6]),
@@ -904,7 +904,7 @@ ModuleTpde {
                     <Cast> ([global: 20]) -> [val: 30],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 31],
                     <zExt> ([val: 31]) -> [val: 32],
-                    <Shl> ([const pool: 5], [val: 32]) -> [val: 33],
+                    <Shl> ([const: i64 221], [val: 32]) -> [val: 33],
                     <Or> ([val: 33], [const: i64 1]) -> [val: 34],
                     <Cast> ([val: 34]) -> [val: 35],
                     <Call> ([func: 39], [val: 30], [val: 35], [const: Bool 0], [global: 8]),
@@ -1117,7 +1117,7 @@ ModuleTpde {
                     <Cast> ([global: 20]) -> [val: 30],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 31],
                     <zExt> ([val: 31]) -> [val: 32],
-                    <Shl> ([const pool: 5], [val: 32]) -> [val: 33],
+                    <Shl> ([const: i64 221], [val: 32]) -> [val: 33],
                     <Or> ([val: 33], [const: i64 1]) -> [val: 34],
                     <Cast> ([val: 34]) -> [val: 35],
                     <Call> ([func: 39], [val: 30], [val: 35], [const: Bool 0], [global: 10]),
@@ -1441,7 +1441,7 @@ ModuleTpde {
                     <Cast> ([global: 16]) -> [val: 10],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 11],
                     <zExt> ([val: 11]) -> [val: 12],
-                    <Shl> ([const pool: 1], [val: 12]) -> [val: 13],
+                    <Shl> ([const: i64 228], [val: 12]) -> [val: 13],
                     <Or> ([val: 13], [const: i64 1]) -> [val: 14],
                     <Cast> ([val: 14]) -> [val: 15],
                     <Call> ([func: 39], [val: 10], [val: 15], [const: Bool 0], [val: 3]),
@@ -1669,7 +1669,7 @@ ModuleTpde {
                     <Cast> ([global: 18]) -> [val: 22],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 23],
                     <zExt> ([val: 23]) -> [val: 24],
-                    <Shl> ([const pool: 3], [val: 24]) -> [val: 25],
+                    <Shl> ([const: i64 283], [val: 24]) -> [val: 25],
                     <Or> ([val: 25], [const: i64 1]) -> [val: 26],
                     <Cast> ([val: 26]) -> [val: 27],
                     <Call> ([func: 39], [val: 22], [val: 27], [const: Bool 0], [val: 5]),
@@ -1845,7 +1845,7 @@ ModuleTpde {
                     <Cast> ([global: 20]) -> [val: 22],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 23],
                     <zExt> ([val: 23]) -> [val: 24],
-                    <Shl> ([const pool: 5], [val: 24]) -> [val: 25],
+                    <Shl> ([const: i64 221], [val: 24]) -> [val: 25],
                     <Or> ([val: 25], [const: i64 1]) -> [val: 26],
                     <Cast> ([val: 26]) -> [val: 27],
                     <Call> ([func: 39], [val: 22], [val: 27], [const: Bool 0], [val: 4]),
@@ -2092,7 +2092,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 1]) -> [val: 7],
                     <Cast> ([val: 7]) -> [val: 8],
-                    <CMPne> ([const pool: 6], [const: i64 0]) -> [val: 9],
+                    <CMPne> ([const: i64 256], [const: i64 0]) -> [val: 9],
                     <CMPeq> ([val: 8], [const: i64 0]) -> [val: 10],
                     <And> ([val: 10], [val: 9]) -> [val: 11],
                     <Not> ([val: 11]) -> [val: 12],
@@ -2103,7 +2103,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 33], [alloc: 0], [val: 1], [const pool: 7]),
+                    <Call> ([func: 33], [alloc: 0], [val: 1], [const: i64 256]),
                     <Cast> ([val: 0]) -> [val: 13],
                     <Cast> ([val: 13]) -> [val: 14],
                     <Sub> ([const: i64 8], [const: i64 1]) -> [val: 15],
@@ -2118,7 +2118,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 0]) -> [val: 18],
                     <Cast> ([val: 18]) -> [val: 19],
-                    <CMPne> ([const pool: 8], [const: i64 0]) -> [val: 20],
+                    <CMPne> ([const: i64 256], [const: i64 0]) -> [val: 20],
                     <CMPeq> ([val: 19], [const: i64 0]) -> [val: 21],
                     <And> ([val: 21], [val: 20]) -> [val: 22],
                     <Not> ([val: 22]) -> [val: 23],
@@ -2129,7 +2129,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 33], [val: 0], [alloc: 0], [const pool: 9]),
+                    <Call> ([func: 33], [val: 0], [alloc: 0], [const: i64 256]),
                     <Ret> (),
                 ],
                 BasicBlock: [
@@ -2688,7 +2688,7 @@ ModuleTpde {
                     <Br> ([raw: 1]),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 33], [alloc: 0], [alloc: 1], [const pool: 11]),
+                    <Call> ([func: 33], [alloc: 0], [alloc: 1], [const: i64 256]),
                     <Cast> ([val: 0]) -> [val: 6],
                     <Cast> ([val: 6]) -> [val: 7],
                     <Sub> ([const: i64 8], [const: i64 1]) -> [val: 8],
@@ -2699,7 +2699,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 0]) -> [val: 11],
                     <Cast> ([val: 11]) -> [val: 12],
-                    <CMPne> ([const pool: 12], [const: i64 0]) -> [val: 13],
+                    <CMPne> ([const: i64 256], [const: i64 0]) -> [val: 13],
                     <CMPeq> ([val: 12], [const: i64 0]) -> [val: 14],
                     <And> ([val: 14], [val: 13]) -> [val: 15],
                     <Not> ([val: 15]) -> [val: 16],
@@ -2710,7 +2710,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 33], [val: 0], [alloc: 0], [const pool: 13]),
+                    <Call> ([func: 33], [val: 0], [alloc: 0], [const: i64 256]),
                     <Ret> (),
                 ],
                 BasicBlock: [
@@ -2770,7 +2770,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Invoke> ([func: 2], [raw: 2], [raw: 1], [val: 1], [val: 0], [const pool: 14]),
+                    <Invoke> ([func: 2], [raw: 2], [raw: 1], [val: 1], [val: 0], [const: i64 100]),
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 2],
@@ -3061,7 +3061,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Invoke> ([func: 4], [raw: 2], [raw: 1], [val: 1], [val: 0], [const pool: 15]),
+                    <Invoke> ([func: 4], [raw: 2], [raw: 1], [val: 1], [val: 0], [const: i64 64]),
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 2],
@@ -3161,7 +3161,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Invoke> ([func: 0], [raw: 2], [raw: 1], [val: 0], [const pool: 16], [const pool: 17]),
+                    <Invoke> ([func: 0], [raw: 2], [raw: 1], [val: 0], [const pool: 0], [const: i64 200]),
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 1],
@@ -3533,8 +3533,8 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 32], [alloc: 1], [const: i8 0], [const pool: 18]),
-                    <Call> ([func: 33], [alloc: 0], [alloc: 1], [const pool: 19]),
+                    <Call> ([func: 32], [alloc: 1], [const: i8 0], [const: i64 256]),
+                    <Call> ([func: 33], [alloc: 0], [alloc: 1], [const: i64 256]),
                     <Cast> ([val: 0]) -> [val: 1],
                     <Cast> ([val: 1]) -> [val: 2],
                     <Sub> ([const: i64 8], [const: i64 1]) -> [val: 3],
@@ -3545,7 +3545,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 0]) -> [val: 6],
                     <Cast> ([val: 6]) -> [val: 7],
-                    <CMPne> ([const pool: 20], [const: i64 0]) -> [val: 8],
+                    <CMPne> ([const: i64 256], [const: i64 0]) -> [val: 8],
                     <CMPeq> ([val: 7], [const: i64 0]) -> [val: 9],
                     <And> ([val: 9], [val: 8]) -> [val: 10],
                     <Not> ([val: 10]) -> [val: 11],
@@ -3556,7 +3556,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Call> ([func: 33], [val: 0], [alloc: 0], [const pool: 21]),
+                    <Call> ([func: 33], [val: 0], [alloc: 0], [const: i64 256]),
                     <Ret> (),
                 ],
                 BasicBlock: [
@@ -7544,28 +7544,7 @@ ModuleTpde {
         },
     ],
     consts: [
-        [i64] (0 228) -> 228,
-        [i64] (0 228) -> 228,
-        [i64] (0 283) -> 283,
-        [i64] (0 283) -> 283,
-        [i64] (0 221) -> 221,
-        [i64] (0 221) -> 221,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 100) -> 100,
-        [i64] (0 64) -> 64,
         [i8] (18446744073709551615 18446744073709551531) -> -85,
-        [i64] (0 200) -> 200,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
-        [i64] (0 256) -> 256,
     ],
     globals: [
         anonymous {

@@ -42,19 +42,19 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <CMPugt> ([val: 0], [const pool: 0]) -> [val: 1],
+                    <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 0], [alloc: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 2],
-                    <Store> ([const pool: 2], [val: 2], [raw: 8]),
+                    <Store> ([const pool: 1], [val: 2], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 3], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 2], [alloc: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 3],
-                    <Store> ([const pool: 4], [val: 3], [raw: 8]),
+                    <Store> ([const pool: 3], [val: 3], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
@@ -106,15 +106,15 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <CMPugt> ([val: 0], [const pool: 5]) -> [val: 1],
+                    <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 6], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 4], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 7], [alloc: 0], [raw: 8]),
+                    <Store> ([const pool: 5], [alloc: 0], [raw: 8]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
@@ -227,12 +227,10 @@ ModuleTpde {
         },
     ],
     consts: [
-        [i32] (0 100) -> 100,
         [i64] (0 1085102592571150095) -> 1085102592571150095,
         [i8] (18446744073709551615 18446744073709551602) -> -14,
         [i64] (18446744073709551615 17361641481138401520) -> -1085102592571150096,
         [i8] (18446744073709551615 18446744073709551601) -> -15,
-        [i32] (0 100) -> 100,
         [i128] (242 1085102592571150095) -> 4465197168430282641167,
         [i128] (241 17361641481138401520) -> 4463026963245140340976,
     ],

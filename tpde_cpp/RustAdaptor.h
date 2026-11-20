@@ -31,9 +31,14 @@ namespace IR {
   // Under MARKER_GLOBAL: set for an index into global_ptrs, clear for a global at offset 0.
   inline constexpr uint32_t GLOBAL_PTR_BIT = uint32_t{1} << (std::numeric_limits<std::uint32_t>::digits - 4);
 
-  inline constexpr uint32_t INLINE_CONST_BITS = 6;
-  inline constexpr uint32_t INLINE_CONST_MASK = (uint32_t{1} << INLINE_CONST_BITS) - 1;
-  inline constexpr uint32_t INLINE_CONST_END = static_cast<uint32_t>(Type::Last) << INLINE_CONST_BITS;
+  inline constexpr u32 INLINE_CONST_BIT = (1 << 28);
+  inline constexpr uint32_t CONST_CONTENT = std::numeric_limits<uint32_t>::max() >> 4;
+  inline constexpr uint32_t INLINE_CONST_TYPE_BITS_COUNT =
+      std::bit_width(static_cast<uint32_t>(Type::Last));
+  inline constexpr uint32_t INLINE_CONST_VAL_BITS_COUNT =
+      std::numeric_limits<uint32_t>::digits - 4 - INLINE_CONST_TYPE_BITS_COUNT;
+  inline constexpr uint32_t INLINE_CONST_VAL_MASK =
+      CONST_CONTENT >> INLINE_CONST_TYPE_BITS_COUNT;
 
   class Operand {
     u32 value;
@@ -238,14 +243,14 @@ namespace tpde_rust {
     // wrapper for handling inlined constant values
     [[nodiscard]] Value const_value(const IRValueRef value) const {
       const u32 c = value.content();
-      if (c < IR::INLINE_CONST_END) {
+      if (c & IR::INLINE_CONST_BIT) {
         return Value{
-          .ty = static_cast<Type>(c >> IR::INLINE_CONST_BITS),
+          .ty = static_cast<Type>((c & IR::CONST_CONTENT) >> IR::INLINE_CONST_VAL_BITS_COUNT),
           .data1 = 0,
-          .data2 = c & IR::INLINE_CONST_MASK,
+          .data2 = c & IR::INLINE_CONST_VAL_MASK,
         };
       }
-      return get_consts()[c - IR::INLINE_CONST_END];
+      return get_consts()[c];
     }
 
     [[nodiscard]] Type type_of_ref(const IRValueRef value) const {

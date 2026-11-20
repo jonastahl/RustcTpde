@@ -188,10 +188,13 @@ pub struct Module {
     opt: OptConfig,
 }
 
-/// We inline smaller constants to avoid overusing the constant pool with small values.
-pub const INLINE_CONST_BITS: u32 = 6;
-pub const INLINE_CONST_LIMIT: u128 = 1 << INLINE_CONST_BITS;
-pub const INLINE_CONST_END: u32 = (Type::Last.repr as u32) << INLINE_CONST_BITS;
+/// We inline smaller constants to avoid overusing the constant pool with small values
+pub const INLINE_CONST_BIT: u32 = 1 << 28;
+pub const CONST_CONTENT: u32 = u32::MAX >> 4;
+pub const INLINE_CONST_TYPE_BITS_COUNT: u32 = u32::BITS - (Type::Last.repr as u32).leading_zeros();
+pub const INLINE_CONST_VAL_BITS_COUNT: u32 = u32::BITS - 4 - INLINE_CONST_TYPE_BITS_COUNT;
+pub const INLINE_CONST_VAL_MASK: u32 = CONST_CONTENT >> INLINE_CONST_TYPE_BITS_COUNT;
+pub const INLINE_CONST_LIMIT: u128 = INLINE_CONST_VAL_MASK as u128;
 
 #[derive(PartialEq)]
 pub enum Binding {
@@ -1037,16 +1040,23 @@ pub(super) fn access_info_intern<'a>(
     }
 }
 
-pub(super) fn decode_const(consts: &[ffi::Value], c: u32) -> (Type, u128) {
-    if c < INLINE_CONST_END {
-        let ty = Type {
-            repr: (c >> INLINE_CONST_BITS) as _,
-        };
-        (ty, (c & (INLINE_CONST_LIMIT as u32 - 1)) as u128)
-    } else {
-        let value = &consts[(c - INLINE_CONST_END) as usize];
-        (value.ty, value.data())
+pub(super) fn decode_inline_const(c: u32) -> Option<(Type, u128)> {
+    if c & INLINE_CONST_BIT == 0 {
+        return None;
     }
+
+    let ty = Type {
+        repr: ((c & CONST_CONTENT) >> (u32::BITS - 4 - INLINE_CONST_TYPE_BITS_COUNT)) as _,
+    };
+    let val = c & INLINE_CONST_VAL_MASK;
+    Some((ty, val as u128))
+}
+
+pub(super) fn decode_const(consts: &[ffi::Value], c: u32) -> (Type, u128) {
+    decode_inline_const(c).unwrap_or_else(|| {
+        let value = &consts[c as usize];
+        (value.ty, value.data())
+    })
 }
 
 impl ModuleTpde {
@@ -1063,11 +1073,13 @@ impl ModuleTpde {
 
     pub fn add_const(&mut self, ty: Type, data: u128) -> Slot {
         if data < INLINE_CONST_LIMIT {
-            return Slot::new_const((ty.repr as u32) << INLINE_CONST_BITS | data as u32);
+            return Slot::new_const(
+                INLINE_CONST_BIT | (ty.repr as u32) << INLINE_CONST_VAL_BITS_COUNT | data as u32,
+            );
         }
         let consts = &mut self.consts;
         consts.push(ffi::Value::new(ty, data));
-        Slot::new_const(INLINE_CONST_END + (consts.len() - 1) as u32)
+        Slot::new_const((consts.len() - 1) as u32)
     }
 }
 
@@ -1196,18 +1208,12 @@ impl Debug for Slot {
             Self::ConstVector(v) => write!(f, "[const vector: {}]", v),
             Self::Func(v) => write!(f, "[func: {}]", v.0),
             Self::Global(g) => write!(f, "[global: {}]", g.0),
-            Self::Const(c) if *c < INLINE_CONST_END => {
-                let ty = Type {
-                    repr: (*c >> INLINE_CONST_BITS) as _,
-                };
-                write!(
-                    f,
-                    "[const: {:?} {}]",
-                    ty,
-                    *c & (INLINE_CONST_LIMIT as u32 - 1)
-                )
-            }
-            Self::Const(c) => write!(f, "[const pool: {}]", c - INLINE_CONST_END),
+            Self::Const(c) => match decode_inline_const(*c) {
+                Some((ty, val)) => {
+                    write!(f, "[const: {:?} {}]", ty, val)
+                }
+                None => write!(f, "[const pool: {}]", c),
+            },
             Self::GlobalPtr(p) => write!(f, "[globalptr: {}]", p),
             Self::Phi(_, p) => write!(f, "[phi: {}]", p),
             Self::Pair(..) => unreachable!("Only used for tracking during generation"),

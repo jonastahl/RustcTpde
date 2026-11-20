@@ -3943,15 +3943,15 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <CMPugt> ([val: 0], [const pool: 120]) -> [val: 1],
+                    <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 121], [alloc: 0], [raw: 4]),
+                    <Store> ([const pool: 120], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 122], [alloc: 0], [raw: 4]),
+                    <Store> ([const pool: 121], [alloc: 0], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
@@ -4083,7 +4083,6 @@ ModuleTpde {
         [i32] (18446744073709551615 18446744073456906480) -> -252645136,
         [i32] (0 252645135) -> 252645135,
         [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 100) -> 100,
         [i32] (0 252645135) -> 252645135,
         [i32] (18446744073709551615 18446744073456906480) -> -252645136,
     ],

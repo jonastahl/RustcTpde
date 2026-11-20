@@ -387,7 +387,7 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 1], [raw: 2]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 0], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 100], [alloc: 0], [raw: 4]),
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -408,7 +408,7 @@ ModuleTpde {
                     <Switch> ([val: 1], [raw: 6], [raw: 7], [raw: 8], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 1], [raw: 4]),
+                    <Store> ([const pool: 0], [alloc: 1], [raw: 4]),
                     <Load> ([alloc: 1], [raw: 4]) -> [val: 9],
                     <Br> ([raw: 4]),
                 ],
@@ -550,7 +550,7 @@ ModuleTpde {
                     <Switch> ([val: 0], [raw: 1], [raw: 2], [raw: 3], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 0], [raw: 4]),
+                    <Store> ([const pool: 0], [alloc: 0], [raw: 4]),
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -663,7 +663,7 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <Mul> ([val: 2], [const pool: 2]) -> [val: 3],
+                    <Mul> ([val: 2], [const: i32 1000]) -> [val: 3],
                     <OverflowCheck> ([raw: 1]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 2], [raw: 1]),
                 ],
@@ -677,7 +677,7 @@ ModuleTpde {
                     <CondBr> ([val: 10], [raw: 8], [raw: 9]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 0], [alloc: 0], [raw: 4]),
+                    <Store> ([const: i32 100], [alloc: 0], [raw: 4]),
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 11],
                     <Br> ([raw: 6]),
                 ],
@@ -698,7 +698,7 @@ ModuleTpde {
                     <Switch> ([val: 1], [raw: 13], [raw: 14], [raw: 15], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 1], [raw: 4]),
+                    <Store> ([const pool: 0], [alloc: 1], [raw: 4]),
                     <Load> ([alloc: 1], [raw: 4]) -> [val: 17],
                     <Br> ([raw: 11]),
                 ],
@@ -727,7 +727,7 @@ ModuleTpde {
                     <CondBr> ([val: 20], [raw: 19], [raw: 20]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 0], [alloc: 2], [raw: 4]),
+                    <Store> ([const: i32 100], [alloc: 2], [raw: 4]),
                     <Load> ([alloc: 2], [raw: 4]) -> [val: 21],
                     <Br> ([raw: 17]),
                 ],
@@ -748,7 +748,7 @@ ModuleTpde {
                     <Switch> ([val: 0], [raw: 24], [raw: 25], [raw: 26], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 3], [raw: 4]),
+                    <Store> ([const pool: 0], [alloc: 3], [raw: 4]),
                     <Load> ([alloc: 3], [raw: 4]) -> [val: 27],
                     <Br> ([raw: 22]),
                 ],
@@ -1606,7 +1606,7 @@ ModuleTpde {
                     <Switch> ([val: 4], [raw: 11], [raw: 12], [raw: 13], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 2], [raw: 4]),
+                    <Store> ([const pool: 0], [alloc: 2], [raw: 4]),
                     <Load> ([alloc: 2], [raw: 4]) -> [val: 15],
                     <Br> ([raw: 9]),
                 ],
@@ -1718,7 +1718,7 @@ ModuleTpde {
                     <Switch> ([val: 0], [raw: 8], [raw: 9], [raw: 10], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 0], [raw: 4]),
+                    <Store> ([const pool: 0], [alloc: 0], [raw: 4]),
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 11],
                     <Br> ([raw: 6]),
                 ],
@@ -1746,7 +1746,7 @@ ModuleTpde {
                     <Switch> ([val: 1], [raw: 14], [raw: 15], [raw: 16], [const: i8 0], [const: i8 1]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 1], [alloc: 1], [raw: 4]),
+                    <Store> ([const pool: 0], [alloc: 1], [raw: 4]),
                     <Load> ([alloc: 1], [raw: 4]) -> [val: 15],
                     <Br> ([raw: 12]),
                 ],
@@ -1870,9 +1870,7 @@ ModuleTpde {
         },
     ],
     consts: [
-        [i32] (0 100) -> 100,
         [i32] (18446744073709551615 18446744073709551615) -> -1,
-        [i32] (0 1000) -> 1000,
     ],
     globals: [
         _RNvCsQvp3e8KgHi_6source8GLOBAL_A {

@@ -53,8 +53,7 @@ impl ModuleTpde {
                     .expect("Trying to inline function into itself");
 
                 if inline {
-                    all_inlined &=
-                        inline_call(caller, callee, &site, &mut returns, config.promote);
+                    all_inlined &= inline_call(caller, callee, &site, &mut returns, config.promote);
                     to_optimize.insert(site.func);
                 }
 

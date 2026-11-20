@@ -1098,7 +1098,7 @@ ModuleTpde {
                     <Cast> ([global: 0]) -> [val: 4],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 5],
                     <zExt> ([val: 5]) -> [val: 6],
-                    <Shl> ([const pool: 1], [val: 6]) -> [val: 7],
+                    <Shl> ([const: i64 198], [val: 6]) -> [val: 7],
                     <Or> ([val: 7], [const: i64 1]) -> [val: 8],
                     <Cast> ([val: 8]) -> [val: 9],
                     <Call> ([func: 35], [val: 4], [val: 9], [const: Bool 0], [val: 1]),
@@ -1182,7 +1182,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Cast> ([val: 1]) -> [val: 3],
-                    <Sub> ([const pool: 2], [val: 3]) -> [val: 4],
+                    <Sub> ([const pool: 0], [val: 3]) -> [val: 4],
                     <CMPule> ([val: 0], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 2], [raw: 1]),
                 ],
@@ -1190,7 +1190,7 @@ ModuleTpde {
                     <Cast> ([global: 2]) -> [val: 6],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 7],
                     <zExt> ([val: 7]) -> [val: 8],
-                    <Shl> ([const pool: 4], [val: 8]) -> [val: 9],
+                    <Shl> ([const: i64 259], [val: 8]) -> [val: 9],
                     <Or> ([val: 9], [const: i64 1]) -> [val: 10],
                     <Cast> ([val: 10]) -> [val: 11],
                     <Call> ([func: 35], [val: 6], [val: 11], [const: Bool 0], [val: 2]),
@@ -1472,7 +1472,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Cast> ([val: 14]) -> [val: 26],
-                    <Sub> ([const pool: 2], [val: 26]) -> [val: 27],
+                    <Sub> ([const pool: 0], [val: 26]) -> [val: 27],
                     <CMPule> ([val: 7], [val: 27]) -> [val: 28],
                     <CondBr> ([val: 28], [raw: 16], [raw: 15]),
                 ],
@@ -1480,7 +1480,7 @@ ModuleTpde {
                     <Cast> ([global: 2]) -> [val: 29],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 30],
                     <zExt> ([val: 30]) -> [val: 31],
-                    <Shl> ([const pool: 4], [val: 31]) -> [val: 32],
+                    <Shl> ([const: i64 259], [val: 31]) -> [val: 32],
                     <Or> ([val: 32], [const: i64 1]) -> [val: 33],
                     <Cast> ([val: 33]) -> [val: 34],
                     <Call> ([func: 35], [val: 29], [val: 34], [const: Bool 0], [global: 6]),
@@ -1504,7 +1504,7 @@ ModuleTpde {
                     <Cast> ([global: 0]) -> [val: 39],
                     <And> ([const: i32 1], [const: i32 63]) -> [val: 40],
                     <zExt> ([val: 40]) -> [val: 41],
-                    <Shl> ([const pool: 1], [val: 41]) -> [val: 42],
+                    <Shl> ([const: i64 198], [val: 41]) -> [val: 42],
                     <Or> ([val: 42], [const: i64 1]) -> [val: 43],
                     <Cast> ([val: 43]) -> [val: 44],
                     <Call> ([func: 35], [val: 39], [val: 44], [const: Bool 0], [global: 4]),
@@ -1595,7 +1595,7 @@ ModuleTpde {
                     <CondBr> ([val: 5], [raw: 1], [raw: 2]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 5], [alloc: 1], [raw: 4]),
+                    <Store> ([const pool: 1], [alloc: 1], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
@@ -1777,7 +1777,7 @@ ModuleTpde {
                     <CondBr> ([val: 5], [raw: 1], [raw: 2]),
                 ],
                 BasicBlock: [
-                    <Store> ([const pool: 6], [alloc: 1], [raw: 4]),
+                    <Store> ([const pool: 2], [alloc: 1], [raw: 4]),
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
@@ -3241,11 +3241,7 @@ ModuleTpde {
         },
     ],
     consts: [
-        [i64] (0 198) -> 198,
-        [i64] (0 198) -> 198,
         [i64] (18446744073709551615 9223372036854775808) -> -9223372036854775808,
-        [i64] (0 259) -> 259,
-        [i64] (0 259) -> 259,
         [i32] (18446744073709551615 18446744073709551615) -> -1,
         [i32] (18446744073709551615 18446744073709551615) -> -1,
     ],

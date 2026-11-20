@@ -474,7 +474,7 @@ ModuleTpde {
                     <Ret> ([val: 4]),
                 ],
                 BasicBlock: [
-                    <Cast> ([const pool: 4]) -> [val: 3],
+                    <Cast> ([const: i16 65533]) -> [val: 3],
                     <Br> ([raw: 6]),
                 ],
                 BasicBlock: [
@@ -542,7 +542,7 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <CMPeq> ([val: 0], [const pool: 2]) -> [val: 1],
+                    <CMPeq> ([val: 0], [const: i32 1000]) -> [val: 1],
                     <CondBr> ([val: 1], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
@@ -565,7 +565,7 @@ ModuleTpde {
                     <Ret> ([val: 5]),
                 ],
                 BasicBlock: [
-                    <Add> ([val: 2], [const pool: 3]) -> [val: 3],
+                    <Add> ([val: 2], [const: i32 100]) -> [val: 3],
                     <CMPult> ([val: 3], [val: 2]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 4], [raw: 3]),
                 ],
@@ -714,9 +714,6 @@ ModuleTpde {
     consts: [
         [i16] (18446744073709551615 18446744073709551612) -> -4,
         [i16] (18446744073709551615 18446744073709551612) -> -4,
-        [i32] (0 1000) -> 1000,
-        [i32] (0 100) -> 100,
-        [i16] (0 65533) -> -3,
     ],
     globals: [
         anonymous {

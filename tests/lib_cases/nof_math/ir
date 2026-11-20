@@ -2573,7 +2573,7 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <CMPult> ([val: 2], [const pool: 0]) -> [val: 3],
+                    <CMPult> ([val: 2], [const: i32 64]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
@@ -2584,7 +2584,7 @@ ModuleTpde {
                 BasicBlock: [
                     <zExt> ([val: 2]) -> [val: 5],
                     <Shl> ([val: 0], [val: 5]) -> [val: 6],
-                    <Sub> ([const pool: 1], [val: 2]) -> [val: 7],
+                    <Sub> ([const: i32 64], [val: 2]) -> [val: 7],
                     <zExt> ([val: 7]) -> [val: 8],
                     <lShr> ([val: 1], [val: 8]) -> [val: 9],
                     <Or> ([val: 6], [val: 9]) -> [val: 10],
@@ -2671,7 +2671,7 @@ ModuleTpde {
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <CMPult> ([val: 2], [const pool: 2]) -> [val: 3],
+                    <CMPult> ([val: 2], [const: i32 64]) -> [val: 3],
                     <CMPeq> ([val: 2], [const: i32 0]) -> [val: 4],
                     <CondBr> ([val: 4], [raw: 1], [raw: 2]),
                 ],
@@ -2680,7 +2680,7 @@ ModuleTpde {
                     <Br> ([raw: 3]),
                 ],
                 BasicBlock: [
-                    <Sub> ([const pool: 3], [val: 2]) -> [val: 5],
+                    <Sub> ([const: i32 64], [val: 2]) -> [val: 5],
                     <zExt> ([val: 5]) -> [val: 6],
                     <Shl> ([val: 0], [val: 6]) -> [val: 7],
                     <zExt> ([val: 2]) -> [val: 8],
@@ -4399,8 +4399,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 4]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 5]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 0]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 1]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4476,8 +4476,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 6]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 7]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 2]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 3]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4553,8 +4553,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 8]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 9]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 4]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 5]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4630,8 +4630,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 10]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 11]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 6]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 7]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4707,8 +4707,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 12]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 13]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 8]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 9]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4791,8 +4791,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 14]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 15]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 10]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 11]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4811,8 +4811,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 16]) -> [val: 9],
-                    <CMPeq> ([val: 0], [const pool: 17]) -> [val: 10],
+                    <CMPeq> ([val: 1], [const pool: 12]) -> [val: 9],
+                    <CMPeq> ([val: 0], [const pool: 13]) -> [val: 10],
                     <And> ([val: 9], [val: 10]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 8], [raw: 7]),
                 ],
@@ -4896,8 +4896,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 18]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 19]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 14]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 15]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -4916,8 +4916,8 @@ ModuleTpde {
                     <Unreachable> (),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 20]) -> [val: 9],
-                    <CMPeq> ([val: 0], [const pool: 21]) -> [val: 10],
+                    <CMPeq> ([val: 1], [const pool: 16]) -> [val: 9],
+                    <CMPeq> ([val: 0], [const pool: 17]) -> [val: 10],
                     <And> ([val: 9], [val: 10]) -> [val: 11],
                     <CondBr> ([val: 11], [raw: 8], [raw: 7]),
                 ],
@@ -7956,8 +7956,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 22]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 23]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 18]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 19]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8033,8 +8033,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 24]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 25]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 20]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 21]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8110,8 +8110,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 26]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 27]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 22]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 23]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8187,8 +8187,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 28]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 29]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 24]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 25]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -8264,8 +8264,8 @@ ModuleTpde {
                     <CondBr> ([val: 2], [raw: 2], [raw: 1]),
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 1], [const pool: 30]) -> [val: 3],
-                    <CMPeq> ([val: 0], [const pool: 31]) -> [val: 4],
+                    <CMPeq> ([val: 1], [const pool: 26]) -> [val: 3],
+                    <CMPeq> ([val: 0], [const pool: 27]) -> [val: 4],
                     <And> ([val: 3], [val: 4]) -> [val: 5],
                     <CondBr> ([val: 5], [raw: 4], [raw: 3]),
                 ],
@@ -9122,7 +9122,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const: i32 3], [const pool: 32]) -> [val: 1],
+                    <And> ([const: i32 3], [const: i32 127]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -9210,7 +9210,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const pool: 33], [const pool: 34]) -> [val: 1],
+                    <And> ([const: i32 64], [const: i32 127]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -9268,7 +9268,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 35]) -> [val: 2],
+                    <And> ([val: 1], [const: i128 127]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -9618,7 +9618,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 36]) -> [val: 2],
+                    <And> ([val: 1], [const: i128 127]) -> [val: 2],
                     <Shl> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -9890,7 +9890,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const pool: 37], [const pool: 38]) -> [val: 1],
+                    <And> ([const: i32 100], [const: i32 127]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -10021,7 +10021,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([const pool: 39], [const pool: 40]) -> [val: 1],
+                    <And> ([const: i32 64], [const: i32 127]) -> [val: 1],
                     <zExt> ([val: 1]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
@@ -10079,7 +10079,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 41]) -> [val: 2],
+                    <And> ([val: 1], [const: i128 127]) -> [val: 2],
                     <aShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -10366,9 +10366,9 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 42]) -> [val: 2],
+                    <And> ([val: 1], [const: i128 127]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
-                    <And> ([val: 1], [const pool: 43]) -> [val: 4],
+                    <And> ([val: 1], [const: i128 127]) -> [val: 4],
                     <Shl> ([val: 3], [val: 4]) -> [val: 5],
                     <Ret> ([val: 5]),
                 ],
@@ -10486,7 +10486,7 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <And> ([val: 1], [const pool: 44]) -> [val: 2],
+                    <And> ([val: 1], [const: i128 127]) -> [val: 2],
                     <lShr> ([val: 0], [val: 2]) -> [val: 3],
                     <Ret> ([val: 3]),
                 ],
@@ -15802,10 +15802,6 @@ ModuleTpde {
         },
     ],
     consts: [
-        [i32] (0 64) -> 64,
-        [i32] (0 64) -> 64,
-        [i32] (0 64) -> 64,
-        [i32] (0 64) -> 64,
         [i128] (18446744073709551615 18446744073709551615) -> -1,
         [i128] (9223372036854775808 0) -> -170141183460469231731687303715884105728,
         [i16] (18446744073709551615 18446744073709551615) -> -1,
@@ -15834,19 +15830,6 @@ ModuleTpde {
         [i64] (18446744073709551615 9223372036854775808) -> -9223372036854775808,
         [i8] (18446744073709551615 18446744073709551615) -> -1,
         [i8] (18446744073709551615 18446744073709551488) -> -128,
-        [i32] (0 127) -> 127,
-        [i32] (0 64) -> 64,
-        [i32] (0 127) -> 127,
-        [i128] (0 127) -> 127,
-        [i128] (0 127) -> 127,
-        [i32] (0 100) -> 100,
-        [i32] (0 127) -> 127,
-        [i32] (0 64) -> 64,
-        [i32] (0 127) -> 127,
-        [i128] (0 127) -> 127,
-        [i128] (0 127) -> 127,
-        [i128] (0 127) -> 127,
-        [i128] (0 127) -> 127,
     ],
     globals: [
         anonymous {
