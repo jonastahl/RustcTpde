@@ -45,6 +45,8 @@ mod ffi {
         allocas: Vec<Alloca>,
         basic_blocks: Vec<BasicBlock>,
 
+        successors: Vec<u32>,
+
         callee_infos: Vec<CalleeInfo>,
     }
 
@@ -128,6 +130,8 @@ mod ffi {
     pub struct BasicBlock {
         insts_start: u32,
         insts_len: u32,
+        suc_start: u32,
+        suc_len: u32,
         phi_start: u32,
         phi_len: u32,
         info1: u32,
@@ -534,7 +538,18 @@ impl Debug for BlockDebug<'_> {
                 inst,
                 operands: &self.function.operands,
             }))
+            .entry(&SuccessorsDebug(
+                &self.function.successors[self.block.successors()],
+            ))
             .finish()
+    }
+}
+
+struct SuccessorsDebug<'a>(&'a [u32]);
+
+impl Debug for SuccessorsDebug<'_> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
+        write!(f, "successors: {:?}", self.0)
     }
 }
 

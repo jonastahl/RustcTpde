@@ -284,9 +284,7 @@ namespace tpde_rust::x64 {
         generate_raw_set(
             jump, result_ref(cmpi.result()).part(0).alloc_reg(), /*zext=*/false);
       }
-      assert(jmp_instr.op(1).is_raw());
-      assert(jmp_instr.op(2).is_raw());
-      generate_cond_branch(jump, jmp_instr.op(1).content(), jmp_instr.op(2).content());
+      generate_cond_branch(jump, cur_succs()[0], cur_succs()[1]);
     } else {
       auto [_, res_ref] = result_ref_single(cmpi.result());
       generate_raw_set(jump, res_ref.alloc_reg(), /*zext=*/false);
@@ -309,7 +307,7 @@ namespace tpde_rust::x64 {
 
       ASM(TEST8ri, cond_reg, 1);
     }
-    generate_cond_branch(Jump::jne, condbr.op(1).content(), condbr.op(2).content());
+    generate_cond_branch(Jump::jne, cur_succs()[0], cur_succs()[1]);
     return true;
   }
 
@@ -325,7 +323,7 @@ namespace tpde_rust::x64 {
         break;
       default: TPDE_UNREACHABLE("Invalid op for overflow");
     }
-    generate_cond_branch(jump, jmpi.op(1).content(), jmpi.op(2).content());
+    generate_cond_branch(jump, cur_succs()[0], cur_succs()[1]);
     return true;
   }
 

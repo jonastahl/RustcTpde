@@ -26,6 +26,7 @@ ModuleTpde {
                     <PairGEP> ([global: 0], [raw: 8], [const: i64 1]) -> [val: 1],
                     <Load> ([val: 1], [raw: 8]) -> [val: 2],
                     <Ret> ([val: 0], [val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -49,6 +50,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Ret> ([global: 4], [const: i64 11]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -72,6 +74,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Ret> ([global: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],

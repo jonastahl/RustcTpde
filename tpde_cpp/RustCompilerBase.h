@@ -169,6 +169,10 @@ namespace tpde_rust {
       Base::reset();
     }
 
+    [[nodiscard]] std::span<const u32> cur_succs() const {
+      return this->adaptor->block_succs(this->analyzer.block_ref(this->cur_block_idx));
+    }
+
     static bool cur_func_may_emit_calls() { return true; }
 
     SymRef cur_personality_func() const;
@@ -1833,7 +1837,7 @@ namespace tpde_rust {
 
     const IR::Instr calli = this->adaptor->get_instruction(instr);
     const auto func = calli.op(0);
-    size_t arg_start = calli.kind() == InstructionKind::Call ? 1 : 3;
+    size_t arg_start = 1;
     bool is_dynamic_function;
     if (func.is_func()) {
       is_dynamic_function = false;
@@ -1943,97 +1947,97 @@ namespace tpde_rust {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
 
 
-  // we need to spill here since the call might branch off
-  // TODO: this will also spill the call arguments even if the call kills them
-  // however, spillBeforeCall already does this anyways so probably something
-  // for later
-  auto spilled = this->spill_before_branch();
+    // we need to spill here since the call might branch off
+    // TODO: this will also spill the call arguments even if the call kills them
+    // however, spillBeforeCall already does this anyways so probably something
+    // for later
+    auto spilled = this->spill_before_branch();
 
-  const auto off_before_call = this->text_writer.offset();
-  // compile the call
-  // TODO: in the case of an exception we need to invalidate the result
-  // registers
-  // TODO: if the call needs stack space, this must be undone in the unwind
-  // block! LLVM emits .cfi_escape 0x2e, <off>, we should do the same?
-  // (Current workaround by treating invoke as dynamic alloca.)
-  if (!this->compile_call(inst_ref, val_info, 0)) {
-    return false;
-  }
-  const auto off_after_call = this->text_writer.offset();
+    const auto off_before_call = this->text_writer.offset();
+    // compile the call
+    // TODO: in the case of an exception we need to invalidate the result
+    // registers
+    // TODO: if the call needs stack space, this must be undone in the unwind
+    // block! LLVM emits .cfi_escape 0x2e, <off>, we should do the same?
+    // (Current workaround by treating invoke as dynamic alloca.)
+    if (!this->compile_call(inst_ref, val_info, 0)) {
+      return false;
+    }
+    const auto off_after_call = this->text_writer.offset();
 
-  // build the eh table
-    IRBlockRef normal_block_ref = inst.op(1).content();
-    IRBlockRef unwind_block_ref = inst.op(2).content();
+    // build the eh table
+    IRBlockRef normal_block_ref = cur_succs()[0];
+    IRBlockRef unwind_block_ref = cur_succs()[1];
     const bool unwind_block_has_phi = this->adaptor->get_basic_block(unwind_block_ref).phi_len != 0;
 
-  const BasicBlock& normal_block = this->adaptor->get_basic_block(normal_block_ref);
-  auto unwind_label =
-      this->block_labels[(u32)this->analyzer.block_idx(unwind_block_ref)];
+    const BasicBlock& normal_block = this->adaptor->get_basic_block(normal_block_ref);
+    auto unwind_label =
+        this->block_labels[(u32)this->analyzer.block_idx(unwind_block_ref)];
 
-  // We always spill the call result. Also, generate_call might move values
-  // again into registers, which we need to release again.
-  // TODO: evaluate when exactly this is required.
-  spilled |= this->spill_before_branch(/*force_spill=*/true);
+    // We always spill the call result. Also, generate_call might move values
+    // again into registers, which we need to release again.
+    // TODO: evaluate when exactly this is required.
+    spilled |= this->spill_before_branch(/*force_spill=*/true);
 
-  // if the unwind block has phi-nodes, we need more code to propagate values
-  // to it so do the propagation logic
-  if (unwind_block_has_phi) {
-    // generate the jump to the normal successor but don't allow
-    // fall-through
-    derived()->generate_branch_to_block(Derived::Jump::jmp,
-                                        normal_block_ref,
-                                        /* split */ false,
-                                        /* last_inst */ false);
+    // if the unwind block has phi-nodes, we need more code to propagate values
+    // to it so do the propagation logic
+    if (unwind_block_has_phi) {
+      // generate the jump to the normal successor but don't allow
+      // fall-through
+      derived()->generate_branch_to_block(Derived::Jump::jmp,
+                                          normal_block_ref,
+                                          /* split */ false,
+                                          /* last_inst */ false);
 
-    this->release_spilled_regs(spilled);
+      this->release_spilled_regs(spilled);
 
-    unwind_label = this->text_writer.label_create();
-    this->label_place(unwind_label);
+      unwind_label = this->text_writer.label_create();
+      this->label_place(unwind_label);
 
-    // allocate the special registers that are set by the unwinding logic
-    // so the phi-propagation does not use them as temporaries
-    ScratchReg scratch1{derived()}, scratch2{derived()};
-    assert(!this->register_file.is_used(Derived::LANDING_PAD_RES_REGS[0]));
-    assert(!this->register_file.is_used(Derived::LANDING_PAD_RES_REGS[1]));
-    scratch1.alloc_specific(Derived::LANDING_PAD_RES_REGS[0]);
-    scratch2.alloc_specific(Derived::LANDING_PAD_RES_REGS[1]);
+      // allocate the special registers that are set by the unwinding logic
+      // so the phi-propagation does not use them as temporaries
+      ScratchReg scratch1{derived()}, scratch2{derived()};
+      assert(!this->register_file.is_used(Derived::LANDING_PAD_RES_REGS[0]));
+      assert(!this->register_file.is_used(Derived::LANDING_PAD_RES_REGS[1]));
+      scratch1.alloc_specific(Derived::LANDING_PAD_RES_REGS[0]);
+      scratch2.alloc_specific(Derived::LANDING_PAD_RES_REGS[1]);
 
-    derived()->generate_branch_to_block(Derived::Jump::jmp,
-                                        unwind_block_ref,
-                                        /* split */ false,
-                                        /* last_inst */ false);
-  } else {
-    // allow fall-through
-    derived()->generate_branch_to_block(Derived::Jump::jmp,
-                                        normal_block_ref,
-                                        /* split */ false,
-                                        /* last_inst */ true);
+      derived()->generate_branch_to_block(Derived::Jump::jmp,
+                                          unwind_block_ref,
+                                          /* split */ false,
+                                          /* last_inst */ false);
+    } else {
+      // allow fall-through
+      derived()->generate_branch_to_block(Derived::Jump::jmp,
+                                          normal_block_ref,
+                                          /* split */ false,
+                                          /* last_inst */ true);
 
-    this->release_spilled_regs(spilled);
-  }
+      this->release_spilled_regs(spilled);
+    }
 
-  const IR::Instr lp = this->adaptor->get_instruction(this->adaptor->get_basic_block(unwind_block_ref).insts_start);
-  assert(lp.is(InstructionKind::LandingPad));
-  const auto kind = static_cast<LandingPadKind>(lp.op(0).content());
+    const IR::Instr lp = this->adaptor->get_instruction(this->adaptor->get_basic_block(unwind_block_ref).insts_start);
+    assert(lp.is(InstructionKind::LandingPad));
+    const auto kind = static_cast<LandingPadKind>(lp.op(0).content());
 
-  this->text_writer.except_add_call_site(off_before_call,
-                                         off_after_call - off_before_call,
-                                         unwind_label,
-                                         kind == LandingPadKind::Cleanup);
+    this->text_writer.except_add_call_site(off_before_call,
+                                           off_after_call - off_before_call,
+                                           unwind_label,
+                                           kind == LandingPadKind::Cleanup);
 
-  switch (kind) {
-    case LandingPadKind::Cleanup:
-      // no clause so we are done
-      break;
-    case LandingPadKind::Filter:
-      this->text_writer.except_add_empty_spec_action(true);
-      break;
-    case LandingPadKind::CatchAll:
-      this->text_writer.except_add_action(true, SymRef{});
-      break;
-  }
+    switch (kind) {
+      case LandingPadKind::Cleanup:
+        // no clause so we are done
+        break;
+      case LandingPadKind::Filter:
+        this->text_writer.except_add_empty_spec_action(true);
+        break;
+      case LandingPadKind::CatchAll:
+        this->text_writer.except_add_action(true, SymRef{});
+        break;
+    }
 
-  return true;
+    return true;
   }
 
   template<typename Adaptor, typename Derived, typename Config>
@@ -4234,10 +4238,7 @@ namespace tpde_rust {
 
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_br(RustAdaptor::IRInstRef instr, const ValInfo &, u64) {
-    const IR::Instr bri = this->adaptor->get_instruction(instr);
-
-    assert(bri.op(0).is_raw());
-    Base::generate_uncond_branch(bri.op(0).content());
+    Base::generate_uncond_branch(cur_succs()[0]);
 
     return true;
   }
@@ -4253,21 +4254,23 @@ namespace tpde_rust {
     }
 
     // Collect cases, their target block and sort them in ascending order.
+    const std::span<const u32> succs = cur_succs();
     tpde::util::SmallVector<std::pair<u64, IRBlockRef>, 64> cases;
-    size_t num_cases = inst.num_ops() / 2 - 1;
+    size_t num_cases = inst.num_ops() - 1;
     assert(num_cases <= 200000);
+    assert(succs.size() == num_cases + 1);
     cases.reserve(num_cases);
     for (size_t i = 0; i < num_cases; ++i) {
       // case values are constants (data2 = low 64 bit), a raw operand would only hold 29 bits
       cases.push_back(std::make_pair(
-          static_cast<u64>(this->adaptor->const_value(inst.op(2 + num_cases + i)).data2),
-          inst.op(2 + i).content()));
+          static_cast<u64>(this->adaptor->const_value(inst.op(1 + i)).data2),
+          succs[1 + i]));
     }
     std::sort(cases.begin(), cases.end(), [](const auto &lhs, const auto &rhs) {
       return lhs.first < rhs.first;
     });
 
-    IRBlockRef def = inst.op(1).content();
+    IRBlockRef def = succs[0];
 
     // cond must be ref-counted before generate_switch.
     ScratchReg cond_scratch = this->val_ref(cond_ref).part(0).into_scratch();

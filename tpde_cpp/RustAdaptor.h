@@ -205,6 +205,7 @@ namespace tpde_rust {
       std::span<Instruction> instructions;
       std::span<Alloca> allocas;
       std::span<BasicBlock> basic_blocks;
+      std::span<const u32> successors;
       std::span<CalleeInfo> callee_infos;
     } cur_data;
 
@@ -221,6 +222,7 @@ namespace tpde_rust {
     [[nodiscard]] std::span<Instruction> get_instructions() const { return cur_data.instructions; }
     [[nodiscard]] std::span<Alloca> get_allocas() const { return cur_data.allocas; }
     [[nodiscard]] std::span<BasicBlock> get_basic_blocks() const { return cur_data.basic_blocks; }
+    [[nodiscard]] std::span<const u32> get_successors() const { return cur_data.successors; }
     [[nodiscard]] std::span<CalleeInfo> get_callee_infos() const { return cur_data.callee_infos; }
 #else
     // no-cache: go through the cxxbridge on every access, to measure what the caching gains
@@ -237,6 +239,7 @@ namespace tpde_rust {
     [[nodiscard]] std::span<Instruction> get_instructions() const { return view(cur_func->instructions); }
     [[nodiscard]] std::span<Alloca> get_allocas() const { return view(cur_func->allocas); }
     [[nodiscard]] std::span<BasicBlock> get_basic_blocks() const { return view(cur_func->basic_blocks); }
+    [[nodiscard]] std::span<const u32> get_successors() const { return view(cur_func->successors); }
     [[nodiscard]] std::span<CalleeInfo> get_callee_infos() const { return view(cur_func->callee_infos); }
 #endif
 
@@ -281,13 +284,6 @@ namespace tpde_rust {
     [[nodiscard]] IR::Instr get_instruction(const IRInstRef inst) const {
       return IR::Instr(get_instructions()[inst], *this);
     }
-
-  private:
-    [[nodiscard]] std::span<Instruction> block_instructions(const IRBlockRef block) const {
-      const auto &bb = get_basic_block(block);
-      return get_instructions().subspan(bb.insts_start, bb.insts_len);
-    }
-  public:
 
     struct ValInfo {
       Type type;
@@ -374,48 +370,8 @@ namespace tpde_rust {
     }
 
     [[nodiscard]] auto block_succs(IRBlockRef bb) const {
-      size_t offset, count;
-
-      const auto insts = block_instructions(bb);
-      const Instruction* br_instr = &insts.back();
-      if (br_instr->kind == InstructionKind::AddRet) {
-        br_instr = &insts[insts.size() - 2];
-      }
-
-      switch (br_instr->kind) {
-        case InstructionKind::Ret:
-          offset = count = 0;
-          break;
-        case InstructionKind::Br:
-          offset = 0;
-          count = 1;
-          break;
-        case InstructionKind::CondBr:
-          offset = 1;
-          count = 2;
-          break;
-        case InstructionKind::Unreachable:
-          offset = count = 0;
-          break;
-        case InstructionKind::Invoke:
-          offset = 1;
-          count = 2;
-          break;
-        case InstructionKind::Switch:
-          offset = 1;
-          count = br_instr->ops_len / 2;
-          break;
-        case InstructionKind::Resume:
-          offset = count = 0;
-          break;
-        default:
-          TPDE_FATAL("Invalid branching instruction");
-      }
-
-      return IR::Instr(*br_instr, *this).ops()
-             | std::ranges::views::drop(offset)
-             | std::ranges::views::take(count)
-             | std::ranges::views::transform([](IR::Operand op) { return op.content(); });
+      const BasicBlock& block = get_basic_block(bb);
+      return get_successors().subspan(block.suc_start, block.suc_len);
     }
 
     [[nodiscard]] auto block_insts(const IRBlockRef bb) {
@@ -566,6 +522,7 @@ namespace tpde_rust {
         .instructions = view(func->instructions),
         .allocas = view(func->allocas),
         .basic_blocks = view(func->basic_blocks),
+        .successors = view(func->successors),
         .callee_infos = view(func->callee_infos),
       };
 #endif

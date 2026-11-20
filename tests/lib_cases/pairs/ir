@@ -43,25 +43,29 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
-                    <CondBr> ([val: 1], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 1]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const pool: 0], [alloc: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 2],
                     <Store> ([const pool: 1], [val: 2], [raw: 8]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const pool: 2], [alloc: 0], [raw: 8]),
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 3],
                     <Store> ([const pool: 3], [val: 3], [raw: 8]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 8]) -> [val: 6],
                     <Ret> ([val: 4], [val: 6]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -107,21 +111,25 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
-                    <CondBr> ([val: 1], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 1]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const pool: 4], [alloc: 0], [raw: 8]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const pool: 5], [alloc: 0], [raw: 8]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 2],
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
                     <Load> ([val: 3], [raw: 8]) -> [val: 4],
                     <Ret> ([val: 2], [val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -178,14 +186,17 @@ ModuleTpde {
                 BasicBlock: [
                     <Add> ([val: 1], [const: i8 1]) -> [val: 2],
                     <CMPult> ([val: 2], [val: 1]) -> [val: 3],
-                    <CondBr> ([val: 3], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 3]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 0], [val: 2]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Call> ([func: 3], [global: 0]),
                     <Unreachable> (),
+                    successors: [],
                 ],
             ],
             callee_infos: [],

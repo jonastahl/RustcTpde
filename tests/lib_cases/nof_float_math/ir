@@ -51,20 +51,24 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Store> ([const: Bool 1], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 19], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
+                    <Invoke> ([func: 19], [val: 0]) -> [val: 3],
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 1],
                     <AddRet> () -> [val: 2],
                     <Call> ([func: 123]),
                     <Unreachable> (),
+                    successors: [],
                 ],
                 BasicBlock: [
-                    <Invoke> ([func: 16], [raw: 5], [raw: 4], [const pool: 0]) -> [val: 7],
+                    <Invoke> ([func: 16], [const pool: 0]) -> [val: 7],
+                    successors: [5, 4],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 13],
-                    <CondBr> ([val: 13], [raw: 10], [raw: 7]),
+                    <CondBr> ([val: 13]),
+                    successors: [10, 7],
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 0]) -> [val: 4],
@@ -72,18 +76,22 @@ ModuleTpde {
                     <Store> ([val: 4], [alloc: 1], [raw: 8]),
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 6],
                     <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 22], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
+                    <Invoke> ([func: 22], [val: 3], [val: 7]) -> [val: 8],
+                    successors: [6, 4],
                 ],
                 BasicBlock: [
-                    <Invoke> ([func: 20], [raw: 9], [raw: 8], [val: 8]) -> [val: 12],
+                    <Invoke> ([func: 20], [val: 8]) -> [val: 12],
+                    successors: [9, 8],
                 ],
                 BasicBlock: [
                     <Call> ([func: 123]),
                     <Unreachable> (),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 0]) -> [val: 9],
@@ -91,13 +99,16 @@ ModuleTpde {
                     <Store> ([val: 9], [alloc: 1], [raw: 8]),
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 11],
                     <Store> ([val: 10], [val: 11], [raw: 8]),
-                    <Br> ([raw: 7]),
+                    <Br> (),
+                    successors: [7],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 12]),
+                    successors: [],
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 7]),
+                    <Br> (),
+                    successors: [7],
                 ],
             ],
             callee_infos: [],
@@ -153,20 +164,24 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Store> ([const: Bool 1], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 17], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
+                    <Invoke> ([func: 17], [val: 0]) -> [val: 3],
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 1],
                     <AddRet> () -> [val: 2],
                     <Call> ([func: 123]),
                     <Unreachable> (),
+                    successors: [],
                 ],
                 BasicBlock: [
-                    <Invoke> ([func: 15], [raw: 5], [raw: 4], [const pool: 1]) -> [val: 7],
+                    <Invoke> ([func: 15], [const pool: 1]) -> [val: 7],
+                    successors: [5, 4],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 13],
-                    <CondBr> ([val: 13], [raw: 10], [raw: 7]),
+                    <CondBr> ([val: 13]),
+                    successors: [10, 7],
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 0]) -> [val: 4],
@@ -174,18 +189,22 @@ ModuleTpde {
                     <Store> ([val: 4], [alloc: 1], [raw: 8]),
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 6],
                     <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
-                    <Invoke> ([func: 21], [raw: 6], [raw: 4], [val: 3], [val: 7]) -> [val: 8],
+                    <Invoke> ([func: 21], [val: 3], [val: 7]) -> [val: 8],
+                    successors: [6, 4],
                 ],
                 BasicBlock: [
-                    <Invoke> ([func: 18], [raw: 9], [raw: 8], [val: 8]) -> [val: 12],
+                    <Invoke> ([func: 18], [val: 8]) -> [val: 12],
+                    successors: [9, 8],
                 ],
                 BasicBlock: [
                     <Call> ([func: 123]),
                     <Unreachable> (),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 0]) -> [val: 9],
@@ -193,13 +212,16 @@ ModuleTpde {
                     <Store> ([val: 9], [alloc: 1], [raw: 8]),
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 11],
                     <Store> ([val: 10], [val: 11], [raw: 8]),
-                    <Br> ([raw: 7]),
+                    <Br> (),
+                    successors: [7],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 12]),
+                    successors: [],
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 7]),
+                    <Br> (),
+                    successors: [7],
                 ],
             ],
             callee_infos: [],
@@ -241,16 +263,19 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Invoke> ([func: 14], [raw: 2], [raw: 1], [val: 0]) -> [val: 3],
+                    <Invoke> ([func: 14], [val: 0]) -> [val: 3],
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 1],
                     <AddRet> () -> [val: 2],
                     <Call> ([func: 123]),
                     <Unreachable> (),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -292,6 +317,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAbs> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -347,6 +373,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMax> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -402,6 +429,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMin> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -443,6 +471,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAbs> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -498,6 +527,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMax> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -553,6 +583,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMin> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -594,6 +625,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Call> ([func: 132], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -652,26 +684,32 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 0]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <RealOGE> ([val: 1], [val: 0]) -> [val: 3],
-                    <CondBr> ([val: 3], [raw: 4], [raw: 3]),
+                    <CondBr> ([val: 3]),
+                    successors: [4, 3],
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 4]),
+                    <Br> (),
+                    successors: [4],
                 ],
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -730,26 +768,32 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 0]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <RealOGE> ([val: 1], [val: 0]) -> [val: 3],
-                    <CondBr> ([val: 3], [raw: 4], [raw: 3]),
+                    <CondBr> ([val: 3]),
+                    successors: [4, 3],
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 4]),
+                    <Br> (),
+                    successors: [4],
                 ],
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 8]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -808,26 +852,32 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 0]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <RealOLE> ([val: 1], [val: 0]) -> [val: 3],
-                    <CondBr> ([val: 3], [raw: 4], [raw: 3]),
+                    <CondBr> ([val: 3]),
+                    successors: [4, 3],
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 4]),
+                    <Br> (),
+                    successors: [4],
                 ],
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -886,26 +936,32 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 0]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <RealOLE> ([val: 1], [val: 0]) -> [val: 3],
-                    <CondBr> ([val: 3], [raw: 4], [raw: 3]),
+                    <CondBr> ([val: 3]),
+                    successors: [4, 3],
                 ],
                 BasicBlock: [
-                    <Br> ([raw: 4]),
+                    <Br> (),
+                    successors: [4],
                 ],
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 8]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Br> ([raw: 5]),
+                    <Br> (),
+                    successors: [5],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -947,6 +1003,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Call> ([func: 133], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -988,6 +1045,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1029,6 +1087,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Not> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1070,6 +1129,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1111,6 +1171,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1152,6 +1213,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1193,6 +1255,7 @@ ModuleTpde {
                 BasicBlock: [
                     <Cast> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1248,6 +1311,7 @@ ModuleTpde {
                 BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1303,6 +1367,7 @@ ModuleTpde {
                 BasicBlock: [
                     <And> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1344,18 +1409,22 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <fAbs> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
@@ -1397,18 +1466,22 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <fAbs> ([val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
@@ -1480,6 +1553,7 @@ ModuleTpde {
                     <fAdd> ([val: 0], [val: 1]) -> [val: 3],
                     <fAdd> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1647,6 +1721,7 @@ ModuleTpde {
                     <fAdd> ([val: 14], [val: 7]) -> [val: 15],
                     <fAdd> ([val: 15], [val: 8]) -> [val: 16],
                     <Ret> ([val: 16]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1688,6 +1763,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [const pool: 2]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1729,6 +1805,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [const pool: 3]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1770,6 +1847,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [const pool: 4]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1825,6 +1903,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1880,6 +1959,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1921,6 +2001,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [const pool: 5]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -1992,6 +2073,7 @@ ModuleTpde {
                     <fMul> ([val: 1], [val: 2]) -> [val: 3],
                     <fAdd> ([val: 0], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2033,6 +2115,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [const pool: 6]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2074,6 +2157,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [const pool: 7]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2133,6 +2217,7 @@ ModuleTpde {
                     <fSub> ([val: 0], [val: 1]) -> [val: 3],
                     <fSub> ([val: 2], [val: 3]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2174,6 +2259,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fAdd> ([val: 0], [const: f64 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2217,19 +2303,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOLT> ([val: 0], [const pool: 8]) -> [val: 1],
-                    <CondBr> ([val: 1], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 1]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2287,19 +2377,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOEQ> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2357,19 +2451,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOEQ> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2427,19 +2525,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOGE> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2497,19 +2599,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOGE> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2567,19 +2673,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOGT> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2637,19 +2747,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOGT> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2707,19 +2821,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOLE> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2777,19 +2895,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOLE> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2847,19 +2969,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOLT> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2917,19 +3043,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealOLT> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -2987,19 +3117,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3057,19 +3191,23 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2], [raw: 2], [raw: 1]),
+                    <CondBr> ([val: 2]),
+                    successors: [2, 1],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 20], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Store> ([const: i32 10], [alloc: 0], [raw: 4]),
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Load> ([alloc: 0], [raw: 4]) -> [val: 3],
                     <Ret> ([val: 3]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3111,6 +3249,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOGT> ([val: 0], [const pool: 9]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3166,6 +3305,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOEQ> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3221,6 +3361,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOEQ> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3276,6 +3417,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOGE> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3331,6 +3473,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOGE> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3386,6 +3529,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOGT> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3441,6 +3585,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOGT> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3496,6 +3641,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOLE> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3551,6 +3697,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOLE> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3606,6 +3753,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOLT> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3661,6 +3809,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealOLT> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3716,6 +3865,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3771,6 +3921,7 @@ ModuleTpde {
                 BasicBlock: [
                     <RealUNE> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3812,6 +3963,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fDiv> ([const pool: 10], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3853,6 +4005,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fSub> ([const pool: 11], [val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3894,6 +4047,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fDiv> ([val: 0], [const pool: 12]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3935,6 +4089,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fDiv> ([val: 0], [const pool: 13]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -3990,6 +4145,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fDiv> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4045,6 +4201,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fDiv> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4086,6 +4243,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fExt> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4127,6 +4285,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4168,6 +4327,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4209,6 +4369,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4250,6 +4411,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4291,6 +4453,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4332,6 +4495,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4373,6 +4537,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4414,6 +4579,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4455,6 +4621,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTrunc> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4496,6 +4663,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4537,6 +4705,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4578,6 +4747,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4619,6 +4789,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTos_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4660,6 +4831,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4701,6 +4873,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4742,6 +4915,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4783,6 +4957,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fTou_sat> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4824,6 +4999,7 @@ ModuleTpde {
                 BasicBlock: [
                     <sTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4865,6 +5041,7 @@ ModuleTpde {
                 BasicBlock: [
                     <sTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4906,6 +5083,7 @@ ModuleTpde {
                 BasicBlock: [
                     <sTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4947,6 +5125,7 @@ ModuleTpde {
                 BasicBlock: [
                     <sTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -4988,18 +5167,22 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 3]) -> [val: 1],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <Call> ([func: 132], [val: 0]) -> [val: 3],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
@@ -5056,18 +5239,22 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 5]) -> [val: 2],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <fMax> ([val: 0], [val: 1]) -> [val: 5],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
@@ -5124,18 +5311,22 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 5]) -> [val: 2],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <fMax> ([val: 0], [val: 1]) -> [val: 5],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
@@ -5192,18 +5383,22 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 5]) -> [val: 2],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <fMin> ([val: 0], [val: 1]) -> [val: 5],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
@@ -5260,18 +5455,22 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 5]) -> [val: 2],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <fMin> ([val: 0], [val: 1]) -> [val: 5],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
@@ -5393,6 +5592,7 @@ ModuleTpde {
                     <uTof> ([val: 9]) -> [val: 10],
                     <fMul> ([val: 7], [val: 10]) -> [val: 11],
                     <Ret> ([val: 11]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5464,6 +5664,7 @@ ModuleTpde {
                     <fMul> ([val: 0], [val: 1]) -> [val: 3],
                     <fAdd> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5535,6 +5736,7 @@ ModuleTpde {
                     <fMul> ([val: 0], [val: 1]) -> [val: 3],
                     <fAdd> ([val: 3], [val: 2]) -> [val: 4],
                     <Ret> ([val: 4]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5576,6 +5778,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMul> ([val: 0], [const pool: 14]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5617,6 +5820,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMul> ([val: 0], [const pool: 15]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5672,6 +5876,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5727,6 +5932,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMul> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5768,6 +5974,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMul> ([val: 0], [const pool: 16]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5809,6 +6016,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMul> ([val: 0], [const pool: 17]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5850,6 +6058,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fMul> ([val: 0], [const pool: 18]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5891,6 +6100,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fNeg> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5932,6 +6142,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fNeg> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -5987,6 +6198,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fRem> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6042,6 +6254,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fRem> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6065,6 +6278,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Ret> ([const pool: 19]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6088,6 +6302,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Ret> ([const pool: 20]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6129,6 +6344,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fSub> ([val: 0], [const pool: 21]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6170,6 +6386,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fSub> ([val: 0], [const pool: 22]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6225,6 +6442,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fSub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6280,6 +6498,7 @@ ModuleTpde {
                 BasicBlock: [
                     <fSub> ([val: 0], [val: 1]) -> [val: 2],
                     <Ret> ([val: 2]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6321,6 +6540,7 @@ ModuleTpde {
                 BasicBlock: [
                     <uTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6362,6 +6582,7 @@ ModuleTpde {
                 BasicBlock: [
                     <uTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6403,6 +6624,7 @@ ModuleTpde {
                 BasicBlock: [
                     <uTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -6444,6 +6666,7 @@ ModuleTpde {
                 BasicBlock: [
                     <uTof> ([val: 0]) -> [val: 1],
                     <Ret> ([val: 1]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],

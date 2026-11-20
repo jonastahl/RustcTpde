@@ -6,6 +6,7 @@ use core::fmt::{Debug, Formatter};
 use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::ReturnSlot;
 use rustc_middle::mir::Mutability;
+use std::ops::Range;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct Function(pub(super) usize);
@@ -261,6 +262,7 @@ impl Module {
                     + bytes(&f.instructions)
                     + bytes(&f.allocas)
                     + bytes(&f.basic_blocks)
+                    + bytes(&f.successors)
                     + bytes(&f.callee_infos)
                     + bytes(&f.called_by)
                     + f.callee_infos.iter().map(|c| bytes(&c.info)).sum::<usize>()
@@ -313,6 +315,7 @@ impl Module {
             instructions: vec![],
             allocas: vec![],
             basic_blocks: vec![],
+            successors: vec![],
             callee_infos: vec![],
         });
         Function(self.tpde.functions.len() - 1)
@@ -329,6 +332,7 @@ impl Module {
     ) {
         let function = &mut self.tpde.functions[func.0];
         function.basic_blocks.reserve(blocks);
+        function.successors.reserve(blocks);
         function.instructions.reserve(insts);
         function.slots.reserve(slots);
         function.operands.reserve(operands);
@@ -523,6 +527,8 @@ impl Module {
             insts_len: 0,
             phi_start: 0,
             phi_len: 0,
+            suc_start: 0,
+            suc_len: 0,
             info1: 0,
             info2: 0,
         });
@@ -762,6 +768,18 @@ impl Module {
         ret.result()
     }
 
+    #[inline]
+    fn set_successors(&mut self, bb: BasicBlock, successors: impl IntoIterator<Item = BasicBlock>) {
+        let function = &mut self.tpde.functions[bb.function().0];
+        let start = function.successors.len();
+        function
+            .successors
+            .extend(successors.into_iter().map(|s| s.index as u32));
+        let block = &mut function.basic_blocks[bb.index()];
+        block.suc_start = start as u32;
+        block.suc_len = (function.successors.len() - start) as u32;
+    }
+
     pub fn access_info(&mut self, f: Function, ptr: &Slot) -> Option<&mut AccessInfo> {
         let func = self.get_function_mut(&f);
         access_info_intern(func, ptr)
@@ -814,10 +832,10 @@ impl Module {
         return_slot: ReturnSlot<Slot>,
         args: &[Slot],
     ) -> Option<Slot> {
-        let mut ops = Vec::with_capacity(3 + args.len());
+        self.set_successors(bb, [then, catch]);
+
+        let mut ops = Vec::with_capacity(2 + args.len());
         ops.push(func_ref);
-        ops.push(Slot::new_raw(then.index as u32));
-        ops.push(Slot::new_raw(catch.index as u32));
         match func_ref {
             Slot::Func(_) => {}
             Slot::Value(..) | Slot::Phi(..) => {
@@ -969,7 +987,8 @@ impl Module {
     }
 
     pub fn add_br(&mut self, bb: BasicBlock, to: BasicBlock) {
-        self.add_instruction(bb, InstructionKind::Br, &[Slot::new_raw(to.index as u32)]);
+        self.set_successors(bb, [to]);
+        self.add_instruction(bb, InstructionKind::Br, &[]);
     }
 
     pub fn add_switch(
@@ -979,9 +998,8 @@ impl Module {
         else_block: BasicBlock,
         cases: &[(u128, BasicBlock)],
     ) {
-        let mut ops = Vec::with_capacity(cases.len() * 2 + 2);
+        let mut ops = Vec::with_capacity(cases.len() + 2);
         ops.push(val);
-        ops.push(Slot::new_raw(else_block.index as u32));
 
         let FullType::Single(ty) = self.type_of_slot(val) else {
             todo!()
@@ -989,15 +1007,11 @@ impl Module {
 
         assert!(cases.len() <= 200000, "Too many cases: {}", cases.len());
 
-        for (val, target) in cases {
-            assert!(
-                *val <= u64::MAX as u128,
-                "switch case does not fit in 64 bit"
-            );
-            ops.push(Slot::new_raw(target.index as u32));
-        }
-        // Case values live in the constant pool, a raw operand only has 29 bits.
-        for (val, target) in cases {
+        self.set_successors(
+            bb,
+            std::iter::once(else_block).chain(cases.iter().map(|&(_, target)| target)),
+        );
+        for (val, _) in cases {
             assert!(
                 *val <= u64::MAX as u128,
                 "switch case does not fit in 64 bit"
@@ -1015,15 +1029,8 @@ impl Module {
         thenbb: BasicBlock,
         elsebb: BasicBlock,
     ) {
-        self.add_instruction(
-            bb,
-            InstructionKind::CondBr,
-            &[
-                cond,
-                Slot::new_raw(thenbb.index as u32),
-                Slot::new_raw(elsebb.index as u32),
-            ],
-        );
+        self.set_successors(bb, [thenbb, elsebb]);
+        self.add_instruction(bb, InstructionKind::CondBr, &[cond]);
     }
 }
 
@@ -1232,6 +1239,12 @@ impl BasicBlock {
 
     fn index(&self) -> usize {
         self.index
+    }
+}
+
+impl ffi::BasicBlock {
+    pub(super) fn successors(&self) -> Range<usize> {
+        self.suc_start as usize..(self.suc_start + self.suc_len) as usize
     }
 }
 

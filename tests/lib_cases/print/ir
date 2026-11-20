@@ -61,6 +61,7 @@ ModuleTpde {
                     <Or> ([val: 5], [const: i64 1]) -> [val: 6],
                     <Cast> ([val: 6]) -> [val: 7],
                     <Ret> ([val: 2], [val: 7]),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
@@ -94,17 +95,20 @@ ModuleTpde {
             allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> ([raw: 3]),
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <AddRet> (),
                     <Call> ([func: 2], [val: 0], [val: 1]),
                     <Ret> (),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 4]) -> [val: 0],
                     <Cast> ([val: 9]) -> [val: 1],
-                    <Br> ([raw: 1]),
+                    <Br> (),
+                    successors: [1],
                 ],
                 BasicBlock: [
                     <Cast> ([global: 0]) -> [val: 4],
@@ -113,7 +117,8 @@ ModuleTpde {
                     <Shl> ([const: i64 14], [val: 6]) -> [val: 7],
                     <Or> ([val: 7], [const: i64 1]) -> [val: 8],
                     <Cast> ([val: 8]) -> [val: 9],
-                    <Br> ([raw: 2]),
+                    <Br> (),
+                    successors: [2],
                 ],
             ],
             callee_infos: [],
