@@ -88,6 +88,7 @@ namespace tpde_rust::x64 {
     bool compile_xgetbv(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_sha(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_shift(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_minmax(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -393,6 +394,40 @@ namespace tpde_rust::x64 {
     auto dst = lhs.part(0).into_temporary();
     auto src_reg = rhs.part(0).load_to_reg();
     ASM(SSE_PCLMULQDQrri, dst.cur_reg(), src_reg, imm);
+    res.part(0).set_value(std::move(dst));
+    return true;
+  }
+
+  bool RustCompilerX64::compile_sha(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    // operands: <4 x i32> a, <4 x i32> b, [imm (sha1rnds4) | <4 x i32> k (sha256rnds2)], raw variant
+    // All SHA instructions are destructive: dst = op(dst, src).
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    const u32 variant = inst.op(inst.num_ops() - 1).content();
+
+    // sha256rnds2 implicitly reads k from xmm0. Claim xmm0 first, so that neither dst nor src
+    // can be assigned to it afterwards.
+    ScratchReg k{this};
+    if (variant == 6) {
+      auto k_ref = this->val_ref(inst.op(2));
+      k_ref.part(0).reload_into_specific_fixed(this, k.alloc_specific(AsmReg::XMM0));
+    }
+
+    auto lhs = this->val_ref(inst.op(0));
+    auto rhs = this->val_ref(inst.op(1));
+    auto res = this->result_ref(inst.result());
+    auto dst = lhs.part(0).into_temporary();
+    auto src = rhs.part(0).load_to_reg();
+
+    switch (variant) {
+      case 0: ASM(SHA1MSG1rr, dst.cur_reg(), src); break;
+      case 1: ASM(SHA1MSG2rr, dst.cur_reg(), src); break;
+      case 2: ASM(SHA1NEXTErr, dst.cur_reg(), src); break;
+      case 3: ASM(SHA1RNDS4rri, dst.cur_reg(), src, static_cast<i8>(inst.op(2).content() & 3)); break;
+      case 4: ASM(SHA256MSG1rr, dst.cur_reg(), src); break;
+      case 5: ASM(SHA256MSG2rr, dst.cur_reg(), src); break;
+      case 6: ASM(SHA256RNDS2rrr, dst.cur_reg(), src, k.cur_reg()); break;
+      default: return false;
+    }
     res.part(0).set_value(std::move(dst));
     return true;
   }

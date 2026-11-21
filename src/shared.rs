@@ -401,6 +401,7 @@ mod ffi {
 
         clmul,
         crc32,
+        sha,
 
         Mov,
         Noop,

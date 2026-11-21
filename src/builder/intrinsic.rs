@@ -991,6 +991,37 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     out_ty,
                 )
             }
+            "sha1msg1" | "sha1msg2" | "sha1nexte" | "sha1rnds4" | "sha256msg1" | "sha256msg2"
+            | "sha256rnds2" => {
+                let variant = match name.as_str() {
+                    "sha1msg1" => 0,
+                    "sha1msg2" => 1,
+                    "sha1nexte" => 2,
+                    "sha1rnds4" => 3,
+                    "sha256msg1" => 4,
+                    "sha256msg2" => 5,
+                    "sha256rnds2" => 6,
+                    _ => unreachable!(),
+                };
+                let mut ops = vec![args[0].immediate(), args[1].immediate()];
+                match name.as_str() {
+                    "sha1rnds4" => {
+                        let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {
+                            bug!("sha1rnds4 immediate must be a constant");
+                        };
+                        ops.push(Slot::new_raw(imm as u32 & 3));
+                    }
+                    "sha256rnds2" => ops.push(args[2].immediate()),
+                    _ => {}
+                }
+                ops.push(Slot::new_raw(variant));
+                self.module.borrow_mut().add_instruction_ret(
+                    self.basic_block,
+                    InstructionKind::sha,
+                    &ops,
+                    Type::v4i32,
+                )
+            }
             "pclmulqdq" => {
                 let (a, b) = (args[0].immediate(), args[1].immediate());
                 let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {
