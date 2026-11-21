@@ -11,6 +11,22 @@ fn all_const(ops: &[u32]) -> bool {
         .all(|op| matches!(Slot::from_ffi(*op), Slot::Const(_)))
 }
 
+fn remove_phi_incoming(func: &mut ffi::Function, to: u32, from: u32) {
+    let from = Slot::new_raw(from).to_ffi();
+    let block = &func.basic_blocks[to as usize];
+    let phis = block.phi_start as usize..(block.phi_start + block.phi_len) as usize;
+    for phi in &mut func.phis[phis] {
+        let start = phi.incoming_start as usize;
+        let incoming = &mut func.operands[start..start + phi.incoming_len as usize * 2];
+        // There is one entry per edge, so only the first one of the block is removed
+        if let Some(pos) = incoming.iter().step_by(2).position(|&b| b == from) {
+            let last = phi.incoming_len as usize - 1;
+            incoming.copy_within(last * 2..last * 2 + 2, pos * 2);
+            phi.incoming_len -= 1;
+        }
+    }
+}
+
 fn mask(bits: u32) -> u128 {
     u128::MAX >> (128 - bits)
 }
@@ -91,13 +107,17 @@ impl ModuleTpde {
                     && let Slot::Const(cond) = Slot::from_ffi(func.operands[ops])
                 {
                     let taken = self.const_value(cond).1 & 1 != 0;
-                    let bb = &mut self.functions[function as usize].basic_blocks[block];
+                    let func = &mut self.functions[function as usize];
+                    let bb = &mut func.basic_blocks[block];
+                    
+                    let dropped = func.successors[bb.suc_start as usize + taken as usize];
                     if !taken {
                         bb.suc_start += 1;
                     }
                     bb.suc_len = 1;
                     instr.kind = InstructionKind::Br;
                     instr.ops_len = 0;
+                    remove_phi_incoming(func, dropped, block as u32);
                 }
 
                 let func = &mut self.functions[function as usize];
