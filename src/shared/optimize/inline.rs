@@ -138,17 +138,22 @@ fn inline_call(
 
                 if alloc_used_a(callee_info) {
                     if !alloc_used_a(call_info) {
+                        call_info.ty_a = callee_info.ty_a;
                         call_info.size_a = callee_info.size_a;
-                    } else if call_info.size_a != callee_info.size_a {
+                    } else if call_info.size_a != callee_info.size_a
+                        || call_info.ty_a != callee_info.ty_a
+                    {
                         call_info.state = AccessInfoState::Complex
                     }
                 }
                 if alloc_used_b(callee_info) {
                     if !alloc_used_b(call_info) {
+                        call_info.ty_b = callee_info.ty_b;
                         call_info.size_b = callee_info.size_b;
                         call_info.offset_b = callee_info.offset_b;
                     } else if call_info.size_b != callee_info.size_b
                         || call_info.offset_b != callee_info.offset_b
+                        || call_info.ty_b != callee_info.ty_b
                     {
                         call_info.state = AccessInfoState::Complex
                     }
