@@ -1087,6 +1087,12 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     .borrow_mut()
                     .add_pair(carry_out, res, if is_64 { 8 } else { 4 })
             }
+            "xgetbv" => self.module.borrow_mut().add_instruction_ret(
+                self.basic_block,
+                InstructionKind::xgetbv,
+                &[args[0].immediate()],
+                Type::i64,
+            ),
             "rdtsc" => self.module.borrow_mut().add_instruction_ret(
                 self.basic_block,
                 InstructionKind::rdtsc,

@@ -348,6 +348,7 @@ mod ffi {
         Pause,
         rdtsc,
         rdtscp,
+        xgetbv,
 
         TlsAddr,
 

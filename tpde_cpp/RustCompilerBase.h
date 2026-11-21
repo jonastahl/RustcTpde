@@ -644,6 +644,7 @@ namespace tpde_rust {
       set_fn(InstructionKind::Pause, &Derived::compile_pause);
       set_fn(InstructionKind::rdtsc, &Derived::compile_rdtsc);
       set_fn(InstructionKind::rdtscp, &Derived::compile_rdtscp);
+      set_fn(InstructionKind::xgetbv, &Derived::compile_xgetbv);
 
       // SIMD
       set_fn(InstructionKind::simd_splat, &Derived::compile_vector_splat);

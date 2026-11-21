@@ -85,6 +85,7 @@ namespace tpde_rust::x64 {
     bool compile_pause(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_rdtsc(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_rdtscp(RustAdaptor::IRInstRef, const ValInfo &, u64);
+    bool compile_xgetbv(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_clmul(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_crc32(RustAdaptor::IRInstRef, const ValInfo &, u64);
     bool compile_simd_reduce_pairs(RustAdaptor::IRInstRef, const ValInfo &, u64);
@@ -355,6 +356,20 @@ namespace tpde_rust::x64 {
     const AsmReg ptr_reg = ptr.part(0).load_to_reg();
     ASM(RDTSCP);
     ASM(MOV32mr, FE_MEM(ptr_reg, 0, FE_NOREG, 0), aux.cur_reg());
+    ASM(SHL64ri, hi.cur_reg(), 32);
+    ASM(OR64rr, lo.cur_reg(), hi.cur_reg());
+    this->result_ref(inst.result()).part(0).set_value(std::move(lo));
+    return true;
+  }
+
+  bool RustCompilerX64::compile_xgetbv(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64) {
+    const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
+    ScratchReg lo{this}, hi{this}, xcr{this};
+    auto xcr_ref = this->val_ref(inst.op(0));
+    xcr_ref.part(0).reload_into_specific_fixed(this, xcr.alloc_specific(AsmReg::CX));
+    lo.alloc_specific(AsmReg::AX);
+    hi.alloc_specific(AsmReg::DX);
+    ASM(XGETBV);
     ASM(SHL64ri, hi.cur_reg(), 32);
     ASM(OR64rr, lo.cur_reg(), hi.cur_reg());
     this->result_ref(inst.result()).part(0).set_value(std::move(lo));
