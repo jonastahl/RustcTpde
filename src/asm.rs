@@ -3,6 +3,7 @@ use crate::context::CodegenCx;
 use rustc_ast::{InlineAsmOptions, InlineAsmTemplatePiece};
 use rustc_codegen_ssa::traits::{AsmBuilderMethods, AsmCodegenMethods, BuilderMethods, GlobalAsmOperandRef, InlineAsmOperandRef, IntrinsicCallBuilderMethods};
 use rustc_middle::ty::Instance;
+use rustc_middle::ty::print::with_no_trimmed_paths;
 use rustc_span::Span;
 
 impl<'tcx> AsmBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
@@ -27,7 +28,7 @@ impl<'tcx> AsmBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 span,
                 format!(
                     "TPDE: inline assembly is not supported, emitting a trap instead (in `{}`)",
-                    tcx.def_path_str(instance.def_id())
+                    with_no_trimmed_paths!(tcx.def_path_str(instance.def_id()))
                 ),
             )
             .with_note(format!(

@@ -2692,6 +2692,16 @@ namespace tpde_rust {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     auto val = inst.op(0);
 
+    if (this->adaptor->type_of_ref(val) == Type::i128) {
+      ValueRef src = this->val_ref(val);
+      ValueRef amt = this->val_ref(inst.op(1));
+      ValueRef res = this->result_ref(inst.result());
+      ValuePartRef res_lo = res.part(0);
+      ValuePartRef res_hi = res.part(1);
+      return (op & 1) ? derived()->encode_rori128(src.part(0), src.part(1), amt.part(0), res_lo, res_hi)
+                      : derived()->encode_roli128(src.part(0), src.part(1), amt.part(0), res_lo, res_hi);
+    }
+
     u32 width_idx = 0;
     switch (size_of_type(this->adaptor->type_of_ref(val))) {
       case 8: width_idx = 0; break;
@@ -2717,6 +2727,18 @@ namespace tpde_rust {
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_funnel_shift(RustAdaptor::IRInstRef inst_ref, const ValInfo &, u64 op) {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     auto val = inst.op(0);
+
+    if (this->adaptor->type_of_ref(val) == Type::i128) {
+      ValueRef a = this->val_ref(val);
+      ValueRef b = this->val_ref(inst.op(1));
+      ValueRef amt = this->val_ref(inst.op(2));
+      ValueRef res = this->result_ref(inst.result());
+      ValuePartRef res_lo = res.part(0);
+      ValuePartRef res_hi = res.part(1);
+      return (op & 1)
+          ? derived()->encode_fshri128(a.part(0), a.part(1), b.part(0), b.part(1), amt.part(0), res_lo, res_hi)
+          : derived()->encode_fshli128(a.part(0), a.part(1), b.part(0), b.part(1), amt.part(0), res_lo, res_hi);
+    }
 
     u32 width_idx = 0;
     switch (size_of_type(this->adaptor->type_of_ref(val))) {
