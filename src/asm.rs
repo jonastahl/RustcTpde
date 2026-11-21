@@ -1,7 +1,10 @@
 use crate::builder::Builder;
 use crate::context::CodegenCx;
 use rustc_ast::{InlineAsmOptions, InlineAsmTemplatePiece};
-use rustc_codegen_ssa::traits::{AsmBuilderMethods, AsmCodegenMethods, BuilderMethods, GlobalAsmOperandRef, InlineAsmOperandRef, IntrinsicCallBuilderMethods};
+use rustc_codegen_ssa::traits::{
+    AsmBuilderMethods, AsmCodegenMethods, BuilderMethods, GlobalAsmOperandRef, InlineAsmOperandRef,
+    IntrinsicCallBuilderMethods,
+};
 use rustc_middle::ty::Instance;
 use rustc_middle::ty::print::with_no_trimmed_paths;
 use rustc_span::Span;

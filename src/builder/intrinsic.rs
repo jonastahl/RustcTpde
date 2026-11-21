@@ -110,7 +110,11 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     let err = self
                         .tcx
                         .dcx()
-                        .emit_err(InvalidMonomorphization::BasicIntegerType { span, name: Intrinsic::Rustc(name), ty });
+                        .emit_err(InvalidMonomorphization::BasicIntegerType {
+                            span,
+                            name: Intrinsic::Rustc(name),
+                            ty,
+                        });
                     return IntrinsicResult::Err(err);
                 }
                 let (size, signed) = ty.int_size_and_signed(self.tcx);

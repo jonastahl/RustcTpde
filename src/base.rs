@@ -8,17 +8,24 @@ use rustc_codegen_ssa::mono_item::MonoItemExt;
 use rustc_middle::dep_graph;
 use rustc_middle::mono::MonoItem;
 use rustc_middle::ty::TyCtxt;
+use rustc_span::Symbol;
 use rustc_structures::CrateType;
 use rustc_target::spec::RelocModel;
-use rustc_span::Symbol;
 use std::cell::RefCell;
 use std::sync::OnceLock;
 use std::time::Instant;
 
 /// mirrors should_assume_dso_local of llvm, which forbids `R_X86_64_PC32` relocations
 pub fn assume_dso_local_defs(tcx: TyCtxt<'_>) -> bool {
-    let all_exe = tcx.crate_types().iter().all(|ty| *ty == CrateType::Executable);
-    all_exe || matches!(tcx.sess.relocation_model(), RelocModel::Pie | RelocModel::Static)
+    let all_exe = tcx
+        .crate_types()
+        .iter()
+        .all(|ty| *ty == CrateType::Executable);
+    all_exe
+        || matches!(
+            tcx.sess.relocation_model(),
+            RelocModel::Pie | RelocModel::Static
+        )
 }
 
 pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen<Module>, u64) {
@@ -58,7 +65,10 @@ pub fn compile_codegen_unit(tcx: TyCtxt<'_>, cgu_name: Symbol) -> (ModuleCodegen
                     recorder.record_arg(cgu.size_estimate().to_string());
                 });
 
-        let ir = RefCell::new(Module::new(OptConfig::new(tcx.sess), assume_dso_local_defs(tcx)));
+        let ir = RefCell::new(Module::new(
+            OptConfig::new(tcx.sess),
+            assume_dso_local_defs(tcx),
+        ));
         {
             let mut cx = CodegenCx::new(tcx, cgu, &ir);
 

@@ -195,8 +195,9 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BaseTypeCodegenMethods for GenericCx<'tpde, 
 
     fn vector_element_type_and_length(&self, ty: Self::Type) -> Option<(Self::Type, u64)> {
         match ty {
-            FullType::Single(ty) if let Some((ty, count)) = vector_info(ty) =>
-                Some((FullType::Single(ty), count as u64)),
+            FullType::Single(ty) if let Some((ty, count)) = vector_info(ty) => {
+                Some((FullType::Single(ty), count as u64))
+            }
             _ => None,
         }
     }

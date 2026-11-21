@@ -109,7 +109,7 @@ impl ModuleTpde {
                     let taken = self.const_value(cond).1 & 1 != 0;
                     let func = &mut self.functions[function as usize];
                     let bb = &mut func.basic_blocks[block];
-                    
+
                     let dropped = func.successors[bb.suc_start as usize + taken as usize];
                     if !taken {
                         bb.suc_start += 1;

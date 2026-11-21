@@ -658,12 +658,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 
     fn nonnull_metadata(&mut self, load: Self::Value) {}
 
-    fn store(
-        &mut self,
-        val: Self::Value,
-        ptr: Self::Value,
-        align: rustc_abi::Align,
-    ) {
+    fn store(&mut self, val: Self::Value, ptr: Self::Value, align: rustc_abi::Align) {
         let module = &mut self.module.borrow_mut();
         match module.type_of_slot(val) {
             FullType::Single(ty) => {
@@ -721,12 +716,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         )
     }
 
-    fn inbounds_gep(
-        &mut self,
-        stride: Size,
-        ptr: Self::Value,
-        index: Self::Value,
-    ) -> Self::Value {
+    fn inbounds_gep(&mut self, stride: Size, ptr: Self::Value, index: Self::Value) -> Self::Value {
         self.gep(stride, ptr, index)
     }
 

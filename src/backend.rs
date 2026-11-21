@@ -78,10 +78,7 @@ impl WriteBackendMethods for TpdeCodegenBackend {
     type ModuleBuffer = ModuleBuffer;
     type ThinData = ();
 
-    fn target_machine_factory(
-        &self,
-        sess: &Session,
-    ) -> TargetMachineFactoryFn<Self> {
+    fn target_machine_factory(&self, sess: &Session) -> TargetMachineFactoryFn<Self> {
         Arc::new(|_, _| ())
     }
 

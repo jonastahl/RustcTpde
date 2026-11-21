@@ -114,6 +114,7 @@ impl<'tpde, 'tcx> CodegenCx<'tpde, 'tcx> {
                 fn_abi_signatures: RefCell::new(FxHashMap::default()),
                 libfuncs: RefCell::new(FxHashMap::default()),
                 globals: RefCell::new(FxHashMap::default()),
+                const_str_cache: RefCell::new(FxHashMap::default()),
                 data_layout,
                 local_gen_sym_counter: Cell::new(0),
                 vtables: RefCell::new(FxHashMap::default()),

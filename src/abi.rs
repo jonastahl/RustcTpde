@@ -5,8 +5,8 @@ use rustc_abi::{HasDataLayout, Size, TargetDataLayout};
 use rustc_codegen_ssa::mir::operand::OperandValue;
 use rustc_codegen_ssa::mir::place::{PlaceRef, PlaceValue};
 use rustc_codegen_ssa::traits::{
-    AbiBuilderMethods, ArgAbiBuilderMethods, BuilderMethods,
-    ConstCodegenMethods, LayoutTypeCodegenMethods,
+    AbiBuilderMethods, ArgAbiBuilderMethods, BuilderMethods, ConstCodegenMethods,
+    LayoutTypeCodegenMethods,
 };
 use rustc_middle::ty::layout::{
     FnAbiError, FnAbiOfHelpers, FnAbiRequest, HasTypingEnv, LayoutError, LayoutOfHelpers,

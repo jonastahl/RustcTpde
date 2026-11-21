@@ -51,7 +51,9 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_int(&self, t: Self::Type, i: i64) -> Self::Value {
-        let Some(bits) = self.int_width(t) else { bug!("Tried to initiate constant of unkown type") };
+        let Some(bits) = self.int_width(t) else {
+            bug!("Tried to initiate constant of unkown type")
+        };
         let data = (i as i128 as u128) & (u128::MAX >> (128 - bits));
         let FullType::Single(ty) = t else {
             unreachable!()
@@ -102,12 +104,18 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
         let global = cached.unwrap_or_else(|| {
             let name = self.generate_local_symbol_name("str");
             let mut module = self.module.borrow_mut();
-            let global =
-                module.add_global(&name, Linkage::Internal, Mutability::Not, Binding::Definition);
+            let global = module.add_global(
+                &name,
+                Linkage::Internal,
+                Mutability::Not,
+                Binding::Definition,
+            );
             module.global_set_align(global, 1);
             module.global_add_init_chunk(global, s.as_bytes());
             drop(module);
-            self.const_str_cache.borrow_mut().insert(s.to_owned(), global);
+            self.const_str_cache
+                .borrow_mut()
+                .insert(s.to_owned(), global);
             global
         });
         (Slot::new_global(global), self.const_usize(s.len() as u64))
