@@ -806,7 +806,7 @@ Disassembly of section .text:
 	nop
 
 <get_callback>:
-	lea    -0x8(%rip),%rax        # <fib+0x9f>
+	mov    -0x8(%rip),%rax        # <fib+0x9f>
 	ret
 	nopl   0x0(%rax,%rax,1)
 

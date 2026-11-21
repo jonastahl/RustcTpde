@@ -8134,4 +8134,5 @@ ModuleTpde {
     globals: [],
     global_ptrs: [],
     const_vectors: [],
+    defs_dso_local: false,
 }

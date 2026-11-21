@@ -211,7 +211,7 @@ pub struct PairRef {
 }
 
 impl Module {
-    pub fn new(opt: OptConfig) -> Self {
+    pub fn new(opt: OptConfig, defs_dso_local: bool) -> Self {
         Self {
             tpde: ModuleTpde {
                 functions: vec![],
@@ -220,6 +220,8 @@ impl Module {
                 globals: vec![],
                 global_ptrs: vec![],
                 const_vectors: vec![],
+
+                defs_dso_local,
             },
             pairs: vec![],
             opt,

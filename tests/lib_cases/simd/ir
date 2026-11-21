@@ -173377,4 +173377,5 @@ ModuleTpde {
         ConstVector { ty: v16i32, lanes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8, 8, 8, 8] },
         ConstVector { ty: v8i32, lanes: [0, 1, 2, 3, 4, 5, 6, 7] },
     ],
+    defs_dso_local: false,
 }

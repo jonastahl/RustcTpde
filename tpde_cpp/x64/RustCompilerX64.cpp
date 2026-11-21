@@ -599,10 +599,11 @@ namespace tpde_rust::x64 {
       const auto sym = this->ir_func_syms[func_id];
       assert(sym.valid());
 
-      if (this->adaptor->get_functions()[func_id].flags.extern_link) {
+      const auto &flags = this->adaptor->get_functions()[func_id].flags;
+      if (flags.extern_link || (!flags.only_local && !this->adaptor->mod->defs_dso_local)) {
         // mov the ptr from the GOT
         ASM(MOV64rm, dst, FE_MEM(FE_IP, 0, FE_NOREG, -1));
-        reloc_text(sym, tpde::elf::R_X86_64_GOTPCREL, text_writer.offset() - 4, -4);
+        reloc_text(sym, tpde::elf::R_X86_64_REX_GOTPCRELX, text_writer.offset() - 4, -4);
       } else {
         // emit lea with relocation
         ASM(LEA64rm, dst, FE_MEM(FE_IP, 0, FE_NOREG, -1));
@@ -622,10 +623,10 @@ namespace tpde_rust::x64 {
     const auto sym = this->global_symbols[glob_id];
     assert(sym.valid());
 
-    if (global.flags.extern_link) {
+    if (global.flags.extern_link || (!global.flags.only_local && !this->adaptor->mod->defs_dso_local)) {
       // mov the ptr from the GOT
       ASM(MOV64rm, dst, FE_MEM(FE_IP, 0, FE_NOREG, -1));
-      reloc_text(sym, tpde::elf::R_X86_64_GOTPCREL, text_writer.offset() - 4, - 4);
+      reloc_text(sym, tpde::elf::R_X86_64_REX_GOTPCRELX, text_writer.offset() - 4, - 4);
       if (offset != 0) {
         // TODO assert, dass conversion zu i32 geht
         // TODO assert, dass i32 insgesamt passt

@@ -29406,4 +29406,5 @@ ModuleTpde {
         [153] + 0,
     ],
     const_vectors: [],
+    defs_dso_local: false,
 }

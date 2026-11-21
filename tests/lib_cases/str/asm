@@ -12,7 +12,7 @@ actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
 Disassembly of section .text:
 
 <give_me_str>:
-	lea    -0x8(%rip),%rax        # <my_user+0xffffffffffffffcf>
+	mov    -0x8(%rip),%rax        # <my_user+0xffffffffffffffcf>
 	mov    (%rax),%rcx
 	mov    0x8(%rax),%rdx
 	mov    %rcx,%rax
@@ -27,5 +27,5 @@ Disassembly of section .text:
 	nopl   (%rax)
 
 <my_user>:
-	lea    -0x8(%rip),%rax        # <more_string+0xf>
+	mov    -0x8(%rip),%rax        # <more_string+0xf>
 	ret

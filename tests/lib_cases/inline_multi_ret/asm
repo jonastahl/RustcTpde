@@ -186,9 +186,9 @@ Disassembly of section .text:
 	mov    %edi,%ebx
 	test   $0x1,%bl
 	jne    <pick_global+0x1c>
-	lea    -0x8(%rip),%rbx        # <pick_global+0xf>
+	mov    -0x8(%rip),%rbx        # <pick_global+0xf>
 	jmp    <pick_global+0x23>
-	lea    -0x8(%rip),%rbx        # <pick_global+0x1b>
+	mov    -0x8(%rip),%rbx        # <pick_global+0x1b>
 	mov    (%rbx),%ebx
 	mov    %ebx,%eax
 	pop    %rbx

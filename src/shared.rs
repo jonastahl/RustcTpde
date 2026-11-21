@@ -18,6 +18,8 @@ mod ffi {
         globals: Vec<Global>,
         global_ptrs: Vec<GlobalPtr>,
         const_vectors: Vec<ConstVector>,
+
+        defs_dso_local: bool
     }
 
     pub struct Function {

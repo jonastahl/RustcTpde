@@ -47,7 +47,10 @@ pub fn codegen(
         EmitObj::ObjectCode(_) => {
             let _timer =
                 prof.generic_activity_with_arg("TPDE_module_codegen_emit_obj", &*module.name);
-            if !shared::compile_to_file(tpde_module, obj_out.to_str().expect("path to str")) {
+            if !shared::compile_to_file(
+                tpde_module,
+                obj_out.to_str().expect("path to str"),
+            ) {
                 panic!("Backend failed to compile to obj file, Consider falling back to llvm")
             }
         }
