@@ -214,7 +214,9 @@ fn read_variable(c: &mut Context, bb: usize) -> u32 {
 }
 
 fn write_variable(c: &mut Context, bb: usize, value: u32) {
-    *c.current_def.def_mut(c.var, c.bb_len, bb) = value;
+    if let None = c.current_def.def(c.var, c.bb_len, bb) {
+        *c.current_def.def_mut(c.var, c.bb_len, bb) = value;
+    }
 }
 
 fn read_variable_recursive(c: &mut Context, bb: usize) -> u32 {
