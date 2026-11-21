@@ -1,7 +1,7 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RNvCsQvp3e8KgHi_6source12sum_repeated",
+            name: "_RNvCslFJ5zlOYuKy_6source12sum_repeated",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -193,7 +193,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvCsQvp3e8KgHi_6source3big",
+            name: "_RNvCslFJ5zlOYuKy_6source3big",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -302,7 +302,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvCsQvp3e8KgHi_6source6helper",
+            name: "_RNvCslFJ5zlOYuKy_6source6helper",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -361,7 +361,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs6_NtCsioHeeuq8fQz_4core3numm12wrapping_mul",
+            name: "_RNvMs6_NtCs5bICpQ07Uc4_4core3numm12wrapping_mul",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1762,7 +1762,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking18panic_bounds_check",
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_bounds_check",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1831,7 +1831,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {

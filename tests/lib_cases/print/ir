@@ -1,7 +1,7 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RNvMs4_NtCsioHeeuq8fQz_4core3fmtNtB5_9Arguments8from_strCsQvp3e8KgHi_6source",
+            name: "_RNvMs4_NtCs5bICpQ07Uc4_4core3fmtNtB5_9Arguments8from_strCslFJ5zlOYuKy_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -126,7 +126,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCskTDgy4hF9jW_3std2io5stdio6__print",
+            name: "_RNvNtNtCs1bbfcKQCQXM_3std2io5stdio6__print",
             has_ret: false,
             args: [
                 ArgInfo {

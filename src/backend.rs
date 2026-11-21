@@ -16,7 +16,7 @@ use rustc_data_structures::smallvec::SmallVec;
 use rustc_errors::{DiagCtxt, DiagCtxtHandle};
 use rustc_middle::dep_graph::{WorkProduct, WorkProductMap};
 use rustc_middle::ty::TyCtxt;
-use rustc_session::config::{OptLevel, OutputFilenames, PrintRequest};
+use rustc_session::config::{OutputFilenames, PrintRequest};
 use rustc_session::{
     BorrowedIncrCompSession, CodegenBackendInit, EarlySession, IncrCompSession, Session,
 };
@@ -81,7 +81,6 @@ impl WriteBackendMethods for TpdeCodegenBackend {
     fn target_machine_factory(
         &self,
         sess: &Session,
-        opt_level: OptLevel,
     ) -> TargetMachineFactoryFn<Self> {
         Arc::new(|_, _| ())
     }

@@ -1,7 +1,217 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECsQvp3e8KgHi_6source",
+            name: "_RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBK_",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 16,
+                    align: 8,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 8,
+                        ty_a: ptr,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                i32,
+                Bool,
+                i32,
+                i64,
+                ptr,
+                i64,
+                ptr,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            has_personality: true,
+            personality: 19,
+            allocas: [
+                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 1,
+                size: 1, align: 1, state: Promotable, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <Invoke> ([func: 6], [alloc: 0]),
+                    successors: [2, 1],
+                ],
+                BasicBlock: [
+                    <LandingPad> ([raw: 2]) -> [val: 2],
+                    <AddRet> () -> [val: 3],
+                    <Call> ([func: 8], [alloc: 0], [val: 2]),
+                    <Br> (),
+                    successors: [2],
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 0], [const: Bool 0], [raw: 1], [const: Bool 1]) -> [phi: 2, 0] Bool,
+                    <CondBr> ([phi: 2, 0]),
+                    successors: [4, 3],
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
+                    <Store> ([val: 5], [val: 6], [raw: 8]),
+                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
+                    <Br> (),
+                    successors: [5],
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
+                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
+                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
+                    <Store> ([val: 7], [val: 0], [raw: 8]),
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
+                    <Store> ([val: 9], [val: 10], [raw: 8]),
+                    <Br> (),
+                    successors: [5],
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                    successors: [],
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source8try_call0lEBK_",
+            has_ret: false,
+            args: [
+                ArgInfo {
+                    kind: sRet,
+                    extension: None,
+                    size: 16,
+                    align: 8,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 8,
+                        ty_a: ptr,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Complex,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+            ],
+            slots: [
+                ptr,
+                ptr,
+                ptr,
+                i32,
+                Bool,
+                i32,
+                i64,
+                ptr,
+                i64,
+                ptr,
+                i64,
+            ],
+            flags: Flags {
+                extern_link: false,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: false,
+                dead: false,
+            },
+            has_personality: true,
+            personality: 20,
+            allocas: [
+                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 1,
+                size: 1, align: 1, state: Promotable, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
+            ],
+            basic_blocks: [
+                BasicBlock: [
+                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
+                    <Invoke> ([func: 7], [alloc: 0]),
+                    successors: [2, 1],
+                ],
+                BasicBlock: [
+                    <LandingPad> ([raw: 2]) -> [val: 2],
+                    <AddRet> () -> [val: 3],
+                    <Call> ([func: 9], [alloc: 0], [val: 2]),
+                    <Br> (),
+                    successors: [2],
+                ],
+                BasicBlock: [
+                    <Phi> ([raw: 0], [const: Bool 0], [raw: 1], [const: Bool 1]) -> [phi: 2, 0] Bool,
+                    <CondBr> ([phi: 2, 0]),
+                    successors: [4, 3],
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
+                    <Store> ([val: 5], [val: 6], [raw: 8]),
+                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
+                    <Br> (),
+                    successors: [5],
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
+                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
+                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
+                    <Store> ([val: 7], [val: 0], [raw: 8]),
+                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
+                    <Store> ([val: 9], [val: 10], [raw: 8]),
+                    <Br> (),
+                    successors: [5],
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                    successors: [],
+                ],
+            ],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -94,7 +304,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCsmsJmAcGTx5_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECsQvp3e8KgHi_6source",
+            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCs2J69gggMDAQ_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -146,7 +356,7 @@ ModuleTpde {
                 dead: false,
             },
             has_personality: true,
-            personality: 21,
+            personality: 23,
             allocas: [
                 size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
@@ -212,7 +422,7 @@ ModuleTpde {
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 17],
                     <AddRet> () -> [val: 18],
-                    <Call> ([func: 22]),
+                    <Call> ([func: 24]),
                     <Unreachable> (),
                     successors: [],
                 ],
@@ -247,7 +457,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueINtNtCsmsJmAcGTx5_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECsQvp3e8KgHi_6source",
+            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueINtNtCs2J69gggMDAQ_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -293,7 +503,7 @@ ModuleTpde {
                 dead: false,
             },
             has_personality: true,
-            personality: 21,
+            personality: 23,
             allocas: [
                 size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
@@ -334,7 +544,7 @@ ModuleTpde {
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 11],
                     <AddRet> () -> [val: 12],
-                    <Call> ([func: 22]),
+                    <Call> ([func: 24]),
                     <Unreachable> (),
                     successors: [],
                 ],
@@ -369,7 +579,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvNtCsioHeeuq8fQz_4core3ptr9drop_glueNtCsQvp3e8KgHi_6source5GuardEBD_",
+            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueNtCslFJ5zlOYuKy_6source5GuardEBD_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -425,217 +635,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBK_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: sRet,
-                    extension: None,
-                    size: 16,
-                    align: 8,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                Bool,
-                i32,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 23,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 1,
-                size: 1, align: 1, state: Promotable, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Invoke> ([func: 6], [alloc: 0]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 2]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 8], [alloc: 0], [val: 2]),
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 0], [const: Bool 0], [raw: 1], [const: Bool 1]) -> [phi: 2, 0] Bool,
-                    <CondBr> ([phi: 2, 0]),
-                    successors: [4, 3],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
-                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
-                    <Store> ([val: 7], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Store> ([val: 9], [val: 10], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNtCskTDgy4hF9jW_3std5panic12catch_unwindNCNvCsQvp3e8KgHi_6source8try_call0lEBK_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: sRet,
-                    extension: None,
-                    size: 16,
-                    align: 8,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                Bool,
-                i32,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 24,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 1,
-                size: 1, align: 1, state: Promotable, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Invoke> ([func: 7], [alloc: 0]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 2]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 9], [alloc: 0], [val: 2]),
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 0], [const: Bool 0], [raw: 1], [const: Bool 1]) -> [phi: 2, 0] Bool,
-                    <CondBr> ([phi: 2, 0]),
-                    successors: [4, 3],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
-                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
-                    <Store> ([val: 7], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Store> ([val: 9], [val: 10], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind7do_callNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBY_",
+            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBY_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -707,7 +707,7 @@ ModuleTpde {
                     successors: [6, 5],
                 ],
                 BasicBlock: [
-                    <Invoke> ([func: 3], [alloc: 0]),
+                    <Invoke> ([func: 5], [alloc: 0]),
                     successors: [8, 7],
                 ],
                 BasicBlock: [
@@ -726,7 +726,7 @@ ModuleTpde {
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 9],
                     <AddRet> () -> [val: 10],
-                    <Call> ([func: 22]),
+                    <Call> ([func: 24]),
                     <Unreachable> (),
                     successors: [],
                 ],
@@ -766,7 +766,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind7do_callNCNvCsQvp3e8KgHi_6source8try_call0lEBY_",
+            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source8try_call0lEBY_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -829,7 +829,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind8do_catchNCNvCsQvp3e8KgHi_6source16try_call_guarded0lEBZ_",
+            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBZ_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -907,7 +907,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind8do_catchNCNvCsQvp3e8KgHi_6source8try_call0lEBZ_",
+            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source8try_call0lEBZ_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -985,7 +985,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCsQvp3e8KgHi_6source16try_call_guarded0B3_",
+            name: "_RNCNvCslFJ5zlOYuKy_6source16try_call_guarded0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1040,7 +1040,7 @@ ModuleTpde {
                     successors: [3, 2],
                 ],
                 BasicBlock: [
-                    <Invoke> ([func: 3], [alloc: 0]),
+                    <Invoke> ([func: 5], [alloc: 0]),
                     successors: [5, 4],
                 ],
                 BasicBlock: [
@@ -1059,7 +1059,7 @@ ModuleTpde {
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 6],
                     <AddRet> () -> [val: 7],
-                    <Call> ([func: 22]),
+                    <Call> ([func: 24]),
                     <Unreachable> (),
                     successors: [],
                 ],
@@ -1099,7 +1099,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCsQvp3e8KgHi_6source8try_call0B3_",
+            name: "_RNCNvCslFJ5zlOYuKy_6source8try_call0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1145,7 +1145,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNvMNtNtCsioHeeuq8fQz_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCsQvp3e8KgHi_6source",
+            name: "_RNvNvMNtNtCs5bICpQ07Uc4_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1228,7 +1228,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNvMNtNtCsioHeeuq8fQz_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCsQvp3e8KgHi_6source",
+            name: "_RNvNvMNtNtCs5bICpQ07Uc4_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1329,7 +1329,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXCsQvp3e8KgHi_6sourceNtB2_5GuardNtNtNtCsioHeeuq8fQz_4core3ops4drop4Drop4drop",
+            name: "_RNvXCslFJ5zlOYuKy_6sourceNtB2_5GuardNtNtNtCs5bICpQ07Uc4_4core3ops4drop4Drop4drop",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1372,7 +1372,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvXs1_NtCsmsJmAcGTx5_5alloc5allocNtB5_6GlobalNtNtCsioHeeuq8fQz_4core5alloc9Allocator10deallocateCsQvp3e8KgHi_6source",
+            name: "_RNvXs1_NtCs2J69gggMDAQ_5alloc5allocNtB5_6GlobalNtNtCs5bICpQ07Uc4_4core5alloc9Allocator10deallocateCslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1461,19 +1461,23 @@ ModuleTpde {
                     successors: [1, 2],
                 ],
                 BasicBlock: [
-                    <Ret> (),
-                    successors: [],
+                    <Br> (),
+                    successors: [3],
                 ],
                 BasicBlock: [
                     <Call> ([func: 37], [val: 1], [val: 3], [val: 2]),
                     <Br> (),
-                    successors: [1],
+                    successors: [3],
+                ],
+                BasicBlock: [
+                    <Ret> (),
+                    successors: [],
                 ],
             ],
             callee_infos: [],
         },
         Function {
-            name: "_RNvXsh_NtCsmsJmAcGTx5_5alloc5boxedINtB5_3BoxDNtNtCsioHeeuq8fQz_4core3any3AnyNtNtBL_6marker4SendEL_ENtNtNtBL_3ops4drop4Drop4dropCsQvp3e8KgHi_6source",
+            name: "_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1570,7 +1574,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Br> (),
-                    successors: [19],
+                    successors: [21],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 13]) -> [val: 14],
@@ -1579,7 +1583,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Br> (),
-                    successors: [14],
+                    successors: [16],
                 ],
                 BasicBlock: [
                     <CMPeq> ([val: 7], [const: i64 0]) -> [val: 15],
@@ -1587,36 +1591,44 @@ ModuleTpde {
                     successors: [5, 6],
                 ],
                 BasicBlock: [
-                    <Ret> (),
-                    successors: [],
+                    <Br> (),
+                    successors: [7],
                 ],
                 BasicBlock: [
                     <GEP> ([val: 0], [raw: 1], [const: i64 16]) -> [val: 16],
                     <Cast> ([val: 4]) -> [val: 17],
                     <Br> (),
-                    successors: [9],
+                    successors: [10],
                 ],
                 BasicBlock: [
-                    <Br> (),
-                    successors: [5],
+                    <Ret> (),
+                    successors: [],
                 ],
                 BasicBlock: [
                     <Br> (),
                     successors: [7],
                 ],
                 BasicBlock: [
-                    <CMPeq> ([val: 7], [const: i64 0]) -> [val: 22],
-                    <CondBr> ([val: 22]),
-                    successors: [10, 11],
-                ],
-                BasicBlock: [
                     <Br> (),
                     successors: [8],
                 ],
                 BasicBlock: [
+                    <CMPeq> ([val: 7], [const: i64 0]) -> [val: 22],
+                    <CondBr> ([val: 22]),
+                    successors: [11, 12],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [13],
+                ],
+                BasicBlock: [
                     <Call> ([func: 37], [val: 17], [val: 7], [val: 14]),
                     <Br> (),
-                    successors: [10],
+                    successors: [13],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [9],
                 ],
                 BasicBlock: [
                     <Br> (),
@@ -1624,14 +1636,14 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Br> (),
-                    successors: [12],
+                    successors: [14],
                 ],
                 BasicBlock: [
                     <Cast> ([val: 14]) -> [val: 26],
                     <Sub> ([const pool: 0], [val: 26]) -> [val: 27],
                     <CMPule> ([val: 7], [val: 27]) -> [val: 28],
                     <CondBr> ([val: 28]),
-                    successors: [16, 15],
+                    successors: [18, 17],
                 ],
                 BasicBlock: [
                     <Cast> ([global: 2]) -> [val: 29],
@@ -1646,7 +1658,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Br> (),
-                    successors: [13],
+                    successors: [15],
                 ],
                 BasicBlock: [
                     <Br> (),
@@ -1654,13 +1666,13 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Br> (),
-                    successors: [17],
+                    successors: [19],
                 ],
                 BasicBlock: [
                     <ctpop> ([val: 13]) -> [val: 37],
                     <CMPeq> ([val: 37], [const: i32 1]) -> [val: 38],
                     <CondBr> ([val: 38]),
-                    successors: [21, 20],
+                    successors: [23, 22],
                 ],
                 BasicBlock: [
                     <Cast> ([global: 0]) -> [val: 39],
@@ -1675,7 +1687,7 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <Br> (),
-                    successors: [18],
+                    successors: [20],
                 ],
             ],
             callee_infos: [],
@@ -1742,7 +1754,7 @@ ModuleTpde {
                 dead: false,
             },
             has_personality: true,
-            personality: 21,
+            personality: 23,
             allocas: [
                 size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 1,
                 size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
@@ -1752,7 +1764,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Call> ([func: 5], [alloc: 2], [alloc: 0]),
+                    <Call> ([func: 1], [alloc: 2], [alloc: 0]),
                     <Load> ([alloc: 2], [raw: 8]) -> [val: 1],
                     <Cast> ([val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
@@ -1851,7 +1863,7 @@ ModuleTpde {
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 26],
                     <AddRet> () -> [val: 27],
-                    <Call> ([func: 22]),
+                    <Call> ([func: 24]),
                     <Unreachable> (),
                     successors: [],
                 ],
@@ -1947,7 +1959,7 @@ ModuleTpde {
                 dead: false,
             },
             has_personality: true,
-            personality: 21,
+            personality: 23,
             allocas: [
                 size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 1,
                 size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
@@ -1957,7 +1969,7 @@ ModuleTpde {
             basic_blocks: [
                 BasicBlock: [
                     <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Call> ([func: 4], [alloc: 2], [alloc: 0]),
+                    <Call> ([func: 0], [alloc: 2], [alloc: 0]),
                     <Load> ([alloc: 2], [raw: 8]) -> [val: 1],
                     <Cast> ([val: 1]) -> [val: 2],
                     <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
@@ -2056,7 +2068,7 @@ ModuleTpde {
                 BasicBlock: [
                     <LandingPad> ([raw: 1]) -> [val: 26],
                     <AddRet> () -> [val: 27],
-                    <Call> ([func: 22]),
+                    <Call> ([func: 24]),
                     <Unreachable> (),
                     successors: [],
                 ],
@@ -2394,7 +2406,209 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking16panic_in_cleanup",
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "rust_eh_personality",
+            has_ret: true,
+            args: [
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+                ArgInfo {
+                    kind: Direct,
+                    extension: None,
+                    size: 0,
+                    align: 0,
+                    access_info: AccessInfo {
+                        state: Promotable,
+                        call_forwards: 0,
+                        size_a: 0,
+                        ty_a: Void,
+                        size_b: 0,
+                        ty_b: Void,
+                        offset_b: 0,
+                    },
+                },
+            ],
+            slots: [
+                i32,
+                i32,
+                i64,
+                ptr,
+                ptr,
+            ],
+            flags: Flags {
+                extern_link: true,
+                only_local: false,
+                weak_link: false,
+                always_inline: false,
+                never_delete: true,
+                dead: false,
+            },
+            has_personality: false,
+            personality: 0,
+            allocas: [],
+            basic_blocks: [],
+            callee_infos: [],
+        },
+        Function {
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup",
             has_ret: false,
             args: [],
             slots: [],
@@ -2514,209 +2728,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNvNtCskTDgy4hF9jW_3std9panicking12catch_unwind7cleanup",
+            name: "_RNvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7cleanup",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2854,7 +2866,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking19panic_cannot_unwind",
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking19panic_cannot_unwind",
             has_ret: false,
             args: [],
             slots: [],
@@ -3415,7 +3427,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking18panic_nounwind_fmt",
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_nounwind_fmt",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -3519,7 +3531,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvCs9VHGBS8Gq78_7___rustc14___rust_dealloc",
+            name: "_RNvCsk71k48rTdWK_7___rustc14___rust_dealloc",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -3738,7 +3750,7 @@ ModuleTpde {
             init: true,
             data: (24 bytes)
               0000  00 00 00 00 00 00 00 00 3f 00 00 00 00 00 00 00  |........?.......|
-              0010  a1 00 00 00 12 00 00 00                          |........|,
+              0010  9f 00 00 00 12 00 00 00                          |........|,
             relocations: [
                 offset 0x0 insert [global: 5],
             ],

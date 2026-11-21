@@ -9,6 +9,7 @@ use crate::shared::ir::{
     convert_atomic_op, convert_atomic_order, size_of_type, vector_info,
 };
 use core::borrow::Borrow;
+use rustc_abi::Size;
 use rustc_ast::expand::typetree::FncTree;
 use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::common::{
@@ -26,7 +27,6 @@ use rustc_middle::ty::{AtomicOrdering, Instance, Ty};
 use rustc_span::Span;
 use rustc_span::bug;
 use rustc_target::callconv::FnAbi;
-use std::cmp::max;
 use std::ops::Deref;
 
 pub struct Builder<'a, 'tpde, 'tcx> {
@@ -641,8 +641,8 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 
         self.switch_to_block(body_bb);
         let byte_off = self.mul(i, self.const_usize(elem_size));
-        let i8_ty = self.type_i8();
-        let addr = self.inbounds_gep(i8_ty, dest.val.llval, &[byte_off]);
+        let stride = Size::from_bytes(1);
+        let addr = self.inbounds_gep(stride, dest.val.llval, byte_off);
         elem.val
             .store(self, PlaceRef::new_sized_aligned(addr, elem.layout, align));
         let next = self.add(i, self.const_usize(1));
@@ -663,7 +663,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         val: Self::Value,
         ptr: Self::Value,
         align: rustc_abi::Align,
-    ) -> Self::Value {
+    ) {
         let module = &mut self.module.borrow_mut();
         match module.type_of_slot(val) {
             FullType::Single(ty) => {
@@ -675,7 +675,6 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             }
             _ => todo!(),
         };
-        val
     }
 
     fn store_with_flags(
@@ -684,7 +683,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         ptr: Self::Value,
         align: rustc_abi::Align,
         flags: MemFlags,
-    ) -> Self::Value {
+    ) {
         self.store(val, ptr, align)
     }
 
@@ -713,32 +712,22 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         );
     }
 
-    fn gep(&mut self, ty: Self::Type, ptr: Self::Value, indices: &[Self::Value]) -> Self::Value {
-        let offset = match ty {
-            FullType::Single(ty) => size_of_type(ty),
-            FullType::Pair(ty_a, ty_b, offset_b) => {
-                let (size_a, size_b) = (size_of_type(ty_a), size_of_type(ty_b));
-                (offset_b + size_b).next_multiple_of(max(size_a, size_b))
-            }
-            FullType::Memory { size, .. } => size,
-        };
-        assert_eq!(indices.len(), 1);
-
+    fn gep(&mut self, stride: Size, ptr: Self::Value, index: Self::Value) -> Self::Value {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             InstructionKind::GEP,
-            &[ptr, Slot::new_raw(offset), indices[0]],
+            &[ptr, Slot::new_raw(stride.bytes() as u32), index],
             Type::i64,
         )
     }
 
     fn inbounds_gep(
         &mut self,
-        ty: Self::Type,
+        stride: Size,
         ptr: Self::Value,
-        indices: &[Self::Value],
+        index: Self::Value,
     ) -> Self::Value {
-        self.gep(ty, ptr, indices)
+        self.gep(stride, ptr, index)
     }
 
     fn trunc(&mut self, val: Self::Value, dest_ty: Self::Type) -> Self::Value {
@@ -900,22 +889,25 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                     let tmp = self.load(FullType::Single(Type::i64), src, src_align);
                     self.store(tmp, dst, dst_align);
                     i -= 8;
-                    src = self.gep(FullType::Single(Type::i64), src, &[const_1]);
-                    dst = self.gep(FullType::Single(Type::i64), dst, &[const_1]);
+                    let stride = Size::from_bytes(size_of_type(Type::i64));
+                    src = self.gep(stride, src, const_1);
+                    dst = self.gep(stride, dst, const_1);
                 }
                 if i >= 4 {
                     let tmp = self.load(FullType::Single(Type::i32), src, src_align);
                     self.store(tmp, dst, dst_align);
                     i -= 4;
-                    src = self.gep(FullType::Single(Type::i32), src, &[const_1]);
-                    dst = self.gep(FullType::Single(Type::i32), dst, &[const_1]);
+                    let stride = Size::from_bytes(size_of_type(Type::i32));
+                    src = self.gep(stride, src, const_1);
+                    dst = self.gep(stride, dst, const_1);
                 }
                 if i >= 2 {
                     let tmp = self.load(FullType::Single(Type::i16), src, src_align);
                     self.store(tmp, dst, dst_align);
                     i -= 2;
-                    src = self.gep(FullType::Single(Type::i16), src, &[const_1]);
-                    dst = self.gep(FullType::Single(Type::i16), dst, &[const_1]);
+                    let stride = Size::from_bytes(size_of_type(Type::i16));
+                    src = self.gep(stride, src, const_1);
+                    dst = self.gep(stride, dst, const_1);
                 }
                 if i >= 1 {
                     let tmp = self.load(FullType::Single(Type::i8), src, src_align);
@@ -955,22 +947,25 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                     let tmp = self.load(FullType::Single(Type::i64), src, src_align);
                     i -= 8;
                     stores.push((tmp, dst));
-                    src = self.gep(FullType::Single(Type::i64), src, &[const_1]);
-                    dst = self.gep(FullType::Single(Type::i64), dst, &[const_1]);
+                    let stride = Size::from_bytes(size_of_type(Type::i64));
+                    src = self.gep(stride, src, const_1);
+                    dst = self.gep(stride, dst, const_1);
                 }
                 if i >= 4 {
                     let tmp = self.load(FullType::Single(Type::i32), src, src_align);
                     i -= 4;
                     stores.push((tmp, dst));
-                    src = self.gep(FullType::Single(Type::i32), src, &[const_1]);
-                    dst = self.gep(FullType::Single(Type::i32), dst, &[const_1]);
+                    let stride = Size::from_bytes(size_of_type(Type::i32));
+                    src = self.gep(stride, src, const_1);
+                    dst = self.gep(stride, dst, const_1);
                 }
                 if i >= 2 {
                     let tmp = self.load(FullType::Single(Type::i16), src, src_align);
                     i -= 2;
                     stores.push((tmp, dst));
-                    src = self.gep(FullType::Single(Type::i16), src, &[const_1]);
-                    dst = self.gep(FullType::Single(Type::i16), dst, &[const_1]);
+                    let stride = Size::from_bytes(size_of_type(Type::i16));
+                    src = self.gep(stride, src, const_1);
+                    dst = self.gep(stride, dst, const_1);
                 }
                 if i >= 1 {
                     let tmp = self.load(FullType::Single(Type::i8), src, src_align);
@@ -1042,7 +1037,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         )
     }
 
-    fn vector_splat(&mut self, num_elts: usize, elt: Self::Value) -> Self::Value {
+    fn vector_splat(&mut self, num_elts: u64, elt: Self::Value) -> Self::Value {
         let FullType::Single(elem) = self.val_ty(elt) else {
             unreachable!()
         };

@@ -4,8 +4,7 @@ use crate::shared::ir::{
     vector_type,
 };
 use core::borrow::Borrow;
-use rustc_abi::{AddressSpace, BackendRepr, Primitive, Reg, RegKind, Scalar};
-use rustc_codegen_ssa::common::TypeKind;
+use rustc_abi::{AddressSpace, BackendRepr, Float, Primitive, Reg, RegKind, Scalar};
 use rustc_codegen_ssa::traits::{
     BaseTypeCodegenMethods, DerivedTypeCodegenMethods, LayoutTypeCodegenMethods,
     TypeMembershipCodegenMethods,
@@ -164,23 +163,6 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BaseTypeCodegenMethods for GenericCx<'tpde, 
         signs.len() - 1
     }
 
-    fn type_kind(&self, ty: Self::Type) -> TypeKind {
-        match ty {
-            FullType::Single(ty) => match ty {
-                Type::Void => TypeKind::Void,
-                Type::Bool | Type::i8 | Type::i16 | Type::i32 | Type::i64 | Type::i128 => {
-                    TypeKind::Integer
-                }
-                Type::f32 | Type::f64 => TypeKind::Float,
-                Type::ptr => TypeKind::Pointer,
-                ty if vector_info(ty).is_some() => TypeKind::Vector,
-                _ => todo!(),
-            },
-            FullType::Pair(ty1, ty2, _) => TypeKind::Struct,
-            FullType::Memory { .. } => todo!(),
-        }
-    }
-
     fn type_ptr(&self) -> Self::Type {
         FullType::Single(Type::ptr)
     }
@@ -189,47 +171,45 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BaseTypeCodegenMethods for GenericCx<'tpde, 
         self.type_ptr()
     }
 
-    fn element_type(&self, ty: Self::Type) -> Self::Type {
+    fn int_width(&self, ty: Self::Type) -> Option<u64> {
         match ty {
-            FullType::Single(ty) if let Some((elem, _)) = vector_info(ty) => FullType::Single(elem),
-            _ => bug!("element_type called on non-vector type {:?}", ty),
-        }
-    }
-
-    fn vector_length(&self, ty: Self::Type) -> usize {
-        match ty {
-            FullType::Single(ty) if let Some((_, count)) = vector_info(ty) => count as usize,
-            _ => bug!("vector_length called on non-vector type {:?}", ty),
-        }
-    }
-
-    fn float_width(&self, ty: Self::Type) -> usize {
-        match ty {
-            FullType::Single(ty) => match ty {
-                Type::f32 => 32,
-                Type::f64 => 64,
-                _ => todo!(),
-            },
-            _ => todo!(),
-        }
-    }
-
-    fn int_width(&self, ty: Self::Type) -> u64 {
-        match ty {
-            FullType::Single(ty) => match ty {
+            FullType::Single(ty) => Some(match ty {
                 Type::Bool | Type::i8 => 8,
                 Type::i16 => 16,
                 Type::i32 => 32,
                 Type::i64 | Type::ptr => 64,
                 Type::i128 => 128,
-                _ => todo!("Type {:?} not implemented", ty),
-            },
-            _ => todo!(),
+                _ => return None,
+            }),
+            _ => None,
         }
     }
 
     fn val_ty(&self, v: Self::Value) -> Self::Type {
         self.0.borrow().module.borrow().type_of_slot(v)
+    }
+
+    fn type_x87_f80(&self) -> Self::Type {
+        todo!()
+    }
+
+    fn vector_element_type_and_length(&self, ty: Self::Type) -> Option<(Self::Type, u64)> {
+        match ty {
+            FullType::Single(ty) if let Some((ty, count)) = vector_info(ty) =>
+                Some((FullType::Single(ty), count as u64)),
+            _ => None,
+        }
+    }
+
+    fn float_type(&self, ty: Self::Type) -> Option<Float> {
+        match ty {
+            FullType::Single(ty) => match ty {
+                Type::f32 => Some(Float::F32),
+                Type::f64 => Some(Float::F64),
+                _ => None,
+            },
+            _ => None,
+        }
     }
 }
 

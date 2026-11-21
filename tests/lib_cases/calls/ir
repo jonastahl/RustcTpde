@@ -1,7 +1,7 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RNvMNtNtCsioHeeuq8fQz_4core3ptr9const_ptrPx3addCsQvp3e8KgHi_6source",
+            name: "_RNvMNtNtCs5bICpQ07Uc4_4core3ptr9const_ptrPx3addCslFJ5zlOYuKy_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -77,7 +77,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs8_NtCsioHeeuq8fQz_4core3numo12wrapping_add",
+            name: "_RNvMs8_NtCs5bICpQ07Uc4_4core3numo12wrapping_add",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -6457,7 +6457,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_sub_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -6494,7 +6494,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -6632,7 +6632,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking18panic_bounds_check",
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_bounds_check",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -6802,7 +6802,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking19panic_cannot_unwind",
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking19panic_cannot_unwind",
             has_ret: false,
             args: [],
             slots: [],
@@ -7852,7 +7852,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_mul_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_mul_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -9404,7 +9404,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking36panic_misaligned_pointer_dereference",
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking36panic_misaligned_pointer_dereference",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -9473,7 +9473,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtCsioHeeuq8fQz_4core9panicking30panic_null_pointer_dereference",
+            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking30panic_null_pointer_dereference",
             has_ret: false,
             args: [
                 ArgInfo {

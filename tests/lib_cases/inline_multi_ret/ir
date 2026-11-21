@@ -1,7 +1,7 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickRmEB2_",
+            name: "_RINvCslFJ5zlOYuKy_6source4pickRmEB2_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -87,7 +87,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickdEB2_",
+            name: "_RINvCslFJ5zlOYuKy_6source4pickdEB2_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -173,7 +173,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickmEB2_",
+            name: "_RINvCslFJ5zlOYuKy_6source4pickmEB2_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -259,7 +259,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RINvCsQvp3e8KgHi_6source4pickoEB2_",
+            name: "_RINvCslFJ5zlOYuKy_6source4pickoEB2_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -345,7 +345,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvCsQvp3e8KgHi_6source6nested",
+            name: "_RNvCslFJ5zlOYuKy_6source6nested",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -448,7 +448,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvCsQvp3e8KgHi_6source7ordered",
+            name: "_RNvCslFJ5zlOYuKy_6source7ordered",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -538,7 +538,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvCsQvp3e8KgHi_6source7sign_u8",
+            name: "_RNvCslFJ5zlOYuKy_6source7sign_u8",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1866,7 +1866,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_mul_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_mul_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1903,7 +1903,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1940,7 +1940,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_sub_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -1981,7 +1981,7 @@ ModuleTpde {
         [i32] (18446744073709551615 18446744073709551615) -> -1,
     ],
     globals: [
-        _RNvCsQvp3e8KgHi_6source8GLOBAL_A {
+        _RNvCslFJ5zlOYuKy_6source8GLOBAL_A {
             size: 4,
             align: 4,
             read_only: false,
@@ -1999,7 +1999,7 @@ ModuleTpde {
               0000  0b 00 00 00                                      |....|,
             relocations: [],
         },
-        _RNvCsQvp3e8KgHi_6source8GLOBAL_B {
+        _RNvCslFJ5zlOYuKy_6source8GLOBAL_B {
             size: 4,
             align: 4,
             read_only: false,

@@ -6,6 +6,7 @@ use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ConstCodegenMethods, MiscCodegenMethods};
 use rustc_middle::mir::interpret::{CtfeProvenance, GlobalAlloc, Pointer, Scalar};
 use rustc_session::PointerAuthSchema;
+use rustc_span::bug;
 
 impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     fn const_null(&self, t: Self::Type) -> Self::Value {
@@ -49,7 +50,7 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_int(&self, t: Self::Type, i: i64) -> Self::Value {
-        let bits = self.int_width(t);
+        let Some(bits) = self.int_width(t) else { bug!("Tried to initiate constant of unkown type") };
         let data = (i as i128 as u128) & (u128::MAX >> (128 - bits));
         let FullType::Single(ty) = t else {
             unreachable!()
@@ -96,10 +97,6 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_str(&self, s: &str) -> (Self::Value, Self::Value) {
-        todo!()
-    }
-
-    fn const_struct(&self, elts: &[Self::Value], packed: bool) -> Self::Value {
         todo!()
     }
 

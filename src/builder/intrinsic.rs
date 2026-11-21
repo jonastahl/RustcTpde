@@ -13,7 +13,7 @@ use rustc_codegen_ssa::traits::{
     LayoutTypeCodegenMethods, MiscCodegenMethods, ReturnSlot,
 };
 use rustc_middle::ty::layout::{LayoutOf, TyAndLayout};
-use rustc_middle::ty::{self, Instance};
+use rustc_middle::ty::{self, Instance, Intrinsic};
 use rustc_span::{Span, sym};
 use rustc_span::{bug, span_bug};
 
@@ -110,7 +110,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     let err = self
                         .tcx
                         .dcx()
-                        .emit_err(InvalidMonomorphization::BasicIntegerType { span, name, ty });
+                        .emit_err(InvalidMonomorphization::BasicIntegerType { span, name: Intrinsic::Rustc(name), ty });
                     return IntrinsicResult::Err(err);
                 }
                 let (size, signed) = ty.int_size_and_signed(self.tcx);
@@ -205,7 +205,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             }
             sym::volatile_load | sym::unaligned_volatile_load => {
                 let ptr = args[0].immediate();
-                let abi_align = result_layout.align.abi;
+                let abi_align = result_layout.align;
                 let ptr_align = if name == sym::volatile_load {
                     abi_align
                 } else {
@@ -251,7 +251,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
             sym::typed_swap_nonoverlapping => {
                 let pointee_layout = self.layout_of(instance.args.type_at(0));
                 if !pointee_layout.is_zst() {
-                    let align = pointee_layout.align.abi;
+                    let align = pointee_layout.align;
                     let x_place = PlaceValue::new_sized(args[0].immediate(), align);
                     let y_place = PlaceValue::new_sized(args[1].immediate(), align);
                     self.typed_place_swap(x_place, y_place, pointee_layout);
@@ -340,10 +340,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
-            sym::minimum_number_nsz_f16
-            | sym::minimum_number_nsz_f32
-            | sym::minimum_number_nsz_f64
-            | sym::minimum_number_nsz_f128 => {
+            sym::minimum_number_nsz => {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fMin,
@@ -351,10 +348,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 );
                 IntrinsicResult::Operand(OperandValue::Immediate(res))
             }
-            sym::maximum_number_nsz_f16
-            | sym::maximum_number_nsz_f32
-            | sym::maximum_number_nsz_f64
-            | sym::maximum_number_nsz_f128 => {
+            sym::maximum_number_nsz => {
                 let res = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::fMax,
@@ -564,7 +558,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     bug!("simd_arith_offset on non-pointer vector")
                 };
                 let size = self.const_u64(self.layout_of(*pointee).size.bytes());
-                let size = self.vector_splat(lanes as usize, size);
+                let size = self.vector_splat(lanes as u64, size);
                 let offset = self.mul(args[1].immediate(), size);
                 IntrinsicResult::Operand(OperandValue::Immediate(
                     self.add(args[0].immediate(), offset),
@@ -616,7 +610,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     }
                 }
             }
-            sym::copysignf32 | sym::copysignf64 => {
+            sym::copysign => {
                 let result = self.cx.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::copysign,

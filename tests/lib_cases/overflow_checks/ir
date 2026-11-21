@@ -2888,7 +2888,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2925,7 +2925,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_mul_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_mul_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2962,7 +2962,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_sub_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow",
             has_ret: false,
             args: [
                 ArgInfo {

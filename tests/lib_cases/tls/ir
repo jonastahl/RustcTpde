@@ -1,7 +1,7 @@
 ModuleTpde {
     functions: [
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1E_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellhEE4withNCNvCslFJ5zlOYuKy_6source8byte_get0hEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -42,7 +42,6 @@ ModuleTpde {
                 ptr,
                 i8,
                 i64,
-                Bool,
                 Bool,
                 i64,
                 i8,
@@ -92,9 +91,9 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <AddRet> (),
-                    <Store> ([val: 22], [alloc: 0], [raw: 1]),
+                    <Store> ([val: 21], [alloc: 0], [raw: 1]),
                     <PairGEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 3],
-                    <Store> ([val: 24], [val: 3], [raw: 1]),
+                    <Store> ([val: 23], [val: 3], [raw: 1]),
                     <Load> ([alloc: 0], [raw: 1]) -> [val: 4],
                     <PairGEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 1]) -> [val: 6],
@@ -130,15 +129,15 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 1]) -> [val: 20],
-                    <Store> ([val: 29], [val: 20], [raw: 1]),
+                    <Store> ([val: 28], [val: 20], [raw: 1]),
                     <Store> ([const: Bool 0], [alloc: 1], [raw: 1]),
                     <Br> (),
                     successors: [11],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 1], [raw: 1]) -> [val: 22],
-                    <PairGEP> ([alloc: 1], [raw: 1], [const: i64 1]) -> [val: 23],
-                    <Load> ([val: 23], [raw: 1]) -> [val: 24],
+                    <Load> ([alloc: 1], [raw: 1]) -> [val: 21],
+                    <PairGEP> ([alloc: 1], [raw: 1], [const: i64 1]) -> [val: 22],
+                    <Load> ([val: 22], [raw: 1]) -> [val: 23],
                     <Br> (),
                     successors: [5],
                 ],
@@ -175,8 +174,8 @@ ModuleTpde {
                     successors: [18],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 13]) -> [val: 28],
-                    <Load> ([val: 28], [raw: 1]) -> [val: 29],
+                    <Cast> ([val: 13]) -> [val: 27],
+                    <Load> ([val: 27], [raw: 1]) -> [val: 28],
                     <Br> (),
                     successors: [19],
                 ],
@@ -204,7 +203,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE4withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1E_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellhEE4withNCNvCslFJ5zlOYuKy_6source8byte_set0uEB1E_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -254,7 +253,6 @@ ModuleTpde {
                 ptr,
                 ptr,
                 ptr,
-                Bool,
                 Bool,
                 ptr,
                 ptr,
@@ -360,7 +358,7 @@ ModuleTpde {
                     successors: [15],
                 ],
                 BasicBlock: [
-                    <Load> ([val: 1], [raw: 1]) -> [val: 19],
+                    <Load> ([val: 1], [raw: 1]) -> [val: 18],
                     <Br> (),
                     successors: [20],
                 ],
@@ -373,9 +371,9 @@ ModuleTpde {
                     successors: [18],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 9]) -> [val: 22],
-                    <Load> ([val: 22], [raw: 1]) -> [val: 23],
-                    <Store> ([val: 19], [val: 22], [raw: 1]),
+                    <Cast> ([val: 9]) -> [val: 21],
+                    <Load> ([val: 21], [raw: 1]) -> [val: 22],
+                    <Store> ([val: 18], [val: 21], [raw: 1]),
                     <Br> (),
                     successors: [19],
                 ],
@@ -403,7 +401,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_get0hEB1I_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellhEE8try_withNCNvCslFJ5zlOYuKy_6source8byte_get0hEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -433,7 +431,6 @@ ModuleTpde {
                 ptr,
                 i8,
                 i64,
-                Bool,
                 Bool,
                 i64,
                 i8,
@@ -484,16 +481,16 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 9],
-                    <Store> ([val: 18], [val: 9], [raw: 1]),
+                    <Store> ([val: 17], [val: 9], [raw: 1]),
                     <Store> ([const: Bool 0], [alloc: 0], [raw: 1]),
                     <Br> (),
                     successors: [5],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 1]) -> [val: 11],
-                    <PairGEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 12],
-                    <Load> ([val: 12], [raw: 1]) -> [val: 13],
-                    <Ret> ([val: 11], [val: 13]),
+                    <Load> ([alloc: 0], [raw: 1]) -> [val: 10],
+                    <PairGEP> ([alloc: 0], [raw: 1], [const: i64 1]) -> [val: 11],
+                    <Load> ([val: 11], [raw: 1]) -> [val: 12],
+                    <Ret> ([val: 10], [val: 12]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -529,8 +526,8 @@ ModuleTpde {
                     successors: [12],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 2]) -> [val: 17],
-                    <Load> ([val: 17], [raw: 1]) -> [val: 18],
+                    <Cast> ([val: 2]) -> [val: 16],
+                    <Load> ([val: 16], [raw: 1]) -> [val: 17],
                     <Br> (),
                     successors: [13],
                 ],
@@ -558,7 +555,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellhEE8try_withNCNvCsQvp3e8KgHi_6source8byte_set0uEB1I_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellhEE8try_withNCNvCslFJ5zlOYuKy_6source8byte_set0uEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -602,7 +599,6 @@ ModuleTpde {
                 ptr,
                 ptr,
                 ptr,
-                Bool,
                 Bool,
                 ptr,
                 ptr,
@@ -680,7 +676,7 @@ ModuleTpde {
                     successors: [9],
                 ],
                 BasicBlock: [
-                    <Load> ([val: 1], [raw: 1]) -> [val: 13],
+                    <Load> ([val: 1], [raw: 1]) -> [val: 12],
                     <Br> (),
                     successors: [14],
                 ],
@@ -693,9 +689,9 @@ ModuleTpde {
                     successors: [12],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 16],
-                    <Load> ([val: 16], [raw: 1]) -> [val: 17],
-                    <Store> ([val: 13], [val: 16], [raw: 1]),
+                    <Cast> ([val: 3]) -> [val: 15],
+                    <Load> ([val: 15], [raw: 1]) -> [val: 16],
+                    <Store> ([val: 12], [val: 15], [raw: 1]),
                     <Br> (),
                     successors: [13],
                 ],
@@ -723,7 +719,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE4withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1E_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellmEE4withNCNvCslFJ5zlOYuKy_6source11zeroed_bump0mEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -733,8 +729,8 @@ ModuleTpde {
                     align: 0,
                     access_info: AccessInfo {
                         state: Promotable,
-                        call_forwards: 1,
-                        size_a: 0,
+                        call_forwards: 0,
+                        size_a: 8,
                         ty_a: Void,
                         size_b: 0,
                         ty_b: Void,
@@ -754,6 +750,34 @@ ModuleTpde {
                 Bool,
                 i64,
                 i32,
+                ptr,
+                ptr,
+                ptr,
+                i64,
+                Bool,
+                ptr,
+                ptr,
+                ptr,
+                i32,
+                i64,
+                i32,
+                i64,
+                i32,
+                ptr,
+                i32,
+                i32,
+                Bool,
+                i32,
+                ptr,
+                ptr,
+                i32,
+                ptr,
+                ptr,
+                i32,
+                ptr,
+                i32,
+                ptr,
+                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -763,25 +787,20 @@ ModuleTpde {
                 never_delete: false,
                 dead: false,
             },
-            has_personality: false,
-            personality: 0,
+            has_personality: true,
+            personality: 36,
             allocas: [
                 size: 8, align: 4, state: Complex, size_a: 4, offset_b: 4, size_b: 4, call_forwards: 0,
+                size: 8, align: 4, state: Complex, size_a: 4, offset_b: 4, size_b: 4, call_forwards: 0,
+                size: 8, align: 8, state: Promotable, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Promotable, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 8, align: 8, state: Promotable, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
+                size: 1, align: 1, state: Promotable, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
             ],
             basic_blocks: [
                 BasicBlock: [
-                    <Call> ([func: 5], [val: 0]) -> [val: 1],
-                    <AddRet> () -> [val: 2],
-                    <Store> ([val: 1], [alloc: 0], [raw: 4]),
-                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 3],
-                    <Store> ([val: 2], [val: 3], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 4],
-                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 5],
-                    <Load> ([val: 5], [raw: 4]) -> [val: 6],
-                    <zExt> ([val: 4]) -> [val: 7],
-                    <Trunc> ([val: 7]) -> [val: 8],
-                    <CondBr> ([val: 8]),
-                    successors: [1, 2],
+                    <Br> (),
+                    successors: [6],
                 ],
                 BasicBlock: [
                     <Call> ([func: 33], [global: 10]),
@@ -798,11 +817,161 @@ ModuleTpde {
                     <Unreachable> (),
                     successors: [],
                 ],
+                BasicBlock: [
+                    <AddRet> (),
+                    <Store> ([val: 21], [alloc: 0], [raw: 4]),
+                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 3],
+                    <Store> ([val: 23], [val: 3], [raw: 4]),
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 4],
+                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 5],
+                    <Load> ([val: 5], [raw: 4]) -> [val: 6],
+                    <zExt> ([val: 4]) -> [val: 7],
+                    <Trunc> ([val: 7]) -> [val: 8],
+                    <CondBr> ([val: 8]),
+                    successors: [1, 2],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [4],
+                ],
+                BasicBlock: [
+                    <Load> ([val: 0], [raw: 8]) -> [val: 12],
+                    <Call> ([val: 12], [raw: 0], [const: ptr 0]) -> [val: 13],
+                    <Br> (),
+                    successors: [7],
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 13]) -> [val: 14],
+                    <CMPeq> ([val: 14], [const: i64 0]) -> [val: 15],
+                    <CondBr> ([val: 15]),
+                    successors: [9, 8],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [17],
+                ],
+                BasicBlock: [
+                    <Store> ([const: i32 1], [alloc: 1], [raw: 4]),
+                    <Br> (),
+                    successors: [11],
+                ],
+                BasicBlock: [
+                    <GEP> ([alloc: 1], [raw: 1], [const: i64 4]) -> [val: 20],
+                    <Store> ([val: 34], [val: 20], [raw: 4]),
+                    <Store> ([const: i32 0], [alloc: 1], [raw: 4]),
+                    <Br> (),
+                    successors: [11],
+                ],
+                BasicBlock: [
+                    <Load> ([alloc: 1], [raw: 4]) -> [val: 21],
+                    <PairGEP> ([alloc: 1], [raw: 4], [const: i64 1]) -> [val: 22],
+                    <Load> ([val: 22], [raw: 4]) -> [val: 23],
+                    <Br> (),
+                    successors: [5],
+                ],
+                BasicBlock: [
+                    <Unreachable> (),
+                    successors: [],
+                ],
+                BasicBlock: [
+                    <Unreachable> (),
+                    successors: [],
+                ],
+                BasicBlock: [
+                    <Unreachable> (),
+                    successors: [],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [10],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [15],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [22],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [28],
+                ],
+                BasicBlock: [
+                    <Call> ([func: 39], [global: 16]),
+                    <Unreachable> (),
+                    successors: [],
+                ],
+                BasicBlock: [
+                    <Add> ([val: 31], [const: i32 1]) -> [val: 26],
+                    <CMPult> ([val: 26], [val: 31]) -> [val: 27],
+                    <CondBr> ([val: 27]),
+                    successors: [19, 18],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [20],
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 13]) -> [val: 30],
+                    <Load> ([val: 30], [raw: 4]) -> [val: 31],
+                    <Br> (),
+                    successors: [21],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [16],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [23],
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 13]) -> [val: 33],
+                    <Load> ([val: 33], [raw: 4]) -> [val: 34],
+                    <Br> (),
+                    successors: [24],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [25],
+                ],
+                BasicBlock: [
+                    <Br> (),
+                    successors: [26],
+                ],
+                BasicBlock: [
+                    <Cast> ([val: 13]) -> [val: 37],
+                    <Load> ([val: 37], [raw: 4]) -> [val: 38],
+                    <Store> ([val: 26], [val: 37], [raw: 4]),
+                    <Br> (),
+                    successors: [27],
+                ],
             ],
-            callee_infos: [],
+            callee_infos: [
+                CalleeInfo {
+                    info: [
+                        ArgInfo {
+                            kind: Direct,
+                            extension: None,
+                            size: 0,
+                            align: 0,
+                            access_info: AccessInfo {
+                                state: Promotable,
+                                call_forwards: 0,
+                                size_a: 0,
+                                ty_a: Void,
+                                size_b: 0,
+                                ty_b: Void,
+                                offset_b: 0,
+                            },
+                        },
+                    ],
+                },
+            ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellmEE8try_withNCNvCsQvp3e8KgHi_6source11zeroed_bump0mEB1I_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellmEE8try_withNCNvCslFJ5zlOYuKy_6source11zeroed_bump0mEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -832,7 +1001,6 @@ ModuleTpde {
                 ptr,
                 i32,
                 i64,
-                Bool,
                 i32,
                 i64,
                 i32,
@@ -893,16 +1061,16 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 4]) -> [val: 9],
-                    <Store> ([val: 24], [val: 9], [raw: 4]),
+                    <Store> ([val: 23], [val: 9], [raw: 4]),
                     <Store> ([const: i32 0], [alloc: 0], [raw: 4]),
                     <Br> (),
                     successors: [5],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 11],
-                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 12],
-                    <Load> ([val: 12], [raw: 4]) -> [val: 13],
-                    <Ret> ([val: 11], [val: 13]),
+                    <Load> ([alloc: 0], [raw: 4]) -> [val: 10],
+                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 11],
+                    <Load> ([val: 11], [raw: 4]) -> [val: 12],
+                    <Ret> ([val: 10], [val: 12]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -939,9 +1107,9 @@ ModuleTpde {
                     successors: [],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 21], [const: i32 1]) -> [val: 16],
-                    <CMPult> ([val: 16], [val: 21]) -> [val: 17],
-                    <CondBr> ([val: 17]),
+                    <Add> ([val: 20], [const: i32 1]) -> [val: 15],
+                    <CMPult> ([val: 15], [val: 20]) -> [val: 16],
+                    <CondBr> ([val: 16]),
                     successors: [13, 12],
                 ],
                 BasicBlock: [
@@ -949,8 +1117,8 @@ ModuleTpde {
                     successors: [14],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 2]) -> [val: 20],
-                    <Load> ([val: 20], [raw: 4]) -> [val: 21],
+                    <Cast> ([val: 2]) -> [val: 19],
+                    <Load> ([val: 19], [raw: 4]) -> [val: 20],
                     <Br> (),
                     successors: [15],
                 ],
@@ -963,8 +1131,8 @@ ModuleTpde {
                     successors: [17],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 2]) -> [val: 23],
-                    <Load> ([val: 23], [raw: 4]) -> [val: 24],
+                    <Cast> ([val: 2]) -> [val: 22],
+                    <Load> ([val: 22], [raw: 4]) -> [val: 23],
                     <Br> (),
                     successors: [18],
                 ],
@@ -977,9 +1145,9 @@ ModuleTpde {
                     successors: [20],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 2]) -> [val: 27],
-                    <Load> ([val: 27], [raw: 4]) -> [val: 28],
-                    <Store> ([val: 16], [val: 27], [raw: 4]),
+                    <Cast> ([val: 2]) -> [val: 26],
+                    <Load> ([val: 26], [raw: 4]) -> [val: 27],
+                    <Store> ([val: 15], [val: 26], [raw: 4]),
                     <Br> (),
                     successors: [21],
                 ],
@@ -1007,7 +1175,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1E_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellyEE4withNCNvCslFJ5zlOYuKy_6source11counter_add0yEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1064,7 +1232,6 @@ ModuleTpde {
                 ptr,
                 i64,
                 i64,
-                Bool,
                 i64,
                 i64,
                 i64,
@@ -1128,9 +1295,9 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <AddRet> (),
-                    <Store> ([val: 23], [alloc: 0], [raw: 8]),
+                    <Store> ([val: 22], [alloc: 0], [raw: 8]),
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 4],
-                    <Store> ([val: 25], [val: 4], [raw: 8]),
+                    <Store> ([val: 24], [val: 4], [raw: 8]),
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 6],
                     <Load> ([val: 6], [raw: 8]) -> [val: 7],
@@ -1165,15 +1332,15 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 21],
-                    <Store> ([val: 37], [val: 21], [raw: 8]),
+                    <Store> ([val: 36], [val: 21], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 1], [raw: 8]),
                     <Br> (),
                     successors: [11],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 23],
-                    <PairGEP> ([alloc: 1], [raw: 8], [const: i64 1]) -> [val: 24],
-                    <Load> ([val: 24], [raw: 8]) -> [val: 25],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 22],
+                    <PairGEP> ([alloc: 1], [raw: 8], [const: i64 1]) -> [val: 23],
+                    <Load> ([val: 23], [raw: 8]) -> [val: 24],
                     <Br> (),
                     successors: [5],
                 ],
@@ -1202,7 +1369,7 @@ ModuleTpde {
                     successors: [20],
                 ],
                 BasicBlock: [
-                    <Load> ([val: 1], [raw: 8]) -> [val: 29],
+                    <Load> ([val: 1], [raw: 8]) -> [val: 28],
                     <Br> (),
                     successors: [29],
                 ],
@@ -1211,8 +1378,8 @@ ModuleTpde {
                     successors: [18],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 14]) -> [val: 33],
-                    <Load> ([val: 33], [raw: 8]) -> [val: 34],
+                    <Cast> ([val: 14]) -> [val: 32],
+                    <Load> ([val: 32], [raw: 8]) -> [val: 33],
                     <Br> (),
                     successors: [19],
                 ],
@@ -1225,8 +1392,8 @@ ModuleTpde {
                     successors: [21],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 14]) -> [val: 36],
-                    <Load> ([val: 36], [raw: 8]) -> [val: 37],
+                    <Cast> ([val: 14]) -> [val: 35],
+                    <Load> ([val: 35], [raw: 8]) -> [val: 36],
                     <Br> (),
                     successors: [22],
                 ],
@@ -1239,9 +1406,9 @@ ModuleTpde {
                     successors: [24],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 14]) -> [val: 40],
-                    <Load> ([val: 40], [raw: 8]) -> [val: 41],
-                    <Store> ([val: 44], [val: 40], [raw: 8]),
+                    <Cast> ([val: 14]) -> [val: 39],
+                    <Load> ([val: 39], [raw: 8]) -> [val: 40],
+                    <Store> ([val: 43], [val: 39], [raw: 8]),
                     <Br> (),
                     successors: [25],
                 ],
@@ -1254,7 +1421,7 @@ ModuleTpde {
                     successors: [27],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 34], [val: 29]) -> [val: 44],
+                    <Add> ([val: 33], [val: 28]) -> [val: 43],
                     <Br> (),
                     successors: [28],
                 ],
@@ -1282,7 +1449,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE4withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1E_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellyEE4withNCNvCslFJ5zlOYuKy_6source11counter_get0yEB1E_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1322,7 +1489,6 @@ ModuleTpde {
                 ptr,
                 i64,
                 i64,
-                Bool,
                 i64,
                 i64,
                 i64,
@@ -1372,9 +1538,9 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <AddRet> (),
-                    <Store> ([val: 21], [alloc: 0], [raw: 8]),
+                    <Store> ([val: 20], [alloc: 0], [raw: 8]),
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
-                    <Store> ([val: 23], [val: 3], [raw: 8]),
+                    <Store> ([val: 22], [val: 3], [raw: 8]),
                     <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
                     <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
                     <Load> ([val: 5], [raw: 8]) -> [val: 6],
@@ -1409,15 +1575,15 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 19],
-                    <Store> ([val: 28], [val: 19], [raw: 8]),
+                    <Store> ([val: 27], [val: 19], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 1], [raw: 8]),
                     <Br> (),
                     successors: [11],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 21],
-                    <PairGEP> ([alloc: 1], [raw: 8], [const: i64 1]) -> [val: 22],
-                    <Load> ([val: 22], [raw: 8]) -> [val: 23],
+                    <Load> ([alloc: 1], [raw: 8]) -> [val: 20],
+                    <PairGEP> ([alloc: 1], [raw: 8], [const: i64 1]) -> [val: 21],
+                    <Load> ([val: 21], [raw: 8]) -> [val: 22],
                     <Br> (),
                     successors: [5],
                 ],
@@ -1454,8 +1620,8 @@ ModuleTpde {
                     successors: [18],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 12]) -> [val: 27],
-                    <Load> ([val: 27], [raw: 8]) -> [val: 28],
+                    <Cast> ([val: 12]) -> [val: 26],
+                    <Load> ([val: 26], [raw: 8]) -> [val: 27],
                     <Br> (),
                     successors: [19],
                 ],
@@ -1483,7 +1649,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_add0yEB1I_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellyEE8try_withNCNvCslFJ5zlOYuKy_6source11counter_add0yEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1529,7 +1695,6 @@ ModuleTpde {
                 ptr,
                 i64,
                 i64,
-                Bool,
                 i64,
                 i64,
                 i64,
@@ -1594,16 +1759,16 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Store> ([val: 26], [val: 10], [raw: 8]),
+                    <Store> ([val: 25], [val: 10], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 0], [raw: 8]),
                     <Br> (),
                     successors: [5],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 12],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 13],
-                    <Load> ([val: 13], [raw: 8]) -> [val: 14],
-                    <Ret> ([val: 12], [val: 14]),
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 11],
+                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 12],
+                    <Load> ([val: 12], [raw: 8]) -> [val: 13],
+                    <Ret> ([val: 11], [val: 13]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -1631,7 +1796,7 @@ ModuleTpde {
                     successors: [14],
                 ],
                 BasicBlock: [
-                    <Load> ([val: 1], [raw: 8]) -> [val: 18],
+                    <Load> ([val: 1], [raw: 8]) -> [val: 17],
                     <Br> (),
                     successors: [23],
                 ],
@@ -1640,8 +1805,8 @@ ModuleTpde {
                     successors: [12],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 22],
-                    <Load> ([val: 22], [raw: 8]) -> [val: 23],
+                    <Cast> ([val: 3]) -> [val: 21],
+                    <Load> ([val: 21], [raw: 8]) -> [val: 22],
                     <Br> (),
                     successors: [13],
                 ],
@@ -1654,8 +1819,8 @@ ModuleTpde {
                     successors: [15],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 25],
-                    <Load> ([val: 25], [raw: 8]) -> [val: 26],
+                    <Cast> ([val: 3]) -> [val: 24],
+                    <Load> ([val: 24], [raw: 8]) -> [val: 25],
                     <Br> (),
                     successors: [16],
                 ],
@@ -1668,9 +1833,9 @@ ModuleTpde {
                     successors: [18],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 3]) -> [val: 29],
-                    <Load> ([val: 29], [raw: 8]) -> [val: 30],
-                    <Store> ([val: 33], [val: 29], [raw: 8]),
+                    <Cast> ([val: 3]) -> [val: 28],
+                    <Load> ([val: 28], [raw: 8]) -> [val: 29],
+                    <Store> ([val: 32], [val: 28], [raw: 8]),
                     <Br> (),
                     successors: [19],
                 ],
@@ -1683,7 +1848,7 @@ ModuleTpde {
                     successors: [21],
                 ],
                 BasicBlock: [
-                    <Add> ([val: 23], [val: 18]) -> [val: 33],
+                    <Add> ([val: 22], [val: 17]) -> [val: 32],
                     <Br> (),
                     successors: [22],
                 ],
@@ -1711,7 +1876,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RINvMs2_NtNtCskTDgy4hF9jW_3std6thread5localINtB6_8LocalKeyINtNtCsioHeeuq8fQz_4core4cell4CellyEE8try_withNCNvCsQvp3e8KgHi_6source11counter_get0yEB1I_",
+            name: "_RINvMs2_NtNtCs1bbfcKQCQXM_3std6thread5localINtB6_8LocalKeyINtNtCs5bICpQ07Uc4_4core4cell4CellyEE8try_withNCNvCslFJ5zlOYuKy_6source11counter_get0yEB1I_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1741,7 +1906,6 @@ ModuleTpde {
                 ptr,
                 i64,
                 i64,
-                Bool,
                 i64,
                 i64,
                 i64,
@@ -1792,16 +1956,16 @@ ModuleTpde {
                 ],
                 BasicBlock: [
                     <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 9],
-                    <Store> ([val: 18], [val: 9], [raw: 8]),
+                    <Store> ([val: 17], [val: 9], [raw: 8]),
                     <Store> ([const: i64 0], [alloc: 0], [raw: 8]),
                     <Br> (),
                     successors: [5],
                 ],
                 BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 11],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 12],
-                    <Load> ([val: 12], [raw: 8]) -> [val: 13],
-                    <Ret> ([val: 11], [val: 13]),
+                    <Load> ([alloc: 0], [raw: 8]) -> [val: 10],
+                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 11],
+                    <Load> ([val: 11], [raw: 8]) -> [val: 12],
+                    <Ret> ([val: 10], [val: 12]),
                     successors: [],
                 ],
                 BasicBlock: [
@@ -1837,8 +2001,8 @@ ModuleTpde {
                     successors: [12],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 2]) -> [val: 17],
-                    <Load> ([val: 17], [raw: 8]) -> [val: 18],
+                    <Cast> ([val: 2]) -> [val: 16],
+                    <Load> ([val: 16], [raw: 8]) -> [val: 17],
                     <Br> (),
                     successors: [13],
                 ],
@@ -1866,7 +2030,7 @@ ModuleTpde {
             ],
         },
         Function {
-            name: "_RNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0B5_",
+            name: "_RNCNKNvCslFJ5zlOYuKy_6source4BYTE0s_0B5_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1926,7 +2090,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0B5_",
+            name: "_RNCNKNvCslFJ5zlOYuKy_6source6ZEROED0s_0B5_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -1986,7 +2150,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0B5_",
+            name: "_RNCNKNvCslFJ5zlOYuKy_6source7COUNTER0s_0B5_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2046,7 +2210,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCsQvp3e8KgHi_6source11counter_add0B3_",
+            name: "_RNCNvCslFJ5zlOYuKy_6source11counter_add0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2178,7 +2342,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCsQvp3e8KgHi_6source11counter_get0B3_",
+            name: "_RNCNvCslFJ5zlOYuKy_6source11counter_get0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2238,7 +2402,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCsQvp3e8KgHi_6source11zeroed_bump0B3_",
+            name: "_RNCNvCslFJ5zlOYuKy_6source11zeroed_bump0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2348,7 +2512,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCsQvp3e8KgHi_6source8byte_get0B3_",
+            name: "_RNCNvCslFJ5zlOYuKy_6source8byte_get0B3_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2408,7 +2572,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNCNvCsQvp3e8KgHi_6source8byte_set0B3_",
+            name: "_RNCNvCslFJ5zlOYuKy_6source8byte_set0B3_",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2487,7 +2651,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCsioHeeuq8fQz_4core3numy12wrapping_add",
+            name: "_RNvMs7_NtCs5bICpQ07Uc4_4core3numy12wrapping_add",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2547,7 +2711,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCsioHeeuq8fQz_4core4cellINtB5_4CellhE3setCsQvp3e8KgHi_6source",
+            name: "_RNvMs7_NtCs5bICpQ07Uc4_4core4cellINtB5_4CellhE3setCslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2610,7 +2774,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCsioHeeuq8fQz_4core4cellINtB5_4CellmE3setCsQvp3e8KgHi_6source",
+            name: "_RNvMs7_NtCs5bICpQ07Uc4_4core4cellINtB5_4CellmE3setCslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2673,7 +2837,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs7_NtCsioHeeuq8fQz_4core4cellINtB5_4CellyE3setCsQvp3e8KgHi_6source",
+            name: "_RNvMs7_NtCs5bICpQ07Uc4_4core4cellINtB5_4CellyE3setCslFJ5zlOYuKy_6source",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -2736,7 +2900,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs8_NtCsioHeeuq8fQz_4core4cellINtB5_4CellhE3getCsQvp3e8KgHi_6source",
+            name: "_RNvMs8_NtCs5bICpQ07Uc4_4core4cellINtB5_4CellhE3getCslFJ5zlOYuKy_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2782,7 +2946,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs8_NtCsioHeeuq8fQz_4core4cellINtB5_4CellmE3getCsQvp3e8KgHi_6source",
+            name: "_RNvMs8_NtCs5bICpQ07Uc4_4core4cellINtB5_4CellmE3getCslFJ5zlOYuKy_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2828,7 +2992,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvMs8_NtCsioHeeuq8fQz_4core4cellINtB5_4CellyE3getCsQvp3e8KgHi_6source",
+            name: "_RNvMs8_NtCs5bICpQ07Uc4_4core4cellINtB5_4CellyE3getCslFJ5zlOYuKy_6source",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2874,7 +3038,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvYNCNKNvCsQvp3e8KgHi_6source4BYTE0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBI_6option6OptionQIB1n_INtNtBI_4cell4CellhEEEEE9call_onceB8_",
+            name: "_RNvYNCNKNvCslFJ5zlOYuKy_6source4BYTE0s_0INtNtNtCs5bICpQ07Uc4_4core3ops8function6FnOnceTINtNtBJ_6option6OptionQIB1o_INtNtBJ_4cell4CellhEEEEE9call_onceB8_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -2949,7 +3113,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvYNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBK_6option6OptionQIB1p_INtNtBK_4cell4CellmEEEEE9call_onceB8_",
+            name: "_RNvYNCNKNvCslFJ5zlOYuKy_6source6ZEROED0s_0INtNtNtCs5bICpQ07Uc4_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellmEEEEE9call_onceB8_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -3024,7 +3188,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvYNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_0INtNtNtCsioHeeuq8fQz_4core3ops8function6FnOnceTINtNtBL_6option6OptionQIB1q_INtNtBL_4cell4CellyEEEEE9call_onceB8_",
+            name: "_RNvYNCNKNvCslFJ5zlOYuKy_6source7COUNTER0s_0INtNtNtCs5bICpQ07Uc4_4core3ops8function6FnOnceTINtNtBM_6option6OptionQIB1r_INtNtBM_4cell4CellyEEEEE9call_onceB8_",
             has_ret: true,
             args: [
                 ArgInfo {
@@ -3163,7 +3327,6 @@ ModuleTpde {
                 ptr,
                 ptr,
                 Bool,
-                Bool,
                 ptr,
                 ptr,
                 i8,
@@ -3293,9 +3456,9 @@ ModuleTpde {
                     successors: [21],
                 ],
                 BasicBlock: [
-                    <Cast> ([val: 10]) -> [val: 23],
-                    <Load> ([val: 23], [raw: 1]) -> [val: 24],
-                    <Store> ([val: 0], [val: 23], [raw: 1]),
+                    <Cast> ([val: 10]) -> [val: 22],
+                    <Load> ([val: 22], [raw: 1]) -> [val: 23],
+                    <Store> ([val: 0], [val: 22], [raw: 1]),
                     <Br> (),
                     successors: [22],
                 ],
@@ -3402,17 +3565,6 @@ ModuleTpde {
             args: [],
             slots: [
                 i32,
-                ptr,
-                i32,
-                i32,
-                i64,
-                i32,
-                i64,
-                i32,
-                i64,
-                Bool,
-                i64,
-                i32,
             ],
             flags: Flags {
                 extern_link: false,
@@ -3424,56 +3576,18 @@ ModuleTpde {
             },
             has_personality: false,
             personality: 0,
-            allocas: [
-                size: 8, align: 4, state: Complex, size_a: 4, offset_b: 4, size_b: 4, call_forwards: 0,
-            ],
+            allocas: [],
             basic_blocks: [
                 BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 11]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 5], [global: 22]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Store> ([val: 2], [alloc: 0], [raw: 4]),
-                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 4],
-                    <Store> ([val: 3], [val: 4], [raw: 4]),
-                    <Load> ([alloc: 0], [raw: 4]) -> [val: 5],
-                    <PairGEP> ([alloc: 0], [raw: 4], [const: i64 1]) -> [val: 6],
-                    <Load> ([val: 6], [raw: 4]) -> [val: 7],
-                    <zExt> ([val: 5]) -> [val: 8],
-                    <Trunc> ([val: 8]) -> [val: 9],
-                    <CondBr> ([val: 9]),
-                    successors: [4, 5],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 33], [global: 10]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 4]) -> [val: 10],
-                    <Load> ([val: 10], [raw: 4]) -> [val: 11],
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Unreachable> (),
+                    <Call> ([func: 4], [global: 22]) -> [val: 0],
+                    <Ret> ([val: 0]),
                     successors: [],
                 ],
             ],
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCskTDgy4hF9jW_3std6thread5local18panic_access_error",
+            name: "_RNvNtNtCs1bbfcKQCQXM_3std6thread5local18panic_access_error",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -4015,7 +4129,7 @@ ModuleTpde {
             callee_infos: [],
         },
         Function {
-            name: "_RNvNtNtCsioHeeuq8fQz_4core9panicking11panic_const24panic_const_add_overflow",
+            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow",
             has_ret: false,
             args: [
                 ArgInfo {
@@ -4357,7 +4471,7 @@ ModuleTpde {
     ],
     consts: [],
     globals: [
-        _RNvNCNKNvCsQvp3e8KgHi_6source4BYTE0023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCslFJ5zlOYuKy_6source4BYTE0023___RUST_STD_INTERNAL_VAL {
             size: 2,
             align: 1,
             read_only: false,
@@ -4375,7 +4489,7 @@ ModuleTpde {
               0000  01 01                                            |..|,
             relocations: [],
         },
-        _RNvNCNKNvCsQvp3e8KgHi_6source4BYTE0s_023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCslFJ5zlOYuKy_6source4BYTE0s_023___RUST_STD_INTERNAL_VAL {
             size: 1,
             align: 1,
             read_only: false,
@@ -4393,7 +4507,7 @@ ModuleTpde {
               0000  01                                               |.|,
             relocations: [],
         },
-        _RNvNCNKNvCsQvp3e8KgHi_6source6ZEROED0023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCslFJ5zlOYuKy_6source6ZEROED0023___RUST_STD_INTERNAL_VAL {
             size: 8,
             align: 4,
             read_only: false,
@@ -4411,7 +4525,7 @@ ModuleTpde {
               0000  00 00 00 00 01 00 00 00                          |........|,
             relocations: [],
         },
-        _RNvNCNKNvCsQvp3e8KgHi_6source6ZEROED0s_023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCslFJ5zlOYuKy_6source6ZEROED0s_023___RUST_STD_INTERNAL_VAL {
             size: 4,
             align: 4,
             read_only: false,
@@ -4429,7 +4543,7 @@ ModuleTpde {
               0000  00 00 00 00                                      |....|,
             relocations: [],
         },
-        _RNvNCNKNvCsQvp3e8KgHi_6source7COUNTER0023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCslFJ5zlOYuKy_6source7COUNTER0023___RUST_STD_INTERNAL_VAL {
             size: 16,
             align: 8,
             read_only: false,
@@ -4447,7 +4561,7 @@ ModuleTpde {
               0000  0a 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00  |................|,
             relocations: [],
         },
-        _RNvNCNKNvCsQvp3e8KgHi_6source7COUNTER0s_023___RUST_STD_INTERNAL_VAL {
+        _RNvNCNKNvCslFJ5zlOYuKy_6source7COUNTER0s_023___RUST_STD_INTERNAL_VAL {
             size: 8,
             align: 8,
             read_only: false,

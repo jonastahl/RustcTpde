@@ -1,11 +1,11 @@
 use crate::builder::Builder;
 use crate::context::CodegenCx;
 use crate::shared::ir::{FullType, Slot};
-use rustc_abi::{HasDataLayout, TargetDataLayout};
+use rustc_abi::{HasDataLayout, Size, TargetDataLayout};
 use rustc_codegen_ssa::mir::operand::OperandValue;
 use rustc_codegen_ssa::mir::place::{PlaceRef, PlaceValue};
 use rustc_codegen_ssa::traits::{
-    AbiBuilderMethods, ArgAbiBuilderMethods, BaseTypeCodegenMethods, BuilderMethods,
+    AbiBuilderMethods, ArgAbiBuilderMethods, BuilderMethods,
     ConstCodegenMethods, LayoutTypeCodegenMethods,
 };
 use rustc_middle::ty::layout::{
@@ -53,7 +53,7 @@ impl<'tpde, 'tcx> ArgAbiBuilderMethods<'tcx> for Builder<'_, 'tpde, 'tcx> {
             }
             PassMode::Indirect { attrs: _, .. } => {
                 let ptr = next();
-                OperandValue::Ref(PlaceValue::new_sized(ptr, arg_abi.layout.align.abi))
+                OperandValue::Ref(PlaceValue::new_sized(ptr, arg_abi.layout.align))
                     .store(self, dst);
             }
             PassMode::Pair(..) => {
@@ -71,7 +71,7 @@ impl<'tpde, 'tcx> ArgAbiBuilderMethods<'tcx> for Builder<'_, 'tpde, 'tcx> {
                     self.store_arg(arg_abi, val_a, dst);
 
                     let offset = self.const_usize(offset_b as u64);
-                    let ptr = self.inbounds_gep(self.type_i8(), dst.val.llval, &[offset]);
+                    let ptr = self.inbounds_gep(Size::from_bytes(1), dst.val.llval, offset);
                     self.store(val_b, ptr, dst.val.align);
                 }
                 _ => todo!("Handle larger casts"),

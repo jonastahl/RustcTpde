@@ -11,10 +11,10 @@ use rustc_data_structures::fx::FxHashMap;
 use rustc_middle::mono::{CodegenUnit, Visibility};
 use rustc_middle::ty;
 use rustc_middle::ty::layout::HasTyCtxt;
-use rustc_middle::ty::{ExistentialTraitRef, Instance, Ty, TyCtxt};
+use rustc_middle::ty::{ExistentialTraitRef, Instance, Intrinsic, Ty, TyCtxt};
 use rustc_session::{PointerAuthSchema, Session};
 use rustc_span::def_id::DefId;
-use rustc_span::{Symbol, sym};
+use rustc_span::sym;
 use std::cell::{Cell, OnceCell, RefCell};
 use std::marker::PhantomData;
 use std::ops::{Deref, DerefMut};
@@ -261,8 +261,8 @@ impl<'tcx> MiscCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         Some(func)
     }
 
-    fn intrinsic_call_expects_place_always(&self, name: Symbol) -> bool {
-        matches!(name, sym::black_box)
+    fn intrinsic_call_expects_place_always(&self, name: Intrinsic) -> bool {
+        matches!(name, Intrinsic::Rustc(sym::black_box))
     }
 }
 

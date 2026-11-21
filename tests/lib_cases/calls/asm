@@ -6,12 +6,12 @@ lib.rmeta:     file format elf64-x86-64
 lib.rmeta-link:     file format elf64-x86-64
 
 
-actual_obj.source.9dd376f4ef2254e-cgu.0.rcgu.o:     file format elf64-x86-64
+actual_obj.source.fc706701d17b29a0-cgu.0.rcgu.o:     file format elf64-x86-64
 
 
 Disassembly of section .text:
 
-<_RNvMNtNtCsioHeeuq8fQz_4core3ptr9const_ptrPx3addCsQvp3e8KgHi_6source>:
+<_RNvMNtNtCs5bICpQ07Uc4_4core3ptr9const_ptrPx3addCslFJ5zlOYuKy_6source>:
 	lea    (%rdi,%rsi,8),%rdi
 	mov    %rdi,%rax
 	ret
