@@ -3706,7 +3706,6 @@ namespace tpde_rust {
   template<typename Adaptor, typename Derived, typename Config>
   bool RustCompilerBase<Adaptor, Derived, Config>::compile_abort(RustAdaptor::IRInstRef, const ValInfo &, u64) {
     derived()->encode_trap();
-    this->release_regs_after_return();
     return true;
   }
 
