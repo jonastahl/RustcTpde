@@ -2,6 +2,7 @@ use crate::consts::IsInitOrFini;
 use crate::context::CodegenCx;
 use crate::shared::ir::{Binding, FullType, Slot, Type};
 use rustc_abi::Size;
+use rustc_ast::Mutability;
 use rustc_attr_ir::Linkage;
 use rustc_codegen_ssa::traits::{BaseTypeCodegenMethods, ConstCodegenMethods, MiscCodegenMethods};
 use rustc_middle::mir::interpret::{CtfeProvenance, GlobalAlloc, Pointer, Scalar};
@@ -97,7 +98,19 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
     }
 
     fn const_str(&self, s: &str) -> (Self::Value, Self::Value) {
-        todo!()
+        let cached = self.const_str_cache.borrow().get(s).copied();
+        let global = cached.unwrap_or_else(|| {
+            let name = self.generate_local_symbol_name("str");
+            let mut module = self.module.borrow_mut();
+            let global =
+                module.add_global(&name, Linkage::Internal, Mutability::Not, Binding::Definition);
+            module.global_set_align(global, 1);
+            module.global_add_init_chunk(global, s.as_bytes());
+            drop(module);
+            self.const_str_cache.borrow_mut().insert(s.to_owned(), global);
+            global
+        });
+        (Slot::new_global(global), self.const_usize(s.len() as u64))
     }
 
     fn const_vector(&self, elts: &[Self::Value]) -> Self::Value {

@@ -38,6 +38,7 @@ pub struct FullCx<'tpde, 'tcx> {
     pub libfuncs: RefCell<FxHashMap<LibFunc, Function>>,
 
     pub globals: RefCell<FxHashMap<DefId, Global>>,
+    pub const_str_cache: RefCell<FxHashMap<String, Global>>,
     pub vtables: RefCell<FxHashMap<(Ty<'tcx>, Option<ty::ExistentialTraitRef<'tcx>>), Slot>>,
     pub fallback_personality: OnceCell<Function>,
 
