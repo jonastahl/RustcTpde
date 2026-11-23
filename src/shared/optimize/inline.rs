@@ -2,7 +2,7 @@ use super::OptConfig;
 use crate::shared::ffi;
 use crate::shared::ffi::AccessInfoState;
 use crate::shared::ffi::{BasicBlock, Instruction, InstructionReference, Phi};
-use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Slot};
+use crate::shared::ir::{ArgKind, InstructionKind, ModuleTpde, Value};
 use crate::shared::ir::{access_info_intern, alloc_used_a, alloc_used_b, merge_access_states};
 use std::collections::BTreeSet;
 
@@ -79,7 +79,7 @@ fn replace_phi_predecessor(func: &mut ffi::Function, from: u32, to: u32) {
         return;
     }
     let new_block = &func.basic_blocks[to as usize];
-    let (from, to) = (Slot::new_raw(from).to_ffi(), Slot::new_raw(to).to_ffi());
+    let (from, to) = (Value::new_raw(from).to_ffi(), Value::new_raw(to).to_ffi());
 
     for &target in &func.successors[new_block.successors()] {
         let target = &func.basic_blocks[target as usize];
@@ -129,7 +129,7 @@ fn inline_call(
     // decrement forwarding for all arguments
     if track_access {
         for i in 0..call.ops_len as usize - 1 {
-            let arg = Slot::from_ffi(caller.operands[args_start + i]);
+            let arg = Value::from_ffi(caller.operands[args_start + i]);
             if let Some(call_info) = access_info_intern(caller, &arg) {
                 let callee_info = &callee.args[i].access_info;
 
@@ -271,7 +271,7 @@ fn inline_call(
             let incoming_start = caller.operands.len() as u32;
             for ret in returns.iter() {
                 let value = caller.operands[ret.ops_start as usize + i];
-                caller.operands.push(Slot::new_raw(ret.block).to_ffi());
+                caller.operands.push(Value::new_raw(ret.block).to_ffi());
                 caller.operands.push(value);
             }
             caller.phis.push(ffi::Phi {
@@ -280,7 +280,7 @@ fn inline_call(
                 incoming_len: returns.len() as u32,
             });
             bb.phi_len += 1;
-            Slot::new_phi(results_bb as u32, bb.phi_len - 1).to_ffi()
+            Value::new_phi(results_bb as u32, bb.phi_len - 1).to_ffi()
         };
         caller.instructions.push(ffi::Instruction {
             kind: InstructionKind::Mov,
@@ -431,12 +431,12 @@ fn map_instruction(
 
             // map the raw callee_info if the original callee is a val
             if matches!(
-                Slot::from_ffi(callee_operands[instr.ops_start as usize]),
-                Slot::Value(..) | Slot::Phi(..)
+                Value::from_ffi(callee_operands[instr.ops_start as usize]),
+                Value::Slot(..) | Value::Phi(..)
             ) {
                 if matches!(
-                    Slot::from_ffi(operands[instr.ops_start as usize]),
-                    Slot::Func(_)
+                    Value::from_ffi(operands[instr.ops_start as usize]),
+                    Value::Func(_)
                 ) {
                     // The argument made it a direct call, which has no callee info
                     operands.copy_within(
@@ -473,17 +473,17 @@ fn map_instruction(
 
 fn map_operands(operand: &mut u32, argument_mapping: &[u32], inline_offsets: &InlineOffsets) {
     // map: val, alloca
-    match Slot::from_ffi(*operand) {
-        Slot::Value(f, v) => {
+    match Value::from_ffi(*operand) {
+        Value::Slot(f, v) => {
             *operand = if v < argument_mapping.len() as u32 {
                 argument_mapping[v as usize]
             } else {
-                Slot::Value(f, v + inline_offsets.slots).to_ffi()
+                Value::Slot(f, v + inline_offsets.slots).to_ffi()
             };
         }
-        Slot::Alloc(a) => *operand = Slot::Alloc(a + inline_offsets.allocas).to_ffi(),
-        Slot::Phi(f, block, ind) => {
-            *operand = Slot::Phi(f, block + inline_offsets.basic_blocks, ind).to_ffi()
+        Value::Alloc(a) => *operand = Value::Alloc(a + inline_offsets.allocas).to_ffi(),
+        Value::Phi(f, block, ind) => {
+            *operand = Value::Phi(f, block + inline_offsets.basic_blocks, ind).to_ffi()
         }
         _ => {}
     };

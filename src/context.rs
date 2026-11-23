@@ -1,6 +1,6 @@
 use crate::builder::Builder;
 use crate::shared::ir::{
-    ArgInfo, Binding, FullType, Function, FunctionSignature, Global, Module, Slot, Type,
+    ArgInfo, Binding, FullType, Function, FunctionSignature, Global, Module, Value, Type,
 };
 use core::borrow::Borrow;
 use rustc_abi::TargetDataLayout;
@@ -39,7 +39,7 @@ pub struct FullCx<'tpde, 'tcx> {
 
     pub globals: RefCell<FxHashMap<DefId, Global>>,
     pub const_str_cache: RefCell<FxHashMap<String, Global>>,
-    pub vtables: RefCell<FxHashMap<(Ty<'tcx>, Option<ty::ExistentialTraitRef<'tcx>>), Slot>>,
+    pub vtables: RefCell<FxHashMap<(Ty<'tcx>, Option<ty::ExistentialTraitRef<'tcx>>), Value>>,
     pub fallback_personality: OnceCell<Function>,
 
     pub data_layout: TargetDataLayout,
@@ -136,9 +136,9 @@ pub enum LibFunc {
 }
 
 impl<'tcx> CodegenCx<'_, 'tcx> {
-    pub fn get_lib_fn(&self, libfunc: LibFunc) -> Slot {
+    pub fn get_lib_fn(&self, libfunc: LibFunc) -> Value {
         if let Some(&i) = self.libfuncs.borrow().get(&libfunc) {
-            return Slot::new_func(i);
+            return Value::new_func(i);
         };
 
         let (name, arg_infos, ret) = match libfunc {
@@ -167,7 +167,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             Binding::Declaration,
         );
         self.libfuncs.borrow_mut().insert(libfunc, func);
-        Slot::new_func(func)
+        Value::new_func(func)
     }
 }
 
@@ -198,7 +198,7 @@ impl<'tcx> MiscCodegenMethods<'tcx> for CodegenCx<'_, 'tcx> {
         instance: Instance<'tcx>,
         pointer_auth_schema: Option<&PointerAuthSchema>,
     ) -> Self::Value {
-        Slot::new_func(self.get_fn(instance))
+        Value::new_func(self.get_fn(instance))
     }
 
     fn eh_personality(&self) -> Self::Function {

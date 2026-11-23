@@ -1,6 +1,6 @@
 use crate::builder::Builder;
 use crate::context::LibFunc;
-use crate::shared::ir::{FullType, InstructionKind, LandingPadKind, Slot, Type};
+use crate::shared::ir::{FullType, InstructionKind, LandingPadKind, Value, Type};
 use rustc_abi::{Align, Size};
 use rustc_codegen_ssa::MemFlags;
 use rustc_codegen_ssa::RetagInfo;
@@ -582,7 +582,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     2
                 };
                 let (_, elem) = args[values].layout.ty.simd_size_and_type(self.tcx);
-                let align = Slot::new_raw(self.layout_of(elem).align.bytes() as u32);
+                let align = Value::new_raw(self.layout_of(elem).align.bytes() as u32);
                 let ops = [
                     args[0].immediate(),
                     args[1].immediate(),
@@ -914,7 +914,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     &[
                         args[0].immediate(),
                         args[1].immediate(),
-                        Slot::new_raw(op as u32),
+                        Value::new_raw(op as u32),
                     ],
                 )
             }
@@ -932,7 +932,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     &[
                         args[0].immediate(),
                         args[1].immediate(),
-                        Slot::new_raw(op as u32),
+                        Value::new_raw(op as u32),
                     ],
                 )
             }
@@ -944,7 +944,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret_first(
                     self.basic_block,
                     InstructionKind::simd_approx,
-                    &[args[0].immediate(), Slot::new_raw(op as u32)],
+                    &[args[0].immediate(), Value::new_raw(op as u32)],
                 )
             }
             "cmpps" | "cmppd" | "cmpss" | "cmpsd" | "vcmpps" | "vcmppd" => {
@@ -968,7 +968,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     &[
                         args[0].immediate(),
                         args[1].immediate(),
-                        Slot::new_raw((kind as u32) | ((pred as u32) << 2)),
+                        Value::new_raw((kind as u32) | ((pred as u32) << 2)),
                     ],
                 )
             }
@@ -987,7 +987,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::simd_cvt,
-                    &[a, Slot::new_raw(truncate as u32)],
+                    &[a, Value::new_raw(truncate as u32)],
                     out_ty,
                 )
             }
@@ -1009,12 +1009,12 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                         let Some(imm) = self.cx.const_to_opt_uint(args[2].immediate()) else {
                             bug!("sha1rnds4 immediate must be a constant");
                         };
-                        ops.push(Slot::new_raw(imm as u32 & 3));
+                        ops.push(Value::new_raw(imm as u32 & 3));
                     }
                     "sha256rnds2" => ops.push(args[2].immediate()),
                     _ => {}
                 }
-                ops.push(Slot::new_raw(variant));
+                ops.push(Value::new_raw(variant));
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::sha,
@@ -1035,7 +1035,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                 self.module.borrow_mut().add_instruction_ret(
                     self.basic_block,
                     InstructionKind::clmul,
-                    &[a, b, Slot::new_raw(sel as u32)],
+                    &[a, b, Value::new_raw(sel as u32)],
                     vec_ty,
                 )
             }
@@ -1069,7 +1069,7 @@ impl<'tcx> IntrinsicCallBuilderMethods<'tcx> for Builder<'_, '_, 'tcx> {
                     InstructionKind::simd_cvt,
                     &[
                         args[0].immediate(),
-                        Slot::new_raw(op | ((imm as u32 & 0xFF) << 2)),
+                        Value::new_raw(op | ((imm as u32 & 0xFF) << 2)),
                     ],
                     Type::v8i16,
                 )

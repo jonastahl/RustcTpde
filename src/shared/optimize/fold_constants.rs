@@ -1,6 +1,6 @@
 use crate::shared::ffi;
 use crate::shared::ffi::{InstructionKind, ModuleTpde};
-use crate::shared::ir::{Slot, size_of_type};
+use crate::shared::ir::{Value, size_of_type};
 
 fn sign_extend(value: u128, bits: u32) -> i128 {
     ((value << (128 - bits)) as i128) >> (128 - bits)
@@ -8,11 +8,11 @@ fn sign_extend(value: u128, bits: u32) -> i128 {
 
 fn all_const(ops: &[u32]) -> bool {
     ops.iter()
-        .all(|op| matches!(Slot::from_ffi(*op), Slot::Const(_)))
+        .all(|op| matches!(Value::from_ffi(*op), Value::Const(_)))
 }
 
 fn remove_phi_incoming(func: &mut ffi::Function, to: u32, from: u32) {
-    let from = Slot::new_raw(from).to_ffi();
+    let from = Value::new_raw(from).to_ffi();
     let block = &func.basic_blocks[to as usize];
     let phis = block.phi_start as usize..(block.phi_start + block.phi_len) as usize;
     for phi in &mut func.phis[phis] {
@@ -61,7 +61,7 @@ impl ModuleTpde {
                 let ops_end = ops + instr.ops_len as usize;
 
                 for op in &mut func.operands[ops..ops_end] {
-                    if let Slot::Value(_, v) = Slot::from_ffi(*op)
+                    if let Value::Slot(_, v) = Value::from_ffi(*op)
                         && let Some(c) = known[v as usize]
                     {
                         *op = c;
@@ -90,8 +90,8 @@ impl ModuleTpde {
                         let check = func.instructions[read];
                         read += 1;
                         let signed = matches!(
-                            Slot::from_ffi(func.operands[check.ops_start as usize]),
-                            Slot::Raw(1)
+                            Value::from_ffi(func.operands[check.ops_start as usize]),
+                            Value::Raw(1)
                         );
                         let func = &self.functions[function as usize];
                         let overflow =
@@ -104,7 +104,7 @@ impl ModuleTpde {
                 }
 
                 if instr.kind == InstructionKind::CondBr
-                    && let Slot::Const(cond) = Slot::from_ffi(func.operands[ops])
+                    && let Value::Const(cond) = Value::from_ffi(func.operands[ops])
                 {
                     let taken = self.const_value(cond).1 & 1 != 0;
                     let func = &mut self.functions[function as usize];
@@ -145,7 +145,7 @@ impl ModuleTpde {
             let start = phi.incoming_start as usize;
             let incoming = &mut func.operands[start..start + phi.incoming_len as usize * 2];
             for value in incoming.iter_mut().skip(1).step_by(2) {
-                if let Slot::Value(_, v) = Slot::from_ffi(*value)
+                if let Value::Slot(_, v) = Value::from_ffi(*value)
                     && let Some(c) = known[v as usize]
                 {
                     *value = c;
@@ -156,7 +156,7 @@ impl ModuleTpde {
 
     fn eval_const(&self, kind: InstructionKind, ops: &[u32]) -> Option<u128> {
         let &[lhs, rhs] = ops else { return None };
-        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs))
+        let (Value::Const(lhs), Value::Const(rhs)) = (Value::from_ffi(lhs), Value::from_ffi(rhs))
         else {
             unreachable!()
         };
@@ -186,7 +186,7 @@ impl ModuleTpde {
 
     fn overflows(&self, kind: InstructionKind, ops: &[u32], signed: bool) -> bool {
         let &[lhs, rhs] = ops else { unreachable!() };
-        let (Slot::Const(lhs), Slot::Const(rhs)) = (Slot::from_ffi(lhs), Slot::from_ffi(rhs))
+        let (Value::Const(lhs), Value::Const(rhs)) = (Value::from_ffi(lhs), Value::from_ffi(rhs))
         else {
             unreachable!()
         };

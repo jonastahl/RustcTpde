@@ -5,7 +5,7 @@ use crate::context::{CodegenCx, GenericCx, LibFunc, SCx};
 use crate::shared::ir;
 use crate::shared::ir::{AccessInfoState, update_access_info};
 use crate::shared::ir::{
-    BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Slot, Type,
+    BasicBlock, FullType, Function, InstructionKind, LandingPadKind, Module, Value, Type,
     convert_atomic_op, convert_atomic_order, size_of_type, vector_info,
 };
 use core::borrow::Borrow;
@@ -52,7 +52,7 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BackendTypes for GenericCx<'tpde, CX> {
     type Function = Function;
     type BasicBlock = BasicBlock;
     type Funclet = ();
-    type Value = Slot;
+    type Value = Value;
     type Type = FullType;
     type FunctionSignature = usize;
     type DIScope = ();
@@ -61,13 +61,13 @@ impl<'tpde, CX: Borrow<SCx<'tpde>>> BackendTypes for GenericCx<'tpde, CX> {
 }
 
 impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
-    pub fn landing_pad(&mut self, pers_fn: Function, kind: LandingPadKind) -> (Slot, Slot) {
+    pub fn landing_pad(&mut self, pers_fn: Function, kind: LandingPadKind) -> (Value, Value) {
         self.set_personality_fn(pers_fn);
         let module = &mut self.module.borrow_mut();
         let a = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::LandingPad,
-            &[Slot::new_raw(kind.repr as u32)],
+            &[Value::new_raw(kind.repr as u32)],
             Type::ptr,
         );
         let b =
@@ -227,7 +227,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
                 return_slot,
                 args,
             )
-            .unwrap_or_else(|| Slot::new_raw(0))
+            .unwrap_or_else(|| Value::new_raw(0))
     }
 
     fn unreachable(&mut self) {
@@ -490,7 +490,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let of = self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             InstructionKind::OverflowCheck,
-            &[Slot::Raw(if signed { 1 } else { 0 })],
+            &[Value::Raw(if signed { 1 } else { 0 })],
             Type::Bool,
         );
         (res, of)
@@ -506,7 +506,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         val
     }
 
-    fn alloca(&mut self, size: rustc_abi::Size, align: rustc_abi::Align) -> Self::Value {
+    fn alloca(&mut self, size: Size, align: rustc_abi::Align) -> Self::Value {
         // For llvm allocas are always stored with some padding, which is what Rust expects.
         // So we just add this for sanity reasons.
         let size = size.bytes_usize();
@@ -563,8 +563,8 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             InstructionKind::Atomic_load,
             &[
                 ptr,
-                Slot::new_raw(convert_atomic_order(order).repr),
-                Slot::new_raw(volatile as u32),
+                Value::new_raw(convert_atomic_order(order).repr),
+                Value::new_raw(volatile as u32),
             ],
             ty,
         )
@@ -701,8 +701,8 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             &[
                 val,
                 ptr,
-                Slot::new_raw(convert_atomic_order(order).repr),
-                Slot::new_raw(volatile as u32),
+                Value::new_raw(convert_atomic_order(order).repr),
+                Value::new_raw(volatile as u32),
             ],
         );
     }
@@ -711,7 +711,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module.borrow_mut().add_instruction_ret(
             self.basic_block,
             InstructionKind::GEP,
-            &[ptr, Slot::new_raw(stride.bytes() as u32), index],
+            &[ptr, Value::new_raw(stride.bytes() as u32), index],
             Type::i64,
         )
     }
@@ -1134,7 +1134,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let ret_val = module.add_instruction_ret_x(
             self.basic_block,
             InstructionKind::Atomic_cmpxchg,
-            &[dst, cmp, src, Slot::new_raw(merged_order.repr)],
+            &[dst, cmp, src, Value::new_raw(merged_order.repr)],
             2,
         );
         let res =
@@ -1155,7 +1155,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         let ret_val = self.module.borrow_mut().add_instruction_ret_x(
             self.basic_block,
             InstructionKind::Atomic_rmw,
-            &[Slot::new_raw(op.repr), dst, src, Slot::new_raw(order.repr)],
+            &[Value::new_raw(op.repr), dst, src, Value::new_raw(order.repr)],
             2,
         );
 
@@ -1167,8 +1167,8 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
             self.basic_block,
             InstructionKind::Atomic_fence,
             &[
-                Slot::new_raw(convert_atomic_order(order).repr),
-                Slot::new_raw(match scope {
+                Value::new_raw(convert_atomic_order(order).repr),
+                Value::new_raw(match scope {
                     SynchronizationScope::SingleThread => 0,
                     SynchronizationScope::CrossThread => 1,
                 } as u32),
@@ -1198,7 +1198,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
         self.module
             .borrow_mut()
             .add_call(self.basic_block, fn_val, func_sig, return_slot, args)
-            .unwrap_or_else(|| Slot::new_raw(0))
+            .unwrap_or_else(|| Value::new_raw(0))
     }
 
     fn tail_call(
@@ -1221,7 +1221,7 @@ impl<'a, 'tpde, 'tcx> BuilderMethods<'a, 'tcx> for Builder<'a, 'tpde, 'tcx> {
 impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
     /// Fold a `trunc`/`zext` of an integer constant into a constant. Intrinsics with immediate
     /// operands (e.g. `IMM8 as u8`) need a constant even when nothing ran const propagation.
-    fn fold_const_int_cast(&self, val: Slot, dest_ty: FullType) -> Option<Slot> {
+    fn fold_const_int_cast(&self, val: Value, dest_ty: FullType) -> Option<Value> {
         let mut module = self.module.borrow_mut();
         let (FullType::Single(src), FullType::Single(dst)) = (module.type_of_slot(val), dest_ty)
         else {
@@ -1239,7 +1239,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         Some(module.add_const(dst, data))
     }
 
-    fn unop(&self, instr: InstructionKind, val: Slot, dest_ty: FullType) -> Slot {
+    fn unop(&self, instr: InstructionKind, val: Value, dest_ty: FullType) -> Value {
         let FullType::Single(dest_ty) = dest_ty else {
             todo!()
         };
@@ -1251,10 +1251,10 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
     fn load_single(
         &self,
         module: &mut Module,
-        ptr: Slot,
+        ptr: Value,
         align: rustc_abi::Align,
         ret_ty: Type,
-    ) -> Slot {
+    ) -> Value {
         if module.tracks_access()
             && let Some(info) = module.access_info(self.basic_block.function(), &ptr)
         {
@@ -1264,16 +1264,16 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         module.add_instruction_ret(
             self.basic_block,
             InstructionKind::Load,
-            &[ptr, Slot::new_raw(align.bytes() as u32)],
+            &[ptr, Value::new_raw(align.bytes() as u32)],
             ret_ty,
         )
     }
 
-    fn store_single(&self, module: &mut Module, val: Slot, ptr: Slot, align: rustc_abi::Align) {
+    fn store_single(&self, module: &mut Module, val: Value, ptr: Value, align: rustc_abi::Align) {
         module.add_instruction(
             self.basic_block,
             InstructionKind::Store,
-            &[val, ptr, Slot::new_raw(align.bytes_usize() as u32)],
+            &[val, ptr, Value::new_raw(align.bytes_usize() as u32)],
         );
         if module.tracks_access() {
             let FullType::Single(ty) = module.type_of_slot(val) else {
@@ -1291,18 +1291,18 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
     fn load_pair(
         &self,
         module: &mut Module,
-        ptr: Slot,
+        ptr: Value,
         offset: u32,
         align: rustc_abi::Align,
         ty_a: Type,
         ty_b: Type,
-    ) -> (Slot, Slot) {
+    ) -> (Value, Value) {
         let slot_a = self.load_single(module, ptr, align, ty_a);
         let ind = module.add_const(Type::i64, 1);
         let ptr_b = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::PairGEP,
-            &[ptr, Slot::new_raw(offset), ind],
+            &[ptr, Value::new_raw(offset), ind],
             Type::i64,
         );
         let slot_b = self.load_single(module, ptr_b, align, ty_b);
@@ -1319,9 +1319,9 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
     fn store_pair(
         &self,
         module: &mut Module,
-        val_a: Slot,
-        val_b: Slot,
-        ptr: Slot,
+        val_a: Value,
+        val_b: Value,
+        ptr: Value,
         offset: u32,
         align: rustc_abi::Align,
     ) {
@@ -1330,7 +1330,7 @@ impl<'a, 'tpde, 'tcx> Builder<'a, 'tpde, 'tcx> {
         let ptr_b = module.add_instruction_ret(
             self.basic_block,
             InstructionKind::PairGEP,
-            &[ptr, Slot::new_raw(offset), ind],
+            &[ptr, Value::new_raw(offset), ind],
             Type::i64,
         );
         self.store_single(module, val_b, ptr_b, align);

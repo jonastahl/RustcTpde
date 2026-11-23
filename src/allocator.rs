@@ -1,5 +1,5 @@
 use crate::context::SimpleCx;
-use crate::shared::ir::{Binding, FullType, InstructionKind, Slot};
+use crate::shared::ir::{Binding, FullType, InstructionKind, Value};
 use rustc_ast::expand::allocator::{
     AllocatorMethod, AllocatorTy, NO_ALLOC_SHIM_IS_UNSTABLE, SpecialAllocatorMethod,
     default_fn_name, global_fn_name,
@@ -123,7 +123,7 @@ fn create_wrapper_function(
             .enumerate()
             .map(|(i, _)| module.get_slot(caller, i as u32))
             .collect::<Vec<_>>();
-        let output = module.add_call(bb, Slot::new_func(callee), &sign, ReturnSlot::Direct, &args);
+        let output = module.add_call(bb, Value::new_func(callee), &sign, ReturnSlot::Direct, &args);
 
         match output {
             Some(slot) => vec![slot],

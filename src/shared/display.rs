@@ -1,5 +1,5 @@
 use super::ffi::{self, ArgExtension, ArgKind, InstructionKind, ModuleTpde, Type};
-use super::ir::{Slot, decode_const, size_of_type, vector_info};
+use super::ir::{Value, decode_const, size_of_type, vector_info};
 use core::fmt::{Debug, Formatter, Result, Write};
 
 impl Debug for ModuleTpde {
@@ -104,25 +104,25 @@ fn write_const_vector(out: &mut impl Write, vec: &ffi::ConstVector) -> Result {
 fn write_module_operand(
     module: &ModuleTpde,
     out: &mut impl Write,
-    slot: Slot,
+    slot: Value,
     referenced: &mut Vec<usize>,
 ) -> core::result::Result<bool, core::fmt::Error> {
     match slot {
-        Slot::Func(func) => {
+        Value::Func(func) => {
             referenced.push(func.0);
             write!(out, "f{}", func.0)?;
         }
-        Slot::Global(g) => write!(out, "g{}", g.0)?,
-        Slot::GlobalPtr(p) => match module.global_ptrs.get(p as usize) {
+        Value::Global(g) => write!(out, "g{}", g.0)?,
+        Value::GlobalPtr(p) => match module.global_ptrs.get(p as usize) {
             Some(gp) => write!(out, "g{}+{}", gp.global, gp.offset)?,
             None => write!(out, "gp{p}")?,
         },
-        Slot::Const(c) => {
+        Value::Const(c) => {
             let (ty, data) = decode_const(&module.consts, c);
             write_const(out, ty, data)?;
         }
-        Slot::ConstVector(v) => write_const_vector(out, &module.const_vectors[v as usize])?,
-        Slot::Raw(r) => write!(out, "{r}")?,
+        Value::ConstVector(v) => write_const_vector(out, &module.const_vectors[v as usize])?,
+        Value::Raw(r) => write!(out, "{r}")?,
         _ => return Ok(false),
     }
     Ok(true)
@@ -176,30 +176,30 @@ impl<'a> FunctionPrinter<'a> {
         self.func.phis.get((bb.phi_start + index) as usize)
     }
 
-    fn type_of(&self, slot: Slot) -> Option<Type> {
+    fn type_of(&self, slot: Value) -> Option<Type> {
         Some(match slot {
-            Slot::Value(_, v) => self.func.slots.get(v as usize)?.ty,
-            Slot::Phi(_, block, index) => self.phi(block, index)?.ty,
-            Slot::Const(c) => decode_const(&self.module.consts, c).0,
-            Slot::ConstVector(v) => self.module.const_vectors.get(v as usize)?.ty,
-            Slot::Alloc(_) | Slot::Func(_) | Slot::Global(_) | Slot::GlobalPtr(_) => Type::ptr,
-            Slot::Raw(_) | Slot::Pair(_) => return None,
+            Value::Slot(_, v) => self.func.slots.get(v as usize)?.ty,
+            Value::Phi(_, block, index) => self.phi(block, index)?.ty,
+            Value::Const(c) => decode_const(&self.module.consts, c).0,
+            Value::ConstVector(v) => self.module.const_vectors.get(v as usize)?.ty,
+            Value::Alloc(_) | Value::Func(_) | Value::Global(_) | Value::GlobalPtr(_) => Type::ptr,
+            Value::Raw(_) | Value::Pair(_) => return None,
         })
     }
 
     fn write_operand(
         &self,
         out: &mut impl Write,
-        slot: Slot,
+        slot: Value,
         referenced: &mut Vec<usize>,
     ) -> Result {
         if write_module_operand(self.module, out, slot, referenced)? {
             return Ok(());
         }
         match slot {
-            Slot::Value(_, v) => write!(out, "s{v}"),
-            Slot::Alloc(a) => write!(out, "a{a}"),
-            Slot::Phi(_, block, index) => match self.phi_offsets.get(block as usize) {
+            Value::Slot(_, v) => write!(out, "s{v}"),
+            Value::Alloc(a) => write!(out, "a{a}"),
+            Value::Phi(_, block, index) => match self.phi_offsets.get(block as usize) {
                 Some(offset) => write!(out, "p{}", offset + index),
                 None => write!(out, "p(bb{block}, {index})"),
             },
@@ -207,7 +207,7 @@ impl<'a> FunctionPrinter<'a> {
         }
     }
 
-    fn write_typed(&self, out: &mut impl Write, slot: Slot, referenced: &mut Vec<usize>) -> Result {
+    fn write_typed(&self, out: &mut impl Write, slot: Value, referenced: &mut Vec<usize>) -> Result {
         self.write_operand(out, slot, referenced)?;
         match self.type_of(slot) {
             Some(ty) => write!(out, ": {}", ty_name(ty)),
@@ -225,7 +225,7 @@ impl<'a> FunctionPrinter<'a> {
         let start = ret.ops_start as usize;
         self.func.operands[start..start + ret.ops_len as usize]
             .iter()
-            .map(|&op| self.type_of(Slot::from_ffi(op)))
+            .map(|&op| self.type_of(Value::from_ffi(op)))
             .collect()
     }
 
@@ -265,7 +265,7 @@ impl<'a> FunctionPrinter<'a> {
         if func.has_personality {
             let mut line = String::new();
             write!(line, "  personality: ")?;
-            let personality = Slot::Func(super::ir::Function(func.personality as usize));
+            let personality = Value::Func(super::ir::Function(func.personality as usize));
             self.write_operand(&mut line, personality, &mut referenced)?;
             write_name_comment(self.module, &mut line, &referenced)?;
             referenced.clear();
@@ -324,17 +324,17 @@ impl<'a> FunctionPrinter<'a> {
                 if j != 0 {
                     line.push_str(", ");
                 }
-                match Slot::from_ffi(pair[0]) {
-                    Slot::Raw(bb) => write!(line, "(bb{bb}, ")?,
+                match Value::from_ffi(pair[0]) {
+                    Value::Raw(bb) => write!(line, "(bb{bb}, ")?,
                     other => write!(line, "({other:?}, ")?,
                 }
-                self.write_operand(&mut line, Slot::from_ffi(pair[1]), &mut referenced)?;
+                self.write_operand(&mut line, Value::from_ffi(pair[1]), &mut referenced)?;
                 line.push(')');
             }
             write!(line, "] -> ")?;
             self.write_typed(
                 &mut line,
-                Slot::Phi(super::ir::Function(0), index, i as u32),
+                Value::Phi(super::ir::Function(0), index, i as u32),
                 &mut referenced,
             )?;
             write_name_comment(self.module, &mut line, &referenced)?;
@@ -355,12 +355,12 @@ impl<'a> FunctionPrinter<'a> {
                 if i != 0 {
                     line.push_str(", ");
                 }
-                let slot = Slot::from_ffi(op);
+                let slot = Value::from_ffi(op);
                 // indirect calls reference their callee info as second operand
                 if is_call
                     && i == 1
-                    && !matches!(Slot::from_ffi(ops[0]), Slot::Func(_))
-                    && let Slot::Raw(ci) = slot
+                    && !matches!(Value::from_ffi(ops[0]), Value::Func(_))
+                    && let Value::Raw(ci) = slot
                 {
                     write!(line, "ci{ci}")?;
                     continue;
@@ -371,11 +371,11 @@ impl<'a> FunctionPrinter<'a> {
 
             if inst.has_result {
                 line.push_str(" -> ");
-                self.write_typed(&mut line, Slot::from_ffi(inst.result), &mut referenced)?;
+                self.write_typed(&mut line, Value::from_ffi(inst.result), &mut referenced)?;
                 // Merge the additional return value of pair returns into this line
                 while let Some(add) = iter.next_if(|i| i.kind == InstructionKind::AddRet) {
                     line.push_str(", ");
-                    self.write_typed(&mut line, Slot::from_ffi(add.result), &mut referenced)?;
+                    self.write_typed(&mut line, Value::from_ffi(add.result), &mut referenced)?;
                 }
             }
 
@@ -450,7 +450,7 @@ fn write_global(
             let mut line = String::new();
             let mut referenced = vec![];
             write!(line, "    {:#x} ", reloc.offset)?;
-            let slot = Slot::from_ffi(reloc.slot);
+            let slot = Value::from_ffi(reloc.slot);
             if !write_module_operand(module, &mut line, slot, &mut referenced)? {
                 write!(line, "{slot:?}")?;
             }

@@ -1,6 +1,6 @@
 use crate::builder::Builder;
 use crate::context::CodegenCx;
-use crate::shared::ir::{Binding, Global, InstructionKind, Module, Slot, Type};
+use crate::shared::ir::{Binding, Global, InstructionKind, Module, Value, Type};
 use rustc_abi::Size;
 use rustc_ast::Mutability;
 use rustc_attr_ir::Linkage;
@@ -14,7 +14,7 @@ use std::ops::Range;
 
 impl<'tcx> StaticBuilderMethods for Builder<'_, '_, 'tcx> {
     fn get_static(&mut self, def_id: DefId) -> Self::Value {
-        let global = Slot::new_global(self.cx.get_global(def_id));
+        let global = Value::new_global(self.cx.get_global(def_id));
         if self.tcx.is_thread_local_static(def_id) {
             return self.cx.module.borrow_mut().add_instruction_ret(
                 self.basic_block,
@@ -135,7 +135,7 @@ impl<'tcx> StaticCodegenMethods for CodegenCx<'_, 'tcx> {
 
         self.const_alloc_to_tpde(g, alloc.inner(), IsInitOrFini::No);
 
-        Slot::new_global(g)
+        Value::new_global(g)
     }
 
     fn codegen_static(&mut self, def_id: DefId) {

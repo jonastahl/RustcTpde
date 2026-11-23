@@ -1,6 +1,6 @@
 use crate::consts::IsInitOrFini;
 use crate::context::CodegenCx;
-use crate::shared::ir::{Binding, FullType, Slot, Type};
+use crate::shared::ir::{Binding, FullType, Value, Type};
 use rustc_abi::Size;
 use rustc_ast::Mutability;
 use rustc_attr_ir::Linkage;
@@ -118,7 +118,7 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
                 .insert(s.to_owned(), global);
             global
         });
-        (Slot::new_global(global), self.const_usize(s.len() as u64))
+        (Value::new_global(global), self.const_usize(s.len() as u64))
     }
 
     fn const_vector(&self, elts: &[Self::Value]) -> Self::Value {
@@ -180,7 +180,7 @@ impl<'tcx> ConstCodegenMethods for CodegenCx<'_, 'tcx> {
 }
 
 impl<'tcx> CodegenCx<'_, 'tcx> {
-    pub fn ptr_to_backend(&self, ptr: Pointer<CtfeProvenance>) -> Slot {
+    pub fn ptr_to_backend(&self, ptr: Pointer<CtfeProvenance>) -> Value {
         let (prov, offset) = ptr.prov_and_relative_offset();
         let global_alloc = self.tcx.global_alloc(prov.alloc_id());
         let base_addr_space = global_alloc.address_space(self);
@@ -188,7 +188,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
             GlobalAlloc::Static(def_id) => {
                 assert!(self.tcx.is_static(def_id));
                 assert!(!self.tcx.is_thread_local_static(def_id));
-                Slot::new_global(self.get_global(def_id))
+                Value::new_global(self.get_global(def_id))
             }
             GlobalAlloc::Memory(_) | GlobalAlloc::VTable(..) => {
                 let alloc = match global_alloc {
@@ -221,7 +221,7 @@ impl<'tcx> CodegenCx<'_, 'tcx> {
                 if offset != 0 {
                     self.module.borrow_mut().add_global_ptr(g, offset as u32)
                 } else {
-                    Slot::new_global(g)
+                    Value::new_global(g)
                 }
             }
             GlobalAlloc::Function { instance } => self.get_fn_addr(instance, None),

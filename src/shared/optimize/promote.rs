@@ -1,6 +1,6 @@
 use crate::shared::ffi;
 use crate::shared::ffi::{AccessInfoState, Function};
-use crate::shared::ir::{BasicBlock, InstructionKind, ModuleTpde, Slot, Type};
+use crate::shared::ir::{BasicBlock, InstructionKind, ModuleTpde, Value, Type};
 
 type PromotedParts = (Option<(u32, Type)>, Option<(u32, Type)>);
 
@@ -103,7 +103,7 @@ impl ModuleTpde {
 
                 match instr_kind {
                     InstructionKind::Store
-                        if let Slot::Alloc(a) = Slot::from_ffi(ops[1])
+                        if let Value::Alloc(a) = Value::from_ffi(ops[1])
                             && let Some(prom_var) = promoted[a as usize].0 =>
                     {
                         instr.kind = InstructionKind::Noop;
@@ -117,7 +117,7 @@ impl ModuleTpde {
                         local_vars[var] = ops[0];
                     }
                     InstructionKind::Load
-                        if let Slot::Alloc(a) = Slot::from_ffi(ops[0])
+                        if let Value::Alloc(a) = Value::from_ffi(ops[0])
                             && let Some(prom_var) = promoted[a as usize].0 =>
                     {
                         instr.kind = InstructionKind::Mov;
@@ -138,7 +138,7 @@ impl ModuleTpde {
                         };
                     }
                     InstructionKind::PairGEP
-                        if let Slot::Alloc(a) = Slot::from_ffi(ops[0])
+                        if let Value::Alloc(a) = Value::from_ffi(ops[0])
                             && let Some(prom_var) = promoted[a as usize].1 =>
                     {
                         let parts = func.instructions.split_at_mut(instr_index + 1);
@@ -224,7 +224,7 @@ fn read_variable_recursive(c: &mut Context, bb: usize) -> u32 {
     let cur_preds = c.preds.of(bb);
 
     let val = if cur_preds.is_empty() {
-        return Slot::new_inline_const(c.ty, 0).to_ffi();
+        return Value::new_inline_const(c.ty, 0).to_ffi();
     } else if cur_preds.len() == 1 {
         read_variable(c, cur_preds[0] as usize)
     } else {
@@ -239,7 +239,7 @@ fn read_variable_recursive(c: &mut Context, bb: usize) -> u32 {
     val
 }
 
-fn add_phi_operands(c: &mut Context, bb: usize, phi: Slot) -> u32 {
+fn add_phi_operands(c: &mut Context, bb: usize, phi: Value) -> u32 {
     let cur_preds = c.preds.of(bb);
     for (pred_ind, &pred) in cur_preds.iter().enumerate() {
         let var = read_variable(c, pred as usize);
@@ -265,13 +265,13 @@ fn fill_current_def(
 
             if let Some((instr, prom_var, op)) = match instr.kind {
                 InstructionKind::Store
-                    if let Slot::Alloc(a) = Slot::from_ffi(ops[1])
+                    if let Value::Alloc(a) = Value::from_ffi(ops[1])
                         && let Some(prom_var) = promoted[a as usize].0 =>
                 {
                     Some((instr, prom_var, ops[0]))
                 }
                 InstructionKind::PairGEP
-                    if let Slot::Alloc(a) = Slot::from_ffi(ops[0])
+                    if let Value::Alloc(a) = Value::from_ffi(ops[0])
                         && let Some(prom_var) = promoted[a as usize].1 =>
                 {
                     let parts = func.instructions.split_at_mut(instr_index + 1);

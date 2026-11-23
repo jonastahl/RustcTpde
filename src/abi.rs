@@ -1,6 +1,6 @@
 use crate::builder::Builder;
 use crate::context::CodegenCx;
-use crate::shared::ir::{FullType, Slot};
+use crate::shared::ir::{FullType, Value};
 use rustc_abi::{HasDataLayout, Size, TargetDataLayout};
 use rustc_codegen_ssa::mir::operand::OperandValue;
 use rustc_codegen_ssa::mir::place::{PlaceRef, PlaceValue};
@@ -23,7 +23,7 @@ impl<'tpde, 'tcx> AbiBuilderMethods for Builder<'_, 'tpde, 'tcx> {
 }
 
 impl Builder<'_, '_, '_> {
-    fn get_param(&self, index: usize) -> Slot {
+    fn get_param(&self, index: usize) -> Value {
         self.module
             .borrow()
             .get_slot(self.basic_block.function(), index as u32)
