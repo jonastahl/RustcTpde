@@ -202,7 +202,7 @@ namespace tpde_rust {
     // We can just buffer when switching the function and use it for generation
     struct ModuleData {
       std::span<Function> functions;
-      std::span<Value> consts;
+      std::span<Const> consts;
       std::span<Global> globals;
       std::span<GlobalPtr> global_ptrs;
       std::span<ConstVector> const_vectors;
@@ -221,7 +221,7 @@ namespace tpde_rust {
     } cur_data;
 
     [[nodiscard]] std::span<Function> get_functions() const { return mod_data.functions; }
-    [[nodiscard]] std::span<Value> get_consts() const { return mod_data.consts; }
+    [[nodiscard]] std::span<Const> get_consts() const { return mod_data.consts; }
     [[nodiscard]] std::span<Global> get_globals() const { return mod_data.globals; }
     [[nodiscard]] std::span<GlobalPtr> get_global_ptrs() const { return mod_data.global_ptrs; }
     [[nodiscard]] std::span<ConstVector> get_const_vectors() const { return mod_data.const_vectors; }
@@ -238,7 +238,7 @@ namespace tpde_rust {
 #else
     // no-cache: go through the cxxbridge on every access, to measure what the caching gains
     [[nodiscard]] std::span<Function> get_functions() const { return view(mod->functions); }
-    [[nodiscard]] std::span<Value> get_consts() const { return view(mod->consts); }
+    [[nodiscard]] std::span<Const> get_consts() const { return view(mod->consts); }
     [[nodiscard]] std::span<Global> get_globals() const { return view(mod->globals); }
     [[nodiscard]] std::span<GlobalPtr> get_global_ptrs() const { return view(mod->global_ptrs); }
     [[nodiscard]] std::span<ConstVector> get_const_vectors() const { return view(mod->const_vectors); }
@@ -255,10 +255,10 @@ namespace tpde_rust {
 #endif
 
     // wrapper for handling inlined constant values
-    [[nodiscard]] Value const_value(const IRValueRef value) const {
+    [[nodiscard]] Const const_value(const IRValueRef value) const {
       const u32 c = value.content();
       if (c & IR::INLINE_CONST_BIT) {
-        return Value{
+        return Const{
           .ty = static_cast<Type>((c & IR::CONST_CONTENT) >> IR::INLINE_CONST_VAL_BITS_COUNT),
           .data1 = 0,
           .data2 = c & IR::INLINE_CONST_VAL_MASK,

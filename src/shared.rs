@@ -13,7 +13,7 @@ mod ffi {
     #[derive(Debug)]
     pub struct ModuleTpde {
         functions: Vec<Function>,
-        consts: Vec<Value>,
+        consts: Vec<Const>,
 
         globals: Vec<Global>,
         global_ptrs: Vec<GlobalPtr>,
@@ -448,7 +448,7 @@ mod ffi {
         data: Vec<u8>,
     }
 
-    pub struct Value {
+    pub struct Const {
         ty: Type,
         data1: u64,
         data2: u64,
@@ -605,7 +605,7 @@ impl Debug for InstructionDebug<'_> {
     }
 }
 
-impl Debug for ffi::Value {
+impl Debug for ffi::Const {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
         let val = match self.ty {
             Type::Bool => format!("{}", self.data2 != 0),

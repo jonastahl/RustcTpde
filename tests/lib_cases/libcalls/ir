@@ -78,6 +78,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: true,
                 never_delete: true,
@@ -255,6 +256,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: true,
                 never_delete: true,
@@ -443,6 +445,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: true,
                 never_delete: true,
@@ -682,6 +685,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: true,
                 never_delete: true,
@@ -923,6 +927,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: true,
                 never_delete: true,
@@ -1154,6 +1159,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: true,
                 never_delete: true,
@@ -1353,6 +1359,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: true,
                 never_delete: true,
@@ -1425,6 +1432,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -1471,6 +1479,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -1573,6 +1582,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -1762,6 +1772,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2002,6 +2013,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2190,6 +2202,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -2308,6 +2321,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2446,6 +2460,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2533,6 +2548,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2620,6 +2636,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2707,6 +2724,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2794,6 +2812,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2881,6 +2900,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -2965,6 +2985,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3077,6 +3098,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3148,6 +3170,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3242,6 +3265,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3329,6 +3353,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3400,6 +3425,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3455,6 +3481,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3510,6 +3537,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3600,6 +3628,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3751,6 +3780,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3845,6 +3875,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -3914,6 +3945,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -4019,6 +4051,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -4084,6 +4117,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -4149,6 +4183,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -4218,6 +4253,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -4319,6 +4355,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -4420,6 +4457,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -4439,6 +4477,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -4524,6 +4563,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -4625,6 +4665,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -4726,6 +4767,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -4827,6 +4869,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -4928,6 +4971,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -4981,6 +5025,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -5050,6 +5095,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -5087,6 +5133,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -5188,6 +5235,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5289,6 +5337,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5390,6 +5439,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5491,6 +5541,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5592,6 +5643,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5693,6 +5745,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5794,6 +5847,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5895,6 +5949,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -5996,6 +6051,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6097,6 +6153,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6198,6 +6255,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6299,6 +6357,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6400,6 +6459,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6501,6 +6561,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6602,6 +6663,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6703,6 +6765,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6804,6 +6867,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -6905,6 +6969,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7006,6 +7071,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7107,6 +7173,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7208,6 +7275,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7309,6 +7377,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7410,6 +7479,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7511,6 +7581,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7612,6 +7683,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7713,6 +7785,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7814,6 +7887,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7915,6 +7989,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -7952,6 +8027,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -8053,6 +8129,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -8154,6 +8231,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -8255,6 +8333,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -8356,6 +8435,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: true,
                 only_local: false,
+                dso_local: false,
                 weak_link: false,
                 always_inline: false,
                 never_delete: true,
@@ -8380,6 +8460,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8401,6 +8482,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8422,6 +8504,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8443,6 +8526,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8464,6 +8548,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8485,6 +8570,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8506,6 +8592,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8527,6 +8614,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8548,6 +8636,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8569,6 +8658,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8590,6 +8680,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8611,6 +8702,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8632,6 +8724,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8652,6 +8745,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8672,6 +8766,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8693,6 +8788,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8714,6 +8810,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8746,6 +8843,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8778,6 +8876,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8813,6 +8912,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8848,6 +8948,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8879,6 +8980,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8910,6 +9012,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8931,6 +9034,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8952,6 +9056,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8972,6 +9077,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -8993,6 +9099,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9013,6 +9120,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9034,6 +9142,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9054,6 +9163,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9075,6 +9185,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9095,6 +9206,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9116,6 +9228,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9136,6 +9249,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9157,6 +9271,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9177,6 +9292,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9198,6 +9314,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9218,6 +9335,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9239,6 +9357,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9259,6 +9378,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9280,6 +9400,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9300,6 +9421,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9321,6 +9443,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9341,6 +9464,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9362,6 +9486,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9382,6 +9507,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9403,6 +9529,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9423,6 +9550,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9444,6 +9572,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9464,6 +9593,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9485,6 +9615,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9505,6 +9636,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9526,6 +9658,7 @@ ModuleTpde {
             flags: Flags {
                 extern_link: false,
                 only_local: true,
+                dso_local: true,
                 weak_link: false,
                 always_inline: false,
                 never_delete: false,
@@ -9541,5 +9674,4 @@ ModuleTpde {
     ],
     global_ptrs: [],
     const_vectors: [],
-    defs_dso_local: false,
 }

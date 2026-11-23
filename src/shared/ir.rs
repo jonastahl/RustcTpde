@@ -1118,7 +1118,7 @@ pub(super) fn decode_inline_const(c: u32) -> Option<(Type, u128)> {
     Some((ty, val as u128))
 }
 
-pub(super) fn decode_const(consts: &[ffi::Value], c: u32) -> (Type, u128) {
+pub(super) fn decode_const(consts: &[ffi::Const], c: u32) -> (Type, u128) {
     decode_inline_const(c).unwrap_or_else(|| {
         let value = &consts[c as usize];
         (value.ty, value.data())
@@ -1142,7 +1142,7 @@ impl ModuleTpde {
             return Slot::new_inline_const(ty, data as u32);
         }
         let consts = &mut self.consts;
-        consts.push(ffi::Value::new(ty, data));
+        consts.push(ffi::Const::new(ty, data));
         Slot::new_pool_const((consts.len() - 1) as u32)
     }
 }
@@ -1323,9 +1323,9 @@ impl Slot {
     }
 }
 
-impl ffi::Value {
+impl ffi::Const {
     fn new(ty: Type, v: u128) -> Self {
-        ffi::Value {
+        ffi::Const {
             ty,
             data1: (v >> 64) as u64,
             data2: v as u64,

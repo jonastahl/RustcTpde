@@ -213,7 +213,7 @@ namespace tpde_rust {
         return const_vector_part(this->adaptor->get_const_vectors()[vrs.data.content()], part);
       }
       if (vrs.data.is_const()) {
-        const Value imm = this->adaptor->const_value(vrs.data);
+        const Const imm = this->adaptor->const_value(vrs.data);
 
         if (imm.ty == Type::i128) {
           assert(part == 0 || part == 1);
@@ -1391,7 +1391,7 @@ namespace tpde_rust {
         const IRValueRef idx = gep.op(2);
         if (idx.is_const()) {
           // Constant index: fold into the displacement.
-          const Value imm = this->adaptor->const_value(idx);
+          const Const imm = this->adaptor->const_value(idx);
           displacement += static_cast<u64>(scale) * imm.data2;
         } else if (scale == 0) {
           // The index doesn't contribute anything, but we still have to
@@ -2777,7 +2777,7 @@ namespace tpde_rust {
     }
     assert(vec.is_const());
 
-    const Value imm = this->adaptor->const_value(vec);
+    const Const imm = this->adaptor->const_value(vec);
     const auto [nelem, elem_ty] = vector_info(imm.ty);
     assert(idx < nelem);
     const unsigned bits = size_of_type(elem_ty);
