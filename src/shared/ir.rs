@@ -11,7 +11,7 @@ use std::ops::Range;
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct Function(pub(super) usize);
 #[derive(Debug, Copy, Clone, PartialEq)]
-pub struct Global(usize);
+pub struct Global(pub(super) usize);
 #[derive(Debug, Copy, Clone)]
 pub struct BasicBlock {
     pub(super) function: Function,
@@ -187,7 +187,7 @@ pub struct Module {
 
     pairs: Vec<PairRef>,
     opt: OptConfig,
-    
+
     defs_dso_local: bool,
 }
 
@@ -1274,20 +1274,18 @@ impl Slot {
 impl Debug for Slot {
     fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result {
         match self {
-            Self::Value(func, v) => write!(f, "[val: {}]", v),
-            Self::Alloc(v) => write!(f, "[alloc: {}]", v),
-            Self::Raw(v) => write!(f, "[raw: {}]", v),
-            Self::ConstVector(v) => write!(f, "[const vector: {}]", v),
-            Self::Func(v) => write!(f, "[func: {}]", v.0),
-            Self::Global(g) => write!(f, "[global: {}]", g.0),
+            Self::Value(_, v) => write!(f, "s{v}"),
+            Self::Alloc(v) => write!(f, "a{v}"),
+            Self::Raw(v) => write!(f, "{v}"),
+            Self::ConstVector(v) => write!(f, "[const vector #{v}]"),
+            Self::Func(v) => write!(f, "f{}", v.0),
+            Self::Global(g) => write!(f, "g{}", g.0),
             Self::Const(c) => match decode_inline_const(*c) {
-                Some((ty, val)) => {
-                    write!(f, "[const: {:?} {}]", ty, val)
-                }
-                None => write!(f, "[const pool: {}]", c),
+                Some((ty, val)) => write!(f, "[{ty:?} {val}]"),
+                None => write!(f, "[const #{c}]"),
             },
-            Self::GlobalPtr(p) => write!(f, "[globalptr: {}]", p),
-            Self::Phi(_, block, ind) => write!(f, "[phi: {block}, {ind}]"),
+            Self::GlobalPtr(p) => write!(f, "gp{p}"),
+            Self::Phi(_, block, ind) => write!(f, "p(bb{block}, {ind})"),
             Self::Pair(..) => unreachable!("Only used for tracking during generation"),
         }
     }

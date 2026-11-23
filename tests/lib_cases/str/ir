@@ -1,191 +1,48 @@
-ModuleTpde {
-    functions: [
-        Function {
-            name: "give_me_str",
-            has_ret: true,
-            args: [],
-            slots: [
-                ptr,
-                i64,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([global: 0], [raw: 8]) -> [val: 0],
-                    <PairGEP> ([global: 0], [raw: 8], [const: i64 1]) -> [val: 1],
-                    <Load> ([val: 1], [raw: 8]) -> [val: 2],
-                    <Ret> ([val: 0], [val: 2]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "more_string",
-            has_ret: true,
-            args: [],
-            slots: [],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Ret> ([global: 4], [const: i64 11]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "my_user",
-            has_ret: true,
-            args: [],
-            slots: [],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Ret> ([global: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-    ],
-    consts: [],
-    globals: [
-        HELLO_WORLD {
-            size: 16,
-            align: 8,
-            read_only: false,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (16 bytes)
-              0000  00 00 00 00 00 00 00 00 0c 00 00 00 00 00 00 00  |................|,
-            relocations: [
-                offset 0x0 insert [global: 2],
-            ],
-        },
-        USER {
-            size: 24,
-            align: 8,
-            read_only: false,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00  |................|
-              0010  01 00 00 00 00 00 00 00                          |........|,
-            relocations: [
-                offset 0x0 insert [global: 3],
-            ],
-        },
-        anonymous {
-            size: 12,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (12 bytes)
-              0000  48 65 6c 6c 6f 20 77 6f 72 6c 64 21              |Hello world!|,
-            relocations: [],
-        },
-        anonymous {
-            size: 4,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (4 bytes)
-              0000  4a 6f 68 6e                                      |John|,
-            relocations: [],
-        },
-        anonymous {
-            size: 11,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (11 bytes)
-              0000  48 61 6c 6c 6f 20 57 65 6c 74 21                 |Hallo Welt!|,
-            relocations: [],
-        },
-    ],
-    global_ptrs: [],
-    const_vectors: [],
+[f0] give_me_str() -> (ptr, i64) !got {
+  basic blocks:
+    bb0:
+      <Load> (g0, 8) -> s0: ptr
+      <PairGEP> (g0, 8, [i64 1]) -> s1: i64
+      <Load> (s1, 8) -> s2: i64
+      <Ret> (s0, s2)
 }
+
+[f1] more_string() -> (ptr, i64) !got {
+  basic blocks:
+    bb0:
+      <Ret> (g4, [i64 11])
+}
+
+[f2] my_user() -> ptr !got {
+  basic blocks:
+    bb0:
+      <Ret> (g1)
+}
+
+[g0] HELLO_WORLD size: 16 bytes, align: 8, init !mut !got {
+  0000  00 00 00 00 00 00 00 00 0c 00 00 00 00 00 00 00  |................|
+
+  relocations:
+    0x0 g2
+}
+
+[g1] USER size: 24 bytes, align: 8, init !mut !got {
+  0000  00 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00  |................|
+  0010  01 00 00 00 00 00 00 00                          |........|
+
+  relocations:
+    0x0 g3
+}
+
+[g2] size: 12 bytes, align: 1, init !internal {
+  0000  48 65 6c 6c 6f 20 77 6f 72 6c 64 21              |Hello world!|
+}
+
+[g3] size: 4 bytes, align: 1, init !internal {
+  0000  4a 6f 68 6e                                      |John|
+}
+
+[g4] size: 11 bytes, align: 1, init !internal {
+  0000  48 61 6c 6c 6f 20 57 65 6c 74 21                 |Hallo Welt!|
+}
+

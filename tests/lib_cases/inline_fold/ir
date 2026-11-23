@@ -1,979 +1,346 @@
-ModuleTpde {
-    functions: [
-        Function {
-            name: "_RNvCslFJ5zlOYuKy_6source3top",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([phi: 14, 0]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [9],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [4],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [7],
-                ],
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [const: i32 23]) -> [val: 11],
-                    <CondBr> ([val: 11]),
-                    successors: [11, 10],
-                ],
-                BasicBlock: [
-                    <Sub> ([const: i32 23], [val: 0]) -> [val: 12],
-                    <CMPult> ([const: i32 23], [val: 0]) -> [val: 13],
-                    <CondBr> ([val: 13]),
-                    successors: [13, 12],
-                ],
-                BasicBlock: [
-                    <Sub> ([val: 0], [const: i32 23]) -> [val: 14],
-                    <CMPult> ([val: 0], [const: i32 23]) -> [val: 15],
-                    <CondBr> ([val: 15]),
-                    successors: [16, 15],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [14],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 0]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 12], [val: 12], [raw: 15], [val: 14]) -> [phi: 14, 0] i32,
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [14],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 2]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvCslFJ5zlOYuKy_6source4leaf",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 1], [val: 0]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Sub> ([val: 0], [val: 1]) -> [val: 3],
-                    <CMPult> ([val: 0], [val: 1]) -> [val: 4],
-                    <CondBr> ([val: 4]),
-                    successors: [4, 3],
-                ],
-                BasicBlock: [
-                    <Sub> ([val: 1], [val: 0]) -> [val: 5],
-                    <CMPult> ([val: 1], [val: 0]) -> [val: 6],
-                    <CondBr> ([val: 6]),
-                    successors: [7, 6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 0]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 3], [val: 3], [raw: 6], [val: 5]) -> [phi: 5, 0] i32,
-                    <Ret> ([phi: 5, 0]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 2]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvCslFJ5zlOYuKy_6source6middle",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Add> ([val: 0], [const: i32 1]) -> [val: 6],
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Ret> ([phi: 11, 0]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [4],
-                ],
-                BasicBlock: [
-                    <CMPugt> ([val: 1], [val: 6]) -> [val: 9],
-                    <CondBr> ([val: 9]),
-                    successors: [8, 7],
-                ],
-                BasicBlock: [
-                    <Sub> ([val: 6], [val: 1]) -> [val: 10],
-                    <CMPult> ([val: 6], [val: 1]) -> [val: 11],
-                    <CondBr> ([val: 11]),
-                    successors: [10, 9],
-                ],
-                BasicBlock: [
-                    <Sub> ([val: 1], [val: 6]) -> [val: 12],
-                    <CMPult> ([val: 1], [val: 6]) -> [val: 13],
-                    <CondBr> ([val: 13]),
-                    successors: [13, 12],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [11],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 0]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 9], [val: 10], [raw: 12], [val: 12]) -> [phi: 11, 0] i32,
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [11],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 2]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvCslFJ5zlOYuKy_6source8identity",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Ret> ([val: 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs6_NtCs5bICpQ07Uc4_4core3numm12wrapping_add",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Add> ([val: 0], [val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "no_overflow",
-            has_ret: true,
-            args: [],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i16,
-                i16,
-                i16,
-                i16,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 8], [global: 4]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [4],
-                ],
-                BasicBlock: [
-                    <Xor> ([const pool: 0], [const: i16 65533]) -> [val: 4],
-                    <Ret> ([val: 4]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [7],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "outer",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                Bool,
-                i32,
-                i32,
-                Bool,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [const: i32 1000]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 8], [global: 6]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 2], [const: i32 7], [raw: 3], [val: 3]) -> [phi: 5, 0] i32,
-                    <Ret> ([phi: 5, 0]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Add> ([phi: 22, 0], [const: i32 100]) -> [val: 3],
-                    <CMPult> ([val: 3], [phi: 22, 0]) -> [val: 4],
-                    <CondBr> ([val: 4]),
-                    successors: [4, 3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [11],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [7],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [9],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [14],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [17],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [12],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [13],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [10],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [15],
-                ],
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [const: i32 23]) -> [val: 17],
-                    <CondBr> ([val: 17]),
-                    successors: [19, 18],
-                ],
-                BasicBlock: [
-                    <Sub> ([const: i32 23], [val: 0]) -> [val: 18],
-                    <CMPult> ([const: i32 23], [val: 0]) -> [val: 19],
-                    <CondBr> ([val: 19]),
-                    successors: [21, 20],
-                ],
-                BasicBlock: [
-                    <Sub> ([val: 0], [const: i32 23]) -> [val: 20],
-                    <CMPult> ([val: 0], [const: i32 23]) -> [val: 21],
-                    <CondBr> ([val: 21]),
-                    successors: [24, 23],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [22],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 0]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 20], [val: 18], [raw: 23], [val: 20]) -> [phi: 22, 0] i32,
-                    <Br> (),
-                    successors: [16],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [22],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 7], [global: 2]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-    ],
-    consts: [
-        [i16] (18446744073709551615 18446744073709551612) -> -4,
-        [i16] (18446744073709551615 18446744073709551612) -> -4,
-    ],
-    globals: [
-        anonymous {
-            size: 24,
-            align: 8,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
-              0010  03 00 00 00 1f 00 00 00                          |........|,
-            relocations: [
-                offset 0x0 insert [global: 1],
-            ],
-        },
-        anonymous {
-            size: 38,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (38 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
-              0020  63 65 2e 72 73 00                                |ce.rs.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 24,
-            align: 8,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
-              0010  03 00 00 00 10 00 00 00                          |........|,
-            relocations: [
-                offset 0x0 insert [global: 3],
-            ],
-        },
-        anonymous {
-            size: 38,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (38 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
-              0020  63 65 2e 72 73 00                                |ce.rs.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 24,
-            align: 8,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
-              0010  25 00 00 00 1f 00 00 00                          |%.......|,
-            relocations: [
-                offset 0x0 insert [global: 5],
-            ],
-        },
-        anonymous {
-            size: 38,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (38 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
-              0020  63 65 2e 72 73 00                                |ce.rs.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 24,
-            align: 8,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
-              0010  17 00 00 00 05 00 00 00                          |........|,
-            relocations: [
-                offset 0x0 insert [global: 7],
-            ],
-        },
-        anonymous {
-            size: 38,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (38 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
-              0020  63 65 2e 72 73 00                                |ce.rs.|,
-            relocations: [],
-        },
-    ],
-    global_ptrs: [],
-    const_vectors: [],
+[f0] _RNvCslFJ5zlOYuKy_6source3top(s0: i32) -> i32 !internal !always_inline !dead {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (p0)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Br> ()
+      -> bb6
+    bb4:
+      <Br> ()
+      -> bb9
+    bb5:
+      <Br> ()
+      -> bb4
+    bb6:
+      <Br> ()
+      -> bb5
+    bb7:
+      <Br> ()
+      -> bb2
+    bb8:
+      <Br> ()
+      -> bb7
+    bb9:
+      <CMPugt> (s0, [i32 23]) -> s11: bool
+      <CondBr> (s11)
+      -> bb11, bb10
+    bb10:
+      <Sub> ([i32 23], s0) -> s12: i32
+      <CMPult> ([i32 23], s0) -> s13: bool
+      <CondBr> (s13)
+      -> bb13, bb12
+    bb11:
+      <Sub> (s0, [i32 23]) -> s14: i32
+      <CMPult> (s0, [i32 23]) -> s15: bool
+      <CondBr> (s15)
+      -> bb16, bb15
+    bb12:
+      <Br> ()
+      -> bb14
+    bb13:
+      <Call> (f7, g0)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
+    bb14:
+      phi [(bb12, s12), (bb15, s14)] -> p0: i32
+      <Br> ()
+      -> bb8
+    bb15:
+      <Br> ()
+      -> bb14
+    bb16:
+      <Call> (f7, g2)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
 }
+
+[f1] _RNvCslFJ5zlOYuKy_6source4leaf(s0: i32, s1: i32) -> i32 !internal !always_inline !dead {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPugt> (s1, s0) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Sub> (s0, s1) -> s3: i32
+      <CMPult> (s0, s1) -> s4: bool
+      <CondBr> (s4)
+      -> bb4, bb3
+    bb2:
+      <Sub> (s1, s0) -> s5: i32
+      <CMPult> (s1, s0) -> s6: bool
+      <CondBr> (s6)
+      -> bb7, bb6
+    bb3:
+      <Br> ()
+      -> bb5
+    bb4:
+      <Call> (f7, g0)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
+    bb5:
+      phi [(bb3, s3), (bb6, s5)] -> p0: i32
+      <Ret> (p0)
+    bb6:
+      <Br> ()
+      -> bb5
+    bb7:
+      <Call> (f7, g2)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
+}
+
+[f2] _RNvCslFJ5zlOYuKy_6source6middle(s0: i32, s1: i32) -> i32 !internal !always_inline !dead {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Br> ()
+      -> bb6
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Add> (s0, [i32 1]) -> s6: i32
+      <Br> ()
+      -> bb2
+    bb4:
+      <Ret> (p0)
+    bb5:
+      <Br> ()
+      -> bb4
+    bb6:
+      <CMPugt> (s1, s6) -> s9: bool
+      <CondBr> (s9)
+      -> bb8, bb7
+    bb7:
+      <Sub> (s6, s1) -> s10: i32
+      <CMPult> (s6, s1) -> s11: bool
+      <CondBr> (s11)
+      -> bb10, bb9
+    bb8:
+      <Sub> (s1, s6) -> s12: i32
+      <CMPult> (s1, s6) -> s13: bool
+      <CondBr> (s13)
+      -> bb13, bb12
+    bb9:
+      <Br> ()
+      -> bb11
+    bb10:
+      <Call> (f7, g0)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
+    bb11:
+      phi [(bb9, s10), (bb12, s12)] -> p0: i32
+      <Br> ()
+      -> bb5
+    bb12:
+      <Br> ()
+      -> bb11
+    bb13:
+      <Call> (f7, g2)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
+}
+
+[f3] _RNvCslFJ5zlOYuKy_6source8identity(s0: i16) -> i16 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <Ret> (s0)
+}
+
+[f4] _RNvMs6_NtCs5bICpQ07Uc4_4core3numm12wrapping_add(s0: i32, s1: i32) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <Add> (s0, s1) -> s2: i32
+      <Ret> (s2)
+}
+
+[f5] no_overflow() -> i16 !got !never_delete {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb5
+    bb1:
+      <Br> ()
+      -> bb8
+    bb2:
+      <Call> (f8, g4)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow
+      <Unreachable> ()
+    bb3:
+      <Br> ()
+      -> bb1
+    bb4:
+      <Br> ()
+      -> bb3
+    bb5:
+      <Br> ()
+      -> bb4
+    bb6:
+      <Xor> ([i16 -4], [i16 -3]) -> s4: i16
+      <Ret> (s4)
+    bb7:
+      <Br> ()
+      -> bb6
+    bb8:
+      <Br> ()
+      -> bb7
+}
+
+[f6] outer(s0: i32) -> i32 !got !never_delete {
+  allocas:
+    a0 = size: 4, align: 4
+    a1 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, [i32 1000]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb8
+    bb2:
+      <Br> ()
+      -> bb5
+    bb3:
+      <Br> ()
+      -> bb5
+    bb4:
+      <Call> (f8, g6)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow
+      <Unreachable> ()
+    bb5:
+      phi [(bb2, [i32 7]), (bb3, s3)] -> p0: i32
+      <Ret> (p0)
+    bb6:
+      <Add> (p1, [i32 100]) -> s3: i32
+      <CMPult> (s3, p1) -> s4: bool
+      <CondBr> (s4)
+      -> bb4, bb3
+    bb7:
+      <Br> ()
+      -> bb6
+    bb8:
+      <Br> ()
+      -> bb11
+    bb9:
+      <Br> ()
+      -> bb7
+    bb10:
+      <Br> ()
+      -> bb9
+    bb11:
+      <Br> ()
+      -> bb14
+    bb12:
+      <Br> ()
+      -> bb17
+    bb13:
+      <Br> ()
+      -> bb12
+    bb14:
+      <Br> ()
+      -> bb13
+    bb15:
+      <Br> ()
+      -> bb10
+    bb16:
+      <Br> ()
+      -> bb15
+    bb17:
+      <CMPugt> (s0, [i32 23]) -> s17: bool
+      <CondBr> (s17)
+      -> bb19, bb18
+    bb18:
+      <Sub> ([i32 23], s0) -> s18: i32
+      <CMPult> ([i32 23], s0) -> s19: bool
+      <CondBr> (s19)
+      -> bb21, bb20
+    bb19:
+      <Sub> (s0, [i32 23]) -> s20: i32
+      <CMPult> (s0, [i32 23]) -> s21: bool
+      <CondBr> (s21)
+      -> bb24, bb23
+    bb20:
+      <Br> ()
+      -> bb22
+    bb21:
+      <Call> (f7, g0)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
+    bb22:
+      phi [(bb20, s18), (bb23, s20)] -> p1: i32
+      <Br> ()
+      -> bb16
+    bb23:
+      <Br> ()
+      -> bb22
+    bb24:
+      <Call> (f7, g2)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow
+      <Unreachable> ()
+}
+
+[f7] _RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_sub_overflow(s0: ptr) !extern
+
+[f8] _RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow(s0: ptr) !extern
+
+[g0] size: 24 bytes, align: 8, init !internal {
+  0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
+  0010  03 00 00 00 1f 00 00 00                          |........|
+
+  relocations:
+    0x0 g1
+}
+
+[g1] size: 38 bytes, align: 1, init !internal {
+  0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+  0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
+  0020  63 65 2e 72 73 00                                |ce.rs.|
+}
+
+[g2] size: 24 bytes, align: 8, init !internal {
+  0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
+  0010  03 00 00 00 10 00 00 00                          |........|
+
+  relocations:
+    0x0 g3
+}
+
+[g3] size: 38 bytes, align: 1, init !internal {
+  0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+  0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
+  0020  63 65 2e 72 73 00                                |ce.rs.|
+}
+
+[g4] size: 24 bytes, align: 8, init !internal {
+  0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
+  0010  25 00 00 00 1f 00 00 00                          |%.......|
+
+  relocations:
+    0x0 g5
+}
+
+[g5] size: 38 bytes, align: 1, init !internal {
+  0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+  0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
+  0020  63 65 2e 72 73 00                                |ce.rs.|
+}
+
+[g6] size: 24 bytes, align: 8, init !internal {
+  0000  00 00 00 00 00 00 00 00 25 00 00 00 00 00 00 00  |........%.......|
+  0010  17 00 00 00 05 00 00 00                          |........|
+
+  relocations:
+    0x0 g7
+}
+
+[g7] size: 38 bytes, align: 1, init !internal {
+  0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+  0010  69 6e 6c 69 6e 65 5f 66 6f 6c 64 2f 73 6f 75 72  |inline_fold/sour|
+  0020  63 65 2e 72 73 00                                |ce.rs.|
+}
+

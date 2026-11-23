@@ -1,308 +1,79 @@
-ModuleTpde {
-    functions: [
-        Function {
-            name: "find_user",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                Bool,
-                i64,
-                i64,
-                i64,
-                i64,
-                i8,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 1, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 0], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 2],
-                    <Store> ([const pool: 1], [val: 2], [raw: 8]),
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 2], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 3],
-                    <Store> ([const pool: 3], [val: 3], [raw: 8]),
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 4],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 5],
-                    <Load> ([val: 5], [raw: 8]) -> [val: 6],
-                    <Ret> ([val: 4], [val: 6]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "find_user_by_age",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                Bool,
-                i64,
-                i64,
-                i8,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 16, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 4], [alloc: 0], [raw: 8]),
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Store> ([const pool: 5], [alloc: 0], [raw: 8]),
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 2],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 3],
-                    <Load> ([val: 3], [raw: 8]) -> [val: 4],
-                    <Ret> ([val: 2], [val: 4]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "increase_age",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i8,
-                i8,
-                Bool,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Add> ([val: 1], [const: i8 1]) -> [val: 2],
-                    <CMPult> ([val: 2], [val: 1]) -> [val: 3],
-                    <CondBr> ([val: 3]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 0], [val: 2]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 3], [global: 0]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-    ],
-    consts: [
-        [i64] (0 1085102592571150095) -> 1085102592571150095,
-        [i8] (18446744073709551615 18446744073709551602) -> -14,
-        [i64] (18446744073709551615 17361641481138401520) -> -1085102592571150096,
-        [i8] (18446744073709551615 18446744073709551601) -> -15,
-        [i128] (242 1085102592571150095) -> 4465197168430282641167,
-        [i128] (241 17361641481138401520) -> 4463026963245140340976,
-    ],
-    globals: [
-        anonymous {
-            size: 24,
-            align: 8,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 1f 00 00 00 00 00 00 00  |................|
-              0010  0b 00 00 00 0e 00 00 00                          |........|,
-            relocations: [
-                offset 0x0 insert [global: 1],
-            ],
-        },
-        anonymous {
-            size: 32,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (32 bytes)
-              0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
-              0010  70 61 69 72 73 2f 73 6f 75 72 63 65 2e 72 73 00  |pairs/source.rs.|,
-            relocations: [],
-        },
-    ],
-    global_ptrs: [],
-    const_vectors: [],
+[f0] find_user(s0: i32) -> (i64, i8) !got {
+  allocas:
+    a0 = size: 16, align: 8
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, [i32 100]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Store> ([i64 1085102592571150095], a0, 8)
+      <GEP> (a0, 1, [i64 8]) -> s2: i64
+      <Store> ([i8 -14], s2, 8)
+      <Br> ()
+      -> bb3
+    bb2:
+      <Store> ([i64 -1085102592571150096], a0, 8)
+      <GEP> (a0, 1, [i64 8]) -> s3: i64
+      <Store> ([i8 -15], s3, 8)
+      <Br> ()
+      -> bb3
+    bb3:
+      <Load> (a0, 8) -> s4: i64
+      <PairGEP> (a0, 8, [i64 1]) -> s5: i64
+      <Load> (s5, 8) -> s6: i8
+      <Ret> (s4, s6)
 }
+
+[f1] find_user_by_age(s0: i32) -> (i64, i8) !got {
+  allocas:
+    a0 = size: 16, align: 8
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, [i32 100]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Store> ([i128 4465197168430282641167], a0, 8)
+      <Br> ()
+      -> bb3
+    bb2:
+      <Store> ([i128 4463026963245140340976], a0, 8)
+      <Br> ()
+      -> bb3
+    bb3:
+      <Load> (a0, 8) -> s2: i64
+      <PairGEP> (a0, 8, [i64 1]) -> s3: i64
+      <Load> (s3, 8) -> s4: i8
+      <Ret> (s2, s4)
+}
+
+[f2] increase_age(s0: i64, s1: i8) -> (i64, i8) !got {
+  basic blocks:
+    bb0:
+      <Add> (s1, [i8 1]) -> s2: i8
+      <CMPult> (s2, s1) -> s3: bool
+      <CondBr> (s3)
+      -> bb2, bb1
+    bb1:
+      <Ret> (s0, s2)
+    bb2:
+      <Call> (f3, g0)    @_RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow
+      <Unreachable> ()
+}
+
+[f3] _RNvNtNtCs5bICpQ07Uc4_4core9panicking11panic_const24panic_const_add_overflow(s0: ptr) !extern
+
+[g0] size: 24 bytes, align: 8, init !internal {
+  0000  00 00 00 00 00 00 00 00 1f 00 00 00 00 00 00 00  |................|
+  0010  0b 00 00 00 0e 00 00 00                          |........|
+
+  relocations:
+    0x0 g1
+}
+
+[g1] size: 32 bytes, align: 1, init !internal {
+  0000  74 65 73 74 73 2f 6c 69 62 5f 63 61 73 65 73 2f  |tests/lib_cases/|
+  0010  70 61 69 72 73 2f 73 6f 75 72 63 65 2e 72 73 00  |pairs/source.rs.|
+}
+

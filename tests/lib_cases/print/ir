@@ -1,209 +1,41 @@
-ModuleTpde {
-    functions: [
-        Function {
-            name: "_RNvMs4_NtCs5bICpQ07Uc4_4core3fmtNtB5_9Arguments8from_strCslFJ5zlOYuKy_6source",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                i64,
-                ptr,
-                i32,
-                i64,
-                i64,
-                i64,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Cast> ([val: 0]) -> [val: 2],
-                    <And> ([const: i32 1], [const: i32 63]) -> [val: 3],
-                    <zExt> ([val: 3]) -> [val: 4],
-                    <Shl> ([val: 1], [val: 4]) -> [val: 5],
-                    <Or> ([val: 5], [const: i64 1]) -> [val: 6],
-                    <Cast> ([val: 6]) -> [val: 7],
-                    <Ret> ([val: 2], [val: 7]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "print",
-            has_ret: false,
-            args: [],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                i32,
-                i64,
-                i64,
-                i64,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <AddRet> (),
-                    <Call> ([func: 2], [val: 4], [val: 9]),
-                    <Ret> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Cast> ([global: 0]) -> [val: 4],
-                    <And> ([const: i32 1], [const: i32 63]) -> [val: 5],
-                    <zExt> ([val: 5]) -> [val: 6],
-                    <Shl> ([const: i64 14], [val: 6]) -> [val: 7],
-                    <Or> ([val: 7], [const: i64 1]) -> [val: 8],
-                    <Cast> ([val: 8]) -> [val: 9],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtNtCs1bbfcKQCQXM_3std2io5stdio6__print",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-    ],
-    consts: [],
-    globals: [
-        anonymous {
-            size: 14,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (14 bytes)
-              0000  48 65 6c 6c 6f 2c 20 77 6f 72 6c 64 21 0a        |Hello, world!.|,
-            relocations: [],
-        },
-    ],
-    global_ptrs: [],
-    const_vectors: [],
+[f0] _RNvMs4_NtCs5bICpQ07Uc4_4core3fmtNtB5_9Arguments8from_strCslFJ5zlOYuKy_6source(s0: ptr, s1: i64) -> (ptr, ptr) !internal !dead {
+  basic blocks:
+    bb0:
+      <Cast> (s0) -> s2: ptr
+      <And> ([i32 1], [i32 63]) -> s3: i32
+      <zExt> (s3) -> s4: i64
+      <Shl> (s1, s4) -> s5: i64
+      <Or> (s5, [i64 1]) -> s6: i64
+      <Cast> (s6) -> s7: ptr
+      <Ret> (s2, s7)
 }
+
+[f1] print() !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <AddRet> ()
+      <Call> (f2, s4, s9)    @_RNvNtNtCs1bbfcKQCQXM_3std2io5stdio6__print
+      <Ret> ()
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Cast> (g0) -> s4: ptr
+      <And> ([i32 1], [i32 63]) -> s5: i32
+      <zExt> (s5) -> s6: i64
+      <Shl> ([i64 14], s6) -> s7: i64
+      <Or> (s7, [i64 1]) -> s8: i64
+      <Cast> (s8) -> s9: ptr
+      <Br> ()
+      -> bb2
+}
+
+[f2] _RNvNtNtCs1bbfcKQCQXM_3std2io5stdio6__print(s0: ptr, s1: ptr) !extern
+
+[g0] size: 14 bytes, align: 1, init !internal {
+  0000  48 65 6c 6c 6f 2c 20 77 6f 72 6c 64 21 0a        |Hello, world!.|
+}
+

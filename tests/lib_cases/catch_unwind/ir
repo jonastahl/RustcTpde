@@ -1,3870 +1,910 @@
-ModuleTpde {
-    functions: [
-        Function {
-            name: "_RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBK_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: sRet,
-                    extension: None,
-                    size: 16,
-                    align: 8,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                Bool,
-                i32,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 19,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 1,
-                size: 1, align: 1, state: Promotable, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Invoke> ([func: 6], [alloc: 0]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 2]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 8], [alloc: 0], [val: 2]),
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 0], [const: Bool 0], [raw: 1], [const: Bool 1]) -> [phi: 2, 0] Bool,
-                    <CondBr> ([phi: 2, 0]),
-                    successors: [4, 3],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
-                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
-                    <Store> ([val: 7], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Store> ([val: 9], [val: 10], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source8try_call0lEBK_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: sRet,
-                    extension: None,
-                    size: 16,
-                    align: 8,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                Bool,
-                i32,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 20,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 1,
-                size: 1, align: 1, state: Promotable, size_a: 1, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 1], [alloc: 0], [raw: 8]),
-                    <Invoke> ([func: 7], [alloc: 0]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 2]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 9], [alloc: 0], [val: 2]),
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 0], [const: Bool 0], [raw: 1], [const: Bool 1]) -> [phi: 2, 0] Bool,
-                    <CondBr> ([phi: 2, 0]),
-                    successors: [4, 3],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 5],
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Store> ([const: ptr 0], [val: 0], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 7],
-                    <PairGEP> ([alloc: 0], [raw: 8], [const: i64 1]) -> [val: 8],
-                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
-                    <Store> ([val: 7], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Store> ([val: 9], [val: 10], [raw: 8]),
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECslFJ5zlOYuKy_6source",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 1,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                Bool,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <GEP> ([val: 1], [raw: 1], [const: i64 0]) -> [val: 2],
-                    <Load> ([val: 2], [raw: 8]) -> [val: 3],
-                    <CMPne> ([val: 3], [const: ptr 0]) -> [val: 4],
-                    <CondBr> ([val: 4]),
-                    successors: [1, 2],
-                ],
-                BasicBlock: [
-                    <Call> ([val: 3], [raw: 0], [val: 0]),
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [
-                CalleeInfo {
-                    info: [
-                        ArgInfo {
-                            kind: Direct,
-                            extension: None,
-                            size: 0,
-                            align: 0,
-                            access_info: AccessInfo {
-                                state: Promotable,
-                                call_forwards: 0,
-                                size_a: 0,
-                                ty_a: Void,
-                                size_b: 0,
-                                ty_b: Void,
-                                offset_b: 0,
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-        Function {
-            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCs2J69gggMDAQ_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECslFJ5zlOYuKy_6source",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 1,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 8,
-                        ty_b: ptr,
-                        offset_b: 8,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                i64,
-                Bool,
-                i64,
-                Bool,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                ptr,
-                i32,
-                ptr,
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 23,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
-                    <Cast> ([val: 1]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
-                    <Select> ([val: 3], [const: i64 0], [const: i64 1]) -> [val: 4],
-                    <CMPeq> ([val: 4], [const: i64 0]) -> [val: 5],
-                    <CondBr> ([val: 5]),
-                    successors: [1, 2],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 8]) -> [val: 7],
-                    <PairGEP> ([val: 0], [raw: 8], [const: i64 1]) -> [val: 8],
-                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
-                    <Cast> ([val: 7]) -> [val: 10],
-                    <GEP> ([val: 9], [raw: 1], [const: i64 0]) -> [val: 11],
-                    <Load> ([val: 11], [raw: 8]) -> [val: 12],
-                    <CMPne> ([val: 12], [const: ptr 0]) -> [val: 13],
-                    <CondBr> ([val: 13]),
-                    successors: [6, 7],
-                ],
-                BasicBlock: [
-                    <Invoke> ([val: 12], [raw: 0], [val: 10]),
-                    successors: [7, 9],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 16], [val: 0]),
-                    <Br> (),
-                    successors: [4],
-                ],
-                BasicBlock: [
-                    <Invoke> ([func: 16], [val: 0]),
-                    successors: [11, 10],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 0]) -> [val: 14],
-                    <AddRet> () -> [val: 15],
-                    <Store> ([val: 14], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 16],
-                    <Store> ([val: 15], [val: 16], [raw: 8]),
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 17],
-                    <AddRet> () -> [val: 18],
-                    <Call> ([func: 24]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 19],
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 20],
-                    <Load> ([val: 20], [raw: 8]) -> [val: 21],
-                    <Resume> ([val: 19]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [
-                CalleeInfo {
-                    info: [
-                        ArgInfo {
-                            kind: Direct,
-                            extension: None,
-                            size: 0,
-                            align: 0,
-                            access_info: AccessInfo {
-                                state: Promotable,
-                                call_forwards: 0,
-                                size_a: 0,
-                                ty_a: Void,
-                                size_b: 0,
-                                ty_b: Void,
-                                offset_b: 0,
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-        Function {
-            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueINtNtCs2J69gggMDAQ_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECslFJ5zlOYuKy_6source",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 1,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 8,
-                        ty_b: ptr,
-                        offset_b: 8,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                ptr,
-                i32,
-                ptr,
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 23,
-            allocas: [
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
-                    <PairGEP> ([val: 0], [raw: 8], [const: i64 1]) -> [val: 2],
-                    <Load> ([val: 2], [raw: 8]) -> [val: 3],
-                    <Cast> ([val: 1]) -> [val: 4],
-                    <GEP> ([val: 3], [raw: 1], [const: i64 0]) -> [val: 5],
-                    <Load> ([val: 5], [raw: 8]) -> [val: 6],
-                    <CMPne> ([val: 6], [const: ptr 0]) -> [val: 7],
-                    <CondBr> ([val: 7]),
-                    successors: [1, 2],
-                ],
-                BasicBlock: [
-                    <Invoke> ([val: 6], [raw: 0], [val: 4]),
-                    successors: [2, 4],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 16], [val: 0]),
-                    <Ret> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Invoke> ([func: 16], [val: 0]),
-                    successors: [6, 5],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 0]) -> [val: 8],
-                    <AddRet> () -> [val: 9],
-                    <Store> ([val: 8], [alloc: 0], [raw: 8]),
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Store> ([val: 9], [val: 10], [raw: 8]),
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 11],
-                    <AddRet> () -> [val: 12],
-                    <Call> ([func: 24]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 0], [raw: 8]) -> [val: 13],
-                    <GEP> ([alloc: 0], [raw: 1], [const: i64 8]) -> [val: 14],
-                    <Load> ([val: 14], [raw: 8]) -> [val: 15],
-                    <Resume> ([val: 13]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [
-                CalleeInfo {
-                    info: [
-                        ArgInfo {
-                            kind: Direct,
-                            extension: None,
-                            size: 0,
-                            align: 0,
-                            access_info: AccessInfo {
-                                state: Promotable,
-                                call_forwards: 0,
-                                size_a: 0,
-                                ty_a: Void,
-                                size_b: 0,
-                                ty_b: Void,
-                                offset_b: 0,
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-        Function {
-            name: "_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueNtCslFJ5zlOYuKy_6source5GuardEBD_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 36]),
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBY_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                i32,
-                ptr,
-                i32,
-                ptr,
-                i32,
-                i64,
-                i32,
-                ptr,
-                i32,
-                ptr,
-                i64,
-                i32,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 34,
-            allocas: [
-                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Store> ([val: 8], [val: 0], [raw: 8]),
-                    <Ret> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Load> ([val: 1], [raw: 4]) -> [val: 4],
-                    <Invoke> ([func: 32], [val: 4]) -> [val: 8],
-                    successors: [6, 5],
-                ],
-                BasicBlock: [
-                    <Invoke> ([func: 5], [alloc: 0]),
-                    successors: [8, 7],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 0]) -> [val: 5],
-                    <AddRet> () -> [val: 6],
-                    <Store> ([val: 5], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 7],
-                    <Store> ([val: 6], [val: 7], [raw: 8]),
-                    <Br> (),
-                    successors: [4],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [11],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 9],
-                    <AddRet> () -> [val: 10],
-                    <Call> ([func: 24]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 11],
-                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 12],
-                    <Load> ([val: 12], [raw: 8]) -> [val: 13],
-                    <Resume> ([val: 11]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [9],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [14],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [10],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [12],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 36]),
-                    <Br> (),
-                    successors: [13],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source8try_call0lEBY_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                i32,
-                ptr,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Store> ([val: 5], [val: 0], [raw: 8]),
-                    <Ret> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Load> ([val: 1], [raw: 4]) -> [val: 4],
-                    <Call> ([func: 32], [val: 4]) -> [val: 5],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBZ_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                ptr,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 27,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Invoke> ([func: 26], [val: 1]) -> [val: 4],
-                    <AddRet> () -> [val: 5],
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 28]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Store> ([val: 4], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source8try_call0lEBZ_",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                ptr,
-                i32,
-                ptr,
-                ptr,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 30,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Invoke> ([func: 26], [val: 1]) -> [val: 4],
-                    <AddRet> () -> [val: 5],
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Call> ([func: 28]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Store> ([val: 4], [val: 0], [raw: 8]),
-                    <GEP> ([val: 0], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Store> ([val: 5], [val: 6], [raw: 8]),
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNCNvCslFJ5zlOYuKy_6source16try_call_guarded0B3_",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 4,
-                        ty_a: i32,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                i32,
-                ptr,
-                i32,
-                i64,
-                i32,
-                ptr,
-                i32,
-                ptr,
-                i64,
-                i32,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: true,
-            personality: 34,
-            allocas: [
-                size: 1, align: 1, state: Complex, size_a: 0, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 4]) -> [val: 1],
-                    <Invoke> ([func: 32], [val: 1]) -> [val: 5],
-                    successors: [3, 2],
-                ],
-                BasicBlock: [
-                    <Invoke> ([func: 5], [alloc: 0]),
-                    successors: [5, 4],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 0]) -> [val: 2],
-                    <AddRet> () -> [val: 3],
-                    <Store> ([val: 2], [alloc: 1], [raw: 8]),
-                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 4],
-                    <Store> ([val: 3], [val: 4], [raw: 8]),
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 6],
-                    <AddRet> () -> [val: 7],
-                    <Call> ([func: 24]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 1], [raw: 8]) -> [val: 8],
-                    <GEP> ([alloc: 1], [raw: 1], [const: i64 8]) -> [val: 9],
-                    <Load> ([val: 9], [raw: 8]) -> [val: 10],
-                    <Resume> ([val: 8]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 5]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [11],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [7],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [9],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 36]),
-                    <Br> (),
-                    successors: [10],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNCNvCslFJ5zlOYuKy_6source8try_call0B3_",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 4,
-                        ty_a: i32,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 4]) -> [val: 1],
-                    <Call> ([func: 32], [val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNvMNtNtCs5bICpQ07Uc4_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCslFJ5zlOYuKy_6source",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 1,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                ptr,
-                i64,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                i64,
-                i64,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctpop> ([val: 0]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: i32 1]) -> [val: 3],
-                    <CondBr> ([val: 3]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Cast> ([global: 0]) -> [val: 4],
-                    <And> ([const: i32 1], [const: i32 63]) -> [val: 5],
-                    <zExt> ([val: 5]) -> [val: 6],
-                    <Shl> ([const: i64 198], [val: 6]) -> [val: 7],
-                    <Or> ([val: 7], [const: i64 1]) -> [val: 8],
-                    <Cast> ([val: 8]) -> [val: 9],
-                    <Call> ([func: 35], [val: 4], [val: 9], [const: Bool 0], [val: 1]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNvMNtNtCs5bICpQ07Uc4_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCslFJ5zlOYuKy_6source",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 1,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                ptr,
-                i64,
-                i64,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                i64,
-                i64,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Cast> ([val: 1]) -> [val: 3],
-                    <Sub> ([const pool: 0], [val: 3]) -> [val: 4],
-                    <CMPule> ([val: 0], [val: 4]) -> [val: 5],
-                    <CondBr> ([val: 5]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Cast> ([global: 2]) -> [val: 6],
-                    <And> ([const: i32 1], [const: i32 63]) -> [val: 7],
-                    <zExt> ([val: 7]) -> [val: 8],
-                    <Shl> ([const: i64 259], [val: 8]) -> [val: 9],
-                    <Or> ([val: 9], [const: i64 1]) -> [val: 10],
-                    <Cast> ([val: 10]) -> [val: 11],
-                    <Call> ([func: 35], [val: 6], [val: 11], [const: Bool 0], [val: 2]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvXCslFJ5zlOYuKy_6sourceNtB2_5GuardNtNtNtCs5bICpQ07Uc4_4core3ops4drop4Drop4drop",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Call> ([func: 36]),
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvXs1_NtCs2J69gggMDAQ_5alloc5allocNtB5_6GlobalNtNtCs5bICpQ07Uc4_4core5alloc9Allocator10deallocateCslFJ5zlOYuKy_6source",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 1,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 1,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 1,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                i64,
-                i64,
-                Bool,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 3], [const: i64 0]) -> [val: 4],
-                    <CondBr> ([val: 4]),
-                    successors: [1, 2],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 37], [val: 1], [val: 3], [val: 2]),
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 8,
-                        ty_a: ptr,
-                        size_b: 8,
-                        ty_b: ptr,
-                        offset_b: 8,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                ptr,
-                ptr,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                i64,
-                Bool,
-                i64,
-                ptr,
-                ptr,
-                ptr,
-                i64,
-                i64,
-                Bool,
-                i64,
-                i64,
-                ptr,
-                i64,
-                i64,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                i64,
-                i64,
-                ptr,
-                i64,
-                ptr,
-                i64,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                i64,
-                i64,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Load> ([val: 0], [raw: 8]) -> [val: 1],
-                    <PairGEP> ([val: 0], [raw: 8], [const: i64 1]) -> [val: 2],
-                    <Load> ([val: 2], [raw: 8]) -> [val: 3],
-                    <Cast> ([val: 1]) -> [val: 4],
-                    <Cast> ([val: 1]) -> [val: 5],
-                    <GEP> ([val: 3], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Load> ([val: 6], [raw: 8]) -> [val: 7],
-                    <GEP> ([val: 3], [raw: 1], [const: i64 16]) -> [val: 8],
-                    <Load> ([val: 8], [raw: 8]) -> [val: 9],
-                    <GEP> ([val: 3], [raw: 1], [const: i64 8]) -> [val: 10],
-                    <Load> ([val: 10], [raw: 8]) -> [val: 11],
-                    <GEP> ([val: 3], [raw: 1], [const: i64 16]) -> [val: 12],
-                    <Load> ([val: 12], [raw: 8]) -> [val: 13],
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [21],
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 13]) -> [val: 14],
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [16],
-                ],
-                BasicBlock: [
-                    <CMPeq> ([val: 7], [const: i64 0]) -> [val: 15],
-                    <CondBr> ([val: 15]),
-                    successors: [5, 6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [7],
-                ],
-                BasicBlock: [
-                    <GEP> ([val: 0], [raw: 1], [const: i64 16]) -> [val: 16],
-                    <Cast> ([val: 4]) -> [val: 17],
-                    <Br> (),
-                    successors: [10],
-                ],
-                BasicBlock: [
-                    <Ret> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [7],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <CMPeq> ([val: 7], [const: i64 0]) -> [val: 22],
-                    <CondBr> ([val: 22]),
-                    successors: [11, 12],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [13],
-                ],
-                BasicBlock: [
-                    <Call> ([func: 37], [val: 17], [val: 7], [val: 14]),
-                    <Br> (),
-                    successors: [13],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [9],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [4],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [14],
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 14]) -> [val: 26],
-                    <Sub> ([const pool: 0], [val: 26]) -> [val: 27],
-                    <CMPule> ([val: 7], [val: 27]) -> [val: 28],
-                    <CondBr> ([val: 28]),
-                    successors: [18, 17],
-                ],
-                BasicBlock: [
-                    <Cast> ([global: 2]) -> [val: 29],
-                    <And> ([const: i32 1], [const: i32 63]) -> [val: 30],
-                    <zExt> ([val: 30]) -> [val: 31],
-                    <Shl> ([const: i64 259], [val: 31]) -> [val: 32],
-                    <Or> ([val: 32], [const: i64 1]) -> [val: 33],
-                    <Cast> ([val: 33]) -> [val: 34],
-                    <Call> ([func: 35], [val: 29], [val: 34], [const: Bool 0], [global: 6]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [15],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [2],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [19],
-                ],
-                BasicBlock: [
-                    <ctpop> ([val: 13]) -> [val: 37],
-                    <CMPeq> ([val: 37], [const: i32 1]) -> [val: 38],
-                    <CondBr> ([val: 38]),
-                    successors: [23, 22],
-                ],
-                BasicBlock: [
-                    <Cast> ([global: 0]) -> [val: 39],
-                    <And> ([const: i32 1], [const: i32 63]) -> [val: 40],
-                    <zExt> ([val: 40]) -> [val: 41],
-                    <Shl> ([const: i64 198], [val: 41]) -> [val: 42],
-                    <Or> ([val: 42], [const: i64 1]) -> [val: 43],
-                    <Cast> ([val: 43]) -> [val: 44],
-                    <Call> ([func: 35], [val: 39], [val: 44], [const: Bool 0], [global: 4]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [20],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "try_call",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                ptr,
-                i64,
-                Bool,
-                i64,
-                Bool,
-                i64,
-                i32,
-                i32,
-                ptr,
-                ptr,
-                i64,
-                Bool,
-                i64,
-                Bool,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                ptr,
-                i32,
-                ptr,
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 23,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 1,
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 2,
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Call> ([func: 1], [alloc: 2], [alloc: 0]),
-                    <Load> ([alloc: 2], [raw: 8]) -> [val: 1],
-                    <Cast> ([val: 1]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
-                    <Select> ([val: 3], [const: i64 0], [const: i64 1]) -> [val: 4],
-                    <Trunc> ([val: 4]) -> [val: 5],
-                    <CondBr> ([val: 5]),
-                    successors: [1, 2],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <GEP> ([alloc: 2], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Load> ([val: 6], [raw: 8]) -> [val: 7],
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 1], [raw: 2], [val: 7]) -> [phi: 3, 0] i32,
-                    <Br> (),
-                    successors: [7],
-                ],
-                BasicBlock: [
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Ret> ([phi: 8, 0]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 2], [raw: 8]) -> [val: 10],
-                    <Cast> ([val: 10]) -> [val: 11],
-                    <CMPeq> ([val: 11], [const: i64 0]) -> [val: 12],
-                    <Select> ([val: 12], [const: i64 0], [const: i64 1]) -> [val: 13],
-                    <CMPeq> ([val: 13], [const: i64 0]) -> [val: 14],
-                    <CondBr> ([val: 14]),
-                    successors: [8, 9],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 7], [phi: 3, 0], [raw: 10], [phi: 14, 0]) -> [phi: 8, 0] i32,
-                    <Br> (),
-                    successors: [6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [12],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [10],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 2], [raw: 8]) -> [val: 16],
-                    <PairGEP> ([alloc: 2], [raw: 8], [const: i64 1]) -> [val: 17],
-                    <Load> ([val: 17], [raw: 8]) -> [val: 18],
-                    <Cast> ([val: 16]) -> [val: 19],
-                    <GEP> ([val: 18], [raw: 1], [const: i64 0]) -> [val: 20],
-                    <Load> ([val: 20], [raw: 8]) -> [val: 21],
-                    <CMPne> ([val: 21], [const: ptr 0]) -> [val: 22],
-                    <CondBr> ([val: 22]),
-                    successors: [13, 14],
-                ],
-                BasicBlock: [
-                    <Invoke> ([val: 21], [raw: 0], [val: 19]),
-                    successors: [14, 16],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 12], [phi: 3, 0], [raw: 13], [phi: 3, 0]) -> [phi: 14, 0] i32,
-                    <Call> ([func: 16], [alloc: 2]),
-                    <Br> (),
-                    successors: [11],
-                ],
-                BasicBlock: [
-                    <Invoke> ([func: 16], [alloc: 2]),
-                    successors: [18, 17],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 0]) -> [val: 23],
-                    <AddRet> () -> [val: 24],
-                    <Store> ([val: 23], [alloc: 3], [raw: 8]),
-                    <GEP> ([alloc: 3], [raw: 1], [const: i64 8]) -> [val: 25],
-                    <Store> ([val: 24], [val: 25], [raw: 8]),
-                    <Br> (),
-                    successors: [15],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 26],
-                    <AddRet> () -> [val: 27],
-                    <Call> ([func: 24]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 3], [raw: 8]) -> [val: 28],
-                    <GEP> ([alloc: 3], [raw: 1], [const: i64 8]) -> [val: 29],
-                    <Load> ([val: 29], [raw: 8]) -> [val: 30],
-                    <Resume> ([val: 28]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [
-                CalleeInfo {
-                    info: [
-                        ArgInfo {
-                            kind: Direct,
-                            extension: None,
-                            size: 0,
-                            align: 0,
-                            access_info: AccessInfo {
-                                state: Promotable,
-                                call_forwards: 0,
-                                size_a: 0,
-                                ty_a: Void,
-                                size_b: 0,
-                                ty_b: Void,
-                                offset_b: 0,
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-        Function {
-            name: "try_call_guarded",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                ptr,
-                i64,
-                Bool,
-                i64,
-                Bool,
-                i64,
-                i32,
-                i32,
-                ptr,
-                ptr,
-                i64,
-                Bool,
-                i64,
-                Bool,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                ptr,
-                i64,
-                ptr,
-                Bool,
-                ptr,
-                i32,
-                i64,
-                ptr,
-                i32,
-                ptr,
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: true,
-            personality: 23,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 1,
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 8, size_b: 8, call_forwards: 2,
-                size: 16, align: 8, state: Complex, size_a: 8, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <Store> ([val: 0], [alloc: 0], [raw: 4]),
-                    <Call> ([func: 0], [alloc: 2], [alloc: 0]),
-                    <Load> ([alloc: 2], [raw: 8]) -> [val: 1],
-                    <Cast> ([val: 1]) -> [val: 2],
-                    <CMPeq> ([val: 2], [const: i64 0]) -> [val: 3],
-                    <Select> ([val: 3], [const: i64 0], [const: i64 1]) -> [val: 4],
-                    <Trunc> ([val: 4]) -> [val: 5],
-                    <CondBr> ([val: 5]),
-                    successors: [1, 2],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <GEP> ([alloc: 2], [raw: 1], [const: i64 8]) -> [val: 6],
-                    <Load> ([val: 6], [raw: 8]) -> [val: 7],
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 2], [raw: 2], [val: 7]) -> [phi: 3, 0] i32,
-                    <Br> (),
-                    successors: [7],
-                ],
-                BasicBlock: [
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Ret> ([phi: 8, 0]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 2], [raw: 8]) -> [val: 10],
-                    <Cast> ([val: 10]) -> [val: 11],
-                    <CMPeq> ([val: 11], [const: i64 0]) -> [val: 12],
-                    <Select> ([val: 12], [const: i64 0], [const: i64 1]) -> [val: 13],
-                    <CMPeq> ([val: 13], [const: i64 0]) -> [val: 14],
-                    <CondBr> ([val: 14]),
-                    successors: [8, 9],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 7], [phi: 3, 0], [raw: 10], [phi: 14, 0]) -> [phi: 8, 0] i32,
-                    <Br> (),
-                    successors: [6],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [12],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [8],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [10],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 2], [raw: 8]) -> [val: 16],
-                    <PairGEP> ([alloc: 2], [raw: 8], [const: i64 1]) -> [val: 17],
-                    <Load> ([val: 17], [raw: 8]) -> [val: 18],
-                    <Cast> ([val: 16]) -> [val: 19],
-                    <GEP> ([val: 18], [raw: 1], [const: i64 0]) -> [val: 20],
-                    <Load> ([val: 20], [raw: 8]) -> [val: 21],
-                    <CMPne> ([val: 21], [const: ptr 0]) -> [val: 22],
-                    <CondBr> ([val: 22]),
-                    successors: [13, 14],
-                ],
-                BasicBlock: [
-                    <Invoke> ([val: 21], [raw: 0], [val: 19]),
-                    successors: [14, 16],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 12], [phi: 3, 0], [raw: 13], [phi: 3, 0]) -> [phi: 14, 0] i32,
-                    <Call> ([func: 16], [alloc: 2]),
-                    <Br> (),
-                    successors: [11],
-                ],
-                BasicBlock: [
-                    <Invoke> ([func: 16], [alloc: 2]),
-                    successors: [18, 17],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 0]) -> [val: 23],
-                    <AddRet> () -> [val: 24],
-                    <Store> ([val: 23], [alloc: 3], [raw: 8]),
-                    <GEP> ([alloc: 3], [raw: 1], [const: i64 8]) -> [val: 25],
-                    <Store> ([val: 24], [val: 25], [raw: 8]),
-                    <Br> (),
-                    successors: [15],
-                ],
-                BasicBlock: [
-                    <LandingPad> ([raw: 1]) -> [val: 26],
-                    <AddRet> () -> [val: 27],
-                    <Call> ([func: 24]),
-                    <Unreachable> (),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Load> ([alloc: 3], [raw: 8]) -> [val: 28],
-                    <GEP> ([alloc: 3], [raw: 1], [const: i64 8]) -> [val: 29],
-                    <Load> ([val: 29], [raw: 8]) -> [val: 30],
-                    <Resume> ([val: 28]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [
-                CalleeInfo {
-                    info: [
-                        ArgInfo {
-                            kind: Direct,
-                            extension: None,
-                            size: 0,
-                            align: 0,
-                            access_info: AccessInfo {
-                                state: Promotable,
-                                call_forwards: 0,
-                                size_a: 0,
-                                ty_a: Void,
-                                size_b: 0,
-                                ty_b: Void,
-                                offset_b: 0,
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup",
-            has_ret: false,
-            args: [],
-            slots: [],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7cleanup",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking19panic_cannot_unwind",
-            has_ret: false,
-            args: [],
-            slots: [],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "may_panic",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "rust_eh_personality",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i64,
-                ptr,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: true,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_nounwind_fmt",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: zExt,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                ptr,
-                Bool,
-                ptr,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "note_drop",
-            has_ret: false,
-            args: [],
-            slots: [],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvCsk71k48rTdWK_7___rustc14___rust_dealloc",
-            has_ret: false,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Promotable,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                ptr,
-                i64,
-                i64,
-            ],
-            flags: Flags {
-                extern_link: true,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [],
-            callee_infos: [],
-        },
-    ],
-    consts: [
-        [i64] (18446744073709551615 9223372036854775808) -> -9223372036854775808,
-        [i32] (18446744073709551615 18446744073709551615) -> -1,
-        [i32] (18446744073709551615 18446744073709551615) -> -1,
-    ],
-    globals: [
-        anonymous {
-            size: 198,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (198 bytes)
-              0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
-              0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
-              0020  20 41 6c 69 67 6e 6d 65 6e 74 3a 3a 6e 65 77 5f  | Alignment::new_|
-              0030  75 6e 63 68 65 63 6b 65 64 20 72 65 71 75 69 72  |unchecked requir|
-              0040  65 73 20 61 20 70 6f 77 65 72 20 6f 66 20 74 77  |es a power of tw|
-              0050  6f 0a 0a 54 68 69 73 20 69 6e 64 69 63 61 74 65  |o..This indicate|
-              0060  73 20 61 20 62 75 67 20 69 6e 20 74 68 65 20 70  |s a bug in the p|
-              0070  72 6f 67 72 61 6d 2e 20 54 68 69 73 20 55 6e 64  |rogram. This Und|
-              0080  65 66 69 6e 65 64 20 42 65 68 61 76 69 6f 72 20  |efined Behavior |
-              0090  63 68 65 63 6b 20 69 73 20 6f 70 74 69 6f 6e 61  |check is optiona|
-              00a0  6c 2c 20 61 6e 64 20 63 61 6e 6e 6f 74 20 62 65  |l, and cannot be|
-              00b0  20 72 65 6c 69 65 64 20 6f 6e 20 66 6f 72 20 73  | relied on for s|
-              00c0  61 66 65 74 79 2e                                |afety.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 198,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (198 bytes)
-              0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
-              0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
-              0020  20 41 6c 69 67 6e 6d 65 6e 74 3a 3a 6e 65 77 5f  | Alignment::new_|
-              0030  75 6e 63 68 65 63 6b 65 64 20 72 65 71 75 69 72  |unchecked requir|
-              0040  65 73 20 61 20 70 6f 77 65 72 20 6f 66 20 74 77  |es a power of tw|
-              0050  6f 0a 0a 54 68 69 73 20 69 6e 64 69 63 61 74 65  |o..This indicate|
-              0060  73 20 61 20 62 75 67 20 69 6e 20 74 68 65 20 70  |s a bug in the p|
-              0070  72 6f 67 72 61 6d 2e 20 54 68 69 73 20 55 6e 64  |rogram. This Und|
-              0080  65 66 69 6e 65 64 20 42 65 68 61 76 69 6f 72 20  |efined Behavior |
-              0090  63 68 65 63 6b 20 69 73 20 6f 70 74 69 6f 6e 61  |check is optiona|
-              00a0  6c 2c 20 61 6e 64 20 63 61 6e 6e 6f 74 20 62 65  |l, and cannot be|
-              00b0  20 72 65 6c 69 65 64 20 6f 6e 20 66 6f 72 20 73  | relied on for s|
-              00c0  61 66 65 74 79 2e                                |afety.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 259,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (259 bytes)
-              0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
-              0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
-              0020  20 4c 61 79 6f 75 74 3a 3a 66 72 6f 6d 5f 73 69  | Layout::from_si|
-              0030  7a 65 5f 61 6c 69 67 6e 6d 65 6e 74 5f 75 6e 63  |ze_alignment_unc|
-              0040  68 65 63 6b 65 64 20 72 65 71 75 69 72 65 73 20  |hecked requires |
-              0050  74 68 61 74 20 74 68 65 20 72 6f 75 6e 64 65 64  |that the rounded|
-              0060  2d 75 70 20 61 6c 6c 6f 63 61 74 69 6f 6e 20 73  |-up allocation s|
-              0070  69 7a 65 20 64 6f 65 73 20 6e 6f 74 20 65 78 63  |ize does not exc|
-              0080  65 65 64 20 69 73 69 7a 65 3a 3a 4d 41 58 0a 0a  |eed isize::MAX..|
-              0090  54 68 69 73 20 69 6e 64 69 63 61 74 65 73 20 61  |This indicates a|
-              00a0  20 62 75 67 20 69 6e 20 74 68 65 20 70 72 6f 67  | bug in the prog|
-              00b0  72 61 6d 2e 20 54 68 69 73 20 55 6e 64 65 66 69  |ram. This Undefi|
-              00c0  6e 65 64 20 42 65 68 61 76 69 6f 72 20 63 68 65  |ned Behavior che|
-              00d0  63 6b 20 69 73 20 6f 70 74 69 6f 6e 61 6c 2c 20  |ck is optional, |
-              00e0  61 6e 64 20 63 61 6e 6e 6f 74 20 62 65 20 72 65  |and cannot be re|
-              00f0  6c 69 65 64 20 6f 6e 20 66 6f 72 20 73 61 66 65  |lied on for safe|
-              0100  74 79 2e                                         |ty.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 259,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (259 bytes)
-              0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
-              0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
-              0020  20 4c 61 79 6f 75 74 3a 3a 66 72 6f 6d 5f 73 69  | Layout::from_si|
-              0030  7a 65 5f 61 6c 69 67 6e 6d 65 6e 74 5f 75 6e 63  |ze_alignment_unc|
-              0040  68 65 63 6b 65 64 20 72 65 71 75 69 72 65 73 20  |hecked requires |
-              0050  74 68 61 74 20 74 68 65 20 72 6f 75 6e 64 65 64  |that the rounded|
-              0060  2d 75 70 20 61 6c 6c 6f 63 61 74 69 6f 6e 20 73  |-up allocation s|
-              0070  69 7a 65 20 64 6f 65 73 20 6e 6f 74 20 65 78 63  |ize does not exc|
-              0080  65 65 64 20 69 73 69 7a 65 3a 3a 4d 41 58 0a 0a  |eed isize::MAX..|
-              0090  54 68 69 73 20 69 6e 64 69 63 61 74 65 73 20 61  |This indicates a|
-              00a0  20 62 75 67 20 69 6e 20 74 68 65 20 70 72 6f 67  | bug in the prog|
-              00b0  72 61 6d 2e 20 54 68 69 73 20 55 6e 64 65 66 69  |ram. This Undefi|
-              00c0  6e 65 64 20 42 65 68 61 76 69 6f 72 20 63 68 65  |ned Behavior che|
-              00d0  63 6b 20 69 73 20 6f 70 74 69 6f 6e 61 6c 2c 20  |ck is optional, |
-              00e0  61 6e 64 20 63 61 6e 6e 6f 74 20 62 65 20 72 65  |and cannot be re|
-              00f0  6c 69 65 64 20 6f 6e 20 66 6f 72 20 73 61 66 65  |lied on for safe|
-              0100  74 79 2e                                         |ty.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 24,
-            align: 8,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3f 00 00 00 00 00 00 00  |........?.......|
-              0010  9f 00 00 00 12 00 00 00                          |........|,
-            relocations: [
-                offset 0x0 insert [global: 5],
-            ],
-        },
-        anonymous {
-            size: 64,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (64 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 6d  |brary/core/src/m|
-              0030  65 6d 2f 61 6c 69 67 6e 6d 65 6e 74 2e 72 73 00  |em/alignment.rs.|,
-            relocations: [],
-        },
-        anonymous {
-            size: 24,
-            align: 8,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (24 bytes)
-              0000  00 00 00 00 00 00 00 00 3e 00 00 00 00 00 00 00  |........>.......|
-              0010  07 01 00 00 12 00 00 00                          |........|,
-            relocations: [
-                offset 0x0 insert [global: 7],
-            ],
-        },
-        anonymous {
-            size: 63,
-            align: 1,
-            read_only: true,
-            thread_loc: false,
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            init: true,
-            data: (63 bytes)
-              0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
-              0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
-              0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 61  |brary/core/src/a|
-              0030  6c 6c 6f 63 2f 6c 61 79 6f 75 74 2e 72 73 00     |lloc/layout.rs.|,
-            relocations: [],
-        },
-    ],
-    global_ptrs: [],
-    const_vectors: [],
+[f0] _RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBK_(s0: ptr !sret(16, 8), s1: ptr) !got {
+  personality: f19    @rust_eh_personality
+  allocas:
+    a0 = size: 16, align: 8
+    a1 = size: 1, align: 1
+  basic blocks:
+    bb0:
+      <Store> (s1, a0, 8)
+      <Invoke> (f6, a0)    @_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBY_
+      -> bb2, bb1
+    bb1:
+      <LandingPad> (2) -> s2: ptr, s3: i32
+      <Call> (f8, a0, s2)    @_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBZ_
+      <Br> ()
+      -> bb2
+    bb2:
+      phi [(bb0, [bool false]), (bb1, [bool true])] -> p0: bool
+      <CondBr> (p0)
+      -> bb4, bb3
+    bb3:
+      <Load> (a0, 8) -> s5: i32
+      <GEP> (s0, 1, [i64 8]) -> s6: i64
+      <Store> (s5, s6, 8)
+      <Store> ([ptr 0x0], s0, 8)
+      <Br> ()
+      -> bb5
+    bb4:
+      <Load> (a0, 8) -> s7: ptr
+      <PairGEP> (a0, 8, [i64 1]) -> s8: i64
+      <Load> (s8, 8) -> s9: ptr
+      <Store> (s7, s0, 8)
+      <GEP> (s0, 1, [i64 8]) -> s10: i64
+      <Store> (s9, s10, 8)
+      <Br> ()
+      -> bb5
+    bb5:
+      <Ret> ()
 }
+
+[f1] _RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source8try_call0lEBK_(s0: ptr !sret(16, 8), s1: ptr) !got {
+  personality: f20    @rust_eh_personality
+  allocas:
+    a0 = size: 16, align: 8
+    a1 = size: 1, align: 1
+  basic blocks:
+    bb0:
+      <Store> (s1, a0, 8)
+      <Invoke> (f7, a0)    @_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source8try_call0lEBY_
+      -> bb2, bb1
+    bb1:
+      <LandingPad> (2) -> s2: ptr, s3: i32
+      <Call> (f9, a0, s2)    @_RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source8try_call0lEBZ_
+      <Br> ()
+      -> bb2
+    bb2:
+      phi [(bb0, [bool false]), (bb1, [bool true])] -> p0: bool
+      <CondBr> (p0)
+      -> bb4, bb3
+    bb3:
+      <Load> (a0, 8) -> s5: i32
+      <GEP> (s0, 1, [i64 8]) -> s6: i64
+      <Store> (s5, s6, 8)
+      <Store> ([ptr 0x0], s0, 8)
+      <Br> ()
+      -> bb5
+    bb4:
+      <Load> (a0, 8) -> s7: ptr
+      <PairGEP> (a0, 8, [i64 1]) -> s8: i64
+      <Load> (s8, 8) -> s9: ptr
+      <Store> (s7, s0, 8)
+      <GEP> (s0, 1, [i64 8]) -> s10: i64
+      <Store> (s9, s10, 8)
+      <Br> ()
+      -> bb5
+    bb5:
+      <Ret> ()
+}
+
+[f2] _RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_ECslFJ5zlOYuKy_6source(s0: ptr, s1: ptr) !got {
+  callee infos:
+    ci0 = (_)
+  basic blocks:
+    bb0:
+      <GEP> (s1, 1, [i64 0]) -> s2: i64
+      <Load> (s2, 8) -> s3: ptr
+      <CMPne> (s3, [ptr 0x0]) -> s4: bool
+      <CondBr> (s4)
+      -> bb1, bb2
+    bb1:
+      <Call> (s3, ci0, s0)
+      <Br> ()
+      -> bb2
+    bb2:
+      <Ret> ()
+}
+
+[f3] _RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueINtNtB4_6result6ResultlINtNtCs2J69gggMDAQ_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EEECslFJ5zlOYuKy_6source(s0: ptr) !got {
+  personality: f23    @rust_eh_personality
+  allocas:
+    a0 = size: 16, align: 8
+  callee infos:
+    ci0 = (_)
+  basic blocks:
+    bb0:
+      <Load> (s0, 8) -> s1: ptr
+      <Cast> (s1) -> s2: i64
+      <CMPeq> (s2, [i64 0]) -> s3: bool
+      <Select> (s3, [i64 0], [i64 1]) -> s4: i64
+      <CMPeq> (s4, [i64 0]) -> s5: bool
+      <CondBr> (s5)
+      -> bb1, bb2
+    bb1:
+      <Ret> ()
+    bb2:
+      <Br> ()
+      -> bb5
+    bb3:
+      <Br> ()
+      -> bb1
+    bb4:
+      <Br> ()
+      -> bb3
+    bb5:
+      <Load> (s0, 8) -> s7: ptr
+      <PairGEP> (s0, 8, [i64 1]) -> s8: i64
+      <Load> (s8, 8) -> s9: ptr
+      <Cast> (s7) -> s10: ptr
+      <GEP> (s9, 1, [i64 0]) -> s11: i64
+      <Load> (s11, 8) -> s12: ptr
+      <CMPne> (s12, [ptr 0x0]) -> s13: bool
+      <CondBr> (s13)
+      -> bb6, bb7
+    bb6:
+      <Invoke> (s12, ci0, s10)
+      -> bb7, bb9
+    bb7:
+      <Call> (f16, s0)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      <Br> ()
+      -> bb4
+    bb8:
+      <Invoke> (f16, s0)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      -> bb11, bb10
+    bb9:
+      <LandingPad> (0) -> s14: ptr, s15: i32
+      <Store> (s14, a0, 8)
+      <GEP> (a0, 1, [i64 8]) -> s16: i64
+      <Store> (s15, s16, 8)
+      <Br> ()
+      -> bb8
+    bb10:
+      <LandingPad> (1) -> s17: ptr, s18: i32
+      <Call> (f24)    @_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup
+      <Unreachable> ()
+    bb11:
+      <Load> (a0, 8) -> s19: ptr
+      <GEP> (a0, 1, [i64 8]) -> s20: i64
+      <Load> (s20, 8) -> s21: i32
+      <Resume> (s19)
+}
+
+[f4] _RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueINtNtCs2J69gggMDAQ_5alloc5boxed3BoxDNtNtB4_3any3AnyNtNtB4_6marker4SendEL_EECslFJ5zlOYuKy_6source(s0: ptr) !got {
+  personality: f23    @rust_eh_personality
+  allocas:
+    a0 = size: 16, align: 8
+  callee infos:
+    ci0 = (_)
+  basic blocks:
+    bb0:
+      <Load> (s0, 8) -> s1: ptr
+      <PairGEP> (s0, 8, [i64 1]) -> s2: i64
+      <Load> (s2, 8) -> s3: ptr
+      <Cast> (s1) -> s4: ptr
+      <GEP> (s3, 1, [i64 0]) -> s5: i64
+      <Load> (s5, 8) -> s6: ptr
+      <CMPne> (s6, [ptr 0x0]) -> s7: bool
+      <CondBr> (s7)
+      -> bb1, bb2
+    bb1:
+      <Invoke> (s6, ci0, s4)
+      -> bb2, bb4
+    bb2:
+      <Call> (f16, s0)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      <Ret> ()
+    bb3:
+      <Invoke> (f16, s0)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      -> bb6, bb5
+    bb4:
+      <LandingPad> (0) -> s8: ptr, s9: i32
+      <Store> (s8, a0, 8)
+      <GEP> (a0, 1, [i64 8]) -> s10: i64
+      <Store> (s9, s10, 8)
+      <Br> ()
+      -> bb3
+    bb5:
+      <LandingPad> (1) -> s11: ptr, s12: i32
+      <Call> (f24)    @_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup
+      <Unreachable> ()
+    bb6:
+      <Load> (a0, 8) -> s13: ptr
+      <GEP> (a0, 1, [i64 8]) -> s14: i64
+      <Load> (s14, 8) -> s15: i32
+      <Resume> (s13)
+}
+
+[f5] _RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueNtCslFJ5zlOYuKy_6source5GuardEBD_(s0: ptr) !got !never_delete {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> ()
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Call> (f36)    @note_drop
+      <Br> ()
+      -> bb2
+}
+
+[f6] _RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBY_(s0: ptr) !got !never_delete {
+  personality: f34    @rust_eh_personality
+  allocas:
+    a0 = size: 1, align: 1
+    a1 = size: 16, align: 8
+  basic blocks:
+    bb0:
+      <Load> (s0, 8) -> s1: ptr
+      <Br> ()
+      -> bb3
+    bb1:
+      <Store> (s8, s0, 8)
+      <Ret> ()
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Load> (s1, 4) -> s4: i32
+      <Invoke> (f32, s4) -> s8: i32    @may_panic
+      -> bb6, bb5
+    bb4:
+      <Invoke> (f5, a0)    @_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueNtCslFJ5zlOYuKy_6source5GuardEBD_
+      -> bb8, bb7
+    bb5:
+      <LandingPad> (0) -> s5: ptr, s6: i32
+      <Store> (s5, a1, 8)
+      <GEP> (a1, 1, [i64 8]) -> s7: i64
+      <Store> (s6, s7, 8)
+      <Br> ()
+      -> bb4
+    bb6:
+      <Br> ()
+      -> bb11
+    bb7:
+      <LandingPad> (1) -> s9: ptr, s10: i32
+      <Call> (f24)    @_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup
+      <Unreachable> ()
+    bb8:
+      <Load> (a1, 8) -> s11: ptr
+      <GEP> (a1, 1, [i64 8]) -> s12: i64
+      <Load> (s12, 8) -> s13: i32
+      <Resume> (s11)
+    bb9:
+      <Br> ()
+      -> bb2
+    bb10:
+      <Br> ()
+      -> bb9
+    bb11:
+      <Br> ()
+      -> bb14
+    bb12:
+      <Br> ()
+      -> bb10
+    bb13:
+      <Br> ()
+      -> bb12
+    bb14:
+      <Call> (f36)    @note_drop
+      <Br> ()
+      -> bb13
+}
+
+[f7] _RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7do_callNCNvCslFJ5zlOYuKy_6source8try_call0lEBY_(s0: ptr) !got !never_delete {
+  basic blocks:
+    bb0:
+      <Load> (s0, 8) -> s1: ptr
+      <Br> ()
+      -> bb3
+    bb1:
+      <Store> (s5, s0, 8)
+      <Ret> ()
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Load> (s1, 4) -> s4: i32
+      <Call> (f32, s4) -> s5: i32    @may_panic
+      <Br> ()
+      -> bb2
+}
+
+[f8] _RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBZ_(s0: ptr, s1: ptr) !got {
+  personality: f27    @rust_eh_personality
+  basic blocks:
+    bb0:
+      <Invoke> (f26, s1) -> s4: ptr, s5: ptr    @_RNvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7cleanup
+      -> bb2, bb1
+    bb1:
+      <LandingPad> (1) -> s2: ptr, s3: i32
+      <Call> (f28)    @_RNvNtCs5bICpQ07Uc4_4core9panicking19panic_cannot_unwind
+      <Unreachable> ()
+    bb2:
+      <Store> (s4, s0, 8)
+      <GEP> (s0, 1, [i64 8]) -> s6: i64
+      <Store> (s5, s6, 8)
+      <Ret> ()
+}
+
+[f9] _RINvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind8do_catchNCNvCslFJ5zlOYuKy_6source8try_call0lEBZ_(s0: ptr, s1: ptr) !got {
+  personality: f30    @rust_eh_personality
+  basic blocks:
+    bb0:
+      <Invoke> (f26, s1) -> s4: ptr, s5: ptr    @_RNvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7cleanup
+      -> bb2, bb1
+    bb1:
+      <LandingPad> (1) -> s2: ptr, s3: i32
+      <Call> (f28)    @_RNvNtCs5bICpQ07Uc4_4core9panicking19panic_cannot_unwind
+      <Unreachable> ()
+    bb2:
+      <Store> (s4, s0, 8)
+      <GEP> (s0, 1, [i64 8]) -> s6: i64
+      <Store> (s5, s6, 8)
+      <Ret> ()
+}
+
+[f10] _RNCNvCslFJ5zlOYuKy_6source16try_call_guarded0B3_(s0: ptr) -> i32 !internal !dead {
+  personality: f34    @rust_eh_personality
+  allocas:
+    a0 = size: 1, align: 1
+    a1 = size: 16, align: 8
+  basic blocks:
+    bb0:
+      <Load> (s0, 4) -> s1: i32
+      <Invoke> (f32, s1) -> s5: i32    @may_panic
+      -> bb3, bb2
+    bb1:
+      <Invoke> (f5, a0)    @_RINvNtCs5bICpQ07Uc4_4core3ptr9drop_glueNtCslFJ5zlOYuKy_6source5GuardEBD_
+      -> bb5, bb4
+    bb2:
+      <LandingPad> (0) -> s2: ptr, s3: i32
+      <Store> (s2, a1, 8)
+      <GEP> (a1, 1, [i64 8]) -> s4: i64
+      <Store> (s3, s4, 8)
+      <Br> ()
+      -> bb1
+    bb3:
+      <Br> ()
+      -> bb8
+    bb4:
+      <LandingPad> (1) -> s6: ptr, s7: i32
+      <Call> (f24)    @_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup
+      <Unreachable> ()
+    bb5:
+      <Load> (a1, 8) -> s8: ptr
+      <GEP> (a1, 1, [i64 8]) -> s9: i64
+      <Load> (s9, 8) -> s10: i32
+      <Resume> (s8)
+    bb6:
+      <Ret> (s5)
+    bb7:
+      <Br> ()
+      -> bb6
+    bb8:
+      <Br> ()
+      -> bb11
+    bb9:
+      <Br> ()
+      -> bb7
+    bb10:
+      <Br> ()
+      -> bb9
+    bb11:
+      <Call> (f36)    @note_drop
+      <Br> ()
+      -> bb10
+}
+
+[f11] _RNCNvCslFJ5zlOYuKy_6source8try_call0B3_(s0: ptr) -> i32 !internal !dead {
+  basic blocks:
+    bb0:
+      <Load> (s0, 4) -> s1: i32
+      <Call> (f32, s1) -> s2: i32    @may_panic
+      <Ret> (s2)
+}
+
+[f12] _RNvNvMNtNtCs5bICpQ07Uc4_4core3mem9alignmentNtB4_9Alignment13new_unchecked18precondition_checkCslFJ5zlOYuKy_6source(s0: i64, s1: ptr) !internal !dead {
+  basic blocks:
+    bb0:
+      <ctpop> (s0) -> s2: i64
+      <CMPeq> (s2, [i32 1]) -> s3: bool
+      <CondBr> (s3)
+      -> bb2, bb1
+    bb1:
+      <Cast> (g0) -> s4: ptr
+      <And> ([i32 1], [i32 63]) -> s5: i32
+      <zExt> (s5) -> s6: i64
+      <Shl> ([i64 198], s6) -> s7: i64
+      <Or> (s7, [i64 1]) -> s8: i64
+      <Cast> (s8) -> s9: ptr
+      <Call> (f35, s4, s9, [bool false], s1)    @_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_nounwind_fmt
+      <Unreachable> ()
+    bb2:
+      <Ret> ()
+}
+
+[f13] _RNvNvMNtNtCs5bICpQ07Uc4_4core5alloc6layoutNtB4_6Layout29from_size_alignment_unchecked18precondition_checkCslFJ5zlOYuKy_6source(s0: i64, s1: i64, s2: ptr) !internal !dead {
+  basic blocks:
+    bb0:
+      <Cast> (s1) -> s3: i64
+      <Sub> ([i64 -9223372036854775808], s3) -> s4: i64
+      <CMPule> (s0, s4) -> s5: bool
+      <CondBr> (s5)
+      -> bb2, bb1
+    bb1:
+      <Cast> (g2) -> s6: ptr
+      <And> ([i32 1], [i32 63]) -> s7: i32
+      <zExt> (s7) -> s8: i64
+      <Shl> ([i64 259], s8) -> s9: i64
+      <Or> (s9, [i64 1]) -> s10: i64
+      <Cast> (s10) -> s11: ptr
+      <Call> (f35, s6, s11, [bool false], s2)    @_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_nounwind_fmt
+      <Unreachable> ()
+    bb2:
+      <Ret> ()
+}
+
+[f14] _RNvXCslFJ5zlOYuKy_6sourceNtB2_5GuardNtNtNtCs5bICpQ07Uc4_4core3ops4drop4Drop4drop(s0: ptr) !got {
+  basic blocks:
+    bb0:
+      <Call> (f36)    @note_drop
+      <Ret> ()
+}
+
+[f15] _RNvXs1_NtCs2J69gggMDAQ_5alloc5allocNtB5_6GlobalNtNtCs5bICpQ07Uc4_4core5alloc9Allocator10deallocateCslFJ5zlOYuKy_6source(s0: ptr, s1: ptr, s2: i64, s3: i64) !internal !dead {
+  basic blocks:
+    bb0:
+      <CMPeq> (s3, [i64 0]) -> s4: bool
+      <CondBr> (s4)
+      -> bb1, bb2
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Call> (f37, s1, s3, s2)    @_RNvCsk71k48rTdWK_7___rustc14___rust_dealloc
+      <Br> ()
+      -> bb3
+    bb3:
+      <Ret> ()
+}
+
+[f16] _RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source(s0: ptr) !got !never_delete {
+  basic blocks:
+    bb0:
+      <Load> (s0, 8) -> s1: ptr
+      <PairGEP> (s0, 8, [i64 1]) -> s2: i64
+      <Load> (s2, 8) -> s3: ptr
+      <Cast> (s1) -> s4: ptr
+      <Cast> (s1) -> s5: ptr
+      <GEP> (s3, 1, [i64 8]) -> s6: i64
+      <Load> (s6, 8) -> s7: i64
+      <GEP> (s3, 1, [i64 16]) -> s8: i64
+      <Load> (s8, 8) -> s9: i64
+      <GEP> (s3, 1, [i64 8]) -> s10: i64
+      <Load> (s10, 8) -> s11: i64
+      <GEP> (s3, 1, [i64 16]) -> s12: i64
+      <Load> (s12, 8) -> s13: i64
+      <Br> ()
+      -> bb1
+    bb1:
+      <Br> ()
+      -> bb21
+    bb2:
+      <Cast> (s13) -> s14: i64
+      <Br> ()
+      -> bb3
+    bb3:
+      <Br> ()
+      -> bb16
+    bb4:
+      <CMPeq> (s7, [i64 0]) -> s15: bool
+      <CondBr> (s15)
+      -> bb5, bb6
+    bb5:
+      <Br> ()
+      -> bb7
+    bb6:
+      <GEP> (s0, 1, [i64 16]) -> s16: i64
+      <Cast> (s4) -> s17: ptr
+      <Br> ()
+      -> bb10
+    bb7:
+      <Ret> ()
+    bb8:
+      <Br> ()
+      -> bb7
+    bb9:
+      <Br> ()
+      -> bb8
+    bb10:
+      <CMPeq> (s7, [i64 0]) -> s22: bool
+      <CondBr> (s22)
+      -> bb11, bb12
+    bb11:
+      <Br> ()
+      -> bb13
+    bb12:
+      <Call> (f37, s17, s7, s14)    @_RNvCsk71k48rTdWK_7___rustc14___rust_dealloc
+      <Br> ()
+      -> bb13
+    bb13:
+      <Br> ()
+      -> bb9
+    bb14:
+      <Br> ()
+      -> bb4
+    bb15:
+      <Br> ()
+      -> bb14
+    bb16:
+      <Cast> (s14) -> s26: i64
+      <Sub> ([i64 -9223372036854775808], s26) -> s27: i64
+      <CMPule> (s7, s27) -> s28: bool
+      <CondBr> (s28)
+      -> bb18, bb17
+    bb17:
+      <Cast> (g2) -> s29: ptr
+      <And> ([i32 1], [i32 63]) -> s30: i32
+      <zExt> (s30) -> s31: i64
+      <Shl> ([i64 259], s31) -> s32: i64
+      <Or> (s32, [i64 1]) -> s33: i64
+      <Cast> (s33) -> s34: ptr
+      <Call> (f35, s29, s34, [bool false], g6)    @_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_nounwind_fmt
+      <Unreachable> ()
+    bb18:
+      <Br> ()
+      -> bb15
+    bb19:
+      <Br> ()
+      -> bb2
+    bb20:
+      <Br> ()
+      -> bb19
+    bb21:
+      <ctpop> (s13) -> s37: i64
+      <CMPeq> (s37, [i32 1]) -> s38: bool
+      <CondBr> (s38)
+      -> bb23, bb22
+    bb22:
+      <Cast> (g0) -> s39: ptr
+      <And> ([i32 1], [i32 63]) -> s40: i32
+      <zExt> (s40) -> s41: i64
+      <Shl> ([i64 198], s41) -> s42: i64
+      <Or> (s42, [i64 1]) -> s43: i64
+      <Cast> (s43) -> s44: ptr
+      <Call> (f35, s39, s44, [bool false], g4)    @_RNvNtCs5bICpQ07Uc4_4core9panicking18panic_nounwind_fmt
+      <Unreachable> ()
+    bb23:
+      <Br> ()
+      -> bb20
+}
+
+[f17] try_call(s0: i32) -> i32 !got {
+  personality: f23    @rust_eh_personality
+  allocas:
+    a0 = size: 4, align: 4
+    a1 = size: 4, align: 4
+    a2 = size: 16, align: 8
+    a3 = size: 16, align: 8
+  callee infos:
+    ci0 = (_)
+  basic blocks:
+    bb0:
+      <Store> (s0, a0, 4)
+      <Call> (f1, a2, a0)    @_RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source8try_call0lEBK_
+      <Load> (a2, 8) -> s1: ptr
+      <Cast> (s1) -> s2: i64
+      <CMPeq> (s2, [i64 0]) -> s3: bool
+      <Select> (s3, [i64 0], [i64 1]) -> s4: i64
+      <Trunc> (s4) -> s5: bool
+      <CondBr> (s5)
+      -> bb1, bb2
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <GEP> (a2, 1, [i64 8]) -> s6: i64
+      <Load> (s6, 8) -> s7: i32
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 -1]), (bb2, s7)] -> p0: i32
+      <Br> ()
+      -> bb7
+    bb4:
+      <Unreachable> ()
+    bb5:
+      <Ret> (p1)
+    bb6:
+      <Br> ()
+      -> bb5
+    bb7:
+      <Load> (a2, 8) -> s10: ptr
+      <Cast> (s10) -> s11: i64
+      <CMPeq> (s11, [i64 0]) -> s12: bool
+      <Select> (s12, [i64 0], [i64 1]) -> s13: i64
+      <CMPeq> (s13, [i64 0]) -> s14: bool
+      <CondBr> (s14)
+      -> bb8, bb9
+    bb8:
+      phi [(bb7, p0), (bb10, p2)] -> p1: i32
+      <Br> ()
+      -> bb6
+    bb9:
+      <Br> ()
+      -> bb12
+    bb10:
+      <Br> ()
+      -> bb8
+    bb11:
+      <Br> ()
+      -> bb10
+    bb12:
+      <Load> (a2, 8) -> s16: ptr
+      <PairGEP> (a2, 8, [i64 1]) -> s17: i64
+      <Load> (s17, 8) -> s18: ptr
+      <Cast> (s16) -> s19: ptr
+      <GEP> (s18, 1, [i64 0]) -> s20: i64
+      <Load> (s20, 8) -> s21: ptr
+      <CMPne> (s21, [ptr 0x0]) -> s22: bool
+      <CondBr> (s22)
+      -> bb13, bb14
+    bb13:
+      <Invoke> (s21, ci0, s19)
+      -> bb14, bb16
+    bb14:
+      phi [(bb12, p0), (bb13, p0)] -> p2: i32
+      <Call> (f16, a2)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      <Br> ()
+      -> bb11
+    bb15:
+      <Invoke> (f16, a2)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      -> bb18, bb17
+    bb16:
+      <LandingPad> (0) -> s23: ptr, s24: i32
+      <Store> (s23, a3, 8)
+      <GEP> (a3, 1, [i64 8]) -> s25: i64
+      <Store> (s24, s25, 8)
+      <Br> ()
+      -> bb15
+    bb17:
+      <LandingPad> (1) -> s26: ptr, s27: i32
+      <Call> (f24)    @_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup
+      <Unreachable> ()
+    bb18:
+      <Load> (a3, 8) -> s28: ptr
+      <GEP> (a3, 1, [i64 8]) -> s29: i64
+      <Load> (s29, 8) -> s30: i32
+      <Resume> (s28)
+}
+
+[f18] try_call_guarded(s0: i32) -> i32 !got {
+  personality: f23    @rust_eh_personality
+  allocas:
+    a0 = size: 4, align: 4
+    a1 = size: 4, align: 4
+    a2 = size: 16, align: 8
+    a3 = size: 16, align: 8
+  callee infos:
+    ci0 = (_)
+  basic blocks:
+    bb0:
+      <Store> (s0, a0, 4)
+      <Call> (f0, a2, a0)    @_RINvNtCs1bbfcKQCQXM_3std5panic12catch_unwindNCNvCslFJ5zlOYuKy_6source16try_call_guarded0lEBK_
+      <Load> (a2, 8) -> s1: ptr
+      <Cast> (s1) -> s2: i64
+      <CMPeq> (s2, [i64 0]) -> s3: bool
+      <Select> (s3, [i64 0], [i64 1]) -> s4: i64
+      <Trunc> (s4) -> s5: bool
+      <CondBr> (s5)
+      -> bb1, bb2
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <GEP> (a2, 1, [i64 8]) -> s6: i64
+      <Load> (s6, 8) -> s7: i32
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 -1]), (bb2, s7)] -> p0: i32
+      <Br> ()
+      -> bb7
+    bb4:
+      <Unreachable> ()
+    bb5:
+      <Ret> (p1)
+    bb6:
+      <Br> ()
+      -> bb5
+    bb7:
+      <Load> (a2, 8) -> s10: ptr
+      <Cast> (s10) -> s11: i64
+      <CMPeq> (s11, [i64 0]) -> s12: bool
+      <Select> (s12, [i64 0], [i64 1]) -> s13: i64
+      <CMPeq> (s13, [i64 0]) -> s14: bool
+      <CondBr> (s14)
+      -> bb8, bb9
+    bb8:
+      phi [(bb7, p0), (bb10, p2)] -> p1: i32
+      <Br> ()
+      -> bb6
+    bb9:
+      <Br> ()
+      -> bb12
+    bb10:
+      <Br> ()
+      -> bb8
+    bb11:
+      <Br> ()
+      -> bb10
+    bb12:
+      <Load> (a2, 8) -> s16: ptr
+      <PairGEP> (a2, 8, [i64 1]) -> s17: i64
+      <Load> (s17, 8) -> s18: ptr
+      <Cast> (s16) -> s19: ptr
+      <GEP> (s18, 1, [i64 0]) -> s20: i64
+      <Load> (s20, 8) -> s21: ptr
+      <CMPne> (s21, [ptr 0x0]) -> s22: bool
+      <CondBr> (s22)
+      -> bb13, bb14
+    bb13:
+      <Invoke> (s21, ci0, s19)
+      -> bb14, bb16
+    bb14:
+      phi [(bb12, p0), (bb13, p0)] -> p2: i32
+      <Call> (f16, a2)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      <Br> ()
+      -> bb11
+    bb15:
+      <Invoke> (f16, a2)    @_RNvXsh_NtCs2J69gggMDAQ_5alloc5boxedINtB5_3BoxDNtNtCs5bICpQ07Uc4_4core3any3AnyNtNtBM_6marker4SendEL_ENtNtNtBM_3ops4drop4Drop4dropCslFJ5zlOYuKy_6source
+      -> bb18, bb17
+    bb16:
+      <LandingPad> (0) -> s23: ptr, s24: i32
+      <Store> (s23, a3, 8)
+      <GEP> (a3, 1, [i64 8]) -> s25: i64
+      <Store> (s24, s25, 8)
+      <Br> ()
+      -> bb15
+    bb17:
+      <LandingPad> (1) -> s26: ptr, s27: i32
+      <Call> (f24)    @_RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup
+      <Unreachable> ()
+    bb18:
+      <Load> (a3, 8) -> s28: ptr
+      <GEP> (a3, 1, [i64 8]) -> s29: i64
+      <Load> (s29, 8) -> s30: i32
+      <Resume> (s28)
+}
+
+[f19] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f20] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f21] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f22] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f23] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f24] _RNvNtCs5bICpQ07Uc4_4core9panicking16panic_in_cleanup() !extern
+
+[f25] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f26] _RNvNvNtCs1bbfcKQCQXM_3std9panicking12catch_unwind7cleanup(s0: ptr) -> ? !extern !never_delete
+
+[f27] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f28] _RNvNtCs5bICpQ07Uc4_4core9panicking19panic_cannot_unwind() !extern
+
+[f29] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f30] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f31] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f32] may_panic(s0: i32) -> ? !extern !never_delete
+
+[f33] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f34] rust_eh_personality(s0: i32, s1: i32, s2: i64, s3: ptr, s4: ptr) -> ? !extern !never_delete
+
+[f35] _RNvNtCs5bICpQ07Uc4_4core9panicking18panic_nounwind_fmt(s0: ptr, s1: ptr, s2: bool !zext, s3: ptr) !extern
+
+[f36] note_drop() !extern
+
+[f37] _RNvCsk71k48rTdWK_7___rustc14___rust_dealloc(s0: ptr, s1: i64, s2: i64) !extern
+
+[g0] size: 198 bytes, align: 1, init !internal {
+  0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
+  0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
+  0020  20 41 6c 69 67 6e 6d 65 6e 74 3a 3a 6e 65 77 5f  | Alignment::new_|
+  0030  75 6e 63 68 65 63 6b 65 64 20 72 65 71 75 69 72  |unchecked requir|
+  0040  65 73 20 61 20 70 6f 77 65 72 20 6f 66 20 74 77  |es a power of tw|
+  0050  6f 0a 0a 54 68 69 73 20 69 6e 64 69 63 61 74 65  |o..This indicate|
+  0060  73 20 61 20 62 75 67 20 69 6e 20 74 68 65 20 70  |s a bug in the p|
+  0070  72 6f 67 72 61 6d 2e 20 54 68 69 73 20 55 6e 64  |rogram. This Und|
+  0080  65 66 69 6e 65 64 20 42 65 68 61 76 69 6f 72 20  |efined Behavior |
+  0090  63 68 65 63 6b 20 69 73 20 6f 70 74 69 6f 6e 61  |check is optiona|
+  00a0  6c 2c 20 61 6e 64 20 63 61 6e 6e 6f 74 20 62 65  |l, and cannot be|
+  00b0  20 72 65 6c 69 65 64 20 6f 6e 20 66 6f 72 20 73  | relied on for s|
+  00c0  61 66 65 74 79 2e                                |afety.|
+}
+
+[g1] size: 198 bytes, align: 1, init !internal {
+  0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
+  0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
+  0020  20 41 6c 69 67 6e 6d 65 6e 74 3a 3a 6e 65 77 5f  | Alignment::new_|
+  0030  75 6e 63 68 65 63 6b 65 64 20 72 65 71 75 69 72  |unchecked requir|
+  0040  65 73 20 61 20 70 6f 77 65 72 20 6f 66 20 74 77  |es a power of tw|
+  0050  6f 0a 0a 54 68 69 73 20 69 6e 64 69 63 61 74 65  |o..This indicate|
+  0060  73 20 61 20 62 75 67 20 69 6e 20 74 68 65 20 70  |s a bug in the p|
+  0070  72 6f 67 72 61 6d 2e 20 54 68 69 73 20 55 6e 64  |rogram. This Und|
+  0080  65 66 69 6e 65 64 20 42 65 68 61 76 69 6f 72 20  |efined Behavior |
+  0090  63 68 65 63 6b 20 69 73 20 6f 70 74 69 6f 6e 61  |check is optiona|
+  00a0  6c 2c 20 61 6e 64 20 63 61 6e 6e 6f 74 20 62 65  |l, and cannot be|
+  00b0  20 72 65 6c 69 65 64 20 6f 6e 20 66 6f 72 20 73  | relied on for s|
+  00c0  61 66 65 74 79 2e                                |afety.|
+}
+
+[g2] size: 259 bytes, align: 1, init !internal {
+  0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
+  0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
+  0020  20 4c 61 79 6f 75 74 3a 3a 66 72 6f 6d 5f 73 69  | Layout::from_si|
+  0030  7a 65 5f 61 6c 69 67 6e 6d 65 6e 74 5f 75 6e 63  |ze_alignment_unc|
+  0040  68 65 63 6b 65 64 20 72 65 71 75 69 72 65 73 20  |hecked requires |
+  0050  74 68 61 74 20 74 68 65 20 72 6f 75 6e 64 65 64  |that the rounded|
+  0060  2d 75 70 20 61 6c 6c 6f 63 61 74 69 6f 6e 20 73  |-up allocation s|
+  0070  69 7a 65 20 64 6f 65 73 20 6e 6f 74 20 65 78 63  |ize does not exc|
+  0080  65 65 64 20 69 73 69 7a 65 3a 3a 4d 41 58 0a 0a  |eed isize::MAX..|
+  0090  54 68 69 73 20 69 6e 64 69 63 61 74 65 73 20 61  |This indicates a|
+  00a0  20 62 75 67 20 69 6e 20 74 68 65 20 70 72 6f 67  | bug in the prog|
+  00b0  72 61 6d 2e 20 54 68 69 73 20 55 6e 64 65 66 69  |ram. This Undefi|
+  00c0  6e 65 64 20 42 65 68 61 76 69 6f 72 20 63 68 65  |ned Behavior che|
+  00d0  63 6b 20 69 73 20 6f 70 74 69 6f 6e 61 6c 2c 20  |ck is optional, |
+  00e0  61 6e 64 20 63 61 6e 6e 6f 74 20 62 65 20 72 65  |and cannot be re|
+  00f0  6c 69 65 64 20 6f 6e 20 66 6f 72 20 73 61 66 65  |lied on for safe|
+  0100  74 79 2e                                         |ty.|
+}
+
+[g3] size: 259 bytes, align: 1, init !internal {
+  0000  75 6e 73 61 66 65 20 70 72 65 63 6f 6e 64 69 74  |unsafe precondit|
+  0010  69 6f 6e 28 73 29 20 76 69 6f 6c 61 74 65 64 3a  |ion(s) violated:|
+  0020  20 4c 61 79 6f 75 74 3a 3a 66 72 6f 6d 5f 73 69  | Layout::from_si|
+  0030  7a 65 5f 61 6c 69 67 6e 6d 65 6e 74 5f 75 6e 63  |ze_alignment_unc|
+  0040  68 65 63 6b 65 64 20 72 65 71 75 69 72 65 73 20  |hecked requires |
+  0050  74 68 61 74 20 74 68 65 20 72 6f 75 6e 64 65 64  |that the rounded|
+  0060  2d 75 70 20 61 6c 6c 6f 63 61 74 69 6f 6e 20 73  |-up allocation s|
+  0070  69 7a 65 20 64 6f 65 73 20 6e 6f 74 20 65 78 63  |ize does not exc|
+  0080  65 65 64 20 69 73 69 7a 65 3a 3a 4d 41 58 0a 0a  |eed isize::MAX..|
+  0090  54 68 69 73 20 69 6e 64 69 63 61 74 65 73 20 61  |This indicates a|
+  00a0  20 62 75 67 20 69 6e 20 74 68 65 20 70 72 6f 67  | bug in the prog|
+  00b0  72 61 6d 2e 20 54 68 69 73 20 55 6e 64 65 66 69  |ram. This Undefi|
+  00c0  6e 65 64 20 42 65 68 61 76 69 6f 72 20 63 68 65  |ned Behavior che|
+  00d0  63 6b 20 69 73 20 6f 70 74 69 6f 6e 61 6c 2c 20  |ck is optional, |
+  00e0  61 6e 64 20 63 61 6e 6e 6f 74 20 62 65 20 72 65  |and cannot be re|
+  00f0  6c 69 65 64 20 6f 6e 20 66 6f 72 20 73 61 66 65  |lied on for safe|
+  0100  74 79 2e                                         |ty.|
+}
+
+[g4] size: 24 bytes, align: 8, init !internal {
+  0000  00 00 00 00 00 00 00 00 3f 00 00 00 00 00 00 00  |........?.......|
+  0010  9f 00 00 00 12 00 00 00                          |........|
+
+  relocations:
+    0x0 g5
+}
+
+[g5] size: 64 bytes, align: 1, init !internal {
+  0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+  0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+  0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 6d  |brary/core/src/m|
+  0030  65 6d 2f 61 6c 69 67 6e 6d 65 6e 74 2e 72 73 00  |em/alignment.rs.|
+}
+
+[g6] size: 24 bytes, align: 8, init !internal {
+  0000  00 00 00 00 00 00 00 00 3e 00 00 00 00 00 00 00  |........>.......|
+  0010  07 01 00 00 12 00 00 00                          |........|
+
+  relocations:
+    0x0 g7
+}
+
+[g7] size: 63 bytes, align: 1, init !internal {
+  0000  2f 73 79 73 72 6f 6f 74 2f 6c 69 62 2f 72 75 73  |/sysroot/lib/rus|
+  0010  74 6c 69 62 2f 73 72 63 2f 72 75 73 74 2f 6c 69  |tlib/src/rust/li|
+  0020  62 72 61 72 79 2f 63 6f 72 65 2f 73 72 63 2f 61  |brary/core/src/a|
+  0030  6c 6c 6f 63 2f 6c 61 79 6f 75 74 2e 72 73 00     |lloc/layout.rs.|
+}
+

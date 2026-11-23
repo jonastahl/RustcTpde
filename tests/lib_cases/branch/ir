@@ -1,4483 +1,1123 @@
-ModuleTpde {
-    functions: [
-        Function {
-            name: "cmp_eq_i16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 0], [raw: 2], [const pool: 1]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_eq_i32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 2], [raw: 2], [const pool: 3]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_eq_i64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 4], [raw: 2], [const pool: 5]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_eq_i8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 6], [raw: 2], [const pool: 7]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_eq_u16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 8], [raw: 2], [const pool: 9]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_eq_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 10], [raw: 2], [const pool: 11]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_eq_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 12], [raw: 2], [const pool: 13]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_eq_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPeq> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 14], [raw: 2], [const pool: 15]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_i16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 16], [raw: 2], [const pool: 17]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_i32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 18], [raw: 2], [const pool: 19]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_i64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 20], [raw: 2], [const pool: 21]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_i8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 22], [raw: 2], [const pool: 23]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_u16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 24], [raw: 2], [const pool: 25]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 26], [raw: 2], [const pool: 27]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 28], [raw: 2], [const pool: 29]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ge_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPuge> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 30], [raw: 2], [const pool: 31]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_i16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 32], [raw: 2], [const pool: 33]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_i32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 34], [raw: 2], [const pool: 35]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_i64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 36], [raw: 2], [const pool: 37]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_i8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsgt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 38], [raw: 2], [const pool: 39]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_u16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 40], [raw: 2], [const pool: 41]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 42], [raw: 2], [const pool: 43]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 44], [raw: 2], [const pool: 45]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_gt_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 46], [raw: 2], [const pool: 47]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_i64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPslt> ([val: 0], [const pool: 48]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 49], [raw: 2], [const pool: 50]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_i64_fits",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsge> ([val: 0], [const pool: 51]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 52], [raw: 2], [const pool: 53]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_i64_wide",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsge> ([val: 0], [const pool: 54]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 55], [raw: 2], [const pool: 56]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_i8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsgt> ([val: 0], [const pool: 57]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 58], [raw: 2], [const pool: 59]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_u16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPuge> ([val: 0], [const pool: 60]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 61], [raw: 2], [const pool: 62]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPuge> ([val: 0], [const pool: 63]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 64], [raw: 2], [const pool: 65]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_u64_wide",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPuge> ([val: 0], [const pool: 66]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 67], [raw: 2], [const pool: 68]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_imm_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [const pool: 69]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 70], [raw: 2], [const pool: 71]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_i16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 72], [raw: 2], [const pool: 73]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_i32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 74], [raw: 2], [const pool: 75]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_i64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 76], [raw: 2], [const pool: 77]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_i8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPsle> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 78], [raw: 2], [const pool: 79]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_u16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPule> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 80], [raw: 2], [const pool: 81]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPule> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 82], [raw: 2], [const pool: 83]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPule> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 84], [raw: 2], [const pool: 85]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_le_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPule> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 86], [raw: 2], [const pool: 87]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_i16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 88], [raw: 2], [const pool: 89]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_i32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 90], [raw: 2], [const pool: 91]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_i64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 92], [raw: 2], [const pool: 93]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_i8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 94], [raw: 2], [const pool: 95]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_u16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPult> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 96], [raw: 2], [const pool: 97]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPult> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 98], [raw: 2], [const pool: 99]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPult> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 100], [raw: 2], [const pool: 101]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_lt_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPult> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 102], [raw: 2], [const pool: 103]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_i16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 104], [raw: 2], [const pool: 105]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_i32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 106], [raw: 2], [const pool: 107]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_i64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 108], [raw: 2], [const pool: 109]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_i8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 110], [raw: 2], [const pool: 111]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_u16",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i16,
-                i16,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 112], [raw: 2], [const pool: 113]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 114], [raw: 2], [const pool: 115]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i64,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 116], [raw: 2], [const pool: 117]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_ne_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i8,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPne> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 118], [raw: 2], [const pool: 119]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "cmp_nested_i32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                Bool,
-                Bool,
-                Bool,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPslt> ([val: 0], [val: 1]) -> [val: 2],
-                    <CondBr> ([val: 2]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <CMPsgt> ([val: 0], [val: 1]) -> [val: 3],
-                    <CondBr> ([val: 3]),
-                    successors: [4, 3],
-                ],
-                BasicBlock: [
-                    <CMPslt> ([val: 0], [const: i32 0]) -> [val: 5],
-                    <CondBr> ([val: 5]),
-                    successors: [9, 8],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <CMPslt> ([val: 1], [const: i32 0]) -> [val: 4],
-                    <CondBr> ([val: 4]),
-                    successors: [7, 6],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 3], [const: i32 5], [raw: 6], [const: i32 4], [raw: 7], [const: i32 3], [raw: 8], [const: i32 2], [raw: 9], [const: i32 1]) -> [phi: 5, 0] i32,
-                    <Ret> ([phi: 5, 0]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [5],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "simplebranch",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                Bool,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [
-                size: 4, align: 4, state: Promotable, size_a: 4, offset_b: 0, size_b: 0, call_forwards: 0,
-            ],
-            basic_blocks: [
-                BasicBlock: [
-                    <CMPugt> ([val: 0], [const: i32 100]) -> [val: 1],
-                    <CondBr> ([val: 1]),
-                    successors: [2, 1],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Phi> ([raw: 1], [const pool: 120], [raw: 2], [const pool: 121]) -> [phi: 3, 0] i32,
-                    <Ret> ([phi: 3, 0]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-    ],
-    consts: [
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i64] (18446744073709551615 18446744073709551615) -> -1,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i64] (0 2147483647) -> 2147483647,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i64] (0 2147483648) -> 2147483648,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i8] (18446744073709551615 18446744073709551615) -> -1,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i16] (18446744073709551615 18446744073709518848) -> -32768,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (18446744073709551615 18446744071562067968) -> -2147483648,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i64] (18446744073709551615 9223372036854775808) -> -9223372036854775808,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i8] (18446744073709551615 18446744073709551488) -> -128,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-        [i32] (0 252645135) -> 252645135,
-        [i32] (18446744073709551615 18446744073456906480) -> -252645136,
-    ],
-    globals: [],
-    global_ptrs: [],
-    const_vectors: [],
+[f0] cmp_eq_i16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
 }
+
+[f1] cmp_eq_i32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f2] cmp_eq_i64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f3] cmp_eq_i8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f4] cmp_eq_u16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f5] cmp_eq_u32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f6] cmp_eq_u64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f7] cmp_eq_u8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPeq> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f8] cmp_ge_i16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f9] cmp_ge_i32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f10] cmp_ge_i64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f11] cmp_ge_i8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f12] cmp_ge_u16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPuge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f13] cmp_ge_u32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPuge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f14] cmp_ge_u64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPuge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f15] cmp_ge_u8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPuge> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f16] cmp_gt_i16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsgt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f17] cmp_gt_i32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsgt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f18] cmp_gt_i64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsgt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f19] cmp_gt_i8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsgt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f20] cmp_gt_u16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f21] cmp_gt_u32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f22] cmp_gt_u64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f23] cmp_gt_u8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f24] cmp_imm_i64(s0: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPslt> (s0, [i64 -1]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f25] cmp_imm_i64_fits(s0: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsge> (s0, [i64 2147483647]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f26] cmp_imm_i64_wide(s0: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsge> (s0, [i64 2147483648]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f27] cmp_imm_i8(s0: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsgt> (s0, [i8 -1]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f28] cmp_imm_u16(s0: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPuge> (s0, [i16 -32768]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f29] cmp_imm_u32(s0: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPuge> (s0, [i32 -2147483648]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f30] cmp_imm_u64_wide(s0: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPuge> (s0, [i64 -9223372036854775808]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f31] cmp_imm_u8(s0: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, [i8 -128]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f32] cmp_le_i16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsle> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f33] cmp_le_i32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsle> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f34] cmp_le_i64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsle> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f35] cmp_le_i8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPsle> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f36] cmp_le_u16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPule> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f37] cmp_le_u32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPule> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f38] cmp_le_u64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPule> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f39] cmp_le_u8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPule> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f40] cmp_lt_i16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPslt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f41] cmp_lt_i32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPslt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f42] cmp_lt_i64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPslt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f43] cmp_lt_i8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPslt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f44] cmp_lt_u16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPult> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f45] cmp_lt_u32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPult> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f46] cmp_lt_u64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPult> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f47] cmp_lt_u8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPult> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f48] cmp_ne_i16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f49] cmp_ne_i32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f50] cmp_ne_i64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f51] cmp_ne_i8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f52] cmp_ne_u16(s0: i16, s1: i16) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f53] cmp_ne_u32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f54] cmp_ne_u64(s0: i64, s1: i64) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f55] cmp_ne_u8(s0: i8, s1: i8) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPne> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+
+[f56] cmp_nested_i32(s0: i32, s1: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPslt> (s0, s1) -> s2: bool
+      <CondBr> (s2)
+      -> bb2, bb1
+    bb1:
+      <CMPsgt> (s0, s1) -> s3: bool
+      <CondBr> (s3)
+      -> bb4, bb3
+    bb2:
+      <CMPslt> (s0, [i32 0]) -> s5: bool
+      <CondBr> (s5)
+      -> bb9, bb8
+    bb3:
+      <Br> ()
+      -> bb5
+    bb4:
+      <CMPslt> (s1, [i32 0]) -> s4: bool
+      <CondBr> (s4)
+      -> bb7, bb6
+    bb5:
+      phi [(bb3, [i32 5]), (bb6, [i32 4]), (bb7, [i32 3]), (bb8, [i32 2]), (bb9, [i32 1])] -> p0: i32
+      <Ret> (p0)
+    bb6:
+      <Br> ()
+      -> bb5
+    bb7:
+      <Br> ()
+      -> bb5
+    bb8:
+      <Br> ()
+      -> bb5
+    bb9:
+      <Br> ()
+      -> bb5
+}
+
+[f57] simplebranch(s0: i32) -> i32 !got {
+  allocas:
+    a0 = size: 4, align: 4
+  basic blocks:
+    bb0:
+      <CMPugt> (s0, [i32 100]) -> s1: bool
+      <CondBr> (s1)
+      -> bb2, bb1
+    bb1:
+      <Br> ()
+      -> bb3
+    bb2:
+      <Br> ()
+      -> bb3
+    bb3:
+      phi [(bb1, [i32 252645135]), (bb2, [i32 -252645136])] -> p0: i32
+      <Ret> (p0)
+}
+

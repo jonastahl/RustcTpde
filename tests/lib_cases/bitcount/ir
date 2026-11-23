@@ -1,1056 +1,234 @@
-ModuleTpde {
-    functions: [
-        Function {
-            name: "_RNvMs1m_NtNtCs5bICpQ07Uc4_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCslFJ5zlOYuKy_6source",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Cast> ([val: 0]) -> [val: 1],
-                    <ctlz_nonzero> ([val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs1m_NtNtCs5bICpQ07Uc4_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCslFJ5zlOYuKy_6source",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Cast> ([val: 0]) -> [val: 1],
-                    <cttz_nonzero> ([val: 1]) -> [val: 2],
-                    <Ret> ([val: 2]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs4_NtCs5bICpQ07Uc4_4core3numh13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs4_NtCs5bICpQ07Uc4_4core3numh14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs6_NtCs5bICpQ07Uc4_4core3numm13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs6_NtCs5bICpQ07Uc4_4core3numm14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs7_NtCs5bICpQ07Uc4_4core3numy13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs7_NtCs5bICpQ07Uc4_4core3numy14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs8_NtCs5bICpQ07Uc4_4core3numo13leading_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "_RNvMs8_NtCs5bICpQ07Uc4_4core3numo14trailing_zeros",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: true,
-                dso_local: true,
-                weak_link: false,
-                always_inline: true,
-                never_delete: false,
-                dead: true,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 1],
-                    <Ret> ([val: 1]),
-                    successors: [],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "lz_nz_u128",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-                i128,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 4]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 0]) -> [val: 3],
-                    <ctlz_nonzero> ([val: 3]) -> [val: 4],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "lz_u128",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "lz_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "lz_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i32,
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "lz_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i32,
-                i8,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <ctlz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "tz_nz_u128",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-                i128,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 4]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <Cast> ([val: 0]) -> [val: 3],
-                    <cttz_nonzero> ([val: 3]) -> [val: 4],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "tz_u128",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i128,
-                i32,
-                i128,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "tz_u32",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i32,
-                i32,
-                i32,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "tz_u64",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i64,
-                i32,
-                i64,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-        Function {
-            name: "tz_u8",
-            has_ret: true,
-            args: [
-                ArgInfo {
-                    kind: Direct,
-                    extension: None,
-                    size: 0,
-                    align: 0,
-                    access_info: AccessInfo {
-                        state: Complex,
-                        call_forwards: 0,
-                        size_a: 0,
-                        ty_a: Void,
-                        size_b: 0,
-                        ty_b: Void,
-                        offset_b: 0,
-                    },
-                },
-            ],
-            slots: [
-                i8,
-                i32,
-                i8,
-                i32,
-            ],
-            flags: Flags {
-                extern_link: false,
-                only_local: false,
-                dso_local: false,
-                weak_link: false,
-                always_inline: false,
-                never_delete: false,
-                dead: false,
-            },
-            has_personality: false,
-            personality: 0,
-            allocas: [],
-            basic_blocks: [
-                BasicBlock: [
-                    <Br> (),
-                    successors: [3],
-                ],
-                BasicBlock: [
-                    <Ret> ([val: 3]),
-                    successors: [],
-                ],
-                BasicBlock: [
-                    <Br> (),
-                    successors: [1],
-                ],
-                BasicBlock: [
-                    <cttz> ([val: 0]) -> [val: 3],
-                    <Br> (),
-                    successors: [2],
-                ],
-            ],
-            callee_infos: [],
-        },
-    ],
-    consts: [],
-    globals: [],
-    global_ptrs: [],
-    const_vectors: [],
+[f0] _RNvMs1m_NtNtCs5bICpQ07Uc4_4core3num7nonzeroINtB6_7NonZerooE13leading_zerosCslFJ5zlOYuKy_6source(s0: i128) -> i32 !internal !dead {
+  basic blocks:
+    bb0:
+      <Cast> (s0) -> s1: i128
+      <ctlz_nonzero> (s1) -> s2: i32
+      <Ret> (s2)
 }
+
+[f1] _RNvMs1m_NtNtCs5bICpQ07Uc4_4core3num7nonzeroINtB6_7NonZerooE14trailing_zerosCslFJ5zlOYuKy_6source(s0: i128) -> i32 !internal !dead {
+  basic blocks:
+    bb0:
+      <Cast> (s0) -> s1: i128
+      <cttz_nonzero> (s1) -> s2: i32
+      <Ret> (s2)
+}
+
+[f2] _RNvMs4_NtCs5bICpQ07Uc4_4core3numh13leading_zeros(s0: i8) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <ctlz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f3] _RNvMs4_NtCs5bICpQ07Uc4_4core3numh14trailing_zeros(s0: i8) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <cttz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f4] _RNvMs6_NtCs5bICpQ07Uc4_4core3numm13leading_zeros(s0: i32) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <ctlz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f5] _RNvMs6_NtCs5bICpQ07Uc4_4core3numm14trailing_zeros(s0: i32) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <cttz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f6] _RNvMs7_NtCs5bICpQ07Uc4_4core3numy13leading_zeros(s0: i64) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <ctlz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f7] _RNvMs7_NtCs5bICpQ07Uc4_4core3numy14trailing_zeros(s0: i64) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <cttz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f8] _RNvMs8_NtCs5bICpQ07Uc4_4core3numo13leading_zeros(s0: i128) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <ctlz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f9] _RNvMs8_NtCs5bICpQ07Uc4_4core3numo14trailing_zeros(s0: i128) -> i32 !internal !always_inline !dead {
+  basic blocks:
+    bb0:
+      <cttz> (s0) -> s1: i32
+      <Ret> (s1)
+}
+
+[f10] lz_nz_u128(s0: i128) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s4)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Cast> (s0) -> s3: i128
+      <ctlz_nonzero> (s3) -> s4: i32
+      <Br> ()
+      -> bb2
+}
+
+[f11] lz_u128(s0: i128) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <ctlz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
+[f12] lz_u32(s0: i32) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <ctlz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
+[f13] lz_u64(s0: i64) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <ctlz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
+[f14] lz_u8(s0: i8) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <ctlz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
+[f15] tz_nz_u128(s0: i128) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s4)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <Cast> (s0) -> s3: i128
+      <cttz_nonzero> (s3) -> s4: i32
+      <Br> ()
+      -> bb2
+}
+
+[f16] tz_u128(s0: i128) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <cttz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
+[f17] tz_u32(s0: i32) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <cttz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
+[f18] tz_u64(s0: i64) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <cttz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
+[f19] tz_u8(s0: i8) -> i32 !got {
+  basic blocks:
+    bb0:
+      <Br> ()
+      -> bb3
+    bb1:
+      <Ret> (s3)
+    bb2:
+      <Br> ()
+      -> bb1
+    bb3:
+      <cttz> (s0) -> s3: i32
+      <Br> ()
+      -> bb2
+}
+
