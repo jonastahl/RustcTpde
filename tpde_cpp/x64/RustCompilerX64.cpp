@@ -635,7 +635,7 @@ namespace tpde_rust::x64 {
       assert(sym.valid());
 
       const auto &flags = this->adaptor->get_functions()[func_id].flags;
-      if (flags.extern_link || (!flags.only_local && !this->adaptor->mod->defs_dso_local)) {
+      if (!flags.dso_local) {
         // mov the ptr from the GOT
         ASM(MOV64rm, dst, FE_MEM(FE_IP, 0, FE_NOREG, -1));
         reloc_text(sym, tpde::elf::R_X86_64_REX_GOTPCRELX, text_writer.offset() - 4, -4);
@@ -658,7 +658,7 @@ namespace tpde_rust::x64 {
     const auto sym = this->global_symbols[glob_id];
     assert(sym.valid());
 
-    if (global.flags.extern_link || (!global.flags.only_local && !this->adaptor->mod->defs_dso_local)) {
+    if (!global.flags.dso_local) {
       // mov the ptr from the GOT
       ASM(MOV64rm, dst, FE_MEM(FE_IP, 0, FE_NOREG, -1));
       reloc_text(sym, tpde::elf::R_X86_64_REX_GOTPCRELX, text_writer.offset() - 4, - 4);

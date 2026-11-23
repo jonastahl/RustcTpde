@@ -187,6 +187,8 @@ pub struct Module {
 
     pairs: Vec<PairRef>,
     opt: OptConfig,
+    
+    defs_dso_local: bool,
 }
 
 /// We inline smaller constants to avoid overusing the constant pool with small values
@@ -220,11 +222,10 @@ impl Module {
                 globals: vec![],
                 global_ptrs: vec![],
                 const_vectors: vec![],
-
-                defs_dso_local,
             },
             pairs: vec![],
             opt,
+            defs_dso_local,
         }
     }
 
@@ -312,7 +313,7 @@ impl Module {
             calling: 0,
             called_by: vec![],
             cost: 0,
-            flags: Self::create_flags(linkage, ty),
+            flags: Self::create_flags(linkage, ty, self.defs_dso_local),
             operands: vec![],
             instructions: vec![],
             allocas: vec![],
@@ -375,7 +376,7 @@ impl Module {
             align: 0,
             thread_loc: false,
             read_only: mutability != Mutability::Mut,
-            flags: Self::create_flags(linkage, binding),
+            flags: Self::create_flags(linkage, binding, self.defs_dso_local),
 
             init: false,
             data: vec![],
@@ -460,14 +461,17 @@ impl Module {
         }
     }
 
-    fn create_flags(linkage: Linkage, ty: Binding) -> ffi::Flags {
+    fn create_flags(linkage: Linkage, ty: Binding, defs_dso_local: bool) -> ffi::Flags {
+        let extern_link = ty == Binding::Declaration
+            || matches!(
+                linkage,
+                Linkage::AvailableExternally | Linkage::ExternalWeak
+            );
+        let only_local = linkage == Linkage::Internal;
         ffi::Flags {
-            extern_link: ty == Binding::Declaration
-                || matches!(
-                    linkage,
-                    Linkage::AvailableExternally | Linkage::ExternalWeak
-                ),
-            only_local: linkage == Linkage::Internal,
+            extern_link,
+            only_local,
+            dso_local: !extern_link && (only_local || defs_dso_local),
             weak_link: linkage == Linkage::WeakODR
                 || linkage == Linkage::WeakAny
                 || linkage == Linkage::ExternalWeak,
