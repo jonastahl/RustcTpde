@@ -107,7 +107,7 @@ namespace IR {
       return content() & PHI_POS_MASK;
     }
 
-    [[nodiscard]] constexpr uint32_t global_ptr_idx() const {
+    [[nodiscard]] constexpr uint32_t global_content() const {
       return value & ~(MARKER_BLOCK | GLOBAL_PTR_BIT);
     }
 
@@ -610,16 +610,16 @@ namespace tpde_rust {
       }
     };
 
+    static ValueParts val_parts(const Type ty) {
+      return ValueParts{ty};
+    }
+
     [[nodiscard]] ValueParts val_parts(const IRValueRef value) const {
-      return ValueParts{type_of_ref(value)};
+      return val_parts(type_of_ref(value));
     }
 
     static ValueParts val_parts(const ValInfo &info) {
-      return ValueParts{info.type};
-    }
-
-    static ValueParts val_parts(const Type ty) {
-      return ValueParts{ty};
+      return val_parts(info.type);
     }
   };
 
