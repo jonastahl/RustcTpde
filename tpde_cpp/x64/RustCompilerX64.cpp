@@ -404,12 +404,13 @@ namespace tpde_rust::x64 {
     const IR::Instr inst = this->adaptor->get_instruction(inst_ref);
     const u32 variant = inst.op(inst.num_ops() - 1).content();
 
-    // sha256rnds2 implicitly reads k from xmm0. Claim xmm0 first, so that neither dst nor src
-    // can be assigned to it afterwards.
-    ScratchReg k{this};
+    std::optional<ValueRef> k_ref;
+    std::optional<ValuePartRef> k_part;
+    // sha256rnds2 always overrides xmm0
     if (variant == 6) {
-      auto k_ref = this->val_ref(inst.op(2));
-      k_ref.part(0).load_to_specific(AsmReg::XMM0);
+      k_ref.emplace(this->val_ref(inst.op(2)));
+      k_part.emplace(k_ref->part(0));
+      k_part->load_to_specific(AsmReg::XMM0);
     }
 
     auto lhs = this->val_ref(inst.op(0));
@@ -425,7 +426,7 @@ namespace tpde_rust::x64 {
       case 3: ASM(SHA1RNDS4rri, dst.cur_reg(), src, static_cast<i8>(inst.op(2).content() & 3)); break;
       case 4: ASM(SHA256MSG1rr, dst.cur_reg(), src); break;
       case 5: ASM(SHA256MSG2rr, dst.cur_reg(), src); break;
-      case 6: ASM(SHA256RNDS2rrr, dst.cur_reg(), src, k.cur_reg()); break;
+      case 6: ASM(SHA256RNDS2rrr, dst.cur_reg(), src, k_part->cur_reg()); break;
       default: return false;
     }
     res.part(0).set_value(std::move(dst));
