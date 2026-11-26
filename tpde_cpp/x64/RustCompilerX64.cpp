@@ -409,7 +409,7 @@ namespace tpde_rust::x64 {
     ScratchReg k{this};
     if (variant == 6) {
       auto k_ref = this->val_ref(inst.op(2));
-      k_ref.part(0).reload_into_specific_fixed(this, k.alloc_specific(AsmReg::XMM0));
+      k_ref.part(0).load_to_specific(AsmReg::XMM0);
     }
 
     auto lhs = this->val_ref(inst.op(0));
